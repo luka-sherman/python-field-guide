@@ -1,5 +1,7 @@
 (function () {
   const PYODIDE_CDN = "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js";
+  const CODEJAR_CDN = "https://cdn.jsdelivr.net/npm/codejar@4.3.0/dist/codejar.js";
+
   let pyodideReadyPromise = null;
 
   function loadPyodideRuntime() {
@@ -18,6 +20,23 @@
       document.head.appendChild(script);
     });
     return pyodideReadyPromise;
+  }
+
+  // highlight.js 11 marks an element data-highlighted="yes" and refuses to
+  // re-highlight it. Clear that flag before every pass so edits stay colored.
+  function highlightWithExistingTheme(editor) {
+    delete editor.dataset.highlighted;
+    window.hljs.highlightElement(editor);
+  }
+
+  function makeEditable(codeBlock) {
+    codeBlock.classList.add("pyodide-editor");
+    import(CODEJAR_CDN).then(({ CodeJar }) => {
+      CodeJar(codeBlock, highlightWithExistingTheme, {
+        tab: "    ",
+        indentOn: /[({\[:]$/,
+      });
+    });
   }
 
   function buildRunner(codeBlock) {
@@ -43,6 +62,8 @@
     wrapper.appendChild(pre);
     wrapper.appendChild(toolbar);
     wrapper.appendChild(output);
+
+    makeEditable(codeBlock);
 
     runButton.addEventListener("click", async () => {
       const originalLabel = runButton.textContent;
