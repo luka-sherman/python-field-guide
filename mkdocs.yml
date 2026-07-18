@@ -1,1 +1,7 @@
 site_name: My Docs
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/pyodide_runner.js
