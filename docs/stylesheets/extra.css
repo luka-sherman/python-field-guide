@@ -130,15 +130,21 @@ pre {
   color: #ff8a80;
 }
 
-.pyodide-runner pre {
+.pyodide-runner pre,
+.pyodide-reference pre {
   background-color: #23221E;
   border: 1px solid #35342E;
   border-radius: 6px;
 }
 
-.pyodide-runner pre code {
+.pyodide-runner pre code,
+.pyodide-reference pre code {
   background: transparent;
   color: #F2EDE0;
+}
+
+.pyodide-reference {
+  margin: 1em 0;
 }
 
 .pyodide-editor {
@@ -152,17 +158,79 @@ pre {
 }
 
 .pyodide-editor .hljs-string,
-.pyodide-editor .hljs-subst {
+.pyodide-editor .hljs-subst,
+.pyodide-reference .hljs-string,
+.pyodide-reference .hljs-subst {
   color: #C9E4D2;
 }
 
 .pyodide-editor .hljs-built_in,
 .pyodide-editor .hljs-keyword,
 .pyodide-editor .hljs-title,
-.pyodide-editor .hljs-number {
+.pyodide-editor .hljs-number,
+.pyodide-reference .hljs-built_in,
+.pyodide-reference .hljs-keyword,
+.pyodide-reference .hljs-title,
+.pyodide-reference .hljs-number {
   color: #E8C9A8;
 }
 
-.pyodide-editor .hljs-comment {
+.pyodide-editor .hljs-comment,
+.pyodide-reference .hljs-comment {
   color: #8A8370;
+}
+
+details.pt-collapsible {
+  --pt-collapsible-indent: 22px;
+  margin: 1.5em 0;
+  padding: 18px 22px 18px 0;
+  background-color: var(--pt-panel);
+  border: 1px solid var(--pt-hairline);
+  border-radius: 6px;
+}
+
+details.pt-collapsible > summary {
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  padding-left: var(--pt-collapsible-indent);
+}
+
+details.pt-collapsible > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.pt-collapsible > summary::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  color: var(--pt-accent);
+  transition: transform 0.15s ease;
+}
+
+details.pt-collapsible[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+details.pt-collapsible > summary h3 {
+  display: block;
+  margin: 0;
+}
+
+details.pt-collapsible > summary:hover h3 {
+  color: var(--pt-accent);
+}
+
+details.pt-collapsible > summary .pyodide-reference {
+  margin: 12px 0 0;
+}
+
+details.pt-collapsible[open] > summary {
+  margin-bottom: 16px;
+}
+
+details.pt-collapsible > :not(summary) {
+  padding-left: var(--pt-collapsible-indent);
+  margin-left: 0;
 }

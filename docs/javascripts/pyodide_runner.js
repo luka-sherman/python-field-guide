@@ -93,7 +93,24 @@
     });
   }
 
+  // Reference-only blocks (` ```python-ref `): syntax-highlighted like real
+  // Python, but no Run button — for cheat-sheet-style annotated snippets
+  // where the `# result` comment is the point, not execution.
+  function buildReference(codeBlock) {
+    const pre = codeBlock.parentElement;
+    const wrapper = document.createElement("div");
+    wrapper.className = "pyodide-reference";
+    pre.insertAdjacentElement("beforebegin", wrapper);
+    wrapper.appendChild(pre);
+
+    if (window.hljs) {
+      const result = window.hljs.highlight(codeBlock.textContent, { language: "python" });
+      codeBlock.innerHTML = result.value;
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("pre > code.language-python").forEach(buildRunner);
+    document.querySelectorAll("pre > code.language-python-ref").forEach(buildReference);
   });
 })();

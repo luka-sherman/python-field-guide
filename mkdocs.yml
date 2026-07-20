@@ -1,5 +1,17 @@
 site_name: PyTry
 
+theme:
+  name: mkdocs
+  navigation_depth: 3
+
+markdown_extensions:
+  - md_in_html
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      use_pygments: false
+
 extra_css:
   - stylesheets/extra.css
 
