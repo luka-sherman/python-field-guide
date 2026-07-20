@@ -1,3 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --pt-bg: #FAF6EE;
+  --pt-panel: #F4EEDF;
+  --pt-ink: #2B2A26;
+  --pt-text-secondary: #55503F;
+  --pt-text-muted: #8A8370;
+  --pt-hairline: #DED2B4;
+  --pt-border-soft: #C9BE9E;
+  --pt-accent: #3f6b52;
+}
+
+body {
+  background-color: var(--pt-bg) !important;
+  color: var(--pt-ink);
+  font-family: 'Inter', sans-serif;
+}
+
+pre {
+  border-radius: 6px;
+}
+
+.navbar.bg-primary {
+  --bs-navbar-color: var(--pt-ink);
+  --bs-navbar-hover-color: var(--pt-accent);
+  --bs-navbar-active-color: var(--pt-ink);
+  --bs-navbar-brand-color: var(--pt-ink);
+  --bs-navbar-brand-hover-color: var(--pt-accent);
+  background-color: rgba(250, 246, 238, 0.92) !important;
+  background-image: none !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--pt-hairline);
+  box-shadow: none !important;
+}
+
+.navbar.bg-primary .navbar-brand {
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+}
+
+.navbar.bg-primary .nav-link {
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+#toc-collapse.card {
+  background-color: var(--pt-panel) !important;
+  border: 1px solid var(--pt-hairline);
+  border-radius: 6px;
+  box-shadow: none !important;
+}
+
+#toc-collapse.card::before {
+  content: "table of contents";
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pt-text-muted);
+  padding: 14px 16px 6px;
+}
+
+.bs-sidebar .nav > li > a {
+  color: var(--pt-text-secondary);
+  border-right: none;
+  border-left: 2px solid transparent;
+}
+
+.bs-sidebar .nav > li > a:hover,
+.bs-sidebar .nav > li > a:focus {
+  color: var(--pt-accent);
+  border-right: none;
+  border-left: 2px solid transparent;
+}
+
+.bs-sidebar .nav > li > a.active,
+.bs-sidebar .nav > li > a.active:hover,
+.bs-sidebar .nav > li > a.active:focus {
+  color: var(--pt-ink);
+  border-right: none;
+  border-left: 2px solid var(--pt-accent);
+  background-color: transparent;
+}
+
 .pyodide-runner {
   margin: 1em 0;
 }
@@ -42,6 +130,17 @@
   color: #ff8a80;
 }
 
+.pyodide-runner pre {
+  background-color: #23221E;
+  border: 1px solid #35342E;
+  border-radius: 6px;
+}
+
+.pyodide-runner pre code {
+  background: transparent;
+  color: #F2EDE0;
+}
+
 .pyodide-editor {
   display: block;
   outline: none;
@@ -49,5 +148,21 @@
 }
 
 .pyodide-editor:focus {
-  box-shadow: inset 0 0 0 2px rgba(46, 125, 50, 0.35);
+  box-shadow: inset 0 0 0 2px rgba(63, 107, 82, 0.45);
+}
+
+.pyodide-editor .hljs-string,
+.pyodide-editor .hljs-subst {
+  color: #C9E4D2;
+}
+
+.pyodide-editor .hljs-built_in,
+.pyodide-editor .hljs-keyword,
+.pyodide-editor .hljs-title,
+.pyodide-editor .hljs-number {
+  color: #E8C9A8;
+}
+
+.pyodide-editor .hljs-comment {
+  color: #8A8370;
 }
