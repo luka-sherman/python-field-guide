@@ -182,11 +182,10 @@ pre {
 
 details.pt-collapsible {
   --pt-collapsible-indent: 22px;
-  margin: 1.5em 0;
-  padding: 18px 22px 18px 0;
-  background-color: var(--pt-panel);
-  border: 1px solid var(--pt-hairline);
-  border-radius: 6px;
+  margin: 0.5em 0;
+  padding: 8px 0;
+  background-color: var(--pt-bg);
+  border: none;
 }
 
 details.pt-collapsible > summary {
@@ -216,6 +215,8 @@ details.pt-collapsible[open] > summary::before {
 details.pt-collapsible > summary h3 {
   display: block;
   margin: 0;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 details.pt-collapsible > summary:hover h3 {
@@ -227,7 +228,7 @@ details.pt-collapsible > summary .pyodide-reference {
 }
 
 details.pt-collapsible[open] > summary {
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 details.pt-collapsible > :not(summary) {
