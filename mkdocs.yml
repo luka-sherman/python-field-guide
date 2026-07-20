@@ -4,6 +4,7 @@ nav:
   - Home: index.md
   - Basic Data Types: basic_data_types.md
   - Collections of Data: collections_of_data.md
+  - Loops: loops.md
 
 theme:
   name: material
