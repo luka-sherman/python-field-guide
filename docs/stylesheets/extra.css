@@ -100,7 +100,7 @@
   cursor: wait;
 }
 
-.pyodide-runner__output {
+.md-typeset .pyodide-runner__output {
   margin-top: 0.5em;
   padding: 0.75em 1em;
   background-color: #1e1e1e;
@@ -121,16 +121,37 @@
 
 .pyodide-runner pre,
 .pyodide-reference pre {
-  background-color: #23221E !important;
-  border: 1px solid #35342E;
   border-radius: 6px;
   margin: 0 !important;
 }
 
-.pyodide-runner pre code,
-.pyodide-reference pre code {
+.pyodide-runner pre {
+  background-color: #23221E !important;
+  border: 1px solid #35342E;
+}
+
+.pyodide-reference pre {
+  background-color: #fff !important;
+  border: 1px solid var(--pt-hairline);
+}
+
+.pyodide-runner pre code {
   background: transparent;
   color: #F2EDE0;
+}
+
+.pyodide-reference pre code {
+  background: transparent;
+  color: var(--pt-ink);
+  border-radius: 0;
+}
+
+/* Material puts a box-shadow "border" on summary > code (.md-typeset
+   summary code) at the code element's own 0.1rem radius, independent of
+   our 6px border on the wrapping <pre> above — killing it here since the
+   python-ref preview always lives inside a <details> <summary>. */
+.md-typeset summary .pyodide-reference pre code {
+  box-shadow: none;
 }
 
 .pyodide-reference {
@@ -152,26 +173,35 @@
 }
 
 .pyodide-editor .hljs-string,
-.pyodide-editor .hljs-subst,
-.pyodide-reference .hljs-string,
-.pyodide-reference .hljs-subst {
+.pyodide-editor .hljs-subst {
   color: #C9E4D2;
 }
 
 .pyodide-editor .hljs-built_in,
 .pyodide-editor .hljs-keyword,
 .pyodide-editor .hljs-title,
-.pyodide-editor .hljs-number,
+.pyodide-editor .hljs-number {
+  color: #E8C9A8;
+}
+
+.pyodide-editor .hljs-comment {
+  color: #8A8370;
+}
+
+.pyodide-reference .hljs-string,
+.pyodide-reference .hljs-subst {
+  color: var(--pt-accent);
+}
+
 .pyodide-reference .hljs-built_in,
 .pyodide-reference .hljs-keyword,
 .pyodide-reference .hljs-title,
 .pyodide-reference .hljs-number {
-  color: #E8C9A8;
+  color: #8a5a2e;
 }
 
-.pyodide-editor .hljs-comment,
 .pyodide-reference .hljs-comment {
-  color: #8A8370;
+  color: var(--pt-text-muted);
 }
 
 /* ---- Collapsible concept sections ----
