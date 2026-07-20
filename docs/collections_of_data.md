@@ -2,6 +2,12 @@
 
 A **collection** is a single object that groups multiple values together, so a whole set of data can be stored in one variable, passed around, and looped over as a unit — instead of juggling a separate variable per value, like you would with the [basic types](basic_data_types.md). Python's built-in collections mainly differ along two lines: whether items are **ordered** by position or looked up by **key**, and whether the collection is **mutable** (changeable after creation) or not.
 
+| Type | Example | Access values by | Mutable (changeable after creation) | Duplicates allowed | Use it for |
+|------|---------|:-----------------:|:-------:|:-------:|------------|
+| `list` | `["ball", "burmese"]` | Index | Yes | Yes | <ul><li>Ordered sequence</li><li>Looking up by value (`in`) scans item by item</li></ul> |
+| `tuple` | `("ball", "burmese")` | Index | No | Yes | <ul><li>Fixed sequence that shouldn't change — records, dict keys</li></ul> |
+| `dict` | `{"species": "ball", ...}` | Key | Yes | No (keys must be unique) | <ul><li>Key → value lookups, records with named fields</li><li>No positional access — only by key</li></ul> |
+
 ## Lists
 
 A list stores multiple items, in order, inside a single variable.

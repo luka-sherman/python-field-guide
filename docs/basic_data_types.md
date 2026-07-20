@@ -2,6 +2,14 @@
 
 Every value in Python has a **type**, which determines what operations it supports and how it behaves — Python figures this out from the value itself, since you never declare a type explicitly. A basic (or "scalar") data type holds a single, indivisible value, as opposed to a [collection](collections_of_data.md), which groups many values together. The basic types are also all **immutable**: once created, the value itself can never be changed in place — only replaced with a different value.
 
+| Type | Example | Mutable (changeable after creation) | Use it for |
+|------|---------|:-------:|------------|
+| `int` | `5` | No | <ul><li>Counts — how many of something there are, like items in a list</li><li>Indexes — the position of an item in a sequence, like `species[2]`</li><li>IDs — a unique whole-number identifier, like a user or record ID</li></ul> |
+| `float` | `4.5` | No | <ul><li>Measurements, ratios — anything with a decimal</li><li>Binary rounding errors mean `0.1 + 0.2 != 0.3`</li></ul> |
+| `str` | `"ball python"` | No | <ul><li>Text — names, labels, messages</li><li>Ordered and indexable like a list, but immutable — `.upper()`, `.replace()`, etc. return a *new* string</li></ul> |
+| `bool` | `True` | No | <ul><li>Flags, yes/no switches, comparison results (`length > 3`)</li><li>Secretly a subclass of `int` — `True + True == 2`</li></ul> |
+| `None` | `None` | No | <ul><li>Marking "no value yet" — a default placeholder, or what a function returns if it falls through without a `return`</li><li>Compare with `is None`, not `== None`</li></ul> |
+
 ## Integers
 
 An integer (`int`) is a whole number — positive, negative, or zero — with no decimal point.

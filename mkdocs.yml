@@ -24,6 +24,7 @@ theme:
 markdown_extensions:
   - md_in_html
   - admonition
+  - tables
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.highlight:
