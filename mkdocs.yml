@@ -6,8 +6,20 @@ nav:
   - Collections of Data: collections_of_data.md
 
 theme:
-  name: mkdocs
-  navigation_depth: 3
+  name: material
+  font:
+    text: Inter
+    code: IBM Plex Mono
+  palette:
+    scheme: default
+    primary: custom
+    accent: custom
+  features:
+    - navigation.instant
+    - navigation.top
+    - navigation.tracking
+    - toc.integrate
+    - content.code.copy
 
 markdown_extensions:
   - md_in_html
@@ -21,4 +33,5 @@ extra_css:
   - stylesheets/extra.css
 
 extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js
   - javascripts/pyodide_runner.js

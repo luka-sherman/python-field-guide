@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
-
 :root {
   --pt-bg: #FAF6EE;
   --pt-panel: #F4EEDF;
@@ -11,90 +9,67 @@
   --pt-accent: #3f6b52;
 }
 
-body {
-  background-color: var(--pt-bg) !important;
-  color: var(--pt-ink);
-  font-family: 'Inter', sans-serif;
+/* Material re-sets --md-* variables on [data-md-color-scheme] (applied to
+   <body>, not <html>), which otherwise wins over a plain :root override
+   since body never actually inherits from a losing :root declaration —
+   it just matches Material's own attribute-selector rule directly. */
+:root,
+[data-md-color-scheme] {
+  /* Map our palette onto Material's theme variables. */
+  --md-default-bg-color: var(--pt-bg);
+  --md-default-fg-color: var(--pt-ink);
+  --md-default-fg-color--light: var(--pt-text-secondary);
+  --md-default-fg-color--lighter: var(--pt-text-muted);
+  --md-default-fg-color--lightest: var(--pt-hairline);
+
+  --md-primary-fg-color: rgba(250, 246, 238, 0.92);
+  --md-primary-bg-color: var(--pt-ink);
+  --md-primary-bg-color--light: var(--pt-text-secondary);
+
+  --md-accent-fg-color: var(--pt-accent);
+  --md-accent-fg-color--transparent: rgba(63, 107, 82, 0.1);
+  --md-accent-bg-color: var(--pt-bg);
+
+  --md-typeset-a-color: var(--pt-accent);
+
+  --md-code-bg-color: var(--pt-panel);
+  --md-code-fg-color: var(--pt-ink);
 }
 
-pre {
-  border-radius: 6px;
-}
-
-.navbar.bg-primary {
-  --bs-navbar-color: var(--pt-ink);
-  --bs-navbar-hover-color: var(--pt-accent);
-  --bs-navbar-active-color: var(--pt-ink);
-  --bs-navbar-brand-color: var(--pt-ink);
-  --bs-navbar-brand-hover-color: var(--pt-accent);
-  background-color: rgba(250, 246, 238, 0.92) !important;
-  background-image: none !important;
+.md-header {
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--pt-hairline);
-  box-shadow: none !important;
-}
-
-.navbar.bg-primary .navbar-brand {
-  font-weight: 800;
-  font-size: 19px;
-  letter-spacing: -0.02em;
-}
-
-.navbar.bg-primary .nav-link {
-  font-weight: 500;
-  transition: color 0.15s ease;
-}
-
-.navbar.bg-primary .navbar-toggler-icon {
-  /* Bootstrap's dark-navbar icon is a hardcoded white SVG data-URI, which
-     can't reference CSS variables — recolored to match --pt-ink (#2B2A26). */
-  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%232B2A26' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
-
-.navbar.bg-primary .navbar-toggler {
-  border-color: var(--pt-hairline);
-}
-
-#toc-collapse.card {
-  background-color: var(--pt-panel) !important;
-  border: 1px solid var(--pt-hairline);
-  border-radius: 6px;
-  box-shadow: none !important;
-}
-
-#toc-collapse.card::before {
-  content: "table of contents";
-  display: block;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--pt-text-muted);
-  padding: 14px 16px 6px;
-}
-
-.bs-sidebar .nav > li > a {
-  color: var(--pt-text-secondary);
-  border-right: none;
-  border-left: 2px solid transparent;
-}
-
-.bs-sidebar .nav > li > a:hover,
-.bs-sidebar .nav > li > a:focus {
-  color: var(--pt-accent);
-  border-right: none;
-  border-left: 2px solid transparent;
-}
-
-.bs-sidebar .nav > li > a.active,
-.bs-sidebar .nav > li > a.active:hover,
-.bs-sidebar .nav > li > a.active:focus {
+  box-shadow: none;
   color: var(--pt-ink);
-  border-right: none;
-  border-left: 2px solid var(--pt-accent);
+}
+
+.md-header__title,
+.md-header__topic {
+  font-weight: 800;
+}
+
+.md-tabs {
   background-color: transparent;
 }
+
+/* Material redefines --md-typeset-a-color to --md-primary-fg-color somewhere
+   deeper in its own cascade (our light-cream header color), which makes body
+   links and the active-page nav label unreadable. Override color directly
+   rather than chase the variable indirection. */
+.md-typeset a,
+.md-typeset a:visited {
+  color: var(--pt-accent);
+}
+
+.md-nav__link--active,
+.md-nav__item .md-nav__link--active,
+.md-nav__item--active > .md-nav__link {
+  color: var(--pt-ink) !important;
+  font-weight: 700;
+}
+
+/* ---- Pyodide runnable / reference code blocks (theme-independent) ---- */
 
 .pyodide-runner {
   margin: 1em 0;
@@ -136,16 +111,20 @@ pre {
   font-size: 0.85em;
 }
 
+.pyodide-runner__output[hidden] {
+  display: none !important;
+}
+
 .pyodide-runner__output--error {
   color: #ff8a80;
 }
 
 .pyodide-runner pre,
 .pyodide-reference pre {
-  background-color: #23221E;
+  background-color: #23221E !important;
   border: 1px solid #35342E;
   border-radius: 6px;
-  margin: 0;
+  margin: 0 !important;
 }
 
 .pyodide-runner pre code,
@@ -156,6 +135,10 @@ pre {
 
 .pyodide-reference {
   margin: 1em 0;
+}
+
+.pyodide-reference .md-code__nav {
+  display: none;
 }
 
 .pyodide-editor {
@@ -191,58 +174,79 @@ pre {
   color: #8A8370;
 }
 
-details.pt-collapsible {
+/* ---- Collapsible concept sections ----
+   Material treats every <details> as a colored admonition (blue border,
+   tinted summary background, a note icon, and its own rotating chevron).
+   Reset all of that specifically for .pt-collapsible and reapply our own
+   flat, single-arrow design. */
+
+.md-typeset details.pt-collapsible,
+.md-typeset details.pt-collapsible:not([open]) {
   --pt-collapsible-indent: 22px;
-  margin: 0.5em 0;
-  padding: 8px 0;
   background-color: var(--pt-bg);
   border: none;
+  box-shadow: none;
+  border-radius: 0;
+  margin: 0.5em 0;
+  padding: 8px 0 8px 0;
 }
 
-details.pt-collapsible > summary {
+.md-typeset .pt-collapsible > summary {
   position: relative;
   cursor: pointer;
   list-style: none;
-  padding-left: var(--pt-collapsible-indent);
+  background: none;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 0 0 0 var(--pt-collapsible-indent);
 }
 
-details.pt-collapsible > summary::-webkit-details-marker {
+.md-typeset .pt-collapsible > summary::-webkit-details-marker {
   display: none;
 }
 
-details.pt-collapsible > summary::before {
+.md-typeset .pt-collapsible > summary::before {
   content: "▸";
   position: absolute;
   left: 0;
   top: 0.15em;
+  background: none;
+  mask-image: none;
+  height: auto;
+  width: auto;
   color: var(--pt-accent);
   transition: transform 0.15s ease;
 }
 
-details.pt-collapsible[open] > summary::before {
+.md-typeset .pt-collapsible[open] > summary::before {
   transform: rotate(90deg);
 }
 
-details.pt-collapsible > summary h3 {
+.md-typeset .pt-collapsible > summary::after {
+  display: none;
+}
+
+.md-typeset .pt-collapsible > summary h3 {
   display: block;
   margin: 0;
   font-size: 18px;
   font-weight: 700;
 }
 
-details.pt-collapsible > summary:hover h3 {
+.md-typeset .pt-collapsible > summary:hover h3 {
   color: var(--pt-accent);
 }
 
-details.pt-collapsible > summary .pyodide-reference {
+.md-typeset .pt-collapsible > summary .pyodide-reference {
   margin: 12px 0 0;
 }
 
-details.pt-collapsible[open] > summary {
+.md-typeset details.pt-collapsible[open] > summary {
   margin-bottom: 10px;
 }
 
-details.pt-collapsible > :not(summary) {
+.md-typeset .pt-collapsible > :not(summary) {
   padding-left: var(--pt-collapsible-indent);
   margin-left: 0;
 }

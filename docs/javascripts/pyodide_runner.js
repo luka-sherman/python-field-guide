@@ -63,6 +63,10 @@
     wrapper.appendChild(toolbar);
     wrapper.appendChild(output);
 
+    if (window.hljs) {
+      highlightWithExistingTheme(codeBlock);
+    }
+
     makeEditable(codeBlock);
 
     runButton.addEventListener("click", async () => {
@@ -109,8 +113,17 @@
     }
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  function initPage() {
     document.querySelectorAll("pre > code.language-python").forEach(buildRunner);
     document.querySelectorAll("pre > code.language-python-ref").forEach(buildReference);
-  });
+  }
+
+  // Material's navigation.instant swaps page content via JS without a full
+  // reload, so DOMContentLoaded only ever fires once. document$ is Material's
+  // own observable that emits on every page change, instant or not.
+  if (window.document$) {
+    window.document$.subscribe(initPage);
+  } else {
+    document.addEventListener("DOMContentLoaded", initPage);
+  }
 })();

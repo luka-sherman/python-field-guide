@@ -1,18 +1,12 @@
 # Python Field Guide
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+A hands-on reference for learning Python — run every example on this site without installing anything.
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-
-## Try it: runnable Python
+## Try it yourself
 
 ```python
-name = "world"
-print(f"hello, {name}!")
+species = ["burmese", "rock", "ball", "blood"]
+
+print(species)
 ```
+
