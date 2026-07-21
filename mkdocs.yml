@@ -18,6 +18,7 @@ theme:
     primary: custom
     accent: custom
   features:
+    - navigation.footer
     - navigation.instant
     - navigation.top
     - navigation.tracking
@@ -33,6 +34,14 @@ markdown_extensions:
   - pymdownx.highlight:
       use_pygments: false
 
+copyright: Copyright &copy; <script>document.write(new Date().getFullYear())</script> Luka Sherman
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github 
+      link: https://github.com/luka-sherman
+        
 extra_css:
   - stylesheets/extra.css
 
