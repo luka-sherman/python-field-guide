@@ -35,13 +35,13 @@ markdown_extensions:
   - pymdownx.highlight:
       use_pygments: false
 
-copyright: Copyright &copy; 2026 Luka Sherman
+copyright: "&copy; 2026 Luka Sherman"
 
 extra:
   generator: false
   social:
     - icon: fontawesome/brands/github 
-      link: https://github.com/luka-sherman
+      link: https://github.com/luka-sherman/python-field-guide
         
 extra_css:
   - stylesheets/extra.css
