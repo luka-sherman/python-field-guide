@@ -1,4 +1,5 @@
 site_name: Python Field Guide
+site_url: https://pythonfieldguide.com
 
 nav:
   - Home: index.md
@@ -34,7 +35,7 @@ markdown_extensions:
   - pymdownx.highlight:
       use_pygments: false
 
-copyright: Copyright &copy; <script>document.write(new Date().getFullYear())</script> Luka Sherman
+copyright: Copyright &copy; 2026 Luka Sherman
 
 extra:
   generator: false
