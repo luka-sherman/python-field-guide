@@ -379,6 +379,29 @@ print(name.count("p"))
 
 </details>
 
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### Convert to String
+
+```python-ref
+str(5)      # "5"
+str(4.5)    # "4.5"
+str(True)   # "True"
+```
+
+</summary>
+
+`str()` converts almost any value into its text representation — handy any time you need to combine a number with text, since `+` can't join a string and a number directly.
+
+```python
+print(str(5))
+print(str(4.5))
+print(str(True))
+```
+
+</details>
+
 ## Booleans
 
 A boolean (`bool`) holds one of exactly two values, `True` or `False` — used to represent yes/no, on/off, or the result of a comparison.
