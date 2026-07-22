@@ -2,6 +2,8 @@
 
 A hands-on reference for learning Python — run every example on this site without installing anything.
 
+This is **NOT** a comprehensive guide, it was designed for entry-level programmers to have a quick reference guide when first learning to program Python. 
+
 ## What's inside
 
 - **[Basic Data Types](basic_data_types.md)** — the scalar building blocks (`int`, `float`, `str`, `bool`) that hold a single value.
@@ -9,6 +11,8 @@ A hands-on reference for learning Python — run every example on this site with
 - **[Conditionals](conditionals.md)** — `if`/`elif`/`else` statements that run code only when a condition is `True`.
 - **[Loops](loops.md)** — `for` and `while` loops for repeating a block of code.
 - **[OOP](oop.md)** — classes and objects, for bundling data together with the behavior that belongs to it.
+- **[Pillow](pillow.md)** — opening, editing, and saving image files.
+- **[Tkinter](tkinter.md)** — Python's built-in toolkit for building desktop GUI applications.
 
 ## Try it yourself
 

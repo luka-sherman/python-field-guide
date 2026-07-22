@@ -261,14 +261,23 @@
   display: none;
 }
 
-.md-typeset .pt-collapsible > summary h3 {
+.md-typeset .pt-collapsible > summary h3,
+.md-typeset .pt-collapsible > summary h4 {
   display: block;
   margin: 0;
-  font-size: 18px;
   font-weight: 700;
 }
 
-.md-typeset .pt-collapsible > summary:hover h3 {
+.md-typeset .pt-collapsible > summary h3 {
+  font-size: 18px;
+}
+
+.md-typeset .pt-collapsible > summary h4 {
+  font-size: 15px;
+}
+
+.md-typeset .pt-collapsible > summary:hover h3,
+.md-typeset .pt-collapsible > summary:hover h4 {
   color: var(--pt-accent);
 }
 
