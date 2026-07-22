@@ -259,21 +259,30 @@ input:checked + .md-consent__settings {
 }
 
 .md-typeset .pt-collapsible > summary::before {
-  content: "▸";
-  position: absolute;
-  left: 0;
-  top: 0.15em;
-  background: none;
-  mask-image: none;
-  height: auto;
-  width: auto;
-  font-size: 18px;
-  color: var(--pt-accent);
-  transition: transform 0.15s ease;
+  display: none;
 }
 
-.md-typeset .pt-collapsible[open] > summary::before {
-  transform: rotate(90deg);
+.md-typeset .pt-collapsible > summary h3,
+.md-typeset .pt-collapsible > summary h4 {
+  position: relative;
+}
+
+.md-typeset .pt-collapsible > summary h3::before,
+.md-typeset .pt-collapsible > summary h4::before {
+  content: "+";
+  position: absolute;
+  left: calc(-1 * var(--pt-collapsible-indent));
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--pt-accent);
+}
+
+.md-typeset .pt-collapsible[open] > summary h3::before,
+.md-typeset .pt-collapsible[open] > summary h4::before {
+  content: "\2212";
 }
 
 .md-typeset .pt-collapsible > summary::after {
