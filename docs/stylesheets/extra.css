@@ -248,6 +248,7 @@
   mask-image: none;
   height: auto;
   width: auto;
+  font-size: 18px;
   color: var(--pt-accent);
   transition: transform 0.15s ease;
 }
