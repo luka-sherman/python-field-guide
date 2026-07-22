@@ -33,31 +33,31 @@ A small handful of widgets have no themed equivalent and stay classic-only. Ever
 
 | Widget | Preview | Use it for |
 |--------|---------|------------|
-| `tk.Text` | <img src="/img/Tkinter_widgets/Text.png" alt="tk.Text preview" style="height:40px; width:auto;"> | A multi-line, scrollable text box — for paragraphs, not just a word or two. *Classic-only, no `ttk` equivalent.* |
-| `tk.Listbox` | <img src="/img/Tkinter_widgets/Listbox.png" alt="tk.Listbox preview" style="height:50px; width:auto;"> | A scrollable list of text items the user can select one or more of. *Classic-only — `ttk.Treeview` is the themed substitute.* |
-| `tk.Menu` | <img src="/img/Tkinter_widgets/Menu.png" alt="tk.Menu preview" style="height:24px; width:auto;"> | A dropdown menu, usually attached to the root window as a menu bar or to a widget as a right-click menu. *Classic-only, no `ttk` equivalent.* |
-| `tk.Canvas` | <img src="/img/Tkinter_widgets/Canvas.png" alt="tk.Canvas preview" style="height:50px; width:auto;"> | A blank drawing surface for shapes, lines, images, or custom graphics. *Classic-only, no `ttk` equivalent.* |
-| `tk.Message` | <img src="/img/Tkinter_widgets/Message.png" alt="tk.Message preview" style="height:40px; width:auto;"> | Like a label, but automatically wraps long text across multiple lines. *Classic-only — `ttk.Label` with `wraplength` set is generally used instead.* |
-| `tk.Toplevel` | <img src="/img/Tkinter_widgets/Toplevel.png" alt="tk.Toplevel preview" style="height:50px; width:auto;"> | A separate window, layered on top of the root window — for dialogs or pop-ups. *Classic-only, no `ttk` equivalent.* |
-| `ttk.Label` | <img src="/img/Tkinter_widgets/Label.png" alt="ttk.Label preview" style="height:24px; width:auto;"> | Displaying static text or an image. |
-| `ttk.Button` | <img src="/img/Tkinter_widgets/Button.png" alt="ttk.Button preview" style="height:24px; width:auto;"> | Running a function when clicked. |
-| `ttk.Entry` | <img src="/img/Tkinter_widgets/Entry.png" alt="ttk.Entry preview" style="height:24px; width:auto;"> | A single-line text input box. |
-| `ttk.Frame` | <img src="/img/Tkinter_widgets/Frame.png" alt="ttk.Frame preview" style="height:40px; width:auto;"> | An invisible container for grouping other widgets, so they can be laid out or shown/hidden as a unit. |
-| `ttk.LabelFrame` | <img src="/img/Tkinter_widgets/Frame.png" alt="ttk.LabelFrame preview" style="height:40px; width:auto;"> | A frame with a visible border and a title — for visually grouping related widgets. |
-| `ttk.Checkbutton` | <img src="/img/Tkinter_widgets/Checkbutton.png" alt="ttk.Checkbutton preview" style="height:24px; width:auto;"> | An on/off toggle, usually a checkbox with a label next to it. |
-| `ttk.Radiobutton` | <img src="/img/Tkinter_widgets/Radiobutton.png" alt="ttk.Radiobutton preview" style="height:24px; width:auto;"> | One option out of a set — several radio buttons sharing the same variable let the user pick exactly one. |
-| `ttk.Scale` | <img src="/img/Tkinter_widgets/Scale.png" alt="ttk.Scale preview" style="height:24px; width:auto;"> | A slider for picking a number within a range by dragging. |
-| `ttk.Scrollbar` | <img src="/img/Tkinter_widgets/Scrollbar.png" alt="ttk.Scrollbar preview" style="height:20px; width:auto;"> | A slider that scrolls another widget (a `Text`, `Listbox`, or `Canvas`) that's taller than its visible area. |
-| `ttk.Spinbox` | <img src="/img/Tkinter_widgets/Spinbox.png" alt="ttk.Spinbox preview" style="height:24px; width:auto;"> | A text box with up/down arrows for stepping through a small range of values. |
-| `ttk.Menubutton` | <img src="/img/Tkinter_widgets/Menubutton.png" alt="ttk.Menubutton preview" style="height:24px; width:auto;"> | A button that opens a `Menu` when clicked, without needing a separate menu bar. |
-| `ttk.PanedWindow` | <img src="/img/Tkinter_widgets/PanedWindow.png" alt="ttk.PanedWindow preview" style="height:40px; width:auto;"> | A container that splits space between widgets with a draggable divider between them. |
-| `ttk.Combobox` | <img src="/img/Tkinter_widgets/Combobox.png" alt="ttk.Combobox preview" style="height:24px; width:auto;"> | An entry combined with a dropdown list of suggested values — *ttk-only, no classic-Tkinter equivalent.* |
-| `ttk.Notebook` | <img src="/img/Tkinter_widgets/Notebook.png" alt="ttk.Notebook preview" style="height:50px; width:auto;"> | Tabbed pages within a single window — *ttk-only, no classic-Tkinter equivalent.* |
-| `ttk.Progressbar` | <img src="/img/Tkinter_widgets/Progressbar.png" alt="ttk.Progressbar preview" style="height:16px; width:auto;"> | A loading/progress indicator, determinate or animated — *ttk-only, no classic-Tkinter equivalent.* |
-| `ttk.Treeview` | <img src="/img/Tkinter_widgets/Treeview.png" alt="ttk.Treeview preview" style="height:50px; width:auto;"> | A table or expandable tree of rows and columns — often used as a themed substitute for `Listbox` too — *ttk-only.* |
-| `ttk.Separator` | <img src="/img/Tkinter_widgets/Separator.png" alt="ttk.Separator preview" style="height:24px; width:auto;"> | A thin dividing line, horizontal or vertical, for visually splitting up a layout — *ttk-only.* |
-| `ttk.Sizegrip` | <img src="/img/Tkinter_widgets/Sizegrip.png" alt="ttk.Sizegrip preview" style="height:20px; width:auto;"> | A draggable handle (usually bottom-right corner) for resizing the window — *ttk-only.* |
-| `ttk.OptionMenu` | <img src="/img/Tkinter_widgets/OptionMenu.png" alt="ttk.OptionMenu preview" style="height:24px; width:auto;"> | A dropdown for picking one value from a fixed list — a simpler alternative to `Menubutton`. |
+| `Label` | <img src="/img/Tkinter_widgets/Label.png" alt="ttk.Label preview" style="height:24px; width:auto;"> | Displaying static text or an image. |
+| `Button` | <img src="/img/Tkinter_widgets/Button.png" alt="ttk.Button preview" style="height:24px; width:auto;"> | Running a function when clicked. |
+| `Entry` | <img src="/img/Tkinter_widgets/Entry.png" alt="ttk.Entry preview" style="height:24px; width:auto;"> | A single-line text input box. |
+| `Frame` | <img src="/img/Tkinter_widgets/Frame.png" alt="ttk.Frame preview" style="height:40px; width:auto;"> | An invisible container for grouping other widgets, so they can be laid out or shown/hidden as a unit. |
+| `Checkbutton` | <img src="/img/Tkinter_widgets/Checkbutton.png" alt="ttk.Checkbutton preview" style="height:24px; width:auto;"> | An on/off toggle, usually a checkbox with a label next to it. |
+| `Radiobutton` | <img src="/img/Tkinter_widgets/Radiobutton.png" alt="ttk.Radiobutton preview" style="height:24px; width:auto;"> | One option out of a set — several radio buttons sharing the same variable let the user pick exactly one. |
+| `Combobox` | <img src="/img/Tkinter_widgets/Combobox.png" alt="ttk.Combobox preview" style="height:24px; width:auto;"> | An entry combined with a dropdown list of suggested values. |
+| `Listbox` | <img src="/img/Tkinter_widgets/Listbox.png" alt="tk.Listbox preview" style="height:50px; width:auto;"> | A scrollable list of text items the user can select one or more of. *Classic-only — `ttk.Treeview` is the themed substitute.* |
+| `Text` | <img src="/img/Tkinter_widgets/Text.png" alt="tk.Text preview" style="height:40px; width:auto;"> | A multi-line, scrollable text box — for paragraphs, not just a word or two. |
+| `Scrollbar` | <img src="/img/Tkinter_widgets/Scrollbar.png" alt="ttk.Scrollbar preview" style="height:20px; width:auto;"> | A slider that scrolls another widget (a `Text`, `Listbox`, or `Canvas`) that's taller than its visible area. |
+| `Canvas` | <img src="/img/Tkinter_widgets/Canvas.png" alt="tk.Canvas preview" style="height:50px; width:auto;"> | A blank drawing surface for shapes, lines, images, or custom graphics. |
+| `Menu` | <img src="/img/Tkinter_widgets/Menu.png" alt="tk.Menu preview" style="height:24px; width:auto;"> | A dropdown menu, usually attached to the root window as a menu bar or to a widget as a right-click menu. |
+| `Notebook` | <img src="/img/Tkinter_widgets/Notebook.png" alt="ttk.Notebook preview" style="height:50px; width:auto;"> | Tabbed pages within a single window. |
+| `Treeview` | <img src="/img/Tkinter_widgets/Treeview.png" alt="ttk.Treeview preview" style="height:50px; width:auto;"> | A table or expandable tree of rows and columns — often used as a themed substitute for `Listbox` too. |
+| `Progressbar` | <img src="/img/Tkinter_widgets/Progressbar.png" alt="ttk.Progressbar preview" style="height:16px; width:auto;"> | A loading/progress indicator, determinate or animated. |
+| `Scale` | <img src="/img/Tkinter_widgets/Scale.png" alt="ttk.Scale preview" style="height:24px; width:auto;"> | A slider for picking a number within a range by dragging. |
+| `Spinbox` | <img src="/img/Tkinter_widgets/Spinbox.png" alt="ttk.Spinbox preview" style="height:24px; width:auto;"> | A text box with up/down arrows for stepping through a small range of values. |
+| `LabelFrame` | <img src="/img/Tkinter_widgets/Frame.png" alt="ttk.LabelFrame preview" style="height:40px; width:auto;"> | A frame with a visible border and a title — for visually grouping related widgets. |
+| `Toplevel` | <img src="/img/Tkinter_widgets/Toplevel.png" alt="tk.Toplevel preview" style="height:50px; width:auto;"> | A separate window, layered on top of the root window — for dialogs or pop-ups. |
+| `Message` | <img src="/img/Tkinter_widgets/Message.png" alt="tk.Message preview" style="height:40px; width:auto;"> | Like a label, but automatically wraps long text across multiple lines. *Classic-only — `ttk.Label` with `wraplength` set is generally used instead.* |
+| `Menubutton` | <img src="/img/Tkinter_widgets/Menubutton.png" alt="ttk.Menubutton preview" style="height:24px; width:auto;"> | A button that opens a `Menu` when clicked, without needing a separate menu bar. |
+| `OptionMenu` | <img src="/img/Tkinter_widgets/OptionMenu.png" alt="ttk.OptionMenu preview" style="height:24px; width:auto;"> | A dropdown for picking one value from a fixed list — a simpler alternative to `Menubutton`. |
+| `Separator` | <img src="/img/Tkinter_widgets/Separator.png" alt="ttk.Separator preview" style="height:24px; width:auto;"> | A thin dividing line, horizontal or vertical, for visually splitting up a layout. |
+| `PanedWindow` | <img src="/img/Tkinter_widgets/PanedWindow.png" alt="ttk.PanedWindow preview" style="height:40px; width:auto;"> | A container that splits space between widgets with a draggable divider between them. |
+| `Sizegrip` | <img src="/img/Tkinter_widgets/Sizegrip.png" alt="ttk.Sizegrip preview" style="height:20px; width:auto;"> | A draggable handle (usually bottom-right corner) for resizing the window. |
 
 ```python-ref
 from tkinter import ttk
@@ -586,6 +586,77 @@ print("class:", label.winfo_class())
 print("root's children:", root.winfo_children())
 
 root.mainloop()
+```
+
+</details>
+
+## Putting It Together
+
+A handful of widgets from the table above — `Label`, `Entry`, `Checkbutton`, `Combobox`, `Button` — cover most of what a simple data-entry form needs. This example combines them into one small app: type a species name, toggle whether it's venomous, pick a habitat from a dropdown, then click Submit to display the result.
+
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### A Simple Form
+
+</summary>
+
+Each widget stores its value differently: `Entry` is read with `.get()` directly, `Checkbutton` is backed by a `BooleanVar` (`is_venomous`) read separately from the widget itself, and `Combobox` is also read with `.get()`. The `Submit` button's callback pulls all three together and updates a `Label` to show the result — the same `command=` pattern covered earlier, just wired to several widgets instead of one. Building the widgets is split into its own `build_form()` function, called once from `main()`, rather than left as loose top-level code.
+
+<img src="/img/tkinter_example.png" alt="Running snake field guide form" style="height:20em; width:auto; max-width:100%;">
+
+```python-ref
+import tkinter as tk
+from tkinter import ttk
+
+
+def build_form(root):
+    # Label — just displays text
+    label = ttk.Label(root, text="Enter a snake species:")
+    label.pack(pady=(10, 0))
+
+    # Entry — a single-line text box for user input
+    entry = ttk.Entry(root)
+    entry.pack(pady=5)
+
+    # Checkbutton — an on/off toggle, backed by a BooleanVar
+    is_venomous = tk.BooleanVar()
+    checkbutton = ttk.Checkbutton(root, text="Venomous", variable=is_venomous)
+    checkbutton.pack(pady=5)
+
+    # Combobox — a dropdown with a fixed set of choices
+    habitat = ttk.Combobox(root, values=["Desert", "Rainforest", "Grassland", "Wetland"])
+    habitat.set("Desert")  # default selection
+    habitat.pack(pady=5)
+
+    # Label to show the result after clicking Submit
+    result_label = ttk.Label(root, text="")
+    result_label.pack(pady=5)
+
+    def on_submit():
+        species = entry.get()
+        venomous = is_venomous.get()
+        result_label.config(
+            text=f"{species or '(no name)'} | venomous: {venomous} | habitat: {habitat.get()}"
+        )
+
+    # Button — runs on_submit() when clicked
+    button = ttk.Button(root, text="Submit", command=on_submit)
+    button.pack(pady=10)
+
+
+def main():
+    root = tk.Tk()
+    root.title("Snake Field Guide")
+    root.geometry("300x220")
+
+    build_form(root)
+
+    root.mainloop()  # keeps the window open and responsive
+
+
+if __name__ == "__main__":
+    main()
 ```
 
 </details>
