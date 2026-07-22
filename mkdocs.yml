@@ -42,6 +42,9 @@ copyright: "&copy; 2026 Luka Sherman"
 
 extra:
   generator: false
+  analytics:
+    provider: google
+    property: G-E5B3P6NCP0
   social:
     - icon: fontawesome/brands/github 
       link: https://github.com/luka-sherman/python-field-guide
