@@ -10,7 +10,6 @@ nav:
   - OOP: oop.md
   - Pillow: pillow.md
   - Tkinter: tkinter.md
-  - Privacy Policy: privacy.md
 
 theme:
   name: material

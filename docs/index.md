@@ -33,3 +33,6 @@ for discovery in discoveries:
     print("-\t"+discovery)
 ```
 
+---
+
+[Privacy Policy](privacy.md)
