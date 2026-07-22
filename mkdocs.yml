@@ -8,6 +8,7 @@ nav:
   - Conditionals: conditionals.md
   - Loops: loops.md
   - OOP: oop.md
+  - Tkinter: tkinter.md
 
 theme:
   name: material
