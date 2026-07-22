@@ -11,3 +11,7 @@ I went with mkdocs because I needed a lightweight markdown library and liked tha
 I implemented pyodide blocks so that users could instantly experiment with each new concept.
 
 When I found myself overriding too much, I switched over to the Material for Mkdocs theme so I could stop reinventing the wheel. 
+
+## License
+
+The content and code in this repo are not licensed for reuse — see [LICENSE](LICENSE).

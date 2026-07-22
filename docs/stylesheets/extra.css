@@ -72,6 +72,25 @@
   font-weight: 700;
 }
 
+/* Same --md-primary-fg-color indirection as above: Material's outline-style
+   .md-button (used for the consent banner's "Manage settings"/"Reject"
+   controls) sets color/border to --md-primary-fg-color, which we've
+   overridden to a cream tone for text on the dark header — invisible on the
+   consent banner's cream page background until :hover. */
+.md-consent .md-button:not(.md-button--primary) {
+  color: var(--pt-ink);
+  border-color: var(--pt-ink);
+}
+
+/* Material always renders the per-cookie-group checklist (e.g. the "Google
+   Analytics" entry with its checkmark) regardless of which `consent.actions`
+   are configured. We only offer a single accept/reject choice, so hide the
+   group list rather than exposing a checkbox nothing reads. */
+.md-consent__settings,
+input:checked + .md-consent__settings {
+  display: none;
+}
+
 /* ---- Pyodide runnable / reference code blocks (theme-independent) ---- */
 
 .pyodide-runner {

@@ -10,6 +10,7 @@ nav:
   - OOP: oop.md
   - Pillow: pillow.md
   - Tkinter: tkinter.md
+  - Privacy Policy: privacy.md
 
 theme:
   name: material
@@ -45,6 +46,15 @@ extra:
   analytics:
     provider: google
     property: G-E5B3P6NCP0
+  consent:
+    title: Cookie consent
+    description: >-
+      This site uses analytics to understand how the site is being used,
+      helping improve the content over time. See our
+      <a href="/privacy/">privacy policy</a> for more information.
+    actions:
+      - accept
+      - reject
   social:
     - icon: fontawesome/brands/github 
       link: https://github.com/luka-sherman/python-field-guide
