@@ -330,3 +330,75 @@ input:checked + .md-consent__settings {
     display: block;
   }
 }
+
+/* .md-button borrows --md-primary-fg-color for its text/border, which our
+   palette repurposes as near-white for the dark header — invisible on the
+   page's cream background. Give buttons their own explicit colors instead. */
+.md-typeset .md-button {
+  color: var(--pt-ink);
+  border-color: var(--pt-border-soft);
+}
+
+.md-typeset .md-button:hover,
+.md-typeset .md-button:focus-visible {
+  color: var(--pt-bg);
+  background-color: var(--pt-accent);
+  border-color: var(--pt-accent);
+}
+
+.md-typeset .md-button--primary {
+  color: var(--pt-bg);
+  background-color: var(--pt-accent);
+  border-color: var(--pt-accent);
+}
+
+.md-typeset .md-button--primary:hover,
+.md-typeset .md-button--primary:focus-visible {
+  background-color: var(--pt-ink);
+  border-color: var(--pt-ink);
+}
+
+/* Native Material card grid (div.grid.cards) used on the homepage in place
+   of a plain bullet list. */
+.md-typeset .grid.cards > ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.6rem;
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.md-typeset .grid.cards > ul > li {
+  position: relative;
+  border: 0.05rem solid var(--pt-border-soft);
+  border-radius: 0.2rem;
+  padding: 0.8rem 1rem;
+  margin: 0;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  border-color: var(--pt-accent);
+  transform: translateY(-0.1rem);
+}
+
+/* Stretched-link pattern: the card's title link (first paragraph) expands to
+   fill the whole box, so clicking anywhere on the card goes to its page.
+   Anything meant to stay independently clickable (the inline keyword links
+   further down) needs its own stacking context to sit above that overlay. */
+.md-typeset .grid.cards > ul > li > p:first-child > strong > a {
+  outline: none;
+}
+
+.md-typeset .grid.cards > ul > li > p:first-child > strong > a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.md-typeset .grid.cards > ul > li > p:not(:first-child) a {
+  position: relative;
+  z-index: 2;
+}

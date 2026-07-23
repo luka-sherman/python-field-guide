@@ -1,36 +1,141 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
 # Python Field Guide
 
-A hands-on reference for learning Python — run every example on this site without installing anything.
+*Quick field notes for learning Python, with code you can run in place.*
 
-This is **NOT** a comprehensive guide, it was designed for entry-level programmers to have a quick reference guide when first learning to program Python. 
+## Data Types
 
-## What's inside
+Every program needs to store information; this is what that information looks like.
 
-- **[Basic Data Types](basic_types.md)** — the scalar building blocks (`int`, `float`, `str`, `bool`) that hold a single value.
-- **[Collections of Data](collections.md)** — `list`, `tuple`, `dict`, and `set`, for grouping multiple values together.
-- **[Conditionals](conditionals.md)** — `if`/`elif`/`else` statements that run code only when a condition is `True`.
-- **[Loops](loops.md)** — `for` and `while` loops for repeating a block of code.
-- **[OOP](oop.md)** — classes and objects, for bundling data together with the behavior that belongs to it.
-- **[Pillow](pillow.md)** — opening, editing, and saving image files.
-- **[Tkinter](tkinter.md)** — Python's built-in toolkit for building desktop GUI applications.
+<div class="grid cards" markdown="block">
 
-## Try it yourself
+- **[Basic Types](basic_types.md)**
+
+    A single value on its own — a number, some text, or true/false. Every value in Python has one of these, and it determines what you can do with it.
+
+    [`int`](basic_types.md#integers) · [`float`](basic_types.md#floats) · [`string`](basic_types.md#strings) · [`bool`](basic_types.md#booleans) · [`None`](basic_types.md#none)
+
+- **[Collections](collections.md)**
+
+    Multiple basic values that are related and grouped into one container, so you can work with them together.
+
+    [`list`](collections.md#lists) · [`tuple`](collections.md#tuples) · [`dict`](collections.md#dictionaries)
+
+</div>
+
+## Control Flow
+
+Make your program decide and repeat certain blocks of code, instead of just running top to bottom.
+
+<div class="grid cards" markdown="block">
+
+- **[Conditionals](conditionals.md)**
+
+    Checks whether something is true, then runs different code depending on the answer.
+
+    [`if`/`elif`/`else`](conditionals.md#if-elif-else) · [`match`/`case`](conditionals.md#match-statement) · [`and`/`or`/`not`](conditionals.md#logical-operators)
+
+- **[Loops](loops.md)**
+
+    Repeats a block of code a certain number of times, over each item in a collection, or until a condition changes.
+
+    [`for`](loops.md#for-loops) · [`while`](loops.md#while-loops) · [`break`](loops.md#loop-control)
+
+</div>
+
+## Object-Oriented Programming
+
+As a program grows, this keeps related data and the code that uses it from drifting apart.
+
+<div class="grid cards" markdown="block">
+
+- **[OOP](oop.md)**
+
+    Bundles related data and functions into a reusable blueprint, so a program can create many similar objects without duplicating code.
+
+    [`class`](oop.md#classes-and-objects) · [`super()`](oop.md#inheritance)
+
+</div>
+
+## Standard Libraries
+
+Python is already preloaded with these, and puts the above fundamentals to use on real tasks.
+
+<div class="grid cards" markdown="block">
+
+- **[datetime](datetime.md)**
+
+    Python's built-in toolkit for formatting and calculating dates and times.
+
+    [`date`](datetime.md#creating-dates-and-times) · [`strftime()`](datetime.md#formatting-with-strftime) · [`timedelta`](datetime.md#date-arithmetic) · [`strptime()`](datetime.md#parsing-a-string-with-strptime)
+
+- **[random](random.md)**
+
+    Python's built-in toolkit for randomness — random numbers, random picks, shuffled order.
+
+    [`randint()`](random.md#random-numbers) · [`choice()`](random.md#random-selections) · [`shuffle()`](random.md#shuffling-a-list) · [`sample()`](random.md#sampling-without-replacement)
+
+- **[csv](csv.md)**
+
+    Python's built-in toolkit for reading and writing spreadsheets.
+
+    [`csv.writer`](csv.md#writing-csv-files) · [`csv.reader`](csv.md#reading-csv-files) · [`DictReader`](csv.md#reading-rows-as-dictionaries)
+
+- **[Tkinter](tkinter.md)**
+
+    Python's built-in toolkit for creating desktop applications: text, buttons, dropdowns, forms, output, etc.
+
+    [`Tk()`](tkinter.md#creating-a-window) · [`Button`](tkinter.md#widgets) · [`pack()`](tkinter.md#layout-managers) · [`configure()`](tkinter.md#configuring-widgets) · [`command`](tkinter.md#handling-events) · [`ttk.Style`](tkinter.md#styling-with-ttk) · [`messagebox`](tkinter.md#dialogs) · [`winfo_width()`](tkinter.md#introspecting-widgets)
+
+</div>
+
+## Third-Party Libraries
+
+These additional Python libraries can be installed on your computer for free.
+
+<div class="grid cards" markdown="block">
+
+- **[NumPy](numpy.md)**
+
+    A third-party toolkit for fast numeric arrays — math applied to a whole array at once, instead of item by item.
+
+    [`ndarray`](numpy.md#creating-arrays) · [`arange()`](numpy.md#building-arrays-without-a-list) · [`mean()`](numpy.md#aggregating-an-array) · [`boolean mask`](numpy.md#filtering-with-a-boolean-mask)
+
+- **[pandas](pandas.md)**
+
+    A third-party toolkit for tabular data — rows and columns, like a spreadsheet, built on top of NumPy.
+
+    [`DataFrame`](pandas.md#building-a-dataframe) · [`sort_values()`](pandas.md#sorting-rows) · [`mean()`](pandas.md#summarizing-a-column)
+
+- **[Pillow](pillow.md)**
+
+    A third-party toolkit for opening, editing, and saving images, built around one `Image` object — useful anytime a program needs to touch actual image files.
+
+    [`Image`](pillow.md#the-image) · [`ImageOps`](pillow.md#imageops-module) · [`ImageDraw`](pillow.md#imagedraw-module) · [`ImageFont`](pillow.md#imagefont-module) · [`ImageColor`](pillow.md#imagecolor-module) · [`ImageFilter`](pillow.md#imagefilter-module) · [`ImageEnhance`](pillow.md#imageenhance-module) · [`ImageChops`](pillow.md#imagechops-module) · [`convert()`](pillow.md#format-conversion) · [`ImageSequence`](pillow.md#imagesequence-module)
+
+</div>
+
+# Try It Now
+
+The specimen below is alive: edit it, run it, see what it does.
 
 ```python
-# run this code below
-discoveries = ["write a comment"]
-discoveries.append("create a list")
+# Field Journal — Entry #1
+date = "2026-07-23"
+species = "ball python"
+length_ft = 4.5
+venomous = False
 
-print("Field journal created.\n")
-print("Explorer begins their first expedition into Python.\n")
-discoveries.append("print console output")
-
-print("Discoveries so far:")
-
-discoveries.append("iterate through a list with a for loop")
-discoveries.append("string concatenation")
-for discovery in discoveries: 
-    print("-\t"+discovery)
+print(f"Date: {date}")
+print(f"Species: {species}")
+print(f"Length: {length_ft} ft")
+print(f"Venomous: {venomous}")
+print("Notes: found coiled beneath a rock, unbothered by observation.")
 ```
 
 ---

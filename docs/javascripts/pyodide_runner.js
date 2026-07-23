@@ -79,13 +79,26 @@
 
       try {
         const pyodide = await loadPyodideRuntime();
+
+        // Pure-stdlib code runs as-is, but third-party packages (numpy,
+        // pandas, ...) ship as separate Pyodide wheels that must be fetched
+        // before the `import` inside the snippet will succeed.
+        const source = codeBlock.textContent;
+        const neededPackages = ["numpy", "pandas"].filter((pkg) =>
+          new RegExp(`\\bimport\\s+${pkg}\\b|\\bfrom\\s+${pkg}\\b`).test(source)
+        );
+        if (neededPackages.length) {
+          runButton.textContent = "Loading packages…";
+          await pyodide.loadPackage(neededPackages);
+        }
+
         runButton.textContent = "Running…";
 
         let buffer = "";
         pyodide.setStdout({ batched: (s) => { buffer += s + "\n"; } });
         pyodide.setStderr({ batched: (s) => { buffer += s + "\n"; } });
 
-        await pyodide.runPythonAsync(codeBlock.textContent);
+        await pyodide.runPythonAsync(source);
         output.textContent = buffer || "(no output)";
       } catch (err) {
         output.classList.add("pyodide-runner__output--error");
