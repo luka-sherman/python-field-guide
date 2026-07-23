@@ -1,14 +1,18 @@
 # Libraries
 
-Once the language fundamentals feel comfortable, libraries put them to use on real tasks — some ship with Python and need no install, others are third-party packages installed separately with `pip`.
+Libraries allow us to apply the Python fundamentals to real tasks. These are a few popular ones, but there are many. 
 
-**Standard Library** — ships with Python, no install required:
+They each need to be `import`ed at the top of the file.
+
+## Standard Libraries
+
+Python is already preloaded with these, and puts the above fundamentals to use on real tasks.
 
 <div class="grid cards" markdown="block">
 
 - **[datetime](datetime.md)**
 
-    Python's built-in toolkit for dates and times — logging when something happened, and measuring how long ago.
+    Python's built-in toolkit for formatting and calculating dates and times.
 
     [`date`](datetime.md#creating-dates-and-times) · [`strftime()`](datetime.md#formatting-with-strftime) · [`timedelta`](datetime.md#date-arithmetic) · [`strptime()`](datetime.md#parsing-a-string-with-strptime)
 
@@ -20,19 +24,21 @@ Once the language fundamentals feel comfortable, libraries put them to use on re
 
 - **[csv](csv.md)**
 
-    Python's built-in toolkit for reading and writing CSV files — the plain-text table format spreadsheets open too.
+    Python's built-in toolkit for reading and writing spreadsheets.
 
     [`csv.writer`](csv.md#writing-csv-files) · [`csv.reader`](csv.md#reading-csv-files) · [`DictReader`](csv.md#reading-rows-as-dictionaries)
 
 - **[Tkinter](tkinter.md)**
 
-    Python's built-in toolkit for desktop applications: windows, widgets, and events — no extra install needed to give a program a real interface.
+    Python's built-in toolkit for creating desktop applications: text, buttons, dropdowns, forms, output, etc.
 
     [`Tk()`](tkinter.md#creating-a-window) · [`Button`](tkinter.md#widgets) · [`pack()`](tkinter.md#layout-managers) · [`configure()`](tkinter.md#configuring-widgets) · [`command`](tkinter.md#handling-events) · [`ttk.Style`](tkinter.md#styling-with-ttk) · [`messagebox`](tkinter.md#dialogs) · [`winfo_width()`](tkinter.md#introspecting-widgets)
 
 </div>
 
-**Third-Party** — installed separately with `pip`:
+## Third-Party Libraries
+
+These additional Python libraries can be installed on your computer for free with `pip`.
 
 <div class="grid cards" markdown="block">
 
@@ -40,7 +46,7 @@ Once the language fundamentals feel comfortable, libraries put them to use on re
 
     A third-party toolkit for fast numeric arrays — math applied to a whole array at once, instead of item by item.
 
-    [`ndarray`](numpy.md#creating-arrays) · [`arange()`](numpy.md#building-arrays-without-a-list) · [`mean()`](numpy.md#aggregating-an-array) · [boolean mask](numpy.md#filtering-with-a-boolean-mask)
+    [`ndarray`](numpy.md#creating-arrays) · [`arange()`](numpy.md#building-arrays-without-a-list) · [`mean()`](numpy.md#aggregating-an-array) · [`boolean mask`](numpy.md#filtering-with-a-boolean-mask)
 
 - **[pandas](pandas.md)**
 
