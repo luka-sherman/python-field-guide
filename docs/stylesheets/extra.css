@@ -321,3 +321,12 @@ input:checked + .md-consent__settings {
   padding-left: var(--pt-collapsible-indent);
   margin-left: 0;
 }
+
+/* Material hides .md-tabs below 76.234375em (its own mobile breakpoint) in
+   favor of the hamburger drawer. Keep the tabs bar visible further down —
+   there's still room for it above phone widths. */
+@media screen and (min-width: 45em) and (max-width: 76.234375em) {
+  .md-tabs {
+    display: block;
+  }
+}

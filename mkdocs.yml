@@ -11,9 +11,13 @@ nav:
   - Pillow: pillow.md
   - Tkinter: tkinter.md
 
+not_in_nav: |
+  privacy.md
+
 theme:
   name: material
   favicon: img/favicon.png
+  language: en
   logo: img/favicon-large.png
   font:
     text: Inter
@@ -25,17 +29,18 @@ theme:
   features:
     - navigation.footer
     - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
     - toc.integrate
     - content.code.copy
+    - search.suggest
 
 markdown_extensions:
   - md_in_html
   - admonition
   - tables
-  - toc:
-      toc_depth: 2
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.highlight:
