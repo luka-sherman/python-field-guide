@@ -6,8 +6,8 @@ This is **NOT** a comprehensive guide, it was designed for entry-level programme
 
 ## What's inside
 
-- **[Basic Data Types](basic_data_types.md)** — the scalar building blocks (`int`, `float`, `str`, `bool`) that hold a single value.
-- **[Collections of Data](collections_of_data.md)** — `list`, `tuple`, `dict`, and `set`, for grouping multiple values together.
+- **[Basic Data Types](basic_types.md)** — the scalar building blocks (`int`, `float`, `str`, `bool`) that hold a single value.
+- **[Collections of Data](collections.md)** — `list`, `tuple`, `dict`, and `set`, for grouping multiple values together.
 - **[Conditionals](conditionals.md)** — `if`/`elif`/`else` statements that run code only when a condition is `True`.
 - **[Loops](loops.md)** — `for` and `while` loops for repeating a block of code.
 - **[OOP](oop.md)** — classes and objects, for bundling data together with the behavior that belongs to it.

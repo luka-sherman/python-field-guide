@@ -9,7 +9,7 @@ A **loop** repeats a block of code, so you don't have to write out the same step
 
 ## For Loops
 
-A `for` loop steps through a sequence — a [list](collections_of_data.md), tuple, string, or other iterable — running its body once per item, in order.
+A `for` loop steps through a sequence — a [list](collections.md), tuple, string, or other iterable — running its body once per item, in order.
 
 ```python
 species = ["burmese", "rock", "ball", "blood"]

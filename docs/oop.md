@@ -1,6 +1,6 @@
 # Object-Oriented Programming (OOP)
 
-**Object-oriented programming** groups related data and the functions that act on it into a single unit, instead of keeping them separate. A [dictionary](collections_of_data.md#dictionaries) can already hold a snake's data as key-value pairs — a **class** goes one step further, bundling that data together with the behavior (methods) that belongs to it.
+**Object-oriented programming** groups related data and the functions that act on it into a single unit, instead of keeping them separate. A [dictionary](collections.md#dictionaries) can already hold a snake's data as key-value pairs — a **class** goes one step further, bundling that data together with the behavior (methods) that belongs to it.
 
 | Concept | Example | What it is |
 |---------|---------|------------|

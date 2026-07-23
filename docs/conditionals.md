@@ -1,6 +1,6 @@
 # Conditionals
 
-A **conditional** runs a block of code only when some condition is `True` — the same comparisons that produce a [boolean](basic_data_types.md#booleans) (`>`, `<`, `==`, and so on) are exactly what an `if` statement checks.
+A **conditional** runs a block of code only when some condition is `True` — the same comparisons that produce a [boolean](basic_types.md#booleans) (`>`, `<`, `==`, and so on) are exactly what an `if` statement checks.
 
 | Keyword | Example | What it does |
 |---------|---------|---------------|
