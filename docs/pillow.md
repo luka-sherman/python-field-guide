@@ -27,7 +27,7 @@ For everyday image manipulation, Pillow offers the best balance of simplicity an
 | Alpha | The transparency value of a pixel, from `0` (fully invisible) to `255` (fully solid) — only present on images in `"RGBA"` mode. |
 | Frame | One image within an animated file (like a GIF) — `ImageSequence` is what lets you loop over all of them. |
 
-Beyond the base [`Image`](#image) object, Pillow's functionality is spread across several companion modules under the `PIL` package:
+Beyond the base [`Image`](#the-image) object, Pillow's functionality is spread across several companion modules under the `PIL` package:
 
 | Module | Used for |
 |--------|----------|
