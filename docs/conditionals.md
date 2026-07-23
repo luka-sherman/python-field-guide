@@ -7,6 +7,7 @@ A **conditional** runs a block of code only when some condition is `True` — th
 | `if` | `if length_ft > 10:` | Runs its block only when the condition is `True` |
 | `elif` | `elif length_ft > 4:` | Checked only if every condition above it was `False` — runs the first one that's `True` |
 | `else` | `else:` | Catches everything not caught above — always comes last, with no condition of its own |
+| `match` / `case` | `case "ball":` | Compares one value against several patterns, running the first `case` that matches (Python 3.10+) |
 
 ## If, Elif & Else
 
@@ -186,6 +187,110 @@ if venomous:
     pass
 
 print("checked venomous status, no action taken yet")
+```
+
+</details>
+
+## Match Statement
+
+A `match` statement (added in Python 3.10) compares one value against several possible patterns, running the block under the first one that matches — a clearer alternative to a long `if`/`elif` chain when you're checking a single value against many possibilities.
+
+```python
+species = "ball"
+
+match species:
+    case "ball":
+        print("small constrictor")
+    case "burmese":
+        print("large constrictor")
+    case _:
+        print("unknown species")
+```
+
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### Matching Multiple Values
+
+```python-ref
+match species:
+    case "ball" | "corn":
+        print("small species")     # runs — species is "ball"
+    case _:
+        print("other")
+```
+
+</summary>
+
+`|` lets a single `case` match several patterns at once, so values that should lead to the same outcome don't need a separate branch each.
+
+```python
+species = "ball"
+
+match species:
+    case "ball" | "corn":
+        print("small species")
+    case _:
+        print("other")
+```
+
+</details>
+
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### The Wildcard `_`
+
+```python-ref
+match species:
+    case "anaconda":
+        print("giant")
+    case _:
+        print("not an anaconda")   # runs — no other case matched
+```
+
+</summary>
+
+`_` matches anything and is conventionally placed last, acting like `else` in an `if`/`elif` chain — it catches whatever none of the earlier cases matched. Without it, a value matching no case simply falls through and nothing runs.
+
+```python
+species = "ball"
+
+match species:
+    case "anaconda":
+        print("giant")
+    case _:
+        print("not an anaconda")
+```
+
+</details>
+
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### Guard Clauses With `if`
+
+```python-ref
+length_ft = 12
+match length_ft:
+    case n if n > 10:
+        print("big")              # runs — 12 > 10
+    case n:
+        print("small")
+```
+
+</summary>
+
+A `case` can bind the matched value to a name (here `n`) and add an `if` guard — that branch only runs if the pattern matches *and* the guard condition is `True`, otherwise Python moves on to the next `case`.
+
+```python
+length_ft = 12
+
+match length_ft:
+    case n if n > 10:
+        print("big")
+    case n:
+        print("small")
 ```
 
 </details>
