@@ -8,7 +8,6 @@ nav:
   - Conditionals: conditionals.md
   - Loops: loops.md
   - OOP: oop.md
-  - Pillow: pillow.md
   - Tkinter: tkinter.md
 
 not_in_nav: |
