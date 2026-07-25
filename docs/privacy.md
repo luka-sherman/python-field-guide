@@ -12,12 +12,7 @@ site collect personal information, and no accounts exist to create.
 
 ## Cookies
 
-Google Analytics sets cookies to distinguish visitors and sessions. These are only set if
-you click **Accept** on the cookie banner shown on your first visit. Clicking **Reject**
-means no analytics cookies are set and no data is sent to Google Analytics for that visit.
-
-You can change your choice at any time by clearing your browser's cookies for this site,
-which will bring the banner back on your next visit.
+Google Analytics sets cookies to distinguish visitors and sessions.
 
 ## Third parties
 
