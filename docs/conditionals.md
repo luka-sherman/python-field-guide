@@ -6,12 +6,14 @@ The condition ends with a colon `:`, and every line meant to run as part of that
 
 | Statement              | Example                                                                                                                                                                       | When to use                                                          |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| `if` / `elif` / `else` | <pre><code class="language-python-ref">if length_ft &gt; 15:&#10;    print("giant")&#10;elif length_ft &gt; 8:&#10;    print("large")&#10;else:&#10;    print("small")</code></pre> | The general-purpose default — works for any condition, so use this unless `match` is clearly a better fit |
+| `if` / `elif` / `else` | <pre><code class="language-python-ref">if length &gt; 15:&#10;    print("giant")&#10;elif length &gt; 8:&#10;    print("large")&#10;else:&#10;    print("small")</code></pre> | The general-purpose default — works for any condition, so use this unless `match` is clearly a better fit |
 | `match` / `case`       | <pre><code class="language-python-ref">match species:&#10;    case "ball":&#10;        print("small")&#10;    case _:&#10;        print("other")</code></pre> | Comparing one value against several specific, known possibilities     |
 
 ## If / Elif / Else
 
-A chain of `if`, `elif`, and `else` checks a series of conditions in order, running the indented block under the first one that's `True`.
+A chain of `if`, `elif`, and `else` checks a series of conditions in order, running the indented block under the first one that's `True` — then exits the whole chain without checking any conditions below it. 
+
+Only `if` is required; a chain can have any number of `elif`s (including none) and one optional `else`.
 
 ```python
 length = 12
@@ -57,27 +59,94 @@ flowchart TD
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Boolean Expressions
+### A Boolean Expression is Needed for every `if`/`elif` 
 
 ```python-ref
-length_ft > 10    # True — a boolean expression
+if [boolean expression]:
+    [indented code block that runs if above expression is True]
+elif [boolean expression]:
+    [indented code block that runs if above expression is True and others above were False]
 ```
 
 </summary>
 
 A **boolean expression** is just a boolean value (`True` or `False`) or anything that produces one — like a comparison (`>`, `<`, `==`, and so on). This is what `if` checks: not the raw numbers or text themselves, but the `True`/`False` result of comparing them. Every `if` follows this same shape:
 
-```
-if [boolean expression/value]:
-    [indented block]
-```
+A comparison looks different depending on the type of value being checked, as shown below.
 
 ```python
-length_ft = 12
+length = 12
+if length > 10:      # True — this runs
+    print("long snake")
 
-length_ft > 10       # True
-length_ft == 12      # True
-length_ft < 5         # False
+length = 5
+if length > 10:      # False — this is skipped
+    print("long snake")
+
+# ints
+length = 12
+if length > 10:             # greater than
+    print("long snake")
+
+if length >= 12:            # greater than or equal to
+    print("at least 12 ft")
+
+if length != 0:             # not equal
+    print("length was recorded")
+
+# float comparison
+weight_kg = 1.5
+if weight_kg <= 2.0:           # less than or equal to
+    print("2 kg or lighter")
+
+# strings
+name = "burmese python"
+if name == "burmese python":   # string comparison
+    print("it's a burmese")
+
+if name != "ball python":      # string not-equal
+    print("not a ball python")
+
+if "python" in name:           # string substring check
+    print("name contains 'python'")
+
+# bool value
+venomous = False
+if not venomous:               
+    print("safe to handle")
+
+# None
+age = None
+if age is None:                # is None
+    print("age not recorded")
+
+if age is not None:            # is not None
+    print("age was recorded")
+
+# is it in a list
+species = ["ball", "burmese", "boa"]
+if "ball" in species:          # in
+    print("ball python is in the list")
+
+if "anaconda" not in species:  # not in
+    print("anaconda isn't in the list")
+
+# is it in a tuple
+species_tuple = ("burmese", "rock", "ball", "blood")
+if "ball" in species_tuple:     
+    print("ball python is in the tuple")
+
+# dict 
+snake = {"species": "ball", "length": 3, "venomous": False}
+
+if "venomous" in snake:         # is it a key in the dict
+    print("snake dict tracks venomous status")
+
+if "habitat" not in snake:      # dict key not-in
+    print("snake dict has no habitat key")
+
+if snake["length"] > 2:      # dict value comparison
+    print("snake in dict is over 2 ft")
 ```
 
 </details>
@@ -85,15 +154,15 @@ length_ft < 5         # False
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Chaining Conditions With `elif`
+### An `elif` lets us add alternative conditions
 
 ```python-ref
-length_ft = 12
-if length_ft > 15:
+length = 12
+if length > 15:
     print("giant")
-elif length_ft > 8:
+elif length > 8:
     print("large")     # runs — 12 > 8, and nothing below it gets checked
-elif length_ft > 4:
+elif length > 4:
     print("medium")
 else:
     print("small")
@@ -104,22 +173,22 @@ else:
 `elif` ("else if") is checked only if every condition above it was `False`. Python runs the first branch whose condition is `True` and skips the rest, no matter how many `elif`s follow.
 
 ```python
-length_ft = 12
-if length_ft > 15:
+length = 12
+if length > 15:
     print("giant")
-elif length_ft > 8:
+elif length > 8:
     print("large")
-elif length_ft > 4:
+elif length > 4:
     print("medium")
 else:
     print("small")
 
-length_ft = 3
-if length_ft > 15:
+length = 3
+if length > 15:
     print("giant")
-elif length_ft > 8:
+elif length > 8:
     print("large")
-elif length_ft > 4:
+elif length > 4:
     print("medium")
 else:
     print("small")
@@ -130,7 +199,7 @@ else:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### The `else` Clause
+### An `else` runs if no `if`/`elif` condition above was met
 
 ```python-ref
 venomous = False
@@ -211,9 +280,9 @@ if (length > 10 and not venomous) or length > 20:
 ### Nested `if` Statements
 
 ```python-ref
-length_ft = 12
+length = 12
 venomous = False
-if length_ft > 10:
+if length > 10:
     if venomous:
         print("big and dangerous")
     else:
@@ -225,10 +294,10 @@ if length_ft > 10:
 An `if` can contain another `if`, checked only once the outer condition is already `True` — Each level of nesting adds another decision. If both conditions are simple, combining them with [`and`](#logical-operators-not-and-or-let-a-single-if-check-more-than-one-condition) is usually clearer than nesting.
 
 ```python
-length_ft = 12
+length = 12
 venomous = False
 
-if length_ft > 10:
+if length > 10:
     if venomous:
         print("big and dangerous")
     else:
@@ -402,8 +471,8 @@ match species:
 ### Adding an `if` to a `case`
 
 ```python-ref
-length_ft = 12
-match length_ft:
+length = 12
+match length:
     case n if n > 10:
         print("big")              # runs — 12 > 10
     case n:
@@ -415,9 +484,9 @@ match length_ft:
 A `case` can store the matched value in a variable (here `n`) and add an `if` condition. That branch only runs if both the value matches and the `if` condition is `True`.
 
 ```python
-length_ft = 12
+length = 12
 
-match length_ft:
+match length:
     case n if n > 10:
         print("big")
     case n:
