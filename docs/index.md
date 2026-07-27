@@ -38,7 +38,7 @@ Make your program decide and repeat certain blocks of code, instead of just runn
 
     Checks whether something is true, then runs different code depending on the answer.
 
-    [`if`/`elif`/`else`](conditionals.md#if-elif-else) · [`match`/`case`](conditionals.md#match-case) · [`and`/`or`/`not`](conditionals.md#logical-operators-not-and-or-let-a-single-if-check-more-than-one-condition)
+    [`if`/`elif`/`else`](conditionals.md#if-elif-else) · [`match`/`case`](conditionals.md#match-case) · [`and`/`or`/`not`](conditionals.md#logical-operators)
 
 - **[Loops](loops.md)**
 

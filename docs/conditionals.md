@@ -1,6 +1,6 @@
 # Conditionals
 
-A **conditional** lets a program make decisions by running a block of code only when a condition is `True`. 
+A **conditional** lets a program make decisions by running a block of code only when a [condition](#boolean-expressions) is `True`. 
 
 The condition ends with a colon `:`, and every line meant to run as part of that block must be indented underneath it.
 
@@ -27,6 +27,15 @@ elif length > 4:
 else:
     print("that's a tiny snake")
 ```
+
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### See the Path
+See the decision path the above code will take in the form of a flow chart diagram.
+{: .pt-subheading }
+
+</summary>
 
 ```mermaid
 flowchart TD
@@ -56,10 +65,15 @@ flowchart TD
     linkStyle 10 stroke:#3f6b52,stroke-width:2px
 ```
 
+</details>
+
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### A boolean expression is needed for every `if`/`elif`
+### Boolean expressions
+
+A boolean expression is needed for every `if`/`elif`.
+{: .pt-subheading }
 
 ```python-ref
 if [boolean expression]:
@@ -154,7 +168,10 @@ if snake["length"] > 2:      # dict value comparison
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### An `elif` lets us add alternative conditions
+### `elif`
+
+Checks another condition, but only if the ones above it were False.
+{: .pt-subheading }
 
 ```python-ref
 length = 12
@@ -199,7 +216,10 @@ else:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### An `else` runs if no `if`/`elif` condition above was met
+### `else`
+
+The catch-all — it runs when nothing above it matched. It always comes last and doesn't have a condition.
+{: .pt-subheading }
 
 ```python-ref
 venomous = False
@@ -228,7 +248,10 @@ else:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Logical operators `not`, `and`, `or` let a single `if` check more than one condition
+### Logical operators
+
+Logical operators `not`, `and`, `or` let a single `if` combine boolean expressions to create more complex conditions.
+{: .pt-subheading }
 
 ```python-ref
 not venomous                  # not False → True
@@ -277,7 +300,10 @@ if (length > 10 and not venomous) or length > 20:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### A nested `if` checks a second condition only after the first is `True`
+### Nested `if`
+
+Checks a second condition only after the first is `True`.
+{: .pt-subheading }
 
 ```python-ref
 length = 12
@@ -309,7 +335,10 @@ if length > 10:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Shorthand `if` & `if`-`else` fit a simple check on one line
+### One-line `if`
+
+Simple checks and be written in one line.
+{: .pt-subheading }
 
 ```python-ref
 if venomous: print("careful")    # single-line if — the colon is still required
@@ -335,7 +364,10 @@ print(status)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### `pass` fills an empty block when you're not ready to write code yet
+### `pass` placeholder
+
+Temporarily fill an empty block when you're not ready to write the inside code yet.
+{: .pt-subheading }
 
 ```python-ref
 if venomous:
@@ -384,6 +416,15 @@ match species:
         print("unknown species")
 ```
 
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### See the Path
+See the decision path the above code will take in the form of a flow chart diagram.
+{: .pt-subheading }
+
+</summary>
+
 ```mermaid
 flowchart TD
     START["`match species:`"] --> A{"`case 'ball':`"}
@@ -410,7 +451,10 @@ flowchart TD
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### `|` lets one `case` match several values, avoiding repeated cases
+### Match multiple values `|`
+
+Lets one `case` match several possible values, so you don't need a separate `case` for each one.
+{: .pt-subheading }
 
 ```python-ref
 match species:
@@ -439,7 +483,9 @@ match species:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### The wildcard `_` runs if no `case` matched
+### Default `_` 
+Runs a block of code if no `case` matched, like an `else` in an `if` statement. 
+{: .pt-subheading }
 
 ```python-ref
 match species:

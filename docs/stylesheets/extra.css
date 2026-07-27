@@ -423,3 +423,11 @@ input:checked + .md-consent__settings {
   color: #a33f3f;
   background-color: rgba(163, 63, 63, 0.12);
 }
+
+/* Sits inside a .pt-collapsible <summary>, under the heading —
+   not an h tag so it stays out of the sidebar TOC */
+.pt-subheading {
+  margin: 0.15em 0 0.6em;
+  font-weight: 600;
+  color: var(--pt-text-secondary);
+}

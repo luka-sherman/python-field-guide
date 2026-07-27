@@ -578,7 +578,7 @@ a, b, c, d = species    # a="burmese"  b="rock"  c="ball"  d="blood"
 
 </summary>
 
-Unpacking assigns each item in a tuple to its own variable in one line — the number of variables has to match the number of items.
+Unpacking assigns each item in a tuple to its own variable in one line — the number of variables has to match the number of items. A [`match` statement](conditionals.md#unpacking-a-tuple) can do this same unpacking while also branching on the tuple's shape or specific values, which plain assignment can't do.
 
 ```python
 species = ("burmese", "rock", "ball", "blood")
