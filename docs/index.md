@@ -10,7 +10,7 @@ hide:
 
 ## Data Types
 
-Every program needs to store information; this is what that information looks like.
+Programs store information in variables — these are the kinds of values variables can hold.
 
 <div class="grid cards" markdown="block">
 
@@ -38,7 +38,7 @@ Make your program decide and repeat certain blocks of code, instead of just runn
 
     Checks whether something is true, then runs different code depending on the answer.
 
-    [`if`/`elif`/`else`](conditionals.md#if-elif-else) · [`match`/`case`](conditionals.md#match-statement) · [`and`/`or`/`not`](conditionals.md#logical-operators)
+    [`if`/`elif`/`else`](conditionals.md#if-elif-else) · [`match`/`case`](conditionals.md#match-case) · [`and`/`or`/`not`](conditionals.md#logical-operators-not-and-or)
 
 - **[Loops](loops.md)**
 
