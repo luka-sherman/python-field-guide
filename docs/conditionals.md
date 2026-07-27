@@ -155,6 +155,56 @@ else:
 
 </details>
 
+
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### Logical Operators `not`, `and`, `or` let a single `if` check more than one condition
+
+```python-ref
+not venomous                  # not False → True
+
+length > 10 and venomous   # True and False → False
+
+length > 10 or venomous    # True or False → True
+```
+
+</summary>
+
+[Boolean expressions](#a-boolean-expression-is-needed-for-every-ifelif) like the ones above can be combined with `and`, `or`, and `not`, so a single `if`/`elif` condition can check more than one thing at once.
+
+| `A`                                       | `not A` — flips `A` to its opposite       |
+|---------------------------------------------|----------------------------------------------|
+| <span class="pt-bool-true">True</span>    | <span class="pt-bool-false">False</span> |
+| <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>   |
+
+| `A`                                       | `B`                                       | `A and B` — `True` only if both are `True` | `A or B` — `True` if either is `True`     |
+|----------------------------------------------|----------------------------------------------|----------------------------------------------|----------------------------------------------|
+| <span class="pt-bool-true">True</span>    | <span class="pt-bool-true">True</span>    | <span class="pt-bool-true">True</span>    | <span class="pt-bool-true">True</span>    |
+| <span class="pt-bool-true">True</span>    | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>    |
+| <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>    | <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>    |
+| <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  |
+
+
+When several logical operators appear together, Python evaluates `not` first, then `and`, then `or`. Even when parentheses aren't required, they often make the condition much easier to read.
+
+```python
+length = 12
+venomous = False
+
+if length > 10 and venomous:
+    print("big and dangerous")
+if length > 10 or venomous:
+    print("worth a closer look")
+if not venomous:
+    print("safe to handle")
+
+if (length > 10 and not venomous) or length > 20:
+    print("worth a closer look")
+```
+
+</details>
+
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
@@ -172,7 +222,7 @@ if length_ft > 10:
 
 </summary>
 
-An `if` can contain another `if`, checked only once the outer condition is already `True` — Each level of nesting adds another decision. If both conditions are simple, combining them with [`and`](#local-operators-and-or-not) is usually clearer than nesting.
+An `if` can contain another `if`, checked only once the outer condition is already `True` — Each level of nesting adds another decision. If both conditions are simple, combining them with [`and`](#logical-operators-not-and-or-let-a-single-if-check-more-than-one-condition) is usually clearer than nesting.
 
 ```python
 length_ft = 12
@@ -209,49 +259,6 @@ if venomous: print("careful")
 
 status = "careful" if venomous else "safe"
 print(status)
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-### Logical Operators `not` `and` `or`
-
-```python-ref
-not venomous                  # not False → True
-
-length_ft > 10 and venomous   # True and False → False
-
-length_ft > 10 or venomous    # True or False → True
-```
-
-</summary>
-
-The same comparisons that produce a [boolean](basic_types.md#booleans) (`>`, `<`, `==`, and so on) can be combined with `and`, `or`, and `not`, so a single `if`/`elif` statement can make more complex decisions.
-
-`not` reverses a condition, turning `True` into `False` and `False` into `True`.
-
-`and` is only `True` when both sides are `True`.
-
-`or` is `True` when either side is `True`.
-
-
-When several logical operators appear together, Python evaluates `not` first, then `and`, then `or`. Even when parentheses aren't required, they often make the condition much easier to read.
-
-```python
-length_ft = 12
-venomous = False
-
-if length_ft > 10 and venomous:
-    print("big and dangerous")
-if length_ft > 10 or venomous:
-    print("worth a closer look")
-if not venomous:
-    print("safe to handle")
-
-if (length_ft > 10 and not venomous) or length_ft > 20:
-    print("worth a closer look")
 ```
 
 </details>

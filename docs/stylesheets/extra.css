@@ -402,3 +402,24 @@ input:checked + .md-consent__settings {
   position: relative;
   z-index: 2;
 }
+
+/* True/False badges for truth-table style call-outs. */
+.pt-bool-true,
+.pt-bool-false {
+  display: inline-block;
+  font-family: var(--md-code-font);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.1rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.pt-bool-true {
+  color: var(--pt-accent);
+  background-color: color-mix(in srgb, var(--pt-accent) 15%, transparent);
+}
+
+.pt-bool-false {
+  color: #a33f3f;
+  background-color: rgba(163, 63, 63, 0.12);
+}
