@@ -6,8 +6,8 @@ The condition ends with a colon `:`, and every line meant to run as part of that
 
 | Statement              | Example                                                                                                                                                                       | When to use                                                          |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| `if` / `elif` / `else` | <pre><code class="language-python-ref">if length &gt; 15:&#10;    print("giant")&#10;elif length &gt; 8:&#10;    print("large")&#10;else:&#10;    print("small")</code></pre> | The general-purpose default — works for any condition, so use this unless `match` is clearly a better fit |
-| `match` / `case`       | <pre><code class="language-python-ref">match species:&#10;    case "ball":&#10;        print("small")&#10;    case _:&#10;        print("other")</code></pre> | Comparing one value against several specific, known possibilities     |
+| `if` / `elif` / `else` | <pre><code class="language-python-ref">if length &gt; 15:&#10;    print("giant")&#10;elif length &gt; 8:&#10;    print("large")&#10;else:&#10;    print("small")</code></pre> | The general-purpose default — ranges, comparisons, or checking unrelated things, so use this unless `match` is clearly a better fit |
+| `match` / `case`       | <pre><code class="language-python-ref">species="ball"&#10;match species:&#10;    case "ball":&#10;        print("ball python")&#10;    case _:&#10;        print("other")&#10;&#10;snake = (12, "ball")&#10;match snake:&#10;    case (length, "ball"):&#10;        print(f"a {length} ft ball python")&#10;    case (length, species):&#10;        print(f"a {length} ft {species}")</code></pre> | Comparing one value against exact, known possibilities — or splitting a tuple into named pieces while checking its values |
 
 ## If / Elif / Else
 
@@ -84,7 +84,7 @@ elif [boolean expression]:
 
 </summary>
 
-A **boolean expression** is just a boolean value (`True` or `False`) or anything that produces one — like a comparison (`>`, `<`, `==`, and so on). This is what `if` checks: not the raw numbers or text themselves, but the `True`/`False` result of comparing them. Every `if` follows this same shape:
+A **boolean expression** is just a boolean value (`True` or `False`) or anything that produces one — like a comparison (`>`, `<`, `==`, and so on). This is what `if` checks: not the raw numbers or text themselves, but the `True`/`False` result of comparing them. Elsewhere on this page, "**condition**" means the exact same thing — it's just the more common everyday word for a boolean expression, especially when it's sitting right after `if` or `elif`. Every `if` follows this same shape:
 
 A comparison looks different depending on the type of value being checked, as shown below.
 
@@ -175,19 +175,17 @@ Checks another condition, but only if the ones above it were False.
 
 ```python-ref
 length = 12
-if length > 15:
+if length > 15:       # this condition is false
     print("giant")
-elif length > 8:
-    print("large")     # runs — 12 > 8, and nothing below it gets checked
+elif length > 8:      # this condition is true
+    print("large")    # runs, then exits chain
 elif length > 4:
     print("medium")
-else:
-    print("small")
 ```
 
 </summary>
 
-`elif` ("else if") is checked only if every condition above it was `False`. Python runs the first branch whose condition is `True` and skips the rest, no matter how many `elif`s follow.
+`elif` is short for "else if," and if the initial `if` statement was `False` it offers an additional chance for a condition to be checked. They are ordered so that they only run if every condition above it was `False`. Python runs the first branch whose condition is `True` and skips the rest, no matter how many `elif`s follow. 
 
 ```python
 length = 12
@@ -231,7 +229,7 @@ else:
 
 </summary>
 
-`else` is the catch-all — it runs when nothing above it matched. It always comes last and never has a condition of its own. A conditional chain can have `elif` without `else`, but `else` (if present) must always be the final branch.
+A conditional chain can have `elif` without `else`, but `else` (if present) must always be the final branch.
 
 ```python
 venomous = False
@@ -263,9 +261,9 @@ length > 10 or venomous    # True or False → True
 
 </summary>
 
-[Boolean expressions](#a-boolean-expression-is-needed-for-every-ifelif) like the ones above can be combined with `and`, `or`, and `not`, so a single `if`/`elif` condition can check more than one thing at once.
+A and B here are [boolean expressions](#boolean-expressions).
 
-| `A`                                       | `not A` — flips `A` to its opposite       |
+| `A`                                       | `not A` — flips to the opposite       |
 |---------------------------------------------|----------------------------------------------|
 | <span class="pt-bool-true">True</span>    | <span class="pt-bool-false">False</span> |
 | <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>   |
@@ -278,7 +276,7 @@ length > 10 or venomous    # True or False → True
 | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  |
 
 
-When several logical operators appear together, Python evaluates `not` first, then `and`, then `or`. Even when parentheses aren't required, they often make the condition much easier to read.
+**Order of Operations:** When several logical operators appear together, Python evaluates `not` first, then `and`, then `or`. Even when parentheses aren't required, they often make the condition much easier to read.
 
 ```python
 length = 12
@@ -317,7 +315,7 @@ if length > 10:
 
 </summary>
 
-An `if` can contain another `if`, checked only once the outer condition is already `True` — Each level of nesting adds another decision. If both conditions are simple, combining them with [`and`](#logical-operators-not-and-or-let-a-single-if-check-more-than-one-condition) is usually clearer than nesting.
+An `if` can contain another `if`, checked only once the outer condition is already `True` — Each level of nesting adds another decision. If both conditions are simple, combining them with [`and`](#logical-operators) is usually clearer than nesting.
 
 ```python
 length = 12
@@ -371,12 +369,12 @@ Temporarily fill an empty block when you're not ready to write the inside code y
 
 ```python-ref
 if venomous:
-    pass    # placeholder — does nothing, but keeps the block syntactically valid
+    pass    # placeholder — does nothing, but prevents a syntax error
 ```
 
 </summary>
 
-Python doesn't allow an empty block after a colon. `pass` does nothing, but acts as a placeholder until you're ready to add code.
+Python doesn't allow an empty block after a colon. `pass` does nothing, but acts as a placeholder until you're ready to add code so that the empty block won't cause a syntax error in the meantime. 
 
 ```python
 venomous = True
@@ -448,6 +446,38 @@ flowchart TD
     linkStyle 8 stroke:#3f6b52,stroke-width:2px
 ```
 
+</details>
+
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### Matching an `int`
+
+A `case` can compare any type of value, not just strings.
+{: .pt-subheading }
+
+```python-ref
+match length:
+    case 3:
+        print("hatchling size")
+    case _:
+        print("not a hatchling")
+```
+
+</summary>
+
+```python
+length = 3
+
+match length:
+    case 3:
+        print("hatchling size")
+    case _:
+        print("not a hatchling")
+```
+
+</details>
+
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
@@ -466,16 +496,12 @@ match species:
 
 </summary>
 
-`|` lets one `case` match several possible values, so you don't need a separate `case` for each one.
-
 ```python
 species = "ball"
 
 match species:
     case "ball" | "corn":
         print("small species")
-    case _:
-        print("other")
 ```
 
 </details>
@@ -497,7 +523,7 @@ match species:
 
 </summary>
 
-`_` matches anything, so it's usually placed last to catch every value that wasn't matched earlier. It works much like `else` in an `if` statement. Without it, a value matching no `case` would run nothing.
+`_` matches anything, so it's placed last. Without it, a value matching no `case` would run nothing.
 
 ```python
 species = "ball"
@@ -514,7 +540,99 @@ match species:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Adding an `if` to a `case` only runs it when a second condition is also `True`
+### Capturing the value
+
+A bare variable name also matches anything, but — unlike `_` — keeps the value instead of throwing it away.
+{: .pt-subheading }
+
+```python-ref
+match species:
+    case "anaconda":
+        print("giant")
+    case n:                                # any variable works here, here we're making a new variable n
+        print(f"{n} is not an anaconda")   # runs — n is "ball"
+```
+
+</summary>
+
+Placed last, a bare name acts as a catch-all like `_`, except it also stores the matched value (`species` or `length` here) in that name, so the block below can use it instead of just handling an unknown case blindly.
+
+```python
+species = "ball"
+
+match species:
+    case "anaconda":
+        print("giant")
+    case "burmese":
+        print("large")
+    case n:                    # any variable name works here, not just n
+        print(f"{n} is not an anaconda or burmese")
+
+
+length = 2
+
+match length:
+    case 0:
+        print("no length recorded")
+    case 1 | 2:
+        print("hatchling size")
+    case n:                    # any variable name works here, not just n
+        print(f"length is {n} ft")
+```
+
+</details>
+
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### Unpacking a tuple
+
+A `case` can pull a tuple apart into named pieces *while also* checking its shape or specific values.
+{: .pt-subheading }
+
+```python-ref
+snake = (12, "ball")
+match snake:
+    case (length, "ball"):                      # tuple with 2 items, where second is "ball"
+        print(f"a {length} ft ball python")     # in this example, this case will run
+    case (length, species):                     # tuple with any 2 items
+        print(f"a {length} ft {species} python")
+    case (length,):                             # tuple with any 1 item
+        print(f"just a length: {length}")
+    case _:                                     # 0 items, or tuple with more than 2 items
+        print("invalid format")
+```
+
+</summary>
+
+A `match` can pick a different `case` depending on the tuple's length or the value in a specific position, while *still* unpacking the rest into names — all in one step, as shown below.
+
+```python
+snake = (12, "ball")
+
+length, species = snake   # regular assignment — always unpacks the same way,
+print(species, length)    # would crash on a 1- or 3-item tuple, and can't pick a different case based on species
+
+match snake:
+    case (length, "ball"):     # 2 items, second is 'ball'
+        print(f"a {length} ft ball python")
+    case (length, species):    # 2 items, any other species
+        print(f"a {length} ft {species}")
+    case (length,):             # 1 item — comma makes this a 1-tuple pattern
+        print(f"just a length: {length}")
+    case _:                     # 0 items, or more than 2
+        print("0 items, or more than 2")
+```
+
+</details>
+
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### `case` + `if`
+
+Only run the block of code if there's a `case` match *and* the `if` condition is also `True`.
+{: .pt-subheading }
 
 ```python-ref
 length = 12
@@ -527,7 +645,7 @@ match length:
 
 </summary>
 
-A `case` can store the matched value in a variable (here `n`) and add an `if` condition. That branch only runs if both the value matches and the `if` condition is `True`.
+Adding `if [condition]` after a pattern turns it into a guard — the branch only runs if the pattern matches *and* the condition is `True`. If the guard is `False`, Python moves on to the next `case` even though the pattern itself matched.
 
 ```python
 length = 12
