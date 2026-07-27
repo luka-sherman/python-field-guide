@@ -1,24 +1,56 @@
 # Conditionals
 
-A **conditional** runs a block of code only when some condition is `True` — the same comparisons that produce a [boolean](basic_types.md#booleans) (`>`, `<`, `==`, and so on) are exactly what an `if` statement checks.
+A **conditional** lets a program make decisions by running a block of code only when a condition is `True`. 
 
-| Keyword | Example | What it does |
-|---------|---------|---------------|
-| `if` | `if length_ft > 10:` | Runs its block only when the condition is `True` |
-| `elif` | `elif length_ft > 4:` | Checked only if every condition above it was `False` — runs the first one that's `True` |
-| `else` | `else:` | Catches everything not caught above — always comes last, with no condition of its own |
-| `match` / `case` | `case "ball":` | Compares one value against several patterns, running the first `case` that matches (Python 3.10+) |
+The condition ends with a colon `:`, and every line meant to run as part of that block must be indented underneath it.
 
-## If, Elif & Else
+| Statement              | Example                                                                                                                                                                       | When to use                                                          |
+|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| `if` / `elif` / `else` | <pre><code class="language-python-ref">if length_ft &gt; 15:&#10;    print("giant")&#10;elif length_ft &gt; 8:&#10;    print("large")&#10;else:&#10;    print("small")</code></pre> | The general-purpose default — works for any condition, so use this unless `match` is clearly a better fit |
+| `match` / `case`       | <pre><code class="language-python-ref">match species:&#10;    case "ball":&#10;        print("small")&#10;    case _:&#10;        print("other")</code></pre> | Comparing one value against several specific, known possibilities     |
 
-An `if` statement runs its indented block only when its condition is `True` — otherwise Python skips straight past it.
+## If / Elif / Else
+
+A chain of `if`, `elif`, and `else` checks a series of conditions in order, running the indented block under the first one that's `True`.
 
 ```python
 length_ft = 12
 
 if length_ft > 10:
     print("that's a big snake")
+elif length_ft > 4:
+    print("that's a medium snake")
+else:
+    print("that's a small snake")
 ```
+
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### Boolean Expressions
+
+```python-ref
+length_ft > 10    # True — a boolean expression
+```
+
+</summary>
+
+A **boolean expression** is just a boolean value (`True` or `False`) or anything that produces one — like a comparison (`>`, `<`, `==`, and so on). This is what `if` checks: not the raw numbers or text themselves, but the `True`/`False` result of comparing them. Every `if` follows this same shape:
+
+```
+if [boolean expression/value]:
+    [indented block]
+```
+
+```python
+length_ft = 12
+
+length_ft > 10       # True
+length_ft == 12      # True
+length_ft < 5         # False
+```
+
+</details>
 
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
@@ -39,7 +71,7 @@ else:
 
 </summary>
 
-`elif` ("else if") is checked only if every condition above it was `False`. Python runs the first branch that matches and skips the rest, no matter how many `elif`s follow.
+`elif` ("else if") is checked only if every condition above it was `False`. Python runs the first branch whose condition is `True` and skips the rest, no matter how many `elif`s follow.
 
 ```python
 length_ft = 12
@@ -110,7 +142,7 @@ if length_ft > 10:
 
 </summary>
 
-An `if` can contain another `if`, checked only once the outer condition is already `True` — each level of nesting adds another layer of decision-making. If both conditions are simple, combining them with `and` (see below) is usually clearer than nesting.
+An `if` can contain another `if`, checked only once the outer condition is already `True` — Each level of nesting adds another decision. If both conditions are simple, combining them with [`and`](#local-operators-and-or-not) is usually clearer than nesting.
 
 ```python
 length_ft = 12
@@ -128,19 +160,25 @@ if length_ft > 10:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Shorthand `if`
+### Shorthand `if` & `if`-`else`
 
 ```python-ref
 if venomous: print("careful")    # single-line if — the colon is still required
+"careful" if venomous else "safe"    # "careful" — a compact if/else that evaluates to a value
 ```
 
 </summary>
 
 For a single statement, the body can go right on the same line as the condition. Save this for short, simple conditions — a normal multi-line `if` reads more clearly for anything more involved.
 
+The `if`-`else` version is a single expression, not a statement — it evaluates to one value or the other, so it's most useful for a quick assignment or a function argument, not as a stand-in for a full `if` block. `value_if_true if condition else value_if_false` reads almost like the English sentence it describes.
+
 ```python
 venomous = True
 if venomous: print("careful")
+
+status = "careful" if venomous else "safe"
+print(status)
 ```
 
 </details>
@@ -148,20 +186,42 @@ if venomous: print("careful")
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Shorthand `if`-`else` (Ternary)
+### Logical Operators `not` `and` `or`
 
 ```python-ref
-"careful" if venomous else "safe"    # "careful" — a compact if/else that evaluates to a value
+not venomous                  # not False → True
+
+length_ft > 10 and venomous   # True and False → False
+
+length_ft > 10 or venomous    # True or False → True
 ```
 
 </summary>
 
-This is a single expression, not a statement — it evaluates to one value or the other, so it's most useful for a quick assignment or a function argument, not as a stand-in for a full `if` block. `value_if_true if condition else value_if_false` reads almost like the English sentence it describes.
+The same comparisons that produce a [boolean](basic_types.md#booleans) (`>`, `<`, `==`, and so on) can be combined with `and`, `or`, and `not`, so a single `if`/`elif` statement can make more complex decisions.
+
+`not` reverses a condition, turning `True` into `False` and `False` into `True`.
+
+`and` is only `True` when both sides are `True`.
+
+`or` is `True` when either side is `True`.
+
+
+When several logical operators appear together, Python evaluates `not` first, then `and`, then `or`. Even when parentheses aren't required, they often make the condition much easier to read.
 
 ```python
-venomous = True
-status = "careful" if venomous else "safe"
-print(status)
+length_ft = 12
+venomous = False
+
+if length_ft > 10 and venomous:
+    print("big and dangerous")
+if length_ft > 10 or venomous:
+    print("worth a closer look")
+if not venomous:
+    print("safe to handle")
+
+if (length_ft > 10 and not venomous) or length_ft > 20:
+    print("worth a closer look")
 ```
 
 </details>
@@ -178,7 +238,7 @@ if venomous:
 
 </summary>
 
-An empty block is a syntax error — `pass` is a no-op you can use as a placeholder while you're still deciding what a branch should do.
+Python doesn't allow an empty block after a colon. `pass` does nothing, but acts as a placeholder until you're ready to add code.
 
 ```python
 venomous = True
@@ -191,13 +251,24 @@ print("checked venomous status, no action taken yet")
 
 </details>
 
-## Match Statement
+## Match / Case
 
-A `match` statement (added in Python 3.10) compares one value against several possible patterns, running the block under the first one that matches — a clearer alternative to a long `if`/`elif` chain when you're checking a single value against many possibilities.
+A `match` statement compares one value against several `case` options and runs the code for the first matching `case`.
+
+Both examples below do the same thing, but `match` is often easier to read than a long `if/elif` sequence when checking one value against many possibilities.
 
 ```python
 species = "ball"
 
+# if/elif chain
+if species == "ball":
+    print("small constrictor")
+elif species == "burmese":
+    print("large constrictor")
+else:
+    print("unknown species")
+
+# the same logic as a match statement
 match species:
     case "ball":
         print("small constrictor")
@@ -210,7 +281,7 @@ match species:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Matching Multiple Values
+### Matching Multiple Values with `|`
 
 ```python-ref
 match species:
@@ -222,7 +293,7 @@ match species:
 
 </summary>
 
-`|` lets a single `case` match several patterns at once, so values that should lead to the same outcome don't need a separate branch each.
+`|` lets one `case` match several possible values, so you don't need a separate `case` for each one.
 
 ```python
 species = "ball"
@@ -251,7 +322,7 @@ match species:
 
 </summary>
 
-`_` matches anything and is conventionally placed last, acting like `else` in an `if`/`elif` chain — it catches whatever none of the earlier cases matched. Without it, a value matching no case simply falls through and nothing runs.
+`_` matches anything, so it's usually placed last to catch every value that wasn't matched earlier. It works much like `else` in an `if` statement. Without it, a value matching no `case` would run nothing.
 
 ```python
 species = "ball"
@@ -268,7 +339,7 @@ match species:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Guard Clauses With `if`
+### Adding an `if` to a `case`
 
 ```python-ref
 length_ft = 12
@@ -281,7 +352,7 @@ match length_ft:
 
 </summary>
 
-A `case` can bind the matched value to a name (here `n`) and add an `if` guard — that branch only runs if the pattern matches *and* the guard condition is `True`, otherwise Python moves on to the next `case`.
+A `case` can store the matched value in a variable (here `n`) and add an `if` condition. That branch only runs if both the value matches and the `if` condition is `True`.
 
 ```python
 length_ft = 12
@@ -291,111 +362,6 @@ match length_ft:
         print("big")
     case n:
         print("small")
-```
-
-</details>
-
-## Logical Operators
-
-`and`, `or`, and `not` combine or invert conditions, so a single `if` can check more than one thing at once.
-
-```python
-length_ft = 12
-venomous = False
-
-if length_ft > 10 and not venomous:
-    print("big but safe to observe")
-```
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-### `and`
-
-```python-ref
-length_ft > 10 and venomous    # True and False → False
-```
-
-</summary>
-
-`and` needs both sides to be `True` for the whole condition to pass — if either side is `False`, the block is skipped.
-
-```python
-length_ft = 12
-venomous = False
-
-if length_ft > 10 and venomous:
-    print("big and dangerous")
-else:
-    print("not both conditions were true")
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-### `or`
-
-```python-ref
-length_ft > 10 or venomous    # True or False → True
-```
-
-</summary>
-
-`or` only needs one side to be `True` — the block runs even if the other side is `False`.
-
-```python
-length_ft = 12
-venomous = False
-
-if length_ft > 10 or venomous:
-    print("worth a closer look")
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-### `not`
-
-```python-ref
-not venomous    # not False → True
-```
-
-</summary>
-
-`not` flips a condition's result — useful for checking that something *isn't* the case, without rewriting the condition itself.
-
-```python
-venomous = False
-
-if not venomous:
-    print("safe to handle")
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-### Operator Precedence
-
-```python-ref
-length_ft > 10 and not venomous or length_ft > 20   # not, then and, then or
-```
-
-</summary>
-
-When mixing operators, Python evaluates `not` first, then `and`, then `or`. Parentheses aren't required, but they make the intended order obvious at a glance — `(length_ft > 10 and not venomous) or length_ft > 20` means the same thing as the line above, with no guessing.
-
-```python
-length_ft = 12
-venomous = False
-
-if (length_ft > 10 and not venomous) or length_ft > 20:
-    print("worth a closer look")
 ```
 
 </details>
