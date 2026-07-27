@@ -56,7 +56,7 @@ print(length ** 2)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Check Type
+### Check type
 
 ```python-ref
 type(length)                # <class 'int'>
@@ -79,7 +79,7 @@ print(isinstance(length, int))
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Convert to Integer
+### Convert to integer
 
 ```python-ref
 int("5")      # 5
@@ -159,7 +159,7 @@ print(round(4.567, 2))
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Convert to Float
+### Convert to float
 
 ```python-ref
 float(5)         # 5.0
@@ -180,7 +180,7 @@ print(float("4.5"))
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Floating-Point Precision
+### Floating-point precision
 
 ```python-ref
 0.1 + 0.2    # 0.30000000000000004
@@ -216,7 +216,7 @@ print(name)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Access Characters
+### Access characters
 
 ```python-ref
 name[0]      # "b"
@@ -242,7 +242,7 @@ print(name[8:])
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Concatenate & Repeat
+### Concatenate & repeat
 
 ```python-ref
 "ball" + " " + "python"    # "ball python"
@@ -268,7 +268,7 @@ print(species * 3)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Format Strings
+### Format strings
 
 ```python-ref
 f"the {species} python is about {length} feet long"    # "the ball python is about 5 feet long"
@@ -290,7 +290,7 @@ print(sentence)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Modify Strings
+### Modify strings
 
 ```python-ref
 name.upper()          # "BURMESE PYTHON"
@@ -324,7 +324,7 @@ print(name.replace("burmese", "ball"))
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Split & Join
+### Split & join
 
 ```python-ref
 name.split()                          # ["burmese", "python"]
@@ -351,7 +351,7 @@ print(rejoined)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Check Substring
+### Check substring
 
 ```python-ref
 "python" in name          # True
@@ -382,7 +382,7 @@ print(name.count("p"))
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Convert to String
+### Convert to string
 
 ```python-ref
 str(5)      # "5"
@@ -415,7 +415,7 @@ print(venomous)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Comparisons Return Booleans
+### Comparisons return booleans
 
 ```python-ref
 length = 5
@@ -441,7 +441,7 @@ print(length != 5)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Combine Booleans
+### Combine booleans
 
 ```python-ref
 is_python and is_venomous    # True and False → False
@@ -467,7 +467,7 @@ print(not is_venomous)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Truthy & Falsy Values
+### Truthy & falsy values
 
 ```python-ref
 bool(0)       # False
@@ -497,7 +497,7 @@ print(bool(5))
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Bool Is a Subclass of Int
+### Bool is a subclass of int
 
 ```python-ref
 isinstance(True, int)    # True
@@ -528,7 +528,7 @@ print(venomous)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Check Type
+### Check type
 
 ```python-ref
 type(venomous)    # <class 'NoneType'>
@@ -571,7 +571,7 @@ print(venomous is not None)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Functions Return None by Default
+### Functions return None by default
 
 ```python-ref
 result = find_species("cobra")    # None — the function fell through without a return

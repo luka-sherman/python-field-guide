@@ -49,7 +49,7 @@ print(len(species))
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Accessing Items
+### Accessing items
 
 ```python-ref
 species[0]      # "burmese"
@@ -83,7 +83,7 @@ print(species[3:])
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Check if Item in List
+### Check if item in list
 
 ```python-ref
 "burmese" in species          # True
@@ -112,7 +112,7 @@ print(species.count("ball"))
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Change List Items
+### Change list items
 
 ```python-ref
 species[1] = "carpet"        # ["burmese", "carpet", "ball", "blood"]
@@ -147,7 +147,7 @@ print(species)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Add List Items
+### Add list items
 
 ```python-ref
 species.append("carpet")                            # ["burmese", "rock", "ball", "blood", "carpet"]
@@ -183,7 +183,7 @@ print(species)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Remove List Items
+### Remove list items
 
 ```python-ref
 species.remove("rock")   # ["burmese", "ball", "blood"]
@@ -226,7 +226,7 @@ print(species)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Loop Lists
+### Loop lists
 
 ```python-ref
 for s in species: print(s)                        # burmese  rock  ball  blood
@@ -263,7 +263,7 @@ while i < len(species):
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### List Comprehension
+### List comprehension
 
 ```python-ref
 [s for s in species if len(s) > 4]    # ["burmese", "blood"]
@@ -291,7 +291,7 @@ print(titled)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Sort Lists
+### Sort lists
 
 ```python-ref
 species.sort()               # ["ball", "blood", "burmese", "rock"]
@@ -341,7 +341,7 @@ print(species)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Copy Lists
+### Copy lists
 
 ```python-ref
 same_list = species          # same_list and species are the same list — mutating one mutates both
@@ -372,7 +372,7 @@ print(backup)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Join Lists
+### Join lists
 
 ```python-ref
 constrictors + short_tailed        # ["ball", "burmese", "sumatran short tailed", "myanmar short tailed"]
@@ -402,7 +402,7 @@ print(constrictors)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Check Type
+### Check type
 
 ```python-ref
 type(species)                        # <class 'list'>
@@ -426,7 +426,7 @@ print(species)
 
 </details>
 
-### List Exercises
+### List exercises
 
 ??? note "Details & examples"
     Each box below is fully editable — write your answer, then click Run.
@@ -516,7 +516,7 @@ print(species)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Access Items
+### Access items
 
 ```python-ref
 species[0]      # "burmese"
@@ -541,7 +541,7 @@ print(species[1:3])
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Check if Item in Tuple
+### Check if item in tuple
 
 ```python-ref
 "rock" in species          # True
@@ -591,7 +591,7 @@ print(a, b, c, d)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Work Around Immutability
+### Work around immutability
 
 ```python-ref
 species + ("carpet",)                          # ("burmese", "rock", "ball", "blood", "carpet")
@@ -620,7 +620,7 @@ print(back_to_tuple)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Loop Tuples
+### Loop tuples
 
 ```python-ref
 for s in species: print(s)    # burmese  rock  ball  blood
@@ -661,7 +661,7 @@ print(snake)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Access Items
+### Access items
 
 ```python-ref
 snake["species"]            # "ball"
@@ -698,7 +698,7 @@ print("species" in snake)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Change Items
+### Change items
 
 ```python-ref
 snake["length_ft"] = 6                              # {'species': 'ball', 'length_ft': 6, 'venomous': False}
@@ -726,7 +726,7 @@ print(snake)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Add Items
+### Add items
 
 ```python-ref
 snake["origin"] = "west africa"    # {'species': 'ball', 'length_ft': 5, 'venomous': False, 'origin': 'west africa'}
@@ -754,7 +754,7 @@ print(snake)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Remove Items
+### Remove items
 
 ```python-ref
 snake.pop("venomous")   # False (removed and returned)
@@ -798,7 +798,7 @@ print(snake)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Loop Dictionaries
+### Loop dictionaries
 
 ```python-ref
 for key in snake: print(key)                        # species  length_ft  venomous
@@ -832,7 +832,7 @@ for key, value in snake.items():
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Copy Dictionaries
+### Copy dictionaries
 
 ```python-ref
 same_dict = snake          # same_dict and snake are the same dictionary — mutating one mutates both
@@ -863,7 +863,7 @@ print(backup)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Nested Dictionaries
+### Nested dictionaries
 
 ```python-ref
 snakes = {"ball": snake, "burmese": {"length_ft": 16, "venomous": False}}
@@ -889,7 +889,7 @@ print(snakes["ball"]["species"])
 
 </details>
 
-### Dictionary Exercises
+### Dictionary exercises
 
 ??? note "Details & examples"
     Each box below is fully editable — write your answer, then click Run.

@@ -29,7 +29,7 @@ print(ball.length_ft)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### The `__init__()` Method
+### The `__init__()` method
 
 ```python-ref
 ball = Snake("ball", 5)    # __init__ runs automatically, setting ball.species and ball.length_ft
@@ -59,7 +59,7 @@ print(burmese.length_ft)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### The `self` Parameter
+### The `self` parameter
 
 ```python-ref
 self.species    # inside a method, refers to *this* object's own species — "ball" for ball, "burmese" for burmese
@@ -87,7 +87,7 @@ print(burmese.species)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Object Methods
+### Object methods
 
 ```python-ref
 ball.describe()    # "a 5 ft ball python"
@@ -115,7 +115,7 @@ print(ball.describe())
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### The `__str__()` Method
+### The `__str__()` method
 
 ```python-ref
 print(ball)    # without __str__: <__main__.Snake object at 0x...>
@@ -144,7 +144,7 @@ print(ball)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Modify & Delete Attributes
+### Modify & delete attributes
 
 ```python-ref
 ball.length_ft = 6      # change an attribute directly, like any variable
@@ -178,7 +178,7 @@ print("ball object deleted")
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### The `pass` Statement
+### The `pass` statement
 
 ```python-ref
 class Snake:
@@ -287,7 +287,7 @@ print(boa.region)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Adding Attributes and Methods
+### Adding attributes and methods
 
 ```python-ref
 boa.region       # "south america" — new attribute, parent Snake has no such thing
@@ -322,7 +322,7 @@ print(boa.habitat())
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Overriding Methods
+### Overriding methods
 
 ```python-ref
 snake.describe()    # "a 5 ft ball python"        — Snake's own version
@@ -368,7 +368,7 @@ print(len({"species": "ball", "length_ft": 5}))
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Same Method Name, Unrelated Classes
+### Same method name, unrelated classes
 
 ```python-ref
 ball.move()     # "slither"
@@ -400,7 +400,7 @@ for animal in (ball, gecko):
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Polymorphism via Inheritance
+### Polymorphism via inheritance
 
 ```python-ref
 for s in (snake, boa): print(s.describe())

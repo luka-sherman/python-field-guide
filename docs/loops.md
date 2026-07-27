@@ -21,7 +21,7 @@ for snake in species:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Loop a Fixed Number of Times
+### Loop a fixed number of times
 
 ```python-ref
 range(5)          # range(0, 5) — produces 0, 1, 2, 3, 4
@@ -49,7 +49,7 @@ for i in range(2, 10, 3):
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Loop Over a List
+### Loop over a list
 
 ```python-ref
 for s in species: 
@@ -72,7 +72,7 @@ for s in species:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Loop Over a Tuple
+### Loop over a tuple
 
 ```python-ref
 for s in constrictors: 
@@ -95,7 +95,7 @@ for s in constrictors:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Loop Over a Dictionary
+### Loop over a dictionary
 
 ```python-ref
 for key, value in snake.items(): 
@@ -131,7 +131,7 @@ for value in snake.values():
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Loop Over a String
+### Loop over a string
 
 ```python-ref
 for letter in name: print(letter)    # b  u  r  m  e  s  e     p  y  t  h  o  n
@@ -153,7 +153,7 @@ for letter in name:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Loop With Index and Value
+### Loop with index and value
 
 ```python-ref
 for i, s in enumerate(species): print(i, s)    # 0 burmese  1 rock  2 ball  3 blood
@@ -175,7 +175,7 @@ for i, s in enumerate(species):
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Nested Loops
+### Nested loops
 
 ```python-ref
 for s in species:
@@ -213,7 +213,7 @@ while count < 3:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Avoiding Infinite Loops
+### Avoiding infinite loops
 
 ```python-ref
 count = 0
@@ -333,7 +333,7 @@ while count < 5:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### The Else Clause
+### The else clause
 
 ```python-ref
 for s in species:
@@ -374,7 +374,7 @@ else:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### The pass Statement
+### The pass statement
 
 ```python-ref
 for s in species:

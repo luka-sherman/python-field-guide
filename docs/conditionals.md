@@ -59,7 +59,7 @@ flowchart TD
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### A Boolean Expression is Needed for every `if`/`elif` 
+### A boolean expression is needed for every `if`/`elif`
 
 ```python-ref
 if [boolean expression]:
@@ -228,7 +228,7 @@ else:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Logical Operators `not`, `and`, `or` let a single `if` check more than one condition
+### Logical operators `not`, `and`, `or` let a single `if` check more than one condition
 
 ```python-ref
 not venomous                  # not False → True
@@ -277,7 +277,7 @@ if (length > 10 and not venomous) or length > 20:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Nested `if` Statements
+### A nested `if` checks a second condition only after the first is `True`
 
 ```python-ref
 length = 12
@@ -309,7 +309,7 @@ if length > 10:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Shorthand `if` & `if`-`else`
+### Shorthand `if` & `if`-`else` fit a simple check on one line
 
 ```python-ref
 if venomous: print("careful")    # single-line if — the colon is still required
@@ -335,7 +335,7 @@ print(status)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### The `pass` Statement
+### `pass` fills an empty block when you're not ready to write code yet
 
 ```python-ref
 if venomous:
@@ -410,7 +410,7 @@ flowchart TD
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Matching Multiple Values with `|`
+### `|` lets one `case` match several values, avoiding repeated cases
 
 ```python-ref
 match species:
@@ -439,7 +439,7 @@ match species:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### The Wildcard `_`
+### The wildcard `_` runs if no `case` matched
 
 ```python-ref
 match species:
@@ -468,7 +468,7 @@ match species:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Adding an `if` to a `case`
+### Adding an `if` to a `case` only runs it when a second condition is also `True`
 
 ```python-ref
 length = 12
