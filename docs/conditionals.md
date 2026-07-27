@@ -14,14 +14,44 @@ The condition ends with a colon `:`, and every line meant to run as part of that
 A chain of `if`, `elif`, and `else` checks a series of conditions in order, running the indented block under the first one that's `True`.
 
 ```python
-length_ft = 12
+length = 12
 
-if length_ft > 10:
+if length > 10:
     print("that's a big snake")
-elif length_ft > 4:
+elif length > 7:
     print("that's a medium snake")
-else:
+elif length > 4:
     print("that's a small snake")
+else:
+    print("that's a tiny snake")
+```
+
+```mermaid
+flowchart TD
+    A{"`if length > 10:`"} -->|True| B["`print('big snake')`"]
+    A -->|False| C{"`elif length > 7:`"}
+    C -->|True| D["`print('medium snake')`"]
+    C -->|False| E{"`elif length > 4:`"}
+    E -->|True| F["`print('small snake')`"]
+    E -->|False| G["`else:`"]
+    G --> H["`print('tiny snake')`"]
+
+    B -.-> EXIT(["`done, exits the chain`"])
+    D -.->EXIT
+    F -.->EXIT
+    H -.->EXIT
+
+    linkStyle 0 stroke:#3f6b52,stroke-width:2px
+    linkStyle 1 stroke:#a33f3f,stroke-width:2px
+    linkStyle 2 stroke:#3f6b52,stroke-width:2px
+    linkStyle 3 stroke:#a33f3f,stroke-width:2px
+    linkStyle 4 stroke:#3f6b52,stroke-width:2px
+    linkStyle 5 stroke:#a33f3f,stroke-width:2px
+    linkStyle 6 stroke:#3f6b52,stroke-width:2px
+    linkStyle 7 stroke:#3f6b52,stroke-width:2px
+    linkStyle 8 stroke:#3f6b52,stroke-width:2px
+    linkStyle 9 stroke:#3f6b52,stroke-width:2px
+    linkStyle 10 stroke:#3f6b52,stroke-width:2px
 ```
 
 <details markdown="block" class="pt-collapsible">
@@ -276,6 +306,29 @@ match species:
         print("large constrictor")
     case _:
         print("unknown species")
+```
+
+```mermaid
+flowchart TD
+    START["`match species:`"] --> A{"`case 'ball':`"}
+    A -->|match| B["`print('small constrictor')`"]
+    A -->|no match| C{"`case 'burmese':`"}
+    C -->|match| D["`print('large constrictor')`"]
+    C -->|no match| E["`case _:`"]
+    E --> F["`print('unknown species')`"]
+
+    B -.-> EXIT(["`done, exits the chain`"])
+    D -.->EXIT
+    F -.->EXIT
+
+    linkStyle 1 stroke:#3f6b52,stroke-width:2px
+    linkStyle 2 stroke:#a33f3f,stroke-width:2px
+    linkStyle 3 stroke:#3f6b52,stroke-width:2px
+    linkStyle 4 stroke:#a33f3f,stroke-width:2px
+    linkStyle 5 stroke:#3f6b52,stroke-width:2px
+    linkStyle 6 stroke:#3f6b52,stroke-width:2px
+    linkStyle 7 stroke:#3f6b52,stroke-width:2px
+    linkStyle 8 stroke:#3f6b52,stroke-width:2px
 ```
 
 <details markdown="block" class="pt-collapsible">
