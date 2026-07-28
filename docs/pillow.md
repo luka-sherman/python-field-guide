@@ -429,7 +429,7 @@ class Shape:
 
 </summary>
 
-An object that stores its own position/size/color, and knows how to draw itself given a drawing context. Nothing here is Pillow-specific: it's the same [OOP](oop.md) pattern of bundling data with the behavior that acts on it, just applied to a shape instead of a snake. A calling function loops over a list of these objects and calls `.draw()` on each, so building a complex image — dozens of randomly placed shapes, say, using the `random` module — is just a loop appending new `Shape` objects rather than dozens of manual `draw_context` calls.
+An object that stores its own position/size/color, and knows how to draw itself given a drawing context. Nothing here is Pillow-specific: it's the same pattern covered in [Classes](oop.md) — bundling data with the behavior that acts on it — just applied to a shape instead of a snake. A calling function loops over a list of these objects and calls `.draw()` on each, so building a complex image — dozens of randomly placed shapes, say, using the `random` module — is just a loop appending new `Shape` objects rather than dozens of manual `draw_context` calls.
 
 ```python-ref
 import random
@@ -781,7 +781,7 @@ while True:
 
 </summary>
 
-Each piece here is something covered elsewhere on this site — a [function](oop.md) wrapping one transformation, an [`if`/`elif` chain](conditionals.md) picking which one to run, and a [`while` loop](loops.md#while-loops) that keeps asking until the user's satisfied. Pillow itself only shows up inside `apply_filter`.
+Each piece here is something covered elsewhere on this site — a [function](functions.md) wrapping one transformation, an [`if`/`elif` chain](conditionals.md) picking which one to run, and a [`while` loop](loops.md#while-loops) that keeps asking until the user's satisfied. Pillow itself only shows up inside `apply_filter`.
 
 ```python-ref
 from PIL import Image, ImageFilter

@@ -30,7 +30,7 @@ Programs store information in variables — these are the kinds of values variab
 
 ## Control Flow
 
-Make your program decide and repeat certain blocks of code, instead of just running top to bottom.
+This is how Python decides which lines of code to execute and when, instead of just running each line top to bottom.
 
 <div class="grid cards" markdown="block">
 
@@ -48,13 +48,19 @@ Make your program decide and repeat certain blocks of code, instead of just runn
 
 </div>
 
-## Object-Oriented Programming
+## Code Organization and Reuse
 
-As a program grows, this keeps related data and the code that uses it from drifting apart.
+Package code into reusable units, then bundle that logic with the data it acts on.
 
 <div class="grid cards" markdown="block">
 
-- **[OOP](oop.md)**
+- **[Functions](functions.md)**
+
+    Packages a block of code under a name, so it can be run again with different inputs instead of rewriting it each time.
+
+    [`def`](functions.md#defining-a-function) · [`return`](functions.md#return-values) · [`*args`/`**kwargs`](functions.md#flexible-arguments) · [scope](functions.md#scope)
+
+- **[Classes](oop.md)**
 
     Bundles related data and functions into a reusable blueprint, so a program can create many similar objects without duplicating code.
 
