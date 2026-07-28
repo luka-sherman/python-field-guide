@@ -17,10 +17,8 @@ All loop definitions end with a colon `:`, and the **block** is the lines indent
 A `for` loop steps through a sequence — a [list](collections.md), tuple, string, or other iterable — running its body once per item, in order.
 
 ```python
-species = ["burmese", "rock", "ball", "blood"]
-
-for snake in species:
-    print(snake)
+for i in range(5):
+    print(i)
 ```
 
 <details markdown="block" class="pt-collapsible">
@@ -28,28 +26,34 @@ for snake in species:
 
 ### Loop a fixed number of times
 
-`range()` generates a sequence of numbers to loop over, without building a whole list.
+`range()` generates a sequence of numbers to loop over
 {: .pt-subheading }
 
 ```python-ref
 range(5)          # range(0, 5) — produces 0, 1, 2, 3, 4
-range(2, 6)       # 2, 3, 4, 5
-range(2, 10, 3)   # 2, 5, 8  (step of 3)
+range(2, 6)       # start=2, stop=6      — 2, 3, 4, 5
+range(2, 10, 3)   # start=2, stop=10, step=3 — 2, 5, 8
 ```
 
 </summary>
 
-One argument counts up from `0` to (but not including) that number; a second sets a custom start; a third sets a step size other than `1`. It's the standard way to loop by index instead of by value.
+One argument counts up from `0` to (but not including) that number; a second sets a custom `start`; a third sets a `step` size other than `1`. It's the standard way to loop by index instead of by value — or to just repeat something a fixed number of times, using `_` instead of a real variable name when you don't need the number itself.
 
 ```python
 for i in range(5):
     print(i)
 
+# start and stop
 for i in range(2, 6):
     print(i)
 
+# start, stop, and step
 for i in range(2, 10, 3):
     print(i)
+
+# just repeat 3 times — the value itself isn't needed, so use _
+for _ in range(3):
+    print("hiss")
 ```
 
 </details>
@@ -76,6 +80,39 @@ species = ["burmese", "rock", "ball", "blood"]
 
 for s in species:
     print(s)
+```
+
+</details>
+
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### Counting matches with a loop
+
+Combine `if` with a loop and a counter to count how many items meet a condition.
+{: .pt-subheading }
+
+```python-ref
+count = 0
+for s in species:
+    if s == "ball":
+        count += 1
+print(count)   # runs — counts every "ball" in the list
+```
+
+</summary>
+
+`count` starts at `0`, and the `if` condition is checked once per item — every time it's `True`, `count += 1` adds one. By the end of the loop, `count` holds the total number of matches.
+
+```python
+species = ["ball", "burmese", "ball", "boa", "ball"]
+
+count = 0
+for s in species:
+    if s == "ball":
+        count += 1
+
+print(count)
 ```
 
 </details>
