@@ -1,8 +1,8 @@
 # Conditionals
 
-A **conditional** lets a program make decisions by running a block of code only when a [condition](#boolean-expressions) is `True`. 
+A **conditional** lets a program make decisions by running a **block** of code only when a [condition](#boolean-expressions) is `True`. 
 
-The condition ends with a colon `:`, and every line meant to run as part of that block must be indented underneath it.
+The condition ends with a colon `:`, and the block is the lines indented underneath it, treated as a single unit.
 
 | Statement              | Example                                                                                                                                                                       | When to use                                                          |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
@@ -84,83 +84,138 @@ elif [boolean expression]:
 
 </summary>
 
-A **boolean expression** is just a boolean value (`True` or `False`) or anything that produces one — like a comparison (`>`, `<`, `==`, and so on). This is what `if` checks: not the raw numbers or text themselves, but the `True`/`False` result of comparing them. Elsewhere on this page, "**condition**" means the exact same thing — it's just the more common everyday word for a boolean expression, especially when it's sitting right after `if` or `elif`. Every `if` follows this same shape:
+A **boolean expression** is a boolean value (`True` or `False`) or anything that produces one, and is treated as the **condition** that must be `True` in order to run a block of code.
 
-A comparison looks different depending on the type of value being checked, as shown below.
+A comparison looks different depending on the type of value being checked, as shown below. All of these comparisons result in a `True` or `False` boolean expression. 
 
+**integer and float:** `==`, `!=`, `>`, `<`, `>=`, `<=`
 ```python
 length = 12
-if length > 10:      # True — this runs
+
+if length == 12:             # equal to
+    print("exactly 12 ft")
+
+if length != 4:              # not equal
+    print("not 4 ft")
+
+if length > 10:              # greater than
     print("long snake")
 
-length = 5
-if length > 10:      # False — this is skipped
-    print("long snake")
+if length < 20:              # less than
+    print("under 20 ft")
 
-# ints
-length = 12
-if length > 10:             # greater than
-    print("long snake")
-
-if length >= 12:            # greater than or equal to
+if length >= 12:             # greater than or equal to
     print("at least 12 ft")
 
-if length != 0:             # not equal
-    print("length was recorded")
+if length <= 12.5:           # less than or equal to
+    print("12.5 ft or shorter")
+```
 
-# float comparison
-weight_kg = 1.5
-if weight_kg <= 2.0:           # less than or equal to
-    print("2 kg or lighter")
-
-# strings
+**strings:** `==`, `!=`, `in`, `not in`, `>`, `<`
+```python
 name = "burmese python"
-if name == "burmese python":   # string comparison
+
+if name == "burmese python":   # equal to
     print("it's a burmese")
 
-if name != "ball python":      # string not-equal
+if name != "ball python":      # not equal
     print("not a ball python")
 
-if "python" in name:           # string substring check
+if "python" in name:           # is it a substring
     print("name contains 'python'")
 
-# bool value
-venomous = False
-if not venomous:               
-    print("safe to handle")
+if "anaconda" not in name:     # is it not a substring
+    print("name doesn't mention anaconda")
 
-# None
+if name > "ball python":       # alphabetical comparison
+    print("comes after 'ball python' alphabetically")
+```
+
+**boolean:** `==`, `is`, or just the value itself
+```python
+venomous = False
+
+if venomous:                   # is it True
+    print("handle with care")
+
+if not venomous:               # is it False
+    print("safe to handle")
+```
+
+**None:** `is`, `is not`
+```python
 age = None
-if age is None:                # is None
+
+if age is None:                # is it None
     print("age not recorded")
 
-if age is not None:            # is not None
+if age is not None:            # is it anything else
     print("age was recorded")
+```
 
-# is it in a list
+**list & tuple:** `in`, `not in`, `==`, `!=`, or you can compare a specific item
+```python
 species = ["ball", "burmese", "boa"]
-if "ball" in species:          # in
+other_species = ["ball", "burmese", "boa"]
+
+if "ball" in species:          # is the value in the list
     print("ball python is in the list")
 
-if "anaconda" not in species:  # not in
+if "anaconda" not in species:  # is the value missing from the list
     print("anaconda isn't in the list")
 
-# is it in a tuple
-species_tuple = ("burmese", "rock", "ball", "blood")
-if "ball" in species_tuple:     
-    print("ball python is in the tuple")
+if species == other_species:   # is it the same contents, in the same order
+    print("both lists match")
 
-# dict 
+if "ball" == species[0]:       # compare a sepcific item
+    print("ball python is the first item")
+
+snake = ("ball", "5ft", "not venomous")   # a tuple works the same way
+
+if "ball" in snake:
+    print("species ball is in the tuple")
+
+if snake == ("ball", "5ft", "not venomous"):
+    print("tuples match")
+```
+
+**dict:** `in`, `not in` (checks keys), or you can compare a specific value 
+```python
 snake = {"species": "ball", "length": 3, "venomous": False}
 
-if "venomous" in snake:         # is it a key in the dict
+if "venomous" in snake:        # is it a key
     print("snake dict tracks venomous status")
 
-if "habitat" not in snake:      # dict key not-in
+if "habitat" not in snake:     # is it not a key
     print("snake dict has no habitat key")
 
-if snake["length"] > 2:      # dict value comparison
+if snake["length"] > 2:        # compare a specific value
     print("snake in dict is over 2 ft")
+```
+
+**same contents:** `==`, `!=`
+```python
+snake = ["ball", "burmese"]
+other_snake = ["ball", "burmese"]   # separate list, but equal contents
+
+if snake == other_snake:      # do they contain the same items?
+    print("equal contents")
+
+if snake != ["ball"]:         # different contents
+    print("not equal to a single-item list")
+```
+
+**is it comparing the exact same thing:** `is`, `is not`
+```python
+snake = ["ball", "burmese"]
+
+same_snake = snake                  # another name for `snake`
+if snake is same_snake:             # same_snake and snake point to the exact same list
+    print("this really is the same list")
+
+other_snake = ["ball", "burmese"]   # separate list, but equal contents
+if snake is not other_snake:        # its a different list, even though contents match
+    print("but not the same list")
 ```
 
 </details>
@@ -252,7 +307,7 @@ Logical operators `not`, `and`, `or` let a single `if` combine boolean expressio
 {: .pt-subheading }
 
 ```python-ref
-not venomous                  # not False → True
+not venomous               # not False → True
 
 length > 10 and venomous   # True and False → False
 
@@ -594,13 +649,13 @@ length, species = snake   # regular assignment — always unpacks the same way,
 print(species, length)    # would crash on a 1- or 3-item tuple, and can't pick a different case based on species
 
 match snake:
-    case (length, "ball"):     # 2 items, second is 'ball'
+    case (length, "ball"):                  # 2 items, second is 'ball'
         print(f"a {length} ft ball python")
-    case (length, species):    # 2 items, any other species
+    case (length, species):                 # 2 items, any other species
         print(f"a {length} ft {species}")
-    case (length,):             # 1 item — comma makes this a 1-tuple pattern
+    case (length,):                         # 1 item — comma makes this a 1-tuple pattern
         print(f"just a length: {length}")
-    case _:                     # 0 items, or more than 2
+    case _:                                 # 0 items, or more than 2
         print("0 items, or more than 2")
 ```
 
@@ -618,7 +673,7 @@ Only run the block of code if there's a `case` match *and* the `if` condition is
 length = 12
 match length:
     case n if n > 10:
-        print("big")              # runs — 12 > 10
+        print("big")     # runs — 12 > 10
     case n:
         print("small")
 ```
