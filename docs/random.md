@@ -26,6 +26,9 @@ print(random.randint(1, 6))
 
 ### Setting a Seed
 
+Locks the sequence of "random" numbers that follow it, so the same seed always produces the same results.
+{: .pt-subheading }
+
 ```python-ref
 random.seed(0)
 random.randint(1, 6)    # always 4, whenever the seed is 0
@@ -33,7 +36,7 @@ random.randint(1, 6)    # always 4, whenever the seed is 0
 
 </summary>
 
-`random.seed(value)` locks the sequence of "random" numbers that follow it, so the same seed always produces the same results — useful for a reproducible example or a test, where genuine randomness would make output impossible to predict or verify.
+Useful for a reproducible example or a test, where genuine randomness would make output impossible to predict or verify.
 
 ```python
 import random
@@ -62,6 +65,9 @@ print(random.choice(species))
 
 ### Shuffling a List
 
+Reorders a list randomly, in place.
+{: .pt-subheading }
+
 ```python-ref
 species = ["ball", "burmese", "boa", "blood"]
 random.shuffle(species)
@@ -70,7 +76,7 @@ species    # e.g. ["boa", "ball", "blood", "burmese"] — order is randomized
 
 </summary>
 
-`shuffle()` reorders a list randomly, in place — it returns `None`, so the point is the side effect on `species` itself, not a return value to assign.
+`shuffle()` returns `None`, so the point is the side effect on `species` itself, not a return value to assign.
 
 ```python
 import random
@@ -87,6 +93,9 @@ print(species)
 
 ### Sampling Without Replacement
 
+Picks several items at once, all guaranteed distinct.
+{: .pt-subheading }
+
 ```python-ref
 species = ["ball", "burmese", "boa", "blood"]
 random.sample(species, 2)    # e.g. ["burmese", "blood"] — 2 distinct items
@@ -94,7 +103,7 @@ random.sample(species, 2)    # e.g. ["burmese", "blood"] — 2 distinct items
 
 </summary>
 
-`sample()` picks several items at once, all guaranteed distinct — unlike calling `choice()` in a loop, which could return the same item twice. The original list is left unchanged; `sample()` returns a new list.
+Unlike calling `choice()` in a loop, which could return the same item twice. The original list is left unchanged; `sample()` returns a new list.
 
 ```python
 import random

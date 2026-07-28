@@ -73,6 +73,9 @@ label.pack(); button.pack(); entry.pack()
 
 ### Label
 
+Displays static text (or an image) — no input, no clicks.
+{: .pt-subheading }
+
 ```python-ref
 label = ttk.Label(root, text="burmese python")
 label.pack()
@@ -80,7 +83,7 @@ label.pack()
 
 </summary>
 
-A `Label` displays static text (or an image) — it doesn't take input or respond to clicks on its own, so it's mainly used for headings, descriptions, or showing output from other widgets.
+Mainly used for headings, descriptions, or showing output from other widgets.
 
 ```python-ref
 import tkinter as tk
@@ -99,6 +102,9 @@ root.mainloop()
 
 ### Button
 
+Runs a function — passed in as `command` — every time it's clicked.
+{: .pt-subheading }
+
 ```python-ref
 def on_click():
     print("clicked!")
@@ -109,7 +115,7 @@ button.pack()
 
 </summary>
 
-A `Button` runs a function — passed in as `command` — every time it's clicked. The function itself is defined separately; the button just calls it, with no arguments.
+The function itself is defined separately; the button just calls it, with no arguments.
 
 ```python-ref
 import tkinter as tk
@@ -131,6 +137,9 @@ root.mainloop()
 
 ### Entry
 
+A single-line text input box.
+{: .pt-subheading }
+
 ```python-ref
 entry = ttk.Entry(root)
 entry.pack()
@@ -139,7 +148,7 @@ species_name = entry.get()    # whatever the user typed
 
 </summary>
 
-An `Entry` is a single-line text input box. Call `.get()` on it at any point (usually inside a button's callback) to read whatever the user has typed so far.
+Call `.get()` on it at any point (usually inside a button's callback) to read whatever the user has typed so far.
 
 ```python-ref
 import tkinter as tk
@@ -163,6 +172,9 @@ root.mainloop()
 
 ### Listbox
 
+Displays several lines of text at once and lets the user select one (or more) of them.
+{: .pt-subheading }
+
 ```python-ref
 listbox = tk.Listbox(root)
 for s in species:
@@ -172,7 +184,7 @@ listbox.pack()
 
 </summary>
 
-A `Listbox` displays several lines of text at once and lets the user select one (or more) of them. Populate it by calling `.insert()` once per item, usually looping over a list. It's one of the widgets with no `ttk` version, so it stays `tk.Listbox` (`ttk.Treeview` is the themed alternative for anything more table-like).
+Populate it by calling `.insert()` once per item, usually looping over a list. It's one of the widgets with no `ttk` version, so it stays `tk.Listbox` (`ttk.Treeview` is the themed alternative for anything more table-like).
 
 ```python-ref
 import tkinter as tk
@@ -204,6 +216,9 @@ A widget doesn't appear on screen until you tell Tkinter where to put it, using 
 
 ### pack
 
+Adds a widget to one edge of its parent, and stacks the next widget next to it.
+{: .pt-subheading }
+
 ```python-ref
 ttk.Label(root, text="species:").pack(side="left")
 ttk.Entry(root).pack(side="left")
@@ -211,7 +226,7 @@ ttk.Entry(root).pack(side="left")
 
 </summary>
 
-`pack()` adds a widget to one edge of its parent — `top` by default, or `left`/`right`/`bottom` — and stacks the next widget next to it. It's the simplest manager, but gives you the least control over precise alignment.
+`top` by default, or `left`/`right`/`bottom`. It's the simplest manager, but gives you the least control over precise alignment.
 
 ```python-ref
 import tkinter as tk
@@ -230,6 +245,9 @@ root.mainloop()
 
 ### grid
 
+Places a widget at a given `row`/`column` inside its parent.
+{: .pt-subheading }
+
 ```python-ref
 ttk.Label(root, text="species:").grid(row=0, column=0)
 ttk.Entry(root).grid(row=0, column=1)
@@ -239,7 +257,7 @@ ttk.Entry(root).grid(row=1, column=1)
 
 </summary>
 
-`grid()` places a widget at a given `row`/`column` inside its parent — the standard choice for form-like layouts, since every widget can be aligned independently of the order it was created in.
+The standard choice for form-like layouts, since every widget can be aligned independently of the order it was created in.
 
 ```python-ref
 import tkinter as tk
@@ -260,13 +278,16 @@ root.mainloop()
 
 ### place
 
+Pins a widget at an exact `x`/`y` pixel offset from its parent's corner.
+{: .pt-subheading }
+
 ```python-ref
 ttk.Label(root, text="ball python").place(x=20, y=40)
 ```
 
 </summary>
 
-`place()` pins a widget at an exact `x`/`y` pixel offset from its parent's corner. It gives pixel-perfect control but doesn't adapt when the window is resized, so `pack` or `grid` is usually the better default.
+It gives pixel-perfect control but doesn't adapt when the window is resized, so `pack` or `grid` is usually the better default.
 
 ```python-ref
 import tkinter as tk
@@ -295,6 +316,9 @@ label["text"]                            # read it back — "burmese python"
 
 ### Reading and Changing Options
 
+`.configure(option=value)` changes one or more options after a widget already exists.
+{: .pt-subheading }
+
 ```python-ref
 label = ttk.Label(root, text="ball python")
 label.configure(text="burmese python")
@@ -304,7 +328,7 @@ also_current = label["text"]    # same thing, dict-style
 
 </summary>
 
-`.configure(option=value)` changes one or more options after a widget already exists — handy for updating a `Label` in response to a button click, or disabling an `Entry` while something else is running. `.cget("option")` (or the shorthand `widget["option"]`) reads a single option's current value back out.
+Handy for updating a `Label` in response to a button click, or disabling an `Entry` while something else is running. `.cget("option")` (or the shorthand `widget["option"]`) reads a single option's current value back out.
 
 ```python-ref
 import tkinter as tk
@@ -340,6 +364,9 @@ ttk.Button(root, text="Go", command=on_click).pack()
 
 ### Command Callbacks
 
+Most interactive widgets accept a `command` argument that runs whenever the widget is activated.
+{: .pt-subheading }
+
 ```python-ref
 def show_info():
     print(f"{snake['species']} — {snake['length_ft']} ft")
@@ -349,7 +376,7 @@ ttk.Button(root, text="Show Info", command=show_info).pack()
 
 </summary>
 
-Most interactive widgets — `Button`, `Checkbutton`, `Radiobutton` — accept a `command` argument: a function reference (no parentheses, since Tkinter calls it for you) that runs whenever the widget is activated.
+`Button`, `Checkbutton`, `Radiobutton` — pass a function reference (no parentheses, since Tkinter calls it for you).
 
 ```python-ref
 import tkinter as tk
@@ -372,6 +399,9 @@ root.mainloop()
 
 ### Binding Events
 
+`.bind()` attaches a callback to a named event on any widget.
+{: .pt-subheading }
+
 ```python-ref
 def on_key(event):
     print("you typed:", event.char)
@@ -381,7 +411,7 @@ entry.bind("<KeyPress>", on_key)
 
 </summary>
 
-`command` only covers a widget's one "main" action. For anything else — a key press, mouse movement, clicking a label — use `.bind()`, which attaches a callback to a named event on any widget. The callback receives an `event` object describing what happened.
+`command` only covers a widget's one "main" action — for anything else (a key press, mouse movement, clicking a label), use `.bind()` instead. The callback receives an `event` object describing what happened.
 
 ```python-ref
 import tkinter as tk
@@ -404,13 +434,16 @@ root.mainloop()
 
 ### Virtual Events
 
+Tkinter defines **virtual events** — written with double angle brackets — for higher-level things a widget can do.
+{: .pt-subheading }
+
 ```python-ref
 listbox.bind("<<ListboxSelect>>", on_select)
 ```
 
 </summary>
 
-Beyond raw keyboard/mouse events, Tkinter defines **virtual events** — written with double angle brackets — for higher-level things a widget can do, like a `Listbox` selection changing or a `Notebook` tab switching. They behave exactly like any other `.bind()` target, but describe *what happened* rather than *which key or button* caused it, so the same code keeps working across platforms.
+Like a `Listbox` selection changing or a `Notebook` tab switching. They behave exactly like any other `.bind()` target, but describe *what happened* rather than *which key or button* caused it, so the same code keeps working across platforms.
 
 ```python-ref
 import tkinter as tk
@@ -447,6 +480,9 @@ ttk.Button(root, text="Identify", style="TButton").pack()
 
 ### Customizing a Style
 
+Every `ttk` widget draws itself according to a named style (`TButton`, `TLabel`, and so on by default).
+{: .pt-subheading }
+
 ```python-ref
 style = ttk.Style()
 style.theme_use("clam")
@@ -456,7 +492,7 @@ ttk.Button(root, text="Save", style="Accent.TButton").pack()
 
 </summary>
 
-Every `ttk` widget draws itself according to a named style (`TButton`, `TLabel`, and so on by default). `style.configure()` changes a style's look; `style.theme_use()` switches the whole underlying theme. Defining a new style name (like `"Accent.TButton"` above) lets one specific widget stand out without changing every button in the app.
+`style.configure()` changes a style's look; `style.theme_use()` switches the whole underlying theme. Defining a new style name (like `"Accent.TButton"` above) lets one specific widget stand out without changing every button in the app.
 
 ```python-ref
 import tkinter as tk
@@ -488,6 +524,9 @@ filedialog.askopenfilename()
 
 ### Message Boxes
 
+Covers simple alerts and confirmations.
+{: .pt-subheading }
+
 ```python-ref
 messagebox.showinfo("Saved", "burmese python added to your log.")
 confirmed = messagebox.askyesno("Delete?", "Remove this entry?")
@@ -495,7 +534,7 @@ confirmed = messagebox.askyesno("Delete?", "Remove this entry?")
 
 </summary>
 
-The `messagebox` module covers simple alerts and confirmations: `showinfo`/`showwarning`/`showerror` display a message with an OK button, while `askyesno`/`askokcancel` return `True` or `False` based on the user's choice.
+`showinfo`/`showwarning`/`showerror` display a message with an OK button, while `askyesno`/`askokcancel` return `True` or `False` based on the user's choice.
 
 ```python-ref
 import tkinter as tk
@@ -522,6 +561,9 @@ root.mainloop()
 
 ### File Dialogs
 
+Opens the OS's native file picker.
+{: .pt-subheading }
+
 ```python-ref
 path = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
 save_path = filedialog.asksaveasfilename(defaultextension=".txt")
@@ -529,7 +571,7 @@ save_path = filedialog.asksaveasfilename(defaultextension=".txt")
 
 </summary>
 
-The `filedialog` module opens the OS's native file picker. `askopenfilename()` returns the path the user chose to open; `asksaveasfilename()` returns a path to save to, prompting for a filename if it doesn't already exist.
+`askopenfilename()` returns the path the user chose to open; `asksaveasfilename()` returns a path to save to, prompting for a filename if it doesn't already exist.
 
 ```python-ref
 import tkinter as tk
@@ -562,6 +604,9 @@ label.winfo_children()  # direct child widgets, if any
 
 ### winfo Methods
 
+`winfo_width()`/`winfo_height()` return a widget's current on-screen size in pixels.
+{: .pt-subheading }
+
 ```python-ref
 print(label.winfo_width(), label.winfo_height())
 print(label.winfo_class())
@@ -570,7 +615,7 @@ print(root.winfo_children())
 
 </summary>
 
-`winfo_width()`/`winfo_height()` return a widget's current on-screen size in pixels — note that right after creation this can still be `1`, before the geometry manager has actually placed it (call `root.update()` first if you need an accurate reading immediately). `winfo_class()` returns the underlying Tk widget class name, and `winfo_children()` lists every widget placed directly inside it — handy for looping over a container's contents without keeping a separate list yourself.
+Note that right after creation this can still be `1`, before the geometry manager has actually placed it (call `root.update()` first if you need an accurate reading immediately). `winfo_class()` returns the underlying Tk widget class name, and `winfo_children()` lists every widget placed directly inside it — handy for looping over a container's contents without keeping a separate list yourself.
 
 ```python-ref
 import tkinter as tk
@@ -599,9 +644,12 @@ A handful of widgets from the table above — `Label`, `Entry`, `Checkbutton`, `
 
 ### A Simple Form
 
+Each widget stores its value differently, so the `Submit` callback reads each one its own way.
+{: .pt-subheading }
+
 </summary>
 
-Each widget stores its value differently: `Entry` is read with `.get()` directly, `Checkbutton` is backed by a `BooleanVar` (`is_venomous`) read separately from the widget itself, and `Combobox` is also read with `.get()`. The `Submit` button's callback pulls all three together and updates a `Label` to show the result — the same `command=` pattern covered earlier, just wired to several widgets instead of one. Building the widgets is split into its own `build_form()` function, called once from `main()`, rather than left as loose top-level code.
+`Entry` is read with `.get()` directly, `Checkbutton` is backed by a `BooleanVar` (`is_venomous`) read separately from the widget itself, and `Combobox` is also read with `.get()`. The `Submit` button's callback pulls all three together and updates a `Label` to show the result — the same `command=` pattern covered earlier, just wired to several widgets instead of one. Building the widgets is split into its own `build_form()` function, called once from `main()`, rather than left as loose top-level code.
 
 <img src="/img/tkinter_example.png" alt="Running snake field guide form" style="height:20em; width:auto; max-width:100%;">
 

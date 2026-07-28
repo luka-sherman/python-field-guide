@@ -30,6 +30,9 @@ print("wrote snakes.csv")
 
 ### Writing Multiple Rows at Once
 
+Takes a list of rows and writes them all in one call.
+{: .pt-subheading }
+
 ```python-ref
 rows = [["ball", 4.5], ["burmese", 12], ["boa", 8]]
 writer.writerows(rows)
@@ -37,7 +40,7 @@ writer.writerows(rows)
 
 </summary>
 
-`.writerows()` takes a list of rows and writes them all in one call, instead of looping over `.writerow()` yourself.
+`.writerows()`, instead of looping over `.writerow()` yourself.
 
 ```python
 import csv
@@ -77,6 +80,9 @@ with open("snakes.csv", newline="") as file:
 
 ### Reading Rows as Dictionaries
 
+Uses the first row as column names automatically, so each row comes back as a `dict`.
+{: .pt-subheading }
+
 ```python-ref
 for row in csv.DictReader(file):
     row["species"]      # "ball"
@@ -85,7 +91,7 @@ for row in csv.DictReader(file):
 
 </summary>
 
-`DictReader` uses the first row as column names automatically, so each row comes back as a `dict` you can look up by column name instead of by position. Every value is still read as a plain string — convert it (e.g. with `float()`) if you need to do math on it.
+You can look up values by column name instead of by position. Every value is still read as a plain string — convert it (e.g. with `float()`) if you need to do math on it.
 
 ```python
 import csv

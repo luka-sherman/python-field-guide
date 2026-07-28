@@ -1,6 +1,11 @@
 # Loops
 
-A **loop** repeats a block of code, so you don't have to write out the same steps by hand for every item or every pass. Python has two: a **for loop**, which runs once per item in a sequence, and a **while loop**, which keeps running for as long as a condition stays `True`.
+A **loop** repeats a block of code some number of times. 
+
+All loop definitions end with a colon `:`, and the **block** is the lines indented underneath it that is treated as a single unit. 
+
+**There are two types of loops:**
+
 
 | Loop | Syntax | Use it for |
 |------|--------|------------|
@@ -23,6 +28,9 @@ for snake in species:
 
 ### Loop a fixed number of times
 
+`range()` generates a sequence of numbers to loop over, without building a whole list.
+{: .pt-subheading }
+
 ```python-ref
 range(5)          # range(0, 5) — produces 0, 1, 2, 3, 4
 range(2, 6)       # 2, 3, 4, 5
@@ -31,7 +39,7 @@ range(2, 10, 3)   # 2, 5, 8  (step of 3)
 
 </summary>
 
-`range()` generates a sequence of numbers without building a whole list in memory. One argument counts up from `0` to (but not including) that number; a second sets a custom start; a third sets a step size other than `1`. It's the standard way to loop a fixed number of times, or to loop by index instead of by value.
+One argument counts up from `0` to (but not including) that number; a second sets a custom start; a third sets a step size other than `1`. It's the standard way to loop by index instead of by value.
 
 ```python
 for i in range(5):
@@ -51,6 +59,9 @@ for i in range(2, 10, 3):
 
 ### Loop over a list
 
+Each pass hands you the item itself, not its position.
+{: .pt-subheading }
+
 ```python-ref
 for s in species: 
     print(s)    # burmese  rock  ball  blood
@@ -58,7 +69,7 @@ for s in species:
 
 </summary>
 
-Each pass hands you the item itself, not its position — this is what sets a Python `for` loop apart from the index-counting loops in some other languages. A list is the most common thing to loop over, since it's Python's all-purpose ordered collection.
+This is what sets a Python `for` loop apart from the index-counting loops in some other languages. A list is the most common thing to loop over, since it's Python's all-purpose ordered collection.
 
 ```python
 species = ["burmese", "rock", "ball", "blood"]
@@ -74,6 +85,9 @@ for s in species:
 
 ### Loop over a tuple
 
+Works exactly like looping over a list — a tuple just can't be changed once it's created.
+{: .pt-subheading }
+
 ```python-ref
 for s in constrictors: 
     print(s)    # ball  burmese  boa
@@ -81,7 +95,7 @@ for s in constrictors:
 
 </summary>
 
-Looping over a tuple works exactly like looping over a list — the only difference is that a tuple can't be changed once it's created.
+Anything you'd loop through in a list, you can loop through the same way in a tuple.
 
 ```python
 constrictors = ("ball", "burmese", "boa")
@@ -97,6 +111,9 @@ for s in constrictors:
 
 ### Loop over a dictionary
 
+Looping directly over a dict gives you its keys, one at a time.
+{: .pt-subheading }
+
 ```python-ref
 for key, value in snake.items(): 
     print(key, value)          # species ball  length_ft 5  venomous False
@@ -108,7 +125,7 @@ for value in snake.values():
 
 </summary>
 
-Looping directly over a dictionary gives you its keys, one at a time. Use `.values()` to get just the values instead, or `.items()` to get the key and value together — usually the most useful of the three.
+Use `.values()` to get just the values instead, or `.items()` to get the key and value together — usually the most useful of the three.
 
 ```python
 snake = {"species": "ball", "length_ft": 5, "venomous": False}
@@ -133,13 +150,16 @@ for value in snake.values():
 
 ### Loop over a string
 
+Hands you each character in turn, in order — including spaces.
+{: .pt-subheading }
+
 ```python-ref
 for letter in name: print(letter)    # b  u  r  m  e  s  e     p  y  t  h  o  n
 ```
 
 </summary>
 
-A string is just a sequence of characters, so looping over one hands you each character in turn, in order — including spaces.
+A string is just a sequence of characters, so a `for` loop treats it the same way it treats a list or tuple.
 
 ```python
 name = "burmese python"
@@ -155,13 +175,16 @@ for letter in name:
 
 ### Loop with index and value
 
+`enumerate()` hands you both the index and the value on every pass.
+{: .pt-subheading }
+
 ```python-ref
 for i, s in enumerate(species): print(i, s)    # 0 burmese  1 rock  2 ball  3 blood
 ```
 
 </summary>
 
-`enumerate()` hands you both the index and the value on every pass — the usual alternative to looping over `range(len(species))` when you need the position but still want direct access to each item.
+It's the usual alternative to looping over `range(len(species))` when you need the position but still want direct access to each item.
 
 ```python
 species = ["burmese", "rock", "ball", "blood"]
@@ -177,6 +200,9 @@ for i, s in enumerate(species):
 
 ### Nested loops
 
+A loop can contain another loop — useful for combinations, grids, or nested collections.
+{: .pt-subheading }
+
 ```python-ref
 for s in species:
     for letter in s[:2]:
@@ -186,7 +212,7 @@ for s in species:
 
 </summary>
 
-A loop can contain another loop — the inner loop runs all the way through for every single pass of the outer one. Useful for combinations, grids, or looping over a collection nested inside another collection.
+The inner loop runs all the way through for every single pass of the outer one.
 
 ```python
 species = ["ball", "burmese"]
@@ -215,6 +241,9 @@ while count < 3:
 
 ### Avoiding infinite loops
 
+A `while` loop repeats forever unless something inside it moves the condition toward `False`.
+{: .pt-subheading }
+
 ```python-ref
 count = 0
 while count < 3:
@@ -224,7 +253,7 @@ while count < 3:
 
 </summary>
 
-Nothing stops a `while` loop automatically — if its condition never becomes `False`, it repeats forever and freezes whatever's running it. Always make sure something inside the loop body moves it toward ending, like incrementing a counter or updating the value being checked.
+Nothing stops it automatically, and it freezes whatever's running it — always make sure something inside the loop body moves it toward ending, like incrementing a counter or updating the value being checked.
 
 ```python
 count = 0
@@ -253,6 +282,9 @@ for s in species:
 
 ### Break
 
+Exits the loop immediately, skipping everything left in it.
+{: .pt-subheading }
+
 ```python-ref
 for s in species:
     if s == "ball":
@@ -269,7 +301,7 @@ while count < 5:
 
 </summary>
 
-`break` exits the loop immediately — nothing after it runs, and anything left in the sequence (or any remaining passes of the condition) is skipped entirely.
+Nothing after it runs, and anything left in the sequence (or any remaining passes of the condition) is skipped entirely.
 
 ```python
 species = ["burmese", "rock", "ball", "blood"]
@@ -294,6 +326,9 @@ while count < 5:
 
 ### Continue
 
+Skips just the current pass, then keeps looping.
+{: .pt-subheading }
+
 ```python-ref
 for s in species:
     if s == "ball":
@@ -310,7 +345,7 @@ while count < 5:
 
 </summary>
 
-`continue` skips just the current pass — the rest of the loop body doesn't run for that item — but the loop itself keeps going from the next item or the next check of the condition.
+The rest of the loop body doesn't run for that item, but the loop itself keeps going from the next item or the next check of the condition.
 
 ```python
 species = ["burmese", "rock", "ball", "blood"]
@@ -335,6 +370,9 @@ while count < 5:
 
 ### The else clause
 
+Runs once the loop finishes on its own — skipped entirely if `break` cut it short.
+{: .pt-subheading }
+
 ```python-ref
 for s in species:
     print(s)
@@ -351,7 +389,7 @@ else:
 
 </summary>
 
-Both loop types can end with an `else` block, which runs once the loop finishes all its passes on its own — it's skipped entirely if the loop was cut short with `break`.
+Both `for` and `while` can end with an `else` block.
 
 ```python
 species = ["burmese", "rock", "ball", "blood"]
@@ -376,6 +414,9 @@ else:
 
 ### The pass statement
 
+A no-op placeholder for an empty loop body, which Python doesn't otherwise allow.
+{: .pt-subheading }
+
 ```python-ref
 for s in species:
     pass    # does nothing, but keeps the loop syntactically valid
@@ -383,7 +424,7 @@ for s in species:
 
 </summary>
 
-An empty loop body is a syntax error — `pass` is a no-op you can use as a placeholder while you're still deciding what a loop (or `if`, function, etc.) should do.
+It's not just for loops — the same trick works while you're still deciding what an `if`, function, etc. should do.
 
 ```python
 species = ["burmese", "rock", "ball", "blood"]

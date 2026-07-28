@@ -27,6 +27,9 @@ print(snakes)
 
 ### Building From a Dict of Lists
 
+The same table can also be built from a single dict where each key maps to a whole column's worth of values.
+{: .pt-subheading }
+
 ```python-ref
 pd.DataFrame({
     "species": ["ball", "burmese"],
@@ -36,7 +39,7 @@ pd.DataFrame({
 
 </summary>
 
-The same table can also be built from a single dict where each key maps to a whole column's worth of values — the two rows line up by position across every list, so all the lists need to be the same length.
+The rows line up by position across every list, so all the lists need to be the same length.
 
 ```python
 import pandas as pd
@@ -73,13 +76,16 @@ print(big_snakes)
 
 ### Sorting Rows
 
+Returns the `DataFrame` reordered by a column.
+{: .pt-subheading }
+
 ```python-ref
 snakes.sort_values("length_ft", ascending=False)    # rows reordered longest-first
 ```
 
 </summary>
 
-`.sort_values("column")` returns the `DataFrame` reordered by that column — ascending by default, or descending with `ascending=False`. Like most pandas operations, it returns a new `DataFrame` rather than reordering the original in place.
+`.sort_values("column")` sorts ascending by default, or descending with `ascending=False`. Like most pandas operations, it returns a new `DataFrame` rather than reordering the original in place.
 
 ```python
 import pandas as pd
@@ -100,6 +106,9 @@ print(snakes.sort_values("length_ft", ascending=False))
 
 ### Summarizing a Column
 
+Calling `.mean()`, `.max()`, or similar directly on a column summarizes it down to a single number.
+{: .pt-subheading }
+
 ```python-ref
 snakes["length_ft"].mean()    # 8.166666666666666
 snakes["length_ft"].max()     # 12.0
@@ -107,7 +116,7 @@ snakes["length_ft"].max()     # 12.0
 
 </summary>
 
-Calling `.mean()`, `.max()`, or similar directly on a column summarizes it down to a single number, the same way it would on a NumPy array — a `Series` supports the same aggregation methods.
+The same way it would on a NumPy array — a `Series` supports the same aggregation methods.
 
 ```python
 import pandas as pd

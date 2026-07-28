@@ -2,7 +2,9 @@
 
 A **conditional** lets a program make decisions by running a **block** of code only when a [condition](#boolean-expressions) is `True`. 
 
-The condition ends with a colon `:`, and the block is the lines indented underneath it, treated as a single unit.
+The condition ends with a colon `:`, and the block is the lines indented underneath it, treated as a single unit. 
+
+**There are two types of conditional statements:**
 
 | Statement              | Example                                                                                                                                                                       | When to use                                                          |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|

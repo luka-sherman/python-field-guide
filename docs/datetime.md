@@ -28,13 +28,16 @@ print(now)
 
 ### Creating a Specific Date
 
+Pass the year, month, and day as plain integers to build a specific `date`.
+{: .pt-subheading }
+
 ```python-ref
 observed = date(2026, 7, 23)    # 2026-07-23
 ```
 
 </summary>
 
-Pass the year, month, and day as plain integers to build a specific `date`, instead of reading today's date off the system clock — useful for logging when a past observation actually happened.
+Useful for logging when a past observation actually happened, instead of reading today's date off the system clock.
 
 ```python
 from datetime import date
@@ -51,6 +54,9 @@ print(observed.year, observed.month, observed.day)
 
 ### Formatting with `strftime`
 
+Turns a `date` or `datetime` into a custom-formatted string.
+{: .pt-subheading }
+
 ```python-ref
 observed = date(2026, 7, 23)
 observed.strftime("%B %d, %Y")    # "July 23, 2026"
@@ -58,7 +64,7 @@ observed.strftime("%B %d, %Y")    # "July 23, 2026"
 
 </summary>
 
-`strftime` ("string format time") turns a `date` or `datetime` into a custom-formatted string — `%B` is the full month name, `%d` the zero-padded day, `%Y` the four-digit year. It's the standard way to control exactly how a date is displayed.
+`strftime` ("string format time") — `%B` is the full month name, `%d` the zero-padded day, `%Y` the four-digit year. It's the standard way to control exactly how a date is displayed.
 
 ```python
 from datetime import date
@@ -88,6 +94,9 @@ print(next_checkup)
 
 ### Difference Between Two Dates
 
+Subtracting one `date` from another gives back a `timedelta`.
+{: .pt-subheading }
+
 ```python-ref
 first_seen = date(2026, 7, 23)
 last_seen = date(2026, 8, 6)
@@ -96,7 +105,7 @@ last_seen - first_seen    # timedelta(days=14)
 
 </summary>
 
-Subtracting one `date` from another gives back a `timedelta`, whose `.days` attribute is the number of days between them — handy for measuring how long something has been tracked.
+Its `.days` attribute is the number of days between them — handy for measuring how long something has been tracked.
 
 ```python
 from datetime import date
@@ -116,13 +125,16 @@ print(gap.days)
 
 ### Parsing a String with `strptime`
 
+The reverse of `strftime` — reads a date out of a string.
+{: .pt-subheading }
+
 ```python-ref
 datetime.strptime("2026-07-23", "%Y-%m-%d")    # datetime(2026, 7, 23, 0, 0)
 ```
 
 </summary>
 
-`strptime` ("string parse time") is the reverse of `strftime` — it reads a date out of a string, given the same format codes describing how that string is laid out. This is how a date typed by a user, or read from a CSV file, gets turned back into a real `datetime` you can do arithmetic on.
+`strptime` ("string parse time") takes the same format codes describing how that string is laid out. This is how a date typed by a user, or read from a CSV file, gets turned back into a real `datetime` you can do arithmetic on.
 
 ```python
 from datetime import datetime

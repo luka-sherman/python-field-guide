@@ -25,6 +25,9 @@ print(length)
 
 ### Arithmetic
 
+The standard math operators, with one that surprises beginners: `/` always returns a float.
+{: .pt-subheading }
+
 ```python-ref
 length + 3     # 8
 length - 2     # 3
@@ -37,7 +40,7 @@ length ** 2    # 25   (exponent)
 
 </summary>
 
-The standard math operators work as expected, with two that surprise beginners: `/` (true division) always returns a `float`, even when the numbers divide evenly — use `//` (floor division) if you want an `int` result.
+`/` (true division) always returns a `float`, even when the numbers divide evenly — use `//` (floor division) if you want an `int` result.
 
 ```python
 length = 5
@@ -58,6 +61,9 @@ print(length ** 2)
 
 ### Check type
 
+`type()` shows the exact type; `isinstance()` checks whether a value is that type.
+{: .pt-subheading }
+
 ```python-ref
 type(length)                # <class 'int'>
 isinstance(length, int)     # True
@@ -65,7 +71,7 @@ isinstance(length, int)     # True
 
 </summary>
 
-`type()` shows the exact type; `isinstance()` checks whether a value is that type (or a subclass of it), and is usually the better choice inside an `if`.
+`isinstance()` also matches a subclass of that type, and is usually the better choice inside an `if`.
 
 ```python
 length = 5
@@ -81,6 +87,9 @@ print(isinstance(length, int))
 
 ### Convert to integer
 
+`int()` converts a string of digits, or truncates a float toward zero.
+{: .pt-subheading }
+
 ```python-ref
 int("5")      # 5
 int(5.9)      # 5   (truncates, doesn't round)
@@ -89,7 +98,7 @@ int(True)     # 1
 
 </summary>
 
-`int()` converts a string of digits, or truncates a float toward zero (it cuts off the decimal — it does not round).
+It cuts off the decimal — it does not round.
 
 ```python
 print(int("5"))
@@ -114,6 +123,9 @@ print(weight)
 
 ### Arithmetic
 
+Floats support the same operators as integers.
+{: .pt-subheading }
+
 ```python-ref
 weight + 1.5    # 6.0
 weight / 2      # 2.25
@@ -122,7 +134,7 @@ weight / 2      # 2.25
 
 </summary>
 
-Floats support the same operators as integers. Notably, `/` always returns a `float` — even `10 / 2`, which divides evenly, gives `5.0`, not `5`.
+Notably, `/` always returns a `float` — even `10 / 2`, which divides evenly, gives `5.0`, not `5`.
 
 ```python
 weight = 4.5
@@ -139,6 +151,9 @@ print(10 / 2)
 
 ### Rounding
 
+`round()` rounds to the nearest whole number, or to a given number of decimal places.
+{: .pt-subheading }
+
 ```python-ref
 round(weight)         # 4  (Python rounds .5 to the nearest *even* number)
 round(4.567, 2)        # 4.57
@@ -146,7 +161,7 @@ round(4.567, 2)        # 4.57
 
 </summary>
 
-`round()` with no second argument rounds to the nearest whole number — but Python uses "round half to even" (banker's rounding), so `round(4.5)` is `4`, not `5`. Pass a second argument to round to that many decimal places instead.
+With no second argument it rounds to the nearest whole number — but Python uses "round half to even" (banker's rounding), so `round(4.5)` is `4`, not `5`. Pass a second argument to round to that many decimal places instead.
 
 ```python
 weight = 4.5
@@ -161,14 +176,15 @@ print(round(4.567, 2))
 
 ### Convert to float
 
+`float()` converts an integer or a numeric string into a float.
+{: .pt-subheading }
+
 ```python-ref
 float(5)         # 5.0
 float("4.5")      # 4.5
 ```
 
 </summary>
-
-`float()` converts an integer or a numeric string into a float.
 
 ```python
 print(float(5))
@@ -182,13 +198,16 @@ print(float("4.5"))
 
 ### Floating-point precision
 
+Tiny rounding errors creep in, since most decimal fractions can't be stored exactly in binary.
+{: .pt-subheading }
+
 ```python-ref
 0.1 + 0.2    # 0.30000000000000004
 ```
 
 </summary>
 
-Floats are stored in binary, and most decimal fractions (like `0.1`) can't be represented exactly in binary — so tiny rounding errors creep in during arithmetic. This is a property of floating-point math in virtually every programming language, not a Python bug. If you need exact decimal arithmetic (for money, for example), use the `decimal` module instead of `float`.
+This is a property of floating-point math in virtually every programming language, not a Python bug. If you need exact decimal arithmetic (for money, for example), use the `decimal` module instead of `float`.
 
 ```python
 print(0.1 + 0.2)
@@ -218,6 +237,9 @@ print(name)
 
 ### Access characters
 
+Strings use the same index and slice syntax as lists.
+{: .pt-subheading }
+
 ```python-ref
 name[0]      # "b"
 name[-1]     # "n"
@@ -226,7 +248,7 @@ name[0:7]    # "burmese"
 
 </summary>
 
-Strings use the same index and slice syntax as lists — `0` for the first character, negative indexes count from the end, and `start:end` slices out a substring.
+`0` is the first character, negative indexes count from the end, and `start:end` slices out a substring.
 
 ```python
 name = "burmese python"
@@ -244,16 +266,15 @@ print(name[8:])
 
 ### Concatenate & repeat
 
+`+` joins strings end to end; `*` repeats a string a given number of times.
+{: .pt-subheading }
+
 ```python-ref
 "ball" + " " + "python"    # "ball python"
 "ball" * 3                  # "ballballball"
 ```
 
 </summary>
-
-`+` joins strings end to end.
-
-`*` repeats a string a given number of times.
 
 ```python
 species = "ball"
@@ -270,13 +291,16 @@ print(species * 3)
 
 ### Format strings
 
+An f-string lets you embed variables directly inside `{}`.
+{: .pt-subheading }
+
 ```python-ref
 f"the {species} python is about {length} feet long"    # "the ball python is about 5 feet long"
 ```
 
 </summary>
 
-An f-string (a string literal prefixed with `f`) lets you embed variables and expressions directly inside `{}`, without manually joining pieces with `+`.
+An f-string is a string literal prefixed with `f`, and it can embed expressions too, without manually joining pieces with `+`.
 
 ```python
 species = "ball"
@@ -292,6 +316,9 @@ print(sentence)
 
 ### Modify strings
 
+Since strings are immutable, these all return a **new** string rather than changing the original.
+{: .pt-subheading }
+
 ```python-ref
 name.upper()          # "BURMESE PYTHON"
 name.title()          # "Burmese Python"
@@ -301,7 +328,7 @@ name.replace("burmese", "ball")   # "ball python"
 
 </summary>
 
-`upper()`, `lower()`, and `title()` change letter case — and since strings are immutable, each returns a **new** string rather than changing the original.
+`upper()`, `lower()`, and `title()` change letter case.
 
 `strip()` removes leading and trailing whitespace.
 
@@ -326,6 +353,9 @@ print(name.replace("burmese", "ball"))
 
 ### Split & join
 
+`split()` breaks a string into a list; `join()` glues a list of strings back together.
+{: .pt-subheading }
+
 ```python-ref
 name.split()                          # ["burmese", "python"]
 "-".join(["burmese", "python"])       # "burmese-python"
@@ -333,9 +363,7 @@ name.split()                          # ["burmese", "python"]
 
 </summary>
 
-`split()` breaks a string into a list, using whitespace as the separator by default.
-
-`join()` does the reverse — it glues a list of strings back together, using the string it's called on as the separator between each item.
+`split()` uses whitespace as the separator by default. `join()` uses the string it's called on as the separator between each item.
 
 ```python
 name = "burmese python"
@@ -353,6 +381,9 @@ print(rejoined)
 
 ### Check substring
 
+`in` checks whether one string contains another.
+{: .pt-subheading }
+
 ```python-ref
 "python" in name          # True
 name.find("python")       # 8
@@ -360,8 +391,6 @@ name.count("p")           # 1
 ```
 
 </summary>
-
-Use `in` to check whether one string contains another.
 
 `find()` returns the index where a substring first appears, or `-1` if it's not found.
 
@@ -384,6 +413,9 @@ print(name.count("p"))
 
 ### Convert to string
 
+`str()` converts almost any value into its text representation.
+{: .pt-subheading }
+
 ```python-ref
 str(5)      # "5"
 str(4.5)    # "4.5"
@@ -392,7 +424,7 @@ str(True)   # "True"
 
 </summary>
 
-`str()` converts almost any value into its text representation — handy any time you need to combine a number with text, since `+` can't join a string and a number directly.
+Handy any time you need to combine a number with text, since `+` can't join a string and a number directly.
 
 ```python
 print(str(5))
@@ -417,6 +449,9 @@ print(venomous)
 
 ### Comparisons return booleans
 
+Every comparison operator evaluates to a `bool`.
+{: .pt-subheading }
+
 ```python-ref
 length = 5
 length > 3     # True
@@ -426,7 +461,7 @@ length != 5    # False
 
 </summary>
 
-Every comparison operator (`>`, `<`, `>=`, `<=`, `==`, `!=`) evaluates to a `bool` — this is what powers every `if` statement.
+`>`, `<`, `>=`, `<=`, `==`, `!=` — this is what powers every `if` statement.
 
 ```python
 length = 5
@@ -442,6 +477,9 @@ print(length != 5)
 <summary markdown="block">
 
 ### Combine booleans
+
+`and`, `or`, and `not` combine or invert boolean values.
+{: .pt-subheading }
 
 ```python-ref
 is_python and is_venomous    # True and False → False
@@ -469,6 +507,9 @@ print(not is_venomous)
 
 ### Truthy & falsy values
 
+Every value in Python is "truthy" or "falsy" when used somewhere a boolean is expected, like an `if`.
+{: .pt-subheading }
+
 ```python-ref
 bool(0)       # False
 bool("")      # False
@@ -480,7 +521,7 @@ bool(5)       # True
 
 </summary>
 
-Every value in Python is "truthy" or "falsy" when used somewhere a boolean is expected, like an `if`. Zero, empty strings, empty collections, and `None` are all falsy; almost everything else — including any non-empty string or nonzero number — is truthy.
+Zero, empty strings, empty collections, and `None` are all falsy; almost everything else — including any non-empty string or nonzero number — is truthy.
 
 ```python
 print(bool(0))
@@ -499,6 +540,9 @@ print(bool(5))
 
 ### Bool is a subclass of int
 
+`True` behaves like `1` and `False` behaves like `0` in arithmetic.
+{: .pt-subheading }
+
 ```python-ref
 isinstance(True, int)    # True
 True + True               # 2
@@ -506,7 +550,7 @@ True + True               # 2
 
 </summary>
 
-`bool` is technically a subclass of `int` — `True` behaves like `1` and `False` behaves like `0` in arithmetic, though it's rare to rely on this on purpose.
+`bool` is technically a subclass of `int`, though it's rare to rely on this on purpose.
 
 ```python
 print(isinstance(True, int))
@@ -530,13 +574,14 @@ print(venomous)
 
 ### Check type
 
+`None` is the only value of its own type, `NoneType`.
+{: .pt-subheading }
+
 ```python-ref
 type(venomous)    # <class 'NoneType'>
 ```
 
 </summary>
-
-`None` is the only value of its own type, `NoneType`.
 
 ```python
 venomous = None
@@ -550,6 +595,9 @@ print(type(venomous))
 
 ### Check for None
 
+Always compare to `None` with `is` / `is not`, not `==` / `!=`.
+{: .pt-subheading }
+
 ```python-ref
 venomous is None        # True
 venomous is not None    # False
@@ -557,7 +605,7 @@ venomous is not None    # False
 
 </summary>
 
-Always compare to `None` with `is` / `is not`, not `==` / `!=` — `is` checks that it's the *exact same object*, which is what you want for a singleton value like `None`, and avoids surprising results from custom `__eq__` methods.
+`is` checks that it's the *exact same object*, which is what you want for a singleton value like `None`, and avoids surprising results from custom `__eq__` methods.
 
 ```python
 venomous = None
@@ -573,13 +621,16 @@ print(venomous is not None)
 
 ### Functions return None by default
 
+If a function runs to the end without hitting a `return` statement, it returns `None` automatically.
+{: .pt-subheading }
+
 ```python-ref
 result = find_species("cobra")    # None — the function fell through without a return
 ```
 
 </summary>
 
-If a function runs to the end without hitting a `return` statement, it returns `None` automatically — this is what you get back if a lookup silently "doesn't find" anything.
+This is what you get back if a lookup silently "doesn't find" anything.
 
 ```python
 def find_species(name):

@@ -31,13 +31,16 @@ print(ball.length_ft)
 
 ### The `__init__()` method
 
+Runs automatically every time a new object is created.
+{: .pt-subheading }
+
 ```python-ref
 ball = Snake("ball", 5)    # __init__ runs automatically, setting ball.species and ball.length_ft
 ```
 
 </summary>
 
-`__init__()` is a special method that runs automatically every time a new object is created — it's where you set up the object's starting attributes. Python calls this a **constructor**.
+It's where you set up the object's starting attributes. Python calls this a **constructor**.
 
 ```python
 class Snake:
@@ -61,13 +64,16 @@ print(burmese.length_ft)
 
 ### The `self` parameter
 
+Refers to the specific object a method was called on.
+{: .pt-subheading }
+
 ```python-ref
 self.species    # inside a method, refers to *this* object's own species — "ball" for ball, "burmese" for burmese
 ```
 
 </summary>
 
-`self` is the first parameter of every method in a class, and refers to the specific object the method was called on — it's how `ball.species` and `burmese.species` hold different values while sharing the same class. Python passes it in automatically; you never supply it yourself when calling a method (`ball.describe()`, not `ball.describe(ball)`).
+`self` is the first parameter of every method in a class — it's how `ball.species` and `burmese.species` hold different values while sharing the same class. Python passes it in automatically; you never supply it yourself when calling a method (`ball.describe()`, not `ball.describe(ball)`).
 
 ```python
 class Snake:
@@ -89,13 +95,16 @@ print(burmese.species)
 
 ### Object methods
 
+A method is just a function defined inside a class.
+{: .pt-subheading }
+
 ```python-ref
 ball.describe()    # "a 5 ft ball python"
 ```
 
 </summary>
 
-A method is just a function defined inside a class — since it always receives `self`, it can read (or change) that specific object's own attributes.
+Since it always receives `self`, it can read (or change) that specific object's own attributes.
 
 ```python
 class Snake:
@@ -117,6 +126,9 @@ print(ball.describe())
 
 ### The `__str__()` method
 
+Controls what `print()` shows for an object, instead of its memory address.
+{: .pt-subheading }
+
 ```python-ref
 print(ball)    # without __str__: <__main__.Snake object at 0x...>
                # with __str__:    "ball python, 5 ft"
@@ -124,7 +136,7 @@ print(ball)    # without __str__: <__main__.Snake object at 0x...>
 
 </summary>
 
-By default, `print()`-ing an object just shows its memory address, which isn't very useful. Defining `__str__()` on a class controls what `print()` shows instead.
+By default, `print()`-ing an object just shows its memory address, which isn't very useful.
 
 ```python
 class Snake:
@@ -146,6 +158,9 @@ print(ball)
 
 ### Modify & delete attributes
 
+Assign to `object.attribute` to change it after creation.
+{: .pt-subheading }
+
 ```python-ref
 ball.length_ft = 6      # change an attribute directly, like any variable
 del ball.length_ft      # remove just that attribute
@@ -154,7 +169,7 @@ del ball                # remove the whole object
 
 </summary>
 
-Assign to `object.attribute` to change it after creation. `del object.attribute` removes a single attribute; `del object` removes the object itself.
+`del object.attribute` removes a single attribute; `del object` removes the object itself.
 
 ```python
 class Snake:
@@ -180,6 +195,9 @@ print("ball object deleted")
 
 ### The `pass` statement
 
+A placeholder for a class you haven't filled in yet.
+{: .pt-subheading }
+
 ```python-ref
 class Snake:
     pass    # an empty class body — valid syntax, nothing defined yet
@@ -187,7 +205,7 @@ class Snake:
 
 </summary>
 
-Same as in a loop or function — an empty class body is a syntax error on its own. `pass` is a placeholder for a class you haven't filled in yet.
+Same as in a loop or function — an empty class body is a syntax error on its own.
 
 ```python
 class Snake:
@@ -224,6 +242,9 @@ print(boa.describe())
 
 ### Overriding `__init__()`
 
+Adding `__init__()` to a child class replaces the parent's version entirely.
+{: .pt-subheading }
+
 ```python-ref
 class Boa(Snake):
     def __init__(self, species, length_ft, region):
@@ -233,7 +254,7 @@ class Boa(Snake):
 
 </summary>
 
-Adding `__init__()` to a child class replaces the parent's version entirely — call `Parent.__init__(self, ...)` explicitly inside it if you still want the parent's setup to run too.
+Call `Parent.__init__(self, ...)` explicitly inside it if you still want the parent's setup to run too.
 
 ```python
 class Snake:
@@ -258,13 +279,16 @@ print(boa.region)
 
 ### Using `super()`
 
+Calls the parent's version of a method without naming the parent class directly.
+{: .pt-subheading }
+
 ```python-ref
 super().__init__(species, length_ft)    # same as Snake.__init__(self, species, length_ft), without naming the parent
 ```
 
 </summary>
 
-`super()` calls the parent's version of a method without naming the parent class directly — the usual, cleaner way to do what the previous example did by hand.
+The usual, cleaner way to do what the previous example did by hand.
 
 ```python
 class Snake:
@@ -289,6 +313,9 @@ print(boa.region)
 
 ### Adding attributes and methods
 
+A child class isn't limited to what its parent has.
+{: .pt-subheading }
+
 ```python-ref
 boa.region       # "south america" — new attribute, parent Snake has no such thing
 boa.habitat()    # new method, only Boa has it
@@ -296,7 +323,7 @@ boa.habitat()    # new method, only Boa has it
 
 </summary>
 
-A child class isn't limited to what its parent has — it can define brand-new attributes and methods of its own, on top of everything it inherits.
+It can define brand-new attributes and methods of its own, on top of everything it inherits.
 
 ```python
 class Snake:
@@ -324,6 +351,9 @@ print(boa.habitat())
 
 ### Overriding methods
 
+Defining a method in the child class with the exact same name as one in the parent replaces the parent's version for that child.
+{: .pt-subheading }
+
 ```python-ref
 snake.describe()    # "a 5 ft ball python"        — Snake's own version
 boa.describe()      # "a heavy-bodied constrictor" — Boa's version replaces it
@@ -331,7 +361,7 @@ boa.describe()      # "a heavy-bodied constrictor" — Boa's version replaces it
 
 </summary>
 
-Defining a method in the child class with the exact same name as one in the parent replaces the parent's version for that child — this is the foundation of polymorphism, covered next.
+This is the foundation of polymorphism, covered next.
 
 ```python
 class Snake:
@@ -370,6 +400,9 @@ print(len({"species": "ball", "length_ft": 5}))
 
 ### Same method name, unrelated classes
 
+Classes don't need to be related by inheritance to share a method name.
+{: .pt-subheading }
+
 ```python-ref
 ball.move()     # "slither"
 gecko.move()    # "climb"
@@ -377,7 +410,7 @@ gecko.move()    # "climb"
 
 </summary>
 
-Classes don't need to be related by inheritance to share a method name — as long as each one defines its own `.move()`, calling it works the same way no matter which object it's called on.
+As long as each one defines its own `.move()`, calling it works the same way no matter which object it's called on.
 
 ```python
 class Snake:
@@ -402,6 +435,9 @@ for animal in (ball, gecko):
 
 ### Polymorphism via inheritance
 
+Looping over a mix of parent and child objects and calling the same method name runs each object's own version automatically.
+{: .pt-subheading }
+
 ```python-ref
 for s in (snake, boa): print(s.describe())
 # a 5 ft ball python
@@ -410,7 +446,7 @@ for s in (snake, boa): print(s.describe())
 
 </summary>
 
-This is the more common case — a child class overrides a parent's method (as in the previous section), so looping over a mix of parent and child objects and calling the same method name runs each object's own version automatically.
+This is the more common case — a child class overrides a parent's method, as in the previous section.
 
 ```python
 class Snake:
