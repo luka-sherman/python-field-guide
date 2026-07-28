@@ -509,76 +509,56 @@ match species:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Default `_` 
-Runs a block of code if no `case` matched, like an `else` in an `if` statement. 
+### Default value
+
+Runs a block of code if no `case` matched — either discarding the value with `_`, or capturing it into a variable.
 {: .pt-subheading }
 
 ```python-ref
 match species:
-    case "anaconda":
-        print("giant")
-    case _:
-        print("not an anaconda")   # runs — no other case matched
-```
-
-</summary>
-
-`_` matches anything, so it's placed last. Without it, a value matching no `case` would run nothing.
-
-```python
-species = "ball"
-
-match species:
-    case "anaconda":
-        print("giant")
-    case _:
-        print("not an anaconda")
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-### Capturing the value
-
-A bare variable name also matches anything, but — unlike `_` — keeps the value instead of throwing it away.
-{: .pt-subheading }
-
-```python-ref
-match species:
-    case "anaconda":
-        print("giant")
-    case n:                                # any variable works here, here we're making a new variable n
-        print(f"{n} is not an anaconda")   # runs — n is "ball"
-```
-
-</summary>
-
-Placed last, a bare name acts as a catch-all like `_`, except it also stores the matched value (`species` or `length` here) in that name, so the block below can use it instead of just handling an unknown case blindly.
-
-```python
-species = "ball"
-
-match species:
-    case "anaconda":
-        print("giant")
     case "burmese":
-        print("large")
-    case n:                    # any variable name works here, not just n
-        print(f"{n} is not an anaconda or burmese")
+        print("it's a burmese!")
+    case _:                             # Option 1:  Unsaved default value
+        print("not a burmese")          # value discarded
 
-
-length = 2
-
-match length:
-    case 0:
-        print("no length recorded")
-    case 1 | 2:
-        print("hatchling size")
-    case n:                    # any variable name works here, not just n
-        print(f"length is {n} ft")
+match species:
+    case "burmese":
+        print("it's a burmese")
+    case n:                             # Option 2: Saved default value
+        print(f"{n} is not a burmese")  # stores the value as new variable n
 ```
+
+</summary>
+
+If you want the code to still run a block of code even if no specific `case` matched, there are two ways to add a default value at the end that will match anything. 
+
+A default value goes last. Without one, a value matching no cases would not run any block of code. 
+
+
+**Option 1:  Unsaved default value**, `_` throws the matched value away
+
+    ```python
+    species = "ball"
+
+    match species:
+        case "anaconda":
+            print("giant")
+        case _:
+            print("not an anaconda")
+    ```
+
+**Option 2: Saved default value**, Giving it a general variable name saves it, so the block can use it
+
+
+    ```python
+    species = "ball"
+
+    match species:
+        case "anaconda":
+            print("giant")
+        case n:                    # any variable name works here, not just n
+            print(f"{n} is not an anaconda or burmese")
+    ```
 
 </details>
 
