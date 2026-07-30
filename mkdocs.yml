@@ -3,6 +3,7 @@ site_url: https://pythonfieldguide.com
 
 nav:
   - Home: index.md
+  - Running Python: running_python.md
   - Basic Types: basic_types.md
   - Collections: collections.md
   - Conditionals: conditionals.md

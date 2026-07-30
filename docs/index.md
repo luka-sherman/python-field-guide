@@ -8,6 +8,20 @@ hide:
 
 *Quick field notes for learning Python, with code you can run in place.*
 
+## Getting Started
+
+The building blocks every other page assumes you already know.
+
+<div class="grid cards" markdown="block">
+
+- **[Running Python](running_python.md)**
+
+    Every example here runs in the browser — but on your own computer, you'll run a `.py` file from the terminal or an IDE instead.
+
+    [terminal](running_python.md#using-the-terminal) · [IDEs](running_python.md#using-an-ide)
+
+</div>
+
 ## Data Types
 
 Programs store information in variables — these are the kinds of values variables can hold.
