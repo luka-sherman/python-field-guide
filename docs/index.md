@@ -18,7 +18,7 @@ The building blocks every other page assumes you already know.
 
     Every example here runs in the browser — but on your own computer, you'll run a `.py` file from the terminal or an IDE instead.
 
-    [terminal](running_python.md#using-the-terminal) · [IDEs](running_python.md#using-an-ide)
+    [installing Python](running_python.md#step-1-install-python) · [code editors](running_python.md#step-2-pick-a-code-editor) · [terminal](running_python.md#using-the-terminal-optional)
 
 </div>
 
