@@ -13,7 +13,35 @@ print("hello, field guide")
 print(4.5)
 ```
 
-Once you're comfortable with the basics here, the [Types](types.md#printing-multiple-values) and [Collections](collections.md#join-lists) pages cover more advanced ways to print — combining several values into one readable line, and printing the contents of a list or dict.
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### Printing multiple values
+
+Pass several values separated by commas to print them on one line, space-separated.
+{: .pt-subheading }
+
+```python-ref
+species = "ball python"
+length_ft = 4.5
+print(species, length_ft, "ft")    # ball python 4.5 ft
+```
+
+</summary>
+
+`print()` joins the values with a single space by default — pass `sep="..."` to use something else instead, like `print(species, length_ft, sep=", ")`. For combining text and variables into one readable sentence, an [f-string](types.md#format-strings) is usually clearer than a long list of comma-separated pieces.
+
+```python
+species = "ball python"
+length_ft = 4.5
+
+print(species, length_ft, "ft")
+print(species, length_ft, sep=", ")
+```
+
+</details>
+
+Once you're comfortable with the basics here, the [Collections](collections.md#join-lists) page covers printing the contents of a list or dict.
 
 ## Variables
 

@@ -314,6 +314,38 @@ print(sentence)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
+### Comma, +, or f-string?
+
+Three ways to combine text and values — each fits a different situation.
+{: .pt-subheading }
+
+| Method | Example | Use it for |
+|--------|---------|------------|
+| `,` in `print()` | `print(species, length_ft)` | Quickly displaying values on one line — no separate string is created |
+| `+` | `species + " python"` | Building an actual string value to store or reuse — every piece must already be a string |
+| f-string | `f"{species} is {length_ft} ft"` | Embedding variables inside a sentence — converts values to strings automatically |
+
+</summary>
+
+`,` only works inside `print()` (or similar functions) — it can't be saved to a variable, since it isn't actually building a string, just printing several values side by side. `+` builds a real string you can store, but every piece must already be text — `species + length_ft` raises a `TypeError` since `length_ft` is a number, not a string, and needs `str(length_ft)` first. An f-string sidesteps that entirely, converting values to text automatically, which is why it's usually the clearest choice once a sentence has more than one or two variables in it.
+
+```python
+species = "ball"
+length_ft = 4.5
+
+print(species, length_ft)                    # comma — fine for a quick printout
+
+name = species + " " + str(length_ft)         # + — needs str() to include a number
+print(name)
+
+print(f"{species} is {length_ft} ft")         # f-string — no manual conversion needed
+```
+
+</details>
+
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
 ### Modify strings
 
 Since strings are immutable, these all return a **new** string rather than changing the original.
