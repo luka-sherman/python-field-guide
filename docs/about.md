@@ -31,3 +31,18 @@ This *isn't* meant to be a comprehensive Python guide, it's just my self-publish
 
 **Please be nice, I'm just one human out here doing my best.** 
 
+<form action="https://formspree.io/f/mgogjdop" method="POST" class="pt-feedback-form">
+  <input type="hidden" name="_next" value="https://pythonfieldguide.com/thanks.html">
+  <input type="text" name="_gotcha" class="pt-field-extra" tabindex="-1" autocomplete="off">
+
+  <label for="pt-feedback-name">Your name</label>
+  <input type="text" id="pt-feedback-name" name="your_name" placeholder="First Last" required>
+
+  <label for="pt-feedback-email">Your email</label>
+  <input type="email" id="pt-feedback-email" name="email" placeholder="you@example.com" required>
+
+  <label for="pt-feedback-message">Helpful feedback</label>
+  <textarea id="pt-feedback-message" name="message" rows="5" required></textarea>
+
+  <button type="submit">Send helpful feedback</button>
+</form>

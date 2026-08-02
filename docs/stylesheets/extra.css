@@ -431,3 +431,73 @@ input:checked + .md-consent__settings {
   font-weight: 600;
   color: var(--pt-text-secondary);
 }
+
+/* Feedback form on about.md, posting to Formspree */
+.pt-feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: 32rem;
+  margin-top: 1rem;
+}
+
+.pt-feedback-form label {
+  font-weight: 600;
+  color: var(--pt-ink);
+  margin-top: 0.6rem;
+}
+
+.pt-feedback-form label span {
+  font-weight: 400;
+  color: var(--pt-text-muted);
+}
+
+.pt-feedback-form input,
+.pt-feedback-form textarea {
+  font-family: inherit;
+  font-size: 0.75rem;
+  color: var(--pt-ink);
+  background-color: var(--pt-panel);
+  border: 1px solid var(--pt-border-soft);
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.6rem;
+  resize: vertical;
+}
+
+.pt-feedback-form input:focus,
+.pt-feedback-form textarea:focus {
+  outline: none;
+  border-color: var(--pt-accent);
+}
+
+.pt-feedback-form button {
+  align-self: flex-start;
+  margin-top: 0.8rem;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--pt-bg);
+  background-color: var(--pt-accent);
+  border: 1px solid var(--pt-accent);
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+}
+
+.pt-feedback-form button:hover,
+.pt-feedback-form button:focus-visible {
+  background-color: var(--pt-ink);
+  border-color: var(--pt-ink);
+}
+
+/* Spam-trap field on the feedback form: visually hidden (not display:none)
+   so simple bots that skip hidden fields still fill it in — real users
+   never see or reach it. */
+.pt-field-extra {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
