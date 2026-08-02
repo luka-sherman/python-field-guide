@@ -7,7 +7,7 @@ hooks:
 nav:
   - Home: index.md
   - Workspace: workspace.md
-  - Basic Types: basic_types.md
+  - Types: types.md
   - Collections: collections.md
   - Conditionals: conditionals.md
   - Loops: loops.md

@@ -49,11 +49,11 @@ Programs store information in variables — these are the kinds of values variab
 
 <div class="grid cards" markdown="block">
 
-- **[Basic Types](basic_types.md)**
+- **[Types](types.md)**
 
     A single value on its own — a number, some text, or true/false. Every value in Python has one of these, and it determines what you can do with it.
 
-    [`int`](basic_types.md#integers) · [`float`](basic_types.md#floats) · [`string`](basic_types.md#strings) · [`bool`](basic_types.md#booleans) · [`None`](basic_types.md#none)
+    [`int`](types.md#integers) · [`float`](types.md#floats) · [`string`](types.md#strings) · [`bool`](types.md#booleans) · [`None`](types.md#none)
 
 - **[Collections](collections.md)**
 

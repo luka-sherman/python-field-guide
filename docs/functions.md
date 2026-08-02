@@ -38,7 +38,7 @@ message = describe("ball")    # "a ball python" — stored, not printed
 
 </summary>
 
-Without a `return`, a function hands back `None` automatically — covered on the [Basic Types](basic_types.md#functions-return-none-by-default) page. `return` also exits the function immediately, skipping any code written after it.
+Without a `return`, a function hands back `None` automatically — covered on the [Types](types.md#functions-return-none-by-default) page. `return` also exits the function immediately, skipping any code written after it.
 
 ```python
 def describe(species):
