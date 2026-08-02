@@ -6,7 +6,7 @@ hooks:
 
 nav:
   - Home: index.md
-  - Running Python: running_python.md
+  - Workspace: workspace.md
   - Basic Types: basic_types.md
   - Collections: collections.md
   - Conditionals: conditionals.md

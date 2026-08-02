@@ -15,11 +15,11 @@ hide:
 
 </summary>
 
-Anyone can instantly generate working code with an AI prompt, which raises a fair question.
+Now that anyone can instantly generate working code with an AI prompt, it raises a fair question.
 
-**Learning happens through productive struggle.** The friction of working something out yourself—instead of being handed the answer—is what builds understanding, sometimes called a ["desirable difficulty"](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf). Skip that struggle, and you don't develop the knowledge to solve the problem again, apply what you learned to a new situation, or recognize when the answer is wrong.
+**Learning happens through productive struggle.** The friction of working something out yourself, instead of being handed the answer, is what builds understanding (sometimes called a ["desirable difficulty"](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf)). If you skip that struggle, you won't develop the knowledge to solve the problem again, adapt the answer, or recognize when it's wrong.
 
-**These programming fundamentals make AI more useful.** Variables, loops, conditionals, functions, etc. are the small, reusable concepts that every program is built from. Once you can recognize a loop or trace what a conditional does, you can read code you didn't write, spot mistakes an AI tool made, and break larger problems into manageable pieces. Understanding these concepts also helps you communicate with AI more effectively—the better you can describe a problem, the more useful the generated code tends to be.
+**These programming fundamentals make AI more useful.** Variables, loops, conditionals, functions, etc. are the small, reusable concepts that every program is built from. Once you can recognize and understand the structures, you can make sense of code you didn't write, spot mistakes an AI tool made, and break larger problems into manageable pieces. Understanding these concepts also helps you communicate with AI more effectively: the better you can describe a problem, the more useful the generated code tends to be.
 
 **You need to be able to read what AI writes.** If you can't read the code an AI generated, you can't tell whether it's correct, secure, or doing what you actually asked. Researchers are already documenting this skill gap in [students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before they've [built their own foundation](https://dl.acm.org/doi/10.1145/3624720).
 
@@ -35,11 +35,11 @@ The building blocks every other page assumes you already know.
 
 <div class="grid cards" markdown="block">
 
-- **[Running Python](running_python.md)**
+- **[Workspace](workspace.md)**
 
-    Every example here runs in the browser — but on your own computer, you'll run a `.py` file from the terminal or an IDE instead.
+    What you need to write and run Python: installing it, picking a code editor, running and debugging. How to navigate and operate the terminal.
 
-    [installing Python](running_python.md#step-0-install-python) · [code editors](running_python.md#step-1-pick-a-code-editor) · [terminal](running_python.md#using-the-terminal-optional)
+    [`installing Python`](workspace.md#step-0-install-python) · [`code editors`](workspace.md#step-1-pick-a-code-editor) · [`debugging`](workspace.md#debugging) · [`terminal`](workspace.md#using-the-terminal-optional)
 
 </div>
 
@@ -93,7 +93,7 @@ Package code into reusable units, then bundle that logic with the data it acts o
 
     Packages a block of code under a name, so it can be run again with different inputs instead of rewriting it each time.
 
-    [`def`](functions.md#defining-a-function) · [`return`](functions.md#return-values) · [`*args`/`**kwargs`](functions.md#flexible-arguments) · [scope](functions.md#scope)
+    [`def`](functions.md#defining-a-function) · [`return`](functions.md#return-values) · [`*args`/`**kwargs`](functions.md#flexible-arguments) · [`scope`](functions.md#scope)
 
 - **[Classes](oop.md)**
 
