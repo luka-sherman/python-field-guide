@@ -44,7 +44,7 @@ Beyond the base [`Image`](#the-image) object, Pillow's functionality is spread a
 
 The `Image` object is where every Pillow workflow starts and ends — opening a file, transforming it, and saving the result all happen through methods on this one class.
 
-### Opening and Saving Images
+### Opening and saving images
 
 Every Pillow workflow starts the same way: open a file into an `Image` object, do something to it, then save the result — Pillow infers the file format from the extension you save to, so converting formats is often just a matter of changing the file extension.
 
@@ -60,7 +60,7 @@ img.save("snake_copy.png")
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-#### Opening a File
+#### Opening a file
 
 Reads a file's header immediately but delays loading the full pixel data until you need it.
 {: .pt-subheading }
@@ -86,7 +86,7 @@ print(img.format, img.size, img.mode)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-#### Saving a File
+#### Saving a file
 
 Writes the image to disk, picking the file format from the extension.
 {: .pt-subheading }
@@ -113,7 +113,7 @@ img.save("snake_copy.jpg", quality=85)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-#### Displaying an Image
+#### Displaying an image
 
 Opens the image in whatever program your operating system uses to view images.
 {: .pt-subheading }
@@ -135,7 +135,7 @@ img.show()
 
 </details>
 
-### Basic Operations
+### Basic operations
 
 Pillow's core editing operations — resizing, cropping, rotating, flipping — are all methods on an `Image` that return a *new* `Image`, leaving the original untouched.
 
@@ -202,7 +202,7 @@ print(cropped.size)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-#### Rotate and Flip
+#### Rotate and flip
 
 `.rotate(degrees)` rotates counter-clockwise around the image's center.
 {: .pt-subheading }
@@ -227,7 +227,7 @@ print(rotated.size, flipped.size)
 
 </details>
 
-### Image Modes
+### Image modes
 
 An image's **mode** determines how each pixel's color is stored — how many bands it has and what each one means. Converting between modes is a single method call, and it's often a required first step before an operation that only works on one mode (like grayscale-only filters).
 
@@ -239,7 +239,7 @@ with_alpha = img.convert("RGBA")
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-#### Converting Modes
+#### Converting modes
 
 Returns a new image re-encoded into the given mode.
 {: .pt-subheading }
@@ -279,7 +279,7 @@ mirrored = ImageOps.mirror(img)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Common ImageOps Functions
+### Common ImageOps functions
 
 `.autocontrast()` stretches an image's darkest and lightest pixels out to pure black and white.
 {: .pt-subheading }
@@ -321,7 +321,7 @@ draw.text((15, 20), "ball python", fill="green")
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Shapes and Lines
+### Shapes and lines
 
 `ImageDraw.Draw(img)` creates a drawing context bound to an image.
 {: .pt-subheading }
@@ -380,7 +380,7 @@ img.save("triangle.png")
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Transparent Colors
+### Transparent colors
 
 A color can include a fourth number — alpha — to draw something translucent.
 {: .pt-subheading }
@@ -408,7 +408,7 @@ img.save("overlap.png")
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Drawing with Objects
+### Drawing with objects
 
 Once a drawing gets complicated, it's common to wrap each thing you're drawing in its own class.
 {: .pt-subheading }
@@ -480,7 +480,7 @@ draw.text((10, 10), "burmese python", fill="black", font=font)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Loading a Font
+### Loading a font
 
 Loads a `.ttf` (or `.otf`) font file at a specific point size.
 {: .pt-subheading }
@@ -520,7 +520,7 @@ rgb2 = ImageColor.getrgb("#3f6b52")     # (63, 107, 82)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Converting Color Names
+### Converting color names
 
 Accepts most CSS-style color names and `#rrggbb`/`#rgb` hex strings, returning a plain `(r, g, b)` tuple.
 {: .pt-subheading }
@@ -558,7 +558,7 @@ blurred = img.filter(ImageFilter.BLUR)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Applying a Filter
+### Applying a filter
 
 Applies one of Pillow's built-in filter presets, each a ready-made pixel transformation.
 {: .pt-subheading }
@@ -601,7 +601,7 @@ brighter = ImageEnhance.Brightness(img).enhance(1.5)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Enhancing an Image
+### Enhancing an image
 
 Each `ImageEnhance` class wraps an image and exposes `.enhance(factor)`.
 {: .pt-subheading }
@@ -643,7 +643,7 @@ blended = ImageChops.multiply(img, mask)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Comparing and Combining Images
+### Comparing and combining images
 
 `.difference(im1, im2)` subtracts one image from the other pixel by pixel.
 {: .pt-subheading }
@@ -670,7 +670,7 @@ diff.save("diff.jpg")
 
 </details>
 
-## Format Conversion
+## Format conversion
 
 Because `.save()` infers the output format from the file extension, converting between formats is usually just an open-then-save with a different name — with a couple of format-specific details worth knowing.
 
@@ -682,7 +682,7 @@ img.convert("RGB").save("snake.jpg")   # JPEG has no transparency, so drop RGBA 
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Converting Between Formats
+### Converting between formats
 
 JPEG doesn't support transparency, so saving an `"RGBA"` image straight to `.jpg` raises an error.
 {: .pt-subheading }
@@ -720,7 +720,7 @@ for frame in ImageSequence.Iterator(gif):
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Looping Over GIF Frames
+### Looping over GIF frames
 
 Hands a `for` loop one frame at a time, in order, from an animated image.
 {: .pt-subheading }
@@ -745,7 +745,7 @@ for frame in ImageSequence.Iterator(gif):
 
 </details>
 
-## Putting It Together
+## Putting it together
 
 Pillow doesn't need anything special to combine with the rest of Python — a function wrapping one transformation, called from an `if`/`elif` chosen by [user input](conditionals.md), looped until the user's done, is enough to build a small interactive tool out of the operations above.
 
@@ -764,7 +764,7 @@ def apply_filter(img, choice):
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### An Interactive Filter Tool
+### An interactive filter tool
 
 Combines a function, an `if`/`elif` chain, and a `while` loop — nothing here is Pillow-specific.
 {: .pt-subheading }

@@ -1,4 +1,4 @@
-# Object-Oriented Programming (OOP)
+# Object-oriented programming (OOP)
 
 **Object-oriented programming** groups related data and the functions that act on it into a single unit, instead of keeping them separate. A [dictionary](collections.md#dictionaries) can already hold a snake's data as key-value pairs — a **class** goes one step further, bundling that data together with the behavior (methods) that belongs to it.
 
@@ -10,7 +10,7 @@
 | Method | `def describe(self):` | A function that belongs to a class and acts on a specific object |
 | Inheritance | `class Boa(Snake):` | A new class that reuses — and can extend or override — another class's attributes and methods |
 
-## Classes and Objects
+## Classes and objects
 
 A class is a blueprint for creating objects — it defines what attributes and methods every object built from it will have. An object is one specific instance built from that blueprint, with its own copy of the attributes.
 

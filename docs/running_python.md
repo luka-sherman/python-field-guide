@@ -1,6 +1,6 @@
-# Running Python On Your Own Computer
+# Running Python on your own computer
 
-## Step 0: Install Python
+## Step 0: install Python
 
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
@@ -28,7 +28,7 @@ python3 --version   # if it fails try this one
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Download Links
+### Download links
 
 If it's not already installed, then download Python at the link below depending on what kind of computer you have. 
 {: .pt-subheading }
@@ -44,12 +44,12 @@ If it's not already installed, then download Python at the link below depending 
 </details>
 
 
-## Step 1: Pick a code editor
+## Step 1: pick a code editor
 
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Why a Code Editor?
+### Why a code editor?
 
 A **code editor** or **IDE** ("Integrated Development Environment") is a text editor designed specifically for writing code — it's like Microsoft Word for programming.
 {: .pt-subheading }
@@ -67,7 +67,7 @@ A **code editor** or **IDE** ("Integrated Development Environment") is a text ed
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Compare Editors
+### Compare editors
 
 Once Python is installed, pick one of the **free** code editors below based on your priorities, and download it.
 {: .pt-subheading }
@@ -127,7 +127,10 @@ Look for a "Debug" button (often next to the Run button, sometimes a bug icon) i
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Open Source
+### Open source
+
+What is "Open Source" software?
+{: .pt-subheading }
 
 </summary>
 
@@ -135,24 +138,24 @@ It means the source code is publicly available for anyone to see, modify, and im
 
 </details>
 
-## Step 2: Write and Run a Python File
+## Step 2: Write and run a Python file
 
 Now that you have Python installed and a code editor picked, you're ready to write actual Python code.
 
-1. Open your code editor
-2. Create a new file (**File → New**) and save it with a `.py` extension, e.g. `hello.py` — the `.py` extension identifies that it's a Python file
-3. Type this sample code:
+0. Open your code editor
+1. Create a new file (**File → New**) and save it with a `.py` extension, e.g. `hello.py` — the `.py` extension identifies that it's a Python file
+2. Type this sample code:
 ```python-ref
 print("Hello, World!")
 ```
-4. Click the **Run button** (usually a green play icon or arrow) — most editors save your file automatically when you click Run, so there's no separate save step. The output appears right there in the editor.
+3. Click the **Run button** (usually a green play icon or arrow) — most editors save your file automatically when you click Run, so there's no separate save step. The output appears right there in the editor.
 
 That's it! You've written and run your first Python program. From here, you can modify the code, run it again, and work through the rest of this guide to keep building your Python skills.
 
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Reading Errors
+### Reading errors
 
 Red text instead of your expected output? Here's how to read it.
 {: .pt-subheading }
@@ -174,7 +177,7 @@ Fix the issue there, save, and run again. Errors are a normal part of writing co
 
 </details>
 
-## Using the Terminal (Optional)
+## Using the terminal (optional)
 
 The terminal is a text-based way to navigate your computer's files and run programs, instead of clicking through folders. It's best for running Python files you've already written — either your own finished scripts, or someone else's — without needing to open them in an editor. It's also handy for quickly re-running the same command over and over while testing.
 
@@ -184,7 +187,7 @@ The terminal is a text-based way to navigate your computer's files and run progr
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Step 1: Navigate to the folder that your python file is in
+### Step 1: Navigate to the folder that your Python file is in
 
 The four most common terminal commands to move around.
 {: .pt-subheading }
@@ -224,7 +227,7 @@ $ pwd
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Step 2: Run the python file
+### Step 2: Run the Python file
 
 Use whichever command worked during your install check (`python` or `python3`).
 {: .pt-subheading }
@@ -247,7 +250,7 @@ Use whichever command worked when you checked your Python version — and stick 
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Terminal Shortcuts
+### Terminal shortcuts
 
 A few quick tricks to save time and typing.
 {: .pt-subheading }

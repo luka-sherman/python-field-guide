@@ -12,7 +12,7 @@ All loop definitions end with a colon `:`, and the **block** is the lines indent
 | `for` | `for item in sequence:` | When you know (or can generate) what you're looping over ahead of time:<ul><li>A `range()` — loop a fixed number of times</li><li>A `list` — an ordered, changeable collection of items</li><li>A `tuple` — an ordered collection that can't be changed</li><li>A `dict` — looping gives you the keys (or use `.items()` for key-value pairs)</li><li>A `str` — loops over the string one character at a time</li></ul> |
 | `while` | `while condition:` | <ul><li>Repeating until something changes — not tied to a fixed collection</li><li>When you don't know in advance how many passes you'll need</li></ul> |
 
-## For Loops
+## For loops
 
 A `for` loop steps through a sequence — a [list](collections.md), tuple, string, or other iterable — running its body once per item, in order.
 
@@ -26,7 +26,7 @@ for i in range(5):
 
 ### Loop a fixed number of times
 
-`range()` generates a sequence of numbers to loop over
+`range()` generates a sequence of numbers to loop over.
 {: .pt-subheading }
 
 ```python-ref
@@ -261,7 +261,7 @@ for s in species:
 
 </details>
 
-## While Loops
+## While loops
 
 A `while` loop repeats its body for as long as a condition stays `True` — checked again before every pass — so it's the right choice when you don't know ahead of time how many times you'll need to loop.
 
@@ -301,7 +301,7 @@ while count < 3:
 
 </details>
 
-## Loop Control
+## Loop control
 
 A `for` loop and a `while` loop can both be redirected mid-run — cut short, skipped ahead by one pass, or wrapped up with a bit of code that only runs if nothing interrupted them. These keywords work identically in either loop type.
 

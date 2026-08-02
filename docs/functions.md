@@ -9,7 +9,7 @@ A **function** packages a block of code under a name, so it can be run again —
 | Return value | `return f"a {species} python"` | The value a function sends back to whatever called it |
 | Default value | `def describe(species="ball"):` | A fallback used when the caller doesn't supply that argument |
 
-## Defining a Function
+## Defining a function
 
 `def` names a function and lists the parameters it expects; the indented block underneath is what runs each time it's called.
 
@@ -24,7 +24,7 @@ describe("burmese")
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Return Values
+### Return values
 
 `return` sends a value back to the caller, instead of just printing it.
 {: .pt-subheading }
@@ -61,7 +61,7 @@ print(check_length(4))
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Default Parameter Values
+### Default parameter values
 
 A parameter can fall back to a default value if the caller doesn't supply one.
 {: .pt-subheading }
@@ -91,7 +91,7 @@ print(describe("burmese", 12))
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Keyword Arguments
+### Keyword arguments
 
 Passing `name=value` lets you specify arguments out of order, or skip earlier defaults.
 {: .pt-subheading }
@@ -117,7 +117,7 @@ print(describe(species="burmese", length_ft=12))
 
 </details>
 
-## Flexible Arguments
+## Flexible arguments
 
 `*args` and `**kwargs` let a function accept an unpredictable number of arguments, instead of a fixed list of parameters.
 
@@ -202,7 +202,7 @@ set_species()
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Local vs Global Variables
+### Local vs global variables
 
 A variable defined at the top level of a file is **global** — readable from inside any function.
 {: .pt-subheading }
@@ -233,7 +233,7 @@ print(species)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Modifying a Global Variable
+### Modifying a global variable
 
 `global` tells Python that an assignment inside a function should change the global variable, not create a local one.
 {: .pt-subheading }

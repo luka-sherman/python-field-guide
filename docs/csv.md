@@ -9,7 +9,7 @@ The **`csv`** module reads and writes CSV ("comma-separated values") files — a
 | `csv.DictWriter` | A dict per row | Writing rows keyed by column name |
 | `csv.DictReader` | A dict per row | Reading rows keyed by column name |
 
-## Writing CSV Files
+## Writing CSV files
 
 `csv.writer` wraps an open file and turns each list you pass to `.writerow()` into one comma-separated line.
 
@@ -28,7 +28,7 @@ print("wrote snakes.csv")
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Writing Multiple Rows at Once
+### Writing multiple rows at once
 
 Takes a list of rows and writes them all in one call.
 {: .pt-subheading }
@@ -55,7 +55,7 @@ with open("snakes.csv", "w", newline="") as file:
 
 </details>
 
-## Reading CSV Files
+## Reading CSV files
 
 `csv.reader` gives back each row as a plain list of strings — including the header row, which is usually skipped over explicitly.
 
@@ -78,7 +78,7 @@ with open("snakes.csv", newline="") as file:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Reading Rows as Dictionaries
+### Reading rows as dictionaries
 
 Uses the first row as column names automatically, so each row comes back as a `dict`.
 {: .pt-subheading }

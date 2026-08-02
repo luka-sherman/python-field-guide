@@ -4,7 +4,7 @@ Libraries allow us to apply the Python fundamentals to real tasks. These are a f
 
 They each need to be `import`ed at the top of the file.
 
-## Standard Libraries
+## Standard libraries
 
 Python is already preloaded with these, and puts the above fundamentals to use on real tasks.
 
@@ -36,7 +36,7 @@ Python is already preloaded with these, and puts the above fundamentals to use o
 
 </div>
 
-## Third-Party Libraries
+## Third-party libraries
 
 These additional Python libraries can be installed on your computer for free with `pip`.
 

@@ -25,7 +25,7 @@ print(snakes)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Building From a Dict of Lists
+### Building from a dict of lists
 
 The same table can also be built from a single dict where each key maps to a whole column's worth of values.
 {: .pt-subheading }
@@ -74,7 +74,7 @@ print(big_snakes)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Sorting Rows
+### Sorting rows
 
 Returns the `DataFrame` reordered by a column.
 {: .pt-subheading }
@@ -104,7 +104,7 @@ print(snakes.sort_values("length_ft", ascending=False))
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Summarizing a Column
+### Summarizing a column
 
 Calling `.mean()`, `.max()`, or similar directly on a column summarizes it down to a single number.
 {: .pt-subheading }

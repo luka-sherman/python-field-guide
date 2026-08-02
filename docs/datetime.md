@@ -9,7 +9,7 @@ The **`datetime`** module is Python's standard library for working with dates an
 | `datetime` | A date and time together | `datetime(2026, 7, 23, 14, 30)` |
 | `timedelta` | A duration — the gap between two dates/times | `timedelta(days=7)` |
 
-## Creating Dates and Times
+## Creating dates and times
 
 `date.today()` and `datetime.now()` read the current date (and time) directly from the system clock, so the value changes every time the code runs.
 
@@ -26,7 +26,7 @@ print(now)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Creating a Specific Date
+### Creating a specific date
 
 Pass the year, month, and day as plain integers to build a specific `date`.
 {: .pt-subheading }
@@ -76,7 +76,7 @@ print(observed.strftime("%Y-%m-%d"))
 
 </details>
 
-## Date Arithmetic
+## Date arithmetic
 
 A `timedelta` represents a span of time, and adding one to a `date` or `datetime` shifts it forward (or backward, with a negative value) — the standard way to compute "a week from now" or "30 days ago."
 
@@ -92,7 +92,7 @@ print(next_checkup)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Difference Between Two Dates
+### Difference between two dates
 
 Subtracting one `date` from another gives back a `timedelta`.
 {: .pt-subheading }
@@ -123,7 +123,7 @@ print(gap.days)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Parsing a String with `strptime`
+### Parsing a string with `strptime`
 
 The reverse of `strftime` — reads a date out of a string.
 {: .pt-subheading }

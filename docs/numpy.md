@@ -7,7 +7,7 @@
 | `list` | Any mix of types | Element-by-element, usually with a loop |
 | `ndarray` | One type, fixed size | Applied to the whole array at once ("vectorized") |
 
-## Creating Arrays
+## Creating arrays
 
 `np.array()` builds an `ndarray` from an existing list — every value gets converted to the same type.
 
@@ -22,7 +22,7 @@ print(lengths_ft.dtype)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Building Arrays Without a List
+### Building arrays without a list
 
 `np.zeros(n)` builds an array of `n` zeros as a starting point to fill in later.
 {: .pt-subheading }
@@ -47,7 +47,7 @@ print(np.arange(0, 10, 2))
 
 </details>
 
-## Array Operations
+## Array operations
 
 A math operation on an array applies to every element at once — no loop required, and considerably faster than looping over a plain list.
 
@@ -63,7 +63,7 @@ print(lengths_m)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Aggregating an Array
+### Aggregating an array
 
 Collapses an entire array down to a single summary number.
 {: .pt-subheading }
@@ -93,7 +93,7 @@ print(lengths_ft.sum())
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Filtering with a Boolean Mask
+### Filtering with a boolean mask
 
 Comparing an array to a number produces a same-size array of `True`/`False` values — a **boolean mask**.
 {: .pt-subheading }

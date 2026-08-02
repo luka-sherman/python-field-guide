@@ -11,7 +11,7 @@ The condition ends with a colon `:`, and the block is the lines indented underne
 | `if` / `elif` / `else` | <pre><code class="language-python-ref">if length &gt; 15:&#10;    print("giant")&#10;elif length &gt; 8:&#10;    print("large")&#10;else:&#10;    print("small")</code></pre> | The general-purpose default — ranges, comparisons, or checking unrelated things, so use this unless `match` is clearly a better fit |
 | `match` / `case`       | <pre><code class="language-python-ref">species="ball"&#10;match species:&#10;    case "ball":&#10;        print("ball python")&#10;    case _:&#10;        print("other")&#10;&#10;snake = (12, "ball")&#10;match snake:&#10;    case (length, "ball"):&#10;        print(f"a {length} ft ball python")&#10;    case (length, species):&#10;        print(f"a {length} ft {species}")</code></pre> | Comparing one value against exact, known possibilities — or splitting a tuple into named pieces while checking its values |
 
-## If / Elif / Else
+## If / elif / else
 
 A chain of `if`, `elif`, and `else` checks a series of conditions in order, running the indented block under the first one that's `True` — then exits the whole chain without checking any conditions below it. 
 
@@ -33,7 +33,7 @@ else:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### See the Path
+### See the path
 See the decision path the above code will take in the form of a flow chart diagram.
 {: .pt-subheading }
 
@@ -444,7 +444,7 @@ print("checked venomous status, no action taken yet")
 
 </details>
 
-## Match / Case
+## Match / case
 
 A `match` statement compares one value against several `case` options and runs the code for the first matching `case`.
 
@@ -474,7 +474,7 @@ match species:
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### See the Path
+### See the path
 See the decision path the above code will take in the form of a flow chart diagram.
 {: .pt-subheading }
 
