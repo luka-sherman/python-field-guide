@@ -8,6 +8,27 @@ hide:
 
 *Quick field notes for learning Python, with code you can run in place.*
 
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### Why should I learn how to code, if AI can do it for me?
+
+</summary>
+
+Anyone can instantly generate working code with an AI prompt, which raises a fair question.
+
+**Learning happens through productive struggle.** The friction of working something out yourself—instead of being handed the answer—is what builds understanding, sometimes called a ["desirable difficulty"](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf). Skip that struggle, and you don't develop the knowledge to solve the problem again, apply what you learned to a new situation, or recognize when the answer is wrong.
+
+**These programming fundamentals make AI more useful.** Variables, loops, conditionals, functions, etc. are the small, reusable concepts that every program is built from. Once you can recognize a loop or trace what a conditional does, you can read code you didn't write, spot mistakes an AI tool made, and break larger problems into manageable pieces. Understanding these concepts also helps you communicate with AI more effectively—the better you can describe a problem, the more useful the generated code tends to be.
+
+**You need to be able to read what AI writes.** If you can't read the code an AI generated, you can't tell whether it's correct, secure, or doing what you actually asked. Researchers are already documenting this skill gap in [students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before they've [built their own foundation](https://dl.acm.org/doi/10.1145/3624720).
+
+**Your job shifts from writing every line to verifying every line.** This matters even more as AI-generated code gets better. An AI can write code that looks confident and correct while being subtly wrong, and the best defense is someone who can trace through it and verify that it does what it's supposed to do. One [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) found that developers using an AI coding assistant wrote *less* secure code than those without AI—while being *more* confident that their code was secure. The skill that matters most going forward may not be writing code from scratch so much as reading and verifying it—and you can't verify what you don't understand at a basic level.
+
+Learning to program first turns AI into a tool you can direct and verify, instead of one you're assuming got it right.
+
+</details>
+
 ## Getting started
 
 The building blocks every other page assumes you already know.
