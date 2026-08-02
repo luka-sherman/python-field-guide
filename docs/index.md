@@ -157,7 +157,3 @@ print(f"Length: {length_ft} ft")
 print(f"Venomous: {venomous}")
 print("Notes: found coiled beneath a rock, unbothered by observation.")
 ```
-
----
-
-[Privacy Policy](privacy.md)

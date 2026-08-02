@@ -22,9 +22,6 @@ nav:
           - pandas: pandas.md
           - Pillow: pillow.md
 
-not_in_nav: |
-  privacy.md
-
 theme:
   name: material
   favicon: img/favicon.png
@@ -72,7 +69,10 @@ extra:
   social:
     - icon: fontawesome/brands/github 
       link: https://github.com/luka-sherman/python-field-guide
-        
+    - icon: material/shield-lock
+      link: /privacy/
+      name: Privacy policy
+
 extra_css:
   - stylesheets/extra.css
 
