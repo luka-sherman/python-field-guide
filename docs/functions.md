@@ -24,6 +24,56 @@ describe("burmese")
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
+### Indenting a block
+
+Select a line (or several), then indent or unindent it in one keystroke instead of retyping spaces.
+{: .pt-subheading }
+
+| Action | Windows / Linux | Mac |
+|--------|------------------|-----|
+| Indent selected lines | `Tab` | `Tab` |
+| Unindent selected lines | `Shift` + `Tab` | `Shift` + `Tab` |
+
+</summary>
+
+These are the defaults in VS Code, PyCharm, Thonny, and IDLE. Selecting multiple lines first — click and drag, or hold `Shift` while using the arrow keys — indents or unindents all of them together, which matters here since every line inside a function body needs the same indentation.
+
+</details>
+
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
+### Docstrings
+
+A triple-quoted string as a function's first line documents what it does — most editors show it automatically when you use the function elsewhere.
+{: .pt-subheading }
+
+```python-ref
+def describe(species):
+    """Return a short description of the given snake species."""
+    return f"a {species} python"
+```
+
+</summary>
+
+A **docstring** is the same triple-quoted-string trick covered on the [Foundations](foundations.md#multi-line-comments) page, but placed as the very first line inside a function specifically to document it. Unlike a regular comment, Python actually stores a docstring (as the function's `__doc__` attribute) rather than discarding it — which is how editors are able to show it in a tooltip when you call the function elsewhere, without you needing to go find the definition.
+
+```python
+def describe(species):
+    """Return a short description of the given snake species."""
+    return f"a {species} python"
+
+print(describe("ball"))
+print(describe.__doc__)
+```
+
+Short, single-line docstrings like this one are common for simple functions; longer functions often use a multi-line docstring describing each parameter and what's returned.
+
+</details>
+
+<details markdown="block" class="pt-collapsible">
+<summary markdown="block">
+
 ### Return values
 
 `return` sends a value back to the caller, instead of just printing it.
