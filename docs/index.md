@@ -6,8 +6,6 @@ hide:
 
 # Python Field Guide
 
-*Quick field notes for learning Python, with code you can run in place.*
-
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
@@ -39,8 +37,13 @@ The building blocks every other page assumes you already know.
 
     What you need to write and run Python: installing it, picking a code editor, running and debugging. How to navigate and operate the terminal.
 
-    [`installing Python`](workspace.md#step-0-install-python) · [`code editors`](workspace.md#step-1-pick-a-code-editor) · [`debugging`](workspace.md#debugging) · [`terminal`](workspace.md#using-the-terminal-optional)
+    [`installing Python`](workspace.md#step-0-install-python) · [`code editors`](workspace.md#step-1-pick-a-code-editor) · [`terminal`](workspace.md#using-the-terminal-optional)
 
+- **[Foundations](foundations.md)**
+
+    Store a value in a variable, show output with `print()`, and leave notes for yourself with comments.
+
+    [`variables`](foundations.md#variables) · [`print()`](foundations.md#print) · [`comments`](foundations.md#comments)
 </div>
 
 ## Data types
