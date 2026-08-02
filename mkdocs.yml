@@ -79,4 +79,5 @@ extra_css:
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js
   - javascripts/pyodide_runner.js
+  - javascripts/copyright_year.js
   - https://unpkg.com/mermaid@11/dist/mermaid.min.js
