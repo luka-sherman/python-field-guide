@@ -10,7 +10,7 @@ The **`random`** module generates pseudo-random numbers and makes random selecti
 | `shuffle(seq)` | Reorders a list in place, returns `None` | `shuffle(species)` |
 | `sample(seq, k)` | `k` unique random items, as a new list | `sample(species, 2)` |
 
-## Random Numbers
+## Random numbers
 
 `random()` and `randint()` are the two basic building blocks — a random fraction, or a random whole number within a range.
 
@@ -24,7 +24,7 @@ print(random.randint(1, 6))
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Setting a Seed
+### Setting a seed
 
 Locks the sequence of "random" numbers that follow it, so the same seed always produces the same results.
 {: .pt-subheading }
@@ -48,7 +48,7 @@ print(random.randint(1, 6))
 
 </details>
 
-## Random Selections
+## Random selections
 
 `choice()` picks one item at random from an existing sequence — no need to generate a number and index into the list by hand.
 
@@ -63,7 +63,7 @@ print(random.choice(species))
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Shuffling a List
+### Shuffling a list
 
 Reorders a list randomly, in place.
 {: .pt-subheading }
@@ -91,7 +91,7 @@ print(species)
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Sampling Without Replacement
+### Sampling without replacement
 
 Picks several items at once, all guaranteed distinct.
 {: .pt-subheading }

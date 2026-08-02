@@ -138,7 +138,7 @@ It means the source code is publicly available for anyone to see, modify, and im
 
 </details>
 
-## Step 2: Write and run a Python file
+## Step 2: write and run a Python file
 
 Now that you have Python installed and a code editor picked, you're ready to write actual Python code.
 
@@ -187,7 +187,7 @@ The terminal is a text-based way to navigate your computer's files and run progr
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Step 1: Navigate to the folder that your Python file is in
+### Step 1: navigate to the folder that your Python file is in
 
 The four most common terminal commands to move around.
 {: .pt-subheading }
@@ -227,7 +227,7 @@ $ pwd
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Step 2: Run the Python file
+### Step 2: run the Python file
 
 Use whichever command worked during your install check (`python` or `python3`).
 {: .pt-subheading }

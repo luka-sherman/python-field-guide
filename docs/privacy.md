@@ -1,4 +1,4 @@
-# Privacy Policy
+# Privacy policy
 
 This site uses Google Analytics to understand how visitors use it — which pages are read,
 how people navigate between them, and roughly what devices/browsers they arrive on. That

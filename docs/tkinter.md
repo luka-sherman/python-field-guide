@@ -11,7 +11,7 @@
 | Event loop | The `mainloop()` call that keeps the window open and listening for clicks, keystrokes, and other input until it's closed. |
 | Callback | A function you write that Tkinter calls automatically when something happens, like a button being clicked. |
 
-## Creating a Window
+## Creating a window
 
 Every Tkinter app starts the same way: create a root window, add widgets to it, then hand control over to the event loop with `mainloop()` — nothing appears on screen until that final call.
 
@@ -201,7 +201,7 @@ root.mainloop()
 
 </details>
 
-## Layout Managers
+## Layout managers
 
 A widget doesn't appear on screen until you tell Tkinter where to put it, using one of three geometry managers. Mixing more than one inside the *same* parent widget causes layout bugs, so pick one per container.
 
@@ -301,7 +301,7 @@ root.mainloop()
 
 </details>
 
-## Configuring Widgets
+## Configuring widgets
 
 Every widget has a set of options that control its appearance and behavior — `text`, `width`, `state`, and dozens more depending on the widget type. Set them when you create the widget, or change them afterward with `.configure()` (or the equivalent bracket/dictionary syntax) and read them back with `.cget()`.
 
@@ -314,7 +314,7 @@ label["text"]                            # read it back — "burmese python"
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Reading and Changing Options
+### Reading and changing options
 
 `.configure(option=value)` changes one or more options after a widget already exists.
 {: .pt-subheading }
@@ -348,7 +348,7 @@ root.mainloop()
 
 </details>
 
-## Handling Events
+## Handling events
 
 A GUI sits idle until the user does something — Tkinter reacts to that input through callbacks: functions you write once, and hand to Tkinter to call automatically when the right event happens. Every one of those callbacks runs on the same event loop that keeps the window responsive, so a callback that blocks for a while (a long computation, `time.sleep()`, a network request) freezes the entire interface until it returns — use `root.after()` to schedule work in small chunks instead of blocking outright.
 
@@ -362,7 +362,7 @@ ttk.Button(root, text="Go", command=on_click).pack()
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Command Callbacks
+### Command callbacks
 
 Most interactive widgets accept a `command` argument that runs whenever the widget is activated.
 {: .pt-subheading }
@@ -397,7 +397,7 @@ root.mainloop()
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Binding Events
+### Binding events
 
 `.bind()` attaches a callback to a named event on any widget.
 {: .pt-subheading }
@@ -432,7 +432,7 @@ root.mainloop()
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Virtual Events
+### Virtual events
 
 Tkinter defines **virtual events** — written with double angle brackets — for higher-level things a widget can do.
 {: .pt-subheading }
@@ -478,7 +478,7 @@ ttk.Button(root, text="Identify", style="TButton").pack()
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Customizing a Style
+### Customizing a style
 
 Every `ttk` widget draws itself according to a named style (`TButton`, `TLabel`, and so on by default).
 {: .pt-subheading }
@@ -522,7 +522,7 @@ filedialog.askopenfilename()
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Message Boxes
+### Message boxes
 
 Covers simple alerts and confirmations.
 {: .pt-subheading }
@@ -559,7 +559,7 @@ root.mainloop()
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### File Dialogs
+### File dialogs
 
 Opens the OS's native file picker.
 {: .pt-subheading }
@@ -589,7 +589,7 @@ root.mainloop()
 
 </details>
 
-## Introspecting Widgets
+## Introspecting widgets
 
 Every widget can report details about itself — its size, position, class, or place in the widget hierarchy — through a family of `winfo_*` methods. Useful for debugging a layout, or for writing code that adapts to a widget's actual on-screen size rather than a hardcoded guess.
 
@@ -602,7 +602,7 @@ label.winfo_children()  # direct child widgets, if any
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### winfo Methods
+### winfo methods
 
 `winfo_width()`/`winfo_height()` return a widget's current on-screen size in pixels.
 {: .pt-subheading }
@@ -635,14 +635,14 @@ root.mainloop()
 
 </details>
 
-## Putting It Together
+## Putting it together
 
 A handful of widgets from the table above — `Label`, `Entry`, `Checkbutton`, `Combobox`, `Button` — cover most of what a simple data-entry form needs. This example combines them into one small app: type a species name, toggle whether it's venomous, pick a habitat from a dropdown, then click Submit to display the result.
 
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### A Simple Form
+### A simple form
 
 Each widget stores its value differently, so the `Submit` callback reads each one its own way.
 {: .pt-subheading }
