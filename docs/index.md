@@ -8,7 +8,7 @@ hide:
 
 *Quick field notes for learning Python, with code you can run in place.*
 
-## Getting Started
+## Getting started
 
 The building blocks every other page assumes you already know.
 
@@ -18,11 +18,11 @@ The building blocks every other page assumes you already know.
 
     Every example here runs in the browser — but on your own computer, you'll run a `.py` file from the terminal or an IDE instead.
 
-    [installing Python](running_python.md#step-1-install-python) · [code editors](running_python.md#step-2-pick-a-code-editor) · [terminal](running_python.md#using-the-terminal-optional)
+    [installing Python](running_python.md#step-0-install-python) · [code editors](running_python.md#step-1-pick-a-code-editor) · [terminal](running_python.md#using-the-terminal-optional)
 
 </div>
 
-## Data Types
+## Data types
 
 Programs store information in variables — these are the kinds of values variables can hold.
 
@@ -42,7 +42,7 @@ Programs store information in variables — these are the kinds of values variab
 
 </div>
 
-## Control Flow
+## Control flow
 
 This is how Python decides which lines of code to execute and when, instead of just running each line top to bottom.
 
@@ -62,7 +62,7 @@ This is how Python decides which lines of code to execute and when, instead of j
 
 </div>
 
-## Code Organization and Reuse
+## Code organization and reuse
 
 Package code into reusable units, then bundle that logic with the data it acts on.
 
@@ -82,7 +82,7 @@ Package code into reusable units, then bundle that logic with the data it acts o
 
 </div>
 
-## Standard Libraries
+## Standard libraries
 
 Python is already preloaded with these, and puts the above fundamentals to use on real tasks.
 
@@ -114,7 +114,7 @@ Python is already preloaded with these, and puts the above fundamentals to use o
 
 </div>
 
-## Third-Party Libraries
+## Third-party libraries
 
 These additional Python libraries can be installed on your computer for free.
 
@@ -140,7 +140,7 @@ These additional Python libraries can be installed on your computer for free.
 
 </div>
 
-# Try It Now
+# Try it now
 
 The specimen below is alive: edit it, run it, see what it does.
 

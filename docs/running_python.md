@@ -1,6 +1,6 @@
 # Running Python on your own computer
 
-## Step 0: install Python
+## Step 0: Install Python
 
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
@@ -44,7 +44,7 @@ If it's not already installed, then download Python at the link below depending 
 </details>
 
 
-## Step 1: pick a code editor
+## Step 1: Pick a code editor
 
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
@@ -138,7 +138,7 @@ It means the source code is publicly available for anyone to see, modify, and im
 
 </details>
 
-## Step 2: write and run a Python file
+## Step 2: Write and run a Python file
 
 Now that you have Python installed and a code editor picked, you're ready to write actual Python code.
 
