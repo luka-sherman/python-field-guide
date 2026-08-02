@@ -1,16 +1,25 @@
-Python Field Guide
+# [Python Field Guide](pythonfieldguide.com)
 
-I was trying to find a good all-in-one cheatsheet for highschool python students and couldn't find anything I liked that they would consistently use. I needed:
+## What it is 
+
+Quick cheatsheet for basic Python.
+
+I built this from scratch — it started as a few quick-reference explanations for highschool intro python students working on their first programs, and evolved into a fairly comprehensive site. I couldn't find a resource my students would consistently use that had:
+
+- simple explanations for beginners without technical jargon
+- no advanced topics that intimidate or overwhelm beginners
+- quick-reference code samples, to browse what functions they could apply to solve their problem
+- at-a-glance reminders for students who already knew a concept but needed a refresher on the specifics or syntax
 - quick intuitive navigation
-- was simple enough to understand for beginners, without advanced topics that overwhelmed
-- free 
-- clean minimal UI
+- clean, minimal UI
 
-I went with mkdocs because I needed a lightweight markdown library and liked that this was in python. 
+## Stack 
 
-I implemented pyodide blocks so that users could instantly experiment with each new concept.
+**MkDocs** is a lightweight Markdown library, for bonus points it's written in Python.
 
-When I found myself overriding too much, I switched over to the Material for Mkdocs theme so I could stop reinventing the wheel. 
+**Pyodide** blocks let users execute code in the browser with no download/install to instantly experiment with concepts.
+
+**Material for MkDocs theme** - When I found myself overriding too much of the native theme, I switched over to this so I could stop reinventing the wheel.
 
 ## Running locally
 
