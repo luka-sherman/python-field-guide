@@ -60,7 +60,7 @@ A **code editor** or **IDE** ("Integrated Development Environment") is a text ed
 - **Running code is faster** — click a Run button instead of typing terminal commands every time
 - **Code completion** — the editor suggests function names and variables as you type, saving time and reducing typos
 - **Error detection** — it warns you about common mistakes before you run the code
-- **Debugging** — pause your code mid-run and inspect variables to track down bugs, instead of just reading output after the fact
+- **[Debugging](bugs.md#debugging)** — pause your code mid-run and inspect variables to track down bugs, instead of just reading output after the fact
 
 </details>
 
@@ -82,45 +82,6 @@ Once Python is installed, pick one of the **free** code editors below based on y
 | **PyCharm Community** | <ul><li>Complete Python IDE</li><li>Everything built-in out of the box</li><li>Many panels/menus can feel overwhelming at first</li></ul> | Professionals | JetBrains | [Windows](https://www.jetbrains.com/pycharm/download/) / [macOS](https://www.jetbrains.com/pycharm/download/) / [Linux](https://www.jetbrains.com/pycharm/download/) |
 
 **Note:** Any editor works with any Python library, and your choice doesn't lock you in — you can always switch later.
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-### Debugging
-
-Pause your code mid-run to inspect what's happening and inspect variables —  instead of only reading `print()` outputs at the end. 
-{: .pt-subheading }
-
-</summary>
-
-**Step 0: Before running, set "breakpoints"**
-
-A **breakpoint** marks a specific line where you want the program to pause while debugging, so you can inspect it. 
-
-Click in the margin next to a line number (or press F9 in most editors) to set one. You can set as many breakpoints as you want. To remove it, click the same spot again — the red dot toggles off.
-
-*Note for Thonny users: you don't need to set any breakpoints as Thonny's debugger pauses at every step by default, which makes it great for watching exactly how a program runs for the first time.*
-
-**Step 1: Start running to the first breakpoint**
-
-Look for a "Debug" button (often next to the Run button, sometimes a bug icon) instead of the regular Run button. Your program runs normally until it hits the *first* breakpoint, then pauses there.
-
-**Step 2: When at a breakpoint, use these controls to move through your code**
-
-- **Continue/Resume** (often shown as a ▶ play icon) — runs the program until it hits the *next* breakpoint, or finishes if there are none left. This is how you move between breakpoints. Use this when you're done inspecting the current pause point and want to jump ahead to the next one.
-- **Step Over** — runs the current line and moves to the next one, without entering any [function](functions.md) it calls. Use this when you trust the function works and don't need to see inside it.
-- **Step Into** — if the current line calls a function (a named, reusable block of code — see [Functions](functions.md)), this jumps *inside* that function so you can watch it run line by line — even if there's no breakpoint inside it. Use this when you want to see exactly what a function does.
-- **Step Out** — finishes running the rest of the current function all at once, then pauses again back where that function was called from. Use this when you stepped into a function but have seen enough and want to jump back out.
-- **Inspect variables** — most editors show you the current value of every variable while paused, often the fastest way to find a bug since you can watch exactly when a variable becomes wrong instead of guessing. 
-    - Thonny: shows an always-visible variable inspector panel.
-    - VS Code: shows variables in a debug panel.
-    - IDLE: shows variables in a more basic debugger window.
-    - PyCharm: shows the values of variables in a debug panel or by hovering over the variable in your code.
-- **Stop debugging** — look for a Stop button (often a red square) to end the debug session entirely, instead of stepping or continuing all the way through.
-
-**Where's my output?** Debug mode often shows `print()` output in a separate "Debug Console" or "Debug" panel, rather than the regular output panel you see with a normal run.
 
 </details>
 
@@ -151,6 +112,8 @@ print("Hello, World!")
 3. Click the **Run button** (usually a green play icon or arrow) — most editors save your file automatically when you click Run, so there's no separate save step. The output appears right there in the editor.
 
 That's it! You've written and run your first Python program. From here, you can modify the code, run it again, and work through the rest of this guide to keep building your Python skills.
+
+See red text instead of your expected output? The [Bugs](bugs.md#reading-errors) page covers how to read it.
 
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
