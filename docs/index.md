@@ -160,21 +160,3 @@ These additional Python libraries can be installed on your computer for free.
     [`Image`](pillow.md#the-image) · [`ImageOps`](pillow.md#imageops-module) · [`ImageDraw`](pillow.md#imagedraw-module) · [`ImageFont`](pillow.md#imagefont-module) · [`ImageColor`](pillow.md#imagecolor-module) · [`ImageFilter`](pillow.md#imagefilter-module) · [`ImageEnhance`](pillow.md#imageenhance-module) · [`ImageChops`](pillow.md#imagechops-module) · [`convert()`](pillow.md#format-conversion) · [`ImageSequence`](pillow.md#imagesequence-module)
 
 </div>
-
-# Try it now
-
-The specimen below is alive: edit it, run it, see what it does.
-
-```python
-# Field Journal — Entry #1
-date = "2026-07-23"
-species = "ball python"
-length_ft = 4.5
-venomous = False
-
-print(f"Date: {date}")
-print(f"Species: {species}")
-print(f"Length: {length_ft} ft")
-print(f"Venomous: {venomous}")
-print("Notes: found coiled beneath a rock, unbothered by observation.")
-```
