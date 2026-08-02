@@ -28,7 +28,7 @@ python3 --version   # if it fails try this one
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Download links
+### Download if not
 
 If it's not already installed, then download Python at the link below depending on what kind of computer you have. 
 {: .pt-subheading }
@@ -49,7 +49,7 @@ If it's not already installed, then download Python at the link below depending 
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Why a code editor?
+### Why use a code editor?
 
 A **code editor** or **IDE** ("Integrated Development Environment") is a text editor designed specifically for writing code — it's like Microsoft Word for programming.
 {: .pt-subheading }
@@ -155,25 +155,33 @@ That's it! You've written and run your first Python program. From here, you can 
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Reading errors
+### Rules for naming files
 
-Red text instead of your expected output? Here's how to read it.
+A Python filename uses lowercase letters and numbers seperated by hyphens, with .py as the extension.
 {: .pt-subheading }
 
 ```python-ref
-Traceback (most recent call last):
-  File "hello.py", line 2, in <module>
-NameError: name 'name' is not defined
+my_script.py     # valid
+my-script.py     # invalid — no punctuation other than underscore
+2_my_script.py   # invalid — can't start with a number
+my script.py     # invalid — no spaces
 ```
 
 </summary>
-
-Errors in Python show up as a **traceback** — don't be intimidated by the wall of text. Read it from the **bottom up**:
-
-- The **last line** tells you the type of error and a short description (e.g. `NameError: name 'name' is not defined`) — this is usually the most useful part.
-- The line just above it tells you the **file and line number** where the error happened, so you know exactly where to look in your code.
-
-Fix the issue there, save, and run again. Errors are a normal part of writing code — even experienced programmers see them constantly.
+- **Ends in .py** - this is what tells your application to treat the file as Python code — the Run button, syntax highlighting, and imports all depend on the extension being there.
+- **Only letters, underscores, and numbers** - but it can't start with a number. Standard formatting is to use `snake_case` (all lowercase, separated with underscores). Python is case-sensitive (Species.py and species.py would be two different files).
+- **No hyphens** — even though `my-script.py` will run fine on its own, if you need to later `import my-script` it will be invalid syntax becuse Python reads the hyphen as subtraction.
+- **No spaces** — it will break imports and makes running the file from the terminal require extra quoting.
+- **Don't use a reserved keyword** - There are a handful of "keywords" that are reserved by Python to do specfic things, so they can't be used elsewhere in your code.
+    ```python
+    print("Run this to get a list of all reserved keywords that you can't name a file: ")
+    help("keywords")
+    ```
+- **Don't use a library's name** — naming a file `random.py` or `math.py` in a project makes `import random` elsewhere in that same project import your file instead of Python's actual `random` library, which is a confusing bug to track down.
+    ```python
+    print("Run this to get a list of all reserved library names that you can't name a file: ")
+    help("modules")
+    ```
 
 </details>
 
@@ -187,7 +195,7 @@ The terminal is a text-based way to navigate your computer's files and run progr
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Step 1: navigate to the folder that your Python file is in
+### First, navigate to where your Python file is saved
 
 The four most common terminal commands to move around.
 {: .pt-subheading }
@@ -227,7 +235,7 @@ $ pwd
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Step 2: run the Python file
+### Then, run the Python file
 
 Use whichever command worked during your install check (`python` or `python3`).
 {: .pt-subheading }
