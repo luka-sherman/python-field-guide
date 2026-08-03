@@ -51,14 +51,6 @@ Saving a new variable (we call this "assigning a variable") follows this format:
 
 `[variable name]` **`=`** `[value]`
 
-```python
-species = "burmese python"
-length_ft = 4.5
-
-print(species)
-print(length_ft)
-```
-
 **Try it:** change `"burmese python"` to your own text, or `4.5` to a different number, then run it again — the output will update to match.
 
 Think of a variable as a labeled bucket: the name (`species`) is the label, and the value ("burmese") is whatever's currently inside. Pour in a new value later, and it replaces the old one — the bucket keeps its name, but not its contents.

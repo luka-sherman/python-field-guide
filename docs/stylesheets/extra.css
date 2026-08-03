@@ -368,6 +368,22 @@ input:checked + .md-consent__settings {
   background-color: rgba(163, 63, 63, 0.12);
 }
 
+/* Inline check/x icons (workspace.md's install-check step), colored to
+   match the site's success/danger admonitions rather than left as
+   default-color glyphs. */
+.pt-icon-success,
+.pt-icon-fail {
+  vertical-align: -0.15em;
+}
+
+.pt-icon-success {
+  color: var(--pt-accent);
+}
+
+.pt-icon-fail {
+  color: #a33f3f;
+}
+
 /* Feedback form on about.md, posting to Formspree */
 .pt-feedback-form {
   display: flex;
