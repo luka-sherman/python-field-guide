@@ -13,7 +13,7 @@ The **`csv`** module reads and writes CSV ("comma-separated values") files — a
 
 `csv.writer` wraps an open file and turns each list you pass to `.writerow()` into one comma-separated line.
 
-```python
+```python-ref
 import csv
 
 with open("snakes.csv", "w", newline="") as file:
@@ -25,41 +25,43 @@ with open("snakes.csv", "w", newline="") as file:
 print("wrote snakes.csv")
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+??? tip "Writing multiple rows at once"
+    Takes a list of rows and writes them all in one call — `.writerows()`, instead of looping over `.writerow()` yourself.
 
-### Writing multiple rows at once
-
-Takes a list of rows and writes them all in one call.
-{: .pt-subheading }
-
-```python-ref
-rows = [["ball", 4.5], ["burmese", 12], ["boa", 8]]
-writer.writerows(rows)
-```
-
-</summary>
-
-`.writerows()`, instead of looping over `.writerow()` yourself.
-
-```python
-import csv
-
-rows = [["ball", 4.5], ["burmese", 12], ["boa", 8]]
-
-with open("snakes.csv", "w", newline="") as file:
-    writer = csv.writer(file)
-    writer.writerow(["species", "length_ft"])
+    ```python-ref
+    rows = [["ball", 4.5], ["burmese", 12], ["boa", 8]]
     writer.writerows(rows)
-```
+    ```
 
-</details>
+??? run "Run a writing CSV example"
+    All the examples above, combined into one script:
+
+    ```python
+    import csv
+
+    with open("snakes.csv", "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(["species", "length_ft"])
+        writer.writerow(["ball", 4.5])
+        writer.writerow(["burmese", 12])
+
+    print("wrote snakes.csv")
+
+    import csv
+
+    rows = [["ball", 4.5], ["burmese", 12], ["boa", 8]]
+
+    with open("snakes.csv", "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(["species", "length_ft"])
+        writer.writerows(rows)
+    ```
 
 ## Reading CSV files
 
 `csv.reader` gives back each row as a plain list of strings — including the header row, which is usually skipped over explicitly.
 
-```python
+```python-ref
 import csv
 
 with open("snakes.csv", "w", newline="") as file:
@@ -75,13 +77,9 @@ with open("snakes.csv", newline="") as file:
         print(row)
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Reading rows as dictionaries
 
-Uses the first row as column names automatically, so each row comes back as a `dict`.
-{: .pt-subheading }
+Uses the first row as column names automatically, so each row comes back as a `dict`. You can look up values by column name instead of by position. Every value is still read as a plain string — convert it (e.g. with `float()`) if you need to do math on it.
 
 ```python-ref
 for row in csv.DictReader(file):
@@ -89,22 +87,33 @@ for row in csv.DictReader(file):
     row["length_ft"]    # "4.5" — still a string, not a float
 ```
 
-</summary>
+??? run "Run a reading CSV example"
+    All the examples above, combined into one script:
 
-You can look up values by column name instead of by position. Every value is still read as a plain string — convert it (e.g. with `float()`) if you need to do math on it.
+    ```python
+    import csv
 
-```python
-import csv
+    with open("snakes.csv", "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(["species", "length_ft"])
+        writer.writerow(["ball", 4.5])
+        writer.writerow(["burmese", 12])
 
-with open("snakes.csv", "w", newline="") as file:
-    writer = csv.writer(file)
-    writer.writerow(["species", "length_ft"])
-    writer.writerow(["ball", 4.5])
-    writer.writerow(["burmese", 12])
+    with open("snakes.csv", newline="") as file:
+        reader = csv.reader(file)
+        header = next(reader)
+        for row in reader:
+            print(row)
 
-with open("snakes.csv", newline="") as file:
-    for row in csv.DictReader(file):
-        print(row["species"], float(row["length_ft"]))
-```
+    import csv
 
-</details>
+    with open("snakes.csv", "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(["species", "length_ft"])
+        writer.writerow(["ball", 4.5])
+        writer.writerow(["burmese", 12])
+
+    with open("snakes.csv", newline="") as file:
+        for row in csv.DictReader(file):
+            print(row["species"], float(row["length_ft"]))
+    ```

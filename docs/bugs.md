@@ -8,21 +8,15 @@ An **error** is Python's way of telling you it couldn't do what your code asked 
 
 Errors are part of programming, and will happen constantly. 
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### How to read a traceback
 
 Red text instead of your expected output? Here's how to read it.
-{: .pt-subheading }
 
 ```python-ref
 Traceback (most recent call last):
   File "hello.py", line 2, in <module>
 NameError: name 'name' is not defined
 ```
-
-</summary>
 
 Errors in Python show up as a **traceback** — don't be intimidated by the wall of text. Read it from the **bottom up**:
 
@@ -40,8 +34,6 @@ Traceback (most recent call last):
   File "/usr/lib/python3.11/random.py", line 449, in choice
 IndexError: list index out of range
 ```
-
-</details>
 
 ## Handling errors
 
@@ -65,7 +57,7 @@ except [specific error]:
 
 An **exception** is Python's formal name for the type of error that was raised — `KeyError`, `ValueError`, and so on are all exceptions, and it's the technical term for what `except` actually matches against. Matching `except` to a specific exception type (rather than catching everything) means your program only handles the failure you actually expected, and still crashes loudly on a genuine bug — which is usually what you want while learning.
 
-```python
+```python-ref
 lengths = {"ball python": 4.5, "burmese python": 12}
 
 try:
@@ -77,7 +69,6 @@ except KeyError:
 ### Common exception types
 
 The name in the traceback's last line tells you which of these went wrong.
-{: .pt-subheading }
 
 **Runtime errors** — valid Python that fails only once that specific line actually executes. These are the ones `except` can catch.
 
@@ -100,77 +91,63 @@ The name in the traceback's last line tells you which of these went wrong.
 | `SyntaxError` | The code isn't valid Python at all — a missing colon, mismatched parentheses |
 | `IndentationError` | A specific kind of `SyntaxError` for inconsistent or incorrect indentation |
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+??? tip "Catching multiple exceptions"
+    List several exception types in one `except` to handle them the same way. Separate `except` blocks work too, if each error type needs different handling — Python checks them top to bottom and runs the first one that matches.
 
-### Catching multiple exceptions
+    ```python-ref
+    try:
+        print(lengths[species])
+    except (KeyError, TypeError):
+        print("couldn't look up that species")
+    ```
 
-List several exception types in one `except` to handle them the same way.
-{: .pt-subheading }
+??? tip "else and finally"
+    `else` runs only if `try` succeeded; `finally` always runs, whether it succeeded or not. `else` is a good place for code that should only run after a successful `try`, without risking it accidentally triggering the `except` block itself. `finally` is for cleanup that has to happen either way, like closing a file — it runs even if the `try` block succeeded, failed, or the `except` block itself raised a new error.
 
-```python-ref
-try:
-    print(lengths[species])
-except (KeyError, TypeError):
-    print("couldn't look up that species")
-```
+    ```python-ref
+    try:
+        length = lengths[species]      # attempted first
+    except KeyError:
+        print("no length on record")   # runs only on a KeyError
+    else:
+        print(f"found it: {length} ft")  # runs only if try succeeded
+    finally:
+        print("lookup attempt finished")  # always runs
+    ```
 
-</summary>
+??? run "Run a try/except example"
+    All the examples above, combined into one script:
 
-Separate `except` blocks work too, if each error type needs different handling — Python checks them top to bottom and runs the first one that matches.
+    ```python
+    lengths = {"ball python": 4.5, "burmese python": 12}
 
-```python
-lengths = {"ball python": 4.5, "burmese python": 12}
-species = "reticulated python"
+    try:
+        print(lengths["reticulated python"])
+    except KeyError:
+        print("no length on record for that species")
 
-try:
-    print(lengths[species])
-except KeyError:
-    print("no length on record for that species")
-except TypeError:
-    print("species should be text, not a number")
-```
+    lengths = {"ball python": 4.5, "burmese python": 12}
+    species = "reticulated python"
 
-</details>
+    try:
+        print(lengths[species])
+    except KeyError:
+        print("no length on record for that species")
+    except TypeError:
+        print("species should be text, not a number")
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+    lengths = {"ball python": 4.5, "burmese python": 12}
+    species = "ball python"
 
-### else and finally
-
-`else` runs only if `try` succeeded; `finally` always runs, whether it succeeded or not.
-{: .pt-subheading }
-
-```python-ref
-try:
-    length = lengths[species]      # attempted first
-except KeyError:
-    print("no length on record")   # runs only on a KeyError
-else:
-    print(f"found it: {length} ft")  # runs only if try succeeded
-finally:
-    print("lookup attempt finished")  # always runs
-```
-
-</summary>
-
-`else` is a good place for code that should only run after a successful `try`, without risking it accidentally triggering the `except` block itself. `finally` is for cleanup that has to happen either way, like closing a file — it runs even if the `try` block succeeded, failed, or the `except` block itself raised a new error.
-
-```python
-lengths = {"ball python": 4.5, "burmese python": 12}
-species = "ball python"
-
-try:
-    length = lengths[species]      # attempted first
-except KeyError:
-    print("no length on record")   # runs only if the try block raised a KeyError
-else:
-    print(f"found it: {length} ft")  # runs only if the try block succeeded
-finally:
-    print("lookup attempt finished")  # always runs, no matter what happened above
-```
-
-</details>
+    try:
+        length = lengths[species]      # attempted first
+    except KeyError:
+        print("no length on record")   # runs only if the try block raised a KeyError
+    else:
+        print(f"found it: {length} ft")  # runs only if the try block succeeded
+    finally:
+        print("lookup attempt finished")  # always runs, no matter what happened above
+    ```
 
 ## Using a Debugger
 
@@ -201,21 +178,12 @@ When it gets to a breakpoint it will pause, and you can use these controls to mo
 | **Continue/Resume** (▶) | Runs until the next breakpoint, or finishes if there are none left | You're done inspecting the current pause point and want to jump ahead |
 | **Stop debugging** | Ends the debug session entirely | You're done, instead of stepping or continuing all the way through |
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+??? tip "Where debugging controls are in each editor"
+    Where to find the debugger, and what it calls things, varies by editor.
 
-### Where Debugging controls are in each editor
-
-Where to find the debugger, and what it calls things, varies by editor.
-{: .pt-subheading }
-
-</summary>
-
-| Editor | Debug button | Where the step controls are | Stop button | Where output shows | Inspecting variables | Notes |
-|--------|---------------|-------------------------------|--------------|---------------------|------------------------|-------|
-| **Thonny** | Bug icon in the main toolbar | Inline in the main toolbar | Same toolbar | Same Shell panel as a normal run | Always-visible Variables panel | You don't need to set any breakpoints — Thonny's debugger pauses at every step by default, which is great for watching exactly how a program runs the first time |
-| **VS Code** | "Run and Debug" in the sidebar, or the dropdown next to the Run button | A floating toolbar | Red square, same floating toolbar | Separate "Debug Console" panel | Variables section in the Run and Debug sidebar | |
-| **IDLE** | Debug menu in the Shell window (turn on before running) | A separate popup window | "Quit" button, same popup window | Same Shell window as a normal run | Same popup Debug Control window | Most basic of the four |
-| **PyCharm** | Bug icon next to the Run button | The bottom Debug tool window | Red square, same tool window | Same "Debug" tool window | Same tool window, or hover over a variable in the editor | |
-
-</details>
+    | Editor | Debug button | Where the step controls are | Stop button | Where output shows | Inspecting variables | Notes |
+    |--------|---------------|-------------------------------|--------------|---------------------|------------------------|-------|
+    | **Thonny** | Bug icon in the main toolbar | Inline in the main toolbar | Same toolbar | Same Shell panel as a normal run | Always-visible Variables panel | You don't need to set any breakpoints — Thonny's debugger pauses at every step by default, which is great for watching exactly how a program runs the first time |
+    | **VS Code** | "Run and Debug" in the sidebar, or the dropdown next to the Run button | A floating toolbar | Red square, same floating toolbar | Separate "Debug Console" panel | Variables section in the Run and Debug sidebar | |
+    | **IDLE** | Debug menu in the Shell window (turn on before running) | A separate popup window | "Quit" button, same popup window | Same Shell window as a normal run | Same popup Debug Control window | Most basic of the four |
+    | **PyCharm** | Bug icon next to the Run button | The bottom Debug tool window | Red square, same tool window | Same "Debug" tool window | Same tool window, or hover over a variable in the editor | |

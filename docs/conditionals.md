@@ -17,11 +17,11 @@ A chain of `if`, `elif`, and `else` checks a series of conditions in order, runn
 
 Only `if` is required; a chain can have any number of `elif`s (including none) and one optional `else`.
 
-```python
+```python-ref
 length = 12
 
 if length > 10:
-    print("that's a big snake")
+    print("that's a big snake")    # runs — 12 > 10, exits the chain here
 elif length > 7:
     print("that's a medium snake")
 elif length > 4:
@@ -30,52 +30,40 @@ else:
     print("that's a tiny snake")
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+??? tip "See the path"
+    See the decision path the above code will take in the form of a flow chart diagram.
 
-### See the path
-See the decision path the above code will take in the form of a flow chart diagram.
-{: .pt-subheading }
+    ```mermaid
+    flowchart TD
+        A{"`if length > 10:`"} -->|True| B["`print('big snake')`"]
+        A -->|False| C{"`elif length > 7:`"}
+        C -->|True| D["`print('medium snake')`"]
+        C -->|False| E{"`elif length > 4:`"}
+        E -->|True| F["`print('small snake')`"]
+        E -->|False| G["`else:`"]
+        G --> H["`print('tiny snake')`"]
 
-</summary>
+        B -.-> EXIT(["`done, exits the chain`"])
+        D -.->EXIT
+        F -.->EXIT
+        H -.->EXIT
 
-```mermaid
-flowchart TD
-    A{"`if length > 10:`"} -->|True| B["`print('big snake')`"]
-    A -->|False| C{"`elif length > 7:`"}
-    C -->|True| D["`print('medium snake')`"]
-    C -->|False| E{"`elif length > 4:`"}
-    E -->|True| F["`print('small snake')`"]
-    E -->|False| G["`else:`"]
-    G --> H["`print('tiny snake')`"]
-
-    B -.-> EXIT(["`done, exits the chain`"])
-    D -.->EXIT
-    F -.->EXIT
-    H -.->EXIT
-
-    linkStyle 0 stroke:#3f6b52,stroke-width:2px
-    linkStyle 1 stroke:#a33f3f,stroke-width:2px
-    linkStyle 2 stroke:#3f6b52,stroke-width:2px
-    linkStyle 3 stroke:#a33f3f,stroke-width:2px
-    linkStyle 4 stroke:#3f6b52,stroke-width:2px
-    linkStyle 5 stroke:#a33f3f,stroke-width:2px
-    linkStyle 6 stroke:#3f6b52,stroke-width:2px
-    linkStyle 7 stroke:#3f6b52,stroke-width:2px
-    linkStyle 8 stroke:#3f6b52,stroke-width:2px
-    linkStyle 9 stroke:#3f6b52,stroke-width:2px
-    linkStyle 10 stroke:#3f6b52,stroke-width:2px
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+        linkStyle 0 stroke:#3f6b52,stroke-width:2px
+        linkStyle 1 stroke:#a33f3f,stroke-width:2px
+        linkStyle 2 stroke:#3f6b52,stroke-width:2px
+        linkStyle 3 stroke:#a33f3f,stroke-width:2px
+        linkStyle 4 stroke:#3f6b52,stroke-width:2px
+        linkStyle 5 stroke:#a33f3f,stroke-width:2px
+        linkStyle 6 stroke:#3f6b52,stroke-width:2px
+        linkStyle 7 stroke:#3f6b52,stroke-width:2px
+        linkStyle 8 stroke:#3f6b52,stroke-width:2px
+        linkStyle 9 stroke:#3f6b52,stroke-width:2px
+        linkStyle 10 stroke:#3f6b52,stroke-width:2px
+    ```
 
 ### Boolean expressions
 
 A boolean expression is needed for every `if`/`elif`.
-{: .pt-subheading }
 
 ```python-ref
 if [boolean expression]:
@@ -84,14 +72,12 @@ elif [boolean expression]:
     [indented code block that runs if above expression is True and others above were False]
 ```
 
-</summary>
-
 A **boolean expression** is a boolean value (`True` or `False`) or anything that produces one, and is treated as the **condition** that must be `True` in order to run a block of code.
 
 A comparison looks different depending on the type of value being checked, as shown below. All of these comparisons result in a `True` or `False` boolean expression. 
 
 **integer and float:** `==`, `!=`, `>`, `<`, `>=`, `<=`
-```python
+```python-ref
 length = 12
 
 if length == 12:             # equal to
@@ -114,7 +100,7 @@ if length <= 12.5:           # less than or equal to
 ```
 
 **strings:** `==`, `!=`, `in`, `not in`, `>`, `<`
-```python
+```python-ref
 name = "burmese python"
 
 if name == "burmese python":   # equal to
@@ -134,7 +120,7 @@ if name > "ball python":       # alphabetical comparison
 ```
 
 **boolean:** `==`, `is`, or just the value itself
-```python
+```python-ref
 venomous = False
 
 if venomous:                   # is it True
@@ -145,7 +131,7 @@ if not venomous:               # is it False
 ```
 
 **None:** `is`, `is not`
-```python
+```python-ref
 age = None
 
 if age is None:                # is it None
@@ -156,7 +142,7 @@ if age is not None:            # is it anything else
 ```
 
 **list & tuple:** `in`, `not in`, `==`, `!=`, or you can compare a specific item
-```python
+```python-ref
 species = ["ball", "burmese", "boa"]
 other_species = ["ball", "burmese", "boa"]
 
@@ -169,7 +155,7 @@ if "anaconda" not in species:  # is the value missing from the list
 if species == other_species:   # is it the same contents, in the same order
     print("both lists match")
 
-if "ball" == species[0]:       # compare a sepcific item
+if "ball" == species[0]:       # compare a specific item
     print("ball python is the first item")
 
 snake = ("ball", "5ft", "not venomous")   # a tuple works the same way
@@ -182,7 +168,7 @@ if snake == ("ball", "5ft", "not venomous"):
 ```
 
 **dict:** `in`, `not in` (checks keys), or you can compare a specific value 
-```python
+```python-ref
 snake = {"species": "ball", "length": 3, "venomous": False}
 
 if "venomous" in snake:        # is it a key
@@ -196,7 +182,7 @@ if snake["length"] > 2:        # compare a specific value
 ```
 
 **same contents:** `==`, `!=`
-```python
+```python-ref
 snake = ["ball", "burmese"]
 other_snake = ["ball", "burmese"]   # separate list, but equal contents
 
@@ -208,7 +194,7 @@ if snake != ["ball"]:         # different contents
 ```
 
 **is it comparing the exact same thing:** `is`, `is not`
-```python
+```python-ref
 snake = ["ball", "burmese"]
 
 same_snake = snake                  # another name for `snake`
@@ -216,19 +202,13 @@ if snake is same_snake:             # same_snake and snake point to the exact sa
     print("this really is the same list")
 
 other_snake = ["ball", "burmese"]   # separate list, but equal contents
-if snake is not other_snake:        # its a different list, even though contents match
+if snake is not other_snake:        # it's a different list, even though contents match
     print("but not the same list")
 ```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
 
 ### `elif`
 
 Checks another condition, but only if the ones above it were False.
-{: .pt-subheading }
 
 ```python-ref
 length = 12
@@ -240,41 +220,11 @@ elif length > 4:
     print("medium")
 ```
 
-</summary>
-
 `elif` is short for "else if," and if the initial `if` statement was `False` it offers an additional chance for a condition to be checked. They are ordered so that they only run if every condition above it was `False`. Python runs the first branch whose condition is `True` and skips the rest, no matter how many `elif`s follow. 
-
-```python
-length = 12
-if length > 15:
-    print("giant")
-elif length > 8:
-    print("large")
-elif length > 4:
-    print("medium")
-else:
-    print("small")
-
-length = 3
-if length > 15:
-    print("giant")
-elif length > 8:
-    print("large")
-elif length > 4:
-    print("medium")
-else:
-    print("small")
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
 
 ### `else`
 
 The catch-all — it runs when nothing above it matched. It always comes last and doesn't have a condition.
-{: .pt-subheading }
 
 ```python-ref
 venomous = False
@@ -284,29 +234,11 @@ else:
     print("safe to handle")    # runs — venomous is False
 ```
 
-</summary>
-
 A conditional chain can have `elif` without `else`, but `else` (if present) must always be the final branch.
-
-```python
-venomous = False
-
-if venomous:
-    print("handle with care")
-else:
-    print("safe to handle")
-```
-
-</details>
-
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
 
 ### Logical operators
 
 Logical operators `not`, `and`, `or` let a single `if` combine boolean expressions to create more complex conditions.
-{: .pt-subheading }
 
 ```python-ref
 not venomous               # not False → True
@@ -315,8 +247,6 @@ length > 10 and venomous   # True and False → False
 
 length > 10 or venomous    # True or False → True
 ```
-
-</summary>
 
 A and B here are [boolean expressions](#boolean-expressions).
 
@@ -332,117 +262,222 @@ A and B here are [boolean expressions](#boolean-expressions).
 | <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>    | <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>    |
 | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  |
 
+**Order of operations:** When several logical operators appear together, Python evaluates `not` first, then `and`, then `or`. Even when parentheses aren't required, they often make the condition much easier to read.
 
-**Order of Operations:** When several logical operators appear together, Python evaluates `not` first, then `and`, then `or`. Even when parentheses aren't required, they often make the condition much easier to read.
+??? tip "Nested if"
+    Checks a second condition only after the first is `True`. An `if` can contain another `if`, checked only once the outer condition is already `True` — each level of nesting adds another decision. If both conditions are simple, combining them with [`and`](#logical-operators) is usually clearer than nesting.
 
-```python
-length = 12
-venomous = False
+    ```python-ref
+    length = 12
+    venomous = False
+    if length > 10:
+        if venomous:
+            print("big and dangerous")
+        else:
+            print("big but harmless")    # runs
+    ```
 
-if length > 10 and venomous:
-    print("big and dangerous")
-if length > 10 or venomous:
-    print("worth a closer look")
-if not venomous:
-    print("safe to handle")
+??? tip "One-line if"
+    Simple checks can be written in one line. For a single statement, the body can go right on the same line as the condition. Save this for short, simple conditions — a normal multi-line `if` reads more clearly for anything more involved.
 
-if (length > 10 and not venomous) or length > 20:
-    print("worth a closer look")
-```
+    The `if`-`else` version is a single expression, not a statement — it evaluates to one value or the other, so it's most useful for a quick assignment or a function argument, not as a stand-in for a full `if` block. `value_if_true if condition else value_if_false` reads almost like the English sentence it describes.
 
-</details>
+    ```python-ref
+    if venomous: print("careful")    # single-line if — the colon is still required
+    "careful" if venomous else "safe"    # "careful" — a compact if/else that evaluates to a value
+    ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+??? tip "pass placeholder"
+    Temporarily fill an empty block when you're not ready to write the inside code yet. Python doesn't allow an empty block after a colon. `pass` does nothing, but acts as a placeholder until you're ready to add code so that the empty block won't cause a syntax error in the meantime. 
 
-### Nested `if`
-
-Checks a second condition only after the first is `True`.
-{: .pt-subheading }
-
-```python-ref
-length = 12
-venomous = False
-if length > 10:
+    ```python-ref
     if venomous:
-        print("big and dangerous")
+        pass    # placeholder — does nothing, but prevents a syntax error
+    ```
+
+??? run "Run an if/elif/else example"
+    All the examples above, combined into one script:
+
+    ```python
+    length = 12
+
+    if length > 10:
+        print("that's a big snake")
+    elif length > 7:
+        print("that's a medium snake")
+    elif length > 4:
+        print("that's a small snake")
     else:
-        print("big but harmless")    # runs
-```
+        print("that's a tiny snake")
 
-</summary>
+    length = 12
 
-An `if` can contain another `if`, checked only once the outer condition is already `True` — Each level of nesting adds another decision. If both conditions are simple, combining them with [`and`](#logical-operators) is usually clearer than nesting.
+    if length == 12:             # equal to
+        print("exactly 12 ft")
 
-```python
-length = 12
-venomous = False
+    if length != 4:              # not equal
+        print("not 4 ft")
 
-if length > 10:
+    if length > 10:              # greater than
+        print("long snake")
+
+    if length < 20:              # less than
+        print("under 20 ft")
+
+    if length >= 12:             # greater than or equal to
+        print("at least 12 ft")
+
+    if length <= 12.5:           # less than or equal to
+        print("12.5 ft or shorter")
+
+    name = "burmese python"
+
+    if name == "burmese python":   # equal to
+        print("it's a burmese")
+
+    if name != "ball python":      # not equal
+        print("not a ball python")
+
+    if "python" in name:           # is it a substring
+        print("name contains 'python'")
+
+    if "anaconda" not in name:     # is it not a substring
+        print("name doesn't mention anaconda")
+
+    if name > "ball python":       # alphabetical comparison
+        print("comes after 'ball python' alphabetically")
+
+    venomous = False
+
+    if venomous:                   # is it True
+        print("handle with care")
+
+    if not venomous:               # is it False
+        print("safe to handle")
+
+    age = None
+
+    if age is None:                # is it None
+        print("age not recorded")
+
+    if age is not None:            # is it anything else
+        print("age was recorded")
+
+    species = ["ball", "burmese", "boa"]
+    other_species = ["ball", "burmese", "boa"]
+
+    if "ball" in species:          # is the value in the list
+        print("ball python is in the list")
+
+    if "anaconda" not in species:  # is the value missing from the list
+        print("anaconda isn't in the list")
+
+    if species == other_species:   # is it the same contents, in the same order
+        print("both lists match")
+
+    if "ball" == species[0]:       # compare a specific item
+        print("ball python is the first item")
+
+    snake = ("ball", "5ft", "not venomous")   # a tuple works the same way
+
+    if "ball" in snake:
+        print("species ball is in the tuple")
+
+    if snake == ("ball", "5ft", "not venomous"):
+        print("tuples match")
+
+    snake = {"species": "ball", "length": 3, "venomous": False}
+
+    if "venomous" in snake:        # is it a key
+        print("snake dict tracks venomous status")
+
+    if "habitat" not in snake:     # is it not a key
+        print("snake dict has no habitat key")
+
+    if snake["length"] > 2:        # compare a specific value
+        print("snake in dict is over 2 ft")
+
+    snake = ["ball", "burmese"]
+    other_snake = ["ball", "burmese"]   # separate list, but equal contents
+
+    if snake == other_snake:      # do they contain the same items?
+        print("equal contents")
+
+    if snake != ["ball"]:         # different contents
+        print("not equal to a single-item list")
+
+    snake = ["ball", "burmese"]
+
+    same_snake = snake                  # another name for `snake`
+    if snake is same_snake:             # same_snake and snake point to the exact same list
+        print("this really is the same list")
+
+    other_snake = ["ball", "burmese"]   # separate list, but equal contents
+    if snake is not other_snake:        # it's a different list, even though contents match
+        print("but not the same list")
+
+    length = 12
+    if length > 15:
+        print("giant")
+    elif length > 8:
+        print("large")
+    elif length > 4:
+        print("medium")
+    else:
+        print("small")
+
+    length = 3
+    if length > 15:
+        print("giant")
+    elif length > 8:
+        print("large")
+    elif length > 4:
+        print("medium")
+    else:
+        print("small")
+
+    venomous = False
+
     if venomous:
-        print("big and dangerous")
+        print("handle with care")
     else:
-        print("big but harmless")
-```
+        print("safe to handle")
 
-</details>
+    length = 12
+    venomous = False
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+    if length > 10 and venomous:
+        print("big and dangerous")
+    if length > 10 or venomous:
+        print("worth a closer look")
+    if not venomous:
+        print("safe to handle")
 
-### One-line `if`
+    if (length > 10 and not venomous) or length > 20:
+        print("worth a closer look")
 
-Simple checks and be written in one line.
-{: .pt-subheading }
+    length = 12
+    venomous = False
 
-```python-ref
-if venomous: print("careful")    # single-line if — the colon is still required
-"careful" if venomous else "safe"    # "careful" — a compact if/else that evaluates to a value
-```
+    if length > 10:
+        if venomous:
+            print("big and dangerous")
+        else:
+            print("big but harmless")
 
-</summary>
+    venomous = True
+    if venomous: print("careful")
 
-For a single statement, the body can go right on the same line as the condition. Save this for short, simple conditions — a normal multi-line `if` reads more clearly for anything more involved.
+    status = "careful" if venomous else "safe"
+    print(status)
 
-The `if`-`else` version is a single expression, not a statement — it evaluates to one value or the other, so it's most useful for a quick assignment or a function argument, not as a stand-in for a full `if` block. `value_if_true if condition else value_if_false` reads almost like the English sentence it describes.
+    venomous = True
 
-```python
-venomous = True
-if venomous: print("careful")
+    if venomous:
+        pass
 
-status = "careful" if venomous else "safe"
-print(status)
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-### `pass` placeholder
-
-Temporarily fill an empty block when you're not ready to write the inside code yet.
-{: .pt-subheading }
-
-```python-ref
-if venomous:
-    pass    # placeholder — does nothing, but prevents a syntax error
-```
-
-</summary>
-
-Python doesn't allow an empty block after a colon. `pass` does nothing, but acts as a placeholder until you're ready to add code so that the empty block won't cause a syntax error in the meantime. 
-
-```python
-venomous = True
-
-if venomous:
-    pass
-
-print("checked venomous status, no action taken yet")
-```
-
-</details>
+    print("checked venomous status, no action taken yet")
+    ```
 
 ## Match / case
 
@@ -450,12 +485,12 @@ A `match` statement compares one value against several `case` options and runs t
 
 Both examples below do the same thing, but `match` is often easier to read than a long `if/elif` sequence when checking one value against many possibilities.
 
-```python
+```python-ref
 species = "ball"
 
 # if/elif chain
 if species == "ball":
-    print("small constrictor")
+    print("small constrictor")    # runs
 elif species == "burmese":
     print("large constrictor")
 else:
@@ -464,112 +499,64 @@ else:
 # the same logic as a match statement
 match species:
     case "ball":
-        print("small constrictor")
+        print("small constrictor")    # runs
     case "burmese":
         print("large constrictor")
     case _:
         print("unknown species")
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+??? tip "See the path"
+    See the decision path the above code will take in the form of a flow chart diagram.
 
-### See the path
-See the decision path the above code will take in the form of a flow chart diagram.
-{: .pt-subheading }
+    ```mermaid
+    flowchart TD
+        START["`match species:`"] --> A{"`case 'ball':`"}
+        A -->|match| B["`print('small constrictor')`"]
+        A -->|no match| C{"`case 'burmese':`"}
+        C -->|match| D["`print('large constrictor')`"]
+        C -->|no match| E["`case _:`"]
+        E --> F["`print('unknown species')`"]
 
-</summary>
+        B -.-> EXIT(["`done, exits the chain`"])
+        D -.->EXIT
+        F -.->EXIT
 
-```mermaid
-flowchart TD
-    START["`match species:`"] --> A{"`case 'ball':`"}
-    A -->|match| B["`print('small constrictor')`"]
-    A -->|no match| C{"`case 'burmese':`"}
-    C -->|match| D["`print('large constrictor')`"]
-    C -->|no match| E["`case _:`"]
-    E --> F["`print('unknown species')`"]
+        linkStyle 1 stroke:#3f6b52,stroke-width:2px
+        linkStyle 2 stroke:#a33f3f,stroke-width:2px
+        linkStyle 3 stroke:#3f6b52,stroke-width:2px
+        linkStyle 4 stroke:#a33f3f,stroke-width:2px
+        linkStyle 5 stroke:#3f6b52,stroke-width:2px
+        linkStyle 6 stroke:#3f6b52,stroke-width:2px
+        linkStyle 7 stroke:#3f6b52,stroke-width:2px
+        linkStyle 8 stroke:#3f6b52,stroke-width:2px
+    ```
 
-    B -.-> EXIT(["`done, exits the chain`"])
-    D -.->EXIT
-    F -.->EXIT
+??? tip "Matching an int"
+    A `case` can compare any type of value, not just strings.
 
-    linkStyle 1 stroke:#3f6b52,stroke-width:2px
-    linkStyle 2 stroke:#a33f3f,stroke-width:2px
-    linkStyle 3 stroke:#3f6b52,stroke-width:2px
-    linkStyle 4 stroke:#a33f3f,stroke-width:2px
-    linkStyle 5 stroke:#3f6b52,stroke-width:2px
-    linkStyle 6 stroke:#3f6b52,stroke-width:2px
-    linkStyle 7 stroke:#3f6b52,stroke-width:2px
-    linkStyle 8 stroke:#3f6b52,stroke-width:2px
-```
+    ```python-ref
+    match length:
+        case 3:
+            print("hatchling size")
+        case _:
+            print("not a hatchling")
+    ```
 
-</details>
+??? tip "Match multiple values"
+    Lets one `case` match several possible values using `|`, so you don't need a separate `case` for each one.
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-### Matching an `int`
-
-A `case` can compare any type of value, not just strings.
-{: .pt-subheading }
-
-```python-ref
-match length:
-    case 3:
-        print("hatchling size")
-    case _:
-        print("not a hatchling")
-```
-
-</summary>
-
-```python
-length = 3
-
-match length:
-    case 3:
-        print("hatchling size")
-    case _:
-        print("not a hatchling")
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-### Match multiple values `|`
-
-Lets one `case` match several possible values, so you don't need a separate `case` for each one.
-{: .pt-subheading }
-
-```python-ref
-match species:
-    case "ball" | "corn":
-        print("small species")     # runs — species is "ball"
-    case _:
-        print("other")
-```
-
-</summary>
-
-```python
-species = "ball"
-
-match species:
-    case "ball" | "corn":
-        print("small species")
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+    ```python-ref
+    match species:
+        case "ball" | "corn":
+            print("small species")     # runs — species is "ball"
+        case _:
+            print("other")
+    ```
 
 ### Default value
 
 Runs a block of code if no `case` matched — either discarding the value with `_`, or capturing it into a variable.
-{: .pt-subheading }
 
 ```python-ref
 match species:
@@ -585,47 +572,11 @@ match species:
         print(f"{n} is not a burmese")  # stores the value as new variable n
 ```
 
-</summary>
-
-If you want the code to still run a block of code even if no specific `case` matched, there are two ways to add a default value at the end that will match anything. 
-
-A default value goes last. Without one, a value matching no cases would not run any block of code. 
-
-
-**Option 1:  Unsaved default value**, `_` throws the matched value away
-
-    ```python
-    species = "ball"
-
-    match species:
-        case "anaconda":
-            print("giant")
-        case _:
-            print("not an anaconda")
-    ```
-
-**Option 2: Saved default value**, Giving it a general variable name saves it, so the block can use it
-
-
-    ```python
-    species = "ball"
-
-    match species:
-        case "anaconda":
-            print("giant")
-        case n:                    # any variable name works here, not just n
-            print(f"{n} is not an anaconda or burmese")
-    ```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+If you want the code to still run a block of code even if no specific `case` matched, there are two ways to add a default value at the end that will match anything. A default value goes last — without one, a value matching no cases would not run any block of code. **Option 1** (`_`) throws the matched value away; **Option 2** (giving it a variable name, like `n`) saves it so the block can use it.
 
 ### Unpacking a tuple
 
 A `case` can pull a tuple apart into named pieces *while also* checking its shape or specific values.
-{: .pt-subheading }
 
 ```python-ref
 snake = (12, "ball")
@@ -640,58 +591,93 @@ match snake:
         print("invalid format")
 ```
 
-</summary>
+A `match` can pick a different `case` depending on the tuple's length or the value in a specific position, while *still* unpacking the rest into names — all in one step, as shown above. Compare with regular assignment (`length, species = snake`), which always unpacks the same way, would crash on a 1- or 3-item tuple, and can't pick a different case based on species.
 
-A `match` can pick a different `case` depending on the tuple's length or the value in a specific position, while *still* unpacking the rest into names — all in one step, as shown below.
+??? tip "case + if"
+    Only run the block of code if there's a `case` match *and* the `if` condition is also `True`. Adding `if [condition]` after a pattern turns it into a guard — the branch only runs if the pattern matches *and* the condition is `True`. If the guard is `False`, Python moves on to the next `case` even though the pattern itself matched.
 
-```python
-snake = (12, "ball")
+    ```python-ref
+    length = 12
+    match length:
+        case n if n > 10:
+            print("big")     # runs — 12 > 10
+        case n:
+            print("small")
+    ```
 
-length, species = snake   # regular assignment — always unpacks the same way,
-print(species, length)    # would crash on a 1- or 3-item tuple, and can't pick a different case based on species
+??? run "Run a match/case example"
+    All the examples above, combined into one script:
 
-match snake:
-    case (length, "ball"):                  # 2 items, second is 'ball'
-        print(f"a {length} ft ball python")
-    case (length, species):                 # 2 items, any other species
-        print(f"a {length} ft {species}")
-    case (length,):                         # 1 item — comma makes this a 1-tuple pattern
-        print(f"just a length: {length}")
-    case _:                                 # 0 items, or more than 2
-        print("0 items, or more than 2")
-```
+    ```python
+    species = "ball"
 
-</details>
+    # if/elif chain
+    if species == "ball":
+        print("small constrictor")
+    elif species == "burmese":
+        print("large constrictor")
+    else:
+        print("unknown species")
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+    # the same logic as a match statement
+    match species:
+        case "ball":
+            print("small constrictor")
+        case "burmese":
+            print("large constrictor")
+        case _:
+            print("unknown species")
 
-### `case` + `if`
+    length = 3
 
-Only run the block of code if there's a `case` match *and* the `if` condition is also `True`.
-{: .pt-subheading }
+    match length:
+        case 3:
+            print("hatchling size")
+        case _:
+            print("not a hatchling")
 
-```python-ref
-length = 12
-match length:
-    case n if n > 10:
-        print("big")     # runs — 12 > 10
-    case n:
-        print("small")
-```
+    species = "ball"
 
-</summary>
+    match species:
+        case "ball" | "corn":
+            print("small species")
 
-Adding `if [condition]` after a pattern turns it into a guard — the branch only runs if the pattern matches *and* the condition is `True`. If the guard is `False`, Python moves on to the next `case` even though the pattern itself matched.
+    species = "ball"
 
-```python
-length = 12
+    match species:
+        case "anaconda":
+            print("giant")
+        case _:
+            print("not an anaconda")
 
-match length:
-    case n if n > 10:
-        print("big")
-    case n:
-        print("small")
-```
+    species = "ball"
 
-</details>
+    match species:
+        case "anaconda":
+            print("giant")
+        case n:                    # any variable name works here, not just n
+            print(f"{n} is not an anaconda or burmese")
+
+    snake = (12, "ball")
+
+    length, species = snake   # regular assignment — always unpacks the same way,
+    print(species, length)    # would crash on a 1- or 3-item tuple, and can't pick a different case based on species
+
+    match snake:
+        case (length, "ball"):                  # 2 items, second is 'ball'
+            print(f"a {length} ft ball python")
+        case (length, species):                 # 2 items, any other species
+            print(f"a {length} ft {species}")
+        case (length,):                         # 1 item — comma makes this a 1-tuple pattern
+            print(f"just a length: {length}")
+        case _:                                 # 0 items, or more than 2
+            print("0 items, or more than 2")
+
+    length = 12
+
+    match length:
+        case n if n > 10:
+            print("big")
+        case n:
+            print("small")
+    ```

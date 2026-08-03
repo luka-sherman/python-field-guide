@@ -34,13 +34,9 @@ print(response.status_code)   # 200
 print(response.text)          # '{"userId": 1, "id": 1, "title": "...", "body": "..."}'
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Checking the status code
 
-`.status_code` tells you whether the request actually succeeded before you try to use the data.
-{: .pt-subheading }
+`.status_code` tells you whether the request actually succeeded before you try to use the data. The most common codes: `200` (success), `404` (that endpoint/resource doesn't exist), `401`/`403` (missing or invalid permission), `500` (the server itself failed). `.raise_for_status()` is a shortcut that raises an exception automatically for any failing code, instead of checking `.status_code` by hand every time.
 
 ```python-ref
 response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
@@ -50,10 +46,6 @@ else:
     print(f"request failed: {response.status_code}")
 ```
 
-</summary>
-
-The most common codes: `200` (success), `404` (that endpoint/resource doesn't exist), `401`/`403` (missing or invalid permission), `500` (the server itself failed). `.raise_for_status()` is a shortcut that raises an exception automatically for any failing code, instead of checking `.status_code` by hand every time.
-
 ```python-ref
 import requests
 
@@ -62,25 +54,15 @@ response.raise_for_status()   # does nothing on 200, raises on a failing code
 print("request succeeded")
 ```
 
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Parsing JSON
 
-`.json()` converts a JSON response body directly into a Python `dict` or `list`.
-{: .pt-subheading }
+`.json()` converts a JSON response body directly into a Python `dict` or `list`. Most web APIs send their data back as JSON — text formatted so it maps directly onto Python's own `dict`/`list` structures, which is why `.json()` needs no extra parsing step. Once converted, the result works exactly like any other [dict](collections.md#dictionaries) or [list](collections.md#lists) you'd build by hand.
 
 ```python-ref
 response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
 post = response.json()
 print(post["title"])   # the post's title, as a plain Python dict lookup
 ```
-
-</summary>
-
-Most web APIs send their data back as JSON — text formatted so it maps directly onto Python's own `dict`/`list` structures, which is why `.json()` needs no extra parsing step. Once converted, the result works exactly like any other [dict](collections.md#dictionaries) or [list](collections.md#lists) you'd build by hand.
 
 ```python-ref
 import requests
@@ -93,15 +75,9 @@ print(post["title"])
 print(post["body"])
 ```
 
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Query parameters
 
-Pass a `params` dict instead of hand-building the URL's `?key=value` text yourself.
-{: .pt-subheading }
+Pass a `params` dict instead of hand-building the URL's `?key=value` text yourself. `requests` builds the query string for you — including escaping special characters correctly — so `params={"postId": 1}` is both safer and easier to read than string-formatting the URL by hand.
 
 ```python-ref
 response = requests.get(
@@ -110,10 +86,6 @@ response = requests.get(
 )
 # same as requesting .../comments?postId=1
 ```
-
-</summary>
-
-`requests` builds the query string for you — including escaping special characters correctly — so `params={"postId": 1}` is both safer and easier to read than string-formatting the URL by hand.
 
 ```python-ref
 import requests
@@ -125,8 +97,6 @@ response = requests.get(
 comments = response.json()
 print(len(comments))
 ```
-
-</details>
 
 ## Handling request errors
 

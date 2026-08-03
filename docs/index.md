@@ -6,45 +6,29 @@ hide:
 
 # Python Field Guide
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+??? question "Why should I learn how to code, if AI can do it for me?"
+    Now that anyone can instantly generate working code with an AI prompt, it raises a fair question.
 
-### Why should I learn how to code, if AI can do it for me?
+    **Learning happens through productive struggle.** The friction of working something out yourself, instead of being handed the answer, is what builds understanding (sometimes called a ["desirable difficulty"](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf)). If you skip that struggle, you won't develop the knowledge to solve the problem again, adapt the answer, or recognize when it's wrong.
 
-</summary>
+    **Programming fundamentals make AI more useful, not less.** Variables, loops, conditionals, functions, etc. are the small, reusable concepts that every program is built from. Once you understand these building blocks, you can read code you didn't write, spot mistakes, understand *why* a solution works, and communicate your problem to AI more effectively.
 
-Now that anyone can instantly generate working code with an AI prompt, it raises a fair question.
+    **You need to be able to verify what AI writes.** AI can generate code that looks correct while being subtly wrong, insecure, or not actually solving the problem you asked. Researchers are already documenting this skill gap in [students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before they've [built their own foundation](https://dl.acm.org/doi/10.1145/3624720), and one [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) found that developers using an AI coding assistant wrote *less* secure code than those without AI—while being *more* confident that it was secure. As AI gets better, the ability to evaluate its output becomes even more important.
 
-**Learning happens through productive struggle.** The friction of working something out yourself, instead of being handed the answer, is what builds understanding (sometimes called a ["desirable difficulty"](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf)). If you skip that struggle, you won't develop the knowledge to solve the problem again, adapt the answer, or recognize when it's wrong.
+    **Employers are still hiring for understanding, not prompting.** AI will likely be available on the job too, but technical interviews, code review, and debugging all test whether you can reason about code and judge whether it's correct. AI can help you write code—but it can't replace understanding it.
 
-**Programming fundamentals make AI more useful, not less.** Variables, loops, conditionals, functions, etc. are the small, reusable concepts that every program is built from. Once you understand these building blocks, you can read code you didn't write, spot mistakes, understand *why* a solution works, and communicate your problem to AI more effectively.
+    Learning to program first turns AI into a tool you can direct and verify, instead of one you're assuming got it right.
 
-**You need to be able to verify what AI writes.** AI can generate code that looks correct while being subtly wrong, insecure, or not actually solving the problem you asked. Researchers are already documenting this skill gap in [students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before they've [built their own foundation](https://dl.acm.org/doi/10.1145/3624720), and one [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) found that developers using an AI coding assistant wrote *less* secure code than those without AI—while being *more* confident that it was secure. As AI gets better, the ability to evaluate its output becomes even more important.
+??? question "How should I use AI while I'm learning?"
+    None of this means avoiding AI altogether—but it does mean being **deliberate** about which parts of the work you hand over.
 
-**Employers are still hiring for understanding, not prompting.** AI will likely be available on the job too, but technical interviews, code review, and debugging all test whether you can reason about code and judge whether it's correct. AI can help you write code—but it can't replace understanding it.
+    **Use AI to remove friction, not the learning.** Environment setup, confusing error messages, unfamiliar terminology, and other roadblocks are great things to ask about because they aren't the skill you're trying to build.
 
-Learning to program first turns AI into a tool you can direct and verify, instead of one you're assuming got it right.
+    **Ask AI to explain, not solve.** If an explanation on this site doesn't click, ask follow-up questions. If you're stuck on your own code, ask what a line does or why you got a certain error. Let AI help you *understand* your work, not do it for you.
 
-</details>
+    **Try first, then ask.** Make a genuine attempt before turning to AI. Once you can explain exactly where you're stuck, AI becomes much more useful—and you still get the benefit of working through the problem yourself.
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-### How should I use AI while I'm learning?
-
-</summary>
-
-None of this means avoiding AI altogether—but it does mean being **deliberate** about which parts of the work you hand over.
-
-**Use AI to remove friction, not the learning.** Environment setup, confusing error messages, unfamiliar terminology, and other roadblocks are great things to ask about because they aren't the skill you're trying to build.
-
-**Ask AI to explain, not solve.** If an explanation on this site doesn't click, ask follow-up questions. If you're stuck on your own code, ask what a line does or why you got a certain error. Let AI help you *understand* your work, not do it for you.
-
-**Try first, then ask.** Make a genuine attempt before turning to AI. Once you can explain exactly where you're stuck, AI becomes much more useful—and you still get the benefit of working through the problem yourself.
-
-**Don't outsource the productive struggle.** Learning to program means making mistakes, getting stuck, and eventually figuring things out. That's the process that builds skills you can rely on long after you've forgotten the syntax.
-
-</details>
+    **Don't outsource the productive struggle.** Learning to program means making mistakes, getting stuck, and eventually figuring things out. That's the process that builds skills you can rely on long after you've forgotten the syntax.
 
 ### Getting started
 

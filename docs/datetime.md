@@ -13,7 +13,7 @@ The **`datetime`** module is Python's standard library for working with dates an
 
 `date.today()` and `datetime.now()` read the current date (and time) directly from the system clock, so the value changes every time the code runs.
 
-```python
+```python-ref
 from datetime import date, datetime
 
 today = date.today()
@@ -23,64 +23,53 @@ print(today)
 print(now)
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Creating a specific date
 
-Pass the year, month, and day as plain integers to build a specific `date`.
-{: .pt-subheading }
+Pass the year, month, and day as plain integers to build a specific `date`. Useful for logging when a past observation actually happened, instead of reading today's date off the system clock.
 
 ```python-ref
 observed = date(2026, 7, 23)    # 2026-07-23
 ```
 
-</summary>
-
-Useful for logging when a past observation actually happened, instead of reading today's date off the system clock.
-
-```python
-from datetime import date
-
-observed = date(2026, 7, 23)
-print(observed)
-print(observed.year, observed.month, observed.day)
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Formatting with `strftime`
 
-Turns a `date` or `datetime` into a custom-formatted string.
-{: .pt-subheading }
+Turns a `date` or `datetime` into a custom-formatted string. `strftime` ("string format time") — `%B` is the full month name, `%d` the zero-padded day, `%Y` the four-digit year. It's the standard way to control exactly how a date is displayed.
 
 ```python-ref
 observed = date(2026, 7, 23)
 observed.strftime("%B %d, %Y")    # "July 23, 2026"
 ```
 
-</summary>
+??? run "Run a dates example"
+    All the examples above, combined into one script:
 
-`strftime` ("string format time") — `%B` is the full month name, `%d` the zero-padded day, `%Y` the four-digit year. It's the standard way to control exactly how a date is displayed.
+    ```python
+    from datetime import date, datetime
 
-```python
-from datetime import date
+    today = date.today()
+    now = datetime.now()
 
-observed = date(2026, 7, 23)
-print(observed.strftime("%B %d, %Y"))
-print(observed.strftime("%Y-%m-%d"))
-```
+    print(today)
+    print(now)
 
-</details>
+    from datetime import date
+
+    observed = date(2026, 7, 23)
+    print(observed)
+    print(observed.year, observed.month, observed.day)
+
+    from datetime import date
+
+    observed = date(2026, 7, 23)
+    print(observed.strftime("%B %d, %Y"))
+    print(observed.strftime("%Y-%m-%d"))
+    ```
 
 ## Date arithmetic
 
 A `timedelta` represents a span of time, and adding one to a `date` or `datetime` shifts it forward (or backward, with a negative value) — the standard way to compute "a week from now" or "30 days ago."
 
-```python
+```python-ref
 from datetime import date, timedelta
 
 observed = date(2026, 7, 23)
@@ -89,13 +78,9 @@ next_checkup = observed + timedelta(days=14)
 print(next_checkup)
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Difference between two dates
 
-Subtracting one `date` from another gives back a `timedelta`.
-{: .pt-subheading }
+Subtracting one `date` from another gives back a `timedelta`. Its `.days` attribute is the number of days between them — handy for measuring how long something has been tracked.
 
 ```python-ref
 first_seen = date(2026, 7, 23)
@@ -103,45 +88,37 @@ last_seen = date(2026, 8, 6)
 last_seen - first_seen    # timedelta(days=14)
 ```
 
-</summary>
-
-Its `.days` attribute is the number of days between them — handy for measuring how long something has been tracked.
-
-```python
-from datetime import date
-
-first_seen = date(2026, 7, 23)
-last_seen = date(2026, 8, 6)
-gap = last_seen - first_seen
-
-print(gap)
-print(gap.days)
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Parsing a string with `strptime`
 
-The reverse of `strftime` — reads a date out of a string.
-{: .pt-subheading }
+The reverse of `strftime` — reads a date out of a string. `strptime` ("string parse time") takes the same format codes describing how that string is laid out. This is how a date typed by a user, or read from a CSV file, gets turned back into a real `datetime` you can do arithmetic on.
 
 ```python-ref
 datetime.strptime("2026-07-23", "%Y-%m-%d")    # datetime(2026, 7, 23, 0, 0)
 ```
 
-</summary>
+??? run "Run a date arithmetic example"
+    All the examples above, combined into one script:
 
-`strptime` ("string parse time") takes the same format codes describing how that string is laid out. This is how a date typed by a user, or read from a CSV file, gets turned back into a real `datetime` you can do arithmetic on.
+    ```python
+    from datetime import date, timedelta
 
-```python
-from datetime import datetime
+    observed = date(2026, 7, 23)
+    next_checkup = observed + timedelta(days=14)
 
-parsed = datetime.strptime("2026-07-23", "%Y-%m-%d")
-print(parsed)
-print(parsed.year)
-```
+    print(next_checkup)
 
-</details>
+    from datetime import date
+
+    first_seen = date(2026, 7, 23)
+    last_seen = date(2026, 8, 6)
+    gap = last_seen - first_seen
+
+    print(gap)
+    print(gap.days)
+
+    from datetime import datetime
+
+    parsed = datetime.strptime("2026-07-23", "%Y-%m-%d")
+    print(parsed)
+    print(parsed.year)
+    ```

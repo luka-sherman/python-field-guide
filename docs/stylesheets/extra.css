@@ -91,6 +91,33 @@ input:checked + .md-consent__settings {
   display: none;
 }
 
+/* ---- Custom "run" admonition wrapping every runnable python block ----
+   Material ships with a fixed set of named admonition types/icons/colors;
+   this adds one more so a reader recognizes "this box contains code I can
+   execute" everywhere it appears, using the same green as the Run button
+   injected into it (.pyodide-runner__run-btn below). */
+
+:root {
+  --md-admonition-icon--run: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8,5.14V19.14L19,12.14L8,5.14Z"/></svg>');
+}
+
+.md-typeset .admonition.run,
+.md-typeset details.run {
+  border-color: #2e7d32;
+}
+
+.md-typeset .run > .admonition-title,
+.md-typeset .run > summary {
+  background-color: rgba(46, 125, 50, 0.1);
+}
+
+.md-typeset .run > .admonition-title::before,
+.md-typeset .run > summary::before {
+  background-color: #2e7d32;
+  -webkit-mask-image: var(--md-admonition-icon--run);
+  mask-image: var(--md-admonition-icon--run);
+}
+
 /* ---- Pyodide runnable / reference code blocks (theme-independent) ---- */
 
 .pyodide-runner {
@@ -99,27 +126,44 @@ input:checked + .md-consent__settings {
 
 .pyodide-runner__toolbar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-top: 0.25em;
 }
 
+/* Styled to match the site's .md-button (border, radius, hover-invert)
+   rather than reusing that class directly, since this is a <button>
+   injected by JS, not the <a>.md-button markdown/attr_list produces. */
 .pyodide-runner__run-btn {
-  background-color: #2e7d32;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 0.35em 0.9em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  background-color: transparent;
+  color: var(--pt-ink);
+  border: 0.1rem solid var(--pt-border-soft);
+  border-radius: 0.1rem;
+  padding: 0.5em 1.2em;
   font-size: 0.85em;
+  font-weight: 700;
   cursor: pointer;
 }
 
-.pyodide-runner__run-btn:hover {
-  background-color: #256428;
+.pyodide-runner__run-btn:hover,
+.pyodide-runner__run-btn:focus-visible {
+  color: var(--pt-bg);
+  background-color: var(--pt-accent);
+  border-color: var(--pt-accent);
 }
 
 .pyodide-runner__run-btn:disabled {
   opacity: 0.6;
   cursor: wait;
+}
+
+.pyodide-runner__run-icon {
+  width: 0.9em;
+  height: 0.9em;
+  fill: currentColor;
+  flex: none;
 }
 
 .md-typeset .pyodide-runner__output {
@@ -166,14 +210,6 @@ input:checked + .md-consent__settings {
   background: transparent;
   color: var(--pt-ink);
   border-radius: 0;
-}
-
-/* Material puts a box-shadow "border" on summary > code (.md-typeset
-   summary code) at the code element's own 0.1rem radius, independent of
-   our 6px border on the wrapping <pre> above — killing it here since the
-   python-ref preview always lives inside a <details> <summary>. */
-.md-typeset summary .pyodide-reference pre code {
-  box-shadow: none;
 }
 
 .pyodide-reference {
@@ -224,102 +260,6 @@ input:checked + .md-consent__settings {
 
 .pyodide-reference .hljs-comment {
   color: var(--pt-text-muted);
-}
-
-/* ---- Collapsible concept sections ----
-   Material treats every <details> as a colored admonition (blue border,
-   tinted summary background, a note icon, and its own rotating chevron).
-   Reset all of that specifically for .pt-collapsible and reapply our own
-   flat, single-arrow design. */
-
-.md-typeset details.pt-collapsible,
-.md-typeset details.pt-collapsible:not([open]) {
-  --pt-collapsible-indent: 22px;
-  background-color: var(--pt-bg);
-  border: none;
-  box-shadow: none;
-  border-radius: 0;
-  margin: 0.5em 0;
-  padding: 8px 0 8px 0;
-}
-
-.md-typeset .pt-collapsible > summary {
-  position: relative;
-  cursor: pointer;
-  list-style: none;
-  background: none;
-  border: none;
-  border-radius: 0;
-  margin: 0;
-  padding: 0 0 0 var(--pt-collapsible-indent);
-}
-
-.md-typeset .pt-collapsible > summary::-webkit-details-marker {
-  display: none;
-}
-
-.md-typeset .pt-collapsible > summary::before {
-  display: none;
-}
-
-.md-typeset .pt-collapsible > summary h3,
-.md-typeset .pt-collapsible > summary h4 {
-  position: relative;
-}
-
-.md-typeset .pt-collapsible > summary h3::before,
-.md-typeset .pt-collapsible > summary h4::before {
-  content: "+";
-  position: absolute;
-  left: calc(-1 * var(--pt-collapsible-indent));
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1em;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--pt-accent);
-}
-
-.md-typeset .pt-collapsible[open] > summary h3::before,
-.md-typeset .pt-collapsible[open] > summary h4::before {
-  content: "\2212";
-}
-
-.md-typeset .pt-collapsible > summary::after {
-  display: none;
-}
-
-.md-typeset .pt-collapsible > summary h3,
-.md-typeset .pt-collapsible > summary h4 {
-  display: block;
-  margin: 0;
-  font-weight: 700;
-}
-
-.md-typeset .pt-collapsible > summary h3 {
-  font-size: 18px;
-}
-
-.md-typeset .pt-collapsible > summary h4 {
-  font-size: 15px;
-}
-
-.md-typeset .pt-collapsible > summary:hover h3,
-.md-typeset .pt-collapsible > summary:hover h4 {
-  color: var(--pt-accent);
-}
-
-.md-typeset .pt-collapsible > summary .pyodide-reference {
-  margin: 12px 0 0;
-}
-
-.md-typeset details.pt-collapsible[open] > summary {
-  margin-bottom: 10px;
-}
-
-.md-typeset .pt-collapsible > :not(summary) {
-  padding-left: var(--pt-collapsible-indent);
-  margin-left: 0;
 }
 
 /* Material hides .md-tabs below 76.234375em (its own mobile breakpoint) in
@@ -426,14 +366,6 @@ input:checked + .md-consent__settings {
 .pt-bool-false {
   color: #a33f3f;
   background-color: rgba(163, 63, 63, 0.12);
-}
-
-/* Sits inside a .pt-collapsible <summary>, under the heading —
-   not an h tag so it stays out of the sidebar TOC */
-.pt-subheading {
-  margin: 0.15em 0 0.6em;
-  font-weight: 600;
-  color: var(--pt-text-secondary);
 }
 
 /* Feedback form on about.md, posting to Formspree */

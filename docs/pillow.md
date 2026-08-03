@@ -57,83 +57,50 @@ print(img.size, img.mode)   # (800, 600) RGB
 img.save("snake_copy.png")
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+??? tip "Opening a file"
+    Reads a file's header immediately but delays loading the full pixel data until you need it. Fast even for large images if all you want is its size or format. `.format` reports the file type Pillow detected, `.size` gives `(width, height)`, and `.mode` gives its color mode.
 
-#### Opening a file
+    ```python-ref
+    img = Image.open("snake.jpg")
+    print(img.format, img.size, img.mode)   # JPEG (800, 600) RGB
+    ```
 
-Reads a file's header immediately but delays loading the full pixel data until you need it.
-{: .pt-subheading }
+    ```python-ref
+    from PIL import Image
 
-```python-ref
-img = Image.open("snake.jpg")
-print(img.format, img.size, img.mode)   # JPEG (800, 600) RGB
-```
+    img = Image.open("snake.jpg")
+    print(img.format, img.size, img.mode)
+    ```
 
-</summary>
+??? tip "Saving a file"
+    Writes the image to disk, picking the file format from the extension — unless you pass `format=` explicitly. Some formats accept extra keyword options — JPEG's `quality` (0–100) trades file size for image quality, for example.
 
-Fast even for large images if all you want is its size or format. `.format` reports the file type Pillow detected, `.size` gives `(width, height)`, and `.mode` gives its color mode.
+    ```python-ref
+    img.save("snake_copy.png")            # format inferred from ".png"
+    img.save("snake_copy.jpg", quality=85)  # JPEG-specific option
+    ```
 
-```python-ref
-from PIL import Image
+    ```python-ref
+    from PIL import Image
 
-img = Image.open("snake.jpg")
-print(img.format, img.size, img.mode)
-```
+    img = Image.open("snake.jpg")
+    img.save("snake_copy.png")
+    img.save("snake_copy.jpg", quality=85)
+    ```
 
-</details>
+??? tip "Displaying an image"
+    Opens the image in whatever program your operating system uses to view images. Handy for a quick look while writing a script, since it doesn't require saving a file first. It's meant for local development rather than production code, since it depends on external programs actually being installed.
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+    ```python-ref
+    img.show()   # opens in your OS's default image viewer
+    ```
 
-#### Saving a file
+    ```python-ref
+    from PIL import Image
 
-Writes the image to disk, picking the file format from the extension.
-{: .pt-subheading }
-
-```python-ref
-img.save("snake_copy.png")            # format inferred from ".png"
-img.save("snake_copy.jpg", quality=85)  # JPEG-specific option
-```
-
-</summary>
-
-Unless you pass `format=` explicitly. Some formats accept extra keyword options — JPEG's `quality` (0–100) trades file size for image quality, for example.
-
-```python-ref
-from PIL import Image
-
-img = Image.open("snake.jpg")
-img.save("snake_copy.png")
-img.save("snake_copy.jpg", quality=85)
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-#### Displaying an image
-
-Opens the image in whatever program your operating system uses to view images.
-{: .pt-subheading }
-
-```python-ref
-img.show()   # opens in your OS's default image viewer
-```
-
-</summary>
-
-Handy for a quick look while writing a script, since it doesn't require saving a file first. It's meant for local development rather than production code, since it depends on external programs actually being installed.
-
-```python-ref
-from PIL import Image
-
-img = Image.open("snake.jpg")
-img.show()
-```
-
-</details>
+    img = Image.open("snake.jpg")
+    img.show()
+    ```
 
 ### Basic operations
 
@@ -145,22 +112,14 @@ cropped = img.crop((0, 0, 200, 200))
 rotated = img.rotate(90)
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 #### Resize
 
-Scales the image to an exact new size.
-{: .pt-subheading }
+Scales the image to an exact new size. `.resize((width, height))` doesn't preserve the original aspect ratio for you, so stretching happens if the new dimensions don't match the original proportions. For a quick, ratio-preserving thumbnail instead, use `.thumbnail((max_width, max_height))`, which resizes in place rather than returning a new image.
 
 ```python-ref
 thumbnail = img.resize((200, 150))
 print(thumbnail.size)   # (200, 150)
 ```
-
-</summary>
-
-`.resize((width, height))` doesn't preserve the original aspect ratio for you, so stretching happens if the new dimensions don't match the original proportions. For a quick, ratio-preserving thumbnail instead, use `.thumbnail((max_width, max_height))`, which resizes in place rather than returning a new image.
 
 ```python-ref
 from PIL import Image
@@ -170,24 +129,14 @@ thumbnail = img.resize((200, 150))
 print(thumbnail.size)
 ```
 
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 #### Crop
 
-Takes a bounding box and returns just that rectangular region.
-{: .pt-subheading }
+Takes a bounding box and returns just that rectangular region. `.crop()` takes `(left, upper, right, lower)` pixel coordinates. `(0, 0)` is the top-left corner of the image, with `x` increasing rightward and `y` increasing downward.
 
 ```python-ref
 cropped = img.crop((50, 50, 250, 200))   # left, upper, right, lower
 print(cropped.size)   # (200, 150)
 ```
-
-</summary>
-
-`.crop()` takes `(left, upper, right, lower)` pixel coordinates. `(0, 0)` is the top-left corner of the image, with `x` increasing rightward and `y` increasing downward.
 
 ```python-ref
 from PIL import Image
@@ -197,24 +146,14 @@ cropped = img.crop((50, 50, 250, 200))
 print(cropped.size)
 ```
 
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 #### Rotate and flip
 
-`.rotate(degrees)` rotates counter-clockwise around the image's center.
-{: .pt-subheading }
+`.rotate(degrees)` rotates counter-clockwise around the image's center. Pass `expand=True` to grow the canvas so corners aren't clipped off (without it, the image keeps its original size and rotated corners are cropped away). `.transpose()` handles flips and 90°-multiple rotations without any clipping concerns, using constants like `Image.FLIP_LEFT_RIGHT` or `Image.ROTATE_90`.
 
 ```python-ref
 rotated = img.rotate(90, expand=True)
 flipped = img.transpose(Image.FLIP_LEFT_RIGHT)
 ```
-
-</summary>
-
-Pass `expand=True` to grow the canvas so corners aren't clipped off (without it, the image keeps its original size and rotated corners are cropped away). `.transpose()` handles flips and 90°-multiple rotations without any clipping concerns, using constants like `Image.FLIP_LEFT_RIGHT` or `Image.ROTATE_90`.
 
 ```python-ref
 from PIL import Image
@@ -225,8 +164,6 @@ flipped = img.transpose(Image.FLIP_LEFT_RIGHT)
 print(rotated.size, flipped.size)
 ```
 
-</details>
-
 ### Image modes
 
 An image's **mode** determines how each pixel's color is stored — how many bands it has and what each one means. Converting between modes is a single method call, and it's often a required first step before an operation that only works on one mode (like grayscale-only filters).
@@ -236,23 +173,15 @@ grayscale = img.convert("L")
 with_alpha = img.convert("RGBA")
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 #### Converting modes
 
-Returns a new image re-encoded into the given mode.
-{: .pt-subheading }
+Returns a new image re-encoded into the given mode. `.convert(mode)` — `"L"` collapses color down to a single grayscale band; `"RGBA"` adds an alpha (transparency) band on top of red/green/blue, where `0` is fully transparent and `255` is fully opaque.
 
 ```python-ref
 grayscale = img.convert("L")     # single band, 0 (black) to 255 (white)
 rgba = img.convert("RGBA")       # adds a 4th, transparency band
 print(grayscale.mode, rgba.mode)  # L RGBA
 ```
-
-</summary>
-
-`.convert(mode)` — `"L"` collapses color down to a single grayscale band; `"RGBA"` adds an alpha (transparency) band on top of red/green/blue, where `0` is fully transparent and `255` is fully opaque.
 
 ```python-ref
 from PIL import Image
@@ -262,8 +191,6 @@ grayscale = img.convert("L")
 rgba = img.convert("RGBA")
 print(grayscale.mode, rgba.mode)
 ```
-
-</details>
 
 ## ImageOps module
 
@@ -276,23 +203,15 @@ fixed = ImageOps.autocontrast(img)
 mirrored = ImageOps.mirror(img)
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Common ImageOps functions
 
-`.autocontrast()` stretches an image's darkest and lightest pixels out to pure black and white.
-{: .pt-subheading }
+`.autocontrast()` stretches an image's darkest and lightest pixels out to pure black and white, which can fix a flat, washed-out photo without manually tuning `ImageEnhance.Contrast`. `.mirror()`/`.flip()` cover the same ground as `.transpose()` with more direct names. `.invert()` flips every pixel to its opposite color — it only works on `"RGB"` (or `"L"`) images, so convert first if the source has an alpha band.
 
 ```python-ref
 fixed = ImageOps.autocontrast(img)   # stretches contrast to use the full range
 mirrored = ImageOps.mirror(img)      # flips left-to-right
 inverted = ImageOps.invert(img.convert("RGB"))   # like a photo negative
 ```
-
-</summary>
-
-Which can fix a flat, washed-out photo without manually tuning `ImageEnhance.Contrast`. `.mirror()`/`.flip()` cover the same ground as `.transpose()` with more direct names. `.invert()` flips every pixel to its opposite color — it only works on `"RGB"` (or `"L"`) images, so convert first if the source has an alpha band.
 
 ```python-ref
 from PIL import Image, ImageOps
@@ -303,8 +222,6 @@ mirrored = ImageOps.mirror(img)
 inverted = ImageOps.invert(img.convert("RGB"))
 fixed.save("fixed.jpg")
 ```
-
-</details>
 
 ## ImageDraw module
 
@@ -318,23 +235,15 @@ draw.rectangle((10, 10, 100, 60), outline="green", width=3)
 draw.text((15, 20), "ball python", fill="green")
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Shapes and lines
 
-`ImageDraw.Draw(img)` creates a drawing context bound to an image.
-{: .pt-subheading }
+`ImageDraw.Draw(img)` creates a drawing context bound to an image. Every call on it modifies `img` directly, in place. `.rectangle()`, `.ellipse()`, and `.line()` each take a bounding box or set of coordinates, plus `outline`/`fill` colors and an optional `width`.
 
 ```python-ref
 draw.rectangle((10, 10, 100, 60), outline="green", width=3)
 draw.ellipse((20, 20, 80, 50), fill="yellow")
 draw.line((0, 0, 100, 100), fill="black", width=2)
 ```
-
-</summary>
-
-Every call on it modifies `img` directly, in place. `.rectangle()`, `.ellipse()`, and `.line()` each take a bounding box or set of coordinates, plus `outline`/`fill` colors and an optional `width`.
 
 ```python-ref
 from PIL import Image, ImageDraw
@@ -346,125 +255,90 @@ draw.ellipse((20, 20, 80, 50), fill="yellow")
 img.save("shapes.png")
 ```
 
-</details>
+??? tip "Polygons"
+    Draws any straight-edged shape from a list of `(x, y)` points. `.polygon()` connects the points in order, with the last point automatically connected back to the first. Unlike `.rectangle()`/`.ellipse()`, there's no bounding-box shortcut: you calculate each corner's coordinates yourself, usually from a center position and size.
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+    ```python-ref
+    points = [(60, 10), (110, 70), (10, 70)]   # a triangle
+    draw.polygon(points, fill="green")
+    ```
 
-### Polygons
+    ```python-ref
+    from PIL import Image, ImageDraw
 
-Draws any straight-edged shape from a list of `(x, y)` points.
-{: .pt-subheading }
+    img = Image.new("RGB", (120, 80), "white")
+    draw = ImageDraw.Draw(img)
+    points = [(60, 10), (110, 70), (10, 70)]
+    draw.polygon(points, fill="green")
+    img.save("triangle.png")
+    ```
 
-```python-ref
-points = [(60, 10), (110, 70), (10, 70)]   # a triangle
-draw.polygon(points, fill="green")
-```
+??? tip "Transparent colors"
+    A color can include a fourth number — alpha — to draw something translucent, from `0` (fully invisible) to `255` (fully solid), so shapes underneath still show through. This only works on an image in `"RGBA"` mode; drawing an RGBA color onto a plain `"RGB"` image just silently drops the transparency.
 
-</summary>
+    ```python-ref
+    draw.ellipse((20, 20, 80, 80), fill=(255, 0, 0, 120))   # translucent red
+    ```
 
-`.polygon()` connects the points in order, with the last point automatically connected back to the first. Unlike `.rectangle()`/`.ellipse()`, there's no bounding-box shortcut: you calculate each corner's coordinates yourself, usually from a center position and size.
+    ```python-ref
+    from PIL import Image, ImageDraw
 
-```python-ref
-from PIL import Image, ImageDraw
+    img = Image.new("RGBA", (120, 80), "white")
+    draw = ImageDraw.Draw(img)
+    draw.ellipse((10, 10, 70, 70), fill=(255, 0, 0, 255))
+    draw.ellipse((40, 30, 100, 70), fill=(0, 0, 255, 120))   # overlaps, translucent
+    img.save("overlap.png")
+    ```
 
-img = Image.new("RGB", (120, 80), "white")
-draw = ImageDraw.Draw(img)
-points = [(60, 10), (110, 70), (10, 70)]
-draw.polygon(points, fill="green")
-img.save("triangle.png")
-```
+??? tip "Drawing with objects"
+    Once a drawing gets complicated, it's common to wrap each thing you're drawing in its own class — an object that stores its own position/size/color, and knows how to draw itself given a drawing context. Nothing here is Pillow-specific: it's the same pattern covered in [Classes](oop.md) — bundling data with the behavior that acts on it — just applied to a shape instead of a snake. A calling function loops over a list of these objects and calls `.draw()` on each, so building a complex image — dozens of randomly placed shapes, say, using the `random` module — is just a loop appending new `Shape` objects rather than dozens of manual `draw_context` calls.
 
-</details>
+    ```python-ref
+    class Shape:
+        def __init__(self, position, size, color):
+            self.position = position
+            self.size = size
+            self.color = color
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+        def draw(self, draw_context):
+            x, y = self.position
+            half = self.size / 2
+            box = (x - half, y - half, x + half, y + half)
+            draw_context.ellipse(box, fill=self.color)
+    ```
 
-### Transparent colors
+    ```python-ref
+    import random
+    from PIL import Image, ImageDraw
 
-A color can include a fourth number — alpha — to draw something translucent.
-{: .pt-subheading }
+    class Shape:
+        def __init__(self, position, size, color):
+            self.position = position
+            self.size = size
+            self.color = color
 
-```python-ref
-draw.ellipse((20, 20, 80, 80), fill=(255, 0, 0, 120))   # translucent red
-```
+        def draw(self, draw_context):
+            x, y = self.position
+            half = self.size / 2
+            box = (x - half, y - half, x + half, y + half)
+            draw_context.ellipse(box, fill=self.color)
 
-</summary>
+    img = Image.new("RGB", (200, 200), "white")
+    draw_context = ImageDraw.Draw(img)
+    palette = ["green", "yellow", "brown"]
 
-From `0` (fully invisible) to `255` (fully solid), so shapes underneath still show through. This only works on an image in `"RGBA"` mode; drawing an RGBA color onto a plain `"RGB"` image just silently drops the transparency.
+    shapes = []
+    for _ in range(10):
+        position = (random.randint(0, 200), random.randint(0, 200))
+        size = random.randint(10, 40)
+        color = random.choice(palette)
+        shapes.append(Shape(position, size, color))
 
-```python-ref
-from PIL import Image, ImageDraw
+    for shape in shapes:
+        shape.draw(draw_context)
 
-img = Image.new("RGBA", (120, 80), "white")
-draw = ImageDraw.Draw(img)
-draw.ellipse((10, 10, 70, 70), fill=(255, 0, 0, 255))
-draw.ellipse((40, 30, 100, 70), fill=(0, 0, 255, 120))   # overlaps, translucent
-img.save("overlap.png")
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-### Drawing with objects
-
-Once a drawing gets complicated, it's common to wrap each thing you're drawing in its own class.
-{: .pt-subheading }
-
-```python-ref
-class Shape:
-    def __init__(self, position, size, color):
-        self.position = position
-        self.size = size
-        self.color = color
-
-    def draw(self, draw_context):
-        x, y = self.position
-        half = self.size / 2
-        box = (x - half, y - half, x + half, y + half)
-        draw_context.ellipse(box, fill=self.color)
-```
-
-</summary>
-
-An object that stores its own position/size/color, and knows how to draw itself given a drawing context. Nothing here is Pillow-specific: it's the same pattern covered in [Classes](oop.md) — bundling data with the behavior that acts on it — just applied to a shape instead of a snake. A calling function loops over a list of these objects and calls `.draw()` on each, so building a complex image — dozens of randomly placed shapes, say, using the `random` module — is just a loop appending new `Shape` objects rather than dozens of manual `draw_context` calls.
-
-```python-ref
-import random
-from PIL import Image, ImageDraw
-
-class Shape:
-    def __init__(self, position, size, color):
-        self.position = position
-        self.size = size
-        self.color = color
-
-    def draw(self, draw_context):
-        x, y = self.position
-        half = self.size / 2
-        box = (x - half, y - half, x + half, y + half)
-        draw_context.ellipse(box, fill=self.color)
-
-img = Image.new("RGB", (200, 200), "white")
-draw_context = ImageDraw.Draw(img)
-palette = ["green", "yellow", "brown"]
-
-shapes = []
-for _ in range(10):
-    position = (random.randint(0, 200), random.randint(0, 200))
-    size = random.randint(10, 40)
-    color = random.choice(palette)
-    shapes.append(Shape(position, size, color))
-
-for shape in shapes:
-    shape.draw(draw_context)
-
-img.save("generated.png")
-```
-
-</details>
+    img.save("generated.png")
+    ```
 
 ## ImageFont module
 
@@ -477,22 +351,14 @@ font = ImageFont.truetype("arial.ttf", 20)
 draw.text((10, 10), "burmese python", fill="black", font=font)
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Loading a font
 
-Loads a `.ttf` (or `.otf`) font file at a specific point size.
-{: .pt-subheading }
+Loads a `.ttf` (or `.otf`) font file at a specific point size. `ImageFont.truetype(path, size)` returns a font object to pass into `draw.text(..., font=font)`. The path can be a font file sitting next to your script, or a system font's full path — sizes aren't interchangeable between fonts, so reload at a new size rather than trying to scale a loaded font after the fact.
 
 ```python-ref
 font = ImageFont.truetype("arial.ttf", 20)
 draw.text((10, 10), "burmese python", fill="black", font=font)
 ```
-
-</summary>
-
-`ImageFont.truetype(path, size)` returns a font object to pass into `draw.text(..., font=font)`. The path can be a font file sitting next to your script, or a system font's full path — sizes aren't interchangeable between fonts, so reload at a new size rather than trying to scale a loaded font after the fact.
 
 ```python-ref
 from PIL import Image, ImageDraw, ImageFont
@@ -503,8 +369,6 @@ font = ImageFont.truetype("arial.ttf", 20)
 draw.text((10, 15), "burmese python", fill="black", font=font)
 img.save("labeled.png")
 ```
-
-</details>
 
 ## ImageColor module
 
@@ -517,23 +381,15 @@ rgb = ImageColor.getrgb("green")        # (0, 128, 0)
 rgb2 = ImageColor.getrgb("#3f6b52")     # (63, 107, 82)
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Converting color names
 
-Accepts most CSS-style color names and `#rrggbb`/`#rgb` hex strings, returning a plain `(r, g, b)` tuple.
-{: .pt-subheading }
+Accepts most CSS-style color names and `#rrggbb`/`#rgb` hex strings, returning a plain `(r, g, b)` tuple. `.getrgb()` returns `(r, g, b, a)` if the input included transparency. Useful once a palette is defined as hex codes rather than named colors, or when a color needs to be manipulated as numbers rather than passed straight into a drawing method.
 
 ```python-ref
 green_rgb = ImageColor.getrgb("green")
 hex_rgb = ImageColor.getrgb("#3f6b52")
 print(green_rgb, hex_rgb)
 ```
-
-</summary>
-
-`.getrgb()` returns `(r, g, b, a)` if the input included transparency. Useful once a palette is defined as hex codes rather than named colors, or when a color needs to be manipulated as numbers rather than passed straight into a drawing method.
 
 ```python-ref
 from PIL import ImageColor
@@ -542,8 +398,6 @@ green_rgb = ImageColor.getrgb("green")
 hex_rgb = ImageColor.getrgb("#3f6b52")
 print(green_rgb, hex_rgb)
 ```
-
-</details>
 
 ## ImageFilter module
 
@@ -555,13 +409,9 @@ from PIL import ImageFilter
 blurred = img.filter(ImageFilter.BLUR)
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Applying a filter
 
-Applies one of Pillow's built-in filter presets, each a ready-made pixel transformation.
-{: .pt-subheading }
+Applies one of Pillow's built-in filter presets, each a ready-made pixel transformation. `.filter()` — `ImageFilter.CONTOUR` traces edges into a sketch-like outline, distinct from `FIND_EDGES`, which highlights edges while keeping the rest of the image dark.
 
 ```python-ref
 blurred = img.filter(ImageFilter.BLUR)
@@ -569,10 +419,6 @@ sharpened = img.filter(ImageFilter.SHARPEN)
 edges = img.filter(ImageFilter.FIND_EDGES)
 outlined = img.filter(ImageFilter.CONTOUR)
 ```
-
-</summary>
-
-`.filter()` — `ImageFilter.CONTOUR` traces edges into a sketch-like outline, distinct from `FIND_EDGES`, which highlights edges while keeping the rest of the image dark.
 
 ```python-ref
 from PIL import Image, ImageFilter
@@ -586,8 +432,6 @@ sharpened.save("sharpened.jpg")
 outlined.save("outlined.jpg")
 ```
 
-</details>
-
 ## ImageEnhance module
 
 Where `ImageFilter` applies a fixed preset, `ImageEnhance` lets you dial an existing quality — brightness, contrast, color, sharpness — up or down by an exact amount.
@@ -598,23 +442,15 @@ from PIL import ImageEnhance
 brighter = ImageEnhance.Brightness(img).enhance(1.5)
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Enhancing an image
 
-Each `ImageEnhance` class wraps an image and exposes `.enhance(factor)`.
-{: .pt-subheading }
+Each `ImageEnhance` class wraps an image and exposes `.enhance(factor)`. `Brightness`, `Contrast`, `Color`, `Sharpness` — `1.0` leaves the image unchanged, below `1.0` reduces the effect, and above `1.0` increases it. `Color` controls saturation specifically: pushed toward `0.0` the image slides to grayscale, pushed well above `1.0` colors become more vivid and saturated.
 
 ```python-ref
 brighter = ImageEnhance.Brightness(img).enhance(1.5)   # 1.0 = unchanged
 higher_contrast = ImageEnhance.Contrast(img).enhance(1.3)
 more_colorful = ImageEnhance.Color(img).enhance(2.0)   # boost saturation
 ```
-
-</summary>
-
-`Brightness`, `Contrast`, `Color`, `Sharpness` — `1.0` leaves the image unchanged, below `1.0` reduces the effect, and above `1.0` increases it. `Color` controls saturation specifically: pushed toward `0.0` the image slides to grayscale, pushed well above `1.0` colors become more vivid and saturated.
 
 ```python-ref
 from PIL import Image, ImageEnhance
@@ -627,8 +463,6 @@ brighter.save("brighter.jpg")
 more_colorful.save("more_colorful.jpg")
 ```
 
-</details>
-
 ## ImageChops module
 
 Everything so far transforms a *single* image. `ImageChops` ("channel operations") instead combines two images of the same size, pixel by pixel — spotting what changed between two photos, or blending one image into another.
@@ -640,22 +474,14 @@ diff = ImageChops.difference(before, after)
 blended = ImageChops.multiply(img, mask)
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Comparing and combining images
 
-`.difference(im1, im2)` subtracts one image from the other pixel by pixel.
-{: .pt-subheading }
+`.difference(im1, im2)` subtracts one image from the other pixel by pixel. Identical areas come out solid black, and anything that changed shows up as a bright patch. Calling `.getbbox()` on the result gives the bounding box of everything that differs (or `None` if the two images are pixel-for-pixel identical), a quick way to check "did anything change?" without comparing every pixel yourself. `.multiply()`/`.screen()`/`.add()` combine two images with different blending math, similar to layer blend modes in photo-editing software.
 
 ```python-ref
 diff = ImageChops.difference(before, after)
 diff.getbbox()   # bounding box of everything that changed, or None if identical
 ```
-
-</summary>
-
-Identical areas come out solid black, and anything that changed shows up as a bright patch. Calling `.getbbox()` on the result gives the bounding box of everything that differs (or `None` if the two images are pixel-for-pixel identical), a quick way to check "did anything change?" without comparing every pixel yourself. `.multiply()`/`.screen()`/`.add()` combine two images with different blending math, similar to layer blend modes in photo-editing software.
 
 ```python-ref
 from PIL import Image, ImageChops
@@ -668,8 +494,6 @@ print(diff.getbbox())
 diff.save("diff.jpg")
 ```
 
-</details>
-
 ## Format conversion
 
 Because `.save()` infers the output format from the file extension, converting between formats is usually just an open-then-save with a different name — with a couple of format-specific details worth knowing.
@@ -679,22 +503,14 @@ img = Image.open("snake.png")
 img.convert("RGB").save("snake.jpg")   # JPEG has no transparency, so drop RGBA first
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Converting between formats
 
-JPEG doesn't support transparency, so saving an `"RGBA"` image straight to `.jpg` raises an error.
-{: .pt-subheading }
+JPEG doesn't support transparency, so saving an `"RGBA"` image straight to `.jpg` raises an error. Convert to `"RGB"` first, which drops the alpha band. PNG, by contrast, supports both `"RGB"` and `"RGBA"` natively, so no conversion is needed going the other direction.
 
 ```python-ref
 img = Image.open("snake.png")        # RGBA, with transparency
 img.convert("RGB").save("snake.jpg")  # JPEG can't store alpha — convert first
 ```
-
-</summary>
-
-Convert to `"RGB"` first, which drops the alpha band. PNG, by contrast, supports both `"RGB"` and `"RGBA"` natively, so no conversion is needed going the other direction.
 
 ```python-ref
 from PIL import Image
@@ -702,8 +518,6 @@ from PIL import Image
 img = Image.open("snake.png")
 img.convert("RGB").save("snake.jpg")
 ```
-
-</details>
 
 ## ImageSequence module
 
@@ -717,22 +531,14 @@ for frame in ImageSequence.Iterator(gif):
     frame.save(f"frame_{frame.tell()}.png")
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Looping over GIF frames
 
-Hands a `for` loop one frame at a time, in order, from an animated image.
-{: .pt-subheading }
+Hands a `for` loop one frame at a time, in order, from an animated image. `ImageSequence.Iterator(img)` — each frame is a regular `Image` object, so every operation covered on this page (resize, filter, draw) works on it the same way. `.tell()` reports which frame number you're currently on, useful for numbering saved output files.
 
 ```python-ref
 for frame in ImageSequence.Iterator(gif):
     print(frame.tell(), frame.size)   # frame index, then its size
 ```
-
-</summary>
-
-`ImageSequence.Iterator(img)` — each frame is a regular `Image` object, so every operation covered on this page (resize, filter, draw) works on it the same way. `.tell()` reports which frame number you're currently on, useful for numbering saved output files.
 
 ```python-ref
 from PIL import Image, ImageSequence
@@ -742,8 +548,6 @@ for frame in ImageSequence.Iterator(gif):
     print(frame.tell(), frame.size)
     frame.save(f"frame_{frame.tell()}.png")
 ```
-
-</details>
 
 ## Putting it together
 
@@ -761,13 +565,9 @@ def apply_filter(img, choice):
         return img
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### An interactive filter tool
 
-Combines a function, an `if`/`elif` chain, and a `while` loop — nothing here is Pillow-specific.
-{: .pt-subheading }
+Combines a function, an `if`/`elif` chain, and a `while` loop — nothing here is Pillow-specific. Each piece here is something covered elsewhere on this site — a [function](functions.md) wrapping one transformation, an [`if`/`elif` chain](conditionals.md) picking which one to run, and a [`while` loop](loops.md#while-loops) that keeps asking until the user's satisfied. Pillow itself only shows up inside `apply_filter`.
 
 ```python-ref
 while True:
@@ -778,10 +578,6 @@ while True:
     result.save(f"{choice}.jpg")
     print(f"saved {choice}.jpg")
 ```
-
-</summary>
-
-Each piece here is something covered elsewhere on this site — a [function](functions.md) wrapping one transformation, an [`if`/`elif` chain](conditionals.md) picking which one to run, and a [`while` loop](loops.md#while-loops) that keeps asking until the user's satisfied. Pillow itself only shows up inside `apply_filter`.
 
 ```python-ref
 from PIL import Image, ImageFilter
@@ -806,5 +602,3 @@ while True:
     result.save(f"{choice}.jpg")
     print(f"saved {choice}.jpg")
 ```
-
-</details>

@@ -14,45 +14,42 @@ The **`random`** module generates pseudo-random numbers and makes random selecti
 
 `random()` and `randint()` are the two basic building blocks — a random fraction, or a random whole number within a range.
 
-```python
+```python-ref
 import random
 
 print(random.random())
 print(random.randint(1, 6))
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+??? tip "Setting a seed"
+    Locks the sequence of "random" numbers that follow it, so the same seed always produces the same results. Useful for a reproducible example or a test, where genuine randomness would make output impossible to predict or verify.
 
-### Setting a seed
+    ```python-ref
+    random.seed(0)
+    random.randint(1, 6)    # always 4, whenever the seed is 0
+    ```
 
-Locks the sequence of "random" numbers that follow it, so the same seed always produces the same results.
-{: .pt-subheading }
+??? run "Run a random numbers example"
+    All the examples above, combined into one script:
 
-```python-ref
-random.seed(0)
-random.randint(1, 6)    # always 4, whenever the seed is 0
-```
+    ```python
+    import random
 
-</summary>
+    print(random.random())
+    print(random.randint(1, 6))
 
-Useful for a reproducible example or a test, where genuine randomness would make output impossible to predict or verify.
+    import random
 
-```python
-import random
-
-random.seed(0)
-print(random.randint(1, 6))
-print(random.randint(1, 6))
-```
-
-</details>
+    random.seed(0)
+    print(random.randint(1, 6))
+    print(random.randint(1, 6))
+    ```
 
 ## Random selections
 
 `choice()` picks one item at random from an existing sequence — no need to generate a number and index into the list by hand.
 
-```python
+```python-ref
 import random
 
 species = ["ball", "burmese", "boa", "blood"]
@@ -60,13 +57,9 @@ species = ["ball", "burmese", "boa", "blood"]
 print(random.choice(species))
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Shuffling a list
 
-Reorders a list randomly, in place.
-{: .pt-subheading }
+Reorders a list randomly, in place. `shuffle()` returns `None`, so the point is the side effect on `species` itself, not a return value to assign.
 
 ```python-ref
 species = ["ball", "burmese", "boa", "blood"]
@@ -74,42 +67,33 @@ random.shuffle(species)
 species    # e.g. ["boa", "ball", "blood", "burmese"] — order is randomized
 ```
 
-</summary>
-
-`shuffle()` returns `None`, so the point is the side effect on `species` itself, not a return value to assign.
-
-```python
-import random
-
-species = ["ball", "burmese", "boa", "blood"]
-random.shuffle(species)
-print(species)
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Sampling without replacement
 
-Picks several items at once, all guaranteed distinct.
-{: .pt-subheading }
+Picks several items at once, all guaranteed distinct. Unlike calling `choice()` in a loop, which could return the same item twice. The original list is left unchanged; `sample()` returns a new list.
 
 ```python-ref
 species = ["ball", "burmese", "boa", "blood"]
 random.sample(species, 2)    # e.g. ["burmese", "blood"] — 2 distinct items
 ```
 
-</summary>
+??? run "Run a random selections example"
+    All the examples above, combined into one script:
 
-Unlike calling `choice()` in a loop, which could return the same item twice. The original list is left unchanged; `sample()` returns a new list.
+    ```python
+    import random
 
-```python
-import random
+    species = ["ball", "burmese", "boa", "blood"]
 
-species = ["ball", "burmese", "boa", "blood"]
-print(random.sample(species, 2))
-```
+    print(random.choice(species))
 
-</details>
+    import random
+
+    species = ["ball", "burmese", "boa", "blood"]
+    random.shuffle(species)
+    print(species)
+
+    import random
+
+    species = ["ball", "burmese", "boa", "blood"]
+    print(random.sample(species, 2))
+    ```

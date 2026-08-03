@@ -51,7 +51,21 @@
     const runButton = document.createElement("button");
     runButton.type = "button";
     runButton.className = "pyodide-runner__run-btn";
-    runButton.textContent = "Run";
+
+    const runIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    runIcon.setAttribute("class", "pyodide-runner__run-icon");
+    runIcon.setAttribute("viewBox", "0 0 24 24");
+    runIcon.setAttribute("aria-hidden", "true");
+    const runIconPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    runIconPath.setAttribute("d", "M8,5.14V19.14L19,12.14L8,5.14Z");
+    runIcon.appendChild(runIconPath);
+
+    const runLabel = document.createElement("span");
+    runLabel.className = "pyodide-runner__run-btn-label";
+    runLabel.textContent = "Run";
+
+    runButton.appendChild(runIcon);
+    runButton.appendChild(runLabel);
     toolbar.appendChild(runButton);
 
     const output = document.createElement("pre");
@@ -70,9 +84,9 @@
     makeEditable(codeBlock);
 
     runButton.addEventListener("click", async () => {
-      const originalLabel = runButton.textContent;
+      const originalLabel = runLabel.textContent;
       runButton.disabled = true;
-      runButton.textContent = "Loading…";
+      runLabel.textContent = "Loading…";
       output.hidden = false;
       output.textContent = "";
       output.classList.remove("pyodide-runner__output--error");
@@ -88,11 +102,11 @@
           new RegExp(`\\bimport\\s+${pkg}\\b|\\bfrom\\s+${pkg}\\b`).test(source)
         );
         if (neededPackages.length) {
-          runButton.textContent = "Loading packages…";
+          runLabel.textContent = "Loading packages…";
           await pyodide.loadPackage(neededPackages);
         }
 
-        runButton.textContent = "Running…";
+        runLabel.textContent = "Running…";
 
         let buffer = "";
         pyodide.setStdout({ batched: (s) => { buffer += s + "\n"; } });
@@ -105,7 +119,7 @@
         output.textContent = String(err);
       } finally {
         runButton.disabled = false;
-        runButton.textContent = originalLabel;
+        runLabel.textContent = originalLabel;
       }
     });
   }

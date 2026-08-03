@@ -11,7 +11,7 @@
 
 A `DataFrame` is most often built from a list of dicts — one dict per row, with matching keys becoming the column names.
 
-```python
+```python-ref
 import pandas as pd
 
 snakes = pd.DataFrame([
@@ -22,43 +22,44 @@ snakes = pd.DataFrame([
 print(snakes)
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+??? tip "Building from a dict of lists"
+    The same table can also be built from a single dict where each key maps to a whole column's worth of values. The rows line up by position across every list, so all the lists need to be the same length.
 
-### Building from a dict of lists
+    ```python-ref
+    pd.DataFrame({
+        "species": ["ball", "burmese"],
+        "length_ft": [4.5, 12],
+    })
+    ```
 
-The same table can also be built from a single dict where each key maps to a whole column's worth of values.
-{: .pt-subheading }
+??? run "Run a building a DataFrame example"
+    All the examples above, combined into one script:
 
-```python-ref
-pd.DataFrame({
-    "species": ["ball", "burmese"],
-    "length_ft": [4.5, 12],
-})
-```
+    ```python
+    import pandas as pd
 
-</summary>
+    snakes = pd.DataFrame([
+        {"species": "ball", "length_ft": 4.5, "venomous": False},
+        {"species": "burmese", "length_ft": 12, "venomous": False},
+    ])
 
-The rows line up by position across every list, so all the lists need to be the same length.
+    print(snakes)
 
-```python
-import pandas as pd
+    import pandas as pd
 
-snakes = pd.DataFrame({
-    "species": ["ball", "burmese"],
-    "length_ft": [4.5, 12],
-})
+    snakes = pd.DataFrame({
+        "species": ["ball", "burmese"],
+        "length_ft": [4.5, 12],
+    })
 
-print(snakes)
-```
-
-</details>
+    print(snakes)
+    ```
 
 ## Working with a DataFrame
 
 A single column pulled out of a `DataFrame` (with `df["column"]`) is a `Series` — comparing it to a value produces a boolean mask, exactly like a NumPy array, for filtering rows.
 
-```python
+```python-ref
 import pandas as pd
 
 snakes = pd.DataFrame([
@@ -71,64 +72,56 @@ big_snakes = snakes[snakes["length_ft"] > 5]
 print(big_snakes)
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Sorting rows
 
-Returns the `DataFrame` reordered by a column.
-{: .pt-subheading }
+Returns the `DataFrame` reordered by a column. `.sort_values("column")` sorts ascending by default, or descending with `ascending=False`. Like most pandas operations, it returns a new `DataFrame` rather than reordering the original in place.
 
 ```python-ref
 snakes.sort_values("length_ft", ascending=False)    # rows reordered longest-first
 ```
 
-</summary>
-
-`.sort_values("column")` sorts ascending by default, or descending with `ascending=False`. Like most pandas operations, it returns a new `DataFrame` rather than reordering the original in place.
-
-```python
-import pandas as pd
-
-snakes = pd.DataFrame([
-    {"species": "ball", "length_ft": 4.5},
-    {"species": "burmese", "length_ft": 12},
-    {"species": "boa", "length_ft": 8},
-])
-
-print(snakes.sort_values("length_ft", ascending=False))
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Summarizing a column
 
-Calling `.mean()`, `.max()`, or similar directly on a column summarizes it down to a single number.
-{: .pt-subheading }
+Calling `.mean()`, `.max()`, or similar directly on a column summarizes it down to a single number. The same way it would on a NumPy array — a `Series` supports the same aggregation methods.
 
 ```python-ref
 snakes["length_ft"].mean()    # 8.166666666666666
 snakes["length_ft"].max()     # 12.0
 ```
 
-</summary>
+??? run "Run a working with a DataFrame example"
+    All the examples above, combined into one script:
 
-The same way it would on a NumPy array — a `Series` supports the same aggregation methods.
+    ```python
+    import pandas as pd
 
-```python
-import pandas as pd
+    snakes = pd.DataFrame([
+        {"species": "ball", "length_ft": 4.5},
+        {"species": "burmese", "length_ft": 12},
+        {"species": "boa", "length_ft": 8},
+    ])
 
-snakes = pd.DataFrame([
-    {"species": "ball", "length_ft": 4.5},
-    {"species": "burmese", "length_ft": 12},
-    {"species": "boa", "length_ft": 8},
-])
+    big_snakes = snakes[snakes["length_ft"] > 5]
+    print(big_snakes)
 
-print(snakes["length_ft"].mean())
-print(snakes["length_ft"].max())
-```
+    import pandas as pd
 
-</details>
+    snakes = pd.DataFrame([
+        {"species": "ball", "length_ft": 4.5},
+        {"species": "burmese", "length_ft": 12},
+        {"species": "boa", "length_ft": 8},
+    ])
+
+    print(snakes.sort_values("length_ft", ascending=False))
+
+    import pandas as pd
+
+    snakes = pd.DataFrame([
+        {"species": "ball", "length_ft": 4.5},
+        {"species": "burmese", "length_ft": 12},
+        {"species": "boa", "length_ft": 8},
+    ])
+
+    print(snakes["length_ft"].mean())
+    print(snakes["length_ft"].max())
+    ```

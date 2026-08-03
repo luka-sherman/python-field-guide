@@ -10,23 +10,39 @@ Every value in Python has a **type**, which determines what operations it suppor
 | `bool` | `True` | <ul><li>Flags, yes/no switches, comparison results (`length > 3`)</li><li>Secretly a subclass of `int` — `True + True == 2`</li></ul> |
 | `None` | `None` | <ul><li>Marking "no value yet" — a default placeholder, or what a function returns if it falls through without a `return`</li><li>Compare with `is None`, not `== None`</li><li>`not thing` also catches `None`, but it's true for any falsy value (`0`, `""`, `[]`) too — use `is None` when you mean *specifically* "no value"</li></ul> |
 
+??? tip "Check any variable's type"
+    If you're not sure what type a value is — because it came from user input, a function's return value, or somewhere else you didn't set it yourself — you can ask Python directly instead of guessing. `type()` shows the exact type; `isinstance()` checks whether a value is that type, and also matches a subclass, which is usually why it's the better choice inside an `if`. Works the same way for any type on this page.
+
+    ```python-ref
+    type(5)              # <class 'int'>
+    isinstance(5, int)   # True
+    ```
+
+??? note "Any type can act as True ("truthy") or False ("falsy")"
+    You'll often see code like `if my_list:` instead of `if len(my_list) > 0:` — that works because Python doesn't require an `if` condition to actually be a `bool`. Every value counts as either "truthy" or "falsy" when used somewhere a `bool` is expected, not just actual `True`/`False` values.
+
+    ```python-ref
+    bool(0)       # False
+    bool("")      # False
+    bool([])      # False
+    bool(None)    # False
+    bool("ball")  # True
+    bool(5)       # True
+    ```
+
+    Zero, empty strings, empty collections, and `None` are all falsy; almost everything else — including any non-empty string or nonzero number — is truthy.
+
 ## Integers
 
 An integer (`int`) is a whole number — positive, negative, or zero — with no decimal point.
 
-```python
+```python-ref
 length = 5
-
-print(length)
 ```
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
 
 ### Arithmetic
 
-The standard math operators, with one that surprises beginners: `/` always returns a float.
-{: .pt-subheading }
+The standard math operators, with one that surprises beginners: `/` always returns a float. `/` (true division) always returns a `float`, even when the numbers divide evenly — use `//` (floor division) if you want an `int` result.
 
 ```python-ref
 length + 3     # 8
@@ -38,93 +54,47 @@ length % 2     # 1    (modulo — the remainder)
 length ** 2    # 25   (exponent)
 ```
 
-</summary>
-
-`/` (true division) always returns a `float`, even when the numbers divide evenly — use `//` (floor division) if you want an `int` result.
-
-```python
-length = 5
-
-print(length + 3)
-print(length - 2)
-print(length * 2)
-print(length / 2)
-print(length // 2)
-print(length % 2)
-print(length ** 2)
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-### Check type
-
-`type()` shows the exact type; `isinstance()` checks whether a value is that type.
-{: .pt-subheading }
-
-```python-ref
-type(length)                # <class 'int'>
-isinstance(length, int)     # True
-```
-
-</summary>
-
-`isinstance()` also matches a subclass of that type, and is usually the better choice inside an `if`.
-
-```python
-length = 5
-
-print(type(length))
-print(isinstance(length, int))
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Convert to integer
 
-`int()` converts a string of digits, or truncates a float toward zero.
-{: .pt-subheading }
+`int()` converts a string of digits, or truncates a float toward zero. It cuts off the decimal — it does not round.
 
 ```python-ref
 int("5")      # 5
-int(5.9)      # 5   (truncates, doesn't round)
+int(5.9)      # 5   (cuts off decimal, doesn't round)
 int(True)     # 1
 ```
 
-</summary>
+??? run "Run an integer example"
+    All the examples above, combined into one script:
 
-It cuts off the decimal — it does not round.
+    ```python
+    length = 5
 
-```python
-print(int("5"))
-print(int(5.9))
-print(int(True))
-```
+    print(length + 3)
+    print(length - 2)
+    print(length * 2)
+    print(length / 2)
+    print(length // 2)
+    print(length % 2)
+    print(length ** 2)
 
-</details>
+    print(int("5"))
+    print(int(5.9))
+    print(int(True))
+    ```
 
 ## Floats
 
 A float is a number with a decimal point — for anything that isn't a whole number.
 
-```python
+```python-ref
 weight = 4.5
-
-print(weight)
+weight    # 4.5
 ```
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
 
 ### Arithmetic
 
-Floats support the same operators as integers.
-{: .pt-subheading }
+Floats support the same operators as integers. Notably, `/` always returns a `float` — even `10 / 2`, which divides evenly, gives `5.0`, not `5`.
 
 ```python-ref
 weight + 1.5    # 6.0
@@ -132,89 +102,52 @@ weight / 2      # 2.25
 10 / 2          # 5.0  (still a float, even though it divides evenly)
 ```
 
-</summary>
-
-Notably, `/` always returns a `float` — even `10 / 2`, which divides evenly, gives `5.0`, not `5`.
-
-```python
-weight = 4.5
-
-print(weight + 1.5)
-print(weight / 2)
-print(10 / 2)
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Rounding
 
-`round()` rounds to the nearest whole number, or to a given number of decimal places.
-{: .pt-subheading }
+`round()` rounds to the nearest whole number, or to a given number of decimal places. With no second argument it rounds to the nearest whole number — but Python uses "round half to even" (banker's rounding), so `round(4.5)` is `4`, not `5`. Pass a second argument to round to that many decimal places instead.
 
 ```python-ref
 round(weight)         # 4  (Python rounds .5 to the nearest *even* number)
 round(4.567, 2)        # 4.57
 ```
 
-</summary>
-
-With no second argument it rounds to the nearest whole number — but Python uses "round half to even" (banker's rounding), so `round(4.5)` is `4`, not `5`. Pass a second argument to round to that many decimal places instead.
-
-```python
-weight = 4.5
-print(round(weight))
-print(round(4.567, 2))
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Convert to float
 
 `float()` converts an integer or a numeric string into a float.
-{: .pt-subheading }
 
 ```python-ref
 float(5)         # 5.0
 float("4.5")      # 4.5
 ```
 
-</summary>
+??? warning "Floating-point precision"
+    Tiny rounding errors creep in, since most decimal fractions can't be stored exactly in binary.
 
-```python
-print(float(5))
-print(float("4.5"))
-```
+    ```python-ref
+    0.1 + 0.2    # 0.30000000000000004
+    ```
 
-</details>
+    This is a property of floating-point math in virtually every programming language, not a Python bug. If you need exact decimal arithmetic (for money, for example), use the `decimal` module instead of `float`.
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+??? run "Run a float example"
+    All the examples above, combined into one script:
 
-### Floating-point precision
+    ```python
+    weight = 4.5
 
-Tiny rounding errors creep in, since most decimal fractions can't be stored exactly in binary.
-{: .pt-subheading }
+    print(weight + 1.5)
+    print(weight / 2)
+    print(10 / 2)
 
-```python-ref
-0.1 + 0.2    # 0.30000000000000004
-```
+    print(round(weight))
+    print(round(4.567, 2))
 
-</summary>
+    print(float(5))
+    print(float("4.5"))
 
-This is a property of floating-point math in virtually every programming language, not a Python bug. If you need exact decimal arithmetic (for money, for example), use the `decimal` module instead of `float`.
-
-```python
-print(0.1 + 0.2)
-print(round(0.1 + 0.2, 2))
-```
-
-</details>
+    print(0.1 + 0.2)
+    print(round(0.1 + 0.2, 2))
+    ```
 
 ## Strings
 
@@ -226,19 +159,14 @@ Strings have three defining traits:
 - **Immutable** — unlike a list, a string can't be changed in place; every "modification" actually builds a new string.
 - **Indexable** — since a string is a sequence, it supports the same `[]` indexing and slicing as a list.
 
-```python
+```python-ref
 name = "burmese python"
-
-print(name)
+name    # "burmese python"
 ```
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
 
 ### Access characters
 
-Strings use the same index and slice syntax as lists.
-{: .pt-subheading }
+Strings use the same index and slice syntax as lists. `0` is the first character, negative indexes count from the end, and `start:end` slices out a substring.
 
 ```python-ref
 name[0]      # "b"
@@ -246,78 +174,26 @@ name[-1]     # "n"
 name[0:7]    # "burmese"
 ```
 
-</summary>
-
-`0` is the first character, negative indexes count from the end, and `start:end` slices out a substring.
-
-```python
-name = "burmese python"
-
-print(name[0])
-print(name[-1])
-print(name[0:7])
-print(name[8:])
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Concatenate & repeat
 
 `+` joins strings end to end; `*` repeats a string a given number of times.
-{: .pt-subheading }
 
 ```python-ref
 "ball" + " " + "python"    # "ball python"
 "ball" * 3                  # "ballballball"
 ```
 
-</summary>
-
-```python
-species = "ball"
-name = species + " " + "python"
-print(name)
-
-print(species * 3)
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Format strings
 
-An f-string lets you embed variables directly inside `{}`.
-{: .pt-subheading }
+An f-string lets you embed variables directly inside `{}`. An f-string is a string literal prefixed with `f`, and it can embed expressions too, without manually joining pieces with `+`.
 
 ```python-ref
 f"the {species} python is about {length} feet long"    # "the ball python is about 5 feet long"
 ```
 
-</summary>
-
-An f-string is a string literal prefixed with `f`, and it can embed expressions too, without manually joining pieces with `+`.
-
-```python
-species = "ball"
-length = 5
-sentence = f"the {species} python is about {length} feet long"
-print(sentence)
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Comma, +, or f-string?
 
 Three ways to combine text and values — each fits a different situation.
-{: .pt-subheading }
 
 | Method | Example | Use it for |
 |--------|---------|------------|
@@ -325,31 +201,11 @@ Three ways to combine text and values — each fits a different situation.
 | `+` | `species + " python"` | Building an actual string value to store or reuse — every piece must already be a string |
 | f-string | `f"{species} is {length_ft} ft"` | Embedding variables inside a sentence — converts values to strings automatically |
 
-</summary>
-
 `,` only works inside `print()` (or similar functions) — it can't be saved to a variable, since it isn't actually building a string, just printing several values side by side. `+` builds a real string you can store, but every piece must already be text — `species + length_ft` raises a `TypeError` since `length_ft` is a number, not a string, and needs `str(length_ft)` first. An f-string sidesteps that entirely, converting values to text automatically, which is why it's usually the clearest choice once a sentence has more than one or two variables in it.
-
-```python
-species = "ball"
-length_ft = 4.5
-
-print(species, length_ft)                    # comma — fine for a quick printout
-
-name = species + " " + str(length_ft)         # + — needs str() to include a number
-print(name)
-
-print(f"{species} is {length_ft} ft")         # f-string — no manual conversion needed
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
 
 ### Modify strings
 
-Since strings are immutable, these all return a **new** string rather than changing the original.
-{: .pt-subheading }
+Since strings are immutable, these all return a **new** string rather than changing the original. `upper()`, `lower()`, and `title()` change letter case. `strip()` removes leading and trailing whitespace. `replace()` swaps every occurrence of one substring for another.
 
 ```python-ref
 name.upper()          # "BURMESE PYTHON"
@@ -358,63 +214,18 @@ name.title()          # "Burmese Python"
 name.replace("burmese", "ball")   # "ball python"
 ```
 
-</summary>
-
-`upper()`, `lower()`, and `title()` change letter case.
-
-`strip()` removes leading and trailing whitespace.
-
-`replace()` swaps every occurrence of one substring for another.
-
-```python
-name = "burmese python"
-
-print(name.upper())
-print(name.title())
-
-padded = "  ball python  "
-print(padded.strip())
-
-print(name.replace("burmese", "ball"))
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Split & join
 
-`split()` breaks a string into a list; `join()` glues a list of strings back together.
-{: .pt-subheading }
+`split()` breaks a string into a list; `join()` glues a list of strings back together. `split()` uses whitespace as the separator by default. `join()` uses the string it's called on as the separator between each item.
 
 ```python-ref
 name.split()                          # ["burmese", "python"]
 "-".join(["burmese", "python"])       # "burmese-python"
 ```
 
-</summary>
-
-`split()` uses whitespace as the separator by default. `join()` uses the string it's called on as the separator between each item.
-
-```python
-name = "burmese python"
-parts = name.split()
-print(parts)
-
-rejoined = "-".join(parts)
-print(rejoined)
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Check substring
 
-`in` checks whether one string contains another.
-{: .pt-subheading }
+`in` checks whether one string contains another. `find()` returns the index where a substring first appears, or `-1` if it's not found. `count()` counts how many times a substring appears.
 
 ```python-ref
 "python" in name          # True
@@ -422,31 +233,9 @@ name.find("python")       # 8
 name.count("p")           # 1
 ```
 
-</summary>
-
-`find()` returns the index where a substring first appears, or `-1` if it's not found.
-
-`count()` counts how many times a substring appears.
-
-```python
-name = "burmese python"
-
-print("python" in name)
-print("cobra" in name)
-
-print(name.find("python"))
-print(name.count("p"))
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Convert to string
 
-`str()` converts almost any value into its text representation.
-{: .pt-subheading }
+`str()` converts almost any value into its text representation. Handy any time you need to combine a number with text, since `+` can't join a string and a number directly.
 
 ```python-ref
 str(5)      # "5"
@@ -454,35 +243,80 @@ str(4.5)    # "4.5"
 str(True)   # "True"
 ```
 
-</summary>
+??? run "Run a string example"
+    All the examples above, combined into one script:
 
-Handy any time you need to combine a number with text, since `+` can't join a string and a number directly.
+    ```python
+    name = "burmese python"
 
-```python
-print(str(5))
-print(str(4.5))
-print(str(True))
-```
+    print(name[0])
+    print(name[-1])
+    print(name[0:7])
+    print(name[8:])
 
-</details>
+    species = "ball"
+    name = species + " " + "python"
+    print(name)
+
+    print(species * 3)
+
+    species = "ball"
+    length = 5
+    sentence = f"the {species} python is about {length} feet long"
+    print(sentence)
+
+    species = "ball"
+    length_ft = 4.5
+
+    print(species, length_ft)                    # comma — fine for a quick printout
+
+    name = species + " " + str(length_ft)         # + — needs str() to include a number
+    print(name)
+
+    print(f"{species} is {length_ft} ft")         # f-string — no manual conversion needed
+
+    name = "burmese python"
+
+    print(name.upper())
+    print(name.title())
+
+    padded = "  ball python  "
+    print(padded.strip())
+
+    print(name.replace("burmese", "ball"))
+
+    name = "burmese python"
+    parts = name.split()
+    print(parts)
+
+    rejoined = "-".join(parts)
+    print(rejoined)
+
+    name = "burmese python"
+
+    print("python" in name)
+    print("cobra" in name)
+
+    print(name.find("python"))
+    print(name.count("p"))
+
+    print(str(5))
+    print(str(4.5))
+    print(str(True))
+    ```
 
 ## Booleans
 
 A boolean (`bool`) holds one of exactly two values, `True` or `False` — used to represent yes/no, on/off, or the result of a comparison.
 
-```python
+```python-ref
 venomous = False
-
-print(venomous)
+venomous    # False
 ```
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
 
 ### Comparisons return booleans
 
-Every comparison operator evaluates to a `bool`.
-{: .pt-subheading }
+Every comparison operator evaluates to a `bool`. `>`, `<`, `>=`, `<=`, `==`, `!=` — this is what powers every `if` statement.
 
 ```python-ref
 length = 5
@@ -491,27 +325,9 @@ length == 5    # True
 length != 5    # False
 ```
 
-</summary>
-
-`>`, `<`, `>=`, `<=`, `==`, `!=` — this is what powers every `if` statement.
-
-```python
-length = 5
-
-print(length > 3)
-print(length == 5)
-print(length != 5)
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Combine booleans
 
-`and`, `or`, and `not` combine or invert boolean values.
-{: .pt-subheading }
+`and`, `or`, and `not` combine or invert boolean values. `and` is `True` only if both sides are; `or` is `True` if either side is; `not` flips a boolean.
 
 ```python-ref
 is_python and is_venomous    # True and False → False
@@ -519,160 +335,78 @@ is_python or is_venomous     # True or False  → True
 not is_venomous              # not False      → True
 ```
 
-</summary>
+??? note "Bool is a subclass of int"
+    `True` behaves like `1` and `False` behaves like `0` in arithmetic.
 
-`and` is `True` only if both sides are; `or` is `True` if either side is; `not` flips a boolean.
+    ```python-ref
+    isinstance(True, int)    # True
+    True + True               # 2
+    ```
 
-```python
-is_python = True
-is_venomous = False
+    `bool` is technically a subclass of `int`, though it's rare to rely on this on purpose.
 
-print(is_python and is_venomous)
-print(is_python or is_venomous)
-print(not is_venomous)
-```
+??? run "Run a boolean example"
+    All the examples above, combined into one script:
 
-</details>
+    ```python
+    length = 5
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
+    print(length > 3)
+    print(length == 5)
+    print(length != 5)
 
-### Truthy & falsy values
+    is_python = True
+    is_venomous = False
 
-Every value in Python is "truthy" or "falsy" when used somewhere a boolean is expected, like an `if`.
-{: .pt-subheading }
+    print(is_python and is_venomous)
+    print(is_python or is_venomous)
+    print(not is_venomous)
 
-```python-ref
-bool(0)       # False
-bool("")      # False
-bool([])      # False
-bool(None)    # False
-bool("ball")  # True
-bool(5)       # True
-```
-
-</summary>
-
-Zero, empty strings, empty collections, and `None` are all falsy; almost everything else — including any non-empty string or nonzero number — is truthy.
-
-```python
-print(bool(0))
-print(bool(""))
-print(bool([]))
-print(bool(None))
-
-print(bool("ball"))
-print(bool(5))
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-### Bool is a subclass of int
-
-`True` behaves like `1` and `False` behaves like `0` in arithmetic.
-{: .pt-subheading }
-
-```python-ref
-isinstance(True, int)    # True
-True + True               # 2
-```
-
-</summary>
-
-`bool` is technically a subclass of `int`, though it's rare to rely on this on purpose.
-
-```python
-print(isinstance(True, int))
-print(True + True)
-```
-
-</details>
+    print(isinstance(True, int))
+    print(True + True)
+    ```
 
 ## None
 
 `None` represents the absence of a value — Python's way of saying "nothing here," distinct from `0`, `False`, or an empty string.
 
-```python
-venomous = None
-
-print(venomous)
-```
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
-### Check type
-
-`None` is the only value of its own type, `NoneType`.
-{: .pt-subheading }
-
 ```python-ref
-type(venomous)    # <class 'NoneType'>
-```
-
-</summary>
-
-```python
 venomous = None
-print(type(venomous))
+venomous    # None
 ```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
 
 ### Check for None
 
-Always compare to `None` with `is` / `is not`, not `==` / `!=`.
-{: .pt-subheading }
+Always compare to `None` with `is` / `is not`, not `==` / `!=`. `is` checks that it's the *exact same object*, which is what you want for a singleton value like `None`.
 
 ```python-ref
 venomous is None        # True
 venomous is not None    # False
 ```
 
-</summary>
-
-`is` checks that it's the *exact same object*, which is what you want for a singleton value like `None`, and avoids surprising results from custom `__eq__` methods.
-
-```python
-venomous = None
-
-print(venomous is None)
-print(venomous is not None)
-```
-
-</details>
-
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Functions return None by default
 
-If a function runs to the end without hitting a `return` statement, it returns `None` automatically.
-{: .pt-subheading }
+If a function runs to the end without hitting a `return` statement, it returns `None` automatically. This is what you get back if a lookup silently "doesn't find" anything.
 
 ```python-ref
 result = find_species("cobra")    # None — the function fell through without a return
 ```
 
-</summary>
+??? run "Run a None example"
+    All the examples above, combined into one script:
 
-This is what you get back if a lookup silently "doesn't find" anything.
+    ```python
+    venomous = None
 
-```python
-def find_species(name):
-    if name == "ball":
-        return "found it"
-    # falls through here for anything else — implicitly returns None
+    print(venomous is None)
+    print(venomous is not None)
 
-result = find_species("cobra")
-print(result)
-print(result is None)
-```
+    def find_species(name):
+        if name == "ball":
+            return "found it"
+        # falls through here for anything else — implicitly returns None
 
-</details>
+    result = find_species("cobra")
+    print(result)
+    print(result is None)
+    ```
