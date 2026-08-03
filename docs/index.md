@@ -108,15 +108,15 @@ Package code into reusable units, then bundle that logic with the data it acts o
 
 ## When something goes wrong
 
-Your code didn't do what you expected — here's every tool for figuring out why.
+Your code didn't do what you expected — here are tools for figuring out why.
 
 <div class="grid cards" markdown="block">
 
 - **[Bugs](bugs.md)**
 
-    Read a traceback, handle an error instead of crashing, or step through your code line by line to find where it went wrong.
+    Understand an error message, handle an error instead of crashing, or debug your code line by line to find where it went wrong.
 
-    [`tracebacks`](bugs.md#reading-a-traceback) · [`try`/`except`](bugs.md#handling-errors) · [`debugger`](bugs.md#using-a-debugger)
+    [`tracebacks`](bugs.md#how-to-read-a-traceback) · [`try`/`except`](bugs.md#handling-errors) · [`debugger`](bugs.md#using-a-debugger)
 
 </div>
 

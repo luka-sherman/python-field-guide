@@ -60,7 +60,7 @@ A **code editor** or **IDE** ("Integrated Development Environment") is a text ed
 - **Running code is faster** — click a Run button instead of typing terminal commands every time
 - **Code completion** — the editor suggests function names and variables as you type, saving time and reducing typos
 - **Error detection** — it warns you about common mistakes before you run the code
-- **[Debugging](bugs.md#debugging)** — pause your code mid-run and inspect variables to track down bugs, instead of just reading output after the fact
+- **[Debugging](bugs.md#using-a-debugger)** — pause your code mid-run and inspect variables to track down bugs, instead of just reading output after the fact
 
 </details>
 

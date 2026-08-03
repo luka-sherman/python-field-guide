@@ -1,13 +1,17 @@
 # Bugs
 
-Something's not working — this page covers every tool for figuring out why, whether Python threw an error at you or your code just quietly did the wrong thing.
+Your code had an error or didn't do what you expected — here are tools for figuring out why. 
 
 ## Reading errors
+
+An **error** is Python's way of telling you it couldn't do what your code asked — a typo it can't parse, a variable that doesn't exist, dividing by zero, and so on. When Python hits one, it stops the program right there. That's not a sign you've broken something unrecoverable — it's Python pointing at the exact spot to look.
+
+Errors are part of programming, and will happen constantly. 
 
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Reading a traceback
+### How to read a traceback
 
 Red text instead of your expected output? Here's how to read it.
 {: .pt-subheading }
@@ -27,11 +31,39 @@ Errors in Python show up as a **traceback** — don't be intimidated by the wall
 
 Fix the issue there, save, and run again. Errors are a normal part of writing code — even experienced programmers see them constantly.
 
+**Longer tracebacks** show one `File` line per function call involved — your code calling a function, which calls another function, and so on. Keep reading bottom to top: the first `File` line naming *your own file* (not a library you imported) is almost always the one worth looking at — the frames above it are usually just the library code that was doing what your code asked, not the actual source of the bug.
+
+```python-ref
+Traceback (most recent call last):
+  File "hello.py", line 5, in <module>
+  File "hello.py", line 3, in describe
+  File "/usr/lib/python3.11/random.py", line 449, in choice
+IndexError: list index out of range
+```
+
 </details>
 
 ## Handling errors
 
-`try`/`except` lets your program handle an error instead of crashing — attempt some code in `try`, and if it fails, run the code in `except` instead.
+`try`/`except` lets your program handle an error instead of crashing.
+
+```python-ref
+try:
+    [run this block of code first]
+except [specific error]:
+    [if the above block failed due to the specific error named in the except, then run this code]
+```
+
+!!! success "Handle it with try/except"
+    - A failure that's expected and outside your control, even when the code is correct
+    - Catch the specific exception type you expect, not a bare `except:`
+    - Keep the `try` block small — only the line that can actually fail
+
+!!! danger "Fix the code instead"
+    - Typos, bugs, incorrect logic 
+    - Catching several unrelated exception types just to make errors stop — often a sign one of them is actually a bug
+
+An **exception** is Python's formal name for the type of error that was raised — `KeyError`, `ValueError`, and so on are all exceptions, and it's the technical term for what `except` actually matches against. Matching `except` to a specific exception type (rather than catching everything) means your program only handles the failure you actually expected, and still crashes loudly on a genuine bug — which is usually what you want while learning.
 
 ```python
 lengths = {"ball python": 4.5, "burmese python": 12}
@@ -42,45 +74,36 @@ except KeyError:
     print("no length on record for that species")
 ```
 
-<details markdown="block" class="pt-collapsible">
-<summary markdown="block">
-
 ### Common exception types
 
 The name in the traceback's last line tells you which of these went wrong.
 {: .pt-subheading }
 
+**Runtime errors** — valid Python that fails only once that specific line actually executes. These are the ones `except` can catch.
+
 | Exception | Happens when |
 |-----------|---------------|
 | `NameError` | Using a variable that hasn't been assigned yet |
-| `TypeError` | Using a value the wrong way for its type, like adding a string and a number |
-| `ValueError` | The type is right, but the value doesn't make sense, like `int("banana")` |
+| `TypeError` | Using a value the wrong way for its type, or calling a function with the wrong number of arguments |
+| `ValueError` | The type is right, but the value doesn't make sense — `int("banana")`, or unpacking the wrong number of values (`a, b = 1, 2, 3`) |
 | `KeyError` | Looking up a dict key that doesn't exist |
 | `IndexError` | Looking up a list index that doesn't exist |
 | `ZeroDivisionError` | Dividing by zero |
+| `AttributeError` | Calling a method that doesn't exist on that object — often a typo, or calling a method on `None` |
+| `FileNotFoundError` | Trying to open a file that doesn't exist at that path |
+| `ImportError` (or `ModuleNotFoundError`) | Importing something that doesn't exist, or a library that isn't installed |
 
-</summary>
+**Parse-time errors** — Python can't even finish reading the file, so nothing runs at all. `except` can't catch this — it has to be fixed.
 
-Matching `except` to a specific exception type (rather than catching everything) means your program only handles the failure you actually expected, and still crashes loudly on a genuine bug — which is usually what you want while learning.
-
-```python
-try:
-    length = int("banana")
-except ValueError:
-    print("that's not a valid number")
-
-try:
-    print(10 / 0)
-except ZeroDivisionError:
-    print("can't divide by zero")
-```
-
-</details>
+| Exception | Happens when |
+|-----------|---------------|
+| `SyntaxError` | The code isn't valid Python at all — a missing colon, mismatched parentheses |
+| `IndentationError` | A specific kind of `SyntaxError` for inconsistent or incorrect indentation |
 
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Catching multiple exception types
+### Catching multiple exceptions
 
 List several exception types in one `except` to handle them the same way.
 {: .pt-subheading }
@@ -149,43 +172,50 @@ finally:
 
 </details>
 
-## Debugging
+## Using a Debugger
+
+A **debugger** is a tool built into most code editors that lets you pause a running program and look around, instead of only seeing what it printed after the fact. Pause your code mid-run to inspect what's happening and inspect variables — instead of only reading `print()` outputs at the end. 
+
+### Step 0: Set "breakpoints"
+
+A **breakpoint** marks a specific line where you want the program to pause while debugging, so you can inspect it. You can set as many breakpoints as you want. Set these *before* you start running. 
+
+Click in the margin next to a line number to set one. To remove it, click the same spot again — the red dot toggles off.
+
+### Step 1: Run in Debug mode 
+
+Your program will run normally until it hits the *first* breakpoint, then it pauses there.
+
+Look for a **"Debug"** button instead of the regular Run button. 
+
+### Step 2: What you can do at a breakpoint
+
+When it gets to a breakpoint it will pause, and you can use these controls to move through your code:
+
+| Control | What it does | Use it when |
+|---------|---------------|-------------|
+| **Inspect variables** | Shows the current value of every variable while paused | You want to watch exactly when a variable becomes wrong, instead of guessing |
+| **Step Into** | Jumps inside the [function](functions.md) being called, so you can watch it run line by line | You want to see exactly what a function does |
+| **Step Over** | Runs the current line, then pauses on the next one, without entering any function it calls | You trust the function works and don't need to see inside it |
+| **Step Out** | Finishes the current function, then pauses back where it was called from | You stepped into a function but have seen enough and want to jump back out |
+| **Continue/Resume** (▶) | Runs until the next breakpoint, or finishes if there are none left | You're done inspecting the current pause point and want to jump ahead |
+| **Stop debugging** | Ends the debug session entirely | You're done, instead of stepping or continuing all the way through |
 
 <details markdown="block" class="pt-collapsible">
 <summary markdown="block">
 
-### Using a debugger
+### Where Debugging controls are in each editor
 
-Pause your code mid-run to inspect what's happening and inspect variables — instead of only reading `print()` outputs at the end. 
+Where to find the debugger, and what it calls things, varies by editor.
 {: .pt-subheading }
 
 </summary>
 
-**Step 0: Before running, set "breakpoints"**
-
-A **breakpoint** marks a specific line where you want the program to pause while debugging, so you can inspect it. 
-
-Click in the margin next to a line number (or press F9 in most editors) to set one. You can set as many breakpoints as you want. To remove it, click the same spot again — the red dot toggles off.
-
-*Note for Thonny users: you don't need to set any breakpoints as Thonny's debugger pauses at every step by default, which makes it great for watching exactly how a program runs for the first time.*
-
-**Step 1: Start running to the first breakpoint**
-
-Look for a "Debug" button (often next to the Run button, sometimes a bug icon) instead of the regular Run button. Your program runs normally until it hits the *first* breakpoint, then pauses there.
-
-**Step 2: When at a breakpoint, use these controls to move through your code**
-
-- **Continue/Resume** (often shown as a ▶ play icon) — runs the program until it hits the *next* breakpoint, or finishes if there are none left. This is how you move between breakpoints. Use this when you're done inspecting the current pause point and want to jump ahead to the next one.
-- **Step Over** — runs the current line and moves to the next one, without entering any [function](functions.md) it calls. Use this when you trust the function works and don't need to see inside it.
-- **Step Into** — if the current line calls a function (a named, reusable block of code — see [Functions](functions.md)), this jumps *inside* that function so you can watch it run line by line — even if there's no breakpoint inside it. Use this when you want to see exactly what a function does.
-- **Step Out** — finishes running the rest of the current function all at once, then pauses again back where that function was called from. Use this when you stepped into a function but have seen enough and want to jump back out.
-- **Inspect variables** — most editors show you the current value of every variable while paused, often the fastest way to find a bug since you can watch exactly when a variable becomes wrong instead of guessing. 
-    - Thonny: shows an always-visible variable inspector panel.
-    - VS Code: shows variables in a debug panel.
-    - IDLE: shows variables in a more basic debugger window.
-    - PyCharm: shows the values of variables in a debug panel or by hovering over the variable in your code.
-- **Stop debugging** — look for a Stop button (often a red square) to end the debug session entirely, instead of stepping or continuing all the way through.
-
-**Where's my output?** Debug mode often shows `print()` output in a separate "Debug Console" or "Debug" panel, rather than the regular output panel you see with a normal run.
+| Editor | Debug button | Where the step controls are | Stop button | Where output shows | Inspecting variables | Notes |
+|--------|---------------|-------------------------------|--------------|---------------------|------------------------|-------|
+| **Thonny** | Bug icon in the main toolbar | Inline in the main toolbar | Same toolbar | Same Shell panel as a normal run | Always-visible Variables panel | You don't need to set any breakpoints — Thonny's debugger pauses at every step by default, which is great for watching exactly how a program runs the first time |
+| **VS Code** | "Run and Debug" in the sidebar, or the dropdown next to the Run button | A floating toolbar | Red square, same floating toolbar | Separate "Debug Console" panel | Variables section in the Run and Debug sidebar | |
+| **IDLE** | Debug menu in the Shell window (turn on before running) | A separate popup window | "Quit" button, same popup window | Same Shell window as a normal run | Same popup Debug Control window | Most basic of the four |
+| **PyCharm** | Bug icon next to the Run button | The bottom Debug tool window | Red square, same tool window | Same "Debug" tool window | Same tool window, or hover over a variable in the editor | |
 
 </details>
