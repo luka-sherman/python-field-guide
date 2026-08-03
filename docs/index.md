@@ -176,4 +176,10 @@ These additional Python libraries can be installed on your computer for free.
 
     [`Image`](pillow.md#the-image) · [`ImageOps`](pillow.md#imageops-module) · [`ImageDraw`](pillow.md#imagedraw-module) · [`ImageFont`](pillow.md#imagefont-module) · [`ImageColor`](pillow.md#imagecolor-module) · [`ImageFilter`](pillow.md#imagefilter-module) · [`ImageEnhance`](pillow.md#imageenhance-module) · [`ImageChops`](pillow.md#imagechops-module) · [`convert()`](pillow.md#format-conversion) · [`ImageSequence`](pillow.md#imagesequence-module)
 
+- **[requests](requests.md)**
+
+    A third-party toolkit for fetching data over the internet — asking a website or API for information from inside a Python program.
+
+    [`get()`](requests.md#making-a-request) · [`status_code`](requests.md#checking-the-status-code) · [`json()`](requests.md#parsing-json) · [`params`](requests.md#query-parameters)
+
 </div>

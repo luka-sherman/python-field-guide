@@ -26,6 +26,7 @@ nav:
           - NumPy: numpy.md
           - pandas: pandas.md
           - Pillow: pillow.md
+          - requests: requests.md
 
 theme:
   name: material
