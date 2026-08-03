@@ -1,4 +1,11 @@
-:root {
+/* Light ("default") and dark ("slate") variants of the site's palette. The
+   plain `:root` selector is the fallback for elements that don't sit under
+   a `[data-md-color-scheme]`-tagged body yet; `[data-md-color-scheme]`
+   itself is what actually flips per the header toggle (see mkdocs.yml
+   theme.palette, and the mapping block below for why both selectors are
+   needed on <body>). */
+:root,
+[data-md-color-scheme="default"] {
   --pt-bg: #FAF6EE;
   --pt-panel: #F4EEDF;
   --pt-ink: #2B2A26;
@@ -7,6 +14,40 @@
   --pt-hairline: #DED2B4;
   --pt-border-soft: #C9BE9E;
   --pt-accent: #3f6b52;
+  --pt-ref-keyword: #8a5a2e;
+  --pt-danger: #a33f3f;
+
+  /* The runnable code block (.pyodide-runner) is deliberately the inverse of
+     the page's own scheme — a dark "terminal" panel on the light site — so
+     these track opposite to --pt-bg/--pt-ink rather than matching them. */
+  --pt-code-bg: #23221E;
+  --pt-code-border: #35342E;
+  --pt-code-fg: #F2EDE0;
+  --pt-code-string: #C9E4D2;
+  --pt-code-keyword: #E8C9A8;
+  --pt-code-comment: #8A8370;
+}
+
+[data-md-color-scheme="slate"] {
+  --pt-bg: #1a1d21;
+  --pt-panel: #23272b;
+  --pt-ink: #e8e6df;
+  --pt-text-secondary: #b0ac9e;
+  --pt-text-muted: #7d796b;
+  --pt-hairline: #33362f;
+  --pt-border-soft: #454940;
+  --pt-accent: #6fbf8f;
+  --pt-ref-keyword: #e8c9a8;
+  --pt-danger: #e38181;
+
+  /* Inverse of the light scheme's runner panel above: the page itself is
+     now dark, so the runnable block flips to a light panel. */
+  --pt-code-bg: #F2EDE0;
+  --pt-code-border: #D9D4C5;
+  --pt-code-fg: #23221E;
+  --pt-code-string: #2f6b4a;
+  --pt-code-keyword: #8a5a2e;
+  --pt-code-comment: #6b6656;
 }
 
 /* Material re-sets --md-* variables on [data-md-color-scheme] (applied to
@@ -22,12 +63,15 @@
   --md-default-fg-color--lighter: var(--pt-text-muted);
   --md-default-fg-color--lightest: var(--pt-hairline);
 
-  --md-primary-fg-color: rgba(250, 246, 238, 0.92);
+  /* A translucent tint of the page background, not a literal light color —
+     tracks --pt-bg so the frosted header reads as "this page's bg, blurred"
+     in both the cream and slate schemes rather than staying cream always. */
+  --md-primary-fg-color: color-mix(in srgb, var(--pt-bg) 92%, transparent);
   --md-primary-bg-color: var(--pt-ink);
   --md-primary-bg-color--light: var(--pt-text-secondary);
 
   --md-accent-fg-color: var(--pt-accent);
-  --md-accent-fg-color--transparent: rgba(63, 107, 82, 0.1);
+  --md-accent-fg-color--transparent: color-mix(in srgb, var(--pt-accent) 10%, transparent);
   --md-accent-bg-color: var(--pt-bg);
 
   --md-typeset-a-color: var(--pt-accent);
@@ -192,18 +236,18 @@ input:checked + .md-consent__settings {
 }
 
 .pyodide-runner pre {
-  background-color: #23221E !important;
-  border: 1px solid #35342E;
+  background-color: var(--pt-code-bg) !important;
+  border: 1px solid var(--pt-code-border);
 }
 
 .pyodide-reference pre {
-  background-color: #fff !important;
+  background-color: var(--pt-panel) !important;
   border: 1px solid var(--pt-hairline);
 }
 
 .pyodide-runner pre code {
   background: transparent;
-  color: #F2EDE0;
+  color: var(--pt-code-fg);
 }
 
 .pyodide-reference pre code {
@@ -227,23 +271,23 @@ input:checked + .md-consent__settings {
 }
 
 .pyodide-editor:focus {
-  box-shadow: inset 0 0 0 2px rgba(63, 107, 82, 0.45);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--pt-accent) 45%, transparent);
 }
 
 .pyodide-editor .hljs-string,
 .pyodide-editor .hljs-subst {
-  color: #C9E4D2;
+  color: var(--pt-code-string);
 }
 
 .pyodide-editor .hljs-built_in,
 .pyodide-editor .hljs-keyword,
 .pyodide-editor .hljs-title,
 .pyodide-editor .hljs-number {
-  color: #E8C9A8;
+  color: var(--pt-code-keyword);
 }
 
 .pyodide-editor .hljs-comment {
-  color: #8A8370;
+  color: var(--pt-code-comment);
 }
 
 .pyodide-reference .hljs-string,
@@ -255,7 +299,7 @@ input:checked + .md-consent__settings {
 .pyodide-reference .hljs-keyword,
 .pyodide-reference .hljs-title,
 .pyodide-reference .hljs-number {
-  color: #8a5a2e;
+  color: var(--pt-ref-keyword);
 }
 
 .pyodide-reference .hljs-comment {
@@ -364,8 +408,8 @@ input:checked + .md-consent__settings {
 }
 
 .pt-bool-false {
-  color: #a33f3f;
-  background-color: rgba(163, 63, 63, 0.12);
+  color: var(--pt-danger);
+  background-color: color-mix(in srgb, var(--pt-danger) 12%, transparent);
 }
 
 /* Inline check/x icons (workspace.md's install-check step), colored to
@@ -381,7 +425,7 @@ input:checked + .md-consent__settings {
 }
 
 .pt-icon-fail {
-  color: #a33f3f;
+  color: var(--pt-danger);
 }
 
 /* Feedback form on about.md, posting to Formspree */

@@ -4,7 +4,7 @@ Libraries allow us to apply the Python fundamentals to real tasks. These are a f
 
 They each need to be `import`ed at the top of the file.
 
-## Standard libraries
+## Built-in libraries
 
 Python is already preloaded with these, and puts the above fundamentals to use on real tasks.
 
