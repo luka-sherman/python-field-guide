@@ -383,15 +383,19 @@ input:checked + .md-consent__settings {
   transform: translateY(-0.1rem);
 }
 
-/* Stretched-link pattern: the card's title link (first paragraph) expands to
-   fill the whole box, so clicking anywhere on the card goes to its page.
-   Anything meant to stay independently clickable (the inline keyword links
-   further down) needs its own stacking context to sit above that overlay. */
-.md-typeset .grid.cards > ul > li > p:first-child > strong > a {
+/* Stretched-link pattern: the card's title link (icon + bold heading, first
+   paragraph) expands to fill the whole box, so clicking anywhere on the card
+   goes to its page. Anything meant to stay independently clickable above
+   that overlay — the inline keyword links further down — needs its own
+   stacking context. Markdown's `[__Title__](page.md)` wraps the link around
+   the bold text (`<a><strong>` — link is the outer tag), unlike the site's
+   older `**[Title](page.md)**` cards which nested the other way round, so
+   this targets the paragraph's `<a>` directly rather than `<strong> > a`. */
+.md-typeset .grid.cards > ul > li > p:first-child > a {
   outline: none;
 }
 
-.md-typeset .grid.cards > ul > li > p:first-child > strong > a::after {
+.md-typeset .grid.cards > ul > li > p:first-child > a::after {
   content: "";
   position: absolute;
   inset: 0;

@@ -46,144 +46,179 @@ None of this means avoiding AI altogether—but it does mean being **deliberate*
 
 </details>
 
-#### Getting started
+### Getting started
 
 <div class="grid cards" markdown="block">
 
-- **[Workspace](workspace.md)**
+-   :material-monitor:{ .lg .middle } [__Workspace__](workspace.md)
 
     What you need to write and run Python: installing it, picking a code editor, running and debugging, and using the terminal.
 
+    ---
+
     [`installing Python`](workspace.md#step-0-install-python) · [`code editors`](workspace.md#step-1-pick-a-code-editor) · [`running a file`](workspace.md#step-2-write-and-run-a-python-file) · [`terminal`](workspace.md#using-the-terminal-optional)
 
-- **[Foundations](foundations.md)**
+-   :material-cube-outline:{ .lg .middle } [__Foundations__](foundations.md)
 
     Store a value in a variable, show output with `print()`, and leave notes for yourself with comments.
 
+    ---
+
     [`variables`](foundations.md#variables) · [`print()`](foundations.md#print) · [`comments`](foundations.md#comments)
+
 </div>
 
-#### Data types
+### Data types
 
 <div class="grid cards" markdown="block">
 
-- **[Types](types.md)**
+-   :material-shape-outline:{ .lg .middle } [__Types__](types.md)
 
     A single value on its own — a number, some text, or true/false — that every variable holds and that determines what you can do with it.
 
+    ---
+
     [`int`](types.md#integers) · [`float`](types.md#floats) · [`string`](types.md#strings) · [`bool`](types.md#booleans) · [`None`](types.md#none)
 
-- **[Collections](collections.md)**
+-   :material-format-list-bulleted:{ .lg .middle } [__Collections__](collections.md)
 
     Multiple related values grouped into one container, so you can work with them together.
+
+    ---
 
     [`list`](collections.md#lists) · [`tuple`](collections.md#tuples) · [`dict`](collections.md#dictionaries)
 
 </div>
 
-#### Control flow
+### Control flow
 
 <div class="grid cards" markdown="block">
 
-- **[Conditionals](conditionals.md)**
+-   :material-source-branch:{ .lg .middle } [__Conditionals__](conditionals.md)
 
     Checks whether something is true, then runs different code based on the answer — how Python decides which lines to run instead of top to bottom.
 
+    ---
+
     [`if`/`elif`/`else`](conditionals.md#if-elif-else) · [`match`/`case`](conditionals.md#match-case) · [`and`/`or`/`not`](conditionals.md#logical-operators)
 
-- **[Loops](loops.md)**
+-   :material-repeat:{ .lg .middle } [__Loops__](loops.md)
 
     Repeats a block of code a certain number of times, over each item in a collection, or until a condition changes.
+
+    ---
 
     [`for`](loops.md#for-loops) · [`while`](loops.md#while-loops) · [`break`](loops.md#loop-control)
 
 </div>
 
-#### Code organization and reuse
+### Code organization and reuse
 
 <div class="grid cards" markdown="block">
 
-- **[Functions](functions.md)**
+-   :material-function-variant:{ .lg .middle } [__Functions__](functions.md)
 
     Packages a block of code under a name, so it can be run again with different inputs instead of rewriting it each time.
 
+    ---
+
     [`def`](functions.md#defining-a-function) · [`return`](functions.md#return-values) · [`*args`/`**kwargs`](functions.md#flexible-arguments) · [`scope`](functions.md#scope)
 
-- **[Classes](oop.md)**
+-   :material-package-variant:{ .lg .middle } [__Classes__](oop.md)
 
     Bundles related data and functions into a reusable blueprint, so a program can create many similar objects without duplicating code.
+
+    ---
 
     [`class`](oop.md#classes-and-objects) · [`super()`](oop.md#inheritance) · [`polymorphism`](oop.md#polymorphism)
 
 </div>
 
-#### When something goes wrong
+### When something goes wrong
 
 <div class="grid cards" markdown="block">
 
-- **[Bugs](bugs.md)**
+-   :material-bug-outline:{ .lg .middle } [__Bugs__](bugs.md)
 
     Understand an error message, handle an error instead of crashing, or debug your code line by line to find where it went wrong.
+
+    ---
 
     [`tracebacks`](bugs.md#reading-errors) · [`try`/`except`](bugs.md#handling-errors) · [`debugger`](bugs.md#using-a-debugger)
 
 </div>
 
-#### Built-in libraries
+### Built-in libraries
 
 <div class="grid cards" markdown="block">
 
-- **[datetime](datetime.md)**
+-   :material-calendar-clock:{ .lg .middle } [__datetime__](datetime.md)
 
     Calculating and formatting dates and times.
 
+    ---
+
     [`date`](datetime.md#creating-dates-and-times) · [`strftime()`](datetime.md#formatting-with-strftime) · [`timedelta`](datetime.md#date-arithmetic) · [`strptime()`](datetime.md#parsing-a-string-with-strptime)
 
-- **[random](random.md)**
+-   :material-dice-multiple:{ .lg .middle } [__random__](random.md)
 
     Random numbers, random picks, shuffled order.
 
+    ---
+
     [`randint()`](random.md#random-numbers) · [`choice()`](random.md#random-selections) · [`shuffle()`](random.md#shuffling-a-list) · [`sample()`](random.md#sampling-without-replacement)
 
-- **[csv](csv.md)**
+-   :material-file-delimited-outline:{ .lg .middle } [__csv__](csv.md)
 
     Reading and writing spreadsheets.
 
+    ---
+
     [`csv.writer`](csv.md#writing-csv-files) · [`csv.reader`](csv.md#reading-csv-files) · [`DictReader`](csv.md#reading-rows-as-dictionaries)
 
-- **[Tkinter](tkinter.md)**
+-   :material-application-outline:{ .lg .middle } [__Tkinter__](tkinter.md)
 
     Creating desktop applications: text, buttons, dropdowns, forms, output, etc.
+
+    ---
 
     [`Tk()`](tkinter.md#creating-a-window) · [`Button`](tkinter.md#widgets) · [`pack()`](tkinter.md#layout-managers) · [`configure()`](tkinter.md#configuring-widgets) · [`command`](tkinter.md#handling-events) · [`ttk.Style`](tkinter.md#styling-with-ttk) · [`messagebox`](tkinter.md#dialogs) · [`winfo_width()`](tkinter.md#introspecting-widgets)
 
 </div>
 
-#### Third-party libraries
+### Third-party libraries
 
 <div class="grid cards" markdown="block">
 
-- **[NumPy](numpy.md)**
+-   :material-matrix:{ .lg .middle } [__NumPy__](numpy.md)
 
     Fast numeric arrays — math applied to a whole array at once, instead of item by item.
 
+    ---
+
     [`ndarray`](numpy.md#creating-arrays) · [`arange()`](numpy.md#building-arrays-without-a-list) · [`mean()`](numpy.md#aggregating-an-array) · [`boolean mask`](numpy.md#filtering-with-a-boolean-mask)
 
-- **[pandas](pandas.md)**
+-   :material-table:{ .lg .middle } [__pandas__](pandas.md)
 
     Tabular data — rows and columns, like a spreadsheet, built on top of NumPy.
 
+    ---
+
     [`DataFrame`](pandas.md#building-a-dataframe) · [`sort_values()`](pandas.md#sorting-rows) · [`mean()`](pandas.md#summarizing-a-column)
 
-- **[Pillow](pillow.md)**
+-   :material-image-outline:{ .lg .middle } [__Pillow__](pillow.md)
 
     Opening, editing, and saving images, built around one `Image` object.
 
+    ---
+
     [`Image`](pillow.md#the-image) · [`ImageOps`](pillow.md#imageops-module) · [`ImageDraw`](pillow.md#imagedraw-module) · [`ImageFont`](pillow.md#imagefont-module) · [`ImageColor`](pillow.md#imagecolor-module) · [`ImageFilter`](pillow.md#imagefilter-module) · [`ImageEnhance`](pillow.md#imageenhance-module) · [`ImageChops`](pillow.md#imagechops-module) · [`convert()`](pillow.md#format-conversion) · [`ImageSequence`](pillow.md#imagesequence-module)
 
-- **[requests](requests.md)**
+-   :material-api:{ .lg .middle } [__requests__](requests.md)
 
     Fetching data over the internet, like asking a website or API for information.
+
+    ---
 
     [`get()`](requests.md#making-a-request) · [`status_code`](requests.md#checking-the-status-code) · [`json()`](requests.md#parsing-json) · [`params`](requests.md#query-parameters) · [`error handling`](requests.md#handling-request-errors)
 
