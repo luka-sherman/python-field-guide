@@ -11,18 +11,26 @@ python --version    # try this first
 python3 --version   # if it fails try this one
 ```
 
-✅ If either shows `Python 3.x.x`, Python is installed! Remember which one worked (`python` or `python3`) because that's the command you'll use to run your Python files. You can move onto Step 1.
+:material-check-circle:{ .pt-icon-success } If either shows `Python 3.x.x`, Python is installed! Remember which one worked (`python` or `python3`) because that's the command you'll use to run your Python files. You can move onto Step 1.
 
-❌ If both commands fail (you get errors like "command not found"), see below to download Python for your OS.
+:material-close-circle:{ .pt-icon-fail } If both commands fail (you get errors like "command not found"), see below to download Python for your OS.
 
 ??? tip "Download if not already installed"
     Download Python at the link below depending on what kind of computer you have.
 
-    | OS | Where to get it | Important note |
-    |----|------------------|------|
-    | **Windows** | [python.org/downloads](https://python.org/downloads) | Check **"Add python.exe to PATH"** on the first install screen — if you skip this, the terminal won't recognize `python` |
-    | **macOS** | [python.org/downloads](https://python.org/downloads) | |
-    | **Linux** | Usually already installed | If `python3 --version` failed, install via your package manager (e.g. `sudo apt install python3`) |
+    === "macOS"
+
+        [python.org/downloads](https://python.org/downloads)
+    
+    === "Windows"
+
+        [python.org/downloads](https://python.org/downloads)
+
+        Check **"Add python.exe to PATH"** on the first install screen — if you skip this, the terminal won't recognize `python`
+    
+    === "Linux"
+
+        Usually already installed. If `python3 --version` failed, install via your package manager (e.g. `sudo apt install python3`)
 
 ## Step 1: Pick a code editor
 
@@ -41,7 +49,7 @@ Once Python is installed, pick one of the **free** code editors below based on y
 
 | Code Editor | Best for | Audience | Made by | Download Links |
 |--------|----------|---------|---------|---------|
-| **Thonny** | <ul><li>🌟 *Never programmed before? Start here* — Designed for Python beginners</li><li>Minimal interface</li><li>Variable inspector visually shows what's happening in your code</li><li>Can walk through your code one line at a time automatically, great for seeing exactly how a program runs</li></ul> | Beginners | Open-source | [Windows](https://thonny.org/) / [macOS](https://thonny.org/) / [Linux](https://thonny.org/) |
+| **Thonny** | <ul><li>*Never programmed before? Start here* — Designed for Python beginners</li><li>Minimal interface</li><li>Variable inspector visually shows what's happening in your code</li><li>Can walk through your code one line at a time automatically, great for seeing exactly how a program runs</li></ul> | Beginners | Open-source | [Windows](https://thonny.org/) / [macOS](https://thonny.org/) / [Linux](https://thonny.org/) |
 | **Visual Studio Code** | <ul><li>Scales well as you grow</li><li>General-purpose code editor</li><li>*NOTE: after installing, download the Python extension from the Extensions marketplace*</li></ul> | Beginners through professionals | Microsoft | [Windows](https://code.visualstudio.com/download) / [macOS](https://code.visualstudio.com/download) / [Linux](https://code.visualstudio.com/download) |
 | **IDLE** | <ul><li>Comes with Python — no download needed</li><li>Minimal, doesn't scale well to bigger projects</li><li>*NOTE: no visible Run button — press F5 or use Run → Run Module instead*</li><li>*NOTE: has a debugger, but it's basic — accessed via the Debug menu in the shell window, not built into the editor like the others*</li></ul> | Beginners | Python Software Foundation | Included / Included / `sudo apt install idle3` |
 | **PyCharm Community** | <ul><li>Complete Python IDE</li><li>Everything built-in out of the box</li><li>Many panels/menus can feel overwhelming at first</li></ul> | Professionals | JetBrains | [Windows](https://www.jetbrains.com/pycharm/download/) / [macOS](https://www.jetbrains.com/pycharm/download/) / [Linux](https://www.jetbrains.com/pycharm/download/) |

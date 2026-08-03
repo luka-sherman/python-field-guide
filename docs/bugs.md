@@ -181,9 +181,38 @@ When it gets to a breakpoint it will pause, and you can use these controls to mo
 ??? tip "Where debugging controls are in each editor"
     Where to find the debugger, and what it calls things, varies by editor.
 
-    | Editor | Debug button | Where the step controls are | Stop button | Where output shows | Inspecting variables | Notes |
-    |--------|---------------|-------------------------------|--------------|---------------------|------------------------|-------|
-    | **Thonny** | Bug icon in the main toolbar | Inline in the main toolbar | Same toolbar | Same Shell panel as a normal run | Always-visible Variables panel | You don't need to set any breakpoints — Thonny's debugger pauses at every step by default, which is great for watching exactly how a program runs the first time |
-    | **VS Code** | "Run and Debug" in the sidebar, or the dropdown next to the Run button | A floating toolbar | Red square, same floating toolbar | Separate "Debug Console" panel | Variables section in the Run and Debug sidebar | |
-    | **IDLE** | Debug menu in the Shell window (turn on before running) | A separate popup window | "Quit" button, same popup window | Same Shell window as a normal run | Same popup Debug Control window | Most basic of the four |
-    | **PyCharm** | Bug icon next to the Run button | The bottom Debug tool window | Red square, same tool window | Same "Debug" tool window | Same tool window, or hover over a variable in the editor | |
+    === "Thonny"
+
+        - **Debug button:** Bug icon in the main toolbar
+        - **Step controls:** Inline in the main toolbar
+        - **Stop button:** Same toolbar
+        - **Where output shows:** Same Shell panel as a normal run
+        - **Inspecting variables:** Always-visible Variables panel
+
+        You don't need to set any breakpoints — Thonny's debugger pauses at every step by default, which is great for watching exactly how a program runs the first time.
+
+    === "VS Code"
+
+        - **Debug button:** "Run and Debug" in the sidebar, or the dropdown next to the Run button
+        - **Step controls:** A floating toolbar
+        - **Stop button:** Red square, same floating toolbar
+        - **Where output shows:** Separate "Debug Console" panel
+        - **Inspecting variables:** Variables section in the Run and Debug sidebar
+
+    === "IDLE"
+
+        - **Debug button:** Debug menu in the Shell window (turn on before running)
+        - **Step controls:** A separate popup window
+        - **Stop button:** "Quit" button, same popup window
+        - **Where output shows:** Same Shell window as a normal run
+        - **Inspecting variables:** Same popup Debug Control window
+
+        Most basic of the four.
+
+    === "PyCharm"
+
+        - **Debug button:** Bug icon next to the Run button
+        - **Step controls:** The bottom Debug tool window
+        - **Stop button:** Red square, same tool window
+        - **Where output shows:** Same "Debug" tool window
+        - **Inspecting variables:** Same tool window, or hover over a variable in the editor
