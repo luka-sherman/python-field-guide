@@ -49,6 +49,7 @@ theme:
     - navigation.tracking
     - toc.integrate
     - content.code.copy
+    - content.tooltips
     - search.suggest
 
 markdown_extensions:
@@ -56,9 +57,14 @@ markdown_extensions:
   - md_in_html
   - admonition
   - tables
+  - abbr
   - pymdownx.details
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.snippets:
+      base_path: ["includes"]
+      auto_append:
+        - glossary.md
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
