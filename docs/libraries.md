@@ -10,6 +10,15 @@ Python is already preloaded with these, and puts the above fundamentals to use o
 
 <div class="grid cards" markdown="block">
 
+-   :material-file-delimited-outline:{ .lg .middle } [__csv__](csv.md)
+
+    Reading and writing spreadsheets.
+
+    ---
+
+    [`csv.writer`](csv.md#writing-csv-files) · [`csv.reader`](csv.md#reading-csv-files) · [`DictReader`](csv.md#reading-rows-as-dictionaries)
+
+
 -   :material-calendar-clock:{ .lg .middle } [__datetime__](datetime.md)
 
     Calculating and formatting dates and times.

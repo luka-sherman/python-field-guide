@@ -24,6 +24,7 @@ nav:
           - Tkinter: tkinter.md
       - Third-Party:
           - NumPy: numpy.md
+          - OpenCV: opencv.md
           - pandas: pandas.md
           - Pillow: pillow.md
           - requests: requests.md

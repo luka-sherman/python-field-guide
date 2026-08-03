@@ -177,6 +177,14 @@ hide:
 
     [`ndarray`](numpy.md#creating-arrays) · [`arange()`](numpy.md#building-arrays-without-a-list) · [`mean()`](numpy.md#aggregating-an-array) · [`boolean mask`](numpy.md#filtering-with-a-boolean-mask)
 
+-   :material-face-recognition:{ .lg .middle } [__OpenCV__](opencv.md)
+
+    Real-time image and video analysis — color spaces, edge detection, face detection, built directly on NumPy arrays.
+
+    ---
+
+    [`imread()`](opencv.md#reading-a-file) · [`cvtColor()`](opencv.md#converting-color-spaces) · [`drawing`](opencv.md#drawing-shapes-and-text) · [`Canny()`](opencv.md#edge-detection) · [`CascadeClassifier`](opencv.md#face-detection-with-cascade-classifiers) · [`VideoCapture()`](opencv.md#working-with-video)
+
 -   :material-table:{ .lg .middle } [__pandas__](pandas.md)
 
     Tabular data — rows and columns, like a spreadsheet, built on top of NumPy.
