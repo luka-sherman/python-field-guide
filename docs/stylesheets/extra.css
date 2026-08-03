@@ -48,6 +48,12 @@
   --pt-code-string: #2f6b4a;
   --pt-code-keyword: #8a5a2e;
   --pt-code-comment: #6b6656;
+
+  /* Very dark, low-saturation hues for the header's shimmer layer, below —
+     deliberately close in value to --pt-bg so the movement stays subtle. */
+  --pt-shimmer-indigo: #201f3d;
+  --pt-shimmer-purple: #2a1c3d;
+  --pt-shimmer-green: #17281f;
 }
 
 /* Material re-sets --md-* variables on [data-md-color-scheme] (applied to
@@ -94,6 +100,47 @@
 .md-header__title,
 .md-header__topic {
   font-weight: 800;
+}
+
+/* Decorative snake-scale header, slate (dark) scheme only. Layered on top of
+   .md-header's own background-color (the translucent --md-primary-fg-color
+   set above), so the blur/hairline border above still apply underneath.
+
+   The first two radial-gradient layers are the scale rings: each is a
+   column of left-opening ring outlines (only the left-hand crescent of the
+   ring shows within each tile), and the second layer repeats the same rings
+   offset by half a tile in both axes — nesting a column of scales into the
+   gaps of the column to its right, the classic staggered fish-scale/shingle
+   arrangement, oriented to flow horizontally to match the header's shape.
+
+   The third layer is a very slow, very low-contrast shimmer sitting behind
+   the scales — a linear-gradient through three near-black hues (indigo,
+   purple, green), animated via background-position so it drifts rather than
+   sitting static. Kept subtle deliberately: low opacity, and colors close in
+   value to --pt-bg, so it reads as a faint sheen rather than a visible band. */
+[data-md-color-scheme="slate"] .md-header {
+  background-image:
+    radial-gradient(circle at 100% 50%, transparent 14px, rgba(103, 58, 183, 0.2) 15px, rgba(63, 81, 181, 0.2) 16px, transparent 17px),
+    radial-gradient(circle at 100% 50%, transparent 14px, rgba(63, 81, 181, 0.2) 15px, rgba(103, 58, 183, 0.2) 16px, transparent 17px),
+    linear-gradient(120deg,
+      color-mix(in srgb, var(--pt-shimmer-indigo) 55%, transparent),
+      color-mix(in srgb, var(--pt-shimmer-purple) 55%, transparent),
+      color-mix(in srgb, var(--pt-shimmer-green) 55%, transparent),
+      color-mix(in srgb, var(--pt-shimmer-indigo) 55%, transparent));
+  background-size: 28px 36px, 28px 36px, 320% 320%;
+  background-position: 0 0, 14px 18px, 0% 50%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-md-color-scheme="slate"] .md-header {
+    animation: pt-header-shimmer 22s ease-in-out infinite;
+  }
+}
+
+@keyframes pt-header-shimmer {
+  0% { background-position: 0 0, 14px 18px, 0% 50%; }
+  50% { background-position: 0 0, 14px 18px, 100% 50%; }
+  100% { background-position: 0 0, 14px 18px, 0% 50%; }
 }
 
 .md-tabs {
