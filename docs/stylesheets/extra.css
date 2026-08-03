@@ -31,7 +31,12 @@
 [data-md-color-scheme="slate"] {
   --pt-bg: #1a1d21;
   --pt-panel: #23272b;
-  --pt-ink: #e8e6df;
+  /* Dimmed from a near-white e8e6df: pure/near-white body text on a dark
+     background reads as harsh and causes halation. Material's own dark-theme
+     guidance uses ~87% white over the surface color rather than white
+     outright — this keeps that same restraint while staying on-palette
+     (warm, not neutral gray). */
+  --pt-ink: #d3d2cc;
   --pt-text-secondary: #b0ac9e;
   --pt-text-muted: #7d796b;
   --pt-hairline: #33362f;
@@ -85,8 +90,22 @@
   --md-code-bg-color: var(--pt-panel);
   --md-code-fg-color: var(--pt-ink);
 
-  --md-footer-bg-color: #3a3a3a;
-  --md-footer-bg-color--dark: #3a3a3a;
+  /* Match the footer to the page background instead of Material's default
+     dark band — its default white-on-dark fg colors are swapped for our own
+     ink/text variables below so text stays readable against the now-lighter
+     (light scheme) background. */
+  --md-footer-bg-color: var(--pt-bg);
+  --md-footer-bg-color--dark: var(--pt-bg);
+  --md-footer-fg-color: var(--pt-ink);
+  --md-footer-fg-color--light: var(--pt-text-secondary);
+  --md-footer-fg-color--lighter: var(--pt-text-muted);
+}
+
+/* Same-color background as the page means the footer needs its own
+   separation from content above — a hairline border, same technique as
+   .md-header's border-bottom. */
+.md-footer {
+  border-top: 1px solid var(--pt-hairline);
 }
 
 .md-header {
@@ -207,6 +226,29 @@ input:checked + .md-consent__settings {
   background-color: #2e7d32;
   -webkit-mask-image: var(--md-admonition-icon--run);
   mask-image: var(--md-admonition-icon--run);
+}
+
+/* ---- Custom "ai" admonition for the homepage's AI-related callouts ---- */
+
+:root {
+  --md-admonition-icon--ai: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z"/></svg>');
+}
+
+.md-typeset .admonition.ai,
+.md-typeset details.ai {
+  border-color: #4a2c73;
+}
+
+.md-typeset .ai > .admonition-title,
+.md-typeset .ai > summary {
+  background-color: rgba(74, 44, 115, 0.1);
+}
+
+.md-typeset .ai > .admonition-title::before,
+.md-typeset .ai > summary::before {
+  background-color: #4a2c73;
+  -webkit-mask-image: var(--md-admonition-icon--ai);
+  mask-image: var(--md-admonition-icon--ai);
 }
 
 /* ---- Pyodide runnable / reference code blocks (theme-independent) ---- */
@@ -543,4 +585,27 @@ input:checked + .md-consent__settings {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
+}
+
+/* Generic visually-hidden utility: content stays in the accessibility tree
+   (screen readers, page outline) but isn't shown on screen. Used on the
+   homepage's H1 — Material auto-injects a "Home" heading (from the nav
+   label) whenever a page's rendered content has no <h1> at all, so a real
+   but hidden one heads it off while keeping the page visually heading-free. */
+.pt-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* Material zeroes the *actual* first DOM child's top margin
+   (`.md-typeset > :first-child { margin-top: 0 }`) so only its own fixed
+   top padding/spacer shows above content. That reset lands on the hidden
+   H1 above, not the first visible element after it — mirror the reset here
+   so the homepage's top spacing matches every other page's. */
+.md-content__inner > .pt-visually-hidden + * {
+  margin-top: 0;
 }
