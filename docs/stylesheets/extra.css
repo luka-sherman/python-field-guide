@@ -609,3 +609,52 @@ input:checked + .md-consent__settings {
 .md-content__inner > .pt-visually-hidden + * {
   margin-top: 0;
 }
+
+/* Library pages: unlike every other tab (a single standalone page), the
+   Built-in/Third-Party groups each list several sibling pages, so the
+   sidebar shows the whole group instead of just the current page like it
+   does everywhere else. Once one of those pages is active, hide its
+   inactive siblings so only the current page (and its own heading
+   breakdown, one level deeper) remains. Scoped with :has() so a group with
+   no active page in it — including when viewing the "All" overview, which
+   sits a level up from both groups — still lists every page normally. */
+.md-nav[data-md-level="2"]:has(> .md-nav__list > .md-nav__item--active)
+  > .md-nav__list
+  > .md-nav__item:not(.md-nav__item--active) {
+  display: none;
+}
+
+/* Same idea one level up: once a page inside Built-in *or* Third-Party is
+   active, hide the other (inactive) group — "Third-Party" when Built-in is
+   active, or vice versa. The plain "All" leaf link is deliberately left
+   alone here (unlike the inactive group), so "Libraries" and "All" both
+   stay visible above the current page — only the sibling pages/group are
+   pruned. Same :has() guard keeps the "All" overview page (no active group)
+   showing everything normally. */
+.md-nav[data-md-level="1"]:has(> .md-nav__list > .md-nav__item--nested.md-nav__item--active)
+  > .md-nav__list
+  > .md-nav__item--nested:not(.md-nav__item--active) {
+  display: none;
+}
+
+/* The active group's own li has to stay (it's what contains the current
+   page), but its toggle label ("Built-in"/"Third-Party") can go — the
+   nested list beneath it, containing the current page, isn't controlled by
+   that label's own visibility. */
+.md-nav[data-md-level="1"] > .md-nav__list > .md-nav__item--nested.md-nav__item--active > .md-nav__link {
+  display: none;
+}
+
+/* Matches .md-typeset h2's own styling exactly (Material's default, since
+   this site doesn't override it) without being a real heading — used on
+   libraries.md's "Built-in libraries" / "Third-party libraries" labels,
+   which would otherwise appear in the sidebar via toc.integrate and
+   duplicate the Built-in/Third-Party nav groups already sitting beside it. */
+.pt-fake-h2 {
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  font-size: 1.5625em;
+  line-height: 1.4;
+  margin: 1.6em 0 0.64em;
+  color: var(--pt-ink);
+}

@@ -27,6 +27,14 @@ For a broader comparison of OpenCV against Pillow and other Python image librari
 | [Face detection with cascade classifiers](#face-detection-with-cascade-classifiers) | Locating faces (or other objects) at multiple positions and scales. |
 | [Working with video](#working-with-video) | Applying any of the above to a live camera feed or video file, one frame at a time. |
 
+## Import
+
+OpenCV's package name (`opencv-python`) doesn't match its import name — it's always imported as `cv2`.
+
+```python-ref
+import cv2
+```
+
 ## Reading, displaying, and saving images
 
 Every OpenCV workflow starts the same way: load a file into an array, do something to it, then optionally write the result back out.

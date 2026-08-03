@@ -9,6 +9,14 @@ The **`csv`** module reads and writes CSV ("comma-separated values") files — a
 | `csv.DictWriter` | A dict per row | Writing rows keyed by column name |
 | `csv.DictReader` | A dict per row | Reading rows keyed by column name |
 
+## Import
+
+The whole module is used through the `csv.` prefix, so a plain import is all you need.
+
+```python-ref
+import csv
+```
+
 ## Writing CSV files
 
 `csv.writer` wraps an open file and turns each list you pass to `.writerow()` into one comma-separated line.

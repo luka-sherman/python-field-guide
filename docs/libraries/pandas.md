@@ -7,6 +7,14 @@
 | `Series` | One column of labeled values | A single spreadsheet column |
 | `DataFrame` | Many columns, sharing an index | A whole spreadsheet or table |
 
+## Import
+
+`pd` is the near-universal alias for pandas — used throughout this page and in virtually every codebase that imports it.
+
+```python-ref
+import pandas as pd
+```
+
 ## Building a DataFrame
 
 A `DataFrame` is most often built from a list of dicts — one dict per row, with matching keys becoming the column names.

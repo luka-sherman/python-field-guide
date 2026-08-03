@@ -10,6 +10,14 @@ The **`random`** module generates pseudo-random numbers and makes random selecti
 | `shuffle(seq)` | Reorders a list in place, returns `None` | `shuffle(species)` |
 | `sample(seq, k)` | `k` unique random items, as a new list | `sample(species, 2)` |
 
+## Import
+
+The whole module is used through the `random.` prefix, so a plain import is all you need.
+
+```python-ref
+import random
+```
+
 ## Random numbers
 
 `random()` and `randint()` are the two basic building blocks — a random fraction, or a random whole number within a range.

@@ -22,6 +22,14 @@
 
 For everyday use, `requests` offers the best balance of simplicity and capability — most tasks are one function call.
 
+## Import
+
+The whole module is used through the `requests.` prefix, so a plain import is all you need.
+
+```python-ref
+import requests
+```
+
 ## Making a request
 
 `requests.get(url)` sends a request and returns a `Response` object holding whatever came back.
@@ -56,7 +64,7 @@ print("request succeeded")
 
 ### Parsing JSON
 
-`.json()` converts a JSON response body directly into a Python `dict` or `list`. Most web APIs send their data back as JSON — text formatted so it maps directly onto Python's own `dict`/`list` structures, which is why `.json()` needs no extra parsing step. Once converted, the result works exactly like any other [dict](collections.md#dictionaries) or [list](collections.md#lists) you'd build by hand.
+`.json()` converts a JSON response body directly into a Python `dict` or `list`. Most web APIs send their data back as JSON — text formatted so it maps directly onto Python's own `dict`/`list` structures, which is why `.json()` needs no extra parsing step. Once converted, the result works exactly like any other [dict](../collections.md#dictionaries) or [list](../collections.md#lists) you'd build by hand.
 
 ```python-ref
 response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
@@ -100,7 +108,7 @@ print(len(comments))
 
 ## Handling request errors
 
-A network call can fail in ways that have nothing to do with your code — the [Bugs](bugs.md#handling-errors) page covers `try`/`except` in general; a couple of exceptions are specific to `requests`.
+A network call can fail in ways that have nothing to do with your code — the [Bugs](../bugs.md#handling-errors) page covers `try`/`except` in general; a couple of exceptions are specific to `requests`.
 
 | Exception | Happens when |
 |-----------|---------------|

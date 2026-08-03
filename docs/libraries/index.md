@@ -2,11 +2,8 @@
 
 Libraries allow us to apply the Python fundamentals to real tasks. These are a few popular ones, but there are many. 
 
-They each need to be `import`ed at the top of the file.
-
-## Built-in libraries
-
-Python is already preloaded with these, and puts the above fundamentals to use on real tasks.
+Built-in libraries
+{: .pt-fake-h2 }
 
 <div class="grid cards" markdown="block">
 
@@ -35,13 +32,6 @@ Python is already preloaded with these, and puts the above fundamentals to use o
 
     [`randint()`](random.md#random-numbers) · [`choice()`](random.md#random-selections) · [`shuffle()`](random.md#shuffling-a-list) · [`sample()`](random.md#sampling-without-replacement)
 
--   :material-file-delimited-outline:{ .lg .middle } [__csv__](csv.md)
-
-    Reading and writing spreadsheets.
-
-    ---
-
-    [`csv.writer`](csv.md#writing-csv-files) · [`csv.reader`](csv.md#reading-csv-files) · [`DictReader`](csv.md#reading-rows-as-dictionaries)
 
 -   :material-application-outline:{ .lg .middle } [__Tkinter__](tkinter.md)
 
@@ -53,9 +43,8 @@ Python is already preloaded with these, and puts the above fundamentals to use o
 
 </div>
 
-## Third-party libraries
-
-These additional Python libraries can be installed on your computer for free with `pip`.
+Third-party libraries
+{: .pt-fake-h2 }
 
 <div class="grid cards" markdown="block">
 
@@ -66,6 +55,14 @@ These additional Python libraries can be installed on your computer for free wit
     ---
 
     [`ndarray`](numpy.md#creating-arrays) · [`arange()`](numpy.md#building-arrays-without-a-list) · [`mean()`](numpy.md#aggregating-an-array) · [`boolean mask`](numpy.md#filtering-with-a-boolean-mask)
+
+-   :material-face-recognition:{ .lg .middle } [__OpenCV__](opencv.md)
+
+    Real-time image and video analysis — color spaces, edge detection, face detection, built directly on NumPy arrays.
+
+    ---
+
+    [`imread()`](opencv.md#reading-a-file) · [`cvtColor()`](opencv.md#converting-color-spaces) · [`drawing`](opencv.md#drawing-shapes-and-text) · [`Canny()`](opencv.md#edge-detection) · [`CascadeClassifier`](opencv.md#face-detection-with-cascade-classifiers) · [`VideoCapture()`](opencv.md#working-with-video)
 
 -   :material-table:{ .lg .middle } [__pandas__](pandas.md)
 

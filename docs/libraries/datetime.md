@@ -9,6 +9,14 @@ The **`datetime`** module is Python's standard library for working with dates an
 | `datetime` | A date and time together | `datetime(2026, 7, 23, 14, 30)` |
 | `timedelta` | A duration — the gap between two dates/times | `timedelta(days=7)` |
 
+## Import
+
+Each class below is imported individually by name, rather than through a `datetime.` prefix.
+
+```python-ref
+from datetime import date, datetime, timedelta
+```
+
 ## Creating dates and times
 
 `date.today()` and `datetime.now()` read the current date (and time) directly from the system clock, so the value changes every time the code runs.

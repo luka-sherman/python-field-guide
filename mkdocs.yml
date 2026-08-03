@@ -16,18 +16,18 @@ nav:
   - Classes: oop.md
   - Bugs: bugs.md
   - Libraries:
-      - Overview: libraries.md
-      - Standard Library:
-          - datetime: datetime.md
-          - random: random.md
-          - csv: csv.md
-          - Tkinter: tkinter.md
+      - All: libraries/index.md
+      - Built-in:
+          - datetime: libraries/datetime.md
+          - random: libraries/random.md
+          - csv: libraries/csv.md
+          - Tkinter: libraries/tkinter.md
       - Third-Party:
-          - NumPy: numpy.md
-          - OpenCV: opencv.md
-          - pandas: pandas.md
-          - Pillow: pillow.md
-          - requests: requests.md
+          - NumPy: libraries/numpy.md
+          - OpenCV: libraries/opencv.md
+          - pandas: libraries/pandas.md
+          - Pillow: libraries/pillow.md
+          - requests: libraries/requests.md
 
 theme:
   name: material
@@ -51,6 +51,7 @@ theme:
         icon: material/weather-night
         name: Switch to dark mode
   features:
+    - navigation.expand
     - navigation.footer
     - navigation.instant
     - navigation.tabs

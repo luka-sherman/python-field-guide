@@ -40,6 +40,14 @@ Beyond the base [`Image`](#the-image) object, Pillow's functionality is spread a
 | [`ImageChops`](#imagechops-module) | Combining two same-size images pixel by pixel — diffing, blending. |
 | [`ImageSequence`](#imagesequence-module) | Looping over every frame of an animated image, like a GIF. |
 
+## Import
+
+Pillow's package name (`pillow`) doesn't match its import name — it's imported as `PIL`, and `Image` specifically is used throughout this page.
+
+```python-ref
+from PIL import Image
+```
+
 ## The Image
 
 The `Image` object is where every Pillow workflow starts and ends — opening a file, transforming it, and saving the result all happen through methods on this one class.
@@ -291,7 +299,7 @@ img.save("shapes.png")
     ```
 
 ??? tip "Drawing with objects"
-    Once a drawing gets complicated, it's common to wrap each thing you're drawing in its own class — an object that stores its own position/size/color, and knows how to draw itself given a drawing context. Nothing here is Pillow-specific: it's the same pattern covered in [Classes](oop.md) — bundling data with the behavior that acts on it — just applied to a shape instead of a snake. A calling function loops over a list of these objects and calls `.draw()` on each, so building a complex image — dozens of randomly placed shapes, say, using the `random` module — is just a loop appending new `Shape` objects rather than dozens of manual `draw_context` calls.
+    Once a drawing gets complicated, it's common to wrap each thing you're drawing in its own class — an object that stores its own position/size/color, and knows how to draw itself given a drawing context. Nothing here is Pillow-specific: it's the same pattern covered in [Classes](../oop.md) — bundling data with the behavior that acts on it — just applied to a shape instead of a snake. A calling function loops over a list of these objects and calls `.draw()` on each, so building a complex image — dozens of randomly placed shapes, say, using the `random` module — is just a loop appending new `Shape` objects rather than dozens of manual `draw_context` calls.
 
     ```python-ref
     class Shape:
@@ -521,7 +529,7 @@ img.convert("RGB").save("snake.jpg")
 
 ## ImageSequence module
 
-An animated GIF is really a whole stack of images shown one after another. `Image.open()` only gives you the first frame by default — `ImageSequence` lets a [`for` loop](loops.md) step through every frame in order.
+An animated GIF is really a whole stack of images shown one after another. `Image.open()` only gives you the first frame by default — `ImageSequence` lets a [`for` loop](../loops.md) step through every frame in order.
 
 ```python-ref
 from PIL import Image, ImageSequence
@@ -551,7 +559,7 @@ for frame in ImageSequence.Iterator(gif):
 
 ## Putting it together
 
-Pillow doesn't need anything special to combine with the rest of Python — a function wrapping one transformation, called from an `if`/`elif` chosen by [user input](conditionals.md), looped until the user's done, is enough to build a small interactive tool out of the operations above.
+Pillow doesn't need anything special to combine with the rest of Python — a function wrapping one transformation, called from an `if`/`elif` chosen by [user input](../conditionals.md), looped until the user's done, is enough to build a small interactive tool out of the operations above.
 
 ```python-ref
 def apply_filter(img, choice):
@@ -567,7 +575,7 @@ def apply_filter(img, choice):
 
 ### An interactive filter tool
 
-Combines a function, an `if`/`elif` chain, and a `while` loop — nothing here is Pillow-specific. Each piece here is something covered elsewhere on this site — a [function](functions.md) wrapping one transformation, an [`if`/`elif` chain](conditionals.md) picking which one to run, and a [`while` loop](loops.md#while-loops) that keeps asking until the user's satisfied. Pillow itself only shows up inside `apply_filter`.
+Combines a function, an `if`/`elif` chain, and a `while` loop — nothing here is Pillow-specific. Each piece here is something covered elsewhere on this site — a [function](../functions.md) wrapping one transformation, an [`if`/`elif` chain](../conditionals.md) picking which one to run, and a [`while` loop](../loops.md#while-loops) that keeps asking until the user's satisfied. Pillow itself only shows up inside `apply_filter`.
 
 ```python-ref
 while True:

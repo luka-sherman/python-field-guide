@@ -7,6 +7,14 @@
 | `list` | Any mix of types | Element-by-element, usually with a loop |
 | `ndarray` | One type, fixed size | Applied to the whole array at once ("vectorized") |
 
+## Import
+
+`np` is the near-universal alias for NumPy — used throughout this page and in virtually every codebase that imports it.
+
+```python-ref
+import numpy as np
+```
+
 ## Creating arrays
 
 `np.array()` builds an `ndarray` from an existing list — every value gets converted to the same type.
