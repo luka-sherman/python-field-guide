@@ -1,4 +1,4 @@
-# Running Python on your own computer
+# :material-monitor:{ .lg .middle } Workspace Setup
 
 ## Step 0: Install Python
 

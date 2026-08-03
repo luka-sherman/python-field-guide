@@ -1,4 +1,4 @@
-# datetime
+# :material-calendar-clock:{ .lg .middle } datetime library
 
 The **`datetime`** module is Python's standard library for working with dates and times — logging when an observation happened, measuring how long ago it was, or formatting a date for display. It ships with Python, so no install is needed.
 

@@ -1,4 +1,4 @@
-# Pillow
+# :material-image-outline:{ .lg .middle } Pillow library
 
 **Pillow** (imported as `PIL`) is Python's standard library for opening, editing, and saving image files — photos, screenshots, thumbnails, anything in a common format like JPEG or PNG. It's a third-party package (`pip install pillow`), not part of the standard library, but it's the de facto standard for image work in Python. Like [Tkinter](tkinter.md), Pillow ultimately produces visual output — a saved or displayed image — which can't be shown inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file alongside an image and run them with `python` to see the results.
 

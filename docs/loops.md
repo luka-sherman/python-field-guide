@@ -1,4 +1,4 @@
-# Loops
+# :material-repeat:{ .lg .middle } Loops
 
 A **loop** repeats a block of code some number of times. 
 

@@ -1,4 +1,4 @@
-# Tkinter
+# :material-application-outline:{ .lg .middle } Tkinter library
 
 **Tkinter** is Python's built-in toolkit for building desktop GUI applications — windows, buttons, text fields, and the rest of a traditional app interface, all driven from your Python variables, functions, and objects. It ships with the standard library, so no extra install is needed on your own machine. A GUI needs a real window and display to run in, though, so unlike the rest of this field guide, the examples below aren't runnable in the browser — copy them into a local `.py` file  to see them in action.
 

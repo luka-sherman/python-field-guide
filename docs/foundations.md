@@ -1,4 +1,4 @@
-# Foundations
+# :material-cube-outline:{ .lg .middle } Foundations
 
 New to Python? Start here. Every code block on this site is runnable — click **Run** under the one below to see it work, then try editing it and running it again. 
 

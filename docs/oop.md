@@ -1,4 +1,4 @@
-# Object-oriented programming (OOP)
+# :material-package-variant:{ .lg .middle } Classes & Object-oriented programming (OOP)
 
 **Object-oriented programming** groups related data and the functions that act on it into a single unit, instead of keeping them separate. A [dictionary](collections.md#dictionaries) can already hold a snake's data as key-value pairs — a **class** goes one step further, bundling that data together with the behavior (methods) that belongs to it.
 

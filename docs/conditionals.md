@@ -1,4 +1,4 @@
-# Conditionals
+# :material-source-branch:{ .lg .middle } Conditionals
 
 A **conditional** lets a program make decisions by running a **block** of code only when a [condition](#boolean-expressions) is `True`. 
 

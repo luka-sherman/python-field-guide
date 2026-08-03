@@ -1,4 +1,4 @@
-# pandas
+# :material-table:{ .lg .middle } pandas library
 
 **pandas** (imported as `pd`) is Python's standard library for tabular data — rows and columns, like a spreadsheet, with tools for filtering, sorting, and summarizing built in. It's a third-party package (`pip install pandas`), not part of the standard library, and is built on top of [NumPy](numpy.md).
 

@@ -1,4 +1,4 @@
-# Collections of data
+# :material-format-list-bulleted:{ .lg .middle } Collection Data Types
 
 A **collection** is a single object that groups multiple values together, so a whole set of data can be stored in one variable, passed around, and looped over as a unit — instead of juggling a separate variable per value, like you would with the [basic types](types.md). Python's built-in collections mainly differ along two lines: whether items are **ordered** by position or looked up by **key**, and whether the collection is **mutable** (changeable after creation) or not.
 
