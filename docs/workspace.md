@@ -49,9 +49,9 @@ Once Python is installed, pick one of the **free** code editors below based on y
 
 | Code Editor | Best for | Audience | Made by | Download Links |
 |--------|----------|---------|---------|---------|
-| **Thonny** | <ul><li>*Never programmed before? Start here* — Designed for Python beginners</li><li>Minimal interface</li><li>Variable inspector visually shows what's happening in your code</li><li>Can walk through your code one line at a time automatically, great for seeing exactly how a program runs</li></ul> | Beginners | Open-source | [Windows](https://thonny.org/) / [macOS](https://thonny.org/) / [Linux](https://thonny.org/) |
+| **Thonny** | <ul><li>*Never programmed before? Start here* — Designed for Python beginners</li><li>Only has the essentials</li><li>Variable inspector visually shows what's happening in your code</li><li>Can walk through your code one line at a time automatically, great for seeing exactly how a program runs</li></ul> | Beginners | Open-source | [Windows](https://thonny.org/) / [macOS](https://thonny.org/) / [Linux](https://thonny.org/) |
 | **Visual Studio Code** | <ul><li>Scales well as you grow</li><li>General-purpose code editor</li><li>*NOTE: after installing, download the Python extension from the Extensions marketplace*</li></ul> | Beginners through professionals | Microsoft | [Windows](https://code.visualstudio.com/download) / [macOS](https://code.visualstudio.com/download) / [Linux](https://code.visualstudio.com/download) |
-| **IDLE** | <ul><li>Comes with Python — no download needed</li><li>Minimal, doesn't scale well to bigger projects</li><li>*NOTE: no visible Run button — press F5 or use Run → Run Module instead*</li><li>*NOTE: has a debugger, but it's basic — accessed via the Debug menu in the shell window, not built into the editor like the others*</li></ul> | Beginners | Python Software Foundation | Included / Included / `sudo apt install idle3` |
+| **IDLE** | <ul><li>Comes with Python — no download needed</li><li>Minimal, doesn't scale well to bigger projects</li><li>*NOTE: no visible Run button — press ++f5++ or use Run → Run Module instead*</li><li>*NOTE: has a debugger, but it's basic — accessed via the Debug menu in the shell window, not built into the editor like the others*</li></ul> | Beginners | Python Software Foundation | Included / Included / `sudo apt install idle3` |
 | **PyCharm Community** | <ul><li>Complete Python IDE</li><li>Everything built-in out of the box</li><li>Many panels/menus can feel overwhelming at first</li></ul> | Professionals | JetBrains | [Windows](https://www.jetbrains.com/pycharm/download/) / [macOS](https://www.jetbrains.com/pycharm/download/) / [Linux](https://www.jetbrains.com/pycharm/download/) |
 
 **Note:** Any editor works with any Python library, and your choice doesn't lock you in — you can always switch later.
@@ -148,7 +148,7 @@ python3 script.py     # if this worked during your version check
 
 **Why two commands?** On Windows, `python` is standard. On Mac/Linux, `python` might not work or might point to an old Python 2, so `python3` is more reliable. They're interchangeable — just pick the one that works for you.
 
-**To stop a running program:** Press **Ctrl+C** (hold Control, press C) — this works on Windows, Mac, and Linux.
+**To stop a running program:** Press ++ctrl+c++ (hold Control, press C) — this works on Windows, Mac, and Linux.
 
 ??? tip "Terminal shortcuts"
     A few quick tricks to save time and typing.
@@ -158,6 +158,6 @@ python3 script.py     # if this worked during your version check
     Tab             # auto-complete file/folder names
     ```
 
-    **Up/down arrow keys:** After you've run a few commands, press the **up arrow** `↑` to see your last command, and press it again to go further back. Use the **down arrow** `↓` to move forward through the history. This saves a lot of typing when you're testing the same command over and over — run it, make a change to your file, then press `↑` to re-run it instantly.
+    **Up/down arrow keys:** After you've run a few commands, press ++up++ to see your last command, and press it again to go further back. Use ++down++ to move forward through the history. This saves a lot of typing when you're testing the same command over and over — run it, make a change to your file, then press ++up++ to re-run it instantly.
 
-    **Tab completion:** Start typing a filename or folder name and press **Tab** — the terminal will auto-complete it for you. For example, if you type `cd Doc` then press Tab, it becomes `cd Documents/`. If there are multiple matches, press Tab again to cycle through them or type more letters.
+    **Tab completion:** Start typing a filename or folder name and press ++tab++ — the terminal will auto-complete it for you. For example, if you type `cd Doc` then press Tab, it becomes `cd Documents/`. If there are multiple matches, press ++tab++ again to cycle through them or type more letters.

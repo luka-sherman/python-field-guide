@@ -28,6 +28,8 @@ hide:
 
     **Try first, then ask.** Make a genuine attempt before turning to AI. Once you can explain exactly where you're stuck, AI becomes much more useful—and you still get the benefit of working through the problem yourself.
 
+    **Disable AI autocomplete.** Many code editors now have an AI autocomplete enabled by default, which reads your code as you write and suggests ways to finish it and whole functions to add. This is not helpful for a beginner and can you leave you not understanding how your code works.
+
     **Don't outsource the productive struggle.** Learning to program means making mistakes, getting stuck, and eventually figuring things out. That's the process that builds skills you can rely on long after you've forgotten the syntax.
 
 ### Getting started

@@ -199,7 +199,7 @@ This also works in reverse: if you don't fully understand a piece of code yet �
 
     Some editors can then collect every `TODO` in a project into one scannable list:
 
-    - **PyCharm** has a built-in TODO tool window (**View → Tool Windows → TODO**, or `Alt` + `6`) that aggregates every `TODO`/`FIXME` in your project into a list.
+    - **PyCharm** has a built-in TODO tool window (**View → Tool Windows → TODO**, or ++alt+6++) that aggregates every `TODO`/`FIXME` in your project into a list.
     - **VS Code** needs an extension for this — [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree) is the most popular one, and adds a sidebar tree view of every tagged comment in your workspace.
     - **Thonny and IDLE** have no built-in equivalent — `TODO` still works as a plain comment, just without the aggregated list.
 
@@ -224,10 +224,10 @@ One place this pattern *is* the real convention rather than a workaround: a trip
 
     | Action | Shortcut |
     |--------|------------------|
-    | Comment / uncomment selected lines | `Cmd` + `/` |
-    | Select whole lines, one at a time | `Shift` + `↓` / `↑` |
+    | Comment / uncomment selected lines | ++cmd+slash++ |
+    | Select whole lines, one at a time | ++shift+down++ / ++shift+up++ |
 
-    These are the defaults in VS Code, PyCharm, and Thonny. IDLE has no built-in shortcut for toggling comments on multiple lines at once. In every editor, the selection itself works the same way as selecting any text: click and drag, or hold `Shift` while using the arrow keys.
+    These are the defaults in VS Code, PyCharm, and Thonny. IDLE has no built-in shortcut for toggling comments on multiple lines at once. In every editor, the selection itself works the same way as selecting any text: click and drag, or hold ++shift++ while using the arrow keys.
 
 ??? run "Run a comments example"
     All the examples above, combined into one script:

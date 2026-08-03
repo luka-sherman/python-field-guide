@@ -68,6 +68,7 @@ markdown_extensions:
   - tables
   - abbr
   - pymdownx.details
+  - pymdownx.keys
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.snippets:
