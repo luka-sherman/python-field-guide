@@ -143,13 +143,13 @@ except TypeError:
 
 ```python-ref
 try:
-    length = lengths[species]
+    length = lengths[species]      # attempted first
 except KeyError:
-    print("no length on record")
+    print("no length on record")   # runs only on a KeyError
 else:
-    print(f"found it: {length} ft")
+    print(f"found it: {length} ft")  # runs only if try succeeded
 finally:
-    print("lookup attempt finished")
+    print("lookup attempt finished")  # always runs
 ```
 
 </summary>
@@ -161,13 +161,13 @@ lengths = {"ball python": 4.5, "burmese python": 12}
 species = "ball python"
 
 try:
-    length = lengths[species]
+    length = lengths[species]      # attempted first
 except KeyError:
-    print("no length on record")
+    print("no length on record")   # runs only if the try block raised a KeyError
 else:
-    print(f"found it: {length} ft")
+    print(f"found it: {length} ft")  # runs only if the try block succeeded
 finally:
-    print("lookup attempt finished")
+    print("lookup attempt finished")  # always runs, no matter what happened above
 ```
 
 </details>
