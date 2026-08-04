@@ -64,15 +64,17 @@ theme:
     - search.suggest
 
 markdown_extensions:
+  - abbr
+  - admonition
   - attr_list
   - md_in_html
-  - admonition
-  - tables
-  - abbr
   - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      use_pygments: false
   - pymdownx.keys
-  - pymdownx.tabbed:
-      alternate_style: true
   - pymdownx.snippets:
       base_path: ["includes"]
       auto_append:
@@ -82,19 +84,17 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.highlight:
-      use_pygments: false
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
 
 copyright: '&copy; <span id="copyright-year">2026</span> Luka'
 
 extra:
-  generator: false
   analytics:
     provider: google
     property: G-E5B3P6NCP0
+  generator: false
   social:
     - icon: material/information
       link: /about/
