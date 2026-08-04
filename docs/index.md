@@ -6,52 +6,50 @@ hide:
 
 # Python Field Guide { .pt-visually-hidden }
 
-??? ai "Using AI to learn to code"
-    === "Why should I learn how to code, if AI can do it for me?"
+??? ai "Coding in the AI Age"
+    === "Why learn to code yourself?"
 
-        Now that anyone can instantly generate working code with an AI prompt, it raises a fair question.
+        **Understanding programming fundamentals make AI more useful.** 
+        
+        Once you understand these building blocks you can read code you didn't write, spot mistakes, understand *why* a solution works, and communicate your problem to AI more effectively.
 
         **Learning happens through productive struggle.** 
         
-        The friction of working something out yourself, instead of being handed the answer, is what builds understanding (sometimes called a ["desirable difficulty"](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf)). If you skip that struggle, you won't develop the knowledge to solve the problem again, adapt the answer, or recognize when it's wrong.
+        The friction of working something out yourself, instead of being handed the answer, [is what builds understanding](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf). If you skip that struggle, you *won't develop the knowledge* to solve the problem again, adapt the answer, or recognize when it's wrong.
 
-        **Programming fundamentals make AI more useful, not less.** 
+        **You need to be able to verify AI code.** 
         
-        Variables, loops, conditionals, functions, etc. are the small, reusable concepts that every program is built from. Once you understand these building blocks, you can read code you didn't write, spot mistakes, understand *why* a solution works, and communicate your problem to AI more effectively.
-
-        **You need to be able to verify what AI writes.** 
-        
-        AI can generate code that looks correct while being subtly wrong, insecure, or not actually solving the problem you asked. Researchers are already documenting this skill gap in [students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before they've [built their own foundation](https://dl.acm.org/doi/10.1145/3624720), and one [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) found that developers using an AI coding assistant wrote *less* secure code than those without AI—while being *more* confident that it was secure. As AI gets better, the ability to evaluate its output becomes even more important.
+        AI can generate code that looks correct while being wrong and insecure. Researchers are already documenting this skill gap in [students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before they've [built their own foundation](https://dl.acm.org/doi/10.1145/3624720), and one [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) found that developers using AI wrote *less* secure code—but were *more* confident that it was secure. 
 
         **Employers are still hiring for understanding, not prompting.** 
         
-        AI will likely be available on the job too, but technical interviews, code review, and debugging all test whether you can reason about code and judge whether it's correct. AI can help you write code—but it can't replace understanding it.
+        AI will likely be available on the job too, but code review, debugging, and interviews all test whether you can reason about code and judge whether it's correct.
 
-        Learning to program first turns AI into a tool you can direct and verify, instead of one you're assuming got it right.
+        **Learning to program on your own turns AI into a tool you can direct and verify, instead of one you're assuming got it right.**
 
-    === "How should I use AI while I'm learning?"
+    === "How to use AI to support your learning?"
 
         None of this means avoiding AI altogether—but it does mean being **deliberate** about which parts of the work you hand over.
 
-        **Use AI to remove friction, not the learning.** 
+        **Guide you through setting up your workspace** 
         
-        Environment setup, confusing error messages, unfamiliar terminology, and other roadblocks are great things to ask about because they aren't the skill you're trying to build.
+        Setting up your computer for programming can be an intimidating hurdle, especially if you haven't used your Terminal before. You should be very cautious with the Terminal and only send commands you absolutely understand. Having AI walk you through the setup process can make this task **accessible for solo beginners**. 
 
         **Ask AI to explain, not solve.** 
         
-        If an explanation on this site doesn't click, ask follow-up questions. If you're stuck on your own code, ask what a line does or why you got a certain error. Let AI help you *understand* your work, not do it for you.
+        If you're stuck on your own code, ask what a line does or *why* you got a certain error. Let AI help you *understand* concepts, not write them for you.
 
-        **Try first, then ask.** 
+        **If you're stuck, clearly communicate your problem.** 
         
-        Make a genuine attempt before turning to AI. Once you can explain exactly where you're stuck, AI becomes much more useful—and you still get the benefit of working through the problem yourself.
+        Make a strong attempt before turning to AI. Then **describe** what you've tried, what you expected to happen, and exactly where you're stuck *instead of just dumping in your code and an error message*. The process of **putting your problem into words** is a significant learning tool, and will also gives AI the context it needs to provide more targeted, efficient help.
 
         **Disable AI autocomplete.** 
         
-        Many code editors now have an AI autocomplete enabled by default, which reads your code as you write and suggests ways to finish it and whole functions to add. This is not helpful for a beginner and can you leave you not understanding how your code works.
+        Many code editors now have an AI autocomplete enabled, which reads your code as you write and suggests ways to finish it and whole functions to add. This is not helpful for a beginner and can you leave you **not understanding what your own code does**.
 
         **Don't outsource the productive struggle.** 
         
-        Learning to program means making mistakes, getting stuck, and eventually figuring things out. That's the process that builds skills you can rely on long after you've forgotten the syntax.
+        Learning to program means making mistakes, getting stuck, and eventually figuring things out and forming a mental model. That's the process that **builds skills** you can rely on.
 
 
 <div class="grid cards" markdown="block">
