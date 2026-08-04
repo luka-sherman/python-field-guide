@@ -78,7 +78,7 @@ hide:
 
     [`int`](types.md#integers) · [`float`](types.md#floats) · [`string`](types.md#strings) · [`bool`](types.md#booleans) · [`None`](types.md#none)
 
--   :material-format-list-bulleted:{ .lg .middle } [__Collection Data Types__](collections.md)
+-   :material-basket-outline:{ .lg .middle } [__Collection Data Types__](collections.md)
 
     Multiple related values grouped into one container, so you can work with them together.
 
