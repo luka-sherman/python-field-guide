@@ -2,50 +2,59 @@
 
 ## Step 0: Install Python
 
-### Check if Python is installed
+1. Open your Terminal application *(Terminal on Mac/Linux, Command Prompt or PowerShell on Windows)* 
 
-Open your terminal application (Terminal on Mac/Linux, Command Prompt or PowerShell on Windows) and run:
+2. Try running this command: *(Type it and press return)*
 
-```bash
-python --version    # try this first
-python3 --version   # if it fails try this one
-```
+    ```bash
+    python --version
+    ```
 
-:material-check-circle:{ .pt-icon-success } If either shows `Python 3.x.x`, Python is installed! Remember which one worked (`python` or `python3`) because that's the command you'll use to run your Python files. You can move onto Step 1.
+    ??? success "If it shows `Python 3.x.x`, Python is installed!"
+        If you ever decide to run your files from the Terminal later you'll use the command `python`. 
 
-:material-close-circle:{ .pt-icon-fail } If both commands fail (you get errors like "command not found"), see below to download Python for your OS.
+        Skip to Step 1: Pick a code editor. 
 
-??? tip "Download if not already installed"
-    Download Python at the link below depending on what kind of computer you have.
+    ??? info "If you see `Python 2.x.x`"
+        Python 2 is installed. Python 2 reached end of life in 2020 and is no longer maintained.
 
-    === "macOS"
+3. If you didn't see `Python 3.x.x` after running the last command, run this one:
+        ```bash
+        python3 --version
+        ```
 
-        [python.org/downloads](https://python.org/downloads)
-    
-    === "Windows"
+    ??? success "If it shows `Python 3.x.x`, Python is installed!"
+        If you ever decide to run your files from the Terminal later you'll use the command `python3`.
 
-        [python.org/downloads](https://python.org/downloads)
+    ??? failure "If you see anything else, download Python here."
 
-        Check **"Add python.exe to PATH"** on the first install screen — if you skip this, the terminal won't recognize `python`
-    
-    === "Linux"
+        === "macOS"
 
-        Usually already installed. If `python3 --version` failed, install via your package manager (e.g. `sudo apt install python3`)
+            [python.org/downloads](https://python.org/downloads)
+        
+        === "Windows"
 
-## Step 1: Pick a code editor
+            [python.org/downloads](https://python.org/downloads)
 
-??? tip "Why use a code editor?"
-    A **code editor** or **IDE** ("Integrated Development Environment") is a text editor designed specifically for writing code — it's like Microsoft Word for programming.
+            Check **"Add python.exe to PATH"** on the first install screen — if you skip this, the terminal won't recognize `python`
+        
+        === "Linux"
 
-    - **Writing code is easier** — syntax highlighting (colored text) makes different parts of your code stand out, so you catch mistakes faster
-    - **Running code is faster** — click a Run button instead of typing terminal commands every time
-    - **Code completion** — the editor suggests function names and variables as you type, saving time and reducing typos
-    - **Error detection** — it warns you about common mistakes before you run the code
-    - **[Debugging](bugs.md#using-a-debugger)** — pause your code mid-run and inspect variables to track down bugs, instead of just reading output after the fact
+            Usually already installed. If `python3 --version` failed, install via your package manager (e.g. `sudo apt install python3`)
 
-### Compare editors
 
-Once Python is installed, pick one of the **free** code editors below based on your priorities, and download it.
+
+## Step 1: Pick an application to write code in
+
+A **code editor** or an **IDE** ("Integrated Development Environment") is a text editor designed specifically for writing code — it's like Microsoft Word for programming.
+
+- **Makes code easier to read** — syntax highlighting uses different colors for different parts of your code
+- **Running code is easier** — click a Run button from your IDE instead of typing Terminal commands every time
+- **Code completion** — the editor suggests function names and variables as you type, saving time and reducing typos
+- **Error detection** — it warns you about common mistakes before you run the code
+- **[Debugging](bugs.md#using-a-debugger)** — pause your code mid-run and inspect variables to track down bugs, instead of only reading output after the fact
+
+Download one of the **free** code editors below. You can always switch later.
 
 | Code Editor | Best for | Audience | Made by | Download Links |
 |--------|----------|---------|---------|---------|
@@ -54,29 +63,28 @@ Once Python is installed, pick one of the **free** code editors below based on y
 | **IDLE** | <ul><li>Comes with Python — no download needed</li><li>Minimal, doesn't scale well to bigger projects</li><li>*NOTE: no visible Run button — press ++f5++ or use Run → Run Module instead*</li><li>*NOTE: has a debugger, but it's basic — accessed via the Debug menu in the shell window, not built into the editor like the others*</li></ul> | Beginners | Python Software Foundation | Included / Included / `sudo apt install idle3` |
 | **PyCharm Community** | <ul><li>Complete Python IDE</li><li>Everything built-in out of the box</li><li>Many panels/menus can feel overwhelming at first</li></ul> | Professionals | JetBrains | [Windows](https://www.jetbrains.com/pycharm/download/) / [macOS](https://www.jetbrains.com/pycharm/download/) / [Linux](https://www.jetbrains.com/pycharm/download/) |
 
-**Note:** Any editor works with any Python library, and your choice doesn't lock you in — you can always switch later.
-
-??? note "Open source"
-    What is "Open Source" software? It means the source code is publicly available for anyone to see, modify, and improve. Thonny is maintained by volunteers in the open-source community. VS Code and PyCharm are made by companies but also have open-source elements.
+??? info "What does "open-source" mean?"
+    The source code that it is built from is publicly available for anyone to see, modify, and improve. 
+    
+    *Thonny* is maintained by volunteers in the open-source community. *VS Code* and *PyCharm* are made by companies but also have open-source elements.
 
 ## Step 2: Write and run a Python file
 
 Now that you have Python installed and a code editor picked, you're ready to write actual Python code.
 
 0. Open your code editor
-1. Create a new file (**File → New**) and save it with a `.py` extension, e.g. `hello.py` — the `.py` extension identifies that it's a Python file
-2. Type this sample code:
+1. Create a new file (**File → New**) and call it `hello.py`. The `.py` extension identifies that it's a Python file
+2. Type this code:
 ```python-ref
 print("Hello, World!")
 ```
-3. Click the **Run button** (usually a green play icon or arrow) — most editors save your file automatically when you click Run, so there's no separate save step. The output appears right there in the editor.
+3. Click the **Run button** (usually a green play icon or arrow) — most editors save your file automatically when you click Run, so there's no separate save step. 
+4. Find the output window in the application where it says `Hello, World!`, it should pop up on its own. 
 
 That's it! You've written and run your first Python program. From here, you can modify the code, run it again, and work through the rest of this guide to keep building your Python skills.
 
-See red text instead of your expected output? The [Bugs](bugs.md#reading-errors) page covers how to read it.
-
-??? tip "Rules for naming files"
-    A Python filename uses lowercase letters and numbers separated by hyphens, with .py as the extension.
+??? tip "Rules for naming Python files"
+    **A Python filename uses lowercase letters and numbers separated by hyphens, with .py as the extension.**
 
     ```python-ref
     my_script.py     # valid
@@ -85,79 +93,118 @@ See red text instead of your expected output? The [Bugs](bugs.md#reading-errors)
     my script.py     # invalid — no spaces
     ```
 
-    - **Ends in .py** - this is what tells your application to treat the file as Python code — the Run button, syntax highlighting, and imports all depend on the extension being there.
-    - **Only letters, underscores, and numbers** - but it can't start with a number. Standard formatting is to use `snake_case` (all lowercase, separated with underscores). Python is case-sensitive (Species.py and species.py would be two different files).
-    - **No hyphens** — even though `my-script.py` will run fine on its own, if you need to later `import my-script` it will be invalid syntax because Python reads the hyphen as subtraction.
-    - **No spaces** — it will break imports and makes running the file from the terminal require extra quoting.
-    - **Don't use a reserved keyword** - There are a handful of "keywords" that are reserved by Python to do specific things, so they can't be used elsewhere in your code.
+    1. **Ends in .py** 
+    
+        This is what tells your application to treat the file as Python code — the Run button, syntax highlighting, and imports all depend on the extension being there.
+    
+    2. **Only letters, underscores, and numbers** - but it can't start with a number. 
+    
+        Standard formatting is to use `snake_case` (all lowercase, separated with underscores). Python is case-sensitive (Species.py and species.py would be two different files).
+    
+    3. **No hyphens** 
+    
+        Even though `my-script.py` will run fine on its own, if you need to later `import my-script` it will be invalid syntax because Python reads the hyphen as subtraction.
+    
+    4. **No spaces** 
+    
+        They will break imports and makes running the file from the terminal require extra quoting.
+    
+    5. **Don't use a reserved keyword** 
+    
+        There are a handful of "keywords" that are reserved by Python to do specific things, so they can't be used elsewhere in your code. Run this code to get a list of all reserved keywords:
+
         ```python
-        print("Run this to get a list of all reserved keywords that you can't name a file: ")
         help("keywords")
         ```
-    - **Don't use a library's name** — naming a file `random.py` or `math.py` in a project makes `import random` elsewhere in that same project import your file instead of Python's actual `random` library, which is a confusing bug to track down.
+    
+    6. **Don't use a library's name** 
+    
+        Naming a file `random.py` or `math.py` in a project makes `import random` elsewhere in that same project import your file instead of Python's actual `random` library, which is a confusing bug to track down. Run this code to get a list of all reserved library names:
+        
         ```python
-        print("Run this to get a list of all reserved library names that you can't name a file: ")
         help("modules")
         ```
+        
+!!! tip "When you see red error text, the [Bugs](bugs.md#reading-errors) page covers how to read it."
 
-## Using the terminal (optional)
+## Using the terminal *(optional)*
 
-The terminal is a text-based way to navigate your computer's files and run programs, instead of clicking through folders. It's best for running Python files you've already written — either your own finished scripts, or someone else's — without needing to open them in an editor. It's also handy for quickly re-running the same command over and over while testing.
+The terminal is a text-based way to navigate your computer's files and run programs. 
 
-!!! warning "Be careful what you type"
-    The terminal has no undo, and no confirmation prompt for most commands — it does exactly what you type, even if that means deleting or overwriting something permanently. Never paste a command you don't understand, especially from a random webpage or chat, and treat anything involving `rm`, `sudo`, or a file path you didn't type yourself with extra caution.
+It's good for running Python files that are already finished — either your own, or someone else's — without needing to open them in an editor. It's also handy for quickly re-running the same command over and over while testing.
 
-### First, navigate to where your Python file is saved
+1. Open the terminal 
 
-`pwd` is a good first command any time you're not sure where the terminal currently "is" — every other command (like running a script) acts relative to that location. `cd` ("change directory") is how you move between folders; `cd ..` is the one beginners forget, and it's how you back out of a folder you moved into by mistake.
+    You can either use a dedicated terminal application (Terminal on Mac/Linux, Command Prompt or PowerShell on Windows), or if your code editor application has a terminal window you can use that. 
 
-```python-ref
-pwd                  # where am I right now?
-ls                   # what files are here? (use `dir` on Windows)
-cd [folder name]     # move into a folder
-cd ..                # move up one level
-```
-
-Here's what this looks like in practice:
-
-```bash
-$ pwd
-/Users/luka
-$ ls
-Desktop    Documents    Downloads
-$ cd Documents
-$ ls
-my_project    other_stuff
-$ cd my_project
-$ ls
-my_python_file.py
-$ pwd
-/Users/luka/Documents/my_project
-```
-
-**Shortcut:** Instead of typing `cd Documents`, then `cd my_project`, you can give the full path directly: `cd Documents/my_project`. Or use `~/` (tilde = your home folder) to go directly from anywhere: `cd ~/Documents/my_project`.
-
-### Then, run the Python file
-
-Use whichever command worked when you checked your Python version — and stick with it consistently. `cd` into the folder containing your script first (see "Navigate to the folder" above), or provide the full path to the file instead, like `python path/to/script.py`.
-
-```bash
-python script.py      # if this worked during your version check
-python3 script.py     # if this worked during your version check
-```
-
-**Why two commands?** On Windows, `python` is standard. On Mac/Linux, `python` might not work or might point to an old Python 2, so `python3` is more reliable. They're interchangeable — just pick the one that works for you.
-
-**To stop a running program:** Press ++ctrl+c++ (hold Control, press C) — this works on Windows, Mac, and Linux.
-
-??? tip "Terminal shortcuts"
-    A few quick tricks to save time and typing.
+2. Navigate to the folder ("location") your Python file is saved in using these commands:
 
     ```bash
-    ↑ and ↓         # scroll through command history
-    Tab             # auto-complete file/folder names
+    pwd                  # What is my current location? Good to send first, or if you get lost
+    ls                   # what folders and files are at my current location? (use `dir` on Windows)
+    cd [folder name]     # move into a folder that is at my current location
+    cd ..                # move back one level, into the parent location
     ```
 
-    **Up/down arrow keys:** After you've run a few commands, press ++up++ to see your last command, and press it again to go further back. Use ++down++ to move forward through the history. This saves a lot of typing when you're testing the same command over and over — run it, make a change to your file, then press ++up++ to re-run it instantly.
+    Here's an example:
+    
+    ```bash
+    $ pwd
+    /Users/luka
+    $ ls
+    Desktop    Documents    Downloads
+    $ cd Documents
+    $ ls
+    my_project    other_stuff
+    $ cd my_project
+    $ ls
+    my_python_file.py
+    $ pwd
+    /Users/luka/Documents/my_project
+    ```
 
-    **Tab completion:** Start typing a filename or folder name and press ++tab++ — the terminal will auto-complete it for you. For example, if you type `cd Doc` then press Tab, it becomes `cd Documents/`. If there are multiple matches, press ++tab++ again to cycle through them or type more letters.
+3. Run the Python file
+
+    Use whichever below command showed 3.x.x. when you checked your Python version above.
+
+    ```bash
+    python script.py
+    python3 script.py
+    ```
+
+4. To stop a running program: ++ctrl+c++ 
+
+5. You can now run a Python file again, or a different command.      
+
+!!! warning "Be careful what you send in the terminal"
+    The terminal has no undo, and no confirmation prompt for most commands — it does exactly what you type, even if that means deleting or overwriting something permanently. Never paste a command you don't fully understand, especially from a random webpage or AI.
+    
+    Use **extreme caution** with `rm`, `sudo`, or a file path you didn't type yourself.
+
+??? tip "Terminal shortcuts"
+
+    1. **Auto-complete file/folder names:** 
+    
+        Start typing a file or folder name and press ++tab++ — the terminal will autoc-omplete it for you. For example, if you type `cd Doc` then press Tab, it becomes `cd Documents/`. 
+        
+        If there are multiple matches, press ++tab++ again to cycle through them, or type more letters so that there is only one option it could be and then ++tab++ again.
+
+    2. **Auto-fill previous commands:** 
+    
+        ++up++ shows your last command, and press it again to go further back. 
+        
+        ++down++ then moves forward through the history. 
+        
+        You can this press return to send that command without needing to type it out. This saves typing when you want to send the same command(s) multuple times.
+
+    3. **Give the full path in one command:**
+
+        `~/` aka "tilde" = your home folder. 
+        
+        Specify the complete path with `cd ~/Documents/my_folder/my_project`.
+
+        You can also run the file with one command: `python path/to/script.py`.
+    
+    4. **Stop a running Python file:**
+
+        ++ctrl+c++ 

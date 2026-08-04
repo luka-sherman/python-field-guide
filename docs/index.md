@@ -60,7 +60,7 @@ hide:
 
     ---
 
-    [`installing Python`](workspace.md#step-0-install-python) · [`code editors`](workspace.md#step-1-pick-a-code-editor) · [`running a file`](workspace.md#step-2-write-and-run-a-python-file) · [`terminal`](workspace.md#using-the-terminal-optional)
+    [`installing Python`](workspace.md#step-0-install-python) · [`code editors`](workspace.md#step-1-pick-an-application-to-write-code-in) · [`running a file`](workspace.md#step-2-write-and-run-a-python-file) · [`terminal`](workspace.md#using-the-terminal-optional)
 
 -   :material-cube-outline:{ .lg .middle } [__Foundations__](foundations.md)
 
