@@ -1,12 +1,102 @@
 # :material-cube-outline:{ .lg .middle } Foundations
 
-New to Python? Start here. Every code block on this site is runnable — click **Run** under the one below to see it work, then try editing it and running it again. 
-
-This page covers three things you'll use in almost every program: displaying data with **`print()`**, storing a value in a **variable**, and leaving notes for yourself with **comments**.
+New to Python? Start here. Every code block on this site is runnable — click **Run** under it to see it work, then try editing it and running it again. 
 
 ## print()
 
-`print()` displays a value on screen — it's the main way a Python program shows you anything while it runs, and the fastest way to check what a variable actually holds while you're writing or debugging code.
+
+That's a problem for you as the developer — without some way to look inside, you can't follow along with what it's actually doing as it runs. Once it starts, everything in between is a black box until it ends.
+
+```mermaid
+flowchart LR
+    black@{ shape: procs, label: "your program" }
+    stop@{ shape: dbl-circ, label: "end ■" }
+    start(("start ▶"))
+    start --> black --> stop
+
+    classDef terminal fill:none,stroke-width:2px
+    class start,stop terminal
+
+    classDef blackbox fill:#000,color:#fff,stroke:#fff,stroke-width:1px
+    class black blackbox
+```
+
+`print()` solves that: it displays a value while your program runs, so you can watch what's happening or check what a variable is currently equal to, right at the point it happens. Sprinkle a few print statements through your code, and instead of one opaque black box, you get a handful of checkpoints along the way.
+
+```mermaid
+flowchart TB
+
+subgraph top[" "]
+direction LR
+black@{ shape: procs, label: "your program" }
+stop@{ shape: dbl-circ, label: "end ■" }
+start(("start ▶"))
+start --> black --> stop
+end
+
+p1["print(...)"]
+p2["print(...)"]
+p3["print(...)"]
+
+black -.-> p1
+black -.-> p2
+black -.-> p3
+
+style top fill:none,stroke:none
+
+classDef terminal fill:none,stroke-width:2px
+class start,stop terminal
+
+classDef blackbox fill:#000,color:#fff,stroke:#fff,stroke-width:1px
+class black blackbox
+
+classDef plain fill:none,stroke:none
+class p1,p2,p3 plain
+```
+
+Code editors have an **output** window at the bottom that displays all the print statements as the program runs.
+
+`print` is a **function** — a named, reusable piece of code that does something when you "call" it by name. [Functions are covered more in depth here](functions.md), but you don't need to understand how they work yet. For now, these three building blocks are all you need to use `print()`:
+
+- the word `print`
+- a pair of parentheses `(` `)`. In programming, every open parenthesis `(` must have a corresponding closing one `)`.
+- the value you want printed, placed between them
+
+```mermaid
+flowchart TB
+
+subgraph code[" "]
+direction LR
+
+p("print")
+o("(")
+s("data")
+c(")")
+
+p -.- o -.- s -.- c
+
+end
+
+f("the function name `print`")
+pa("opening parenthesis")
+st("the data you want to see: a word, number, variable, etc")
+pc("closing parenthesis")
+
+f --> p
+pa --> o
+st --> s
+pc --> c
+
+classDef plain fill:none,stroke:none
+class f,pa,st,pc plain
+
+classDef punct stroke:none
+class p,o,c punct
+
+style code fill:none,stroke:none
+```
+
+Put together, it looks like this:
 
 ```python-ref
 print("hello, field guide")
@@ -15,7 +105,7 @@ print(4.5)
 
 ### Printing multiple values
 
-Pass several values separated by commas to print them on one line, space-separated.
+The simplest way to print several things on one line is to separate them with commas — Python adds a space between each one and converts numbers to text for you automatically.
 
 ```python-ref
 species = "ball python"
@@ -23,7 +113,13 @@ length_ft = 4.5
 print(species, length_ft, "ft")    # ball python 4.5 ft
 ```
 
-`print()` joins the values with a single space by default — pass `sep="..."` to use something else instead, like `print(species, length_ft, sep=", ")`. For combining text and variables into one readable sentence, an [f-string](types.md#format-strings) is usually clearer than a long list of comma-separated pieces.
+You can also build one string yourself with `+` and print that instead — but every piece has to already be a string, so a number like `length_ft` needs `str()` first, and you have to add the spaces yourself.
+
+```python-ref
+print(species + " " + str(length_ft) + " ft")    # ball python 4.5 ft — same output, more typing
+```
+
+Commas are usually the easier choice for a quick print. Pass `sep="..."` to change the default single-space separator, like `print(species, length_ft, sep=", ")`. For building a full sentence out of text and variables, an [f-string](types.md#format-strings) is usually clearer than either approach.
 
 Once you're comfortable with the basics here, the [Collections](collections.md#join-lists) page covers printing the contents of a list or dict.
 
@@ -38,6 +134,7 @@ Once you're comfortable with the basics here, the [Collections](collections.md#j
     length_ft = 4.5
 
     print(species, length_ft, "ft")
+    print(species + " " + str(length_ft) + " ft")
     print(species, length_ft, sep=", ")
     ```
 

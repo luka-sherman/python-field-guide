@@ -4,7 +4,7 @@
 
 1. Open your Terminal application *(Terminal on Mac/Linux, Command Prompt or PowerShell on Windows)* 
 
-2. Try running this command: *(Type it and press return)*
+2. Type this command and press ++return++ to "run" it:
 
     ```bash
     python --version
