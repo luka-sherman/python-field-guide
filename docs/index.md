@@ -64,11 +64,11 @@ hide:
 
 -   :material-cube-outline:{ .lg .middle } [__Foundations__](foundations.md)
 
-    Store a value in a variable, show output with `print()`, and leave notes for yourself with comments.
+    Store a value in a variable, show output with `print()`, read it back in with `input()`, and leave notes for yourself with comments.
 
     ---
 
-    [`variables`](foundations.md#variables) · [`print()`](foundations.md#print) · [`comments`](foundations.md#comments)
+    [`variables`](foundations.md#variables) · [`print()`](foundations.md#print) · [`input()`](foundations.md#input) · [`comments`](foundations.md#comments)
 
 -   :material-shape-outline:{ .lg .middle } [__Basic Data Types__](types.md)
 

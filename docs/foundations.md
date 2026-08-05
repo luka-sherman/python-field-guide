@@ -4,6 +4,7 @@ New to Python? Start here. Every code block on this site is runnable — click *
 
 ## print()
 
+When a program is running, it won't show you anything on its own — it just runs silently in the background.
 
 That's a problem for you as the developer — without some way to look inside, you can't follow along with what it's actually doing as it runs. Once it starts, everything in between is a black box until it ends.
 
@@ -239,6 +240,24 @@ Python doesn't lock a variable to the type it first held — `species` can hold 
     a = b = 0
     print(a, b)
     ```
+
+## input()
+
+`print()` sends information out to the person running your program. `input()` does the opposite — it pauses your program, waits for the person to type something and press Enter, and hands back whatever they typed.
+
+```python-ref
+name = input("What's your name? ")
+print("Hello,", name)
+```
+
+The text inside the parentheses — `"What's your name? "` — is the **prompt**: a message shown before the program waits, so the person knows what to type. It's optional; `input()` on its own just waits silently.
+
+`input()` always returns a **string**, even if the person types a number. To use it as a real number, convert it first with `int()` or `float()`, covered on the [Types](types.md#convert-to-integer) page.
+
+```python-ref
+age = input("How old are you? ")          # "8" — a string, not the number 8
+age = int(input("How old are you? "))     # 8 — now a real int
+```
 
 ## Comments
 
