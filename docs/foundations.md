@@ -291,33 +291,107 @@ Other languages fix a variable to one type permanently at creation; Python doesn
 
 ## Input function
 
-### Getting input from the user
+`input()` allows the program to get typed input from the user
 
-`print()` sends information out to the person running your program. `input()` does the opposite — it pauses your program, waits for the person to type something and press Enter, and then does something with whatever they typed.
+1. It prints a prompt to the user
+2. It pauses and waits for the user to type something and press ++enter++
+3. It does something with whatever they typed.
 
 ```python-ref
-name = input("What's your name? ")
-print("Hello,", name)
+first_name = input("What's your first name? ")
+print(first_name)
 ```
 
-The text inside the parentheses — `"What's your name? "` — is the **prompt**: a message shown before the program waits, so the person knows what to type. It's optional; `input()` on its own just waits silently.
+The text inside the parentheses — `"What's your first name? "` — is the **prompt**: a message shown before the program waits, so the person knows what to type.
+
+### Structure of an input() statement
+
+`input` is a **function**, same as `print` — these are the same building blocks, just with a variable assignment at the beginning to save what the user inputs:
+
+```mermaid
+flowchart TB
+
+subgraph code[" "]
+direction LR
+
+n("name")
+eq("=")
+i("input")
+o("(")
+s("&quot;What's your name? &quot;")
+c(")")
+
+n -.- eq -.- i -.- o -.- s -.- c
+
+end
+
+nl("the variable to save the answer in")
+eql("the assignment operator")
+il("the function name `input`")
+pa("opening parenthesis")
+sl("the prompt: a message shown before waiting")
+pc("closing parenthesis")
+
+nl --> n
+eql --> eq
+il --> i
+pa --> o
+sl --> s
+pc --> c
+
+classDef plain fill:none,stroke:none
+class nl,eql,il,pa,sl,pc plain
+
+classDef punct stroke:none
+class eq,i,o,c punct
+
+style code fill:none,stroke:none
+```
+
+**Prompt format:**
+
+Input prompts often have a `?` or `:` at the end. 
+
+```python-ref
+first_name = input("What's your first name? ")  # can use a ?
+last_name = input("Enter your last name: ")     # or can use a :
+```
+
+They generally have an extra space before the last `"` — otherwise when the user starts typing their typing will be right up against the prompt with no gap, so it is harder to read. 
+
+### Saving what the user types
+
+`input()` has to be assigned to a variable, or whatever was typed is thrown away — there's no other way to get back to it once the line finishes running.
+
+```python-ref
+input("What's your name? ")            # waits, then throws away whatever was typed
+print("Hello!")                        # nothing to reference — it's gone
+
+name = input("What's your name? ")     # saved to the variable name
+print("Hello,", name)                  # now a usable variable
+```
 
 ### Converting input to a number
 
 Come back to this once you've read the [Types](types.md) page.
 
-`input()` always returns a **string**, even if the person types a number. To use it as a real number, convert it first with `int()` or `float()`, covered on the [Types](types.md#convert-to-integer) page.
+Whatever the person types, `input()` always hands it back as a **string** — even a typed number comes back as text, not a real number.
+
+To use what the user has entered as a real number, you must convert it with `int()` or `float()`, covered on the [Types](types.md#convert-to-integer) page. Skipping this step causes an error the moment you try to do math with it — Python won't add a number to a string.
 
 ```python-ref
 age = input("How old are you? ")          # "8" — a string, not the number 8
+print(age + 1)                            # TypeError: can only concatenate str (not "int") to str
+
 age = int(input("How old are you? "))     # 8 — now a real int
+print(age + 1)                            # 9 — works fine
 ```
 
 ## Comments
 
-**A `#` marks the rest of a line as a comment Python will ignore the line.**
+### Commenting out a line with \#
 
-### Reasons for comments
+A `#` marks the rest of a line as a comment — so Python ignores it. There are multiple reasons for this: 
 
 1. **Annotate the code for yourself, explaining *why* or *how* it works.**
 
@@ -333,18 +407,28 @@ age = int(input("How old are you? "))     # 8 — now a real int
     This also works in reverse: if you don't fully understand a piece of code yet — maybe you copied it from somewhere, or it's still new to you — leaving yourself a comment explaining it is genuinely useful.
 
 2. **Temporarily disable code**
-    
-    This can be handy if you still want to use it as a reference, want to rewrite it while seeing the old version, or just don't want to run those lines right now.  in front of the line will stops it from running without deleting it.
 
-    Selecting multiple lines and adding a `#` in front of them (see the shortcuts below) will disable the block of code from running without deleting it. 
+    Adding a `#` in front of a line stops it from running, without deleting it. Select multiple lines to comment out a whole block at once. 
 
-    This is different from writing a comment as a note — here the `#` is temporarily disabling real code. A few reasons to reach for it:
+    ```python-ref
+    species = "ball python"
+    # species = "burmese python"    # not running right now
+    print(species)
+    ```
+
+    A few reasons to reach for it:
 
     - **Testing without deleting** — try a different value or approach, while keeping the original one line away in case you want it back.
     - **Isolating a bug** — comment out a chunk of code to check whether the rest still works, narrowing down where a problem actually is.
     - **Keeping old code as a reference** — a previous approach that worked but got replaced, left in place (usually with a note explaining why) in case it's useful again later.
 
     Commented-out code left too long tends to go stale and confuse whoever reads it later (including future you) — it's meant to be a temporary state, not a permanent way to store unused code.
+
+    !!! tip "Keyboard shortcut for commenting/uncommenting multiple lines"
+        | Action | Shortcut |
+        |--------|------------------|
+        | Comment / uncomment selected lines | ++cmd+slash++ (not IDLE)|
+        | Select whole lines, one at a time | ++shift+down++ / ++shift+up++ |
 
 3. **Flag unfinished work with `TODO` or `FIXME`**
 
@@ -365,28 +449,55 @@ age = int(input("How old are you? "))     # 8 — now a real int
     - **VS Code** needs an extension for this — [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree) is the most popular one, and adds a sidebar tree view of every tagged comment in your workspace.
     - **Thonny and IDLE** have no built-in equivalent — `TODO` still works as a plain comment, just without the aggregated list.
 
-4. Multi-line comments ("docstrings") at the top of a file or function
+### Multiline comments with """
 
-A triple-quoted string on its own line acts like a comment spanning several lines.
+*This is a more advanced topic — skip it for now if you're just getting started, and come back once you're comfortable writing [functions](functions.md).*
 
-```python-ref
-"""
-This whole block is ignored,
-across as many lines as you want.
-"""
-species = "ball python"
-```
+A triple-quoted string on its own line acts like a comment spanning several lines. We use these to make **docstrings**, here are some uses for them: 
 
-Python doesn't have a true multi-line comment symbol — putting `#` in front of every line is still the most common way to comment out a block. A triple-quoted string (`"""..."""` or `'''...'''`) isn't technically a comment, it's a string that Python creates and then immediately discards since nothing uses it — but it works the same way in practice. 
+1.  Simple function docstrings
 
-One place this pattern *is* the real convention rather than a workaround: a triple-quoted string as the very first line inside a [function](functions.md) is called a **docstring**, and documents what that function does.
+    A docstring as the first line inside a [function](functions.md) documents what that function does. For a short, simple function, one line summarizing what it returns is usually enough:
 
-!!! tip "Keyboard shortcut for commenting/uncommenting multiple lines"
-    Select several lines, then comment all of them in one keystroke instead of line by line.
+    ```python-ref
+    def species_label(species):
+        """Return species formatted as a display label."""
+        return species.title()
+    ```
 
-    | Action | Shortcut |
-    |--------|------------------|
-    | Comment / uncomment selected lines | ++cmd+slash++ |
-    | Select whole lines, one at a time | ++shift+down++ / ++shift+up++ |
+2. Complex function dosctrings
 
-    These are the defaults in VS Code, PyCharm, and Thonny. IDLE has no built-in shortcut for toggling comments on multiple lines at once. In every editor, the selection itself works the same way as selecting any text: click and drag, or hold ++shift++ while using the arrow keys.
+    For a function where you want to document its parameters or return values, you can spell them out using this standard format. You list all parameters/arguments and their name, type, and description, the return type and description, and the one-line summary:
+
+    ```python-ref
+    def is_too_long(species, length_ft):
+        """
+        Check whether a snake is unusually long for its species.
+
+        Args:
+            species (str): the snake's species name.
+            length_ft (float): the snake's measured length, in feet.
+
+        Returns:
+            bool: True if length_ft is unusually long for species.
+        """
+        return length_ft > 5
+    ```
+
+3. File Docstrings
+
+    The same triple-quoted string, placed as the very first line of a file instead of a function, becomes a module docstring — documenting the file as a whole, often with who wrote it and when:
+
+    ```python-ref
+    """
+    snake_survey.py
+
+    Tracks species and lengths recorded during the spring snake survey.
+
+    Author: Jordan Lee
+    Date: 2024-03-15
+    """
+
+    species = "ball python"
+    length_ft = 4.5
+    ```
