@@ -97,7 +97,23 @@ Python treats `'single'` and `"double"` quotes identically for strings — pick 
 
 ## Docstrings
 
-Covered in full on the [Foundations](foundations.md#multiline-comments-with) page — a triple-quoted string as the first line of a function, class, or file, documenting what it does.
+A triple-quoted string as the first line of a function or a file documents what it does — the underlying trick is the same [multi-line comment](foundations.md#multi-line-comments-with) covered on Foundations, just placed specifically as the first line. Function docstrings are covered on the [Functions](functions.md#docstrings) page.
+
+Placed as the very first line of a file instead, the same trick becomes a **module docstring** — documenting the file as a whole rather than a single function, and a common place to note who wrote it and when.
+
+```python-ref
+"""
+snake_survey.py
+
+Tracks species and lengths recorded during the spring snake survey.
+
+Author: Jordan Lee
+Date: 2024-03-15
+"""
+
+species = "ball python"
+length_ft = 4.5
+```
 
 ## Main function
 

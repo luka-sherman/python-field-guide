@@ -451,53 +451,34 @@ A `#` marks the rest of a line as a comment — so Python ignores it. There are 
 
 ### Multi-line comments with """
 
-*This is a more advanced topic — skip it for now if you're just getting started, and come back once you're comfortable writing [functions](functions.md).*
+A triple-quoted string on its own line acts like a comment spanning several lines.
 
-A triple-quoted string on its own line acts like a comment spanning several lines. We use these to make **docstrings**, here are some uses for them: 
+```python-ref
+"""
+This whole block is ignored,
+across as many lines as you want.
+"""
+species = "ball python"
+```
 
-1.  Simple function docstrings
+Python doesn't have a true multi-line comment symbol — a triple-quoted string (`"""..."""` or `'''...'''`) isn't technically a comment, it's a string that Python creates and then immediately discards since nothing uses it — but it works the same way in practice.
 
-    A docstring as the first line inside a [function](functions.md) documents what that function does. For a short, simple function, one line summarizing what it returns is usually enough:
+Placed as the very first line inside a function or a file specifically, this same trick is called a **docstring** and documents what that function or file does. Function docstrings are covered on the [Functions](functions.md#docstrings) page.
 
-    ```python-ref
-    def species_label(species):
-        """Return species formatted as a display label."""
-        return species.title()
-    ```
+Placed as the very first line of a file instead, it becomes a **module docstring** — documenting the file as a whole rather than a single function, and a common place to note who wrote it and when.
 
-2. Complex function dosctrings
+```python-ref
+"""
+snake_survey.py
 
-    For a function where you want to document its parameters or return values, you can spell them out using this standard format. You list all parameters/arguments and their name, type, and description, the return type and description, and the one-line summary:
+Tracks species and lengths recorded during the spring snake survey.
 
-    ```python-ref
-    def is_too_long(species, length_ft):
-        """
-        Check whether a snake is unusually long for its species.
+Author: Jordan Lee
+Date: 2024-03-15
+"""
 
-        Args:
-            species (str): the snake's species name.
-            length_ft (float): the snake's measured length, in feet.
+species = "ball python"
+length_ft = 4.5
+```
 
-        Returns:
-            bool: True if length_ft is unusually long for species.
-        """
-        return length_ft > 5
-    ```
-
-3. File Docstrings
-
-    The same triple-quoted string, placed as the very first line of a file instead of a function, becomes a module docstring — documenting the file as a whole, often with who wrote it and when:
-
-    ```python-ref
-    """
-    snake_survey.py
-
-    Tracks species and lengths recorded during the spring snake survey.
-
-    Author: Jordan Lee
-    Date: 2024-03-15
-    """
-
-    species = "ball python"
-    length_ft = 4.5
-    ```
+More on docstring conventions on the [Style](style.md#docstrings) page.

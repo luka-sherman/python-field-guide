@@ -29,14 +29,34 @@ describe("burmese")
     | Indent selected lines | ++tab++ |
     | Unindent selected lines | ++shift+tab++ |
 
-??? tip "Docstrings"
-    A triple-quoted string as a function's first line documents what it does — most editors show it automatically when you use the function elsewhere. A **docstring** is the same triple-quoted-string trick covered on the [Foundations](foundations.md#multiline-comments-with) page, but placed as the very first line inside a function specifically to document it. Unlike a regular comment, Python actually stores a docstring (as the function's `__doc__` attribute) rather than discarding it — which is how editors are able to show it in a tooltip when you call the function elsewhere, without you needing to go find the definition. Short, single-line docstrings like this one are common for simple functions; longer functions often use a multi-line docstring describing each parameter and what's returned.
+### Docstrings
 
-    ```python-ref
-    def describe(species):
-        """Return a short description of the given snake species."""
-        return f"a {species} python"
-    ```
+A triple-quoted string as a function's first line documents what it does — most editors show it automatically when you use the function elsewhere. A **docstring** is the same triple-quoted-string trick covered on the [Foundations](foundations.md#multi-line-comments-with) page, but placed as the very first line inside a function specifically to document it. Unlike a regular comment, Python actually stores a docstring (as the function's `__doc__` attribute) rather than discarding it — which is how editors are able to show it in a tooltip when you call the function elsewhere, without you needing to go find the definition.
+
+Short, single-line docstrings are common for simple functions:
+
+```python-ref
+def describe(species):
+    """Return a short description of the given snake species."""
+    return f"a {species} python"
+```
+
+For a function where you want to document its parameters or return values, you can spell them out using this standard format. You list all parameters/arguments and their name, type, and description, the return type and description, and the one-line summary:
+
+```python-ref
+def is_too_long(species, length_ft):
+    """
+    Check whether a snake is unusually long for its species.
+
+    Args:
+        species (str): the snake's species name.
+        length_ft (float): the snake's measured length, in feet.
+
+    Returns:
+        bool: True if length_ft is unusually long for species.
+    """
+    return length_ft > 5
+```
 
 ### Return values
 
