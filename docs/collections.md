@@ -44,6 +44,17 @@ species    # ["burmese", "rock", "ball", "blood"]
 len(species)    # 4
 ```
 
+### Min, max, and sum
+
+`min()` finds the smallest item in a list, `max()` finds the largest, and `sum()` adds every item together — no loop needed for any of them.
+
+```python-ref
+length_ft = [4.5, 12, 5, 3.5]
+min(length_ft)    # 3.5
+max(length_ft)    # 12
+sum(length_ft)    # 25
+```
+
 ### Accessing items
 
 Items are accessed by index, starting at `0` for the first item. Negative indexes count down from the end, starting at `-1` for the last item. A slice `list[start:end]` returns a new list containing items from `start` up to (but not including) `end`.

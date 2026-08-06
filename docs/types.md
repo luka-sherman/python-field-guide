@@ -58,6 +58,16 @@ length % 2     # 1    (modulo — the remainder)
 length ** 2    # 25   (exponent)
 ```
 
+### Absolute value
+
+`abs()` returns a number with its sign dropped — negative becomes positive, positive stays unchanged. Works the same way on a `float`.
+
+```python-ref
+abs(-5)      # 5
+abs(5)       # 5
+abs(-4.5)    # 4.5
+```
+
 ### Convert to integer
 
 `int()` converts a string of digits, or truncates a float toward zero. It cuts off the decimal — it does not round.
@@ -81,6 +91,9 @@ int(True)     # 1
     print(length // 2)
     print(length % 2)
     print(length ** 2)
+
+    print(abs(-5))
+    print(abs(5))
 
     print(int("5"))
     print(int(5.9))

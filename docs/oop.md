@@ -83,6 +83,21 @@ ball.describe()    # "a 5 ft ball python"
                    # with __str__:    "ball python, 5 ft"
     ```
 
+??? tip "The `__repr__()` method"
+    Controls what `repr()` returns for an object — used when Python needs a representation and there's no `__str__()` to fall back on, like printing an object *inside* a list.
+
+    ```python-ref
+    print([ball])    # without __repr__: [<__main__.Snake object at 0x...>]
+                      # with __repr__:    [Snake('ball', 5)]
+    ```
+
+    Convention is to make it look like the code that would recreate the object — unlike `__str__()`'s more casual, human-readable description.
+
+    ```python-ref
+    def __repr__(self):
+        return f"Snake({self.species!r}, {self.length_ft})"
+    ```
+
 ??? tip "Modify & delete attributes"
     Assign to `object.attribute` to change it after creation. `del object.attribute` removes a single attribute; `del object` removes the object itself.
 
