@@ -6,52 +6,6 @@ hide:
 
 # Python Field Guide { .pt-visually-hidden }
 
-??? ai "Coding in the AI Age"
-    === "Why learn to code yourself?"
-
-        **Understanding programming fundamentals make AI more useful.** 
-        
-        Once you understand these building blocks you can read code you didn't write, spot mistakes, understand *why* a solution works, and communicate your problem to AI more effectively.
-
-        **Learning happens through productive struggle.** 
-        
-        The friction of working something out yourself, instead of being handed the answer, [is what builds understanding](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf). If you skip that struggle, you *won't develop the knowledge* to solve the problem again, adapt the answer, or recognize when it's wrong.
-
-        **You need to be able to verify AI code.** 
-        
-        AI can generate code that looks correct while being wrong and insecure. Researchers are already documenting this skill gap in [students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before they've [built their own foundation](https://dl.acm.org/doi/10.1145/3624720), and one [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) found that developers using AI wrote *less* secure code—but were *more* confident that it was secure. 
-
-        **Employers are still hiring for understanding, not prompting.** 
-        
-        AI will likely be available on the job too, but code review, debugging, and interviews all test whether you can reason about code and judge whether it's correct.
-
-        **Learning to program on your own turns AI into a tool you can direct and verify, instead of one you're assuming got it right.**
-
-    === "How to use AI to support your learning?"
-
-        None of this means avoiding AI altogether—but it does mean being **deliberate** about which parts of the work you hand over.
-
-        **Guide you through setting up your workspace** 
-        
-        Setting up your computer for programming can be an intimidating hurdle, especially if you haven't used your Terminal before. You should be very cautious with the Terminal and only send commands you absolutely understand. Having AI walk you through the setup process can make this task **accessible for solo beginners**. 
-
-        **Ask AI to explain, not solve.** 
-        
-        If you're stuck on your own code, ask what a line does or *why* you got a certain error. Let AI help you *understand* concepts, not write them for you.
-
-        **If you're stuck, clearly communicate your problem.** 
-        
-        Make a strong attempt before turning to AI. Then **describe** what you've tried, what you expected to happen, and exactly where you're stuck *instead of just dumping in your code and an error message*. The process of **putting your problem into words** is a significant learning tool, and will also gives AI the context it needs to provide more targeted, efficient help.
-
-        **Disable AI autocomplete.** 
-        
-        Many code editors now have an AI autocomplete enabled, which reads your code as you write and suggests ways to finish it and whole functions to add. This is not helpful for a beginner and can you leave you **not understanding what your own code does**.
-
-        **Don't outsource the productive struggle.** 
-        
-        Learning to program means making mistakes, getting stuck, and eventually figuring things out and forming a mental model. That's the process that **builds skills** you can rely on.
-
-
 <div class="grid cards" markdown="block">
 
 -   :material-monitor:{ .lg .middle } [__Workspace Setup__](workspace.md)
@@ -223,3 +177,58 @@ hide:
     [`Tk()`](libraries/tkinter.md#creating-a-window) · [`Button`](libraries/tkinter.md#widgets) · [`pack()`](libraries/tkinter.md#layout-managers) · [`configure()`](libraries/tkinter.md#configuring-widgets) · [`command`](libraries/tkinter.md#handling-events) · [`ttk.Style`](libraries/tkinter.md#styling-with-ttk) · [`messagebox`](libraries/tkinter.md#dialogs) · [`winfo_width()`](libraries/tkinter.md#introspecting-widgets)
 
 </div>
+
+??? ai "Why learn to code yourself, if AI can do it for you?"
+
+    **Understanding programming fundamentals make AI more useful.** 
+    
+    Once you understand these building blocks you can read code you didn't write, spot mistakes, understand *why* a solution works, and communicate your problem to AI more effectively.
+
+    **Learning happens through productive struggle.** 
+    
+    The friction of working something out yourself, instead of being handed the answer, [is what builds understanding](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf). If you skip that struggle, you *won't develop the knowledge* to solve the problem again, adapt the answer, or recognize when it's wrong.
+
+    **You need to be able to verify AI code.** 
+    
+    AI can generate code that looks correct while being wrong and insecure. Researchers are already documenting this skill gap in [students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before they've [built their own foundation](https://dl.acm.org/doi/10.1145/3624720), and one [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) found that developers using AI wrote *less* secure code—but were *more* confident that it was secure. 
+
+    **Employers are still hiring for understanding, not prompting.** 
+    
+    AI will likely be available on the job too, but code review, debugging, and interviews all test whether you can reason about code and judge whether it's correct.
+
+    **Learning to program on your own turns AI into a tool you can direct and verify, instead of one you're assuming got it right.**
+
+
+??? ai "How to use AI to support your learning?"
+
+    **Guide you through setting up your workspace** 
+    
+    Setting up your computer for programming can be an intimidating hurdle, especially if you haven't used your Terminal before. Having AI walk you through the setup process can make this task **safer and accessible for solo beginners**. 
+
+    **Ask AI to explain, not solve.** 
+    
+    If you're stuck on your own code, ask what a line does or *why* you got a certain error. Let AI help you *understand* concepts, not write them for you.
+
+    **If you're stuck, clearly communicate your problem.** 
+    
+    Make a strong attempt before turning to AI. Then **describe** what you've tried, what you expected to happen, and exactly where you're stuck *instead of just dumping in your code and an error message*. The process of **putting your problem into words** is a significant learning tool, and will also gives AI the context it needs to provide more targeted, efficient help.
+
+    **Disable AI autocomplete.** 
+    
+    Many code editors now have an AI autocomplete enabled, which reads your code as you write and suggests ways to finish it and whole functions to add. This is not helpful for a beginner and can you leave you **not understanding what your own code does**.
+
+    **Don't outsource the productive struggle.** 
+    
+    Learning to program means making mistakes, getting stuck, and eventually figuring things out and forming a mental model. That's the process that **builds skills** you can rely on.
+
+??? info "What is Python, and what is it used for?"
+    **Python** is a general-purpose programming language known for readable syntax and a huge built-in and third-party library ecosystem — designed to be quick to write and easy to read back later, even by someone who didn't write it. It doesn't need to be compiled before it runs: write a `.py` file, then run it directly.
+
+    That readability, plus the sheer range of libraries already built for it, is why it turns up almost everywhere: web backends, data analysis and machine learning, automating repetitive tasks, scientific computing, and quick scripts gluing other tools together — several of which are covered on this site's [Libraries](#libraries) pages. Python usually isn't the fastest language for raw performance, but it's often the fastest to write *correct* code in, which is why it's such a common first choice for a new project.
+
+    That same readability is also why Python is such a common **first language to learn programming in**. Variables, conditionals, loops, functions, classes — the same fundamentals every language shares — read closer to plain English here than in most other languages, so you spend your effort learning to *think* like a programmer instead of fighting a stricter syntax. Once those fundamentals are solid, they carry over directly to whatever language you pick up next.
+
+??? info "What is this guide?"
+    **Python Field Guide** is a free, in-browser reference for learning Python from the ground up — most code blocks are editable and runnable directly on the page, if you want to experiment with how something works.
+
+    It's built for people learning Python — self-taught learners, students in an intro course, or anyone who wants one combined reference to work through from start to finish rather than a scattered pile of search results. 
