@@ -2,6 +2,19 @@
 
 Code that works isn't automatically code that's easy to read, debug, or hand off to someone else — these conventions are about writing Python that stays clear as a file grows past a few lines.
 
+## PEP 8
+
+**PEP 8** is Python's official style guide — a document written by Python's own core developers covering formatting, naming, and organizing code. ("PEP" stands for Python Enhancement Proposal, the same process used to propose changes to the language itself.) Several of the conventions on this page — naming, quote style, import order — come directly from it.
+
+Python runs styled and unstyled code identically, so following PEP 8 doesn't make a script more *correct* — it makes it more *predictable* to read. Anyone who's used Python before recognizes the shape of PEP 8-styled code, so sticking to it means less friction reading someone else's code, and less friction when someone else reads yours.
+
+| Editor | PEP 8 checking |
+|--------|-----------------|
+| PyCharm Community | Built in — violations are underlined automatically, no setup needed |
+| VS Code | Install the *Pylint* extension |
+| Thonny | No built-in PEP 8 checking |
+| IDLE | No built-in PEP 8 checking |
+
 ## Naming
 
 A variable name should say what it holds — `length_ft` over `l`, `species_list` over `data`. `snake_case` and the other naming rules are covered on the [Foundations](foundations.md#naming-variables) page; this is about picking a *meaningful* name within those rules, not just a valid one.
@@ -79,6 +92,27 @@ import snake_data                # your own file
 
 Avoid `from module import *` — it pulls in every name from that module without saying which ones, so it's unclear later where a given name actually came from.
 
+## Splitting code across multiple files
+
+As a project grows past one script, it's common to move related functions or classes into their own file — called a **module** — instead of keeping everything in one place. Importing from it works exactly like importing a library: use the filename, without `.py`, as the module name.
+
+```python-ref
+# snake_helpers.py
+
+def describe(species):
+    return f"a {species} python"
+```
+
+```python-ref
+# main.py
+
+from snake_helpers import describe
+
+print(describe("ball"))
+```
+
+The imported file has to sit in the same folder as the one importing it (or be installed like a real package). This is also why avoiding a library's name for your own file matters — covered in the [naming rules](foundations.md#naming-variables) on the Foundations page: a file named `random.py` shadows Python's own `random` module for anything else in that project.
+
 ## Comprehensions vs. loops
 
 A comprehension can replace a short loop that just builds a new list, but it's a readability trade — reach for a regular `for` loop instead once the logic doesn't fit comfortably on one line.
@@ -114,6 +148,38 @@ Date: 2024-03-15
 species = "ball python"
 length_ft = 4.5
 ```
+
+??? tip "ASCII art in comments"
+    A comment doesn't have to be plain text — a small banner or diagram can make a long file easier to scan, or sketch out something a sentence can't easily convey.
+
+    ```python-ref
+    """
+    ============================
+                                    ,----,                                       
+    ,-.----.                      ,/   .`|       ,--,    ,----..            ,--. 
+    \    /  \                   ,`   .'  :     ,--.'|   /   /   \         ,--.'| 
+    |   :    \         ,---,  ;    ;     /  ,--,  | :  /   .     :    ,--,:  : | 
+    |   |  .\ :       /_ ./|.'___,/    ,',---.'|  : ' .   /   ;.  \,`--.'`|  ' : 
+    .   :  |: | ,---, |  ' :|    :     | |   | : _' |.   ;   /  ` ;|   :  :  | | 
+    |   |   \ :/___/ \.  : |;    |.';  ; :   : |.'  |;   |  ; \ ; |:   |   \ | : 
+    |   : .   / .  \  \ ,' '`----'  |  | |   ' '  ; :|   :  | ; | '|   : '  '; | 
+    ;   | |`-'   \  ;  `  ,'    '   :  ; '   |  .'. |.   |  ' ' ' :'   ' ;.    ; 
+    |   | ;       \  \    '     |   |  ' |   | :  | ''   ;  \; /  ||   | | \   | 
+    :   ' |        '  \   |     '   :  | '   : |  : ; \   \  ',  / '   : |  ; .' 
+    :   : :         \  ;  ;     ;   |.'  |   | '  ,/   ;   :    /  |   | '`--'   
+    |   | :          :  \  \    '---'    ;   : ;--'     \   \ .'   '   : |       
+    `---'.|           \  ' ;             |   ,/          `---`     ;   |.'       
+    `---`            `--`              '---'                     '---'         
+    ============================
+    """
+    def describe(species):
+        ...
+    ```
+
+    Handy for marking the major sections of a long file, or roughing out a small diagram (a tree, a grid, a state machine) that's genuinely clearer drawn than described. Keep it small and easy to update, though — an elaborate piece of ASCII art goes stale the moment the code around it changes, turning into more comment to maintain than value it adds.
+
+    [ascii text](https://patorjk.com/software/taag/#p=display&f=Isometric1&t=Type+Something+&x=none&v=4&h=4&w=80&we=false)
+    [ascii art](https://www.asciiart.eu/#google_vignette)
 
 ## Main function
 
@@ -162,5 +228,13 @@ if __name__ == "__main__":
     ball = Snake("ball python", 4.5)
     print(is_unusually_long(ball.length_ft))
 ```
+
+## Checklist
+
+A few things worth double-checking before calling a script finished:
+
+- **Function docstrings** — does every function explain what it does? Full rules on the [Functions](functions.md#docstrings) page.
+- **Variable and function names** — meaningful, specific, `snake_case` format. Full rules on the [Foundations](foundations.md#naming-variables) page.
+- **File names** — `snake_case.py`, no hyphens or spaces. Full rules on the [Workspace](workspace.md#step-2-write-and-run-a-python-file) page.
 
 Not every file needs every piece — a short script might skip constants or classes entirely — but when a piece is present, this is the order readers expect to find it in.
