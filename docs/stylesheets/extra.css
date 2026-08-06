@@ -45,14 +45,16 @@
   --pt-ref-keyword: #e8c9a8;
   --pt-danger: #e38181;
 
-  /* Inverse of the light scheme's runner panel above: the page itself is
-     now dark, so the runnable block flips to a light panel. */
-  --pt-code-bg: #F2EDE0;
-  --pt-code-border: #D9D4C5;
-  --pt-code-fg: #23221E;
-  --pt-code-string: #2f6b4a;
-  --pt-code-keyword: #8a5a2e;
-  --pt-code-comment: #6b6656;
+  /* Same dark terminal panel as the light scheme (not inverted) — the
+     runnable block should read as dark in dark mode too, matching the
+     .pyodide-reference block, which already stays dark here since it tracks
+     --pt-panel. */
+  --pt-code-bg: #23221E;
+  --pt-code-border: #35342E;
+  --pt-code-fg: #F2EDE0;
+  --pt-code-string: #C9E4D2;
+  --pt-code-keyword: #E8C9A8;
+  --pt-code-comment: #8A8370;
 
   /* Very dark, low-saturation hues for the header's shimmer layer, below —
      deliberately close in value to --pt-bg so the movement stays subtle. */
