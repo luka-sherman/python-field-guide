@@ -102,6 +102,26 @@ for i, s in enumerate(species): print(i, s)    # 0 burmese  1 rock  2 ball  3 bl
     # burmese b  burmese u  rock r  rock o  ball b  ball a  blood b  blood l
     ```
 
+??? tip "List comprehensions: a for loop in one line"
+    A list comprehension builds a new list by running an expression once per item — the same result as a `for` loop that appends to an empty list, written on a single line.
+
+    ```python-ref
+    lengths = []
+    for s in species:
+        lengths.append(len(s))
+    lengths                                # [7, 4, 4, 5]
+
+    lengths = [len(s) for s in species]    # same result, one line
+    ```
+
+    Add an `if` at the end to only keep items that match a condition:
+
+    ```python-ref
+    [s for s in species if s == "ball"]    # ["ball"]
+    ```
+
+    Readable for a short, simple transformation — once the logic doesn't fit comfortably on one line, a regular `for` loop is usually clearer. More on that trade-off on the [Style](style.md#comprehensions-vs-loops) page.
+
 ??? run "Run a for loop example"
     All the examples above, combined into one script:
 
