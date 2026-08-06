@@ -1,0 +1,2063 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://pythonfieldguide.com/collections/">
+      
+      
+        <link rel="prev" href="../types/">
+      
+      
+        <link rel="next" href="../conditionals/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Collections - Python Field Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-E5B3P6NCP0"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-E5B3P6NCP0",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-E5B3P6NCP0",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#collection-data-types" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python Field Guide" class="md-header__button md-logo" aria-label="Python Field Guide" data-md-component="logo">
+      
+  <img src="../img/favicon-large.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python Field Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Collections
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  All
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../workspace/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Workspace
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../foundations/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Foundations
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../types/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Types
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Collections
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../conditionals/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Conditionals
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../loops/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Loops
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../files/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  File I/O
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../functions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Functions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../oop/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Classes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../style/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Style
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../bugs/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Bugs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../libraries/" class="md-tabs__link">
+          
+  
+  
+  Libraries
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python Field Guide" class="md-nav__button md-logo" aria-label="Python Field Guide" data-md-component="logo">
+      
+  <img src="../img/favicon-large.png" alt="logo">
+
+    </a>
+    Python Field Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collections
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lists
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#length" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Length
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessing items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-if-item-in-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check if item in list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-list-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change list items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-list-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add list items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-list-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove list items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loop lists
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Join lists
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tuples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tuples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tuples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-if-item-in-tuple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check if item in tuple
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unpacking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unpacking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-tuples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loop tuples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dictionaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dictionaries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dictionaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-items_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-dictionaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loop dictionaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conditionals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Style
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bugs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bugs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Libraries
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Libraries
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_13_2" id="__nav_13_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Built-in
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_13_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Built-in
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/datetime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    datetime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/random/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    random
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    csv
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/tkinter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tkinter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_13_3" id="__nav_13_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Third-Party
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_13_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Third-Party
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/numpy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NumPy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/opencv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/pillow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pillow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="collection-data-types"><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 9h-4.79l-4.38-6.56a.997.997 0 0 0-1.66.01L6.79 9H2c-.55 0-1 .45-1 1 0 .09 0 .18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1M12 4.8 14.8 9H9.2zM18.5 19h-13l-2.19-8H20.7zM12 13c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2"/></svg></span> Collection Data Types</h1>
+<p>A <strong>collection</strong> is a single object that groups multiple values together, so a whole set of data can be stored in one variable, passed around, and looped over as a unit — instead of juggling a separate variable per value, like you would with the <a href="../types/">basic types</a>. Python's built-in collections mainly differ along two lines: whether items are <strong>ordered</strong> by position or looked up by <strong>key</strong>, and whether the collection is <strong><abbr title="Can be changed in place after creation, without needing to build a new one">mutable</abbr></strong> (changeable after creation) or not.</p>
+<div class="pt-jump-table">
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Example</th>
+<th style="text-align: center;">Access values by</th>
+<th style="text-align: center;">Mutable (changeable after creation)</th>
+<th style="text-align: center;">Duplicates allowed</th>
+<th>Use it for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#lists"><code>list</code></a></td>
+<td><code>["ball", "burmese"]</code></td>
+<td style="text-align: center;">Index</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td><ul><li>Ordered sequence</li><li>Looking up by value (<code>in</code>) scans item by item</li></ul></td>
+</tr>
+<tr>
+<td><a href="#tuples"><code>tuple</code></a></td>
+<td><code>("ball", "burmese")</code></td>
+<td style="text-align: center;">Index</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+<td><ul><li>Fixed sequence that shouldn't change — records, dict keys</li></ul></td>
+</tr>
+<tr>
+<td><a href="#dictionaries"><code>dict</code></a></td>
+<td><code>{"species": "ball", ...}</code></td>
+<td style="text-align: center;">Key</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No (keys must be unique)</td>
+<td><ul><li>Key → value lookups, records with named fields</li><li>No positional access — only by key</li></ul></td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="tip">
+<summary>Check type</summary>
+<p><code>type()</code> reports the exact collection type, even one holding mixed data types inside. Works the same way for any collection on this page — and each has its own <abbr title="The method that runs automatically to set up a new object's starting values">constructor</abbr> (<code>list()</code>, <code>tuple()</code>, <code>dict()</code>) if you'd rather build one that way than with literal brackets, parens, or braces.</p>
+<pre class="highlight"><code class="language-python-ref">type(["burmese", "rock"])            # &lt;class 'list'&gt;
+list(("burmese", "rock", "ball"))    # ["burmese", "rock", "ball"]</code></pre>
+</details>
+<h2 id="lists">Lists</h2>
+<p>A list stores multiple items, in order, inside a single variable.</p>
+<p>Lists have three defining traits:</p>
+<ul>
+<li><strong>Ordered</strong> — items keep the position you put them in, unless you explicitly reorder them.</li>
+<li><strong>Changeable (<abbr title="Can be changed in place after creation, without needing to build a new one">mutable</abbr>)</strong> — you can add, remove, or change items after the list is created.</li>
+<li><strong>Allow duplicates</strong> — since items are accessed by position, not by value, the same value can appear more than once.</li>
+</ul>
+<pre class="highlight"><code class="language-python-ref">species = ["burmese", "rock", "ball", "blood"]
+species    # ["burmese", "rock", "ball", "blood"]</code></pre>
+<h3 id="length">Length</h3>
+<p><code>len()</code> returns how many items are in a list. The count updates automatically as you add or remove items.</p>
+<pre class="highlight"><code class="language-python-ref">len(species)    # 4</code></pre>
+<h3 id="accessing-items">Accessing items</h3>
+<p>Items are accessed by index, starting at <code>0</code> for the first item. Negative indexes count down from the end, starting at <code>-1</code> for the last item. A slice <code>list[start:end]</code> returns a new list containing items from <code>start</code> up to (but not including) <code>end</code>.</p>
+<pre class="highlight"><code class="language-python-ref">species[0]      # "burmese"
+species[-1]     # "blood"
+species[1:3]    # ["rock", "ball"]</code></pre>
+<h3 id="check-if-item-in-list">Check if item in list</h3>
+<p><code>in</code> checks whether a value exists in a list at all. <code>index()</code> finds the position of the first match; <code>count()</code> counts how many times a value appears.</p>
+<pre class="highlight"><code class="language-python-ref">"burmese" in species          # True
+species.index("burmese")      # 0
+species.count("ball")         # 1</code></pre>
+<h3 id="change-list-items">Change list items</h3>
+<p>Assign to an index to change a single item. Assign to a slice to change a whole range at once — the replacement doesn't need to be the same length. <code>insert()</code> adds an item at a specific index without overwriting what's already there.</p>
+<pre class="highlight"><code class="language-python-ref">species[1] = "carpet"        # ["burmese", "carpet", "ball", "blood"]
+species[1:3] = ["carpet"]    # ["burmese", "carpet", "blood"]
+species.insert(1, "carpet")  # ["burmese", "carpet", "rock", "ball", "blood"]</code></pre>
+<h3 id="add-list-items">Add list items</h3>
+<p><code>append()</code> adds one item to the end of the list. <code>insert()</code> adds one item at a chosen position. <code>extend()</code> adds every item from another <abbr title="Anything a for loop can step through one item at a time — a list, string, range, dict, and more">iterable</abbr>, one at a time — not the <abbr title="Anything a for loop can step through one item at a time — a list, string, range, dict, and more">iterable</abbr> itself.</p>
+<pre class="highlight"><code class="language-python-ref">species.append("carpet")                             # ["burmese", "rock", "ball", "blood", "carpet"]
+species.insert(0, "carpet")                          # ["carpet", "burmese", "rock", "ball", "blood"]
+species.extend(["carpet", "central african rock"])   # ["burmese", "rock", "ball", "blood", "carpet", "central african rock"]</code></pre>
+<h3 id="remove-list-items">Remove list items</h3>
+<p><code>remove()</code> deletes the first item that matches a given value. <code>pop()</code> deletes an item by index and returns it — with no index, it removes the last item. <code>del</code> removes an item by index, or can delete the entire list. <code>clear()</code> empties the list but keeps the (now empty) list around.</p>
+<pre class="highlight"><code class="language-python-ref">species.remove("rock")    # ["burmese", "ball", "blood"]
+species.pop()             # "blood" (removed and returned)
+del species[0]            # ["rock", "ball", "blood"]
+species.clear()           # []</code></pre>
+<h3 id="loop-lists">Loop lists</h3>
+<p>The most common way to loop is directly over the items. <code>enumerate()</code> gives you the index and the value together, which is handy when you need both. A <code>while</code> loop works too, if you'd rather manage the index yourself.</p>
+<pre class="highlight"><code class="language-python-ref">for s in species: print(s)                         # burmese  rock  ball  blood
+for i, s in enumerate(species): print(i, s)        # 0 burmese  1 rock  2 ball  3 blood
+i = 0
+while i &lt; len(species): print(species[i]); i += 1  # same output as the for loop</code></pre>
+<details class="tip">
+<summary>List comprehension</summary>
+<p>Builds a new list from an existing <abbr title="Anything a for loop can step through one item at a time — a list, string, range, dict, and more">iterable</abbr> in a single line. The expression part can transform each item, not just filter it.</p>
+<pre class="highlight"><code class="language-python-ref">[s for s in species if len(s) &gt; 4]    # ["burmese", "blood"]
+[s.title() for s in species]          # ["Burmese", "Rock", "Ball", "Blood"]</code></pre>
+</details>
+<details class="tip">
+<summary>Sort lists</summary>
+<p><code>sort()</code> sorts a list in place, alphabetically (or ascending, for numbers) by default. Pass <code>reverse=True</code> to sort in the opposite order. <code>sorted()</code> does the same job but returns a new list, leaving the original untouched. A <code>key</code> function controls what each item is sorted by — here, by name length instead of alphabetically. <code>reverse()</code> is different from <code>sort(reverse=True)</code> — it just flips the current order in place, without sorting.</p>
+<pre class="highlight"><code class="language-python-ref">species.sort()               # ["ball", "blood", "burmese", "rock"]
+species.sort(reverse=True)   # ["rock", "burmese", "blood", "ball"]
+sorted(species)              # same as sort() above, but returns a new list
+species.sort(key=len)        # ["rock", "ball", "blood", "burmese"]
+species.reverse()            # ["blood", "ball", "rock", "burmese"]</code></pre>
+</details>
+<details class="warning">
+<summary>Copy lists</summary>
+<p>Writing <code>new_list = old_list</code> does <strong>not</strong> copy the list — both names point to the same list. A change through either name shows up in both. <code>copy()</code> (or <code>list()</code>, or a full slice <code>[:]</code>) makes a real, independent copy.</p>
+<pre class="highlight"><code class="language-python-ref">same_list = species          # same_list and species are the same list — mutating one mutates both
+backup = species.copy()      # backup is a separate, independent list</code></pre>
+</details>
+<h3 id="join-lists">Join lists</h3>
+<p>The <code>+</code> operator concatenates two lists into a new one. <code>extend()</code> does the same thing in place, adding onto the first list instead of creating a new one.</p>
+<pre class="highlight"><code class="language-python-ref">constrictors + short_tailed        # ["ball", "burmese", "sumatran short tailed", "myanmar short tailed"]
+constrictors.extend(short_tailed)  # constrictors now holds all 4, in place</code></pre>
+<details class="run">
+<summary>Run a list example</summary>
+<p>Each box below is fully editable — write your answer, then click Run.</p>
+<p><strong>1. Access &amp; check membership.</strong> Print the second item in the list (index <code>1</code>), then check whether <code>"rock"</code> is in it.</p>
+<pre class="highlight"><code class="language-python">species = ["indian", "carpet", "rock", "angolan", "blood"]
+
+# your code here</code></pre>
+<p><strong>2. Change &amp; add.</strong> Change the first item to <code>"burmese"</code>, then add <code>"bornean"</code> to the end.</p>
+<pre class="highlight"><code class="language-python">species = ["indian", "carpet", "rock", "angolan", "blood"]
+
+# your code here
+
+print(species)</code></pre>
+<p><strong>3. Remove.</strong> Remove <code>"carpet"</code> from the list, then pop the last item and print what was removed.</p>
+<pre class="highlight"><code class="language-python">species = ["indian", "carpet", "rock", "angolan", "blood"]
+
+# your code here</code></pre>
+<p><strong>4. List comprehension.</strong> Build a list of just the names with more than 5 letters.</p>
+<pre class="highlight"><code class="language-python">species = ["indian", "carpet", "rock", "angolan", "blood"]
+
+# your code here
+
+print(long_names)</code></pre>
+<p><strong>5. Sort.</strong> Sort the list in reverse alphabetical order.</p>
+<pre class="highlight"><code class="language-python">species = ["indian", "carpet", "rock", "angolan", "blood"]
+
+# your code here
+
+print(species)</code></pre>
+<details class="note">
+<summary>Show solutions</summary>
+<p><pre class="highlight"><code class="language-python"># 1. Access &amp; check membership
+species = ["indian", "carpet", "rock", "angolan", "blood"]
+print(species[1])
+print("rock" in species)</code></pre>
+<pre class="highlight"><code class="language-python"># 2. Change &amp; add
+species = ["indian", "carpet", "rock", "angolan", "blood"]
+species[0] = "burmese"
+species.append("bornean")
+print(species)</code></pre>
+<pre class="highlight"><code class="language-python"># 3. Remove
+species = ["indian", "carpet", "rock", "angolan", "blood"]
+species.remove("carpet")
+last = species.pop()
+print(last)</code></pre>
+<pre class="highlight"><code class="language-python"># 4. List comprehension
+species = ["indian", "carpet", "rock", "angolan", "blood"]
+long_names = [s for s in species if len(s) &gt; 5]
+print(long_names)</code></pre>
+<pre class="highlight"><code class="language-python"># 5. Sort
+species = ["indian", "carpet", "rock", "angolan", "blood"]
+species.sort(reverse=True)
+print(species)</code></pre></p>
+</details>
+</details>
+<h2 id="tuples">Tuples</h2>
+<p>A tuple stores multiple items, in order, inside a single variable — written with parentheses instead of square brackets.</p>
+<p>Tuples have three defining traits:</p>
+<ul>
+<li><strong>Ordered</strong> — items keep the position you put them in.</li>
+<li><strong>Immutable</strong> — unlike a list, a tuple can't be changed, added to, or shrunk once created.</li>
+<li><strong>Allow duplicates</strong> — the same value can appear more than once.</li>
+</ul>
+<pre class="highlight"><code class="language-python-ref">species = ("burmese", "rock", "ball", "blood")
+species    # ("burmese", "rock", "ball", "blood")</code></pre>
+<h3 id="access-items">Access items</h3>
+<p>Tuples use the same index and slice syntax as lists. <code>0</code> for the first item, negative indexes count from the end, <code>start:end</code> slices out a sub-tuple.</p>
+<pre class="highlight"><code class="language-python-ref">species[0]      # "burmese"
+species[-1]     # "blood"
+species[1:3]    # ("rock", "ball")</code></pre>
+<h3 id="check-if-item-in-tuple">Check if item in tuple</h3>
+<p><code>in</code> checks whether a value exists in the tuple. <code>count()</code> counts how many times a value appears; <code>index()</code> finds the position of the first match — a tuple has only these two methods, since it can't be changed.</p>
+<pre class="highlight"><code class="language-python-ref">"rock" in species          # True
+species.count("burmese")   # 1
+species.index("ball")      # 2</code></pre>
+<h3 id="unpacking">Unpacking</h3>
+<p>Assigns each item in a tuple to its own variable in one line. The number of variables has to match the number of items. A <a href="../conditionals/#unpacking-a-tuple"><code>match</code> statement</a> can do this same unpacking while also branching on the tuple's shape or specific values, which plain assignment can't do.</p>
+<pre class="highlight"><code class="language-python-ref">a, b, c, d = species    # a="burmese"  b="rock"  c="ball"  d="blood"</code></pre>
+<details class="tip">
+<summary>Work around immutability</summary>
+<p>A tuple has no <code>append()</code> or <code>remove()</code> — but <code>+</code> builds a <strong>new</strong> tuple with an item added. Note the trailing comma in <code>("carpet",)</code>, needed to make it a one-item tuple rather than just parentheses around a string. For bigger changes, convert to a list with <code>list()</code>, edit it normally, then convert back with <code>tuple()</code>.</p>
+<pre class="highlight"><code class="language-python-ref">species + ("carpet",)                          # ("burmese", "rock", "ball", "blood", "carpet")
+tuple(list(species) + ["carpet"])              # same result, via a list round-trip</code></pre>
+</details>
+<h3 id="loop-tuples">Loop tuples</h3>
+<p>Works exactly like looping over a list.</p>
+<pre class="highlight"><code class="language-python-ref">for s in species: print(s)    # burmese  rock  ball  blood</code></pre>
+<details class="run">
+<summary>Run a tuple example</summary>
+<p>Each box below is fully editable — write your answer, then click Run.</p>
+<p><strong>1. Access &amp; check membership.</strong> Print the last item, then check whether <code>"carpet"</code> is in the tuple.</p>
+<pre class="highlight"><code class="language-python">species = ("indian", "carpet", "rock", "blood")
+
+# your code here</code></pre>
+<p><strong>2. Unpacking.</strong> Unpack the tuple into four variables named <code>a</code>, <code>b</code>, <code>c</code>, <code>d</code>, then print them.</p>
+<pre class="highlight"><code class="language-python">species = ("indian", "carpet", "rock", "blood")
+
+# your code here</code></pre>
+<p><strong>3. Work around immutability.</strong> Tuples can't be appended to directly — build a new tuple with <code>"angolan"</code> added to the end, using <code>+</code>.</p>
+<pre class="highlight"><code class="language-python">species = ("indian", "carpet", "rock", "blood")
+
+# your code here
+
+print(species)</code></pre>
+<details class="note">
+<summary>Show solutions</summary>
+<p><pre class="highlight"><code class="language-python"># 1. Access &amp; check membership
+species = ("indian", "carpet", "rock", "blood")
+print(species[-1])
+print("carpet" in species)</code></pre>
+<pre class="highlight"><code class="language-python"># 2. Unpacking
+species = ("indian", "carpet", "rock", "blood")
+a, b, c, d = species
+print(a, b, c, d)</code></pre>
+<pre class="highlight"><code class="language-python"># 3. Work around immutability
+species = ("indian", "carpet", "rock", "blood")
+species = species + ("angolan",)
+print(species)</code></pre></p>
+</details>
+</details>
+<h2 id="dictionaries">Dictionaries</h2>
+<p>A dictionary stores data as key-value pairs, inside a single variable.</p>
+<p>Dictionaries have three defining traits:</p>
+<ul>
+<li><strong>Ordered</strong> — items keep the order they were inserted in.</li>
+<li><strong>Changeable (<abbr title="Can be changed in place after creation, without needing to build a new one">mutable</abbr>)</strong> — you can add, remove, or change items after the dictionary is created.</li>
+<li><strong>No duplicate keys</strong> — a key can only appear once; assigning to an existing key overwrites its value.</li>
+</ul>
+<pre class="highlight"><code class="language-python-ref">snake = {"species": "ball", "length_ft": 5, "venomous": False}
+snake    # {'species': 'ball', 'length_ft': 5, 'venomous': False}</code></pre>
+<h3 id="access-items_1">Access items</h3>
+<p>Values are accessed by key, in square brackets — unlike a list, there's no numeric position to use. <code>get()</code> does the same thing, but returns <code>None</code> (or a default you choose) instead of raising an error if the key is missing. <code>keys()</code>, <code>values()</code>, and <code>items()</code> return view objects over the dictionary's keys, values, or key-value pairs. Use <code>in</code> to check whether a key exists at all.</p>
+<pre class="highlight"><code class="language-python-ref">snake["species"]            # "ball"
+snake.get("venomous")       # False
+snake.keys()                # dict_keys(['species', 'length_ft', 'venomous'])
+"species" in snake          # True</code></pre>
+<h3 id="change-items">Change items</h3>
+<p>Assign to an existing key to change its value. <code>update()</code> changes one or more keys at once — any key it doesn't recognize gets added instead.</p>
+<pre class="highlight"><code class="language-python-ref">snake["length_ft"] = 6                              # {'species': 'ball', 'length_ft': 6, 'venomous': False}
+snake.update({"venomous": False, "docile": True})   # {'species': 'ball', 'length_ft': 5, 'venomous': False, 'docile': True}</code></pre>
+<h3 id="add-items">Add items</h3>
+<p>Assigning to a key that doesn't exist yet adds it. <code>update()</code> adds a key too, if it isn't already there — the same method covers both adding and changing.</p>
+<pre class="highlight"><code class="language-python-ref">snake["origin"] = "west africa"    # {'species': 'ball', 'length_ft': 5, 'venomous': False, 'origin': 'west africa'}
+snake.update({"legless": True})    # {'species': 'ball', 'length_ft': 5, 'venomous': False, 'legless': True}</code></pre>
+<h3 id="remove-items">Remove items</h3>
+<p><code>pop()</code> removes a key and returns its value. <code>popitem()</code> removes and returns the last inserted key-value pair, as a tuple. <code>del</code> removes a key-value pair by key. <code>clear()</code> empties the dictionary but keeps the (now empty) dictionary around.</p>
+<pre class="highlight"><code class="language-python-ref">snake.pop("venomous")   # False (removed and returned)
+snake.popitem()         # ('venomous', False) — removes the last inserted pair
+del snake["species"]    # {'length_ft': 5, 'venomous': False}
+snake.clear()           # {}</code></pre>
+<h3 id="loop-dictionaries">Loop dictionaries</h3>
+<p>Looping directly over a dictionary gives you its keys, one at a time. Loop over <code>.values()</code> to get just the values instead, or <code>.items()</code> to get both the key and the value together.</p>
+<pre class="highlight"><code class="language-python-ref">for key in snake: print(key)                        # species  length_ft  venomous
+for value in snake.values(): print(value)           # ball  5  False
+for key, value in snake.items(): print(key, value)  # species ball  length_ft 5  venomous False</code></pre>
+<details class="warning">
+<summary>Copy dictionaries</summary>
+<p>Writing <code>new_dict = old_dict</code> does <strong>not</strong> copy the dictionary — both names point to the same dictionary. A change through either name shows up in both. <code>copy()</code> (or <code>dict()</code>) makes a real, independent copy.</p>
+<pre class="highlight"><code class="language-python-ref">same_dict = snake          # same_dict and snake are the same dictionary — mutating one mutates both
+backup = snake.copy()      # backup is a separate, independent dictionary</code></pre>
+</details>
+<details class="note">
+<summary>Nested dictionaries</summary>
+<p>A dictionary's values can be other dictionaries. Useful for grouping related records under one variable, like a whole collection of snakes keyed by species. Chain square brackets to reach a value nested inside an inner dictionary.</p>
+<pre class="highlight"><code class="language-python-ref">snakes = {"ball": snake, "burmese": {"length_ft": 16, "venomous": False}}
+snakes["burmese"]["length_ft"]    # 16</code></pre>
+</details>
+<details class="run">
+<summary>Run a dictionary example</summary>
+<p>Each box below is fully editable — write your answer, then click Run.</p>
+<p><strong>1. Add &amp; change.</strong> Add a <code>"docile"</code> key set to <code>True</code>, then change <code>"length_ft"</code> to <code>16</code>.</p>
+<pre class="highlight"><code class="language-python">snake = {"species": "burmese", "length_ft": 12, "venomous": False}
+
+# your code here
+
+print(snake)</code></pre>
+<p><strong>2. Remove.</strong> Remove the <code>"venomous"</code> key from the dictionary.</p>
+<pre class="highlight"><code class="language-python">snake = {"species": "burmese", "length_ft": 16, "venomous": False}
+
+# your code here
+
+print(snake)</code></pre>
+<p><strong>3. Loop and collect.</strong> Build a list of just the dictionary's values, using a loop (not <code>list(snake.values())</code>).</p>
+<pre class="highlight"><code class="language-python">snake = {"species": "burmese", "length_ft": 16, "venomous": False}
+values = []
+
+# your code here
+
+print(values)</code></pre>
+<p><strong>4. Nested access.</strong> Given the dictionary below, print the ball python's length.</p>
+<pre class="highlight"><code class="language-python">snakes = {
+    "burmese": {"length_ft": 16, "venomous": False},
+    "ball": {"length_ft": 5, "venomous": False},
+}
+
+# your code here</code></pre>
+<details class="note">
+<summary>Show solutions</summary>
+<p><pre class="highlight"><code class="language-python"># 1. Add &amp; change
+snake = {"species": "burmese", "length_ft": 12, "venomous": False}
+snake["docile"] = True
+snake["length_ft"] = 16
+print(snake)</code></pre>
+<pre class="highlight"><code class="language-python"># 2. Remove
+snake = {"species": "burmese", "length_ft": 16, "venomous": False}
+del snake["venomous"]
+print(snake)</code></pre>
+<pre class="highlight"><code class="language-python"># 3. Loop and collect
+snake = {"species": "burmese", "length_ft": 16, "venomous": False}
+values = []
+for value in snake.values():
+    values.append(value)
+print(values)</code></pre>
+<pre class="highlight"><code class="language-python"># 4. Nested access
+snakes = {
+    "burmese": {"length_ft": 16, "venomous": False},
+    "ball": {"length_ft": 5, "venomous": False},
+}
+print(snakes["ball"]["length_ft"])</code></pre></p>
+</details>
+</details>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../types/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Types">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Types
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../conditionals/" class="md-footer__link md-footer__link--next" aria-label="Next: Conditionals">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Conditionals
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; <span id="copyright-year">2026</span> Luka
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="/about/" target="_blank" rel="noopener" title="About" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/privacy/" target="_blank" rel="noopener" title="Privacy policy" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5zm0 6c1.4 0 2.8 1.1 2.8 2.5V11c.6 0 1.2.6 1.2 1.3v3.5c0 .6-.6 1.2-1.3 1.2H9.2c-.6 0-1.2-.6-1.2-1.3v-3.5c0-.6.6-1.2 1.2-1.2V9.5C9.2 8.1 10.6 7 12 7m0 1.2c-.8 0-1.5.5-1.5 1.3V11h3V9.5c0-.8-.7-1.3-1.5-1.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.expand", "navigation.footer", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "toc.integrate", "content.code.copy", "content.tooltips", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      
+        <script src="../javascripts/pyodide_runner.js"></script>
+      
+        <script src="../javascripts/copyright_year.js"></script>
+      
+        <script src="../javascripts/external_links.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

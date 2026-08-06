@@ -1,0 +1,2368 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://pythonfieldguide.com/libraries/pillow/">
+      
+      
+        <link rel="prev" href="../pandas/">
+      
+      
+        <link rel="next" href="../requests/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Pillow - Python Field Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-E5B3P6NCP0"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-E5B3P6NCP0",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-E5B3P6NCP0",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pillow-library" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Python Field Guide" class="md-header__button md-logo" aria-label="Python Field Guide" data-md-component="logo">
+      
+  <img src="../../img/favicon-large.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python Field Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pillow
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  All
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../workspace/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Workspace
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../foundations/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Foundations
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../types/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Types
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../collections/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Collections
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../conditionals/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Conditionals
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../loops/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Loops
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../files/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  File I/O
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../functions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Functions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../oop/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Classes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../style/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Style
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../bugs/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Bugs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Libraries
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Python Field Guide" class="md-nav__button md-logo" aria-label="Python Field Guide" data-md-component="logo">
+      
+  <img src="../../img/favicon-large.png" alt="logo">
+
+    </a>
+    Python Field Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conditionals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../style/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Style
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bugs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bugs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Libraries
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Libraries
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_13_2" id="__nav_13_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Built-in
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_13_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Built-in
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datetime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    datetime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../random/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    random
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    csv
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tkinter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tkinter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_13_3" id="__nav_13_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Third-Party
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_13_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_13_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Third-Party
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../numpy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NumPy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opencv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pillow
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pillow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-pillow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Pillow?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Image
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opening-and-saving-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opening and saving images
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotate-and-flip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotate and flip
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image modes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Image modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#converting-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Converting modes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imageops-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ImageOps module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ImageOps module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-imageops-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common ImageOps functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imagedraw-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ImageDraw module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ImageDraw module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shapes-and-lines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shapes and lines
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imagefont-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ImageFont module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ImageFont module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading-a-font" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loading a font
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imagecolor-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ImageColor module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ImageColor module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#converting-color-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Converting color names
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imagefilter-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ImageFilter module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ImageFilter module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#applying-a-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applying a filter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imageenhance-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ImageEnhance module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ImageEnhance module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enhancing-an-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enhancing an image
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imagechops-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ImageChops module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ImageChops module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparing-and-combining-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparing and combining images
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#format-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Format conversion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Format conversion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#converting-between-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Converting between formats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imagesequence-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ImageSequence module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ImageSequence module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#looping-over-gif-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Looping over GIF frames
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Putting it together
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Putting it together">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#an-interactive-filter-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        An interactive filter tool
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="pillow-library"><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-5.04 9.29-2.75 3.54-1.96-2.36L6.5 17h11z"/></svg></span> Pillow library</h1>
+<p><strong>Pillow</strong> (imported as <code>PIL</code>) is Python's standard library for opening, editing, and saving image files — photos, screenshots, thumbnails, anything in a common format like JPEG or PNG. It's a third-party package, not part of the standard library, but it's the de facto standard for image work in Python. Like <a href="../tkinter/">Tkinter</a>, Pillow ultimately produces visual output — a saved or displayed image — which can't be shown inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local <code>.py</code> file alongside an image and run them with <code>python</code> to see the results.</p>
+<h2 id="install">Install</h2>
+<pre class="highlight"><code class="language-bash">pip install pillow</code></pre>
+<h2 id="import">Import</h2>
+<p>Pillow's package name (<code>pillow</code>) doesn't match its import name — it's imported as <code>PIL</code>, and <code>Image</code> specifically is used throughout this page.</p>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image</code></pre>
+<h2 id="why-pillow">Why Pillow?</h2>
+<p>Pillow is the direct successor to PIL (the original Python Imaging Library, now unmaintained), and has become the standard way to work with images in Python — resizing thumbnails, converting formats, watermarking, or feeding images into a machine learning pipeline. It wraps all of this in one consistent <code>Image</code> object, so once you know how to open, transform, and save an image, the same handful of methods carry over to almost any task.</p>
+<p><strong>Python image libraries</strong></p>
+<ul>
+<li><strong>Pillow</strong> — the standard choice for everyday image tasks: opening, resizing, cropping, format conversion, basic drawing.</li>
+<li><strong>OpenCV</strong> — built for computer vision (face detection, video, real-time processing), but a much larger, more complex API for tasks that don't need it.</li>
+<li><strong>scikit-image</strong> — geared toward scientific image analysis (measuring, segmenting), with a more research-oriented API than Pillow's straightforward editing tools.</li>
+<li><strong>ImageIO</strong> — handles reading/writing a wide range of formats, including scientific and video ones, but doesn't offer Pillow's editing operations on top.</li>
+</ul>
+<p>For everyday image manipulation, Pillow offers the best balance of simplicity and capability — most tasks are one or two method calls on an <code>Image</code> object.</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Image</code> object</td>
+<td>A grid of pixel values, plus a bit of metadata (size, mode, format) — nothing more. It has no built-in ability to draw shapes, apply filters, or combine with another image.</td>
+</tr>
+<tr>
+<td>Companion module</td>
+<td>A separate module (<code>ImageDraw</code>, <code>ImageFilter</code>, <code>ImageOps</code>, ...) that operates on an <code>Image</code> from the outside, rather than <code>Image</code> itself growing a method for everything.</td>
+</tr>
+<tr>
+<td>Mode</td>
+<td>How pixel color is stored — <code>"RGB"</code> (red/green/blue), <code>"RGBA"</code> (adds transparency), <code>"L"</code> (grayscale), and others.</td>
+</tr>
+<tr>
+<td>Band</td>
+<td>One channel of a mode — an <code>"RGB"</code> image has three bands (red, green, blue) stacked together.</td>
+</tr>
+<tr>
+<td>Size</td>
+<td>The image's <code>(width, height)</code> in pixels, accessed via <code>.size</code>.</td>
+</tr>
+<tr>
+<td>Bounding box</td>
+<td>A <code>(left, upper, right, lower)</code> tuple of pixel coordinates describing a rectangular region of an image.</td>
+</tr>
+<tr>
+<td>Drawing context</td>
+<td>The object returned by <code>ImageDraw.Draw(img)</code> — every shape/line/text method is called on this, not on the <code>Image</code> itself.</td>
+</tr>
+<tr>
+<td>Alpha</td>
+<td>The transparency value of a pixel, from <code>0</code> (fully invisible) to <code>255</code> (fully solid) — only present on images in <code>"RGBA"</code> mode.</td>
+</tr>
+<tr>
+<td>Frame</td>
+<td>One image within an animated file (like a GIF) — <code>ImageSequence</code> is what lets you loop over all of them.</td>
+</tr>
+</tbody>
+</table>
+<p>Beyond the base <a href="#the-image"><code>Image</code></a> object, Pillow's functionality is spread across several companion modules under the <code>PIL</code> package:</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#imagedraw-module"><code>ImageDraw</code></a></td>
+<td>Drawing shapes, lines, and polygons directly onto an image.</td>
+</tr>
+<tr>
+<td><a href="#imagefont-module"><code>ImageFont</code></a></td>
+<td>Loading a custom font, for then drawing text with <code>ImageDraw</code>.</td>
+</tr>
+<tr>
+<td><a href="#imagecolor-module"><code>ImageColor</code></a></td>
+<td>Converting a color name or hex string into an <code>(r, g, b)</code> tuple.</td>
+</tr>
+<tr>
+<td><a href="#imagefilter-module"><code>ImageFilter</code></a></td>
+<td>Applying ready-made pixel effects — blur, sharpen, edge-detection.</td>
+</tr>
+<tr>
+<td><a href="#imageenhance-module"><code>ImageEnhance</code></a></td>
+<td>Dialing brightness, contrast, color, or sharpness up or down by an exact amount.</td>
+</tr>
+<tr>
+<td><a href="#imageops-module"><code>ImageOps</code></a></td>
+<td>One-line convenience operations — auto-contrast, mirroring, inverting.</td>
+</tr>
+<tr>
+<td><a href="#imagechops-module"><code>ImageChops</code></a></td>
+<td>Combining two same-size images pixel by pixel — diffing, blending.</td>
+</tr>
+<tr>
+<td><a href="#imagesequence-module"><code>ImageSequence</code></a></td>
+<td>Looping over every frame of an animated image, like a GIF.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-image">The Image</h2>
+<p>The <code>Image</code> object is where every Pillow workflow starts and ends — opening a file, transforming it, and saving the result all happen through methods on this one class.</p>
+<h3 id="opening-and-saving-images">Opening and saving images</h3>
+<p>Every Pillow workflow starts the same way: open a file into an <code>Image</code> object, do something to it, then save the result — Pillow infers the file format from the extension you save to, so converting formats is often just a matter of changing the file extension.</p>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image
+
+img = Image.open("snake.jpg")
+print(img.size, img.mode)   # (800, 600) RGB
+
+img.save("snake_copy.png")</code></pre>
+<details class="tip">
+<summary>Opening a file</summary>
+<p>Reads a file's header immediately but delays loading the full pixel data until you need it. Fast even for large images if all you want is its size or format. <code>.format</code> reports the file type Pillow detected, <code>.size</code> gives <code>(width, height)</code>, and <code>.mode</code> gives its color mode.</p>
+<pre class="highlight"><code class="language-python-ref">img = Image.open("snake.jpg")
+print(img.format, img.size, img.mode)   # JPEG (800, 600) RGB</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image
+
+img = Image.open("snake.jpg")
+print(img.format, img.size, img.mode)</code></pre>
+</details>
+<details class="tip">
+<summary>Saving a file</summary>
+<p>Writes the image to disk, picking the file format from the extension — unless you pass <code>format=</code> explicitly. Some formats accept extra keyword options — JPEG's <code>quality</code> (0–100) trades file size for image quality, for example.</p>
+<pre class="highlight"><code class="language-python-ref">img.save("snake_copy.png")            # format inferred from ".png"
+img.save("snake_copy.jpg", quality=85)  # JPEG-specific option</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image
+
+img = Image.open("snake.jpg")
+img.save("snake_copy.png")
+img.save("snake_copy.jpg", quality=85)</code></pre>
+</details>
+<details class="tip">
+<summary>Displaying an image</summary>
+<p>Opens the image in whatever program your operating system uses to view images. Handy for a quick look while writing a script, since it doesn't require saving a file first. It's meant for local development rather than production code, since it depends on external programs actually being installed.</p>
+<pre class="highlight"><code class="language-python-ref">img.show()   # opens in your OS's default image viewer</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image
+
+img = Image.open("snake.jpg")
+img.show()</code></pre>
+</details>
+<h3 id="basic-operations">Basic operations</h3>
+<p>Pillow's core editing operations — resizing, cropping, rotating, flipping — are all methods on an <code>Image</code> that return a <em>new</em> <code>Image</code>, leaving the original untouched.</p>
+<pre class="highlight"><code class="language-python-ref">resized = img.resize((400, 300))
+cropped = img.crop((0, 0, 200, 200))
+rotated = img.rotate(90)</code></pre>
+<h4 id="resize">Resize</h4>
+<p>Scales the image to an exact new size. <code>.resize((width, height))</code> doesn't preserve the original aspect ratio for you, so stretching happens if the new dimensions don't match the original proportions. For a quick, ratio-preserving thumbnail instead, use <code>.thumbnail((max_width, max_height))</code>, which resizes in place rather than returning a new image.</p>
+<pre class="highlight"><code class="language-python-ref">thumbnail = img.resize((200, 150))
+print(thumbnail.size)   # (200, 150)</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image
+
+img = Image.open("snake.jpg")
+thumbnail = img.resize((200, 150))
+print(thumbnail.size)</code></pre>
+<h4 id="crop">Crop</h4>
+<p>Takes a bounding box and returns just that rectangular region. <code>.crop()</code> takes <code>(left, upper, right, lower)</code> pixel coordinates. <code>(0, 0)</code> is the top-left corner of the image, with <code>x</code> increasing rightward and <code>y</code> increasing downward.</p>
+<pre class="highlight"><code class="language-python-ref">cropped = img.crop((50, 50, 250, 200))   # left, upper, right, lower
+print(cropped.size)   # (200, 150)</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image
+
+img = Image.open("snake.jpg")
+cropped = img.crop((50, 50, 250, 200))
+print(cropped.size)</code></pre>
+<h4 id="rotate-and-flip">Rotate and flip</h4>
+<p><code>.rotate(degrees)</code> rotates counter-clockwise around the image's center. Pass <code>expand=True</code> to grow the canvas so corners aren't clipped off (without it, the image keeps its original size and rotated corners are cropped away). <code>.transpose()</code> handles flips and 90°-multiple rotations without any clipping concerns, using constants like <code>Image.FLIP_LEFT_RIGHT</code> or <code>Image.ROTATE_90</code>.</p>
+<pre class="highlight"><code class="language-python-ref">rotated = img.rotate(90, expand=True)
+flipped = img.transpose(Image.FLIP_LEFT_RIGHT)</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image
+
+img = Image.open("snake.jpg")
+rotated = img.rotate(90, expand=True)
+flipped = img.transpose(Image.FLIP_LEFT_RIGHT)
+print(rotated.size, flipped.size)</code></pre>
+<h3 id="image-modes">Image modes</h3>
+<p>An image's <strong>mode</strong> determines how each pixel's color is stored — how many bands it has and what each one means. Converting between modes is a single method call, and it's often a required first step before an operation that only works on one mode (like grayscale-only filters).</p>
+<pre class="highlight"><code class="language-python-ref">grayscale = img.convert("L")
+with_alpha = img.convert("RGBA")</code></pre>
+<h4 id="converting-modes">Converting modes</h4>
+<p>Returns a new image re-encoded into the given mode. <code>.convert(mode)</code> — <code>"L"</code> collapses color down to a single grayscale band; <code>"RGBA"</code> adds an alpha (transparency) band on top of red/green/blue, where <code>0</code> is fully transparent and <code>255</code> is fully opaque.</p>
+<pre class="highlight"><code class="language-python-ref">grayscale = img.convert("L")     # single band, 0 (black) to 255 (white)
+rgba = img.convert("RGBA")       # adds a 4th, transparency band
+print(grayscale.mode, rgba.mode)  # L RGBA</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image
+
+img = Image.open("snake.jpg")
+grayscale = img.convert("L")
+rgba = img.convert("RGBA")
+print(grayscale.mode, rgba.mode)</code></pre>
+<h2 id="imageops-module">ImageOps module</h2>
+<p>The <code>ImageOps</code> module collects common one-line transforms that would otherwise take several steps to write by hand — contrast fixes, mirroring, and color inversion among them.</p>
+<pre class="highlight"><code class="language-python-ref">from PIL import ImageOps
+
+fixed = ImageOps.autocontrast(img)
+mirrored = ImageOps.mirror(img)</code></pre>
+<h3 id="common-imageops-functions">Common ImageOps functions</h3>
+<p><code>.autocontrast()</code> stretches an image's darkest and lightest pixels out to pure black and white, which can fix a flat, washed-out photo without manually tuning <code>ImageEnhance.Contrast</code>. <code>.mirror()</code>/<code>.flip()</code> cover the same ground as <code>.transpose()</code> with more direct names. <code>.invert()</code> flips every pixel to its opposite color — it only works on <code>"RGB"</code> (or <code>"L"</code>) images, so convert first if the source has an alpha band.</p>
+<pre class="highlight"><code class="language-python-ref">fixed = ImageOps.autocontrast(img)   # stretches contrast to use the full range
+mirrored = ImageOps.mirror(img)      # flips left-to-right
+inverted = ImageOps.invert(img.convert("RGB"))   # like a photo negative</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image, ImageOps
+
+img = Image.open("snake.jpg")
+fixed = ImageOps.autocontrast(img)
+mirrored = ImageOps.mirror(img)
+inverted = ImageOps.invert(img.convert("RGB"))
+fixed.save("fixed.jpg")</code></pre>
+<h2 id="imagedraw-module">ImageDraw module</h2>
+<p>An <code>Image</code> object is really just a grid of pixel values — it has no drawing tools of its own. <code>ImageDraw</code> is the first example of a <strong>companion module</strong>: a separate class that wraps an <code>Image</code> and adds one specific ability, here turning it into a canvas you can draw directly onto — shapes and lines, useful for annotating a photo or generating an image from scratch rather than editing an existing file. <code>ImageFont</code>, <code>ImageFilter</code>, <code>ImageEnhance</code>, <code>ImageOps</code>, and the modules further down this page all follow the same pattern: they act on an <code>Image</code> from the outside, rather than <code>Image</code> itself growing a method for everything.</p>
+<pre class="highlight"><code class="language-python-ref">from PIL import ImageDraw
+
+draw = ImageDraw.Draw(img)
+draw.rectangle((10, 10, 100, 60), outline="green", width=3)
+draw.text((15, 20), "ball python", fill="green")</code></pre>
+<h3 id="shapes-and-lines">Shapes and lines</h3>
+<p><code>ImageDraw.Draw(img)</code> creates a drawing context bound to an image. Every call on it modifies <code>img</code> directly, in place. <code>.rectangle()</code>, <code>.ellipse()</code>, and <code>.line()</code> each take a bounding box or set of coordinates, plus <code>outline</code>/<code>fill</code> colors and an optional <code>width</code>.</p>
+<pre class="highlight"><code class="language-python-ref">draw.rectangle((10, 10, 100, 60), outline="green", width=3)
+draw.ellipse((20, 20, 80, 50), fill="yellow")
+draw.line((0, 0, 100, 100), fill="black", width=2)</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image, ImageDraw
+
+img = Image.new("RGB", (120, 80), "white")
+draw = ImageDraw.Draw(img)
+draw.rectangle((10, 10, 100, 60), outline="green", width=3)
+draw.ellipse((20, 20, 80, 50), fill="yellow")
+img.save("shapes.png")</code></pre>
+<details class="tip">
+<summary>Polygons</summary>
+<p>Draws any straight-edged shape from a list of <code>(x, y)</code> points. <code>.polygon()</code> connects the points in order, with the last point automatically connected back to the first. Unlike <code>.rectangle()</code>/<code>.ellipse()</code>, there's no bounding-box shortcut: you calculate each corner's coordinates yourself, usually from a center position and size.</p>
+<pre class="highlight"><code class="language-python-ref">points = [(60, 10), (110, 70), (10, 70)]   # a triangle
+draw.polygon(points, fill="green")</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image, ImageDraw
+
+img = Image.new("RGB", (120, 80), "white")
+draw = ImageDraw.Draw(img)
+points = [(60, 10), (110, 70), (10, 70)]
+draw.polygon(points, fill="green")
+img.save("triangle.png")</code></pre>
+</details>
+<details class="tip">
+<summary>Transparent colors</summary>
+<p>A color can include a fourth number — alpha — to draw something translucent, from <code>0</code> (fully invisible) to <code>255</code> (fully solid), so shapes underneath still show through. This only works on an image in <code>"RGBA"</code> mode; drawing an RGBA color onto a plain <code>"RGB"</code> image just silently drops the transparency.</p>
+<pre class="highlight"><code class="language-python-ref">draw.ellipse((20, 20, 80, 80), fill=(255, 0, 0, 120))   # translucent red</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image, ImageDraw
+
+img = Image.new("RGBA", (120, 80), "white")
+draw = ImageDraw.Draw(img)
+draw.ellipse((10, 10, 70, 70), fill=(255, 0, 0, 255))
+draw.ellipse((40, 30, 100, 70), fill=(0, 0, 255, 120))   # overlaps, translucent
+img.save("overlap.png")</code></pre>
+</details>
+<details class="tip">
+<summary>Drawing with objects</summary>
+<p>Once a drawing gets complicated, it's common to wrap each thing you're drawing in its own class — an object that stores its own position/size/color, and knows how to draw itself given a drawing context. Nothing here is Pillow-specific: it's the same pattern covered in <a href="../../oop/">Classes</a> — bundling data with the behavior that acts on it — just applied to a shape instead of a snake. A calling function loops over a list of these objects and calls <code>.draw()</code> on each, so building a complex image — dozens of randomly placed shapes, say, using the <code>random</code> module — is just a loop appending new <code>Shape</code> objects rather than dozens of manual <code>draw_context</code> calls.</p>
+<pre class="highlight"><code class="language-python-ref">class Shape:
+    def __init__(self, position, size, color):
+        self.position = position
+        self.size = size
+        self.color = color
+
+    def draw(self, draw_context):
+        x, y = self.position
+        half = self.size / 2
+        box = (x - half, y - half, x + half, y + half)
+        draw_context.ellipse(box, fill=self.color)</code></pre>
+<pre class="highlight"><code class="language-python-ref">import random
+from PIL import Image, ImageDraw
+
+class Shape:
+    def __init__(self, position, size, color):
+        self.position = position
+        self.size = size
+        self.color = color
+
+    def draw(self, draw_context):
+        x, y = self.position
+        half = self.size / 2
+        box = (x - half, y - half, x + half, y + half)
+        draw_context.ellipse(box, fill=self.color)
+
+img = Image.new("RGB", (200, 200), "white")
+draw_context = ImageDraw.Draw(img)
+palette = ["green", "yellow", "brown"]
+
+shapes = []
+for _ in range(10):
+    position = (random.randint(0, 200), random.randint(0, 200))
+    size = random.randint(10, 40)
+    color = random.choice(palette)
+    shapes.append(Shape(position, size, color))
+
+for shape in shapes:
+    shape.draw(draw_context)
+
+img.save("generated.png")</code></pre>
+</details>
+<h2 id="imagefont-module">ImageFont module</h2>
+<p><code>ImageDraw.text()</code> works with no extra setup, but falls back to a small built-in bitmap font. <code>ImageFont</code> loads an actual <code>.ttf</code> font file at a chosen size, for anything larger or more legible.</p>
+<pre class="highlight"><code class="language-python-ref">from PIL import ImageFont
+
+font = ImageFont.truetype("arial.ttf", 20)
+draw.text((10, 10), "burmese python", fill="black", font=font)</code></pre>
+<h3 id="loading-a-font">Loading a font</h3>
+<p>Loads a <code>.ttf</code> (or <code>.otf</code>) font file at a specific point size. <code>ImageFont.truetype(path, size)</code> returns a font object to pass into <code>draw.text(..., font=font)</code>. The path can be a font file sitting next to your script, or a system font's full path — sizes aren't interchangeable between fonts, so reload at a new size rather than trying to scale a loaded font after the fact.</p>
+<pre class="highlight"><code class="language-python-ref">font = ImageFont.truetype("arial.ttf", 20)
+draw.text((10, 10), "burmese python", fill="black", font=font)</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image, ImageDraw, ImageFont
+
+img = Image.new("RGB", (200, 60), "white")
+draw = ImageDraw.Draw(img)
+font = ImageFont.truetype("arial.ttf", 20)
+draw.text((10, 15), "burmese python", fill="black", font=font)
+img.save("labeled.png")</code></pre>
+<h2 id="imagecolor-module">ImageColor module</h2>
+<p>Drawing methods accept a color as a plain name (<code>"green"</code>) or a hex string (<code>"#3f6b52"</code>), but sometimes you need that same color as an actual <code>(r, g, b)</code> tuple — to do math on it, blend it with another color, or store it in a data structure like the <code>Shape</code> class above. <code>ImageColor.getrgb()</code> converts either format into the tuple Pillow uses internally.</p>
+<pre class="highlight"><code class="language-python-ref">from PIL import ImageColor
+
+rgb = ImageColor.getrgb("green")        # (0, 128, 0)
+rgb2 = ImageColor.getrgb("#3f6b52")     # (63, 107, 82)</code></pre>
+<h3 id="converting-color-names">Converting color names</h3>
+<p>Accepts most CSS-style color names and <code>#rrggbb</code>/<code>#rgb</code> hex strings, returning a plain <code>(r, g, b)</code> tuple. <code>.getrgb()</code> returns <code>(r, g, b, a)</code> if the input included transparency. Useful once a palette is defined as hex codes rather than named colors, or when a color needs to be manipulated as numbers rather than passed straight into a drawing method.</p>
+<pre class="highlight"><code class="language-python-ref">green_rgb = ImageColor.getrgb("green")
+hex_rgb = ImageColor.getrgb("#3f6b52")
+print(green_rgb, hex_rgb)</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import ImageColor
+
+green_rgb = ImageColor.getrgb("green")
+hex_rgb = ImageColor.getrgb("#3f6b52")
+print(green_rgb, hex_rgb)</code></pre>
+<h2 id="imagefilter-module">ImageFilter module</h2>
+<p>Beyond geometric edits, <code>ImageFilter</code> can adjust an image's <em>look</em> — blurring, sharpening, or tracing its edges — by applying a ready-made pixel transformation, no convolution or kernel math required.</p>
+<pre class="highlight"><code class="language-python-ref">from PIL import ImageFilter
+
+blurred = img.filter(ImageFilter.BLUR)</code></pre>
+<h3 id="applying-a-filter">Applying a filter</h3>
+<p>Applies one of Pillow's built-in filter presets, each a ready-made pixel transformation. <code>.filter()</code> — <code>ImageFilter.CONTOUR</code> traces edges into a sketch-like outline, distinct from <code>FIND_EDGES</code>, which highlights edges while keeping the rest of the image dark.</p>
+<pre class="highlight"><code class="language-python-ref">blurred = img.filter(ImageFilter.BLUR)
+sharpened = img.filter(ImageFilter.SHARPEN)
+edges = img.filter(ImageFilter.FIND_EDGES)
+outlined = img.filter(ImageFilter.CONTOUR)</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image, ImageFilter
+
+img = Image.open("snake.jpg")
+blurred = img.filter(ImageFilter.BLUR)
+sharpened = img.filter(ImageFilter.SHARPEN)
+outlined = img.filter(ImageFilter.CONTOUR)
+blurred.save("blurred.jpg")
+sharpened.save("sharpened.jpg")
+outlined.save("outlined.jpg")</code></pre>
+<h2 id="imageenhance-module">ImageEnhance module</h2>
+<p>Where <code>ImageFilter</code> applies a fixed preset, <code>ImageEnhance</code> lets you dial an existing quality — brightness, contrast, color, sharpness — up or down by an exact amount.</p>
+<pre class="highlight"><code class="language-python-ref">from PIL import ImageEnhance
+
+brighter = ImageEnhance.Brightness(img).enhance(1.5)</code></pre>
+<h3 id="enhancing-an-image">Enhancing an image</h3>
+<p>Each <code>ImageEnhance</code> class wraps an image and exposes <code>.enhance(factor)</code>. <code>Brightness</code>, <code>Contrast</code>, <code>Color</code>, <code>Sharpness</code> — <code>1.0</code> leaves the image unchanged, below <code>1.0</code> reduces the effect, and above <code>1.0</code> increases it. <code>Color</code> controls saturation specifically: pushed toward <code>0.0</code> the image slides to grayscale, pushed well above <code>1.0</code> colors become more vivid and saturated.</p>
+<pre class="highlight"><code class="language-python-ref">brighter = ImageEnhance.Brightness(img).enhance(1.5)   # 1.0 = unchanged
+higher_contrast = ImageEnhance.Contrast(img).enhance(1.3)
+more_colorful = ImageEnhance.Color(img).enhance(2.0)   # boost saturation</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image, ImageEnhance
+
+img = Image.open("snake.jpg")
+brighter = ImageEnhance.Brightness(img).enhance(1.5)
+higher_contrast = ImageEnhance.Contrast(img).enhance(1.3)
+more_colorful = ImageEnhance.Color(img).enhance(2.0)
+brighter.save("brighter.jpg")
+more_colorful.save("more_colorful.jpg")</code></pre>
+<h2 id="imagechops-module">ImageChops module</h2>
+<p>Everything so far transforms a <em>single</em> image. <code>ImageChops</code> ("channel operations") instead combines two images of the same size, pixel by pixel — spotting what changed between two photos, or blending one image into another.</p>
+<pre class="highlight"><code class="language-python-ref">from PIL import ImageChops
+
+diff = ImageChops.difference(before, after)
+blended = ImageChops.multiply(img, mask)</code></pre>
+<h3 id="comparing-and-combining-images">Comparing and combining images</h3>
+<p><code>.difference(im1, im2)</code> subtracts one image from the other pixel by pixel. Identical areas come out solid black, and anything that changed shows up as a bright patch. Calling <code>.getbbox()</code> on the result gives the bounding box of everything that differs (or <code>None</code> if the two images are pixel-for-pixel identical), a quick way to check "did anything change?" without comparing every pixel yourself. <code>.multiply()</code>/<code>.screen()</code>/<code>.add()</code> combine two images with different blending math, similar to layer blend modes in photo-editing software.</p>
+<pre class="highlight"><code class="language-python-ref">diff = ImageChops.difference(before, after)
+diff.getbbox()   # bounding box of everything that changed, or None if identical</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image, ImageChops
+
+before = Image.open("snake_before.jpg")
+after = Image.open("snake_after.jpg")
+
+diff = ImageChops.difference(before, after)
+print(diff.getbbox())
+diff.save("diff.jpg")</code></pre>
+<h2 id="format-conversion">Format conversion</h2>
+<p>Because <code>.save()</code> infers the output format from the file extension, converting between formats is usually just an open-then-save with a different name — with a couple of format-specific details worth knowing.</p>
+<pre class="highlight"><code class="language-python-ref">img = Image.open("snake.png")
+img.convert("RGB").save("snake.jpg")   # JPEG has no transparency, so drop RGBA first</code></pre>
+<h3 id="converting-between-formats">Converting between formats</h3>
+<p>JPEG doesn't support transparency, so saving an <code>"RGBA"</code> image straight to <code>.jpg</code> raises an error. Convert to <code>"RGB"</code> first, which drops the alpha band. PNG, by contrast, supports both <code>"RGB"</code> and <code>"RGBA"</code> natively, so no conversion is needed going the other direction.</p>
+<pre class="highlight"><code class="language-python-ref">img = Image.open("snake.png")        # RGBA, with transparency
+img.convert("RGB").save("snake.jpg")  # JPEG can't store alpha — convert first</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image
+
+img = Image.open("snake.png")
+img.convert("RGB").save("snake.jpg")</code></pre>
+<h2 id="imagesequence-module">ImageSequence module</h2>
+<p>An animated GIF is really a whole stack of images shown one after another. <code>Image.open()</code> only gives you the first frame by default — <code>ImageSequence</code> lets a <a href="../../loops/"><code>for</code> loop</a> step through every frame in order.</p>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image, ImageSequence
+
+gif = Image.open("snake_slither.gif")
+for frame in ImageSequence.Iterator(gif):
+    frame.save(f"frame_{frame.tell()}.png")</code></pre>
+<h3 id="looping-over-gif-frames">Looping over GIF frames</h3>
+<p>Hands a <code>for</code> loop one frame at a time, in order, from an animated image. <code>ImageSequence.Iterator(img)</code> — each frame is a regular <code>Image</code> object, so every operation covered on this page (resize, filter, draw) works on it the same way. <code>.tell()</code> reports which frame number you're currently on, useful for numbering saved output files.</p>
+<pre class="highlight"><code class="language-python-ref">for frame in ImageSequence.Iterator(gif):
+    print(frame.tell(), frame.size)   # frame index, then its size</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image, ImageSequence
+
+gif = Image.open("snake_slither.gif")
+for frame in ImageSequence.Iterator(gif):
+    print(frame.tell(), frame.size)
+    frame.save(f"frame_{frame.tell()}.png")</code></pre>
+<h2 id="putting-it-together">Putting it together</h2>
+<p>Pillow doesn't need anything special to combine with the rest of Python — a function wrapping one transformation, called from an <code>if</code>/<code>elif</code> chosen by <a href="../../conditionals/">user input</a>, looped until the user's done, is enough to build a small interactive tool out of the operations above.</p>
+<pre class="highlight"><code class="language-python-ref">def apply_filter(img, choice):
+    if choice == "blur":
+        return img.filter(ImageFilter.BLUR)
+    elif choice == "grayscale":
+        return img.convert("L")
+    elif choice == "sharpen":
+        return img.filter(ImageFilter.SHARPEN)
+    else:
+        return img</code></pre>
+<h3 id="an-interactive-filter-tool">An interactive filter tool</h3>
+<p>Combines a function, an <code>if</code>/<code>elif</code> chain, and a <code>while</code> loop — nothing here is Pillow-specific. Each piece here is something covered elsewhere on this site — a <a href="../../functions/">function</a> wrapping one transformation, an <a href="../../conditionals/"><code>if</code>/<code>elif</code> chain</a> picking which one to run, and a <a href="../../loops/#while-loops"><code>while</code> loop</a> that keeps asking until the user's satisfied. Pillow itself only shows up inside <code>apply_filter</code>.</p>
+<pre class="highlight"><code class="language-python-ref">while True:
+    choice = input("filter (blur/grayscale/sharpen/done): ")
+    if choice == "done":
+        break
+    result = apply_filter(img, choice)
+    result.save(f"{choice}.jpg")
+    print(f"saved {choice}.jpg")</code></pre>
+<pre class="highlight"><code class="language-python-ref">from PIL import Image, ImageFilter
+
+def apply_filter(img, choice):
+    if choice == "blur":
+        return img.filter(ImageFilter.BLUR)
+    elif choice == "grayscale":
+        return img.convert("L")
+    elif choice == "sharpen":
+        return img.filter(ImageFilter.SHARPEN)
+    else:
+        return img
+
+img = Image.open("snake.jpg")
+
+while True:
+    choice = input("filter (blur/grayscale/sharpen/done): ")
+    if choice == "done":
+        break
+    result = apply_filter(img, choice)
+    result.save(f"{choice}.jpg")
+    print(f"saved {choice}.jpg")</code></pre>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../pandas/" class="md-footer__link md-footer__link--prev" aria-label="Previous: pandas">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                pandas
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../requests/" class="md-footer__link md-footer__link--next" aria-label="Next: requests">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                requests
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; <span id="copyright-year">2026</span> Luka
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="/about/" target="_blank" rel="noopener" title="About" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/privacy/" target="_blank" rel="noopener" title="Privacy policy" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5zm0 6c1.4 0 2.8 1.1 2.8 2.5V11c.6 0 1.2.6 1.2 1.3v3.5c0 .6-.6 1.2-1.3 1.2H9.2c-.6 0-1.2-.6-1.2-1.3v-3.5c0-.6.6-1.2 1.2-1.2V9.5C9.2 8.1 10.6 7 12 7m0 1.2c-.8 0-1.5.5-1.5 1.3V11h3V9.5c0-.8-.7-1.3-1.5-1.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.expand", "navigation.footer", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "toc.integrate", "content.code.copy", "content.tooltips", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      
+        <script src="../../javascripts/pyodide_runner.js"></script>
+      
+        <script src="../../javascripts/copyright_year.js"></script>
+      
+        <script src="../../javascripts/external_links.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

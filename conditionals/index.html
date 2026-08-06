@@ -1,0 +1,2200 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://pythonfieldguide.com/conditionals/">
+      
+      
+        <link rel="prev" href="../collections/">
+      
+      
+        <link rel="next" href="../loops/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Conditionals - Python Field Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-E5B3P6NCP0"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-E5B3P6NCP0",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-E5B3P6NCP0",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#conditionals" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python Field Guide" class="md-header__button md-logo" aria-label="Python Field Guide" data-md-component="logo">
+      
+  <img src="../img/favicon-large.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python Field Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Conditionals
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  All
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../workspace/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Workspace
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../foundations/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Foundations
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../types/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Types
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../collections/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Collections
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Conditionals
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../loops/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Loops
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../files/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  File I/O
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../functions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Functions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../oop/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Classes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../style/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Style
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../bugs/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Bugs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../libraries/" class="md-tabs__link">
+          
+  
+  
+  Libraries
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python Field Guide" class="md-nav__button md-logo" aria-label="Python Field Guide" data-md-component="logo">
+      
+  <img src="../img/favicon-large.png" alt="logo">
+
+    </a>
+    Python Field Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../collections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditionals
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#if-elif-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If / elif / else
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="If / elif / else">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boolean-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolean expressions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical operators
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#match-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Match / case
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Match / case">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default value
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unpacking-a-tuple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unpacking a tuple
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Style
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bugs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bugs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Libraries
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Libraries
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_13_2" id="__nav_13_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Built-in
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_13_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Built-in
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/datetime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    datetime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/random/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    random
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    csv
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/tkinter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tkinter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_13_3" id="__nav_13_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Third-Party
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_13_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Third-Party
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/numpy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NumPy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/opencv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/pillow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pillow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="conditionals"><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14c-3.36 0-4.46 1.35-4.82 2.24C9.25 16.7 10 17.76 10 19a3 3 0 0 1-3 3 3 3 0 0 1-3-3c0-1.31.83-2.42 2-2.83V7.83A2.99 2.99 0 0 1 4 5a3 3 0 0 1 3-3 3 3 0 0 1 3 3c0 1.31-.83 2.42-2 2.83v5.29c.88-.65 2.16-1.12 4-1.12 2.67 0 3.56-1.34 3.85-2.23A3.01 3.01 0 0 1 14 7a3 3 0 0 1 3-3 3 3 0 0 1 3 3c0 1.34-.88 2.5-2.09 2.86C17.65 11.29 16.68 14 13 14m-6 4a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 4a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 2a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> Conditionals</h1>
+<p>A <strong>conditional</strong> lets a program make decisions by running a <strong>block</strong> of code only when a <a href="#boolean-expressions">condition</a> is <code>True</code>. </p>
+<p>The condition ends with a colon <code>:</code>, and the block is the lines indented underneath it, treated as a single unit. </p>
+<p><strong>There are two types of conditional statements:</strong></p>
+<div class="pt-jump-table">
+<table>
+<thead>
+<tr>
+<th>Statement</th>
+<th>Example</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#if-elif-else"><code>if</code> / <code>elif</code> / <code>else</code></a></td>
+<td><pre><code class="language-python-ref">if length &gt; 15:&#10;    print("giant")&#10;elif length &gt; 8:&#10;    print("large")&#10;else:&#10;    print("small")</code></pre></td>
+<td>The general-purpose default — ranges, comparisons, or checking unrelated things, so use this unless <code>match</code> is clearly a better fit</td>
+</tr>
+<tr>
+<td><a href="#match-case"><code>match</code> / <code>case</code></a></td>
+<td><pre><code class="language-python-ref">species = "ball"&#10;match species:&#10;    case "ball":&#10;        print("ball python")&#10;    case "burmese":&#10;        print("burmese python")&#10;    case _:&#10;        print("other")</code></pre></td>
+<td>Comparing one value against exact, known possibilities — or splitting a tuple into named pieces while checking its values</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="if-elif-else">If / elif / else</h2>
+<p>A chain of <code>if</code>, <code>elif</code>, and <code>else</code>: </p>
+<ol>
+<li>Checks a series of <a href="#boolean-expressions">conditions</a> in order</li>
+<li>Runs the indented block under the first one that's <code>True</code></li>
+<li>Then exits the whole chain without checking any conditions below it. </li>
+</ol>
+<p><strong>if:</strong></p>
+<p>This always comes first, and has a condition. If the condition is <code>True</code>, it runs the block of code indented under it, then exits the chain.</p>
+<p><strong>elif:</strong></p>
+<p>Short for "else if." Any number of <code>elif</code>s can follow the <code>if</code> (or none) — each has its own condition, but is only checked if every condition above it was <code>False</code>. Python runs the block under the first one that's <code>True</code>, then exits the chain, skipping the rest no matter how many <code>elif</code>s follow.</p>
+<p><strong>else:</strong></p>
+<p>Optional, and always comes last if present. It has no condition of its own — it's the catch-all that runs only when none of the <code>if</code>/<code>elif</code> conditions above it were <code>True</code>.</p>
+<pre class="highlight"><code class="language-python-ref">length = 12
+
+if length &gt; 10:                    # always starts with an if 
+    print("that's a big snake")    
+elif length &gt; 7:                   # then any number of elifs (or none)
+    print("that's a medium snake") 
+elif length &gt; 4:
+    print("that's a small snake")
+else:                              # last comes one else (or none)
+    print("that's a tiny snake")</code></pre>
+<details class="tip">
+<summary>See the decision path this code follows</summary>
+<pre class="mermaid"><code>flowchart TD
+    A{"`if length &gt; 10:`"} --&gt;|True| B["`print('big snake')`"]
+    A --&gt;|False| C{"`elif length &gt; 7:`"}
+    C --&gt;|True| D["`print('medium snake')`"]
+    C --&gt;|False| E{"`elif length &gt; 4:`"}
+    E --&gt;|True| F["`print('small snake')`"]
+    E --&gt;|False| G["`else:`"]
+    G --&gt; H["`print('tiny snake')`"]
+
+    B -.-&gt; EXIT(["`done, exits the chain`"])
+    D -.-&gt;EXIT
+    F -.-&gt;EXIT
+    H -.-&gt;EXIT
+
+    linkStyle 0 stroke:#3f6b52,stroke-width:2px
+    linkStyle 1 stroke:#a33f3f,stroke-width:2px
+    linkStyle 2 stroke:#3f6b52,stroke-width:2px
+    linkStyle 3 stroke:#a33f3f,stroke-width:2px
+    linkStyle 4 stroke:#3f6b52,stroke-width:2px
+    linkStyle 5 stroke:#a33f3f,stroke-width:2px
+    linkStyle 6 stroke:#3f6b52,stroke-width:2px
+    linkStyle 7 stroke:#3f6b52,stroke-width:2px
+    linkStyle 8 stroke:#3f6b52,stroke-width:2px
+    linkStyle 9 stroke:#3f6b52,stroke-width:2px
+    linkStyle 10 stroke:#3f6b52,stroke-width:2px</code></pre>
+</details>
+<h3 id="boolean-expressions">Boolean expressions</h3>
+<p>A boolean expression is needed for every <code>if</code>/<code>elif</code>.</p>
+<pre class="highlight"><code class="language-python-ref">if [boolean expression]:
+    [indented code block that runs if above expression is True]
+elif [boolean expression]:
+    [indented code block that runs if above expression is True and others above were False]</code></pre>
+<p>A <strong>boolean expression</strong> is a boolean value (<code>True</code> or <code>False</code>) or anything that produces one, and is treated as the <strong>condition</strong> that must be <code>True</code> in order to run a block of code.</p>
+<p>A comparison looks different depending on the type of value being checked, as shown below. All of these comparisons result in a <code>True</code> or <code>False</code> boolean expression. </p>
+<p><strong>integer and float:</strong> <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>
+<pre class="highlight"><code class="language-python-ref">length = 12
+
+if length == 12:             # equal to
+    print("exactly 12 ft")
+
+if length != 4:              # not equal
+    print("not 4 ft")
+
+if length &gt; 10:              # greater than
+    print("long snake")
+
+if length &lt; 20:              # less than
+    print("under 20 ft")
+
+if length &gt;= 12:             # greater than or equal to
+    print("at least 12 ft")
+
+if length &lt;= 12.5:           # less than or equal to
+    print("12.5 ft or shorter")</code></pre></p>
+<p><strong>strings:</strong> <code>==</code>, <code>!=</code>, <code>in</code>, <code>not in</code>, <code>&gt;</code>, <code>&lt;</code>
+<pre class="highlight"><code class="language-python-ref">name = "burmese python"
+
+if name == "burmese python":   # equal to
+    print("it's a burmese")
+
+if name != "ball python":      # not equal
+    print("not a ball python")
+
+if "python" in name:           # is it a substring
+    print("name contains 'python'")
+
+if "anaconda" not in name:     # is it not a substring
+    print("name doesn't mention anaconda")
+
+if name &gt; "ball python":       # alphabetical comparison
+    print("comes after 'ball python' alphabetically")</code></pre></p>
+<p><strong>boolean:</strong> <code>==</code>, <code>is</code>, or just the value itself
+<pre class="highlight"><code class="language-python-ref">venomous = False
+
+if venomous:                   # is it True
+    print("handle with care")
+
+if not venomous:               # is it False
+    print("safe to handle")</code></pre></p>
+<p><strong>None:</strong> <code>is</code>, <code>is not</code>
+<pre class="highlight"><code class="language-python-ref">age = None
+
+if age is None:                # is it None
+    print("age not recorded")
+
+if age is not None:            # is it anything else
+    print("age was recorded")</code></pre></p>
+<p><strong>list &amp; tuple:</strong> <code>in</code>, <code>not in</code>, <code>==</code>, <code>!=</code>, or you can compare a specific item
+<pre class="highlight"><code class="language-python-ref">species = ["ball", "burmese", "boa"]
+other_species = ["ball", "burmese", "boa"]
+
+if "ball" in species:          # is the value in the list
+    print("ball python is in the list")
+
+if "anaconda" not in species:  # is the value missing from the list
+    print("anaconda isn't in the list")
+
+if species == other_species:   # is it the same contents, in the same order
+    print("both lists match")
+
+if "ball" == species[0]:       # compare a specific item
+    print("ball python is the first item")
+
+snake = ("ball", "5ft", "not venomous")   # a tuple works the same way
+
+if "ball" in snake:
+    print("species ball is in the tuple")
+
+if snake == ("ball", "5ft", "not venomous"):
+    print("tuples match")</code></pre></p>
+<p><strong>dict:</strong> <code>in</code>, <code>not in</code> (checks keys), or you can compare a specific value 
+<pre class="highlight"><code class="language-python-ref">snake = {"species": "ball", "length": 3, "venomous": False}
+
+if "venomous" in snake:        # is it a key
+    print("snake dict tracks venomous status")
+
+if "habitat" not in snake:     # is it not a key
+    print("snake dict has no habitat key")
+
+if snake["length"] &gt; 2:        # compare a specific value
+    print("snake in dict is over 2 ft")</code></pre></p>
+<p><strong>same contents:</strong> <code>==</code>, <code>!=</code>
+<pre class="highlight"><code class="language-python-ref">snake = ["ball", "burmese"]
+other_snake = ["ball", "burmese"]   # separate list, but equal contents
+
+if snake == other_snake:      # do they contain the same items?
+    print("equal contents")
+
+if snake != ["ball"]:         # different contents
+    print("not equal to a single-item list")</code></pre></p>
+<p><strong>is it comparing the exact same thing:</strong> <code>is</code>, <code>is not</code>
+<pre class="highlight"><code class="language-python-ref">snake = ["ball", "burmese"]
+
+same_snake = snake                  # another name for `snake`
+if snake is same_snake:             # same_snake and snake point to the exact same list
+    print("this really is the same list")
+
+other_snake = ["ball", "burmese"]   # separate list, but equal contents
+if snake is not other_snake:        # it's a different list, even though contents match
+    print("but not the same list")</code></pre></p>
+<h3 id="logical-operators">Logical operators</h3>
+<p>Logical operators <code>not</code>, <code>and</code>, <code>or</code> let a single <code>if</code> combine boolean expressions to create more complex conditions.</p>
+<pre class="highlight"><code class="language-python-ref">not venomous               # not False → True
+
+length &gt; 10 and venomous   # True and False → False
+
+length &gt; 10 or venomous    # True or False → True</code></pre>
+<p>A and B here are <a href="#boolean-expressions">boolean expressions</a>.</p>
+<table>
+<thead>
+<tr>
+<th><code>A</code></th>
+<th><code>not A</code> — flips to the opposite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="pt-bool-true">True</span></td>
+<td><span class="pt-bool-false">False</span></td>
+</tr>
+<tr>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-true">True</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><code>A</code></th>
+<th><code>B</code></th>
+<th><code>A and B</code> — <code>True</code> only if both are <code>True</code></th>
+<th><code>A or B</code> — <code>True</code> if either is <code>True</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="pt-bool-true">True</span></td>
+<td><span class="pt-bool-true">True</span></td>
+<td><span class="pt-bool-true">True</span></td>
+<td><span class="pt-bool-true">True</span></td>
+</tr>
+<tr>
+<td><span class="pt-bool-true">True</span></td>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-true">True</span></td>
+</tr>
+<tr>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-true">True</span></td>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-true">True</span></td>
+</tr>
+<tr>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-false">False</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Order of operations:</strong> When several logical operators appear together, Python evaluates <code>not</code> first, then <code>and</code>, then <code>or</code>. Even when parentheses aren't required, they often make the condition much easier to read.</p>
+<details class="tip">
+<summary>Nested if</summary>
+<p>Checks a second condition only after the first is <code>True</code>. An <code>if</code> can contain another <code>if</code>, checked only once the outer condition is already <code>True</code> — each level of nesting adds another decision. If both conditions are simple, combining them with <a href="#logical-operators"><code>and</code></a> is usually clearer than nesting.</p>
+<pre class="highlight"><code class="language-python-ref">length = 12
+venomous = False
+if length &gt; 10:
+    if venomous:
+        print("big and dangerous")
+    else:
+        print("big but harmless")    # runs</code></pre>
+</details>
+<details class="tip">
+<summary>One-line if</summary>
+<p>Simple checks can be written in one line. For a single statement, the body can go right on the same line as the condition. Save this for short, simple conditions — a normal multi-line <code>if</code> reads more clearly for anything more involved.</p>
+<p>The <code>if</code>-<code>else</code> version is a single expression, not a statement — it evaluates to one value or the other, so it's most useful for a quick assignment or a function argument, not as a stand-in for a full <code>if</code> block. <code>value_if_true if condition else value_if_false</code> reads almost like the English sentence it describes.</p>
+<pre class="highlight"><code class="language-python-ref">if venomous: print("careful")    # single-line if — the colon is still required
+"careful" if venomous else "safe"    # "careful" — a compact if/else that evaluates to a value</code></pre>
+</details>
+<details class="tip">
+<summary>pass placeholder</summary>
+<p>Temporarily fill an empty block when you're not ready to write the inside code yet. Python doesn't allow an empty block after a colon. <code>pass</code> does nothing, but acts as a placeholder until you're ready to add code so that the empty block won't cause a syntax error in the meantime. </p>
+<pre class="highlight"><code class="language-python-ref">if venomous:
+    pass    # placeholder — does nothing, but prevents a syntax error</code></pre>
+</details>
+<details class="run">
+<summary>Run an if/elif/else example</summary>
+<p>All the examples above, combined into one script:</p>
+<pre class="highlight"><code class="language-python">length = 12
+
+if length &gt; 10:
+    print("that's a big snake")
+elif length &gt; 7:
+    print("that's a medium snake")
+elif length &gt; 4:
+    print("that's a small snake")
+else:
+    print("that's a tiny snake")
+
+length = 12
+
+if length == 12:             # equal to
+    print("exactly 12 ft")
+
+if length != 4:              # not equal
+    print("not 4 ft")
+
+if length &gt; 10:              # greater than
+    print("long snake")
+
+if length &lt; 20:              # less than
+    print("under 20 ft")
+
+if length &gt;= 12:             # greater than or equal to
+    print("at least 12 ft")
+
+if length &lt;= 12.5:           # less than or equal to
+    print("12.5 ft or shorter")
+
+name = "burmese python"
+
+if name == "burmese python":   # equal to
+    print("it's a burmese")
+
+if name != "ball python":      # not equal
+    print("not a ball python")
+
+if "python" in name:           # is it a substring
+    print("name contains 'python'")
+
+if "anaconda" not in name:     # is it not a substring
+    print("name doesn't mention anaconda")
+
+if name &gt; "ball python":       # alphabetical comparison
+    print("comes after 'ball python' alphabetically")
+
+venomous = False
+
+if venomous:                   # is it True
+    print("handle with care")
+
+if not venomous:               # is it False
+    print("safe to handle")
+
+age = None
+
+if age is None:                # is it None
+    print("age not recorded")
+
+if age is not None:            # is it anything else
+    print("age was recorded")
+
+species = ["ball", "burmese", "boa"]
+other_species = ["ball", "burmese", "boa"]
+
+if "ball" in species:          # is the value in the list
+    print("ball python is in the list")
+
+if "anaconda" not in species:  # is the value missing from the list
+    print("anaconda isn't in the list")
+
+if species == other_species:   # is it the same contents, in the same order
+    print("both lists match")
+
+if "ball" == species[0]:       # compare a specific item
+    print("ball python is the first item")
+
+snake = ("ball", "5ft", "not venomous")   # a tuple works the same way
+
+if "ball" in snake:
+    print("species ball is in the tuple")
+
+if snake == ("ball", "5ft", "not venomous"):
+    print("tuples match")
+
+snake = {"species": "ball", "length": 3, "venomous": False}
+
+if "venomous" in snake:        # is it a key
+    print("snake dict tracks venomous status")
+
+if "habitat" not in snake:     # is it not a key
+    print("snake dict has no habitat key")
+
+if snake["length"] &gt; 2:        # compare a specific value
+    print("snake in dict is over 2 ft")
+
+snake = ["ball", "burmese"]
+other_snake = ["ball", "burmese"]   # separate list, but equal contents
+
+if snake == other_snake:      # do they contain the same items?
+    print("equal contents")
+
+if snake != ["ball"]:         # different contents
+    print("not equal to a single-item list")
+
+snake = ["ball", "burmese"]
+
+same_snake = snake                  # another name for `snake`
+if snake is same_snake:             # same_snake and snake point to the exact same list
+    print("this really is the same list")
+
+other_snake = ["ball", "burmese"]   # separate list, but equal contents
+if snake is not other_snake:        # it's a different list, even though contents match
+    print("but not the same list")
+
+length = 12
+if length &gt; 15:
+    print("giant")
+elif length &gt; 8:
+    print("large")
+elif length &gt; 4:
+    print("medium")
+else:
+    print("small")
+
+length = 3
+if length &gt; 15:
+    print("giant")
+elif length &gt; 8:
+    print("large")
+elif length &gt; 4:
+    print("medium")
+else:
+    print("small")
+
+venomous = False
+
+if venomous:
+    print("handle with care")
+else:
+    print("safe to handle")
+
+length = 12
+venomous = False
+
+if length &gt; 10 and venomous:
+    print("big and dangerous")
+if length &gt; 10 or venomous:
+    print("worth a closer look")
+if not venomous:
+    print("safe to handle")
+
+if (length &gt; 10 and not venomous) or length &gt; 20:
+    print("worth a closer look")
+
+length = 12
+venomous = False
+
+if length &gt; 10:
+    if venomous:
+        print("big and dangerous")
+    else:
+        print("big but harmless")
+
+venomous = True
+if venomous: print("careful")
+
+status = "careful" if venomous else "safe"
+print(status)
+
+venomous = True
+
+if venomous:
+    pass
+
+print("checked venomous status, no action taken yet")</code></pre>
+</details>
+<h2 id="match-case">Match / case</h2>
+<p>A <code>match</code> statement compares one value against several <code>case</code> options and runs the code for the first matching <code>case</code>.</p>
+<p>Both examples below do the same thing, but <code>match</code> is often easier to read than a long <code>if/elif</code> sequence when checking one value against many possibilities.</p>
+<pre class="highlight"><code class="language-python-ref">species = "ball"
+
+# if/elif chain
+if species == "ball":
+    print("small constrictor")    # runs
+elif species == "burmese":
+    print("large constrictor")
+else:
+    print("unknown species")
+
+# the same logic as a match statement
+match species:
+    case "ball":
+        print("small constrictor")    # runs
+    case "burmese":
+        print("large constrictor")
+    case _:
+        print("unknown species")</code></pre>
+<details class="tip">
+<summary>See the path</summary>
+<p>See the decision path the above code will take in the form of a flow chart diagram.</p>
+<pre class="mermaid"><code>flowchart TD
+    START["`match species:`"] --&gt; A{"`case 'ball':`"}
+    A --&gt;|match| B["`print('small constrictor')`"]
+    A --&gt;|no match| C{"`case 'burmese':`"}
+    C --&gt;|match| D["`print('large constrictor')`"]
+    C --&gt;|no match| E["`case _:`"]
+    E --&gt; F["`print('unknown species')`"]
+
+    B -.-&gt; EXIT(["`done, exits the chain`"])
+    D -.-&gt;EXIT
+    F -.-&gt;EXIT
+
+    linkStyle 1 stroke:#3f6b52,stroke-width:2px
+    linkStyle 2 stroke:#a33f3f,stroke-width:2px
+    linkStyle 3 stroke:#3f6b52,stroke-width:2px
+    linkStyle 4 stroke:#a33f3f,stroke-width:2px
+    linkStyle 5 stroke:#3f6b52,stroke-width:2px
+    linkStyle 6 stroke:#3f6b52,stroke-width:2px
+    linkStyle 7 stroke:#3f6b52,stroke-width:2px
+    linkStyle 8 stroke:#3f6b52,stroke-width:2px</code></pre>
+</details>
+<details class="tip">
+<summary>Matching an int</summary>
+<p>A <code>case</code> can compare any type of value, not just strings.</p>
+<pre class="highlight"><code class="language-python-ref">match length:
+    case 3:
+        print("hatchling size")
+    case _:
+        print("not a hatchling")</code></pre>
+</details>
+<details class="tip">
+<summary>Match multiple values</summary>
+<p>Lets one <code>case</code> match several possible values using <code>|</code>, so you don't need a separate <code>case</code> for each one.</p>
+<pre class="highlight"><code class="language-python-ref">match species:
+    case "ball" | "corn":
+        print("small species")     # runs — species is "ball"
+    case _:
+        print("other")</code></pre>
+</details>
+<h3 id="default-value">Default value</h3>
+<p>Runs a block of code if no <code>case</code> matched — either discarding the value with <code>_</code>, or capturing it into a variable.</p>
+<pre class="highlight"><code class="language-python-ref">match species:
+    case "burmese":
+        print("it's a burmese!")
+    case _:                             # Option 1:  Unsaved default value
+        print("not a burmese")          # value discarded
+
+match species:
+    case "burmese":
+        print("it's a burmese")
+    case n:                             # Option 2: Saved default value
+        print(f"{n} is not a burmese")  # stores the value as new variable n</code></pre>
+<p>If you want the code to still run a block of code even if no specific <code>case</code> matched, there are two ways to add a default value at the end that will match anything. A default value goes last — without one, a value matching no cases would not run any block of code. <strong>Option 1</strong> (<code>_</code>) throws the matched value away; <strong>Option 2</strong> (giving it a variable name, like <code>n</code>) saves it so the block can use it.</p>
+<h3 id="unpacking-a-tuple">Unpacking a tuple</h3>
+<p>A <code>case</code> can pull a tuple apart into named pieces <em>while also</em> checking its shape or specific values.</p>
+<pre class="highlight"><code class="language-python-ref">snake = (12, "ball")
+match snake:
+    case (length, "ball"):                      # tuple with 2 items, where second is "ball"
+        print(f"a {length} ft ball python")     # in this example, this case will run
+    case (length, species):                     # tuple with any 2 items
+        print(f"a {length} ft {species} python")
+    case (length,):                             # tuple with any 1 item
+        print(f"just a length: {length}")
+    case _:                                     # 0 items, or tuple with more than 2 items
+        print("invalid format")</code></pre>
+<p>A <code>match</code> can pick a different <code>case</code> depending on the tuple's length or the value in a specific position, while <em>still</em> unpacking the rest into names — all in one step, as shown above. Compare with regular assignment (<code>length, species = snake</code>), which always unpacks the same way, would crash on a 1- or 3-item tuple, and can't pick a different case based on species.</p>
+<details class="tip">
+<summary>case + if</summary>
+<p>Only run the block of code if there's a <code>case</code> match <em>and</em> the <code>if</code> condition is also <code>True</code>. Adding <code>if [condition]</code> after a pattern turns it into a guard — the branch only runs if the pattern matches <em>and</em> the condition is <code>True</code>. If the guard is <code>False</code>, Python moves on to the next <code>case</code> even though the pattern itself matched.</p>
+<pre class="highlight"><code class="language-python-ref">length = 12
+match length:
+    case n if n &gt; 10:
+        print("big")     # runs — 12 &gt; 10
+    case n:
+        print("small")</code></pre>
+</details>
+<details class="run">
+<summary>Run a match/case example</summary>
+<p>All the examples above, combined into one script:</p>
+<pre class="highlight"><code class="language-python">species = "ball"
+
+# if/elif chain
+if species == "ball":
+    print("small constrictor")
+elif species == "burmese":
+    print("large constrictor")
+else:
+    print("unknown species")
+
+# the same logic as a match statement
+match species:
+    case "ball":
+        print("small constrictor")
+    case "burmese":
+        print("large constrictor")
+    case _:
+        print("unknown species")
+
+length = 3
+
+match length:
+    case 3:
+        print("hatchling size")
+    case _:
+        print("not a hatchling")
+
+species = "ball"
+
+match species:
+    case "ball" | "corn":
+        print("small species")
+
+species = "ball"
+
+match species:
+    case "anaconda":
+        print("giant")
+    case _:
+        print("not an anaconda")
+
+species = "ball"
+
+match species:
+    case "anaconda":
+        print("giant")
+    case n:                    # any variable name works here, not just n
+        print(f"{n} is not an anaconda or burmese")
+
+snake = (12, "ball")
+
+length, species = snake   # regular assignment — always unpacks the same way,
+print(species, length)    # would crash on a 1- or 3-item tuple, and can't pick a different case based on species
+
+match snake:
+    case (length, "ball"):                  # 2 items, second is 'ball'
+        print(f"a {length} ft ball python")
+    case (length, species):                 # 2 items, any other species
+        print(f"a {length} ft {species}")
+    case (length,):                         # 1 item — comma makes this a 1-tuple pattern
+        print(f"just a length: {length}")
+    case _:                                 # 0 items, or more than 2
+        print("0 items, or more than 2")
+
+length = 12
+
+match length:
+    case n if n &gt; 10:
+        print("big")
+    case n:
+        print("small")</code></pre>
+</details>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../collections/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Collections">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Collections
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../loops/" class="md-footer__link md-footer__link--next" aria-label="Next: Loops">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Loops
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; <span id="copyright-year">2026</span> Luka
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="/about/" target="_blank" rel="noopener" title="About" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/privacy/" target="_blank" rel="noopener" title="Privacy policy" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5zm0 6c1.4 0 2.8 1.1 2.8 2.5V11c.6 0 1.2.6 1.2 1.3v3.5c0 .6-.6 1.2-1.3 1.2H9.2c-.6 0-1.2-.6-1.2-1.3v-3.5c0-.6.6-1.2 1.2-1.2V9.5C9.2 8.1 10.6 7 12 7m0 1.2c-.8 0-1.5.5-1.5 1.3V11h3V9.5c0-.8-.7-1.3-1.5-1.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.expand", "navigation.footer", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "toc.integrate", "content.code.copy", "content.tooltips", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      
+        <script src="../javascripts/pyodide_runner.js"></script>
+      
+        <script src="../javascripts/copyright_year.js"></script>
+      
+        <script src="../javascripts/external_links.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
