@@ -84,7 +84,7 @@ hide:
 
     ---
 
-    [`list`](collections.md#lists) · [`tuple`](collections.md#tuples) · [`dict`](collections.md#dictionaries)
+    [`list`](collections.md#lists) · [`tuple`](collections.md#tuples) · [`dict`](collections.md#dictionaries) · [`set`](collections.md#sets)
 
 
 -   :material-source-branch:{ .lg .middle } [__Conditionals__](conditionals.md)

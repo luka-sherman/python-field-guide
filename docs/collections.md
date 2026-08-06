@@ -1,6 +1,6 @@
 # :material-basket-outline:{ .lg .middle } Collection Data Types
 
-A **collection** is a single object that groups multiple values together, so a whole set of data can be stored in one variable, passed around, and looped over as a unit — instead of juggling a separate variable per value, like you would with the [basic types](types.md). Python's built-in collections mainly differ along two lines: whether items are **ordered** by position or looked up by **key**, and whether the collection is **mutable** (changeable after creation) or not.
+A **collection** is a single object that groups multiple values together, so a whole set of data can be stored in one variable, passed around, and looped over as a unit — instead of juggling a separate variable per value, like you would with the [basic types](types.md). Python's built-in collections mainly differ along two lines: whether items are **ordered** by position, looked up by **key**, or just checked by membership, and whether the collection is **mutable** (changeable after creation) or not.
 
 <div class="pt-jump-table" markdown="block">
 
@@ -9,6 +9,7 @@ A **collection** is a single object that groups multiple values together, so a w
 | [`list`](#lists) | `["ball", "burmese"]` | Index | Yes | Yes | <ul><li>Ordered sequence</li><li>Looking up by value (`in`) scans item by item</li></ul> |
 | [`tuple`](#tuples) | `("ball", "burmese")` | Index | No | Yes | <ul><li>Fixed sequence that shouldn't change — records, dict keys</li></ul> |
 | [`dict`](#dictionaries) | `{"species": "ball", ...}` | Key | Yes | No (keys must be unique) | <ul><li>Key → value lookups, records with named fields</li><li>No positional access — only by key</li></ul> |
+| [`set`](#sets) | `{"ball", "burmese"}` | Membership (`in`) only | Yes | No | <ul><li>Fast membership checks, no matter how large it gets</li><li>Removing duplicates, comparing groups (union/intersection)</li></ul> |
 
 </div>
 
@@ -487,4 +488,127 @@ for key, value in snake.items(): print(key, value)  # species ball  length_ft 5 
             "ball": {"length_ft": 5, "venomous": False},
         }
         print(snakes["ball"]["length_ft"])
+        ```
+
+## Sets
+
+A set stores multiple items, in no particular order, inside a single variable — written with curly braces.
+
+Sets have three defining traits:
+
+- **Unordered** — items have no fixed position, so there's no indexing or slicing.
+- **Changeable (mutable)** — you can add or remove items after the set is created.
+- **No duplicates** — adding a value that's already there changes nothing; a set can only ever hold each value once.
+
+```python-ref
+species = {"burmese", "rock", "ball", "blood"}
+species    # {'burmese', 'rock', 'ball', 'blood'} — order not guaranteed
+```
+
+### Check if item in a set
+
+`in` checks whether a value exists — and does it far faster than a list or tuple, no matter how large the set gets, since Python looks it up directly instead of scanning item by item.
+
+```python-ref
+"burmese" in species    # True
+```
+
+### Add items
+
+`add()` adds a single item. `update()` adds every item from another iterable, one at a time. Adding a value that's already present changes nothing.
+
+```python-ref
+species.add("carpet")                # {"burmese", "rock", "ball", "blood", "carpet"}
+species.update(["carpet", "boa"])    # adds "boa"; "carpet" was already there
+species.add("burmese")               # already there — no change
+```
+
+### Remove items
+
+`remove()` deletes an item, raising an error if it isn't there. `discard()` does the same but stays silent if the item's missing. `pop()` removes and returns an arbitrary item, since there's no "last" item in an unordered collection. `clear()` empties the set.
+
+```python-ref
+species.remove("rock")    # errors if "rock" isn't in the set
+species.discard("rock")   # no error either way
+species.pop()              # removes and returns *some* item — which one isn't guaranteed
+species.clear()           # set()
+```
+
+### Loop a set
+
+Works like looping over a list, just without any guaranteed order.
+
+```python-ref
+for s in species: print(s)    # burmese  rock  ball  blood — order not guaranteed
+```
+
+??? tip "Removing duplicates from a list"
+    Converting a list to a set and back is a common one-line way to drop duplicates — though it also throws away the original order, unless you sort or otherwise re-derive it.
+
+    ```python-ref
+    species = ["ball", "burmese", "ball", "boa", "burmese"]
+    list(set(species))    # ["burmese", "ball", "boa"] — order not guaranteed
+    ```
+
+??? tip "Set math: union, intersection, difference"
+    Sets support the same operations as sets in math class — useful for comparing two groups directly instead of writing your own loop to do it.
+
+    ```python-ref
+    constrictors = {"ball", "burmese", "boa"}
+    pet_friendly = {"ball", "burmese", "corn snake"}
+
+    constrictors | pet_friendly    # union — everything in either set
+    constrictors & pet_friendly    # intersection — only what's in both
+    constrictors - pet_friendly    # difference — in constrictors, but not pet_friendly
+    ```
+
+??? run "Run a set example"
+    Each box below is fully editable — write your answer, then click Run.
+
+    **1. Check membership & add.** Check whether `"carpet"` is in the set, then add it.
+
+    ```python
+    species = {"indian", "rock", "blood", "angolan"}
+
+    # your code here
+    ```
+
+    **2. Remove.** Discard `"rock"` from the set — using the method that won't error even if it's already gone.
+
+    ```python
+    species = {"indian", "rock", "blood", "angolan"}
+
+    # your code here
+
+    print(species)
+    ```
+
+    **3. Deduplicate.** Given the list below (with repeats), build a set from it to remove duplicates, then convert it back to a list.
+
+    ```python
+    names = ["ball", "burmese", "ball", "boa", "burmese"]
+
+    # your code here
+
+    print(unique_names)
+    ```
+
+    ??? note "Show solutions"
+        ```python
+        # 1. Check membership & add
+        species = {"indian", "rock", "blood", "angolan"}
+        print("carpet" in species)
+        species.add("carpet")
+        ```
+        ```python
+        # 2. Remove
+        species = {"indian", "rock", "blood", "angolan"}
+        species.discard("rock")
+        print(species)
+        ```
+        ```python
+        # 3. Deduplicate
+        names = ["ball", "burmese", "ball", "boa", "burmese"]
+        unique_names = list(set(names))
+        print(unique_names)
         ```
