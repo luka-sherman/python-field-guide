@@ -34,6 +34,31 @@ Runs automatically every time a new object is created. It's where you set up the
 ball = Snake("ball", 5)    # __init__ runs automatically, setting ball.species and ball.length_ft
 ```
 
+??? warning "Avoid mutable default arguments"
+    A default argument's value is created once, when the method is defined — not fresh for every object. For a mutable default like a list or dict, every object that doesn't pass its own value ends up sharing that exact same one.
+
+    ```python-ref
+    class Snake:
+        def __init__(self, species, tags=[]):    # tags=[] is created once, not per-object
+            self.species = species
+            self.tags = tags
+
+    ball = Snake("ball")
+    ball.tags.append("captive-bred")
+
+    burmese = Snake("burmese")
+    print(burmese.tags)    # ["captive-bred"] — leaked from ball, since both share the same list
+    ```
+
+    Use `None` as the default instead, and build a fresh list inside `__init__` only if nothing was passed:
+
+    ```python-ref
+    class Snake:
+        def __init__(self, species, tags=None):
+            self.species = species
+            self.tags = tags if tags is not None else []    # a new list every time
+    ```
+
 ### The `self` parameter
 
 Refers to the specific object a method was called on. `self` is the first parameter of every method in a class — it's how `ball.species` and `burmese.species` hold different values while sharing the same class. Python passes it in automatically; you never supply it yourself when calling a method (`ball.describe()`, not `ball.describe(ball)`).
