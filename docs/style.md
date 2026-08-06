@@ -8,12 +8,32 @@ Code that works isn't automatically code that's easy to read, debug, or hand off
 
 Python runs styled and unstyled code identically, so following PEP 8 doesn't make a script more *correct* — it makes it more *predictable* to read. Anyone who's used Python before recognizes the shape of PEP 8-styled code, so sticking to it means less friction reading someone else's code, and less friction when someone else reads yours.
 
+PEP 8 itself is just a document — it doesn't check anything on its own. A **linter** like Pylint is a separate tool that actively scans your code against it, catching style violations, likely bugs, and structural issues automatically instead of you having to spot them by eye.
+
 | Editor | PEP 8 checking |
 |--------|-----------------|
 | PyCharm Community | Built in — violations are underlined automatically, no setup needed |
 | VS Code | Install the *Pylint* extension |
 | Thonny | No built-in PEP 8 checking |
 | IDLE | No built-in PEP 8 checking |
+
+??? info "What does "Pythonic" mean?"
+    Using Python's own built-in features and standard patterns, instead of writing code that just works but reads like it was translated from another language. Two pieces of code can do the exact same thing while only one is Pythonic.
+
+    ```python-ref
+    if len(species) > 0:    # works, but not Pythonic
+        print("found some")
+
+    if species:              # Pythonic — a non-empty list is already truthy
+        print("found some")
+    ```
+
+    It's worth the effort for real reasons, not just to match convention:
+
+    - **Readable** — other Python developers recognize the pattern instantly, without having to puzzle through it
+    - **Fewer bugs** — the standard way is usually the safest way; `with open(...)` guarantees a file gets closed even if something goes wrong, where a manual `open()`/`close()` pair is easy to get wrong
+    - **Faster** — built-in patterns like comprehensions are implemented in C under the hood, quicker than the hand-written equivalent
+    - **Works with the language, not against it** — instead of carrying over patterns from another language that Python already has a built-in way of doing
 
 ## Naming
 
