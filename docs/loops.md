@@ -92,6 +92,17 @@ for letter in name: print(letter)    # b  u  r  m  e  s  e     p  y  t  h  o  n
 for i, s in enumerate(species): print(i, s)    # 0 burmese  1 rock  2 ball  3 blood
 ```
 
+??? tip "Loop two lists together with zip()"
+    `zip()` pairs up items from two (or more) sequences by position — the first item from each, then the second from each, and so on — stopping as soon as the shortest one runs out.
+
+    ```python-ref
+    species = ["burmese", "rock", "ball", "blood"]
+    length_ft = [12, 4, 5, 3.5]
+
+    for s, ft in zip(species, length_ft): 
+        print(s, ft)
+    ```
+
 ??? tip "Nested loops"
     A loop can contain another loop — useful for combinations, grids, or nested collections. The inner loop runs all the way through for every single pass of the outer one.
 
