@@ -5,13 +5,14 @@ hooks:
   - hooks/thanks_url.py
 
 nav:
-  - Home: index.md
+  - All: index.md
   - Workspace: workspace.md
   - Foundations: foundations.md
   - Types: types.md
   - Collections: collections.md
   - Conditionals: conditionals.md
   - Loops: loops.md
+  - File I/O: files.md
   - Functions: functions.md
   - Classes: oop.md
   - Style: style.md

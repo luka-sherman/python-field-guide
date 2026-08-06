@@ -103,6 +103,13 @@ hide:
 
     [`for`](loops.md#for-loops) · [`while`](loops.md#while-loops) · [`break`](loops.md#loop-control)
 
+-   :material-file-document-outline:{ .lg .middle } [__File I/O__](files.md)
+
+    Saves data outside the program itself, so it's still there the next time it runs — opening, reading, and writing plain text files.
+
+    ---
+
+    [`open()`](files.md#opening-a-file) · [`read()`](files.md#reading-a-file) · [`write()`](files.md#writing-multiple-lines) · [`append`](files.md#appending-vs-overwriting)
 
 -   :material-function-variant:{ .lg .middle } [__Functions__](functions.md)
 
