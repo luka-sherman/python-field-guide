@@ -6,11 +6,11 @@ Every value in Python has a **type**, which determines what operations it suppor
 
 | Type | Example | Use it for |
 |------|---------|------------|
-| [`int`](#integers) | `5` | <ul><li>Counts — how many of something there are, like items in a list</li><li>Indexes — the position of an item in a sequence, like `species[2]`</li><li>IDs — a unique whole-number identifier, like a user or record ID</li></ul> |
-| [`float`](#floats) | `4.5` | <ul><li>Measurements, ratios — anything with a decimal</li><li>Binary rounding errors mean `0.1 + 0.2 != 0.3`</li></ul> |
-| [`str`](#strings) | `"ball python"` | <ul><li>Text — names, labels, messages</li><li>Ordered and indexable like a list, but immutable — `.upper()`, `.replace()`, etc. return a *new* string</li></ul> |
-| [`bool`](#booleans) | `True` | <ul><li>Flags, yes/no switches, comparison results (`length > 3`)</li><li>Secretly a subclass of `int` — `True + True == 2`</li></ul> |
-| [`None`](#none) | `None` | <ul><li>Marking "no value yet" — a default placeholder, or what a function returns if it falls through without a `return`</li><li>Compare with `is None`, not `== None`</li><li>`not thing` also catches `None`, but it's true for any falsy value (`0`, `""`, `[]`) too — use `is None` when you mean *specifically* "no value"</li></ul> |
+| <a href="#integers">`int`</a> | <a href="#integers">`5`</a> | <a href="#integers"><ul><li>Counts — how many of something there are, like items in a list</li><li>Indexes — the position of an item in a sequence, like `species[2]`</li><li>IDs — a unique whole-number identifier, like a user or record ID</li></ul></a> |
+| <a href="#floats">`float`</a> | <a href="#floats">`4.5`</a> | <a href="#floats"><ul><li>Measurements, ratios — anything with a decimal</li><li>Binary rounding errors mean `0.1 + 0.2 != 0.3`</li></ul></a> |
+| <a href="#strings">`str`</a> | <a href="#strings">`"ball python"`</a> | <a href="#strings"><ul><li>Text — names, labels, messages</li><li>Ordered and indexable like a list, but immutable — `.upper()`, `.replace()`, etc. return a *new* string</li></ul></a> |
+| <a href="#booleans">`bool`</a> | <a href="#booleans">`True`</a> | <a href="#booleans"><ul><li>Flags, yes/no switches, comparison results (`length > 3`)</li><li>Secretly a subclass of `int` — `True + True == 2`</li></ul></a> |
+| <a href="#none">`None`</a> | <a href="#none">`None`</a> | <a href="#none"><ul><li>Marking "no value yet" — a default placeholder, or what a function returns if it falls through without a `return`</li><li>Compare with `is None`, not `== None`</li><li>`not thing` also catches `None`, but it's true for any falsy value (`0`, `""`, `[]`) too — use `is None` when you mean *specifically* "no value"</li></ul></a> |
 
 </div>
 
