@@ -120,6 +120,14 @@ hide:
 
     [`class`](oop.md#classes-and-objects) · [`super()`](oop.md#inheritance) · [`polymorphism`](oop.md#polymorphism)
 
+-   :material-palette-outline:{ .lg .middle } [__Style__](style.md)
+
+    Conventions for writing Python that stays readable as a file grows — meaningful names, constants, import order, and how a file is typically laid out.
+
+    ---
+
+    [`naming`](style.md#naming) · [`constants`](style.md#constants) · [`imports`](style.md#imports) · [`main function`](style.md#main-function)
+
 -   :material-bug-outline:{ .lg .middle } [__Bugs__](bugs.md)
 
     Understand an error message, handle an error instead of crashing, or debug your code line by line to find where it went wrong.
