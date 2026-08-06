@@ -389,7 +389,7 @@ print(age + 1)                            # 9 — works fine
 
 ## Comments
 
-### Commenting out a line with \#
+### Single-line comments with \#
 
 A `#` marks the rest of a line as a comment — so Python ignores it. There are multiple reasons for this: 
 
@@ -449,7 +449,7 @@ A `#` marks the rest of a line as a comment — so Python ignores it. There are 
     - **VS Code** needs an extension for this — [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree) is the most popular one, and adds a sidebar tree view of every tagged comment in your workspace.
     - **Thonny and IDLE** have no built-in equivalent — `TODO` still works as a plain comment, just without the aggregated list.
 
-### Multiline comments with """
+### Multi-line comments with """
 
 *This is a more advanced topic — skip it for now if you're just getting started, and come back once you're comfortable writing [functions](functions.md).*
 

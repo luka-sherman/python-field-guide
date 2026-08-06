@@ -9,30 +9,44 @@ The condition ends with a colon `:`, and the block is the lines indented underne
 | Statement              | Example                                                                                                                                                                       | When to use                                                          |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
 | `if` / `elif` / `else` | <pre><code class="language-python-ref">if length &gt; 15:&#10;    print("giant")&#10;elif length &gt; 8:&#10;    print("large")&#10;else:&#10;    print("small")</code></pre> | The general-purpose default — ranges, comparisons, or checking unrelated things, so use this unless `match` is clearly a better fit |
-| `match` / `case`       | <pre><code class="language-python-ref">species="ball"&#10;match species:&#10;    case "ball":&#10;        print("ball python")&#10;    case _:&#10;        print("other")&#10;&#10;snake = (12, "ball")&#10;match snake:&#10;    case (length, "ball"):&#10;        print(f"a {length} ft ball python")&#10;    case (length, species):&#10;        print(f"a {length} ft {species}")</code></pre> | Comparing one value against exact, known possibilities — or splitting a tuple into named pieces while checking its values |
+| `match` / `case`       | <pre><code class="language-python-ref">species = "ball"&#10;match species:&#10;    case "ball":&#10;        print("ball python")&#10    case "burmese":&#10;        print("burmese python")&#10;    case _:&#10;        print("other")</code></pre> | Comparing one value against exact, known possibilities — or splitting a tuple into named pieces while checking its values |
 
 ## If / elif / else
 
-A chain of `if`, `elif`, and `else` checks a series of conditions in order, running the indented block under the first one that's `True` — then exits the whole chain without checking any conditions below it. 
+A chain of `if`, `elif`, and `else`: 
 
-Only `if` is required; a chain can have any number of `elif`s (including none) and one optional `else`.
+1. Checks a series of [conditions](#boolean-expressions) in order
+2. Runs the indented block under the first one that's `True`
+3. Then exits the whole chain without checking any conditions below it. 
+
+**if:**
+
+This always comes first, and has a condition. If the condition is `True`, it runs the block of code indented under it, then exits the chain.
+
+**elif:**
+
+Short for "else if." Any number of `elif`s can follow the `if` (or none) — each has its own condition, but is only checked if every condition above it was `False`. Python runs the block under the first one that's `True`, then exits the chain, skipping the rest no matter how many `elif`s follow.
+
+**else:**
+
+Optional, and always comes last if present. It has no condition of its own — it's the catch-all that runs only when none of the `if`/`elif` conditions above it were `True`.
+
+
 
 ```python-ref
 length = 12
 
-if length > 10:
-    print("that's a big snake")    # runs — 12 > 10, exits the chain here
-elif length > 7:
-    print("that's a medium snake")
+if length > 10:                    # always starts with an if 
+    print("that's a big snake")    
+elif length > 7:                   # then any number of elifs (or none)
+    print("that's a medium snake") 
 elif length > 4:
     print("that's a small snake")
-else:
+else:                              # last comes one else (or none)
     print("that's a tiny snake")
 ```
 
-??? tip "See the path"
-    See the decision path the above code will take in the form of a flow chart diagram.
-
+??? tip "See the decision path this code follows"
     ```mermaid
     flowchart TD
         A{"`if length > 10:`"} -->|True| B["`print('big snake')`"]
@@ -205,36 +219,6 @@ other_snake = ["ball", "burmese"]   # separate list, but equal contents
 if snake is not other_snake:        # it's a different list, even though contents match
     print("but not the same list")
 ```
-
-### `elif`
-
-Checks another condition, but only if the ones above it were False.
-
-```python-ref
-length = 12
-if length > 15:       # this condition is false
-    print("giant")
-elif length > 8:      # this condition is true
-    print("large")    # runs, then exits chain
-elif length > 4:
-    print("medium")
-```
-
-`elif` is short for "else if," and if the initial `if` statement was `False` it offers an additional chance for a condition to be checked. They are ordered so that they only run if every condition above it was `False`. Python runs the first branch whose condition is `True` and skips the rest, no matter how many `elif`s follow. 
-
-### `else`
-
-The catch-all — it runs when nothing above it matched. It always comes last and doesn't have a condition.
-
-```python-ref
-venomous = False
-if venomous:
-    print("handle with care")
-else:
-    print("safe to handle")    # runs — venomous is False
-```
-
-A conditional chain can have `elif` without `else`, but `else` (if present) must always be the final branch.
 
 ### Logical operators
 
