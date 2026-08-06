@@ -1,13 +1,10 @@
 # :material-calendar-clock:{ .lg .middle } datetime library
 
-The **`datetime`** module is Python's standard library for working with dates and times — logging when an observation happened, measuring how long ago it was, or formatting a date for display. It ships with Python, so no install is needed.
+The **`datetime`** module is Python's standard library for working with dates and times — logging when an observation happened, measuring how long ago it was, or formatting a date for display.
 
-| Class | Holds | Example |
-|-------|-------|---------|
-| `date` | A calendar date, no time of day | `date(2026, 7, 23)` |
-| `time` | A time of day, no date | `time(14, 30)` |
-| `datetime` | A date and time together | `datetime(2026, 7, 23, 14, 30)` |
-| `timedelta` | A duration — the gap between two dates/times | `timedelta(days=7)` |
+## Install
+
+`datetime` ships with Python's standard library — nothing to install.
 
 ## Import
 
@@ -16,6 +13,13 @@ Each class below is imported individually by name, rather than through a `dateti
 ```python-ref
 from datetime import date, datetime, timedelta
 ```
+
+| Class | Holds | Example |
+|-------|-------|---------|
+| `date` | A calendar date, no time of day | `date(2026, 7, 23)` |
+| `time` | A time of day, no date | `time(14, 30)` |
+| `datetime` | A date and time together | `datetime(2026, 7, 23, 14, 30)` |
+| `timedelta` | A duration — the gap between two dates/times | `timedelta(days=7)` |
 
 ## Creating dates and times
 

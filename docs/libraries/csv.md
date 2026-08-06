@@ -1,13 +1,10 @@
 # :material-file-delimited-outline:{ .lg .middle } csv library
 
-The **`csv`** module reads and writes CSV ("comma-separated values") files — a plain-text table format that spreadsheets and databases can both open. It ships with Python, so no install is needed. Every example below actually runs in your browser: Pyodide gives each page its own in-memory filesystem, so `open()` works exactly like it would on a real computer, just without anything being saved outside this page.
+The **`csv`** module reads and writes CSV ("comma-separated values") files — a plain-text table format that spreadsheets and databases can both open. Every example below actually runs in your browser: Pyodide gives each page its own in-memory filesystem, so `open()` works exactly like it would on a real computer, just without anything being saved outside this page.
 
-| Tool | Reads/writes rows as | Use it for |
-|------|----------------------|------------|
-| `csv.writer` | A list per row | Writing plain rows of values |
-| `csv.reader` | A list per row | Reading plain rows of values |
-| `csv.DictWriter` | A dict per row | Writing rows keyed by column name |
-| `csv.DictReader` | A dict per row | Reading rows keyed by column name |
+## Install
+
+`csv` ships with Python's standard library — nothing to install.
 
 ## Import
 
@@ -16,6 +13,13 @@ The whole module is used through the `csv.` prefix, so a plain import is all you
 ```python-ref
 import csv
 ```
+
+| Tool | Reads/writes rows as | Use it for |
+|------|----------------------|------------|
+| `csv.writer` | A list per row | Writing plain rows of values |
+| `csv.reader` | A list per row | Reading plain rows of values |
+| `csv.DictWriter` | A dict per row | Writing rows keyed by column name |
+| `csv.DictReader` | A dict per row | Reading rows keyed by column name |
 
 ## Writing CSV files
 

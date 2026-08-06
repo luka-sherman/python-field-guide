@@ -1,14 +1,10 @@
 # :material-dice-multiple:{ .lg .middle } random library
 
-The **`random`** module generates pseudo-random numbers and makes random selections — rolling a dice, shuffling a deck, or picking a specimen to feature at random. It ships with Python, so no install is needed.
+The **`random`** module generates pseudo-random numbers and makes random selections — rolling a dice, shuffling a deck, or picking a specimen to feature at random.
 
-| Function | Returns | Example |
-|----------|---------|---------|
-| `random()` | A random float between `0.0` and `1.0` | `0.37454` |
-| `randint(a, b)` | A random integer, `a` and `b` both included | `randint(1, 6)` → `4` |
-| `choice(seq)` | One random item from a sequence | `choice(species)` |
-| `shuffle(seq)` | Reorders a list in place, returns `None` | `shuffle(species)` |
-| `sample(seq, k)` | `k` unique random items, as a new list | `sample(species, 2)` |
+## Install
+
+`random` ships with Python's standard library — nothing to install.
 
 ## Import
 
@@ -17,6 +13,14 @@ The whole module is used through the `random.` prefix, so a plain import is all 
 ```python-ref
 import random
 ```
+
+| Function | Returns | Example |
+|----------|---------|---------|
+| `random()` | A random float between `0.0` and `1.0` | `0.37454` |
+| `randint(a, b)` | A random integer, `a` and `b` both included | `randint(1, 6)` → `4` |
+| `choice(seq)` | One random item from a sequence | `choice(species)` |
+| `shuffle(seq)` | Reorders a list in place, returns `None` | `shuffle(species)` |
+| `sample(seq, k)` | `k` unique random items, as a new list | `sample(species, 2)` |
 
 ## Random numbers
 

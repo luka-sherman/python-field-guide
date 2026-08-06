@@ -1,6 +1,20 @@
 # :material-image-outline:{ .lg .middle } Pillow library
 
-**Pillow** (imported as `PIL`) is Python's standard library for opening, editing, and saving image files — photos, screenshots, thumbnails, anything in a common format like JPEG or PNG. It's a third-party package (`pip install pillow`), not part of the standard library, but it's the de facto standard for image work in Python. Like [Tkinter](tkinter.md), Pillow ultimately produces visual output — a saved or displayed image — which can't be shown inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file alongside an image and run them with `python` to see the results.
+**Pillow** (imported as `PIL`) is Python's standard library for opening, editing, and saving image files — photos, screenshots, thumbnails, anything in a common format like JPEG or PNG. It's a third-party package, not part of the standard library, but it's the de facto standard for image work in Python. Like [Tkinter](tkinter.md), Pillow ultimately produces visual output — a saved or displayed image — which can't be shown inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file alongside an image and run them with `python` to see the results.
+
+## Install
+
+```bash
+pip install pillow
+```
+
+## Import
+
+Pillow's package name (`pillow`) doesn't match its import name — it's imported as `PIL`, and `Image` specifically is used throughout this page.
+
+```python-ref
+from PIL import Image
+```
 
 ## Why Pillow?
 
@@ -39,14 +53,6 @@ Beyond the base [`Image`](#the-image) object, Pillow's functionality is spread a
 | [`ImageOps`](#imageops-module) | One-line convenience operations — auto-contrast, mirroring, inverting. |
 | [`ImageChops`](#imagechops-module) | Combining two same-size images pixel by pixel — diffing, blending. |
 | [`ImageSequence`](#imagesequence-module) | Looping over every frame of an animated image, like a GIF. |
-
-## Import
-
-Pillow's package name (`pillow`) doesn't match its import name — it's imported as `PIL`, and `Image` specifically is used throughout this page.
-
-```python-ref
-from PIL import Image
-```
 
 ## The Image
 

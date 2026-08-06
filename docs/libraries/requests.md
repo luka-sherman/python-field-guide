@@ -1,6 +1,20 @@
 # :material-api:{ .lg .middle } requests library
 
-**`requests`** is a third-party library (`pip install requests`) for fetching data over the internet — asking a website or API for information, the same way a browser does, but from inside a Python program. It's not part of the standard library, but it's the de facto standard for this in Python, favored over the built-in `urllib` for its much simpler syntax. Every example on this page makes a real network call, which this site's in-browser sandbox can't do — copy them into a local `.py` file and run them with `python` to see the results.
+**`requests`** is a third-party library for fetching data over the internet — asking a website or API for information, the same way a browser does, but from inside a Python program. It's not part of the standard library, but it's the de facto standard for this in Python, favored over the built-in `urllib` for its much simpler syntax. Every example on this page makes a real network call, which this site's in-browser sandbox can't do — copy them into a local `.py` file and run them with `python` to see the results.
+
+## Install
+
+```bash
+pip install requests
+```
+
+## Import
+
+The whole module is used through the `requests.` prefix, so a plain import is all you need.
+
+```python-ref
+import requests
+```
 
 | Concept | What it is |
 |---------|------------|
@@ -21,14 +35,6 @@
 - **`aiohttp`** — built specifically for `async`/`await` from the ground up, aimed at programs making many requests at once.
 
 For everyday use, `requests` offers the best balance of simplicity and capability — most tasks are one function call.
-
-## Import
-
-The whole module is used through the `requests.` prefix, so a plain import is all you need.
-
-```python-ref
-import requests
-```
 
 ## Making a request
 

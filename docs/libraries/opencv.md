@@ -1,6 +1,20 @@
 # :material-face-recognition:{ .lg .middle } OpenCV library
 
-**OpenCV** (imported as `cv2`) is Python's standard library for computer vision — real-time image and video analysis, rather than the straightforward photo editing [Pillow](pillow.md) is built for. It's a third-party package (`pip install opencv-python`), originally written in C++ with a thin Python wrapper over it, which shows up in a couple of its API choices: images load as plain NumPy arrays instead of a dedicated `Image` class, and in **BGR** (blue-green-red) channel order rather than the RGB most other tools expect. Like Pillow and [Tkinter](tkinter.md), OpenCV produces visual, often interactive output — a window showing an image or a live camera feed — that can't run inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file alongside an image and run them with `python` to see the results.
+**OpenCV** (imported as `cv2`) is Python's standard library for computer vision — real-time image and video analysis, rather than the straightforward photo editing [Pillow](pillow.md) is built for. It's a third-party package, originally written in C++ with a thin Python wrapper over it, which shows up in a couple of its API choices: images load as plain NumPy arrays instead of a dedicated `Image` class, and in **BGR** (blue-green-red) channel order rather than the RGB most other tools expect. Like Pillow and [Tkinter](tkinter.md), OpenCV produces visual, often interactive output — a window showing an image or a live camera feed — that can't run inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file alongside an image and run them with `python` to see the results.
+
+## Install
+
+```bash
+pip install opencv-python
+```
+
+## Import
+
+OpenCV's package name (`opencv-python`) doesn't match its import name — it's always imported as `cv2`.
+
+```python-ref
+import cv2
+```
 
 | Concept | What it is |
 |---------|------------|
@@ -26,14 +40,6 @@ For a broader comparison of OpenCV against Pillow and other Python image librari
 | [Contours](#contours) | Finding and outlining distinct shapes in a black-and-white image. |
 | [Face detection with cascade classifiers](#face-detection-with-cascade-classifiers) | Locating faces (or other objects) at multiple positions and scales. |
 | [Working with video](#working-with-video) | Applying any of the above to a live camera feed or video file, one frame at a time. |
-
-## Import
-
-OpenCV's package name (`opencv-python`) doesn't match its import name — it's always imported as `cv2`.
-
-```python-ref
-import cv2
-```
 
 ## Reading, displaying, and saving images
 

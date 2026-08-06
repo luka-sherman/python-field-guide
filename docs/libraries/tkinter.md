@@ -1,14 +1,10 @@
 # :material-application-outline:{ .lg .middle } Tkinter library
 
-**Tkinter** is Python's built-in toolkit for building desktop GUI applications — windows, buttons, text fields, and the rest of a traditional app interface, all driven from your Python variables, functions, and objects. It ships with the standard library, so no extra install is needed on your own machine. A GUI needs a real window and display to run in, though, so unlike the rest of this field guide, the examples below aren't runnable in the browser — copy them into a local `.py` file  to see them in action.
+**Tkinter** is Python's built-in toolkit for building desktop GUI applications — windows, buttons, text fields, and the rest of a traditional app interface, all driven from your Python variables, functions, and objects. A GUI needs a real window and display to run in, though, so unlike the rest of this field guide, the examples below aren't runnable in the browser — copy them into a local `.py` file  to see them in action.
 
-| Concept | What it is |
-|------|------------|
-| Widget | Any single visual element — a button, label, text box, or window itself. |
-| Root window | The main application window, created once with `tk.Tk()`, that every other widget lives inside. |
-| Geometry manager | The system (`pack`, `grid`, or `place`) that decides where a widget appears inside its parent. |
-| Event loop | The `mainloop()` call that keeps the window open and listening for clicks, keystrokes, and other input until it's closed. |
-| Callback | A function you write that Tkinter calls automatically when something happens, like a button being clicked. |
+## Install
+
+Tkinter ships with the standard library — no extra install is needed on your own machine.
 
 ## Import
 
@@ -18,6 +14,14 @@
 import tkinter as tk
 from tkinter import ttk
 ```
+
+| Concept | What it is |
+|------|------------|
+| Widget | Any single visual element — a button, label, text box, or window itself. |
+| Root window | The main application window, created once with `tk.Tk()`, that every other widget lives inside. |
+| Geometry manager | The system (`pack`, `grid`, or `place`) that decides where a widget appears inside its parent. |
+| Event loop | The `mainloop()` call that keeps the window open and listening for clicks, keystrokes, and other input until it's closed. |
+| Callback | A function you write that Tkinter calls automatically when something happens, like a button being clicked. |
 
 ## Creating a window
 
