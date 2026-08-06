@@ -12,9 +12,9 @@ nav:
   - Collections: collections.md
   - Conditionals: conditionals.md
   - Loops: loops.md
-  - File I/O: files.md
   - Functions: functions.md
   - Classes: oop.md
+  - File I/O: files.md
   - Style: style.md
   - Bugs: bugs.md
   - Libraries:
