@@ -2,13 +2,17 @@
 
 Every value in Python has a **type**, which determines what operations it supports and how it behaves — Python figures this out from the value itself, since you never declare a type explicitly. A basic (or "scalar") data type holds a single, indivisible value, as opposed to a [collection](collections.md), which groups many values together. The basic types are also all **immutable**: once created, the value itself can never be changed in place — only replaced with a different value.
 
+<div class="pt-jump-table" markdown="block">
+
 | Type | Example | Use it for |
 |------|---------|------------|
-| `int` | `5` | <ul><li>Counts — how many of something there are, like items in a list</li><li>Indexes — the position of an item in a sequence, like `species[2]`</li><li>IDs — a unique whole-number identifier, like a user or record ID</li></ul> |
-| `float` | `4.5` | <ul><li>Measurements, ratios — anything with a decimal</li><li>Binary rounding errors mean `0.1 + 0.2 != 0.3`</li></ul> |
-| `str` | `"ball python"` | <ul><li>Text — names, labels, messages</li><li>Ordered and indexable like a list, but immutable — `.upper()`, `.replace()`, etc. return a *new* string</li></ul> |
-| `bool` | `True` | <ul><li>Flags, yes/no switches, comparison results (`length > 3`)</li><li>Secretly a subclass of `int` — `True + True == 2`</li></ul> |
-| `None` | `None` | <ul><li>Marking "no value yet" — a default placeholder, or what a function returns if it falls through without a `return`</li><li>Compare with `is None`, not `== None`</li><li>`not thing` also catches `None`, but it's true for any falsy value (`0`, `""`, `[]`) too — use `is None` when you mean *specifically* "no value"</li></ul> |
+| [`int`](#integers) | `5` | <ul><li>Counts — how many of something there are, like items in a list</li><li>Indexes — the position of an item in a sequence, like `species[2]`</li><li>IDs — a unique whole-number identifier, like a user or record ID</li></ul> |
+| [`float`](#floats) | `4.5` | <ul><li>Measurements, ratios — anything with a decimal</li><li>Binary rounding errors mean `0.1 + 0.2 != 0.3`</li></ul> |
+| [`str`](#strings) | `"ball python"` | <ul><li>Text — names, labels, messages</li><li>Ordered and indexable like a list, but immutable — `.upper()`, `.replace()`, etc. return a *new* string</li></ul> |
+| [`bool`](#booleans) | `True` | <ul><li>Flags, yes/no switches, comparison results (`length > 3`)</li><li>Secretly a subclass of `int` — `True + True == 2`</li></ul> |
+| [`None`](#none) | `None` | <ul><li>Marking "no value yet" — a default placeholder, or what a function returns if it falls through without a `return`</li><li>Compare with `is None`, not `== None`</li><li>`not thing` also catches `None`, but it's true for any falsy value (`0`, `""`, `[]`) too — use `is None` when you mean *specifically* "no value"</li></ul> |
+
+</div>
 
 ??? tip "Check any variable's type"
     If you're not sure what type a value is — because it came from user input, a function's return value, or somewhere else you didn't set it yourself — you can ask Python directly instead of guessing. `type()` shows the exact type; `isinstance()` checks whether a value is that type, and also matches a subclass, which is usually why it's the better choice inside an `if`. Works the same way for any type on this page.

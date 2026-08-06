@@ -6,11 +6,14 @@ All loop definitions end with a colon `:`, and the **block** is the lines indent
 
 **There are two types of loops:**
 
+<div class="pt-jump-table" markdown="block">
 
 | Loop | Syntax | Use it for |
 |------|--------|------------|
-| `for` | `for item in sequence:` | When you know (or can generate) what you're looping over ahead of time:<ul><li>A `range()` — loop a fixed number of times</li><li>A `list` — an ordered, changeable collection of items</li><li>A `tuple` — an ordered collection that can't be changed</li><li>A `dict` — looping gives you the keys (or use `.items()` for key-value pairs)</li><li>A `str` — loops over the string one character at a time</li></ul> |
-| `while` | `while condition:` | <ul><li>Repeating until something changes — not tied to a fixed collection</li><li>When you don't know in advance how many passes you'll need</li></ul> |
+| [`for`](#for-loops) | `for item in sequence:` | When you know (or can generate) what you're looping over ahead of time:<ul><li>A `range()` — loop a fixed number of times</li><li>A `list` — an ordered, changeable collection of items</li><li>A `tuple` — an ordered collection that can't be changed</li><li>A `dict` — looping gives you the keys (or use `.items()` for key-value pairs)</li><li>A `str` — loops over the string one character at a time</li></ul> |
+| [`while`](#while-loops) | `while condition:` | <ul><li>Repeating until something changes — not tied to a fixed collection</li><li>When you don't know in advance how many passes you'll need</li></ul> |
+
+</div>
 
 ## For loops
 

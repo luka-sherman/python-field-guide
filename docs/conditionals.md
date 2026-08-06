@@ -6,10 +6,14 @@ The condition ends with a colon `:`, and the block is the lines indented underne
 
 **There are two types of conditional statements:**
 
+<div class="pt-jump-table" markdown="block">
+
 | Statement              | Example                                                                                                                                                                       | When to use                                                          |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| `if` / `elif` / `else` | <pre><code class="language-python-ref">if length &gt; 15:&#10;    print("giant")&#10;elif length &gt; 8:&#10;    print("large")&#10;else:&#10;    print("small")</code></pre> | The general-purpose default — ranges, comparisons, or checking unrelated things, so use this unless `match` is clearly a better fit |
-| `match` / `case`       | <pre><code class="language-python-ref">species = "ball"&#10;match species:&#10;    case "ball":&#10;        print("ball python")&#10    case "burmese":&#10;        print("burmese python")&#10;    case _:&#10;        print("other")</code></pre> | Comparing one value against exact, known possibilities — or splitting a tuple into named pieces while checking its values |
+| [`if` / `elif` / `else`](#if-elif-else) | <pre><code class="language-python-ref">if length &gt; 15:&#10;    print("giant")&#10;elif length &gt; 8:&#10;    print("large")&#10;else:&#10;    print("small")</code></pre> | The general-purpose default — ranges, comparisons, or checking unrelated things, so use this unless `match` is clearly a better fit |
+| [`match` / `case`](#match-case)       | <pre><code class="language-python-ref">species = "ball"&#10;match species:&#10;    case "ball":&#10;        print("ball python")&#10    case "burmese":&#10;        print("burmese python")&#10;    case _:&#10;        print("other")</code></pre> | Comparing one value against exact, known possibilities — or splitting a tuple into named pieces while checking its values |
+
+</div>
 
 ## If / elif / else
 

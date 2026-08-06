@@ -482,6 +482,25 @@ input:checked + .md-consent__settings {
   z-index: 2;
 }
 
+/* "Jump to section" comparison tables (types/collections/conditionals/loops
+   top table) — same stretched-link technique as the card grid above, but scoped
+   to a wrapping div (`<div class="pt-jump-table" markdown="block">`) since
+   attr_list can't attach a class straight to a Markdown table. Each row's
+   first cell holds a same-page link to that row's section; the ::after
+   stretches it across the whole `<tr>` so clicking anywhere in the row
+   navigates there. */
+.pt-jump-table tbody tr {
+  position: relative;
+  cursor: pointer;
+}
+
+.pt-jump-table tbody tr td:first-child a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
 /* True/False badges for truth-table style call-outs. */
 .pt-bool-true,
 .pt-bool-false {
