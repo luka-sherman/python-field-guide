@@ -40,10 +40,10 @@ Optional, and always comes last if present. It has no condition of its own — i
 ```python-ref
 length = 12
 
-if length > 10:                    # always starts with an if 
-    print("that's a big snake")    
+if length > 10:                    # always starts with an if
+    print("that's a big snake")
 elif length > 7:                   # then any number of elifs (or none)
-    print("that's a medium snake") 
+    print("that's a medium snake")
 elif length > 4:
     print("that's a small snake")
 else:                              # last comes one else (or none)
@@ -137,16 +137,19 @@ if name > "ball python":       # alphabetical comparison
     print("comes after 'ball python' alphabetically")
 ```
 
-**boolean:** `==`, `is`, or just the value itself
+**boolean:** just the value itself, or `not`
 ```python-ref
 venomous = False
 
-if venomous:                   # is it True
+if venomous:                   # is it True — don't write venomous == True
     print("handle with care")
 
-if not venomous:               # is it False
+if not venomous:               # is it False — don't write venomous == False
     print("safe to handle")
 ```
+
+??? note "Don't compare booleans with `==` or `is`"
+    [PEP 8](https://peps.python.org/pep-0008/#programming-recommendations) calls this out specifically: never write `if venomous == True:`, and skip `is True`/`is False` too — a boolean is already the condition, so just use the value directly (or `not` the value). This is different from [`None`](#none), where `is`/`is not` *is* the right tool — `None` is a singleton, not a boolean.
 
 **None:** `is`, `is not`
 ```python-ref
@@ -648,8 +651,8 @@ A `match` can pick a different `case` depending on the tuple's length or the val
 
     snake = (12, "ball")
 
-    length, species = snake   # regular assignment — always unpacks the same way,
-    print(species, length)    # would crash on a 1- or 3-item tuple, and can't pick a different case based on species
+    length, species = snake   # regular assignment — see note above
+    print(species, length)
 
     match snake:
         case (length, "ball"):                  # 2 items, second is 'ball'

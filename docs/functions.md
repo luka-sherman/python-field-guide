@@ -94,13 +94,14 @@ describe(species="ball", venomous=True)    # length_ft still uses its default
 
 ??? run "Run a function example"
     All the examples above, combined into one script:
-TODO: add titles to code blocks
+
     ```python
     def describe(species):
         print(f"a {species} python")
 
     describe("ball")
     describe("burmese")
+
 
     def describe(species):
         """Return a short description of the given snake species."""
@@ -109,11 +110,13 @@ TODO: add titles to code blocks
     print(describe("ball"))
     print(describe.__doc__)
 
+
     def describe(species):
         return f"a {species} python"
 
     message = describe("ball")
     print(message)
+
 
     def check_length(length_ft):
         if length_ft > 10:
@@ -123,11 +126,13 @@ TODO: add titles to code blocks
     print(check_length(12))
     print(check_length(4))
 
+
     def describe(species, length_ft=5):
         return f"a {length_ft} ft {species} python"
 
     print(describe("ball"))
     print(describe("burmese", 12))
+
 
     def describe(species, length_ft=5, venomous=False):
         return f"{species}, {length_ft} ft, venomous: {venomous}"
@@ -178,12 +183,14 @@ describe(species="ball", length_ft=5)
 
     print(total_length(5, 12, 8))
 
+
     def total_length(*lengths):
         print(lengths)
         return sum(lengths)
 
     print(total_length(5, 12, 8))
     print(total_length(4.5))
+
 
     def describe(**details):
         for key, value in details.items():
@@ -238,6 +245,7 @@ def show_species():
 
     species = "ball"
 
+
     def show_species():
         print(species)
 
@@ -245,6 +253,7 @@ def show_species():
     print(species)
 
     count = 0
+
 
     def record_sighting():
         global count

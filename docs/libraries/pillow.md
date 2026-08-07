@@ -325,6 +325,7 @@ img.save("shapes.png")
     import random
     from PIL import Image, ImageDraw
 
+
     class Shape:
         def __init__(self, position, size, color):
             self.position = position
@@ -595,6 +596,7 @@ while True:
 
 ```python-ref
 from PIL import Image, ImageFilter
+
 
 def apply_filter(img, choice):
     if choice == "blur":

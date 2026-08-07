@@ -77,7 +77,9 @@ from tkinter import ttk
 label = ttk.Label(root, text="ball python")
 button = ttk.Button(root, text="Run")
 entry = ttk.Entry(root)
-label.pack(); button.pack(); entry.pack()
+label.pack()
+button.pack()
+entry.pack()
 ```
 
 ### Label

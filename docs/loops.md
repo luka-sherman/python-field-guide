@@ -39,7 +39,7 @@ range(2, 10, 3)   # start=2, stop=10, step=3 — 2, 5, 8
 Each pass hands you the item itself, not its position. This is what sets a Python `for` loop apart from the index-counting loops in some other languages. A list is the most common thing to loop over, since it's Python's all-purpose ordered collection.
 
 ```python-ref
-for s in species: 
+for s in species:
     print(s)    # burmese  rock  ball  blood
 ```
 
@@ -59,7 +59,7 @@ for s in species:
 Works exactly like looping over a list — a tuple just can't be changed once it's created. Anything you'd loop through in a list, you can loop through the same way in a tuple.
 
 ```python-ref
-for s in constrictors: 
+for s in constrictors:
     print(s)    # ball  burmese  boa
 ```
 
@@ -68,11 +68,11 @@ for s in constrictors:
 Looping directly over a dict gives you its keys, one at a time. Use `.values()` to get just the values instead, or `.items()` to get the key and value together — usually the most useful of the three.
 
 ```python-ref
-for key, value in snake.items(): 
+for key, value in snake.items():
     print(key, value)          # species ball  length_ft 5  venomous False
-for key in snake: 
+for key in snake:
     print(key)                 # species  length_ft  venomous
-for value in snake.values(): 
+for value in snake.values():
     print(value)               # ball  5  False
 ```
 
@@ -99,7 +99,7 @@ for i, s in enumerate(species): print(i, s)    # 0 burmese  1 rock  2 ball  3 bl
     species = ["burmese", "rock", "ball", "blood"]
     length_ft = [12, 4, 5, 3.5]
 
-    for s, ft in zip(species, length_ft): 
+    for s, ft in zip(species, length_ft):
         print(s, ft)
     ```
 

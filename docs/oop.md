@@ -133,6 +133,7 @@ ball.describe()    # "a 5 ft ball python"
     print(burmese.species)
     print(burmese.length_ft)
 
+
     class Snake:
         def __init__(self, species, length_ft):
             self.species = species
@@ -143,6 +144,7 @@ ball.describe()    # "a 5 ft ball python"
 
     print(ball.species)
     print(burmese.species)
+
 
     class Snake:
         def __init__(self, species, length_ft):
@@ -155,6 +157,7 @@ ball.describe()    # "a 5 ft ball python"
     ball = Snake("ball", 5)
     print(ball.describe())
 
+
     class Snake:
         def __init__(self, species, length_ft):
             self.species = species
@@ -165,6 +168,7 @@ ball.describe()    # "a 5 ft ball python"
 
     ball = Snake("ball", 5)
     print(ball)
+
 
     class Snake:
         def __init__(self, species, length_ft):
@@ -180,6 +184,7 @@ ball.describe()    # "a 5 ft ball python"
 
     del ball
     print("ball object deleted")
+
 
     class Snake:
         pass
@@ -200,6 +205,7 @@ class Snake:
 
     def describe(self):
         return f"a {self.length_ft} ft {self.species} python"
+
 
 class Boa(Snake):
     pass
@@ -257,16 +263,19 @@ boa.describe()      # "a heavy-bodied constrictor" — Boa's version replaces it
         def describe(self):
             return f"a {self.length_ft} ft {self.species} python"
 
+
     class Boa(Snake):
         pass
 
     boa = Boa("boa constrictor", 10)
     print(boa.describe())
 
+
     class Snake:
         def __init__(self, species, length_ft):
             self.species = species
             self.length_ft = length_ft
+
 
     class Boa(Snake):
         def __init__(self, species, length_ft, region):
@@ -277,10 +286,12 @@ boa.describe()      # "a heavy-bodied constrictor" — Boa's version replaces it
     print(boa.species)
     print(boa.region)
 
+
     class Snake:
         def __init__(self, species, length_ft):
             self.species = species
             self.length_ft = length_ft
+
 
     class Boa(Snake):
         def __init__(self, species, length_ft, region):
@@ -291,10 +302,12 @@ boa.describe()      # "a heavy-bodied constrictor" — Boa's version replaces it
     print(boa.species)
     print(boa.region)
 
+
     class Snake:
         def __init__(self, species, length_ft):
             self.species = species
             self.length_ft = length_ft
+
 
     class Boa(Snake):
         def __init__(self, species, length_ft, region):
@@ -308,6 +321,7 @@ boa.describe()      # "a heavy-bodied constrictor" — Boa's version replaces it
     print(boa.region)
     print(boa.habitat())
 
+
     class Snake:
         def __init__(self, species, length_ft):
             self.species = species
@@ -315,6 +329,7 @@ boa.describe()      # "a heavy-bodied constrictor" — Boa's version replaces it
 
         def describe(self):
             return f"a {self.length_ft} ft {self.species} python"
+
 
     class Boa(Snake):
         def describe(self):
@@ -364,9 +379,11 @@ for s in (snake, boa): print(s.describe())
     print(len(["ball", "burmese", "boa"]))
     print(len({"species": "ball", "length_ft": 5}))
 
+
     class Snake:
         def move(self):
             print("slither")
+
 
     class Gecko:
         def move(self):
@@ -378,6 +395,7 @@ for s in (snake, boa): print(s.describe())
     for animal in (ball, gecko):
         animal.move()
 
+
     class Snake:
         def __init__(self, species, length_ft):
             self.species = species
@@ -385,6 +403,7 @@ for s in (snake, boa): print(s.describe())
 
         def describe(self):
             return f"a {self.length_ft} ft {self.species} python"
+
 
     class Boa(Snake):
         def describe(self):
