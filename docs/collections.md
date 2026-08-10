@@ -4,12 +4,12 @@ A **collection** is a single object that groups multiple values together, so a w
 
 <div class="pt-jump-table" markdown="block">
 
-| Type | Example | Access values by | Mutable (changeable after creation) | Duplicates allowed | Use it for |
-|------|---------|:-----------------:|:-------:|:-------:|------------|
-| <a href="#lists">`list`</a> | <a href="#lists">`["ball", "burmese"]`</a> | <a href="#lists">Index</a> | <a href="#lists">Yes</a> | <a href="#lists">Yes</a> | <a href="#lists"><ul><li>Ordered sequence</li><li>Looking up by value (`in`) scans item by item</li></ul></a> |
-| <a href="#tuples">`tuple`</a> | <a href="#tuples">`("ball", "burmese")`</a> | <a href="#tuples">Index</a> | <a href="#tuples">No</a> | <a href="#tuples">Yes</a> | <a href="#tuples"><ul><li>Fixed sequence that shouldn't change — records, dict keys</li></ul></a> |
-| <a href="#dictionaries">`dict`</a> | <a href="#dictionaries">`{"species": "ball", ...}`</a> | <a href="#dictionaries">Key</a> | <a href="#dictionaries">Yes</a> | <a href="#dictionaries">No (keys must be unique)</a> | <a href="#dictionaries"><ul><li>Key → value lookups, records with named fields</li><li>No positional access — only by key</li></ul></a> |
-| <a href="#sets">`set`</a> | <a href="#sets">`{"ball", "burmese"}`</a> | <a href="#sets">Membership (`in`) only</a> | <a href="#sets">Yes</a> | <a href="#sets">No</a> | <a href="#sets"><ul><li>Fast membership checks, no matter how large it gets</li><li>Removing duplicates, comparing groups (union/intersection)</li></ul></a> |
+| Type | Example | Access values by | Use it for |
+|------|---------|:-----------------:|------------|
+| <a href="#lists">`list`</a> | <a href="#lists">`["ball", "burmese"]`</a> | <a href="#lists">Index</a> | <a href="#lists"><ul><li>An ordered, changeable sequence — the general-purpose collection for grouping items you'll add to, remove from, or reorder</li><li>Looking up by value (`in`) scans item by item</li></ul></a> |
+| <a href="#tuples">`tuple`</a> | <a href="#tuples">`("ball", "burmese")`</a> | <a href="#tuples">Index</a> | <a href="#tuples"><ul><li>A fixed, ordered sequence — immutable, so it's safe for things that shouldn't change: records, dict keys, function results you're unpacking</li></ul></a> |
+| <a href="#dictionaries">`dict`</a> | <a href="#dictionaries">`{"species": "ball", ...}`</a> | <a href="#dictionaries">Key (so can't have duplicates)</a> | <a href="#dictionaries"><ul><li>Key → value lookups — records with named fields, counting or grouping by key</li><li>No positional access — only by key</li><li>Keys can't repeat, but values can — `{"a": 5, "b": 5}` is fine</li></ul></a> |
+| <a href="#sets">`set`</a> | <a href="#sets">`{"ball", "burmese"}`</a> | <a href="#sets">Membership (`in`) only (so can't have duplicates)</a> | <a href="#sets"><ul><li>An unordered collection of unique values — fast membership checks no matter how large it gets</li><li>Removing duplicates, comparing groups (union/intersection)</li></ul></a> |
 
 </div>
 
