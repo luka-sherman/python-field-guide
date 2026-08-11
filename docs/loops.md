@@ -243,6 +243,152 @@ while count < 3:
         count += 1
     ```
 
+### Boolean expressions
+
+A boolean expression is needed for every `while` condition.
+
+```python-ref
+while [boolean expression]:
+    [indented code block that runs, and keeps running, as long as the expression stays True]
+```
+
+A **boolean expression** is a boolean value (`True` or `False`) or anything that produces one, and is treated as the **condition** that must be `True` in order to run a block of code.
+
+A comparison looks different depending on the type of value being checked, as shown below. All of these comparisons result in a `True` or `False` boolean expression. 
+
+**integer and float:** `==`, `!=`, `>`, `<`, `>=`, `<=`
+```python-ref
+length = 12
+
+if length == 12:             # equal to
+    print("exactly 12 ft")
+
+if length != 4:              # not equal
+    print("not 4 ft")
+
+if length > 10:              # greater than
+    print("long snake")
+
+if length < 20:              # less than
+    print("under 20 ft")
+
+if length >= 12:             # greater than or equal to
+    print("at least 12 ft")
+
+if length <= 12.5:           # less than or equal to
+    print("12.5 ft or shorter")
+```
+
+**strings:** `==`, `!=`, `in`, `not in`, `>`, `<`
+```python-ref
+name = "burmese python"
+
+if name == "burmese python":   # equal to
+    print("it's a burmese")
+
+if name != "ball python":      # not equal
+    print("not a ball python")
+
+if "python" in name:           # is it a substring
+    print("name contains 'python'")
+
+if "anaconda" not in name:     # is it not a substring
+    print("name doesn't mention anaconda")
+
+if name > "ball python":       # alphabetical comparison
+    print("comes after 'ball python' alphabetically")
+```
+
+**boolean:** just the value itself, or `not`
+```python-ref
+venomous = False
+
+if venomous:                   # is it True — don't write venomous == True
+    print("handle with care")
+
+if not venomous:               # is it False — don't write venomous == False
+    print("safe to handle")
+```
+
+??? note "Don't compare booleans with `==` or `is`"
+    [PEP 8](https://peps.python.org/pep-0008/#programming-recommendations) calls this out specifically: never write `if venomous == True:`, and skip `is True`/`is False` too — a boolean is already the condition, so just use the value directly (or `not` the value). This is different from [`None`](types.md#none), where `is`/`is not` *is* the right tool — `None` is a singleton, not a boolean.
+
+**None:** `is`, `is not`
+```python-ref
+age = None
+
+if age is None:                # is it None
+    print("age not recorded")
+
+if age is not None:            # is it anything else
+    print("age was recorded")
+```
+
+**list & tuple:** `in`, `not in`, `==`, `!=`, or you can compare a specific item
+```python-ref
+species = ["ball", "burmese", "boa"]
+other_species = ["ball", "burmese", "boa"]
+
+if "ball" in species:          # is the value in the list
+    print("ball python is in the list")
+
+if "anaconda" not in species:  # is the value missing from the list
+    print("anaconda isn't in the list")
+
+if species == other_species:   # is it the same contents, in the same order
+    print("both lists match")
+
+if "ball" == species[0]:       # compare a specific item
+    print("ball python is the first item")
+
+snake = ("ball", "5ft", "not venomous")   # a tuple works the same way
+
+if "ball" in snake:
+    print("species ball is in the tuple")
+
+if snake == ("ball", "5ft", "not venomous"):
+    print("tuples match")
+```
+
+**dict:** `in`, `not in` (checks keys), or you can compare a specific value 
+```python-ref
+snake = {"species": "ball", "length": 3, "venomous": False}
+
+if "venomous" in snake:        # is it a key
+    print("snake dict tracks venomous status")
+
+if "habitat" not in snake:     # is it not a key
+    print("snake dict has no habitat key")
+
+if snake["length"] > 2:        # compare a specific value
+    print("snake in dict is over 2 ft")
+```
+
+**same contents:** `==`, `!=`
+```python-ref
+snake = ["ball", "burmese"]
+other_snake = ["ball", "burmese"]   # separate list, but equal contents
+
+if snake == other_snake:      # do they contain the same items?
+    print("equal contents")
+
+if snake != ["ball"]:         # different contents
+    print("not equal to a single-item list")
+```
+
+**is it comparing the exact same thing:** `is`, `is not`
+```python-ref
+snake = ["ball", "burmese"]
+
+same_snake = snake                  # another name for `snake`
+if snake is same_snake:             # same_snake and snake point to the exact same list
+    print("this really is the same list")
+
+other_snake = ["ball", "burmese"]   # separate list, but equal contents
+if snake is not other_snake:        # it's a different list, even though contents match
+    print("but not the same list")
+```
+
 ## Loop control
 
 A `for` loop and a `while` loop can both be redirected mid-run — cut short, skipped ahead by one pass, or wrapped up with a bit of code that only runs if nothing interrupted them. These keywords work identically in either loop type.
@@ -291,6 +437,14 @@ while count < 5:
         continue
     print(count)                 # 1  2  4  5
 ```
+
+??? tip "pass placeholder"
+    Temporarily fill an empty loop body when you're not ready to write the inside code yet. Python doesn't allow an empty block after a colon. `pass` does nothing, but acts as a placeholder until you're ready to add code so that the empty block won't cause a syntax error in the meantime. Covered in more detail on the [Conditionals](conditionals.md#if-elif-else) page.
+
+    ```python-ref
+    for s in species:
+        pass    # placeholder — does nothing, but prevents a syntax error
+    ```
 
 ??? note "The else clause"
     Runs once the loop finishes on its own — skipped entirely if `break` cut it short. Both `for` and `while` can end with an `else` block.

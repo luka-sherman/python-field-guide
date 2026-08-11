@@ -286,6 +286,21 @@ A and B here are [boolean expressions](#boolean-expressions).
         pass    # placeholder — does nothing, but prevents a syntax error
     ```
 
+??? tip "break and continue inside a loop"
+    `break` and `continue` are loop-control keywords, not conditional ones, but they almost always appear inside an `if` — checking a condition, then stopping the loop early (`break`) or skipping straight to the next pass (`continue`). Covered fully, with more examples, on the [Loops](loops.md#loop-control) page.
+
+    ```python-ref
+    for s in species:
+        if s == "ball":
+            break         # stops the loop entirely once "ball" is found
+        print(s)
+
+    for s in species:
+        if s == "ball":
+            continue      # skips just "ball", keeps looping over the rest
+        print(s)
+    ```
+
 ??? run "Run an if/elif/else example"
     All the examples above, combined into one script:
 

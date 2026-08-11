@@ -92,6 +92,14 @@ def describe(species, length_ft=5, venomous=False):
 describe(species="ball", venomous=True)    # length_ft still uses its default
 ```
 
+??? tip "pass placeholder"
+    Temporarily fill an empty function body when you're not ready to write the inside code yet. Python doesn't allow an empty block after a colon. `pass` does nothing, but acts as a placeholder until you're ready to add code so that the empty block won't cause a syntax error in the meantime. Covered in more detail on the [Conditionals](conditionals.md#if-elif-else) page.
+
+    ```python-ref
+    def describe(species):
+        pass    # placeholder — does nothing, but prevents a syntax error
+    ```
+
 ??? run "Run a function example"
     All the examples above, combined into one script:
 
