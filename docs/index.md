@@ -6,6 +6,8 @@ hide:
 
 # Python Field Guide { .pt-visually-hidden }
 
+### Get started
+
 <div class="grid cards" markdown="block">
 
 -   :material-monitor:{ .lg .middle } [__Workspace Setup__](workspace.md)
@@ -24,7 +26,13 @@ hide:
 
     [`variables`](foundations.md#variables) · [`print()`](foundations.md#print) · [`input()`](foundations.md#input) · [`comments`](foundations.md#comments)
 
--   :material-shape-outline:{ .lg .middle } [__Basic Data Types__](types.md)
+</div>
+
+### Data types
+
+<div class="grid cards" markdown="block">
+
+-   :material-shape-outline:{ .lg .middle } [__Basics__](types.md)
 
     A single value on its own — a number, some text, or true/false — that every variable holds and that determines what you can do with it.
 
@@ -32,7 +40,7 @@ hide:
 
     [`int`](types.md#integers) · [`float`](types.md#floats) · [`string`](types.md#strings) · [`bool`](types.md#booleans) · [`None`](types.md#none)
 
--   :material-basket-outline:{ .lg .middle } [__Collection Data Types__](collections.md)
+-   :material-basket-outline:{ .lg .middle } [__Collections__](collections.md)
 
     Multiple related values grouped into one container, so you can work with them together.
 
@@ -40,6 +48,11 @@ hide:
 
     [`list`](collections.md#lists) · [`tuple`](collections.md#tuples) · [`dict`](collections.md#dictionaries) · [`set`](collections.md#sets)
 
+</div>
+
+### Control flow
+
+<div class="grid cards" markdown="block">
 
 -   :material-source-branch:{ .lg .middle } [__Conditionals__](conditionals.md)
 
@@ -57,6 +70,12 @@ hide:
 
     [`for`](loops.md#for-loops) · [`while`](loops.md#while-loops) · [`break`](loops.md#loop-control)
 
+</div>
+
+### Code organization
+
+<div class="grid cards" markdown="block">
+
 -   :material-function-variant:{ .lg .middle } [__Functions__](functions.md)
 
     Packages a block of code under a name, so it can be run again with different inputs instead of rewriting it each time.
@@ -72,6 +91,12 @@ hide:
     ---
 
     [`class`](oop.md#classes-and-objects) · [`super()`](oop.md#inheritance) · [`polymorphism`](oop.md#polymorphism)
+
+</div>
+
+### Writing real programs
+
+<div class="grid cards" markdown="block">
 
 -   :material-file-document-outline:{ .lg .middle } [__File I/O__](files.md)
 
