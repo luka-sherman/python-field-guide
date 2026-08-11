@@ -82,7 +82,7 @@ hide:
 
     ---
 
-    [`def`](functions.md#defining-a-function) · [`return`](functions.md#return-values) · [`*args`/`**kwargs`](functions.md#flexible-arguments) · [`scope`](functions.md#scope)
+    [`def`](functions.md#defining-a-function) · [`return`](functions.md#return-values) · [`*args`/`**kwargs`](functions.md#flexible-arguments) · [`scope`](functions.md#scope) · [`recursion`](functions.md#recursion)
 
 -   :material-package-variant:{ .lg .middle } [__Classes__](oop.md)
 

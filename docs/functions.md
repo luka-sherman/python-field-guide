@@ -263,3 +263,65 @@ def show_species():
     record_sighting()
     print(count)
     ```
+
+## Recursion
+
+A function can call itself — this is called **recursion**, an alternative to a loop for problems that break down into smaller versions of themselves.
+
+```python-ref
+def countdown(n):
+    if n == 0:              # base case — stops the recursion
+        print("liftoff")
+        return
+    print(n)
+    countdown(n - 1)        # recursive case — calls itself with a smaller input
+
+countdown(3)                 # 3  2  1  liftoff
+```
+
+Every recursive function needs two parts:
+
+- **Base case** — the condition that stops the recursion. Without one, the function calls itself forever.
+- **Recursive case** — where the function calls itself again, with an input that's closer to the base case than before.
+
+??? warning "Infinite recursion"
+    Forgetting the base case (or writing one that's never reached) makes a function call itself forever, the same way a `while` loop with no way to become `False` never stops. Python enforces a limit before endless recursion could freeze the whole program — hitting it raises a `RecursionError` instead.
+
+    ```python-ref
+    def countdown(n):
+        print(n)
+        countdown(n - 1)    # never stops — no base case
+
+    countdown(3)              # RecursionError: maximum recursion depth exceeded
+    ```
+
+??? tip "Recursion vs. a loop"
+    Anything recursion can do, a loop can do too — recursion is rarely the only option, just sometimes the more natural fit. It reads most naturally for problems already defined in terms of themselves, like a [nested dictionary](collections.md#dictionaries) of arbitrary depth, where the number of levels isn't known ahead of time. For a simple countdown like the one above, a `while` loop is just as clear and doesn't risk a `RecursionError`.
+
+    ```python-ref
+    n = 3
+    while n > 0:
+        print(n)
+        n -= 1
+    print("liftoff")
+    ```
+
+??? run "Run a recursion example"
+    All the examples above, combined into one script:
+
+    ```python
+    def countdown(n):
+        if n == 0:
+            print("liftoff")
+            return
+        print(n)
+        countdown(n - 1)
+
+    countdown(3)
+
+    n = 3
+    while n > 0:
+        print(n)
+        n -= 1
+    print("liftoff")
+    ```
