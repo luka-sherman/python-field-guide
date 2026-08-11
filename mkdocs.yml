@@ -20,9 +20,10 @@ nav:
   - Libraries:
       - All: libraries/index.md
       - Built-in:
-          - datetime: libraries/datetime.md
-          - random: libraries/random.md
           - csv: libraries/csv.md
+          - datetime: libraries/datetime.md
+          - json: libraries/json.md
+          - random: libraries/random.md
           - Tkinter: libraries/tkinter.md
       - Third-Party:
           - NumPy: libraries/numpy.md

@@ -145,6 +145,14 @@ hide:
 
     [`date`](libraries/datetime.md#creating-dates-and-times) · [`strftime()`](libraries/datetime.md#formatting-with-strftime) · [`timedelta`](libraries/datetime.md#date-arithmetic) · [`strptime()`](libraries/datetime.md#parsing-a-string-with-strptime)
 
+-   :material-code-json:{ .lg .middle } [__json__](libraries/json.md) [:material-language-python:](libraries/json.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+
+    Reading and writing JSON data — nested dicts and lists, saved to a file or a string.
+
+    ---
+
+    [`json.dump()`](libraries/json.md#writing-json-files) · [`json.load()`](libraries/json.md#reading-json-files) · [`json.dumps()`](libraries/json.md#working-with-strings-instead-of-files) · [`json.loads()`](libraries/json.md#working-with-strings-instead-of-files)
+
 -   :material-matrix:{ .lg .middle } [__NumPy__](libraries/numpy.md) [:material-download-outline:](libraries/numpy.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Fast numeric arrays — math applied to a whole array at once, instead of item by item.

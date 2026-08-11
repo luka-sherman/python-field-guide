@@ -24,6 +24,14 @@ Built-in libraries
 
     [`date`](datetime.md#creating-dates-and-times) · [`strftime()`](datetime.md#formatting-with-strftime) · [`timedelta`](datetime.md#date-arithmetic) · [`strptime()`](datetime.md#parsing-a-string-with-strptime)
 
+-   :material-code-json:{ .lg .middle } [__json__](json.md) [:material-language-python:](json.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+
+    Reading and writing JSON data — nested dicts and lists, saved to a file or a string.
+
+    ---
+
+    [`json.dump()`](json.md#writing-json-files) · [`json.load()`](json.md#reading-json-files) · [`json.dumps()`](json.md#working-with-strings-instead-of-files) · [`json.loads()`](json.md#working-with-strings-instead-of-files)
+
 -   :material-dice-multiple:{ .lg .middle } [__random__](random.md) [:material-language-python:](random.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Random numbers, random picks, shuffled order.
