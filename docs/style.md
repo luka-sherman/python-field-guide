@@ -98,41 +98,6 @@ Repeating the same few lines in multiple places is a sign to pull them into thei
 
     Both versions do the same thing — the second reads top to bottom without having to track which `if` branch you're inside.
 
-## Imports
-
-Imports go at the very top of the file, grouped in order: Python's own standard library first, then third-party packages, then your own local files — with a blank line between each group.
-
-```python-ref
-import random                    # standard library
-
-import requests                  # third-party — installed separately
-
-import snake_data                # your own file
-```
-
-Avoid `from module import *` — it pulls in every name from that module without saying which ones, so it's unclear later where a given name actually came from.
-
-## Splitting code across multiple files
-
-As a project grows past one script, it's common to move related functions or classes into their own file — called a **module** — instead of keeping everything in one place. Importing from it works exactly like importing a library: use the filename, without `.py`, as the module name.
-
-```python-ref
-# snake_helpers.py
-
-def describe(species):
-    return f"a {species} python"
-```
-
-```python-ref
-# main.py
-
-from snake_helpers import describe
-
-print(describe("ball"))
-```
-
-The imported file has to sit in the same folder as the one importing it (or be installed like a real package). This is also why avoiding a library's name for your own file matters — covered in the [naming rules](foundations.md#naming-variables) on the Foundations page: a file named `random.py` shadows Python's own `random` module for anything else in that project.
-
 ## Comprehensions vs. loops
 
 A comprehension can replace a short loop that just builds a new list, but it's a readability trade — reach for a regular `for` loop instead once the logic doesn't fit comfortably on one line.
@@ -201,29 +166,15 @@ length_ft = 4.5
     [ascii text](https://patorjk.com/software/taag/#p=display&f=Isometric1&t=Type+Something+&x=none&v=4&h=4&w=80&we=false)
     [ascii art](https://www.asciiart.eu/#google_vignette)
 
-## Main function
-
-`if __name__ == "__main__":` controls what runs only when a file is executed directly — not when it's imported into another file.
-
-```python-ref
-def describe(species):
-    return f"a {species} python"
-
-if __name__ == "__main__":
-    print(describe("ball"))
-```
-
-`__name__` is a variable Python sets automatically: `"__main__"` when the file is run directly, or the file's own module name when it's imported elsewhere instead. Wrapping your "do the actual work" code in this check means another file can `import` yours — to reuse a function, say — without that code running as a side effect.
-
 ## Order
 
 A Python file conventionally follows the same layout, top to bottom:
 
 1. **Module docstring** — what the file does
-2. **Imports** — standard library, then third-party, then local
+2. **[Imports](modules.md#importing-libraries)** — standard library, then third-party, then local
 3. **Constants** — `ALL_CAPS` values used throughout the file
 4. **Functions and classes** — the file's actual logic
-5. **The `if __name__ == "__main__":` guard** — the code that runs when the file is executed
+5. **[The `if __name__ == "__main__":` guard](modules.md#the-main-guard)** — the code that runs when the file is executed
 
 ```python-ref
 """
