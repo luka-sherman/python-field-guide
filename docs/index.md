@@ -129,7 +129,7 @@ hide:
 
 <div class="grid cards" markdown="block">
 
--   :material-file-delimited-outline:{ .lg .middle } [__csv__](libraries/csv.md)
+-   :material-file-delimited-outline:{ .lg .middle } [__csv__](libraries/csv.md) [:material-language-python:](libraries/csv.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Reading and writing spreadsheets.
 
@@ -137,7 +137,7 @@ hide:
 
     [`csv.writer`](libraries/csv.md#writing-csv-files) · [`csv.reader`](libraries/csv.md#reading-csv-files) · [`DictReader`](libraries/csv.md#reading-rows-as-dictionaries)
 
--   :material-calendar-clock:{ .lg .middle } [__datetime__](libraries/datetime.md)
+-   :material-calendar-clock:{ .lg .middle } [__datetime__](libraries/datetime.md) [:material-language-python:](libraries/datetime.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Calculating and formatting dates and times.
 
@@ -145,7 +145,7 @@ hide:
 
     [`date`](libraries/datetime.md#creating-dates-and-times) · [`strftime()`](libraries/datetime.md#formatting-with-strftime) · [`timedelta`](libraries/datetime.md#date-arithmetic) · [`strptime()`](libraries/datetime.md#parsing-a-string-with-strptime)
 
--   :material-matrix:{ .lg .middle } [__NumPy__](libraries/numpy.md)
+-   :material-matrix:{ .lg .middle } [__NumPy__](libraries/numpy.md) [:material-download-outline:](libraries/numpy.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Fast numeric arrays — math applied to a whole array at once, instead of item by item.
 
@@ -153,7 +153,7 @@ hide:
 
     [`ndarray`](libraries/numpy.md#creating-arrays) · [`arange()`](libraries/numpy.md#building-arrays-without-a-list) · [`mean()`](libraries/numpy.md#aggregating-an-array) · [`boolean mask`](libraries/numpy.md#filtering-with-a-boolean-mask)
 
--   :material-face-recognition:{ .lg .middle } [__OpenCV__](libraries/opencv.md)
+-   :material-face-recognition:{ .lg .middle } [__OpenCV__](libraries/opencv.md) [:material-download-outline:](libraries/opencv.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Real-time image and video analysis — color spaces, edge detection, face detection, built directly on NumPy arrays.
 
@@ -161,7 +161,7 @@ hide:
 
     [`imread()`](libraries/opencv.md#reading-a-file) · [`cvtColor()`](libraries/opencv.md#converting-color-spaces) · [`drawing`](libraries/opencv.md#drawing-shapes-and-text) · [`Canny()`](libraries/opencv.md#edge-detection) · [`CascadeClassifier`](libraries/opencv.md#face-detection-with-cascade-classifiers) · [`VideoCapture()`](libraries/opencv.md#working-with-video)
 
--   :material-table:{ .lg .middle } [__pandas__](libraries/pandas.md)
+-   :material-table:{ .lg .middle } [__pandas__](libraries/pandas.md) [:material-download-outline:](libraries/pandas.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Tabular data — rows and columns, like a spreadsheet, built on top of NumPy.
 
@@ -169,7 +169,7 @@ hide:
 
     [`DataFrame`](libraries/pandas.md#building-a-dataframe) · [`sort_values()`](libraries/pandas.md#sorting-rows) · [`mean()`](libraries/pandas.md#summarizing-a-column)
 
--   :material-image-outline:{ .lg .middle } [__Pillow__](libraries/pillow.md)
+-   :material-image-outline:{ .lg .middle } [__Pillow__](libraries/pillow.md) [:material-download-outline:](libraries/pillow.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Opening, editing, and saving images, built around one `Image` object.
 
@@ -177,7 +177,7 @@ hide:
 
     [`Image`](libraries/pillow.md#the-image) · [`ImageOps`](libraries/pillow.md#imageops-module) · [`ImageDraw`](libraries/pillow.md#imagedraw-module) · [`ImageFont`](libraries/pillow.md#imagefont-module) · [`ImageColor`](libraries/pillow.md#imagecolor-module) · [`ImageFilter`](libraries/pillow.md#imagefilter-module) · [`ImageEnhance`](libraries/pillow.md#imageenhance-module) · [`ImageChops`](libraries/pillow.md#imagechops-module) · [`convert()`](libraries/pillow.md#format-conversion) · [`ImageSequence`](libraries/pillow.md#imagesequence-module)
 
--   :material-dice-multiple:{ .lg .middle } [__random__](libraries/random.md)
+-   :material-dice-multiple:{ .lg .middle } [__random__](libraries/random.md) [:material-language-python:](libraries/random.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Random numbers, random picks, shuffled order.
 
@@ -186,7 +186,7 @@ hide:
     [`randint()`](libraries/random.md#random-numbers) · [`choice()`](libraries/random.md#random-selections) · [`shuffle()`](libraries/random.md#shuffling-a-list) · [`sample()`](libraries/random.md#sampling-without-replacement)
 
 
--   :material-api:{ .lg .middle } [__requests__](libraries/requests.md)
+-   :material-api:{ .lg .middle } [__requests__](libraries/requests.md) [:material-download-outline:](libraries/requests.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Fetching data over the internet, like asking a website or API for information.
 
@@ -194,7 +194,7 @@ hide:
 
     [`get()`](libraries/requests.md#making-a-request) · [`status_code`](libraries/requests.md#checking-the-status-code) · [`json()`](libraries/requests.md#parsing-json) · [`params`](libraries/requests.md#query-parameters) · [`error handling`](libraries/requests.md#handling-request-errors)
 
--   :material-application-outline:{ .lg .middle } [__Tkinter__](libraries/tkinter.md)
+-   :material-application-outline:{ .lg .middle } [__Tkinter__](libraries/tkinter.md) [:material-language-python:](libraries/tkinter.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Creating desktop applications: text, buttons, dropdowns, forms, output, etc.
 
@@ -247,7 +247,7 @@ hide:
     
     Learning to program means making mistakes, getting stuck, and eventually figuring things out and forming a mental model. That's the process that **builds skills** you can rely on.
 
-??? info "What is Python, and what is it used for?"
+??? python "What is Python, and what is it used for?"
     **Python** is a general-purpose programming language known for readable syntax and a huge built-in and third-party library ecosystem — designed to be quick to write and easy to read back later, even by someone who didn't write it. It doesn't need to be compiled before it runs: write a `.py` file, then run it directly.
 
     That readability, plus the sheer range of libraries already built for it, is why it turns up almost everywhere: web backends, data analysis and machine learning, automating repetitive tasks, scientific computing, and quick scripts gluing other tools together — several of which are covered on this site's [Libraries](#libraries) pages. Python usually isn't the fastest language for raw performance, but it's often the fastest to write *correct* code in, which is why it's such a common first choice for a new project.

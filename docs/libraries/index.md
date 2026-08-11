@@ -7,7 +7,7 @@ Built-in libraries
 
 <div class="grid cards" markdown="block">
 
--   :material-file-delimited-outline:{ .lg .middle } [__csv__](csv.md)
+-   :material-file-delimited-outline:{ .lg .middle } [__csv__](csv.md) [:material-language-python:](csv.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Reading and writing spreadsheets.
 
@@ -16,7 +16,7 @@ Built-in libraries
     [`csv.writer`](csv.md#writing-csv-files) · [`csv.reader`](csv.md#reading-csv-files) · [`DictReader`](csv.md#reading-rows-as-dictionaries)
 
 
--   :material-calendar-clock:{ .lg .middle } [__datetime__](datetime.md)
+-   :material-calendar-clock:{ .lg .middle } [__datetime__](datetime.md) [:material-language-python:](datetime.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Calculating and formatting dates and times.
 
@@ -24,7 +24,7 @@ Built-in libraries
 
     [`date`](datetime.md#creating-dates-and-times) · [`strftime()`](datetime.md#formatting-with-strftime) · [`timedelta`](datetime.md#date-arithmetic) · [`strptime()`](datetime.md#parsing-a-string-with-strptime)
 
--   :material-dice-multiple:{ .lg .middle } [__random__](random.md)
+-   :material-dice-multiple:{ .lg .middle } [__random__](random.md) [:material-language-python:](random.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Random numbers, random picks, shuffled order.
 
@@ -33,7 +33,7 @@ Built-in libraries
     [`randint()`](random.md#random-numbers) · [`choice()`](random.md#random-selections) · [`shuffle()`](random.md#shuffling-a-list) · [`sample()`](random.md#sampling-without-replacement)
 
 
--   :material-application-outline:{ .lg .middle } [__Tkinter__](tkinter.md)
+-   :material-application-outline:{ .lg .middle } [__Tkinter__](tkinter.md) [:material-language-python:](tkinter.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Creating desktop applications: text, buttons, dropdowns, forms, output, etc.
 
@@ -48,7 +48,7 @@ Third-party libraries
 
 <div class="grid cards" markdown="block">
 
--   :material-matrix:{ .lg .middle } [__NumPy__](numpy.md)
+-   :material-matrix:{ .lg .middle } [__NumPy__](numpy.md) [:material-download-outline:](numpy.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Fast numeric arrays — math applied to a whole array at once, instead of item by item.
 
@@ -56,7 +56,7 @@ Third-party libraries
 
     [`ndarray`](numpy.md#creating-arrays) · [`arange()`](numpy.md#building-arrays-without-a-list) · [`mean()`](numpy.md#aggregating-an-array) · [`boolean mask`](numpy.md#filtering-with-a-boolean-mask)
 
--   :material-face-recognition:{ .lg .middle } [__OpenCV__](opencv.md)
+-   :material-face-recognition:{ .lg .middle } [__OpenCV__](opencv.md) [:material-download-outline:](opencv.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Real-time image and video analysis — color spaces, edge detection, face detection, built directly on NumPy arrays.
 
@@ -64,7 +64,7 @@ Third-party libraries
 
     [`imread()`](opencv.md#reading-a-file) · [`cvtColor()`](opencv.md#converting-color-spaces) · [`drawing`](opencv.md#drawing-shapes-and-text) · [`Canny()`](opencv.md#edge-detection) · [`CascadeClassifier`](opencv.md#face-detection-with-cascade-classifiers) · [`VideoCapture()`](opencv.md#working-with-video)
 
--   :material-table:{ .lg .middle } [__pandas__](pandas.md)
+-   :material-table:{ .lg .middle } [__pandas__](pandas.md) [:material-download-outline:](pandas.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Tabular data — rows and columns, like a spreadsheet, built on top of NumPy.
 
@@ -72,7 +72,7 @@ Third-party libraries
 
     [`DataFrame`](pandas.md#building-a-dataframe) · [`sort_values()`](pandas.md#sorting-rows) · [`mean()`](pandas.md#summarizing-a-column)
 
--   :material-image-outline:{ .lg .middle } [__Pillow__](pillow.md)
+-   :material-image-outline:{ .lg .middle } [__Pillow__](pillow.md) [:material-download-outline:](pillow.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Opening, editing, and saving images, built around one `Image` object.
 
@@ -80,7 +80,7 @@ Third-party libraries
 
     [`Image`](pillow.md#the-image) · [`ImageOps`](pillow.md#imageops-module) · [`ImageDraw`](pillow.md#imagedraw-module) · [`ImageFont`](pillow.md#imagefont-module) · [`ImageColor`](pillow.md#imagecolor-module) · [`ImageFilter`](pillow.md#imagefilter-module) · [`ImageEnhance`](pillow.md#imageenhance-module) · [`ImageChops`](pillow.md#imagechops-module) · [`convert()`](pillow.md#format-conversion) · [`ImageSequence`](pillow.md#imagesequence-module)
 
--   :material-api:{ .lg .middle } [__requests__](requests.md)
+-   :material-api:{ .lg .middle } [__requests__](requests.md) [:material-download-outline:](requests.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Fetching data over the internet, like asking a website or API for information.
 

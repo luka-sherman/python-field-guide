@@ -253,6 +253,29 @@ input:checked + .md-consent__settings {
   mask-image: var(--md-admonition-icon--ai);
 }
 
+/* ---- Custom "python" admonition for callouts explaining Python itself ---- */
+
+:root {
+  --md-admonition-icon--python: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5zm-4.28 11.79c-.4 0-.72.3-.72.89s.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68zM9.14 5.71c.4 0 .72-.3.72-.89s-.32-.71-.72-.71c-.39 0-.71.12-.71.71s.32.89.71.89"/></svg>');
+}
+
+.md-typeset .admonition.python,
+.md-typeset details.python {
+  border-color: #306998;
+}
+
+.md-typeset .python > .admonition-title,
+.md-typeset .python > summary {
+  background-color: rgba(48, 105, 152, 0.1);
+}
+
+.md-typeset .python > .admonition-title::before,
+.md-typeset .python > summary::before {
+  background-color: #306998;
+  -webkit-mask-image: var(--md-admonition-icon--python);
+  mask-image: var(--md-admonition-icon--python);
+}
+
 /* ---- Pyodide runnable / reference code blocks (theme-independent) ---- */
 
 .pyodide-runner {
@@ -470,7 +493,7 @@ input:checked + .md-consent__settings {
   outline: none;
 }
 
-.md-typeset .grid.cards > ul > li > p:first-child > a::after {
+.md-typeset .grid.cards > ul > li > p:first-child > a:not(.pt-lib-badge)::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -480,6 +503,33 @@ input:checked + .md-consent__settings {
 .md-typeset .grid.cards > ul > li > p:not(:first-child) a {
   position: relative;
   z-index: 2;
+}
+
+/* Library cards' built-in/third-party badge: a small icon in the corner,
+   linking to the same page as the card itself, with the label surfaced as
+   a hover tooltip (via content.tooltips) instead of spelling it out in
+   every card's body. It's a real link (not just an icon) so it stays
+   clickable — needs its own position/z-index, like the inline links
+   above, to sit above the stretched-link overlay covering the rest of
+   the card, rather than swallowing the click. */
+.md-typeset .grid.cards > ul > li .pt-lib-badge {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.8rem;
+  z-index: 2;
+}
+
+.pt-lib-badge svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.pt-lib-badge--builtin {
+  color: var(--pt-accent);
+}
+
+.pt-lib-badge--third-party {
+  color: var(--pt-text-muted);
 }
 
 /* "Jump to section" comparison tables (types/collections/conditionals/loops
