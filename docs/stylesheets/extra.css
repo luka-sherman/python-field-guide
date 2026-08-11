@@ -481,6 +481,12 @@ input:checked + .md-consent__settings {
   transform: translateY(-0.1rem);
 }
 
+/* Card icon color: every card's main icon (to the left of its name) is
+   green, on page cards and library cards alike. */
+.md-typeset .grid.cards > ul > li > p:first-child > .twemoji {
+  color: var(--pt-accent);
+}
+
 /* Stretched-link pattern: the card's title link (icon + bold heading, first
    paragraph) expands to fill the whole box, so clicking anywhere on the card
    goes to its page. Anything meant to stay independently clickable above
@@ -524,11 +530,8 @@ input:checked + .md-consent__settings {
   height: 1.05rem;
 }
 
-.pt-lib-badge--builtin {
-  color: var(--pt-accent);
-}
-
-.pt-lib-badge--third-party {
+.md-typeset .grid.cards a.pt-lib-badge--builtin,
+.md-typeset .grid.cards a.pt-lib-badge--third-party {
   color: var(--pt-text-muted);
 }
 
