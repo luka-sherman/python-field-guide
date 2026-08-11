@@ -114,4 +114,5 @@ extra_javascript:
   - javascripts/pyodide_runner.js
   - javascripts/copyright_year.js
   - javascripts/external_links.js
+  - javascripts/homepage_header_title.js
   - https://unpkg.com/mermaid@11/dist/mermaid.min.js
