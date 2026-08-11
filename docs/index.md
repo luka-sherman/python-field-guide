@@ -93,13 +93,6 @@ hide:
 
 <div class="grid cards" markdown="block">
 
--   :material-file-document-outline:{ .lg .middle } [__File I/O__](files.md)
-
-    Saves data outside the program itself, so it's still there the next time it runs.
-
-    [`open()`](files.md#opening-a-file) · [`read()`](files.md#reading-a-file) · [`write()`](files.md#writing-multiple-lines) · [`append`](files.md#appending-vs-overwriting)
-
-
 -   :material-palette-outline:{ .lg .middle } [__Style__](style.md)
 
     Conventions for writing Python that stays readable as a file grows.
@@ -111,6 +104,12 @@ hide:
     How to read error messages, handle them gracefully, and track down what went wrong.
 
     [`tracebacks`](bugs.md#reading-errors) · [`try / except`](bugs.md#handling-errors) · [`debugger`](bugs.md#using-a-debugger)
+
+-   :material-file-document-outline:{ .lg .middle } [__File I/O__](files.md)
+
+    Saves data outside the program itself, so it's still there the next time it runs.
+
+    [`open()`](files.md#opening-a-file) · [`read()`](files.md#reading-a-file) · [`write()`](files.md#writing-multiple-lines) · [`append`](files.md#appending-vs-overwriting)
 
 </div>
 </div>

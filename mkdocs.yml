@@ -14,9 +14,9 @@ nav:
   - Loops: loops.md
   - Functions: functions.md
   - Classes: oop.md
-  - File I/O: files.md
   - Style: style.md
   - Bugs: bugs.md
+  - File I/O: files.md
   - Libraries:
       - All: libraries/index.md
       - Built-in:
