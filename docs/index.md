@@ -17,7 +17,7 @@ hide:
 
     What you need to write and run Python on your own computer.
 
-    [`installing Python`](workspace.md#step-0-install-python) · [`code editors`](workspace.md#step-1-pick-an-application-to-write-code-in) · [`running a file`](workspace.md#step-2-write-and-run-a-python-file) · [`terminal`](workspace.md#using-the-terminal-optional)
+    [`installing Python`](workspace.md#step-0-install-python) · [`code editors`](workspace.md#step-1-pick-an-application-to-write-code-in) · [`running a file`](workspace.md#step-2-write-and-run-a-python-file) · [`.py file`](workspace.md#step-2-write-and-run-a-python-file) · [`terminal`](workspace.md#using-the-terminal-optional)
 
 -   :material-cube-outline:{ .lg .middle } [__Foundations__](foundations.md)
 
@@ -57,13 +57,13 @@ hide:
 
     Lets a program make decisions, running different code depending on whether something is true.
 
-    [`if / elif / else`](conditionals.md#if-elif-else) · [`match / case`](conditionals.md#match-case) · [`and / or / not`](conditionals.md#logical-operators)
+    [`if, elif, else`](conditionals.md#if-elif-else) · [`match, case`](conditionals.md#match-case) · [`boolean expressions`](conditionals.md#boolean-expressions) · [`and, or, not`](conditionals.md#logical-operators) · [`break, continue`](loops.md#loop-control)
 
 -   :material-repeat:{ .lg .middle } [__Loops__](loops.md)
 
     Repeats a block of code without writing it out multiple times.
 
-    [`for`](loops.md#for-loops) · [`while`](loops.md#while-loops) · [`break`](loops.md#loop-control)
+    [`for`](loops.md#for-loops) · [`while`](loops.md#while-loops) · [`break, continue`](loops.md#loop-control)
 
 </div>
 </div>
@@ -77,7 +77,7 @@ hide:
 
     Packages a block of code under a name, so it can be run again with different inputs instead of rewriting it each time.
 
-    [`def`](functions.md#defining-a-function) · [`return`](functions.md#return-values) · [`*args / **kwargs`](functions.md#flexible-arguments) · [`scope`](functions.md#scope) · [`recursion`](functions.md#recursion)
+    [`def`](functions.md#defining-a-function) · [`return`](functions.md#return-values) · [`*args, **kwargs`](functions.md#flexible-arguments) · [`scope`](functions.md#scope) · [`recursion`](functions.md#recursion)
 
 -   :material-package-variant:{ .lg .middle } [__Classes__](oop.md)
 
@@ -89,23 +89,17 @@ hide:
 </div>
 
 <div class="pt-category" markdown="block">
-#### Writing real programs { .pt-homepage-heading }
+#### External files and resources { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
--   :material-palette-outline:{ .lg .middle } [__Style__](style.md)
+-   :material-import:{ .lg .middle } [__Modules & Imports__](modules.md)
 
-    Conventions for writing Python that stays readable as a file grows.
+    Splitting code across files, and pulling in code someone else already wrote.
 
-    [`naming`](style.md#naming) · [`constants`](style.md#constants) · [`imports`](style.md#imports) · [`main function`](style.md#main-function)
+    [`import`](modules.md#importing-libraries) · [`your own module`](modules.md#creating-your-own-module) · [`__main__`](modules.md#the-main-guard)
 
--   :material-bug-outline:{ .lg .middle } [__Bugs__](bugs.md)
-
-    How to read error messages, handle them gracefully, and track down what went wrong.
-
-    [`tracebacks`](bugs.md#reading-errors) · [`try / except`](bugs.md#handling-errors) · [`debugger`](bugs.md#using-a-debugger)
-
--   :material-file-document-outline:{ .lg .middle } [__File I/O__](files.md)
+-   :material-file-document-outline:{ .lg .middle } [__Reading & Writing Files__](files.md)
 
     Saves data outside the program itself, so it's still there the next time it runs.
 
@@ -114,8 +108,28 @@ hide:
 </div>
 </div>
 
+<div class="pt-category" markdown="block">
+#### Robust programming practices { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-palette-outline:{ .lg .middle } [__Style__](style.md)
+
+    Conventions for writing Python that stays readable as a file grows.
+
+    [`naming`](style.md#naming) · [`constants`](style.md#constants) · [`order`](style.md#order) · [`docstrings`](style.md#docstrings)
+
+-   :material-bug-outline:{ .lg .middle } [__Errors__](errors.md)
+
+    How to read error messages, handle them gracefully, and track down what went wrong.
+
+    [`tracebacks`](errors.md#reading-errors) · [`try, except`](errors.md#handling-errors) · [`debugger`](errors.md#using-a-debugger)
+
+</div>
+</div>
+
 <div class="pt-category pt-category--wide" markdown="block">
-#### Libraries { .pt-homepage-heading }
+#### Add-on Libraries { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 

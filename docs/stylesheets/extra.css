@@ -156,6 +156,14 @@
   100% { background-position: 0 0, 14px 18px, 0% 50%; }
 }
 
+/* Ring around the header logo, matching the color and width of the rings
+   that make up the header's own scale-pattern background above — same
+   purple, same ~2px band, just at higher opacity than the background's 0.2
+   so it still reads clearly at the logo's much smaller size. */
+.md-header__button.md-logo img {
+  border: 1px solid rgba(103, 58, 183, 0.6);
+}
+
 .md-tabs {
   background-color: transparent;
 }
@@ -454,13 +462,14 @@ input:checked + .md-consent__settings {
    carries the homepage's category sections, and the goal there is fitting
    as many card grids on screen as possible without scrolling. */
 .md-typeset .grid.cards {
+  margin-top: 0.8rem;
   margin-bottom: 0;
 }
 
 .md-typeset .grid.cards > ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-  gap: 0.4rem;
+  gap: 0.8rem;
   margin: 0rem 0;
   padding: 0;
   list-style: none;
@@ -468,7 +477,7 @@ input:checked + .md-consent__settings {
 
 .md-typeset .grid.cards > ul > li {
   position: relative;
-  background-color: var(--pt-bg);
+  background-color: color-mix(in srgb, var(--pt-panel) 92%, var(--pt-ink));
   border: none;
   border-radius: 0.2rem;
   padding: 0.5rem 0.7rem;
@@ -533,16 +542,12 @@ input:checked + .md-consent__settings {
   grid-template-columns: 1fr;
 }
 
-/* With 5 non-wide categories (Get started, Data types, Control flow, Code
-   organization, Writing real programs) ahead of the always-wide Libraries,
-   the 5th is the odd one left alone on its row — span it across both
-   columns instead of leaving the other column empty. Hardcoded to that
-   position rather than a general "last in row" selector, since CSS has no
-   way to detect that on its own; adjust this if a category is added or
-   removed above Libraries. */
-.pt-category:nth-child(5) {
-  grid-column: 1 / -1;
-}
+/* No lone-box-in-the-last-row rule needed currently: 6 non-wide categories
+   (Get started, Data types, Control flow, Code organization, Robust
+   programming, Files & modules) fill 3 full rows of 2 evenly ahead of the
+   always-wide Libraries. If that count ever goes odd again, re-add a
+   `.pt-category:nth-child(N) { grid-column: 1 / -1; }` rule for whichever
+   position is left alone — CSS has no way to detect that automatically. */
 
 @media (max-width: 45em) {
   .pt-category-grid {
@@ -552,7 +557,7 @@ input:checked + .md-consent__settings {
 
 .pt-category {
   padding: 0.8rem;
-  background-color: var(--pt-panel);
+  background-color: color-mix(in srgb, var(--pt-bg) 10%, var(--pt-panel));
   border-radius: 0.3rem;
 }
 
