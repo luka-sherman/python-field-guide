@@ -103,17 +103,9 @@
   --md-footer-fg-color--lighter: var(--pt-text-muted);
 }
 
-/* Same-color background as the page means the footer needs its own
-   separation from content above — a hairline border, same technique as
-   .md-header's border-bottom. */
-.md-footer {
-  border-top: 1px solid var(--pt-hairline);
-}
-
 .md-header {
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--pt-hairline);
   box-shadow: none;
   color: var(--pt-ink);
 }
@@ -457,27 +449,123 @@ input:checked + .md-consent__settings {
 }
 
 /* Native Material card grid (div.grid.cards) used on the homepage in place
-   of a plain bullet list. */
+   of a plain bullet list. Spacing here (grid gap, card padding, and the
+   paragraph/hr rules below) is kept deliberately tight — this grid also
+   carries the homepage's category sections, and the goal there is fitting
+   as many card grids on screen as possible without scrolling. */
+.md-typeset .grid.cards {
+  margin-bottom: 0;
+}
+
 .md-typeset .grid.cards > ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-  gap: 0.6rem;
-  margin: 1rem 0;
+  gap: 0.4rem;
+  margin: 0rem 0;
   padding: 0;
   list-style: none;
 }
 
 .md-typeset .grid.cards > ul > li {
   position: relative;
-  border: 0.05rem solid var(--pt-border-soft);
+  background-color: var(--pt-bg);
+  border: none;
   border-radius: 0.2rem;
-  padding: 0.8rem 1rem;
+  padding: 0.5rem 0.7rem;
   margin: 0;
-  transition: border-color 0.15s, transform 0.15s;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.md-typeset .grid.cards > ul > li > p {
+  margin: 0 0 0.4em;
+}
+
+/* Inline code spans (the keyword-link row at the bottom of each card) keep
+   Material's default chip background otherwise, which reads as a distinct
+   pill sitting on top of the card. Made transparent so they blend directly
+   into the card's own background instead. */
+.md-typeset .grid.cards > ul > li code {
+  background-color: transparent;
+  transition: background-color 0.15s;
+}
+
+.md-typeset .grid.cards > ul > li a:hover code {
+  background-color: color-mix(in srgb, var(--pt-accent) 12%, transparent);
+  border-radius: 0.15rem;
+}
+
+.md-typeset .grid.cards > ul > li > hr {
+  margin: 0.4em 0;
+}
+
+/* Homepage category headings (`#### Heading { .pt-homepage-heading }`) —
+   tighter margins than a normal h4 so each section's grid follows right
+   after it, condensing the page further. Scoped to this class rather than
+   `h4` generally, since other pages (e.g. libraries/pillow.md) use plain
+   #### headings that should keep normal spacing. */
+.md-typeset h4.pt-homepage-heading {
+  margin: 0.3rem 0 0.1rem;
+}
+
+/* Homepage layout: categories are boxes in an outer grid (`.pt-category-grid`),
+   each holding its own `.pt-homepage-heading` and a nested `.grid.cards` —
+   instead of one full-width section per category, two categories share a
+   row, fitting more of the page on screen at once. Fixed at 2 columns
+   (rather than `repeat(auto-fit, minmax(...))`) so a box's row-mate is
+   always predictable — both so `align-items: stretch` (the grid default,
+   simply not overridden here) makes same-row boxes match height even when
+   one has more/longer cards, and so the lone-box-in-the-last-row rule below
+   knows which child that is. Collapses to 1 column below 45em, matching the
+   card grid's own breakpoint. Libraries has too many cards to sit next to
+   another category at a readable width, so `.pt-category--wide` spans it
+   across both columns regardless of position. */
+.pt-category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+/* Used on libraries/index.md: its two categories (Built-in/Third-party)
+   stack vertically instead of sharing a row like the homepage's do — that
+   page has a left sidebar eating into the available width, and stacking
+   reads better there than two narrow side-by-side columns. */
+.pt-category-grid--stacked {
+  grid-template-columns: 1fr;
+}
+
+/* With 5 non-wide categories (Get started, Data types, Control flow, Code
+   organization, Writing real programs) ahead of the always-wide Libraries,
+   the 5th is the odd one left alone on its row — span it across both
+   columns instead of leaving the other column empty. Hardcoded to that
+   position rather than a general "last in row" selector, since CSS has no
+   way to detect that on its own; adjust this if a category is added or
+   removed above Libraries. */
+.pt-category:nth-child(5) {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 45em) {
+  .pt-category-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pt-category {
+  padding: 0.8rem;
+  background-color: var(--pt-panel);
+  border-radius: 0.3rem;
+}
+
+.pt-category > h4.pt-homepage-heading {
+  margin-top: 0;
+}
+
+.pt-category--wide {
+  grid-column: 1 / -1;
 }
 
 .md-typeset .grid.cards > ul > li:hover {
-  border-color: var(--pt-accent);
+  box-shadow: 0 0 0 0.05rem var(--pt-accent);
   transform: translateY(-0.1rem);
 }
 

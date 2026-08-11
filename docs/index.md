@@ -6,37 +6,36 @@ hide:
 
 # Python Field Guide { .pt-visually-hidden }
 
-### Get started
+<div class="pt-category-grid" markdown="block">
+
+<div class="pt-category" markdown="block">
+#### Get started { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
 -   :material-monitor:{ .lg .middle } [__Workspace Setup__](workspace.md)
 
-    What you need to write and run Python: installing it, picking a code editor, running and debugging, and using the terminal.
-
-    ---
+    What you need to write and run Python on your own computer.
 
     [`installing Python`](workspace.md#step-0-install-python) · [`code editors`](workspace.md#step-1-pick-an-application-to-write-code-in) · [`running a file`](workspace.md#step-2-write-and-run-a-python-file) · [`terminal`](workspace.md#using-the-terminal-optional)
 
 -   :material-cube-outline:{ .lg .middle } [__Foundations__](foundations.md)
 
-    Store a value in a variable, show output with `print()`, read it back in with `input()`, and leave notes for yourself with comments.
+    The basic building blocks every Python program starts with: storing, displaying, and reading in values.
 
-    ---
-
-    [`variables`](foundations.md#variables) · [`print()`](foundations.md#print) · [`input()`](foundations.md#input) · [`comments`](foundations.md#comments)
+    [`variables`](foundations.md#variables) · [`print()`](foundations.md#print-function) · [`input()`](foundations.md#input-function) · [`comments`](foundations.md#comments)
 
 </div>
+</div>
 
-### Data types
+<div class="pt-category" markdown="block">
+#### Data types { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
 -   :material-shape-outline:{ .lg .middle } [__Basics__](types.md)
 
-    A single value on its own — a number, some text, or true/false — that every variable holds and that determines what you can do with it.
-
-    ---
+    The kind of value something is, like a number, text, or true/false.
 
     [`int`](types.md#integers) · [`float`](types.md#floats) · [`string`](types.md#strings) · [`bool`](types.md#booleans) · [`None`](types.md#none)
 
@@ -44,35 +43,33 @@ hide:
 
     Multiple related values grouped into one container, so you can work with them together.
 
-    ---
-
     [`list`](collections.md#lists) · [`tuple`](collections.md#tuples) · [`dict`](collections.md#dictionaries) · [`set`](collections.md#sets)
 
 </div>
+</div>
 
-### Control flow
+<div class="pt-category" markdown="block">
+#### Control flow { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
 -   :material-source-branch:{ .lg .middle } [__Conditionals__](conditionals.md)
 
-    Checks whether something is true, then runs different code based on the answer — how Python decides which lines to run instead of top to bottom.
+    Lets a program make decisions, running different code depending on whether something is true.
 
-    ---
-
-    [`if`/`elif`/`else`](conditionals.md#if-elif-else) · [`match`/`case`](conditionals.md#match-case) · [`and`/`or`/`not`](conditionals.md#logical-operators)
+    [`if / elif / else`](conditionals.md#if-elif-else) · [`match / case`](conditionals.md#match-case) · [`and / or / not`](conditionals.md#logical-operators)
 
 -   :material-repeat:{ .lg .middle } [__Loops__](loops.md)
 
-    Repeats a block of code a certain number of times, over each item in a collection, or until a condition changes.
-
-    ---
+    Repeats a block of code without writing it out multiple times.
 
     [`for`](loops.md#for-loops) · [`while`](loops.md#while-loops) · [`break`](loops.md#loop-control)
 
 </div>
+</div>
 
-### Code organization
+<div class="pt-category" markdown="block">
+#### Code organization { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
@@ -80,52 +77,46 @@ hide:
 
     Packages a block of code under a name, so it can be run again with different inputs instead of rewriting it each time.
 
-    ---
-
-    [`def`](functions.md#defining-a-function) · [`return`](functions.md#return-values) · [`*args`/`**kwargs`](functions.md#flexible-arguments) · [`scope`](functions.md#scope) · [`recursion`](functions.md#recursion)
+    [`def`](functions.md#defining-a-function) · [`return`](functions.md#return-values) · [`*args / **kwargs`](functions.md#flexible-arguments) · [`scope`](functions.md#scope) · [`recursion`](functions.md#recursion)
 
 -   :material-package-variant:{ .lg .middle } [__Classes__](oop.md)
 
     Bundles related data and functions into a reusable blueprint, so a program can create many similar objects without duplicating code.
 
-    ---
-
     [`class`](oop.md#classes-and-objects) · [`super()`](oop.md#inheritance) · [`polymorphism`](oop.md#polymorphism)
 
 </div>
+</div>
 
-### Writing real programs
+<div class="pt-category" markdown="block">
+#### Writing real programs { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
 -   :material-file-document-outline:{ .lg .middle } [__File I/O__](files.md)
 
-    Saves data outside the program itself, so it's still there the next time it runs — opening, reading, and writing plain text files.
-
-    ---
+    Saves data outside the program itself, so it's still there the next time it runs.
 
     [`open()`](files.md#opening-a-file) · [`read()`](files.md#reading-a-file) · [`write()`](files.md#writing-multiple-lines) · [`append`](files.md#appending-vs-overwriting)
 
 
 -   :material-palette-outline:{ .lg .middle } [__Style__](style.md)
 
-    Conventions for writing Python that stays readable as a file grows — meaningful names, constants, import order, and how a file is typically laid out.
-
-    ---
+    Conventions for writing Python that stays readable as a file grows.
 
     [`naming`](style.md#naming) · [`constants`](style.md#constants) · [`imports`](style.md#imports) · [`main function`](style.md#main-function)
 
 -   :material-bug-outline:{ .lg .middle } [__Bugs__](bugs.md)
 
-    Understand an error message, handle an error instead of crashing, or debug your code line by line to find where it went wrong.
+    How to read error messages, handle them gracefully, and track down what went wrong.
 
-    ---
-
-    [`tracebacks`](bugs.md#reading-errors) · [`try`/`except`](bugs.md#handling-errors) · [`debugger`](bugs.md#using-a-debugger)
+    [`tracebacks`](bugs.md#reading-errors) · [`try / except`](bugs.md#handling-errors) · [`debugger`](bugs.md#using-a-debugger)
 
 </div>
+</div>
 
-### Libraries
+<div class="pt-category pt-category--wide" markdown="block">
+#### Libraries { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
@@ -133,47 +124,35 @@ hide:
 
     Reading and writing spreadsheets.
 
-    ---
-
     [`csv.writer`](libraries/csv.md#writing-csv-files) · [`csv.reader`](libraries/csv.md#reading-csv-files) · [`DictReader`](libraries/csv.md#reading-rows-as-dictionaries)
 
 -   :material-calendar-clock:{ .lg .middle } [__datetime__](libraries/datetime.md) [:material-language-python:](libraries/datetime.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Calculating and formatting dates and times.
 
-    ---
-
     [`date`](libraries/datetime.md#creating-dates-and-times) · [`strftime()`](libraries/datetime.md#formatting-with-strftime) · [`timedelta`](libraries/datetime.md#date-arithmetic) · [`strptime()`](libraries/datetime.md#parsing-a-string-with-strptime)
 
 -   :material-code-json:{ .lg .middle } [__json__](libraries/json.md) [:material-language-python:](libraries/json.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
-    Reading and writing JSON data — nested dicts and lists, saved to a file or a string.
-
-    ---
+    Reading and writing JSON data: nested dicts and lists, saved to a file or a string.
 
     [`json.dump()`](libraries/json.md#writing-json-files) · [`json.load()`](libraries/json.md#reading-json-files) · [`json.dumps()`](libraries/json.md#working-with-strings-instead-of-files) · [`json.loads()`](libraries/json.md#working-with-strings-instead-of-files)
 
 -   :material-matrix:{ .lg .middle } [__NumPy__](libraries/numpy.md) [:material-download-outline:](libraries/numpy.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
-    Fast numeric arrays — math applied to a whole array at once, instead of item by item.
-
-    ---
+    Fast numeric arrays, with math applied to a whole array at once instead of item by item.
 
     [`ndarray`](libraries/numpy.md#creating-arrays) · [`arange()`](libraries/numpy.md#building-arrays-without-a-list) · [`mean()`](libraries/numpy.md#aggregating-an-array) · [`boolean mask`](libraries/numpy.md#filtering-with-a-boolean-mask)
 
 -   :material-face-recognition:{ .lg .middle } [__OpenCV__](libraries/opencv.md) [:material-download-outline:](libraries/opencv.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
-    Real-time image and video analysis — color spaces, edge detection, face detection, built directly on NumPy arrays.
-
-    ---
+    Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection.
 
     [`imread()`](libraries/opencv.md#reading-a-file) · [`cvtColor()`](libraries/opencv.md#converting-color-spaces) · [`drawing`](libraries/opencv.md#drawing-shapes-and-text) · [`Canny()`](libraries/opencv.md#edge-detection) · [`CascadeClassifier`](libraries/opencv.md#face-detection-with-cascade-classifiers) · [`VideoCapture()`](libraries/opencv.md#working-with-video)
 
 -   :material-table:{ .lg .middle } [__pandas__](libraries/pandas.md) [:material-download-outline:](libraries/pandas.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
-    Tabular data — rows and columns, like a spreadsheet, built on top of NumPy.
-
-    ---
+    Tabular data: rows and columns, like a spreadsheet, built on top of NumPy.
 
     [`DataFrame`](libraries/pandas.md#building-a-dataframe) · [`sort_values()`](libraries/pandas.md#sorting-rows) · [`mean()`](libraries/pandas.md#summarizing-a-column)
 
@@ -181,15 +160,11 @@ hide:
 
     Opening, editing, and saving images, built around one `Image` object.
 
-    ---
-
     [`Image`](libraries/pillow.md#the-image) · [`ImageOps`](libraries/pillow.md#imageops-module) · [`ImageDraw`](libraries/pillow.md#imagedraw-module) · [`ImageFont`](libraries/pillow.md#imagefont-module) · [`ImageColor`](libraries/pillow.md#imagecolor-module) · [`ImageFilter`](libraries/pillow.md#imagefilter-module) · [`ImageEnhance`](libraries/pillow.md#imageenhance-module) · [`ImageChops`](libraries/pillow.md#imagechops-module) · [`convert()`](libraries/pillow.md#format-conversion) · [`ImageSequence`](libraries/pillow.md#imagesequence-module)
 
 -   :material-dice-multiple:{ .lg .middle } [__random__](libraries/random.md) [:material-language-python:](libraries/random.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Random numbers, random picks, shuffled order.
-
-    ---
 
     [`randint()`](libraries/random.md#random-numbers) · [`choice()`](libraries/random.md#random-selections) · [`shuffle()`](libraries/random.md#shuffling-a-list) · [`sample()`](libraries/random.md#sampling-without-replacement)
 
@@ -198,17 +173,16 @@ hide:
 
     Fetching data over the internet, like asking a website or API for information.
 
-    ---
-
     [`get()`](libraries/requests.md#making-a-request) · [`status_code`](libraries/requests.md#checking-the-status-code) · [`json()`](libraries/requests.md#parsing-json) · [`params`](libraries/requests.md#query-parameters) · [`error handling`](libraries/requests.md#handling-request-errors)
 
 -   :material-application-outline:{ .lg .middle } [__Tkinter__](libraries/tkinter.md) [:material-language-python:](libraries/tkinter.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Creating desktop applications: text, buttons, dropdowns, forms, output, etc.
 
-    ---
-
     [`Tk()`](libraries/tkinter.md#creating-a-window) · [`Button`](libraries/tkinter.md#widgets) · [`pack()`](libraries/tkinter.md#layout-managers) · [`configure()`](libraries/tkinter.md#configuring-widgets) · [`command`](libraries/tkinter.md#handling-events) · [`ttk.Style`](libraries/tkinter.md#styling-with-ttk) · [`messagebox`](libraries/tkinter.md#dialogs) · [`winfo_width()`](libraries/tkinter.md#introspecting-widgets)
+
+</div>
+</div>
 
 </div>
 
