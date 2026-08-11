@@ -1,4 +1,4 @@
-# :material-bug-outline:{ .lg .middle } Bugs
+# :material-bug-outline:{ .lg .middle } Errors
 
 Your code had an error or didn't do what you expected — here are tools for figuring out why. 
 

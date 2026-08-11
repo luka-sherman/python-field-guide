@@ -114,7 +114,7 @@ print(len(comments))
 
 ## Handling request errors
 
-A network call can fail in ways that have nothing to do with your code — the [Bugs](../bugs.md#handling-errors) page covers `try`/`except` in general; a couple of exceptions are specific to `requests`.
+A network call can fail in ways that have nothing to do with your code — the [Errors](../errors.md#handling-errors) page covers `try`/`except` in general; a couple of exceptions are specific to `requests`.
 
 | Exception | Happens when |
 |-----------|---------------|

@@ -17,7 +17,7 @@ nav:
   - Modules: modules.md
   - Files: files.md
   - Style: style.md
-  - Bugs: bugs.md
+  - Errors: errors.md
   - Libraries:
       - All: libraries/index.md
       - Built-in:

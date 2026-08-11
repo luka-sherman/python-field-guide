@@ -52,7 +52,7 @@ A **code editor** or an **IDE** ("Integrated Development Environment") is a text
 - **Running code is easier** — click a Run button from your IDE instead of typing Terminal commands every time
 - **Code completion** — the editor suggests function names and variables as you type, saving time and reducing typos
 - **Error detection** — it warns you about common mistakes before you run the code
-- **[Debugging](bugs.md#using-a-debugger)** — pause your code mid-run and inspect variables to track down bugs, instead of only reading output after the fact
+- **[Debugging](errors.md#using-a-debugger)** — pause your code mid-run and inspect variables to track down bugs, instead of only reading output after the fact
 
 Download one of the **free** code editors below. You can always switch later.
 
@@ -125,7 +125,7 @@ That's it! You've written and run your first Python program. From here, you can 
         help("modules")
         ```
         
-!!! tip "When you see red error text, the [Bugs](bugs.md#reading-errors) page covers how to read it."
+!!! tip "When you see red error text, the [Errors](errors.md#reading-errors) page covers how to read it."
 
 ## Using the terminal *(optional)*
 
