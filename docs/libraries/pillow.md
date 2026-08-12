@@ -180,16 +180,7 @@ print(rotated.size, flipped.size)
 
 ### Image modes
 
-An image's **mode** determines how each pixel's color is stored — how many bands it has and what each one means. Converting between modes is a single method call, and it's often a required first step before an operation that only works on one mode (like grayscale-only filters).
-
-```python-ref
-grayscale = img.convert("L")
-with_alpha = img.convert("RGBA")
-```
-
-#### Converting modes
-
-Returns a new image re-encoded into the given mode. `.convert(mode)` — `"L"` collapses color down to a single grayscale band; `"RGBA"` adds an alpha (transparency) band on top of red/green/blue, where `0` is fully transparent and `255` is fully opaque.
+An image's **mode** determines how each pixel's color is stored — how many bands it has and what each one means. Converting between modes is a single method call, and it's often a required first step before an operation that only works on one mode (like grayscale-only filters). `.convert(mode)` returns a new image re-encoded into the given mode — `"L"` collapses color down to a single grayscale band; `"RGBA"` adds an alpha (transparency) band on top of red/green/blue, where `0` is fully transparent and `255` is fully opaque.
 
 ```python-ref
 grayscale = img.convert("L")     # single band, 0 (black) to 255 (white)

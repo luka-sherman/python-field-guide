@@ -59,7 +59,7 @@ Code editors have an **output** window at the bottom that shows the print statem
 
 ### Structure of a print() statement
 
-`print` is a **function** — a named, reusable piece of code that does something when you "call" it by name. [Functions are covered more in depth here](functions.md), but for now, these building blocks are all you need to use `print()`:
+`print` is a [function](functions.md) — a named, reusable piece of code that does something when you "call" it by name. These building blocks are all you need to use `print()`:
 
 ```mermaid
 flowchart TB
@@ -95,12 +95,20 @@ class p,o,c punct
 style code fill:none,stroke:none
 ```
 
-Code blocks at the end of sections on this site are runnable — click **Run** under it to see it work, then try editing it and running it again.
-
-```python
+```python-ref
 print("hello, field guide")   # when printing words, add quotes around them
 print(4.5)                    # when printing a number, you do not need quotes
 ```
+
+Most sections on this site end with a collapsed block like the one below — open it, click **Run**, and try editing the code and running it again.
+
+??? run "Run a print() example"
+    All the examples above, combined into one script:
+
+    ```python
+    print("hello, field guide")
+    print(4.5)
+    ```
 
 ## Variables
 
@@ -193,9 +201,6 @@ species = "burmese python"    # replaces the old value entirely
     print(Species)
     print(species)
 
-    print("Run this code to see the reserved python keywords below:")
-    help("keywords")
-
     species = "ball python"
     print(species)
 
@@ -218,7 +223,7 @@ species = "burmese python"    # replaces the old value entirely
 
 Put the **variable name** inside the `print()` parentheses. It will print the **value** that the variable is equal to.
 
-```python
+```python-ref
 species = "burmese"
 print(species)
 ```
@@ -229,7 +234,7 @@ Add the words in quotes, then a comma, then the variable name. A comma adds a sp
 
 A `+` sign works too, but only when the variable is already a string — it doesn't add a space for you, and (unlike a comma) it can't join a string with a number, covered in [Building a string manually](#building-a-string-manually) below.
 
-```python
+```python-ref
 species = "burmese"
 print("species:", species)
 print("species:" + species)
@@ -239,7 +244,7 @@ print("species:" + species)
 
 The simplest way to print several things on one line is to separate them with commas — Python adds a space between each one and converts numbers to text for you automatically.
 
-```python
+```python-ref
 species = "ball python"
 length_ft = 4.5
 print(species, length_ft, "ft")
@@ -261,12 +266,15 @@ print(species + " " + str(length_ft) + " ft")    # ball python 4.5 ft — same o
 
 For building a full sentence out of text and variables, an [f-string](types.md#format-strings) is usually clearer than either approach.
 
-??? run "Run a print() example"
+??? run "Run a printing variables example"
     All the examples above, combined into one script:
 
     ```python
-    print("hello, field guide")
-    print(4.5)
+    species = "burmese"
+    print(species)
+
+    print("species:", species)
+    print("species:" + species)
 
     species = "ball python"
     length_ft = 4.5
@@ -461,7 +469,9 @@ across as many lines as you want.
 species = "ball python"
 ```
 
-Python doesn't have a true multi-line comment symbol — a triple-quoted string (`"""..."""` or `'''...'''`) isn't technically a comment, it's a string that Python creates and then immediately discards since nothing uses it — but it works the same way in practice.
+Python doesn't have a true multi-line comment symbol — a triple-quoted string (`"""..."""` or `'''...'''`) is used as a stand-in instead.[^triple-quote-string]
+
+[^triple-quote-string]: It isn't technically a comment — it's a string that Python creates and then immediately discards since nothing uses it. Python just never complains about a statement that does nothing, so the effect is the same as a real comment.
 
 Placed as the very first line inside a function or a file specifically, this same trick is called a **docstring** and documents what that function or file does. Function docstrings are covered on the [Functions](functions.md#docstrings) page.
 

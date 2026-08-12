@@ -17,7 +17,7 @@ flowchart LR
 
 `open()` returns a file object to read from or write to. Wrap it in a `with` block so it's closed automatically once you're done, even if something goes wrong partway through.
 
-```python
+```python-ref
 with open("notes.txt", "w") as file:
     file.write("ball python, 4.5 ft")
 
@@ -41,6 +41,16 @@ The second argument is the **mode** — what you intend to do with the file:
     file.close()          # easy to forget
     ```
 
+??? run "Run an opening a file example"
+    All the examples above, combined into one script:
+
+    ```python
+    with open("notes.txt", "w") as file:
+        file.write("ball python, 4.5 ft")
+
+    print("saved")
+    ```
+
 ## Reading a file
 
 Say `notes.txt` already exists — written by an earlier run, or typed by hand in a text editor — and looks like this, one snake per line:
@@ -53,7 +63,7 @@ boa, 8 ft
 
 `.read()` returns the whole thing as one string, newlines and all.
 
-```python
+```python-ref
 with open("notes.txt", "w") as file:
     file.write("ball python, 4.5 ft\nburmese python, 12 ft\nboa, 8 ft\n")
 
@@ -65,7 +75,7 @@ print(text)
 
 `.readlines()` instead returns a list, one string per line, each still ending in a trailing `\n`. Looping over the file object directly reads it the same way, one line at a time, without holding the whole list in memory at once.
 
-```python
+```python-ref
 with open("notes.txt", "r") as file:
     lines = file.readlines()
 print(lines)    # ["ball python, 4.5 ft\n", "burmese python, 12 ft\n", "boa, 8 ft\n"]
@@ -75,17 +85,52 @@ with open("notes.txt", "r") as file:
         print(line.strip())    # ball python, 4.5 ft / burmese python, 12 ft / boa, 8 ft
 ```
 
+??? run "Run a reading a file example"
+    All the examples above, combined into one script:
+
+    ```python
+    with open("notes.txt", "w") as file:
+        file.write("ball python, 4.5 ft\nburmese python, 12 ft\nboa, 8 ft\n")
+
+    with open("notes.txt", "r") as file:
+        text = file.read()
+
+    print(text)
+
+    with open("notes.txt", "r") as file:
+        lines = file.readlines()
+    print(lines)
+
+    with open("notes.txt", "r") as file:
+        for line in file:
+            print(line.strip())
+    ```
+
 ## Writing multiple lines
 
 `.write()` doesn't add a newline for you — add one yourself at the end of each line, usually by looping over a list.
 
-```python
+```python-ref
 species = ["ball python", "burmese python", "boa"]
 
 with open("notes.txt", "w") as file:
     for s in species:
         file.write(s + "\n")
 ```
+
+??? run "Run a writing multiple lines example"
+    All the examples above, combined into one script:
+
+    ```python
+    species = ["ball python", "burmese python", "boa"]
+
+    with open("notes.txt", "w") as file:
+        for s in species:
+            file.write(s + "\n")
+
+    with open("notes.txt", "r") as file:
+        print(file.read())
+    ```
 
 ## Appending vs. overwriting
 
@@ -110,12 +155,27 @@ style modeW fill:none,stroke:none
 style modeA fill:none,stroke:none
 ```
 
-```python
+```python-ref
 with open("notes.txt", "a") as file:
     file.write("blood python, 3 ft\n")
 
 with open("notes.txt", "r") as file:
     print(file.read())
 ```
+
+??? run "Run an appending vs. overwriting example"
+    All the examples above, combined into one script:
+
+    ```python
+    with open("notes.txt", "w") as file:
+        for s in ["ball python", "burmese python", "boa"]:
+            file.write(s + "\n")
+
+    with open("notes.txt", "a") as file:
+        file.write("blood python, 3 ft\n")
+
+    with open("notes.txt", "r") as file:
+        print(file.read())
+    ```
 
 For reading and writing rows of structured, comma-separated data specifically, see the [csv](libraries/csv.md) page under Libraries — it's built on the same `open()` and file-mode basics covered here.

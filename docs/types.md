@@ -360,8 +360,6 @@ not is_venomous              # not False      → True
     True + True               # 2
     ```
 
-    `bool` is technically a subclass of `int`, though it's rare to rely on this on purpose.
-
 ??? run "Run a boolean example"
     All the examples above, combined into one script:
 

@@ -21,6 +21,12 @@ I built this from scratch — it started as a few quick-reference explanations f
 
 **Material for MkDocs theme** - When I found myself overriding too much of the native theme, I switched over to this so I could stop reinventing the wheel.
 
+## Content conventions
+
+See [STRUCTURE.md](STRUCTURE.md) for how pages are built — runnable code blocks, page shape,
+house style, and the rules for where a given piece of information belongs (heading, admonition,
+glossary, or footnote).
+
 ## Running locally
 
 ```bash

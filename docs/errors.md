@@ -149,7 +149,7 @@ The name in the traceback's last line tells you which of these went wrong.
         print("lookup attempt finished")  # always runs, no matter what happened above
     ```
 
-## Using a Debugger
+## Using a debugger
 
 A **debugger** is a tool built into most code editors that lets you pause a running program and look around, instead of only seeing what it printed after the fact. Pause your code mid-run to inspect what's happening and inspect variables — instead of only reading `print()` outputs at the end. 
 
@@ -159,7 +159,7 @@ A **breakpoint** marks a specific line where you want the program to pause while
 
 Click in the margin next to a line number to set one. To remove it, click the same spot again — the red dot toggles off.
 
-### Step 1: Run in Debug mode 
+### Step 1: Run in debug mode 
 
 Your program will run normally until it hits the *first* breakpoint, then it pauses there.
 

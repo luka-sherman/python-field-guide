@@ -6,7 +6,7 @@ A **module** is just a Python file — any `.py` file can be imported into anoth
 
 `import` makes a module's code available under its own name, so you call things through it with a `.` — `random.randint(...)`, not just `randint(...)`.
 
-```python
+```python-ref
 import random
 
 print(random.randint(1, 10))
@@ -28,6 +28,15 @@ import snake_data                # your own file
     ```python-ref
     from random import *
     randint(1, 10)    # works, but where did randint come from?
+    ```
+
+??? run "Run an import example"
+    All the examples above, combined into one script:
+
+    ```python
+    import random
+
+    print(random.randint(1, 10))
     ```
 
 ## Creating your own module
@@ -55,7 +64,7 @@ The imported file has to sit in the same folder as the one importing it (or be i
 
 `if __name__ == "__main__":` controls what runs only when a file is executed directly — not when it's imported into another file.
 
-```python
+```python-ref
 def describe(species):
     return f"a {species} python"
 
@@ -64,3 +73,14 @@ if __name__ == "__main__":
 ```
 
 `__name__` is a variable Python sets automatically: `"__main__"` when the file is run directly, or the file's own module name when it's imported elsewhere instead. Wrapping your "do the actual work" code in this check means another file can `import` yours — to reuse a function, say — without that code running as a side effect. Covered again, as one piece of a whole file's conventional layout, on the [Style](style.md#order) page.
+
+??? run "Run a main guard example"
+    All the examples above, combined into one script:
+
+    ```python
+    def describe(species):
+        return f"a {species} python"
+
+    if __name__ == "__main__":
+        print(describe("ball"))
+    ```

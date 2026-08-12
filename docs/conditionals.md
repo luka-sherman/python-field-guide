@@ -512,8 +512,7 @@ match species:
         print("unknown species")
 ```
 
-??? tip "See the path"
-    See the decision path the above code will take in the form of a flow chart diagram.
+??? tip "See the decision path this code follows"
 
     ```mermaid
     flowchart TD

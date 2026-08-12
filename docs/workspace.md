@@ -97,7 +97,7 @@ That's it! You've written and run your first Python program. From here, you can 
     
         This is what tells your application to treat the file as Python code — the Run button, syntax highlighting, and imports all depend on the extension being there.
     
-    2. **Only letters, underscores, and numbers** - but it can't start with a number. 
+    2. **Only letters, underscores, and numbers** — but it can't start with a number. 
     
         Standard formatting is to use `snake_case` (all lowercase, separated with underscores). Python is case-sensitive (Species.py and species.py would be two different files).
     
@@ -125,7 +125,9 @@ That's it! You've written and run your first Python program. From here, you can 
         help("modules")
         ```
         
-!!! tip "When you see red error text, the [Errors](errors.md#reading-errors) page covers how to read it."
+??? tip "Reading error messages"
+
+    When you see red error text, the [Errors](errors.md#reading-errors) page covers how to read it.
 
 ## Using the terminal *(optional)*
 
@@ -195,7 +197,7 @@ It's good for running Python files that are already finished — either your own
         
         ++down++ then moves forward through the history. 
         
-        You can this press return to send that command without needing to type it out. This saves typing when you want to send the same command(s) multuple times.
+        You can this press return to send that command without needing to type it out. This saves typing when you want to send the same command(s) multiple times.
 
     3. **Give the full path in one command:**
 

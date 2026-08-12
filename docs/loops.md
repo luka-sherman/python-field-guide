@@ -236,11 +236,6 @@ while count < 3:
     while count < 3:
         print(count)
         count += 1
-
-    count = 0
-    while count < 3:
-        print(count)
-        count += 1
     ```
 
 ### Boolean expressions
@@ -311,7 +306,7 @@ if not venomous:               # is it False — don't write venomous == False
 ```
 
 ??? note "Don't compare booleans with `==` or `is`"
-    [PEP 8](https://peps.python.org/pep-0008/#programming-recommendations) calls this out specifically: never write `if venomous == True:`, and skip `is True`/`is False` too — a boolean is already the condition, so just use the value directly (or `not` the value). This is different from [`None`](types.md#none), where `is`/`is not` *is* the right tool — `None` is a singleton, not a boolean.
+    Same rule as in [Boolean expressions](conditionals.md#boolean-expressions) — a boolean is already the condition, so just use the value directly (or `not` the value), never `venomous == True` or `venomous is True`.
 
 **None:** `is`, `is not`
 ```python-ref
@@ -461,14 +456,6 @@ while count < 5:
         count += 1
     else:
         print("done")                # 0  1  2  done
-    ```
-
-??? tip "The pass statement"
-    A no-op placeholder for an empty loop body, which Python doesn't otherwise allow. It's not just for loops — the same trick works while you're still deciding what an `if`, function, etc. should do.
-
-    ```python-ref
-    for s in species:
-        pass    # does nothing, but keeps the loop syntactically valid
     ```
 
 ??? run "Run a loop control example"

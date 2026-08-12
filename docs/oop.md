@@ -107,7 +107,7 @@ ball.describe()    # "a 5 ft ball python"
     del ball                # remove the whole object
     ```
 
-??? tip "The `pass` statement"
+??? tip "pass placeholder"
     A placeholder for a class you haven't filled in yet. Same as in a loop or function — an empty class body is a syntax error on its own.
 
     ```python-ref
