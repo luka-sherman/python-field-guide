@@ -168,7 +168,9 @@ float("4.5")      # 4.5
 
 ## Strings
 
-A string stores text — a sequence of characters — inside a single variable.
+A string stores text — a sequence of characters — inside a single variable.[^str-collection]
+
+[^str-collection]: Structurally, a string is a collection — it's iterable, indexable, and has a length, the same as a list. It's covered here rather than on the [Collections](collections.md) page because of how it's normally *used*: as one indivisible piece of text, not as a group of separate items you add to or remove from one at a time.
 
 Strings have three defining traits:
 

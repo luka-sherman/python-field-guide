@@ -1,101 +1,186 @@
 # :material-repeat:{ .lg .middle } Loops
 
-A **loop** repeats a block of code some number of times. 
-
-All loop definitions end with a colon `:`, and the **block** is the lines indented underneath it that is treated as a single unit. 
-
-**There are two types of loops:**
+A **loop** repeats a block of code multiple times. 
 
 <div class="pt-jump-table" markdown="block">
 
-| Loop | Syntax | Use it for |
+| Loop type | Syntax | Use it for |
 |------|--------|------------|
-| <a href="#for-loops">`for`</a> | <a href="#for-loops">`for item in sequence:`</a> | <a href="#for-loops">When you know (or can generate) what you're looping over ahead of time:<ul><li>A `range()` — loop a fixed number of times</li><li>A `list` — an ordered, changeable collection of items</li><li>A `tuple` — an ordered collection that can't be changed</li><li>A `dict` — looping gives you the keys (or use `.items()` for key-value pairs)</li><li>A `str` — loops over the string one character at a time</li></ul></a> |
-| <a href="#while-loops">`while`</a> | <a href="#while-loops">`while condition:`</a> | <a href="#while-loops"><ul><li>Repeating until something changes — not tied to a fixed collection</li><li>When you don't know in advance how many passes you'll need</li></ul></a> |
+| <a href="#for-loops">`for`</a> | <a href="#for-loops">`for loop_variable in iterable:`</a> | <a href="#for-loops">A `for` loop goes through an **iterable** (something that contains multiple values) one value at a time, assigning each value to `loop_variable` as it goes.<ul><li><b>`range()`</b> — repeats a fixed number of times<ul><li>`loop_variable` represents the current count</li></ul></li><li><b>list / tuple / dict / set / string</b> — goes through each item in the collection<ul><li>`loop_variable` represents the current item</li></ul></li></ul></a> |
+| <a href="#while-loops">`while`</a> | <a href="#while-loops">`while condition:`</a> | <a href="#while-loops">A `while` loop repeats as long as a **condition** is `True`, checking the condition before it starts each pass.<ul><li>Use it when you don't know how many times the loop needs to run</li><li>The condition determines when the loop stops</li></ul></a> |
 
 </div>
 
 ## For loops
 
-A `for` loop steps through a sequence — a [list](collections.md), tuple, string, or other iterable — running its body once per item, in order.
+A `for` loop steps through something one item at a time, running its body once per pass — either **by count**, using a `range()` you generate, or **by value**, using a [collection](collections.md) you already have.
+
+### Loop over a range()
+
+`range()` generates a sequence of numbers to loop over, built from three parts:
+
+- `start` — where to begin counting (default `0`)
+- `stop` — where to end — not included in the result
+- `step` — how much to count by each time (default `1`)
+
+How many arguments you pass decides which of these you're actually setting — the rest fall back to their defaults.
+
+One argument sets just `stop`, counting up from the default `start` of `0`.
 
 ```python-ref
+range(5)   # 0, 1, 2, 3, 4
+```
+
+Two arguments set `start, stop`, counting up from `start` instead of `0`.
+
+```python-ref
+range(2, 6)   # 2, 3, 4, 5
+```
+
+Three arguments set `start, stop, step`, counting by `step` instead of the default `1`.
+
+```python-ref
+range(2, 10, 3)   # 2, 5, 8
+```
+
+```python
 for i in range(5):
+    print(i)
+
+for i in range(2, 6):
+    print(i)
+
+for i in range(2, 10, 3):
     print(i)
 ```
 
-### Loop a fixed number of times
+#### Loop variable is an index
 
-`range()` generates a sequence of numbers to loop over. One argument counts up from `0` to (but not including) that number; a second sets a custom `start`; a third sets a `step` size other than `1`. It's the standard way to loop by index instead of by value — or to just repeat something a fixed number of times, using `_` instead of a real variable name when you don't need the number itself.
+Naming the variable in a `range()` loop comes down to one of three choices:
 
-```python-ref
-range(5)          # range(0, 5) — produces 0, 1, 2, 3, 4
-range(2, 6)       # start=2, stop=6      — 2, 3, 4, 5
-range(2, 10, 3)   # start=2, stop=10, step=3 — 2, 5, 8
-```
+- **`i`, for a simple counter**
 
-### Loop over a list
+    Short for **index** — a naming convention borrowed from math, where `i`, `j`, and `k` are the traditional names for a counting variable. It's not a special keyword; any name works, but `i` is what most Python code uses by convention for a loop over `range()`.
 
-Each pass hands you the item itself, not its position. This is what sets a Python `for` loop apart from the index-counting loops in some other languages. A list is the most common thing to loop over, since it's Python's all-purpose ordered collection.
-
-```python-ref
-for s in species:
-    print(s)    # burmese  rock  ball  blood
-```
-
-??? tip "Counting matches with a loop"
-    Combine `if` with a loop and a counter to count how many items meet a condition. `count` starts at `0`, and the `if` condition is checked once per item — every time it's `True`, `count += 1` adds one. By the end of the loop, `count` holds the total number of matches.
-
-    ```python-ref
-    count = 0
-    for s in species:
-        if s == "ball":
-            count += 1
-    print(count)   # runs — counts every "ball" in the list
+    ```python
+    for i in range(5):
+        print(i)
     ```
 
-### Loop over a tuple
+- **A descriptive name, when the count means something**
 
-Works exactly like looping over a list — a tuple just can't be changed once it's created. Anything you'd loop through in a list, you can loop through the same way in a tuple.
+    If what you're counting through actually represents something, a descriptive name reads better than `i` — says what the number *means* at a glance, instead of leaving the reader to infer it from how it's used. Same [naming](style.md#naming) rule as any other variable: `i` is fine for a short, throwaway loop, but a meaningful name is worth it once the number stands for something specific.
 
-```python-ref
-for s in constrictors:
-    print(s)    # ball  burmese  boa
+    ```python
+    for year in range(2020, 2026):
+        print(year)
+
+    for attempt in range(3):
+        print(attempt)
+    ```
+
+- **`_`, when you don't need it at all**
+
+    Use `_` instead of a real loop variable when you just need to repeat something a fixed number of times and don't need the number itself.
+
+    ```python
+    for _ in range(3):
+        print("hiss")
+    ```
+
+### Loop over a collection
+
+A `for` loop steps through any type of collection[^str-collection] the same way — the difference is what each pass hands you to work with.
+
+[^str-collection]: A string isn't technically one of Python's collection types — see the [Types](types.md#strings) page — but it's structurally iterable and indexable the same way a list is, so it loops the same way too.
+
+!!! example "How to loop each type"
+
+    === "list"
+
+        Each pass hands you the item itself, not its position. This is what sets a Python `for` loop apart from the index-counting loops in some other languages. A list is the most common thing to loop over, since it's Python's all-purpose ordered collection.
+
+        ```python
+        species = ["burmese", "rock", "ball", "blood"]
+
+        for s in species:
+            print(s)
+        ```
+
+    === "tuple"
+
+        Works exactly like looping over a list — a tuple just can't be changed once it's created. Anything you'd loop through in a list, you can loop through the same way in a tuple.
+
+        ```python
+        constrictors = ("ball", "burmese", "boa")
+
+        for s in constrictors:
+            print(s)
+        ```
+
+    === "dict"
+
+        Looping directly over a dict gives you its keys, one at a time. Use `.values()` to get just the values instead, or `.items()` to get the key and value together — usually the most useful of the three.
+
+        ```python
+        snake = {"species": "ball", "length_ft": 5, "venomous": False}
+
+        for key, value in snake.items():
+            print(key, value)
+        for key in snake:
+            print(key)
+        for value in snake.values():
+            print(value)
+        ```
+
+    === "str"
+
+        Hands you each character in turn, in order — including spaces. A string is just a sequence of characters, so a `for` loop treats it the same way it treats a list or tuple.
+
+        ```python
+        name = "burmese python"
+
+        for letter in name:
+            print(letter)
+        ```
+
+    === "set"
+
+        Works the same as a list, except the order isn't guaranteed — a set has no fixed position for its items, so each pass just hands you the next value in whatever order Python happens to iterate.
+
+        ```python
+        species = {"burmese", "rock", "ball", "blood"}
+
+        for s in species:
+            print(s)
+        ```
+
+#### Loop variable is the singular name
+
+Looping over a collection follows a different naming convention than counting with `range()`: name the loop variable the **singular** of the collection's plural name — `for snake in snakes:`, `for length in lengths:` — so each pass reads as "this one item from the group." Site examples on this page often abbreviate to a single letter (`s` for `species`) to keep code blocks compact, but a real singular word is clearer in actual code.
+
+```python
+snakes = ["burmese", "rock", "ball", "blood"]
+
+for snake in snakes:
+    print(snake)
 ```
 
-### Loop over a dictionary
+#### Loop with index and value
 
-Looping directly over a dict gives you its keys, one at a time. Use `.values()` to get just the values instead, or `.items()` to get the key and value together — usually the most useful of the three.
+`enumerate()` hands you both the index and the value on every pass. It's the usual alternative to looping over `range(len(species))` when you need the index but still want direct access to each item.
 
-```python-ref
-for key, value in snake.items():
-    print(key, value)          # species ball  length_ft 5  venomous False
-for key in snake:
-    print(key)                 # species  length_ft  venomous
-for value in snake.values():
-    print(value)               # ball  5  False
-```
+```python
+species = ["burmese", "rock", "ball", "blood"]
 
-### Loop over a string
-
-Hands you each character in turn, in order — including spaces. A string is just a sequence of characters, so a `for` loop treats it the same way it treats a list or tuple.
-
-```python-ref
-for letter in name: print(letter)    # b  u  r  m  e  s  e     p  y  t  h  o  n
-```
-
-### Loop with index and value
-
-`enumerate()` hands you both the index and the value on every pass. It's the usual alternative to looping over `range(len(species))` when you need the position but still want direct access to each item.
-
-```python-ref
-for i, s in enumerate(species): print(i, s)    # 0 burmese  1 rock  2 ball  3 blood
+for i, s in enumerate(species):
+    print(i, s)
 ```
 
 ??? tip "Loop two lists together with zip()"
     `zip()` pairs up items from two (or more) sequences by position — the first item from each, then the second from each, and so on — stopping as soon as the shortest one runs out.
 
-    ```python-ref
+    ```python
     species = ["burmese", "rock", "ball", "blood"]
     length_ft = [12, 4, 5, 3.5]
 
@@ -106,115 +191,95 @@ for i, s in enumerate(species): print(i, s)    # 0 burmese  1 rock  2 ball  3 bl
 ??? tip "Nested loops"
     A loop can contain another loop — useful for combinations, grids, or nested collections. The inner loop runs all the way through for every single pass of the outer one.
 
-    ```python-ref
+    ```python
+    species = ["burmese", "rock", "ball", "blood"]
+
     for s in species:
         for letter in s[:2]:
             print(s, letter)
-    # burmese b  burmese u  rock r  rock o  ball b  ball a  blood b  blood l
     ```
 
 ??? tip "List comprehensions: a for loop in one line"
     A list comprehension builds a new list by running an expression once per item — the same result as a `for` loop that appends to an empty list, written on a single line.
 
-    ```python-ref
+    ```python
+    species = ["burmese", "rock", "ball", "blood"]
+
     lengths = []
     for s in species:
         lengths.append(len(s))
-    lengths                                # [7, 4, 4, 5]
+    print(lengths)
 
-    lengths = [len(s) for s in species]    # same result, one line
+    lengths = [len(s) for s in species]
+    print(lengths)
     ```
 
     Add an `if` at the end to only keep items that match a condition:
 
-    ```python-ref
-    [s for s in species if s == "ball"]    # ["ball"]
+    ```python
+    species = ["burmese", "rock", "ball", "blood"]
+
+    print([s for s in species if s == "ball"])
     ```
 
     Readable for a short, simple transformation — once the logic doesn't fit comfortably on one line, a regular `for` loop is usually clearer. More on that trade-off on the [Style](style.md#comprehensions-vs-loops) page.
 
-??? run "Run a for loop example"
-    All the examples above, combined into one script:
-
-    ```python
-    for i in range(5):
-        print(i)
-
-    for i in range(5):
-        print(i)
-
-    # start and stop
-    for i in range(2, 6):
-        print(i)
-
-    # start, stop, and step
-    for i in range(2, 10, 3):
-        print(i)
-
-    # just repeat 3 times — the value itself isn't needed, so use _
-    for _ in range(3):
-        print("hiss")
-
-    species = ["burmese", "rock", "ball", "blood"]
-
-    for s in species:
-        print(s)
-
-    species = ["ball", "burmese", "ball", "boa", "ball"]
-
-    count = 0
-    for s in species:
-        if s == "ball":
-            count += 1
-
-    print(count)
-
-    constrictors = ("ball", "burmese", "boa")
-
-    for s in constrictors:
-        print(s)
-
-    snake = {"species": "ball", "length_ft": 5, "venomous": False}
-
-    # 1. Loop through both keys and values (recommended)
-    for key, value in snake.items():
-        print(f"{key}: {value}")
-
-    # 2. Loop through keys only
-    for key in snake:
-        print(key)
-
-    # 3. Loop through values only
-    for value in snake.values():
-        print(value)
-
-    name = "burmese python"
-
-    for letter in name:
-        print(letter)
-
-    species = ["burmese", "rock", "ball", "blood"]
-
-    for i, s in enumerate(species):
-        print(i, s)
-
-    species = ["ball", "burmese"]
-
-    for s in species:
-        for letter in s[:2]:
-            print(s, letter)
-    ```
-
 ## While loops
 
-A `while` loop repeats its body for as long as a condition stays `True` — checked again before every pass — so it's the right choice when you don't know ahead of time how many times you'll need to loop.
+A `while` loop repeats its body for as long as a condition stays `True`, checked again before every pass — the right tool when you don't know ahead of time how many passes you'll need, unlike a `for` loop's fixed number of items. That condition can be any boolean expression, watching for something to happen rather than counting toward it.
 
 ```python-ref
-count = 0
+handled = False
 
-while count < 3:
-    print(count)
-    count += 1
+while not handled:
+    print("checking on the snake")
+    handled = True
+```
+
+### Using a flag
+
+A **flag** is a boolean variable, starting `True` or `False`, that gets flipped when something happens — used as the condition to end the loop based on an event rather than a pass count.
+
+```python-ref
+species = ["burmese", "rock", "ball", "blood"]
+
+found = False
+i = 0
+
+while not found:
+    if species[i] == "ball":
+        found = True    # flips the flag — the next check ends the loop
+    i += 1
+
+print(found)   # True
+print(i)       # 3 — stopped as soon as "ball" was found
+```
+
+### Sentinel
+
+A **sentinel** is a specific stop-value you watch for, rather than a plain True/False flag — the loop keeps running until it sees that exact value. A common use is reading input until the user signals they're done.
+
+```python-ref
+species = ""
+
+while species != "quit":
+    species = input("Log a species (or 'quit' to stop): ")
+    if species != "quit":
+        print(f"logged: {species}")
+```
+
+### Counter and flag names
+
+A `while` loop doesn't create a loop variable automatically the way `for` does — whatever's driving the condition is a variable you declare and update yourself, so naming it clearly matters just as much.
+
+- **A counter** — named the same way as a `for` loop's: `count` works generically, but a descriptive name (`attempts`, `retries`) reads better once the number means something specific.
+- **A flag** — named so `while not flag_name:` reads like plain English — `found`, `done`, `handled` — rather than something that needs mental negation to parse.
+
+```python
+handled = False
+
+while not handled:
+    handled = True
 ```
 
 ??? warning "Avoiding infinite loops"
@@ -231,11 +296,24 @@ while count < 3:
     All the examples above, combined into one script:
 
     ```python
-    count = 0
+    handled = False
 
-    while count < 3:
-        print(count)
-        count += 1
+    while not handled:
+        print("checking on the snake")
+        handled = True
+
+    species = ["burmese", "rock", "ball", "blood"]
+
+    found = False
+    i = 0
+
+    while not found:
+        if species[i] == "ball":
+            found = True
+        i += 1
+
+    print(found)
+    print(i)
     ```
 
 ### Boolean expressions
@@ -251,140 +329,345 @@ A **boolean expression** is a boolean value (`True` or `False`) or anything that
 
 A comparison looks different depending on the type of value being checked, as shown below. All of these comparisons result in a `True` or `False` boolean expression. 
 
-**integer and float:** `==`, `!=`, `>`, `<`, `>=`, `<=`
+!!! example "Comparisons by type"
+
+    === "int, float"
+
+        | Operator | Meaning |
+        |---|---|
+        | `==` | equal to |
+        | `!=` | not equal to |
+        | `>` | greater than |
+        | `<` | less than |
+        | `>=` | greater than or equal to |
+        | `<=` | less than or equal to |
+
+        ```python-ref
+        length = 12
+
+        if length == 12:             # equal to
+            print("exactly 12 ft")
+
+        if length != 4:              # not equal
+            print("not 4 ft")
+
+        if length > 10:              # greater than
+            print("long snake")
+
+        if length < 20:              # less than
+            print("under 20 ft")
+
+        if length >= 12:             # greater than or equal to
+            print("at least 12 ft")
+
+        if length <= 12.5:           # less than or equal to
+            print("12.5 ft or shorter")
+        ```
+
+    === "str"
+
+        | Operator | Meaning |
+        |---|---|
+        | `==` | equal to |
+        | `!=` | not equal to |
+        | `in` | is a substring |
+        | `not in` | is not a substring |
+        | `>` | comes after alphabetically |
+        | `<` | comes before alphabetically |
+
+        ```python-ref
+        name = "burmese python"
+
+        if name == "burmese python":   # equal to
+            print("it's a burmese")
+
+        if name != "ball python":      # not equal
+            print("not a ball python")
+
+        if "python" in name:           # is it a substring
+            print("name contains 'python'")
+
+        if "anaconda" not in name:     # is it not a substring
+            print("name doesn't mention anaconda")
+
+        if name > "ball python":       # alphabetical comparison
+            print("comes after 'ball python' alphabetically")
+        ```
+
+    === "bool"
+
+        | Check | Meaning |
+        |---|---|
+        | `[bool]` | is the bool True |
+        | `not [bool]` | is the bool False |
+
+        Don't compare booleans with `== True` or `is True` — a boolean is already the condition, so just use the value directly (or `not` the value).
+
+        ```python-ref
+        venomous = False
+
+        if venomous:                   # is it True — don't write venomous == True
+            print("handle with care")
+
+        if not venomous:               # is it False — don't write venomous == False
+            print("safe to handle")
+        ```
+
+    === "None"
+
+        | Operator | Meaning |
+        |---|---|
+        | `is` | is None |
+        | `is not` | is not None |
+
+        ```python-ref
+        age = None
+
+        if age is None:                # is it None
+            print("age not recorded")
+
+        if age is not None:            # is it anything else
+            print("age was recorded")
+        ```
+
+    === "list"
+
+        | Operator | Meaning |
+        |---|---|
+        | `in` | value exists in the list |
+        | `not in` | value is missing from the list |
+        | `==` | same contents, in the same order |
+        | `!=` | different contents |
+
+        Or compare a specific item directly, like `species[0] == "ball"`.
+
+        ```python-ref
+        species = ["ball", "burmese", "boa"]
+        other_species = ["ball", "burmese", "boa"]
+
+        if "ball" in species:          # is the value in the list
+            print("ball python is in the list")
+
+        if "anaconda" not in species:  # is the value missing from the list
+            print("anaconda isn't in the list")
+
+        if species == other_species:   # is it the same contents, in the same order
+            print("both lists match")
+
+        if "ball" == species[0]:       # compare a specific item
+            print("ball python is the first item")
+        ```
+
+        | Operator | Meaning |
+        |---|---|
+        | `==` | same contents, even if it's a different object |
+        | `is` | the exact same object, not just an equal one |
+
+        ```python-ref
+        snake = ["ball", "burmese"]
+        other_snake = ["ball", "burmese"]   # separate list, but equal contents
+
+        if snake == other_snake:      # do they contain the same items?
+            print("equal contents")
+
+        if snake != ["ball"]:         # different contents
+            print("not equal to a single-item list")
+
+        same_snake = snake                  # another name for `snake`
+        if snake is same_snake:             # same_snake and snake point to the exact same list
+            print("this really is the same list")
+
+        if snake is not other_snake:        # it's a different list, even though contents match
+            print("but not the same list")
+        ```
+
+    === "tuple"
+
+        | Operator | Meaning |
+        |---|---|
+        | `in` | value exists in the tuple |
+        | `not in` | value is missing from the tuple |
+        | `==` | same contents, in the same order |
+        | `!=` | different contents |
+
+        Or compare a specific item directly, like `snake[0] == "ball"`.
+
+        ```python-ref
+        snake = ("ball", "5ft", "not venomous")
+        other_snake = ("ball", "5ft", "not venomous")
+
+        if "ball" in snake:
+            print("species ball is in the tuple")
+
+        if snake == other_snake:
+            print("tuples match")
+
+        if "ball" == snake[0]:
+            print("ball python is the first item")
+        ```
+
+        | Operator | Meaning |
+        |---|---|
+        | `==` | same contents, even if it's a different object |
+        | `is` | the exact same object, not just an equal one |
+
+        ```python-ref
+        snake = ("ball", "burmese")
+        other_snake = ("ball", "burmese")   # separate tuple, but equal contents
+
+        if snake == other_snake:      # do they contain the same items?
+            print("equal contents")
+
+        same_snake = snake                  # another name for `snake`
+        if snake is same_snake:             # same_snake and snake point to the exact same tuple
+            print("this really is the same tuple")
+
+        if snake is not other_snake:        # it's a different tuple, even though contents match
+            print("but not the same tuple")
+        ```
+
+    === "dict"
+
+        | Operator | Meaning |
+        |---|---|
+        | `in` | key exists |
+        | `not in` | key is missing |
+
+        Or compare a specific value directly, like `snake["length"] > 2`.
+
+        ```python-ref
+        snake = {"species": "ball", "length": 3, "venomous": False}
+
+        if "venomous" in snake:        # is it a key
+            print("snake dict tracks venomous status")
+
+        if "habitat" not in snake:     # is it not a key
+            print("snake dict has no habitat key")
+
+        if snake["length"] > 2:        # compare a specific value
+            print("snake in dict is over 2 ft")
+        ```
+
+### Logical operators
+
+Logical operators `not`, `and`, `or` let a single `while` condition combine boolean expressions to create more complex conditions.
+
 ```python-ref
-length = 12
+not venomous               # not False → True
 
-if length == 12:             # equal to
-    print("exactly 12 ft")
+length > 10 and venomous   # True and False → False
 
-if length != 4:              # not equal
-    print("not 4 ft")
-
-if length > 10:              # greater than
-    print("long snake")
-
-if length < 20:              # less than
-    print("under 20 ft")
-
-if length >= 12:             # greater than or equal to
-    print("at least 12 ft")
-
-if length <= 12.5:           # less than or equal to
-    print("12.5 ft or shorter")
+length > 10 or venomous    # True or False → True
 ```
 
-**strings:** `==`, `!=`, `in`, `not in`, `>`, `<`
+A and B here are [boolean expressions](#boolean-expressions).
+
+| `A`                                       | `B`                                       | `not A` — flips to the opposite          | `A and B` — `True` only if both are `True` | `A or B` — `True` if either is `True`     |
+|----------------------------------------------|----------------------------------------------|----------------------------------------------|----------------------------------------------|----------------------------------------------|
+| <span class="pt-bool-true">True</span>    | <span class="pt-bool-true">True</span>    | <span class="pt-bool-false">False</span> | <span class="pt-bool-true">True</span>    | <span class="pt-bool-true">True</span>    |
+| <span class="pt-bool-true">True</span>    | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span> | <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>    |
+| <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>    | <span class="pt-bool-true">True</span>   | <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>    |
+| <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>   | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  |
+
+**Order of operations:** When several logical operators appear together, Python evaluates `not` first, then `and`, then `or`. Even when parentheses aren't required, they often make the condition much easier to read.
+
+## Common patterns
+
+A few variable patterns show up across both `for` and `while` loops, tracking something as the loop runs rather than controlling it directly.
+
+### Accumulator
+
+An **accumulator** builds up a result across passes — summing, concatenating, or collecting values — instead of just tracking whether or how many times the loop has run. Initialize it before the loop, then update it inside the body each pass.
+
 ```python-ref
-name = "burmese python"
+lengths_ft = [4.5, 12, 5, 3.5]
 
-if name == "burmese python":   # equal to
-    print("it's a burmese")
+total = 0
+for length in lengths_ft:
+    total += length
+print(total)   # 25.0
 
-if name != "ball python":      # not equal
-    print("not a ball python")
-
-if "python" in name:           # is it a substring
-    print("name contains 'python'")
-
-if "anaconda" not in name:     # is it not a substring
-    print("name doesn't mention anaconda")
-
-if name > "ball python":       # alphabetical comparison
-    print("comes after 'ball python' alphabetically")
+i = 0
+total = 0
+while i < len(lengths_ft):
+    total += lengths_ft[i]
+    i += 1
+print(total)   # 25.0
 ```
 
-**boolean:** just the value itself, or `not`
+??? tip "Accumulating into a list"
+    Same pattern, just appending instead of adding — this is exactly what a [list comprehension](#for-loops) collapses into one line.
+
+    ```python-ref
+    species = ["burmese", "rock", "ball", "blood"]
+
+    results = []
+    for s in species:
+        results.append(s.upper())
+    print(results)   # ["BURMESE", "ROCK", "BALL", "BLOOD"]
+    ```
+
+### Counter
+
+A **counter** tracks how many times a loop has run, or how many items met some condition — counting up or down, instead of accumulating a result. It follows the same three steps as an accumulator: initialize it before the loop, check or use it, and update it inside the body.
+
 ```python-ref
-venomous = False
+species = ["ball", "burmese", "ball", "boa", "ball"]
 
-if venomous:                   # is it True — don't write venomous == True
-    print("handle with care")
+count = 0
+for s in species:
+    if s == "ball":
+        count += 1
+print(count)   # 3 — counts every "ball" in the list
 
-if not venomous:               # is it False — don't write venomous == False
-    print("safe to handle")
+attempts = 3
+while attempts > 0:
+    print(attempts)
+    attempts -= 1
+print("out of attempts")
 ```
 
-??? note "Don't compare booleans with `==` or `is`"
-    Same rule as in [Boolean expressions](conditionals.md#boolean-expressions) — a boolean is already the condition, so just use the value directly (or `not` the value), never `venomous == True` or `venomous is True`.
+??? run "Run a common patterns example"
+    All the examples above, combined into one script:
 
-**None:** `is`, `is not`
-```python-ref
-age = None
+    ```python
+    lengths_ft = [4.5, 12, 5, 3.5]
 
-if age is None:                # is it None
-    print("age not recorded")
+    total = 0
+    for length in lengths_ft:
+        total += length
+    print(total)
 
-if age is not None:            # is it anything else
-    print("age was recorded")
-```
+    i = 0
+    total = 0
+    while i < len(lengths_ft):
+        total += lengths_ft[i]
+        i += 1
+    print(total)
 
-**list & tuple:** `in`, `not in`, `==`, `!=`, or you can compare a specific item
-```python-ref
-species = ["ball", "burmese", "boa"]
-other_species = ["ball", "burmese", "boa"]
+    species = ["burmese", "rock", "ball", "blood"]
 
-if "ball" in species:          # is the value in the list
-    print("ball python is in the list")
+    results = []
+    for s in species:
+        results.append(s.upper())
+    print(results)
 
-if "anaconda" not in species:  # is the value missing from the list
-    print("anaconda isn't in the list")
+    species = ["ball", "burmese", "ball", "boa", "ball"]
 
-if species == other_species:   # is it the same contents, in the same order
-    print("both lists match")
+    count = 0
+    for s in species:
+        if s == "ball":
+            count += 1
+    print(count)
 
-if "ball" == species[0]:       # compare a specific item
-    print("ball python is the first item")
+    attempts = 3
+    while attempts > 0:
+        print(attempts)
+        attempts -= 1
+    print("out of attempts")
+    ```
 
-snake = ("ball", "5ft", "not venomous")   # a tuple works the same way
-
-if "ball" in snake:
-    print("species ball is in the tuple")
-
-if snake == ("ball", "5ft", "not venomous"):
-    print("tuples match")
-```
-
-**dict:** `in`, `not in` (checks keys), or you can compare a specific value 
-```python-ref
-snake = {"species": "ball", "length": 3, "venomous": False}
-
-if "venomous" in snake:        # is it a key
-    print("snake dict tracks venomous status")
-
-if "habitat" not in snake:     # is it not a key
-    print("snake dict has no habitat key")
-
-if snake["length"] > 2:        # compare a specific value
-    print("snake in dict is over 2 ft")
-```
-
-**same contents:** `==`, `!=`
-```python-ref
-snake = ["ball", "burmese"]
-other_snake = ["ball", "burmese"]   # separate list, but equal contents
-
-if snake == other_snake:      # do they contain the same items?
-    print("equal contents")
-
-if snake != ["ball"]:         # different contents
-    print("not equal to a single-item list")
-```
-
-**is it comparing the exact same thing:** `is`, `is not`
-```python-ref
-snake = ["ball", "burmese"]
-
-same_snake = snake                  # another name for `snake`
-if snake is same_snake:             # same_snake and snake point to the exact same list
-    print("this really is the same list")
-
-other_snake = ["ball", "burmese"]   # separate list, but equal contents
-if snake is not other_snake:        # it's a different list, even though contents match
-    print("but not the same list")
-```
-
-## Loop control
+## Control Flow Statements
 
 A `for` loop and a `while` loop can both be redirected mid-run — cut short, skipped ahead by one pass, or wrapped up with a bit of code that only runs if nothing interrupted them. These keywords work identically in either loop type.
 
@@ -433,29 +716,30 @@ while count < 5:
     print(count)                 # 1  2  4  5
 ```
 
+### Else
+
+Runs once the loop finishes on its own — skipped entirely if `break` cut it short. Both `for` and `while` can end with an `else` block.
+
+```python-ref
+for s in species:
+    print(s)
+else:
+    print("done")                # burmese  rock  ball  blood  done
+
+count = 0
+while count < 3:
+    print(count)
+    count += 1
+else:
+    print("done")                # 0  1  2  done
+```
+
 ??? tip "pass placeholder"
     Temporarily fill an empty loop body when you're not ready to write the inside code yet. Python doesn't allow an empty block after a colon. `pass` does nothing, but acts as a placeholder until you're ready to add code so that the empty block won't cause a syntax error in the meantime. Covered in more detail on the [Conditionals](conditionals.md#if-elif-else) page.
 
     ```python-ref
     for s in species:
         pass    # placeholder — does nothing, but prevents a syntax error
-    ```
-
-??? note "The else clause"
-    Runs once the loop finishes on its own — skipped entirely if `break` cut it short. Both `for` and `while` can end with an `else` block.
-
-    ```python-ref
-    for s in species:
-        print(s)
-    else:
-        print("done")                # burmese  rock  ball  blood  done
-
-    count = 0
-    while count < 3:
-        print(count)
-        count += 1
-    else:
-        print("done")                # 0  1  2  done
     ```
 
 ??? run "Run a loop control example"

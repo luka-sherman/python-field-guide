@@ -57,13 +57,13 @@ hide:
 
     Lets a program make decisions, running different code depending on whether something is true.
 
-    [`if, elif, else`](conditionals.md#if-elif-else) · [`match, case`](conditionals.md#match-case) · [`boolean expressions`](conditionals.md#boolean-expressions) · [`and, or, not`](conditionals.md#logical-operators) · [`break, continue`](loops.md#loop-control)
+    [`if, elif, else`](conditionals.md#if-elif-else) · [`match, case`](conditionals.md#match-case) · [`boolean expressions`](conditionals.md#boolean-expressions) · [`and, or, not`](conditionals.md#logical-operators) · [`break, continue`](conditionals.md#control-flow-statements)
 
 -   :material-repeat:{ .lg .middle } [__Loops__](loops.md)
 
     Repeats a block of code without writing it out multiple times.
 
-    [`for`](loops.md#for-loops) · [`while`](loops.md#while-loops) · [`break, continue`](loops.md#loop-control)
+    [`for`](loops.md#for-loops) · [`while`](loops.md#while-loops) · [`enumerate()`](loops.md#loop-with-index-and-value) · [`accumulator`](loops.md#accumulator) · [`break, continue`](loops.md#control-flow-statements)
 
 </div>
 </div>
