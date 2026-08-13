@@ -168,6 +168,15 @@
   background-color: transparent;
 }
 
+/* Make the current page's top-nav tab visually heavier than the rest, so
+   which page you're on is clear at a glance instead of relying solely on
+   the underline Material draws by default. Material marks the active tab
+   on the parent <li> (.md-tabs__item--active), not the <a> itself — there
+   is no .md-tabs__link--active class. */
+.md-tabs__item--active .md-tabs__link {
+  font-weight: 700;
+}
+
 /* Material redefines --md-typeset-a-color to --md-primary-fg-color somewhere
    deeper in its own cascade (our light-cream header color), which makes body
    links and the active-page nav label unreadable. Override color directly
