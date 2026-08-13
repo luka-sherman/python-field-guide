@@ -40,13 +40,13 @@ Optional, and always comes last if present. It has no condition of its own — i
 ```python-ref
 length = 12
 
-if length > 10:                    # always starts with an if
+if length > 10:                    # always starts with the if 
     print("that's a big snake")
-elif length > 7:                   # then any number of elifs (or none)
+elif length > 7:                   # then any number (or none) of elifs
     print("that's a medium snake")
 elif length > 4:
     print("that's a small snake")
-else:                              # last comes one else (or none)
+else:                              # lastly comes one optional else 
     print("that's a tiny snake")
 ```
 
@@ -94,138 +94,224 @@ A **boolean expression** is a boolean value (`True` or `False`) or anything that
 
 A comparison looks different depending on the type of value being checked, as shown below. All of these comparisons result in a `True` or `False` boolean expression. 
 
-**integer and float:** `==`, `!=`, `>`, `<`, `>=`, `<=`
-```python-ref
-length = 12
+!!! example "Comparisons by type"
 
-if length == 12:             # equal to
-    print("exactly 12 ft")
+    === "int, float"
 
-if length != 4:              # not equal
-    print("not 4 ft")
+        | Operator | Meaning |
+        |---|---|
+        | `==` | equal to |
+        | `!=` | not equal to |
+        | `>` | greater than |
+        | `<` | less than |
+        | `>=` | greater than or equal to |
+        | `<=` | less than or equal to |
 
-if length > 10:              # greater than
-    print("long snake")
+        ```python-ref
+        length = 12
 
-if length < 20:              # less than
-    print("under 20 ft")
+        if length == 12:             # equal to
+            print("exactly 12 ft")
 
-if length >= 12:             # greater than or equal to
-    print("at least 12 ft")
+        if length != 4:              # not equal
+            print("not 4 ft")
 
-if length <= 12.5:           # less than or equal to
-    print("12.5 ft or shorter")
-```
+        if length > 10:              # greater than
+            print("long snake")
 
-**strings:** `==`, `!=`, `in`, `not in`, `>`, `<`
-```python-ref
-name = "burmese python"
+        if length < 20:              # less than
+            print("under 20 ft")
 
-if name == "burmese python":   # equal to
-    print("it's a burmese")
+        if length >= 12:             # greater than or equal to
+            print("at least 12 ft")
 
-if name != "ball python":      # not equal
-    print("not a ball python")
+        if length <= 12.5:           # less than or equal to
+            print("12.5 ft or shorter")
+        ```
 
-if "python" in name:           # is it a substring
-    print("name contains 'python'")
+    === "str"
 
-if "anaconda" not in name:     # is it not a substring
-    print("name doesn't mention anaconda")
+        | Operator | Meaning |
+        |---|---|
+        | `==` | equal to |
+        | `!=` | not equal to |
+        | `in` | is a substring |
+        | `not in` | is not a substring |
+        | `>` | comes after alphabetically |
+        | `<` | comes before alphabetically |
 
-if name > "ball python":       # alphabetical comparison
-    print("comes after 'ball python' alphabetically")
-```
+        ```python-ref
+        name = "burmese python"
 
-**boolean:** just the value itself, or `not`
-```python-ref
-venomous = False
+        if name == "burmese python":   # equal to
+            print("it's a burmese")
 
-if venomous:                   # is it True — don't write venomous == True
-    print("handle with care")
+        if name != "ball python":      # not equal
+            print("not a ball python")
 
-if not venomous:               # is it False — don't write venomous == False
-    print("safe to handle")
-```
+        if "python" in name:           # is it a substring
+            print("name contains 'python'")
 
-??? note "Don't compare booleans with `==` or `is`"
-    [PEP 8](https://peps.python.org/pep-0008/#programming-recommendations) calls this out specifically: never write `if venomous == True:`, and skip `is True`/`is False` too — a boolean is already the condition, so just use the value directly (or `not` the value). This is different from [`None`](types.md#none), where `is`/`is not` *is* the right tool — `None` is a singleton, not a boolean.
+        if "anaconda" not in name:     # is it not a substring
+            print("name doesn't mention anaconda")
 
-**None:** `is`, `is not`
-```python-ref
-age = None
+        if name > "ball python":       # alphabetical comparison
+            print("comes after 'ball python' alphabetically")
+        ```
 
-if age is None:                # is it None
-    print("age not recorded")
+    === "bool"
 
-if age is not None:            # is it anything else
-    print("age was recorded")
-```
+        | Check | Meaning |
+        |---|---|
+        | `[bool]` | is the bool True |
+        | `not [bool]` | is the bool False |
 
-**list & tuple:** `in`, `not in`, `==`, `!=`, or you can compare a specific item
-```python-ref
-species = ["ball", "burmese", "boa"]
-other_species = ["ball", "burmese", "boa"]
+        Don't compare booleans with `== True` or `is True` — a boolean is already the condition, so just use the value directly (or `not` the value).
 
-if "ball" in species:          # is the value in the list
-    print("ball python is in the list")
+        ```python-ref
+        venomous = False
 
-if "anaconda" not in species:  # is the value missing from the list
-    print("anaconda isn't in the list")
+        if venomous:                   # is it True — don't write venomous == True
+            print("handle with care")
 
-if species == other_species:   # is it the same contents, in the same order
-    print("both lists match")
+        if not venomous:               # is it False — don't write venomous == False
+            print("safe to handle")
+        ```
 
-if "ball" == species[0]:       # compare a specific item
-    print("ball python is the first item")
+    === "None"
 
-snake = ("ball", "5ft", "not venomous")   # a tuple works the same way
+        | Operator | Meaning |
+        |---|---|
+        | `is` | is None |
+        | `is not` | is not None |
 
-if "ball" in snake:
-    print("species ball is in the tuple")
+        ```python-ref
+        age = None
 
-if snake == ("ball", "5ft", "not venomous"):
-    print("tuples match")
-```
+        if age is None:                # is it None
+            print("age not recorded")
 
-**dict:** `in`, `not in` (checks keys), or you can compare a specific value 
-```python-ref
-snake = {"species": "ball", "length": 3, "venomous": False}
+        if age is not None:            # is it anything else
+            print("age was recorded")
+        ```
 
-if "venomous" in snake:        # is it a key
-    print("snake dict tracks venomous status")
+    === "list"
 
-if "habitat" not in snake:     # is it not a key
-    print("snake dict has no habitat key")
+        | Operator | Meaning |
+        |---|---|
+        | `in` | value exists in the list |
+        | `not in` | value is missing from the list |
+        | `==` | same contents, in the same order |
+        | `!=` | different contents |
 
-if snake["length"] > 2:        # compare a specific value
-    print("snake in dict is over 2 ft")
-```
+        Or compare a specific item directly, like `species[0] == "ball"`.
 
-**same contents:** `==`, `!=`
-```python-ref
-snake = ["ball", "burmese"]
-other_snake = ["ball", "burmese"]   # separate list, but equal contents
+        ```python-ref
+        species = ["ball", "burmese", "boa"]
+        other_species = ["ball", "burmese", "boa"]
 
-if snake == other_snake:      # do they contain the same items?
-    print("equal contents")
+        if "ball" in species:          # is the value in the list
+            print("ball python is in the list")
 
-if snake != ["ball"]:         # different contents
-    print("not equal to a single-item list")
-```
+        if "anaconda" not in species:  # is the value missing from the list
+            print("anaconda isn't in the list")
 
-**is it comparing the exact same thing:** `is`, `is not`
-```python-ref
-snake = ["ball", "burmese"]
+        if species == other_species:   # is it the same contents, in the same order
+            print("both lists match")
 
-same_snake = snake                  # another name for `snake`
-if snake is same_snake:             # same_snake and snake point to the exact same list
-    print("this really is the same list")
+        if "ball" == species[0]:       # compare a specific item
+            print("ball python is the first item")
+        ```
 
-other_snake = ["ball", "burmese"]   # separate list, but equal contents
-if snake is not other_snake:        # it's a different list, even though contents match
-    print("but not the same list")
-```
+        | Operator | Meaning |
+        |---|---|
+        | `==` | same contents, even if it's a different object |
+        | `is` | the exact same object, not just an equal one |
+
+        ```python-ref
+        snake = ["ball", "burmese"]
+        other_snake = ["ball", "burmese"]   # separate list, but equal contents
+
+        if snake == other_snake:      # do they contain the same items?
+            print("equal contents")
+
+        if snake != ["ball"]:         # different contents
+            print("not equal to a single-item list")
+
+        same_snake = snake                  # another name for `snake`
+        if snake is same_snake:             # same_snake and snake point to the exact same list
+            print("this really is the same list")
+
+        if snake is not other_snake:        # it's a different list, even though contents match
+            print("but not the same list")
+        ```
+
+    === "tuple"
+
+        | Operator | Meaning |
+        |---|---|
+        | `in` | value exists in the tuple |
+        | `not in` | value is missing from the tuple |
+        | `==` | same contents, in the same order |
+        | `!=` | different contents |
+
+        Or compare a specific item directly, like `snake[0] == "ball"`.
+
+        ```python-ref
+        snake = ("ball", "5ft", "not venomous")
+        other_snake = ("ball", "5ft", "not venomous")
+
+        if "ball" in snake:
+            print("species ball is in the tuple")
+
+        if snake == other_snake:
+            print("tuples match")
+
+        if "ball" == snake[0]:
+            print("ball python is the first item")
+        ```
+
+        | Operator | Meaning |
+        |---|---|
+        | `==` | same contents, even if it's a different object |
+        | `is` | the exact same object, not just an equal one |
+
+        ```python-ref
+        snake = ("ball", "burmese")
+        other_snake = ("ball", "burmese")   # separate tuple, but equal contents
+
+        if snake == other_snake:      # do they contain the same items?
+            print("equal contents")
+
+        same_snake = snake                  # another name for `snake`
+        if snake is same_snake:             # same_snake and snake point to the exact same tuple
+            print("this really is the same tuple")
+
+        if snake is not other_snake:        # it's a different tuple, even though contents match
+            print("but not the same tuple")
+        ```
+
+    === "dict"
+
+        | Operator | Meaning |
+        |---|---|
+        | `in` | key exists |
+        | `not in` | key is missing |
+
+        Or compare a specific value directly, like `snake["length"] > 2`.
+
+        ```python-ref
+        snake = {"species": "ball", "length": 3, "venomous": False}
+
+        if "venomous" in snake:        # is it a key
+            print("snake dict tracks venomous status")
+
+        if "habitat" not in snake:     # is it not a key
+            print("snake dict has no habitat key")
+
+        if snake["length"] > 2:        # compare a specific value
+            print("snake in dict is over 2 ft")
+        ```
 
 ### Logical operators
 
@@ -241,17 +327,12 @@ length > 10 or venomous    # True or False → True
 
 A and B here are [boolean expressions](#boolean-expressions).
 
-| `A`                                       | `not A` — flips to the opposite       |
-|---------------------------------------------|----------------------------------------------|
-| <span class="pt-bool-true">True</span>    | <span class="pt-bool-false">False</span> |
-| <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>   |
-
-| `A`                                       | `B`                                       | `A and B` — `True` only if both are `True` | `A or B` — `True` if either is `True`     |
-|----------------------------------------------|----------------------------------------------|----------------------------------------------|----------------------------------------------|
-| <span class="pt-bool-true">True</span>    | <span class="pt-bool-true">True</span>    | <span class="pt-bool-true">True</span>    | <span class="pt-bool-true">True</span>    |
-| <span class="pt-bool-true">True</span>    | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>    |
-| <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>    | <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>    |
-| <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  |
+| `A`                                       | `B`                                       | `not A` — flips to the opposite          | `A and B` — `True` only if both are `True` | `A or B` — `True` if either is `True`     |
+|----------------------------------------------|----------------------------------------------|----------------------------------------------|----------------------------------------------|----------------------------------------------|
+| <span class="pt-bool-true">True</span>    | <span class="pt-bool-true">True</span>    | <span class="pt-bool-false">False</span> | <span class="pt-bool-true">True</span>    | <span class="pt-bool-true">True</span>    |
+| <span class="pt-bool-true">True</span>    | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span> | <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>    |
+| <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>    | <span class="pt-bool-true">True</span>   | <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>    |
+| <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  | <span class="pt-bool-true">True</span>   | <span class="pt-bool-false">False</span>  | <span class="pt-bool-false">False</span>  |
 
 **Order of operations:** When several logical operators appear together, Python evaluates `not` first, then `and`, then `or`. Even when parentheses aren't required, they often make the condition much easier to read.
 
@@ -276,29 +357,6 @@ A and B here are [boolean expressions](#boolean-expressions).
     ```python-ref
     if venomous: print("careful")    # single-line if — the colon is still required
     "careful" if venomous else "safe"    # "careful" — a compact if/else that evaluates to a value
-    ```
-
-??? tip "pass placeholder"
-    Temporarily fill an empty block when you're not ready to write the inside code yet. Python doesn't allow an empty block after a colon. `pass` does nothing, but acts as a placeholder until you're ready to add code so that the empty block won't cause a syntax error in the meantime. 
-
-    ```python-ref
-    if venomous:
-        pass    # placeholder — does nothing, but prevents a syntax error
-    ```
-
-??? tip "break and continue inside a loop"
-    `break` and `continue` are loop-control keywords, not conditional ones, but they almost always appear inside an `if` — checking a condition, then stopping the loop early (`break`) or skipping straight to the next pass (`continue`). Covered fully, with more examples, on the [Loops](loops.md#loop-control) page.
-
-    ```python-ref
-    for s in species:
-        if s == "ball":
-            break         # stops the loop entirely once "ball" is found
-        print(s)
-
-    for s in species:
-        if s == "ball":
-            continue      # skips just "ball", keeps looping over the rest
-        print(s)
     ```
 
 ??? run "Run an if/elif/else example"
@@ -476,13 +534,6 @@ A and B here are [boolean expressions](#boolean-expressions).
 
     status = "careful" if venomous else "safe"
     print(status)
-
-    venomous = True
-
-    if venomous:
-        pass
-
-    print("checked venomous status, no action taken yet")
     ```
 
 ## Match / case
@@ -548,18 +599,19 @@ match species:
             print("not a hatchling")
     ```
 
-??? tip "Match multiple values"
-    Lets one `case` match several possible values using `|`, so you don't need a separate `case` for each one.
+### Match multiple values with |
 
-    ```python-ref
-    match species:
-        case "ball" | "corn":
-            print("small species")     # runs — species is "ball"
-        case _:
-            print("other")
-    ```
+Lets one `case` match several possible values using `|`, so you don't need a separate `case` for each one.
 
-### Default value
+```python-ref
+match species:
+    case "ball" | "corn":
+        print("small species")     # runs — species is "ball"
+    case _:
+        print("other")
+```
+
+### Default value _
 
 Runs a block of code if no `case` matched — either discarding the value with `_`, or capturing it into a variable.
 
@@ -579,6 +631,19 @@ match species:
 
 If you want the code to still run a block of code even if no specific `case` matched, there are two ways to add a default value at the end that will match anything. A default value goes last — without one, a value matching no cases would not run any block of code. **Option 1** (`_`) throws the matched value away; **Option 2** (giving it a variable name, like `n`) saves it so the block can use it.
 
+### case + if
+
+Only run the block of code if there's a `case` match *and* the `if` condition is also `True`. Adding `if [condition]` after a pattern turns it into a guard — the branch only runs if the pattern matches *and* the condition is `True`. If the guard is `False`, Python moves on to the next `case` even though the pattern itself matched.
+
+```python-ref
+length = 12
+match length:
+    case n if n > 10:
+        print("big")     # runs — 12 > 10
+    case n:
+        print("small")
+```
+
 ### Unpacking a tuple
 
 A `case` can pull a tuple apart into named pieces *while also* checking its shape or specific values.
@@ -597,18 +662,6 @@ match snake:
 ```
 
 A `match` can pick a different `case` depending on the tuple's length or the value in a specific position, while *still* unpacking the rest into names — all in one step, as shown above. Compare with regular assignment (`length, species = snake`), which always unpacks the same way, would crash on a 1- or 3-item tuple, and can't pick a different case based on species.
-
-??? tip "case + if"
-    Only run the block of code if there's a `case` match *and* the `if` condition is also `True`. Adding `if [condition]` after a pattern turns it into a guard — the branch only runs if the pattern matches *and* the condition is `True`. If the guard is `False`, Python moves on to the next `case` even though the pattern itself matched.
-
-    ```python-ref
-    length = 12
-    match length:
-        case n if n > 10:
-            print("big")     # runs — 12 > 10
-        case n:
-            print("small")
-    ```
 
 ??? run "Run a match/case example"
     All the examples above, combined into one script:
@@ -685,4 +738,126 @@ A `match` can pick a different `case` depending on the tuple's length or the val
             print("big")
         case n:
             print("small")
+    ```
+
+## Control flow statements
+
+`break` and `continue` are loop-control keywords, not conditional ones, but they almost always appear inside a conditional — checking a condition, then stopping the loop early (`break`) or skipping straight to the next pass (`continue`). They work the same way whether checked with `if`/`elif` or `match`/`case`, since neither creates its own loop scope — both just pass straight through to whatever loop contains them. Covered fully, with more examples, on the [Loops](loops.md#loop-control) page.
+
+### Break
+
+Exits the loop immediately, skipping everything left in it. Nothing after it runs, and anything left in the sequence (or any remaining passes of the condition) is skipped entirely.
+
+```python-ref
+for s in species:
+    if s == "ball":
+        break
+    print(s)                     # burmese  rock
+
+count = 0
+while count < 5:
+    if count == 3:
+        break
+    print(count)
+    count += 1                   # 0  1  2
+
+for s in species:
+    match s:
+        case "ball":
+            break                 # stops the loop, same as it would inside an if
+        case _:
+            print(s)
+```
+
+### Continue
+
+Skips just the current pass, then keeps looping. The rest of the loop body doesn't run for that item, but the loop itself keeps going from the next item or the next check of the condition.
+
+```python-ref
+for s in species:
+    if s == "ball":
+        continue
+    print(s)                     # burmese  rock  blood
+
+count = 0
+while count < 5:
+    count += 1
+    if count == 3:
+        continue
+    print(count)                 # 1  2  4  5
+
+for s in species:
+    match s:
+        case "ball":
+            continue              # skips just "ball", same as it would inside an if
+        case _:
+            print(s)
+```
+
+??? tip "pass placeholder"
+    Temporarily fill an empty block when you're not ready to write the inside code yet. Python doesn't allow an empty block after a colon. `pass` does nothing, but acts as a placeholder until you're ready to add code so that the empty block won't cause a syntax error in the meantime — works the same way after `if`/`elif`/`else` and `case` alike.
+
+    ```python-ref
+    if venomous:
+        pass    # placeholder — does nothing, but prevents a syntax error
+
+    match venomous:
+        case True:
+            pass    # same idea, inside a case block
+    ```
+
+??? run "Run a control flow example"
+    All the examples above, combined into one script:
+
+    ```python
+    species = ["burmese", "rock", "ball", "blood"]
+
+    for s in species:
+        if s == "ball":
+            break
+        print(s)
+
+    count = 0
+    while count < 5:
+        if count == 3:
+            break
+        print(count)
+        count += 1
+
+    for s in species:
+        match s:
+            case "ball":
+                break
+            case _:
+                print(s)
+
+    for s in species:
+        if s == "ball":
+            continue
+        print(s)
+
+    count = 0
+    while count < 5:
+        count += 1
+        if count == 3:
+            continue
+        print(count)
+
+    for s in species:
+        match s:
+            case "ball":
+                continue
+            case _:
+                print(s)
+
+    venomous = True
+
+    if venomous:
+        pass
+
+    match venomous:
+        case True:
+            pass
+
+    print("checked venomous status, no action taken yet")
     ```
