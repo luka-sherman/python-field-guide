@@ -8,3 +8,7 @@
 *[mutable]: Can be changed in place after creation, without needing to build a new one
 *[immutable]: Cannot be changed after creation — any "change" actually builds a brand new value
 *[block]: A group of indented lines under a colon that Python runs together as one unit — the body of an if, loop, function, or class
+*[convention]: An agreed-upon way of doing something that Python doesn't enforce, followed anyway so code stays predictable to other readers
+*[truthy]: Counts as True when used somewhere a bool is expected, even though the value itself isn't actually True — every value is either truthy or falsy
+*[Pythonic]: Using Python's own built-in features and idioms, instead of a hand-rolled equivalent that reads like it was translated from another language
+*[buffer]: A temporary holding area in memory where written data sits before it's actually flushed to the file on disk

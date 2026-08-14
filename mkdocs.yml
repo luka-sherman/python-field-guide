@@ -91,6 +91,8 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - tables
 
 copyright: '&copy; <span id="copyright-year">2026</span> Luka'
