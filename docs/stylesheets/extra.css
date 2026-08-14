@@ -508,6 +508,19 @@ input:checked + .md-consent__settings {
   transition: box-shadow 0.15s, transform 0.15s;
 }
 
+/* Add-on Libraries cards are darkened straight toward black rather than
+   mixed with --pt-ink like the standard card background above — --pt-ink
+   is the near-white text color in dark mode, so mixing more of it in would
+   have made the card lighter there instead of darker. Mixing toward black
+   darkens consistently in both schemes. A subtle visual cue that this
+   section is a different kind (external, install-required content) from
+   the rest of the homepage grid. Scoped to `.pt-category--wide` since it's
+   currently the only homepage category with that class (see the layout
+   comment above). */
+.pt-category--wide .grid.cards > ul > li {
+  background-color: color-mix(in srgb, var(--pt-panel) 80%, black 20%);
+}
+
 .md-typeset .grid.cards > ul > li > p {
   margin: 0 0 0.4em;
 }
@@ -571,6 +584,24 @@ input:checked + .md-consent__settings {
    always-wide Libraries. If that count ever goes odd again, re-add a
    `.pt-category:nth-child(N) { grid-column: 1 / -1; }` rule for whichever
    position is left alone — CSS has no way to detect that automatically. */
+
+/* Every non-wide category currently holds exactly 2 cards. Above 45em the
+   outer .pt-category-grid is already 2 columns, but the inner .grid.cards
+   grid (`auto-fit, minmax(11rem, 1fr)`) collapses to 1 column on its own
+   whenever a category's half-width column dips below ~2 card-widths —
+   which happens well before the outer grid itself collapses at 45em,
+   producing a stretch of viewport widths where each category box is tall
+   (cards stacked) instead of a matching pair sitting side by side. Forcing
+   2 explicit columns here keeps cards side by side for that entire range;
+   it doesn't change anything at wide desktop widths, where auto-fit was
+   already resolving to 2 columns on its own. Scoped away from
+   `.pt-category--wide` (Libraries) since that one holds far more than 2
+   cards and still needs auto-fit to wrap them properly. */
+@media (min-width: 45em) {
+  .pt-category:not(.pt-category--wide) .grid.cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 @media (max-width: 45em) {
   .pt-category-grid {
