@@ -43,7 +43,7 @@ hide:
 
     Multiple related values grouped into one container, so you can work with them together.
 
-    [`list`](collections.md#lists) · [`tuple`](collections.md#tuples) · [`dict`](collections.md#dictionaries) · [`set`](collections.md#sets) · [`.append()`](collections.md#add-list-items) · [`len()`](collections.md#length) · [`in`](collections.md#check-if-item-in-list) · [`min(), max(), sum()`](collections.md#min-max-and-sum) · [`.pop()`](collections.md#remove-list-items) · [`.sort()`](collections.md#loop-lists) · [`.get()`](collections.md#access-items_1) · [`.keys(), .values(), .items()`](collections.md#access-items_1) · [`unpacking`](collections.md#unpacking)
+    [`list`](collections.md#lists) · [`tuple`](collections.md#tuples) · [`dict`](collections.md#dictionaries) · [`set`](collections.md#sets) · [`.append()`](collections.md#list-operations) · [`len()`](collections.md#list-operations) · [`in`](collections.md#list-operations) · [`min(), max(), sum()`](collections.md#list-operations) · [`.pop()`](collections.md#list-operations) · [`.sort()`](collections.md#list-operations) · [`.get()`](collections.md#dictionary-operations) · [`.keys(), .values(), .items()`](collections.md#dictionary-operations) · [`unpacking`](collections.md#unpacking)
 
 </div>
 </div>

@@ -702,6 +702,17 @@ input:checked + .md-consent__settings {
   text-decoration: underline;
 }
 
+/* The "Use it for" column wraps its bullet list inside the same <a> as
+   every other column's plain text, so its <ul> is a grandchild of <td>
+   (td > a > ul), not a direct child. Material's own table CSS only zeroes
+   out margin-top/margin-bottom on the td's direct first/last child, so it
+   never reaches this nested <ul> — leaving its default browser margin
+   (~1em top and bottom) intact and making the list look vertically
+   centered with extra padding, unlike every other column in this table. */
+.pt-jump-table td a > ul {
+  margin: 0;
+}
+
 /* True/False badges for truth-table style call-outs. */
 .pt-bool-true,
 .pt-bool-false {

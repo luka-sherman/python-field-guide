@@ -1,121 +1,245 @@
 # :material-basket-outline:{ .lg .middle } Collection Data Types
 
-A **collection** is a single object that groups multiple values together, so a whole set of data can be stored in one variable, passed around, and looped over as a unit — instead of juggling a separate variable per value, like you would with the [basic types](types.md). Python's built-in collections mainly differ along two lines: whether items are **ordered** by position, looked up by **key**, or just checked by membership, and whether the collection is **mutable** (changeable after creation) or not.
+A **collection** is a single object that groups multiple values together and stores them in one variable so they can be worked with together as a unit. 
+
+The alternative is mainting multiple variables that each have one [basic types](types.md). 
 
 <div class="pt-jump-table" markdown="block">
 
 | Type | Example | Access values by | Use it for |
 |------|---------|:-----------------:|------------|
-| <a href="#lists">`list`</a> | <a href="#lists">`["ball", "burmese"]`</a> | <a href="#lists">Index</a> | <a href="#lists"><ul><li>An ordered, changeable sequence — the general-purpose collection for grouping items you'll add to, remove from, or reorder</li><li>Looking up by value (`in`) scans item by item</li></ul></a> |
-| <a href="#tuples">`tuple`</a> | <a href="#tuples">`("ball", "burmese")`</a> | <a href="#tuples">Index</a> | <a href="#tuples"><ul><li>A fixed, ordered sequence — immutable, so it's safe for things that shouldn't change: records, dict keys, function results you're unpacking</li></ul></a> |
-| <a href="#dictionaries">`dict`</a> | <a href="#dictionaries">`{"species": "ball", ...}`</a> | <a href="#dictionaries">Key (so can't have duplicates)</a> | <a href="#dictionaries"><ul><li>Key → value lookups — records with named fields, counting or grouping by key</li><li>No positional access — only by key</li><li>Keys can't repeat, but values can — `{"a": 5, "b": 5}` is fine</li></ul></a> |
-| <a href="#sets">`set`</a> | <a href="#sets">`{"ball", "burmese"}`</a> | <a href="#sets">Membership (`in`) only (so can't have duplicates)</a> | <a href="#sets"><ul><li>An unordered collection of unique values — fast membership checks no matter how large it gets</li><li>Removing duplicates, comparing groups (union/intersection)</li></ul></a> |
+| <a href="#lists">`list`</a> | <a href="#lists">`["ball", "burmese"]`</a> | <a href="#lists">Index (position)</a> | <a href="#lists"><ul><li>An ordered group of items you can freely add to, remove from, or reorder</li><li>Not sure? Start here — the default, general-purpose choice</li></ul></a> |
+| <a href="#tuples">`tuple`</a> | <a href="#tuples">`("ball", "burmese")`</a> | <a href="#tuples">Index (position)</a> | <a href="#tuples"><ul><li>Like a list, but fixed — can't be changed once created</li><li>Values that should stay exactly as they are, like a coordinate pair</li></ul></a> |
+| <a href="#dictionaries">`dict`</a> | <a href="#dictionaries">`{"species": "ball", "length_ft": 5}`</a> | <a href="#dictionaries">Key (so can't have duplicates)</a> | <a href="#dictionaries"><ul><li>Values stored under names ("keys") instead of position, like `species`, `length_ft`</li><li>Use it to look values up by name</li></ul></a> |
+| <a href="#sets">`set`</a> | <a href="#sets">`{"ball", "burmese"}`</a> | <a href="#sets">Membership (`in`) only (so can't have duplicates)</a> | <a href="#sets"><ul><li>An unordered group where duplicates are automatically dropped</li><li>Use it for fast "is this in here?" checks</li></ul></a> |
 
 </div>
 
-??? tip "Check type"
-    `type()` reports the exact collection type, even one holding mixed data types inside. Works the same way for any collection on this page — and each has its own constructor (`list()`, `tuple()`, `dict()`) if you'd rather build one that way than with literal brackets, parens, or braces.
+??? tip "Use type() to check what a variable is"
+    `type()` reports the exact collection type.
 
     ```python-ref
-    type(["burmese", "rock"])            # <class 'list'>
-    list(("burmese", "rock", "ball"))    # ["burmese", "rock", "ball"]
+    species = ["burmese", "rock", "ball"]
+    type(species)                           # <class 'list'>
     ```
 
 ## Lists
 
 A list stores multiple items, in order, inside a single variable.
 
-Lists have three defining traits:
-
-- **Ordered** — items keep the position you put them in, unless you explicitly reorder them.
-- **Changeable (mutable)** — you can add, remove, or change items after the list is created.
-- **Allow duplicates** — since items are accessed by position, not by value, the same value can appear more than once.
-
 ```python-ref
 species = ["burmese", "rock", "ball", "blood"]
-species    # ["burmese", "rock", "ball", "blood"]
 ```
 
-### Length
+### Structured by index
 
-`len()` returns how many items are in a list. The count updates automatically as you add or remove items.
+```mermaid
+block-beta
+  block:diagram
+    columns 5
+    lblValue["Value"] v0["&quot;burmese&quot;"] v1["&quot;rock&quot;"] v2["&quot;ball&quot;"] v3["&quot;blood&quot;"]
+    lblIndex["Index"] i0["0"] i1["1"] i2["2"] i3["3"]
+    lblNeg["Negative index"] n0["-4"] n1["-3"] n2["-2"] n3["-1"]
+  end
+
+  classDef label fill:none,stroke:none,color:#8A8370
+  classDef panel fill:#23221E,stroke:#35342E,stroke-width:1px
+  class i0,i1,i2,i3,n0,n1,n2,n3,lblValue,lblIndex,lblNeg label
+  class diagram panel
+```
+
+The **index** of the first item is 0[^zero-index], next is 1, and so on.
+
+[^zero-index]: In programming, counting generally starts at 0, not 1. That's because an index isn't really a count of "how manyth" item something is — it's an *offset*, the number of steps from the start. The first item is 0 steps away, so it gets index `0`. It feels different from counting out loud ("first, second, third..."), but it's the convention nearly every programming language follows.
 
 ```python-ref
-len(species)    # 4
+species[0]    # "burmese"
 ```
 
-### Min, max, and sum
-
-`min()` finds the smallest item in a list, `max()` finds the largest, and `sum()` adds every item together — no loop needed for any of them.
+The **negative index** starts counting down from the end, starting at `-1` for the last item, -2 for the second-to-last, and so on. Each item can be referenced by it's positive or negative index.
 
 ```python-ref
-length_ft = [4.5, 12, 5, 3.5]
-min(length_ft)    # 3.5
-max(length_ft)    # 12
-sum(length_ft)    # 25
+species[-1]   # "blood"
 ```
 
-### Accessing items
-
-Items are accessed by index, starting at `0` for the first item. Negative indexes count down from the end, starting at `-1` for the last item. A slice `list[start:end]` returns a new list containing items from `start` up to (but not including) `end`.
+A **slice** `list[start:end]` returns a new list containing items from `start` index up to (but not including) the `end` index.
 
 ```python-ref
-species[0]      # "burmese"
-species[-1]     # "blood"
-species[1:3]    # ["rock", "ball"]
+species[1:3]  # ["rock", "ball"]
 ```
 
-### Check if item in list
+### Loop through a list
 
-`in` checks whether a value exists in a list at all. `index()` finds the position of the first match; `count()` counts how many times a value appears.
+The most common way to loop is directly over the items.
 
-```python-ref
-"burmese" in species          # True
-species.index("burmese")      # 0
-species.count("ball")         # 1
+```python
+for s in species: 
+    print(s) 
 ```
 
-### Change list items
+`enumerate()` gives you the index and the value together, if you need both. 
 
-Assign to an index to change a single item. Assign to a slice to change a whole range at once — the replacement doesn't need to be the same length. `insert()` adds an item at a specific index without overwriting what's already there.
-
-```python-ref
-species[1] = "carpet"        # ["burmese", "carpet", "ball", "blood"]
-species[1:3] = ["carpet"]    # ["burmese", "carpet", "blood"]
-species.insert(1, "carpet")  # ["burmese", "carpet", "rock", "ball", "blood"]
+```python
+for i, s in enumerate(species): 
+    print(i, s)
 ```
 
-### Add list items
+### List operations
 
-`append()` adds one item to the end of the list. `insert()` adds one item at a chosen position. `extend()` adds every item from another iterable, one at a time — not the iterable itself.
+#### Inspect
 
-```python-ref
-species.append("carpet")                             # ["burmese", "rock", "ball", "blood", "carpet"]
-species.insert(0, "carpet")                          # ["carpet", "burmese", "rock", "ball", "blood"]
-species.extend(["carpet", "central african rock"])   # ["burmese", "rock", "ball", "blood", "carpet", "central african rock"]
-```
+- **`len()`** returns how many items are in a list.
 
-### Remove list items
+    ```python-ref
+    len(species)              # 4
+    ```
 
-`remove()` deletes the first item that matches a given value. `pop()` deletes an item by index and returns it — with no index, it removes the last item. `del` removes an item by index, or can delete the entire list. `clear()` empties the list but keeps the (now empty) list around.
+- **`in`** checks whether a value exists in the list.
 
-```python-ref
-species.remove("rock")    # ["burmese", "ball", "blood"]
-species.pop()             # "blood" (removed and returned)
-del species[0]            # ["rock", "ball", "blood"]
-species.clear()           # []
-```
+    ```python-ref
+    "burmese" in species      # True
+    ```
 
-### Loop lists
+- **`index()`** finds the position of the first match.
 
-The most common way to loop is directly over the items. `enumerate()` gives you the index and the value together, which is handy when you need both. A `while` loop works too, if you'd rather manage the index yourself.
+    ```python-ref
+    species.index("burmese")  # 0
+    ```
 
-```python-ref
-for s in species: print(s)                         # burmese  rock  ball  blood
-for i, s in enumerate(species): print(i, s)        # 0 burmese  1 rock  2 ball  3 blood
-i = 0
-while i < len(species): print(species[i]); i += 1  # same output as the for loop
-```
+- **`count()`** counts how many times a value appears.
+
+    ```python-ref
+    species.count("ball")     # 1
+    ```
+
+#### Change item
+
+- **`list[index] = value`** changes the item at that index.
+
+    ```python-ref
+    species[1] = "carpet"      # ["burmese", "carpet", "ball", "blood"]
+    ```
+
+- **`list[start:end] = value`** changes a whole range at once — the replacement doesn't need to be the same length.
+
+    ```python-ref
+    species[1:3] = ["carpet"]  # ["burmese", "carpet", "blood"]
+    ```
+
+#### Add item
+
+- **`append()`** adds one item to the end of the list.
+
+    ```python-ref
+    species.append("carpet")     # ["burmese", "rock", "ball", "blood", "carpet"]
+    ```
+
+- **`insert()`** adds an item at a specific index, without overwriting what's already there.
+
+    ```python-ref
+    species.insert(1, "carpet")  # ["burmese", "carpet", "rock", "ball", "blood"]
+    ```
+
+- **`extend()`** adds every item from another iterable.
+
+    ```python-ref
+    species.extend(["carpet", "central african rock"])  # ["burmese", "rock", "ball", "blood", "carpet", "central african rock"]
+    ```
+
+#### Remove item
+
+- **`remove()`** deletes the first item that matches a given value.
+
+    ```python-ref
+    species.remove("rock")  # ["burmese", "ball", "blood"]
+    ```
+
+- **`pop()`** deletes an item by index and returns it — with no index, it removes the last item.
+
+    ```python-ref
+    species.pop()           # "blood" (removed and returned)
+    species.pop(0)          # "burmese" (removed and returned)
+    ```
+
+- **`del`** removes an item by index, or can delete the entire list.
+
+    ```python-ref
+    del species[0]          # ["rock", "ball", "blood"]
+    del species             # deletes the whole list — species no longer exists
+    ```
+
+- **`clear()`** empties the list but keeps the (now empty) list around.
+
+    ```python-ref
+    species.clear()         # []
+    ```
+
+#### Sort
+
+- **`sort()`** sorts the list in place, alphabetically (or ascending, for numbers) by default. Pass `reverse=True` to sort in the opposite order, or a `key` function to control what each item is sorted by.
+
+    ```python-ref
+    species.sort()              # ["ball", "blood", "burmese", "rock"]
+    species.sort(reverse=True)  # ["rock", "burmese", "blood", "ball"]
+    species.sort(key=len)       # ["rock", "ball", "blood", "burmese"]
+    ```
+
+- **`sorted()`** does the same job as `sort()`, but returns a new list, leaving the original untouched.
+
+    ```python-ref
+    sorted(species)             # same as sort() above, but returns a new list
+    ```
+
+- **`reverse()`** flips the current order in place — different from `sort(reverse=True)`, since it doesn't actually sort, just reverses.
+
+    ```python-ref
+    species.reverse()           # ["blood", "ball", "rock", "burmese"]
+    ```
+
+#### Arithmetic
+
+- **`min()`** finds the smallest item.
+
+    ```python-ref
+    min(length_ft)  # 3.5
+    ```
+
+- **`max()`** finds the largest item.
+
+    ```python-ref
+    max(length_ft)  # 12
+    ```
+
+- **`sum()`** adds every item together.
+
+    ```python-ref
+    sum(length_ft)  # 25
+    ```
+
+#### Create new list
+
+- **`list()`** builds the same list from any iterable, if you'd rather not use literal brackets.
+
+    ```python-ref
+    list(("burmese", "rock", "ball", "blood"))  # ["burmese", "rock", "ball", "blood"]
+    ```
+
+#### Join two lists
+
+- **`+`** joins two lists into a new one.
+
+    ```python-ref
+    species + ["carpet", "boa"]  # ["burmese", "rock", "ball", "blood", "carpet", "boa"]
+    ```
+
+#### Copy into new list
+
+- **`copy()`** makes a real, independent copy of the list — unlike `new_list = old_list`, which just points a second name at the same list, so a change through either name shows up in both.
+
+    ```python-ref
+    same_list = species        # same_list and species are the same list — mutating one mutates both
+    backup = species.copy()    # backup is a separate, independent list
+    ```
 
 ??? tip "List comprehension"
     Builds a new list from an existing iterable in a single line. The expression part can transform each item, not just filter it.
@@ -124,34 +248,6 @@ while i < len(species): print(species[i]); i += 1  # same output as the for loop
     [s for s in species if len(s) > 4]    # ["burmese", "blood"]
     [s.title() for s in species]          # ["Burmese", "Rock", "Ball", "Blood"]
     ```
-
-??? tip "Sort lists"
-    `sort()` sorts a list in place, alphabetically (or ascending, for numbers) by default. Pass `reverse=True` to sort in the opposite order. `sorted()` does the same job but returns a new list, leaving the original untouched. A `key` function controls what each item is sorted by — here, by name length instead of alphabetically. `reverse()` is different from `sort(reverse=True)` — it just flips the current order in place, without sorting.
-
-    ```python-ref
-    species.sort()               # ["ball", "blood", "burmese", "rock"]
-    species.sort(reverse=True)   # ["rock", "burmese", "blood", "ball"]
-    sorted(species)              # same as sort() above, but returns a new list
-    species.sort(key=len)        # ["rock", "ball", "blood", "burmese"]
-    species.reverse()            # ["blood", "ball", "rock", "burmese"]
-    ```
-
-??? warning "Copy lists"
-    Writing `new_list = old_list` does **not** copy the list — both names point to the same list. A change through either name shows up in both. `copy()` (or `list()`, or a full slice `[:]`) makes a real, independent copy.
-
-    ```python-ref
-    same_list = species          # same_list and species are the same list — mutating one mutates both
-    backup = species.copy()      # backup is a separate, independent list
-    ```
-
-### Join lists
-
-The `+` operator concatenates two lists into a new one. `extend()` does the same thing in place, adding onto the first list instead of creating a new one.
-
-```python-ref
-constrictors + short_tailed        # ["ball", "burmese", "sumatran short tailed", "myanmar short tailed"]
-constrictors.extend(short_tailed)  # constrictors now holds all 4, in place
-```
 
 ??? run "Run a list example"
     Each box below is fully editable — write your answer, then click Run.
@@ -238,62 +334,113 @@ constrictors.extend(short_tailed)  # constrictors now holds all 4, in place
 
 ## Tuples
 
-A tuple stores multiple items, in order, inside a single variable — written with parentheses instead of square brackets.
+A tuple stores multiple items, in order, inside a single variable — written in parentheses.
 
-Tuples have three defining traits:
-
-- **Ordered** — items keep the position you put them in.
-- **Immutable** — unlike a list, a tuple can't be changed, added to, or shrunk once created.
-- **Allow duplicates** — the same value can appear more than once.
+Tuples are **Immutable** — it can't be changed once created, just overwritten with another tuple. 
 
 ```python-ref
 species = ("burmese", "rock", "ball", "blood")
-species    # ("burmese", "rock", "ball", "blood")
 ```
 
 ### Access items
 
 Tuples use the same index and slice syntax as lists. `0` for the first item, negative indexes count from the end, `start:end` slices out a sub-tuple.
 
-```python-ref
-species[0]      # "burmese"
-species[-1]     # "blood"
-species[1:3]    # ("rock", "ball")
+```mermaid
+block-beta
+  block:diagram
+    columns 5
+    lblValue["Value"] v0["&quot;burmese&quot;"] v1["&quot;rock&quot;"] v2["&quot;ball&quot;"] v3["&quot;blood&quot;"]
+    lblIndex["Index"] i0["0"] i1["1"] i2["2"] i3["3"]
+    lblNeg["Negative index"] n0["-4"] n1["-3"] n2["-2"] n3["-1"]
+  end
+
+  classDef label fill:none,stroke:none,color:#8A8370
+  classDef panel fill:#23221E,stroke:#35342E,stroke-width:1px
+  class i0,i1,i2,i3,n0,n1,n2,n3,lblValue,lblIndex,lblNeg label
+  class diagram panel
 ```
 
-### Check if item in tuple
+The **index** of the first item is 0[^zero-index], next is 1, and so on.
 
-`in` checks whether a value exists in the tuple. `count()` counts how many times a value appears; `index()` finds the position of the first match — a tuple has only these two methods, since it can't be changed.
+[^zero-index]: In programming, counting generally starts at 0, not 1. That's because an index isn't really a count of "how manyth" item something is — it's an *offset*, the number of steps from the start. The first item is 0 steps away, so it gets index `0`. It feels different from counting out loud ("first, second, third..."), but it's the convention nearly every programming language follows.
 
 ```python-ref
-"rock" in species          # True
-species.count("burmese")   # 1
-species.index("ball")      # 2
+species[0]    # "burmese"
+```
+
+The **negative index** starts counting down from the end, starting at `-1` for the last item, -2 for the second-to-last, and so on. Each item can be referenced by it's positive or negative index.
+
+```python-ref
+species[-1]   # "blood"
+```
+
+A **slice** `tuple[start:end]` returns a new tuple containing items from `start` index up to (but not including) the `end` index.
+
+```python-ref
+species[1:3]  # ("rock", "ball")
 ```
 
 ### Unpacking
 
-Assigns each item in a tuple to its own variable in one line. The number of variables has to match the number of items. A [`match` statement](conditionals.md#unpacking-a-tuple) can do this same unpacking while also branching on the tuple's shape or specific values, which plain assignment can't do.
+Assigns each item in a tuple to its own variable in one line. The number of variables has to match the number of items. A [`match` statement](conditionals.md#unpacking-a-tuple) can do this same unpacking while also branching on the tuple's shape or specific values.
 
 ```python-ref
-a, b, c, d = species    # a="burmese"  b="rock"  c="ball"  d="blood"
+a, b, c, d = species  # a="burmese"  b="rock"  c="ball"  d="blood"
 ```
-
-??? tip "Work around immutability"
-    A tuple has no `append()` or `remove()` — but `+` builds a **new** tuple with an item added. Note the trailing comma in `("carpet",)`, needed to make it a one-item tuple rather than just parentheses around a string. For bigger changes, convert to a list with `list()`, edit it normally, then convert back with `tuple()`.
-
-    ```python-ref
-    species + ("carpet",)                          # ("burmese", "rock", "ball", "blood", "carpet")
-    tuple(list(species) + ["carpet"])              # same result, via a list round-trip
-    ```
 
 ### Loop tuples
 
 Works exactly like looping over a list.
 
 ```python-ref
-for s in species: print(s)    # burmese  rock  ball  blood
+for s in species: 
+    print(s)        # burmese  rock  ball  blood
 ```
+
+### Tuple operations
+
+#### Inspect
+
+- **`in`** checks whether a value exists in the tuple.
+
+    ```python-ref
+    "rock" in species         # True
+    ```
+
+- **`count()`** counts how many times a value appears.
+
+    ```python-ref
+    species.count("burmese")  # 1
+    ```
+
+- **`index()`** finds the position of the first match — a tuple only has these three ways to inspect it, since it can't be changed.
+
+    ```python-ref
+    species.index("ball")     # 2
+    ```
+
+#### Join
+
+- **`+`** builds a new tuple with an item added — there's no `append()` or `remove()`, since tuples can't be changed. Note the trailing comma in `("carpet",)`, needed to make it a one-item tuple rather than just parentheses around a string.
+
+    ```python-ref
+    species + ("carpet",)              # ("burmese", "rock", "ball", "blood", "carpet")
+    ```
+
+- **`tuple(list(...))`** round-trips through a list for bigger changes — convert to a list with `list()`, edit it normally, then convert back with `tuple()`.
+
+    ```python-ref
+    tuple(list(species) + ["carpet"])  # same result, via a list round-trip
+    ```
+
+#### Create
+
+- **`tuple()`** builds the same tuple from any iterable, if you'd rather not use literal parentheses.
+
+    ```python-ref
+    tuple(["burmese", "rock", "ball", "blood"])  # ("burmese", "rock", "ball", "blood")
+    ```
 
 ??? run "Run a tuple example"
     Each box below is fully editable — write your answer, then click Run.
@@ -346,75 +493,161 @@ for s in species: print(s)    # burmese  rock  ball  blood
 
 ## Dictionaries
 
-A dictionary stores data as key-value pairs, inside a single variable.
+A dictionary stores data as **key-value pairs**, inside a single variable.
 
-Dictionaries have three defining traits:
+A **key** can be any *immutable* type — a string, number, or tuple. **No duplicate keys** — assigning a value to an existing key overwrites its value.
 
-- **Ordered** — items keep the order they were inserted in.
-- **Changeable (mutable)** — you can add, remove, or change items after the dictionary is created.
-- **No duplicate keys** — a key can only appear once; assigning to an existing key overwrites its value.
+A **value** can be any type.
 
 ```python-ref
-snake = {"species": "ball", "length_ft": 5, "venomous": False}
-snake    # {'species': 'ball', 'length_ft': 5, 'venomous': False}
+snake = {
+    "species": "ball", 
+    "length_ft": 5, 
+    "venomous": False
+    }
 ```
 
-### Access items
+### Structured by key
 
-Values are accessed by key, in square brackets — unlike a list, there's no numeric position to use. `get()` does the same thing, but returns `None` (or a default you choose) instead of raising an error if the key is missing. `keys()`, `values()`, and `items()` return view objects over the dictionary's keys, values, or key-value pairs. Use `in` to check whether a key exists at all.
+```mermaid
+%%{init: {"flowchart": {"nodeSpacing": 15}}}%%
+flowchart LR
+    subgraph snake["snake"]
+        direction LR
+        lblKey["`*Key*`"] ~~~ lblVal["`*Value*`"]
+        key1["species"] --> val1["'ball'"]
+        key2["length_ft"] --> val2["5"]
+        key3["venomous"] --> val3["False"]
+    end
 
-```python-ref
-snake["species"]            # "ball"
-snake.get("venomous")       # False
-snake.keys()                # dict_keys(['species', 'length_ft', 'venomous'])
-"species" in snake          # True
+    style key1 stroke:#3f6b52,stroke-width:2px
+    style key2 stroke:#3f6b52,stroke-width:2px
+    style key3 stroke:#3f6b52,stroke-width:2px
+    style lblKey fill:none,stroke:none,color:#8A8370
+    style lblVal fill:none,stroke:none,color:#8A8370
 ```
 
-### Change items
-
-Assign to an existing key to change its value. `update()` changes one or more keys at once — any key it doesn't recognize gets added instead.
-
-```python-ref
-snake["length_ft"] = 6                              # {'species': 'ball', 'length_ft': 6, 'venomous': False}
-snake.update({"venomous": False, "docile": True})   # {'species': 'ball', 'length_ft': 5, 'venomous': False, 'docile': True}
-```
-
-### Add items
-
-Assigning to a key that doesn't exist yet adds it. `update()` adds a key too, if it isn't already there — the same method covers both adding and changing.
-
-```python-ref
-snake["origin"] = "west africa"    # {'species': 'ball', 'length_ft': 5, 'venomous': False, 'origin': 'west africa'}
-snake.update({"legless": True})    # {'species': 'ball', 'length_ft': 5, 'venomous': False, 'legless': True}
-```
-
-### Remove items
-
-`pop()` removes a key and returns its value. `popitem()` removes and returns the last inserted key-value pair, as a tuple. `del` removes a key-value pair by key. `clear()` empties the dictionary but keeps the (now empty) dictionary around.
-
-```python-ref
-snake.pop("venomous")   # False (removed and returned)
-snake.popitem()         # ('venomous', False) — removes the last inserted pair
-del snake["species"]    # {'length_ft': 5, 'venomous': False}
-snake.clear()           # {}
-```
+Each **key** points to exactly one value — that's what makes `dict[key]` a quick lookup instead of a scan through every item.
 
 ### Loop dictionaries
 
-Looping directly over a dictionary gives you its keys, one at a time. Loop over `.values()` to get just the values instead, or `.items()` to get both the key and the value together.
+Looping directly over a dictionary gives you its keys, one at a time. 
 
 ```python-ref
-for key in snake: print(key)                        # species  length_ft  venomous
-for value in snake.values(): print(value)           # ball  5  False
-for key, value in snake.items(): print(key, value)  # species ball  length_ft 5  venomous False
+for key in snake: 
+    print(key)                    # species  length_ft  venomous
 ```
 
-??? warning "Copy dictionaries"
-    Writing `new_dict = old_dict` does **not** copy the dictionary — both names point to the same dictionary. A change through either name shows up in both. `copy()` (or `dict()`) makes a real, independent copy.
+Loop over `.values()` to get just the values instead.
+
+```python-ref
+for value in snake.values(): 
+    print(value)                  # ball  5  False
+```
+
+Loop over `.items()` to get both the key and the value together.
+
+```python-ref
+for key, value in snake.items(): 
+    print(key, value)             # species ball  length_ft 5  venomous False
+```
+
+### Dictionary operations
+
+#### Inspect
+
+- **`dict[key]`** accesses a value by key, in square brackets — unlike a list, there's no numeric position to use.
 
     ```python-ref
-    same_dict = snake          # same_dict and snake are the same dictionary — mutating one mutates both
-    backup = snake.copy()      # backup is a separate, independent dictionary
+    snake["species"]       # "ball"
+    ```
+
+- **`get()`** does the same thing, but returns `None` (or a default you choose) instead of raising an error if the key is missing.
+
+    ```python-ref
+    snake.get("venomous")  # False
+    ```
+
+- **`keys()`** returns a view object over the dictionary's keys.
+
+    ```python-ref
+    snake.keys()           # dict_keys(['species', 'length_ft', 'venomous'])
+    ```
+
+- **`values()`** returns a view object over the dictionary's values.
+
+    ```python-ref
+    snake.values()         # dict_values(['ball', 5, False])
+    ```
+
+- **`items()`** returns a view object over the dictionary's key-value pairs.
+
+    ```python-ref
+    snake.items()          # dict_items([('species', 'ball'), ('length_ft', 5), ('venomous', False)])
+    ```
+
+- **`in`** checks whether a key exists at all.
+
+    ```python-ref
+    "species" in snake    # True
+    ```
+
+#### Change / add
+
+- **`dict[key] = value`** sets a key's value — changes it if the key already exists, adds it if not.
+
+    ```python-ref
+    snake["length_ft"] = 6           # {'species': 'ball', 'length_ft': 6, 'venomous': False}
+    snake["origin"] = "west africa"  # {'species': 'ball', 'length_ft': 5, 'venomous': False, 'origin': 'west africa'}
+    ```
+
+- **`update()`** does the same for multiple keys at once — changes any that already exist, and adds any that don't.
+
+    ```python-ref
+    snake.update({"venomous": False, "docile": True})   # {'species': 'ball', 'length_ft': 5, 'venomous': False, 'docile': True}
+    ```
+
+#### Remove
+
+- **`pop()`** removes a key and returns its value.
+
+    ```python-ref
+    snake.pop("venomous")  # False (removed and returned)
+    ```
+
+- **`popitem()`** removes and returns the last inserted key-value pair, as a tuple.
+
+    ```python-ref
+    snake.popitem()        # ('venomous', False) — removes the last inserted pair
+    ```
+
+- **`del`** removes a key-value pair by key.
+
+    ```python-ref
+    del snake["species"]   # {'length_ft': 5, 'venomous': False}
+    ```
+
+- **`clear()`** empties the dictionary but keeps the (now empty) dictionary around.
+
+    ```python-ref
+    snake.clear()          # {}
+    ```
+
+#### Copy
+
+- **`copy()`** makes a real, independent copy of the dictionary — unlike `new_dict = old_dict`, which just points a second name at the same dictionary, so a change through either name shows up in both.
+
+    ```python-ref
+    same_dict = snake      # same_dict and snake are the same dictionary — mutating one mutates both
+    backup = snake.copy()  # backup is a separate, independent dictionary
+    ```
+
+#### Create
+
+- **`dict()`** builds the same dictionary using keyword arguments, if you'd rather not use literal braces.
+
+    ```python-ref
+    dict(species="ball", length_ft=5, venomous=False)  # {'species': 'ball', 'length_ft': 5, 'venomous': False}
     ```
 
 ??? note "Nested dictionaries"
@@ -422,7 +655,7 @@ for key, value in snake.items(): print(key, value)  # species ball  length_ft 5 
 
     ```python-ref
     snakes = {"ball": snake, "burmese": {"length_ft": 16, "venomous": False}}
-    snakes["burmese"]["length_ft"]    # 16
+    snakes["burmese"]["length_ft"]                                              # 16
     ```
 
 ??? run "Run a dictionary example"
@@ -505,53 +738,119 @@ for key, value in snake.items(): print(key, value)  # species ball  length_ft 5 
 
 A set stores multiple items, in no particular order, inside a single variable — written with curly braces.
 
-Sets have three defining traits:
-
-- **Unordered** — items have no fixed position, so there's no indexing or slicing.
-- **Changeable (mutable)** — you can add or remove items after the set is created.
-- **No duplicates** — adding a value that's already there changes nothing; a set can only ever hold each value once.
+Because items have no fixed position, there's no indexing. Duplicates are irrelevant because adding a value that's already there changes nothing; a set can only ever hold each value once.
 
 ```python-ref
-species = {"burmese", "rock", "ball", "blood"}
-species    # {'burmese', 'rock', 'ball', 'blood'} — order not guaranteed
+species = {"burmese", "rock", "ball", "blood"}  # order not fixed
 ```
 
-### Check if item in a set
+```mermaid
+block-beta
+  block:diagram
+    columns 5
+    lblValue["Unordered set: "] v0["&quot;burmese&quot;"] v1["&quot;rock&quot;"] v2["&quot;ball&quot;"] v3["&quot;blood&quot;"]
+  end
 
-`in` checks whether a value exists — and does it far faster than a list or tuple, no matter how large the set gets, since Python looks it up directly instead of scanning item by item.
-
-```python-ref
-"burmese" in species    # True
+  classDef label fill:none,stroke:none,color:#8A8370
+  classDef panel fill:#23221E,stroke:#35342E,stroke-width:1px
+  class lblValue label
+  class diagram panel
 ```
 
-### Add items
-
-`add()` adds a single item. `update()` adds every item from another iterable, one at a time. Adding a value that's already present changes nothing.
-
-```python-ref
-species.add("carpet")                # {"burmese", "rock", "ball", "blood", "carpet"}
-species.update(["carpet", "boa"])    # adds "boa"; "carpet" was already there
-species.add("burmese")               # already there — no change
-```
-
-### Remove items
-
-`remove()` deletes an item, raising an error if it isn't there. `discard()` does the same but stays silent if the item's missing. `pop()` removes and returns an arbitrary item, since there's no "last" item in an unordered collection. `clear()` empties the set.
-
-```python-ref
-species.remove("rock")    # errors if "rock" isn't in the set
-species.discard("rock")   # no error either way
-species.pop()              # removes and returns *some* item — which one isn't guaranteed
-species.clear()           # set()
-```
-
-### Loop a set
+### Loop over a set
 
 Works like looping over a list, just without any guaranteed order.
 
 ```python-ref
-for s in species: print(s)    # burmese  rock  ball  blood — order not guaranteed
+for s in species: 
+    print(s)       # burmese  rock  ball  blood — order not guaranteed
 ```
+
+### Set operations
+
+#### Inspect
+
+- **`in`** checks whether a value exists — and does it far faster than a list or tuple, no matter how large the set gets, since Python looks it up directly instead of scanning item by item.
+
+    ```python-ref
+    "burmese" in species  # True
+    ```
+
+#### Add
+
+- **`add()`** adds a single item. Adding a value that's already present changes nothing.
+
+    ```python-ref
+    species.add("carpet")              # {"burmese", "rock", "ball", "blood", "carpet"}
+    species.add("burmese")             # already there — no change
+    ```
+
+- **`update()`** adds every item from another iterable, one at a time.
+
+    ```python-ref
+    species.update(["carpet", "boa"])  # adds "boa"; "carpet" was already there
+    ```
+
+#### Remove
+
+- **`remove()`** deletes an item, raising an error if it isn't there.
+
+    ```python-ref
+    species.remove("rock")   # errors if "rock" isn't in the set
+    ```
+
+- **`discard()`** does the same but stays silent if the item's missing.
+
+    ```python-ref
+    species.discard("rock")  # no error either way
+    ```
+
+- **`pop()`** removes and returns an arbitrary item, since there's no "last" item in an unordered collection.
+
+    ```python-ref
+    species.pop()            # removes and returns *some* item — which one isn't guaranteed
+    ```
+
+- **`clear()`** empties the set.
+
+    ```python-ref
+    species.clear()          # set()
+    ```
+
+#### Combine
+
+Sets support the same operations as sets in math class — useful for comparing two groups directly instead of writing your own loop to do it.
+
+```python-ref
+constrictors = {"ball", "burmese", "boa"}
+pet_friendly = {"ball", "burmese", "corn snake"}
+```
+
+- **`|`** union — everything in either set.
+
+    ```python-ref
+    constrictors | pet_friendly  # {"ball", "burmese", "boa", "corn snake"}
+    ```
+
+- **`&`** intersection — only what's in both.
+
+    ```python-ref
+    constrictors & pet_friendly  # {"ball", "burmese"}
+    ```
+
+- **`-`** difference — in the first set, but not the second.
+
+    ```python-ref
+    constrictors - pet_friendly  # {"boa"}
+    ```
+
+#### Create
+
+- **`set()`** builds the same set from any iterable, if you'd rather not use literal braces.
+
+    ```python-ref
+    set(["burmese", "rock", "ball", "blood"])  # {'burmese', 'rock', 'ball', 'blood'}
+    ```
 
 ??? tip "Removing duplicates from a list"
     Converting a list to a set and back is a common one-line way to drop duplicates — though it also throws away the original order, unless you sort or otherwise re-derive it.
@@ -559,18 +858,6 @@ for s in species: print(s)    # burmese  rock  ball  blood — order not guarant
     ```python-ref
     species = ["ball", "burmese", "ball", "boa", "burmese"]
     list(set(species))    # ["burmese", "ball", "boa"] — order not guaranteed
-    ```
-
-??? tip "Set math: union, intersection, difference"
-    Sets support the same operations as sets in math class — useful for comparing two groups directly instead of writing your own loop to do it.
-
-    ```python-ref
-    constrictors = {"ball", "burmese", "boa"}
-    pet_friendly = {"ball", "burmese", "corn snake"}
-
-    constrictors | pet_friendly    # union — everything in either set
-    constrictors & pet_friendly    # intersection — only what's in both
-    constrictors - pet_friendly    # difference — in constrictors, but not pet_friendly
     ```
 
 ??? run "Run a set example"

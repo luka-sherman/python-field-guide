@@ -252,7 +252,7 @@ print(species, length_ft, "ft")
 
 Commas are usually the easier choice for a quick print. Pass `sep="..."` to change the default single-space separator, like `print(species, length_ft, sep=", ")`.
 
-Once you're comfortable with the basics here, the [Collections](collections.md#join-lists) page covers printing the contents of a list or dict.
+Once you're comfortable with the basics here, the [Collections](collections.md#list-operations) page covers printing the contents of a list or dict.
 
 ### Building a string manually
 
