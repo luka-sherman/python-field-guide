@@ -193,6 +193,20 @@
   font-weight: 700;
 }
 
+/* Material gives every glossary `<abbr>` (see includes/glossary.md) a dotted
+   underline + help cursor by default, to signal "hover for a definition."
+   Inside a link — or inside the homepage's card grid, where the "stretched
+   link" pattern (see CLAUDE.md's Homepage section) makes the whole <li>
+   clickable via a sibling ::after overlay rather than an actual <a>
+   ancestor around the abbr's text — that affordance is misleading rather
+   than helpful, so drop it there. The hover tooltip (the `title` attribute
+   itself) still works; this only removes the visual underline/cursor cue. */
+.md-typeset a abbr,
+.md-typeset .grid.cards abbr {
+  border-bottom: none;
+  cursor: inherit;
+}
+
 /* Same --md-primary-fg-color indirection as above: Material's outline-style
    .md-button (used for the consent banner's "Manage settings"/"Reject"
    controls) sets color/border to --md-primary-fg-color, which we've
