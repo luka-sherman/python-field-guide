@@ -97,7 +97,7 @@ hide:
 
     Splitting code across files, and pulling in code someone else already wrote.
 
-    [`import`](modules.md#importing-libraries) · [`your own module`](modules.md#creating-your-own-module) · [`__main__`](modules.md#the-main-guard)
+    [`your own module`](modules.md#creating-your-own-module) · [`__main__`](modules.md#the-main-guard) · [`import`](modules.md#importing-modules)
 
 -   :material-file-document-outline:{ .lg .middle } [__Reading & Writing Files__](files.md)
 
@@ -117,7 +117,7 @@ hide:
 
     Conventions for writing Python that stays readable as a file grows.
 
-    [`naming`](style.md#naming) · [`constants`](style.md#constants) · [`order`](style.md#order) · [`docstrings`](style.md#docstrings)
+    [`naming`](style.md#naming) · [`constants`](style.md#constants) · [`order`](style.md#file-order) · [`docstrings`](style.md#docstrings)
 
 -   :material-bug-outline:{ .lg .middle } [__Errors__](errors.md)
 

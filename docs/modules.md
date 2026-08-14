@@ -1,8 +1,28 @@
 # :material-import:{ .lg .middle } Modules & Imports
 
-A **module** is just a Python file — any `.py` file can be imported into another one, the same way `import random` pulls in code someone else already wrote. As a project grows past a single script, splitting related functions and classes into their own files, then importing between them, keeps any one file from becoming unmanageable.
+## Modules vs Packages vs Libraries
 
-## Importing libraries
+A **module** is a Python file. Any `.py` file can be imported and used by another one. As a project grows, splitting related functions and classes into their own files, then importing between them, keeps any one file from becoming unmanageable.
+
+A **package** is a folder of related modules grouped together so they can be imported as one unit.
+
+```mermaid
+flowchart LR
+    subgraph package["package"]
+        direction LR
+        module1["module"] ~~~ module2["module"] ~~~ module3["module"]
+    end
+
+    style module1 stroke:#3f6b52,stroke-width:2px
+    style module2 stroke:#3f6b52,stroke-width:2px
+    style module3 stroke:#3f6b52,stroke-width:2px
+```
+
+**Library** is the informal umbrella term for either: a single module or a whole package — that's organized to be reused across projects. The [Libraries page](libraries/index.md) highlights a few common published libraries. 
+
+## Importing modules
+
+### import
 
 `import` makes a module's code available under its own name, so you call things through it with a `.` — `random.randint(...)`, not just `randint(...)`.
 
@@ -11,6 +31,103 @@ import random
 
 print(random.randint(1, 10))
 ```
+
+### as
+
+`as` gives the imported module a different name to call it by — handy for a long name you'd rather type shorter, or one that collides with something else in the file.
+
+```python-ref
+import random as rnd
+
+print(rnd.randint(1, 10))
+```
+
+### from
+
+**Specify a named piece that can be used directly:** Naming the exact names you need is considered best practice, as it purposefully only imports the pieces you are using. 
+
+#### Packages
+
+`from` package `import` module
+
+```mermaid
+flowchart LR
+    subgraph package["package"]
+        direction LR
+        module1["module"] ~~~ module2["module"] ~~~ module3["module"]
+    end
+
+    style module1 stroke:#3f6b52,stroke-width:2px
+    style module2 stroke:#3f6b52,stroke-width:2px
+    style module3 stroke:#3f6b52,stroke-width:2px
+```
+
+```python-ref
+from random import randint     # specify with module with from
+
+print(randint(1, 10))
+```
+
+#### Modules
+
+`from` module `import` function/class/variable
+
+```mermaid
+flowchart LR
+    subgraph module["module"]
+        direction LR
+        function["function"] ~~~ class1["class"] ~~~ variable["variable"]
+    end
+
+    style module stroke:#3f6b52,stroke-width:2px
+    style function stroke:#4a7bb5,stroke-width:2px
+    style class1 stroke:#b5824a,stroke-width:2px
+    style variable stroke:#a3529c,stroke-width:2px
+```
+
+```python-ref
+from snake_helpers import describe     # describe is a function inside snake_helpers.py
+
+print(describe("ball"))
+```
+
+#### Nested paths
+
+`from` package.module `import` function/class/variable
+
+```mermaid
+flowchart LR
+    subgraph package["package"]
+        direction LR
+        subgraph module["module"]
+            direction LR
+            function["function"] ~~~ class1["class"] ~~~ variable["variable"]
+        end
+    end
+
+    style module stroke:#3f6b52,stroke-width:2px
+    style function stroke:#4a7bb5,stroke-width:2px
+    style class1 stroke:#b5824a,stroke-width:2px
+    style variable stroke:#a3529c,stroke-width:2px
+```
+
+```python-ref
+from os.path import join     # os is a package, path is one of its modules
+
+print(join("snakes", "ball_python.txt"))
+```
+
+??? tip "Avoid `from module import *`"
+    `*` is a wildcard standing in for "every name" — so `from module import *` pulls in every name from that module without saying which ones, so it's unclear later where a given name actually came from — `randint` on its own gives no hint it came from `random` rather than somewhere else in the file.
+
+    This isn't the same as plain `import module`: `import module` only puts the module itself in scope, so everything inside it still needs the `.` prefix (`random.randint(...)`). `from module import *` instead dumps every name from inside the module directly into scope, unprefixed — that's what makes it both convenient and risky.
+
+    ```python-ref
+    from random import *
+    randint(1, 10)    # works, but where did randint come from?
+    ```
+
+### order of multiple imports
 
 Imports go at the very top of the file, grouped in order: Python's own standard library first, then third-party packages, then your own local files — with a blank line between each group.
 
@@ -22,26 +139,9 @@ import requests                  # third-party — installed separately
 import snake_data                # your own file
 ```
 
-??? tip "Avoid `from module import *`"
-    Pulls in every name from that module without saying which ones, so it's unclear later where a given name actually came from — `randint` on its own gives no hint it came from `random` rather than somewhere else in the file.
-
-    ```python-ref
-    from random import *
-    randint(1, 10)    # works, but where did randint come from?
-    ```
-
-??? run "Run an import example"
-    All the examples above, combined into one script:
-
-    ```python
-    import random
-
-    print(random.randint(1, 10))
-    ```
-
 ## Creating your own module
 
-Importing from your own file works exactly like importing a library: use the filename, without `.py`, as the module name.
+Your own `.py` files import the same way — use the filename, without `.py`, as the module name.
 
 ```python-ref
 # snake_helpers.py
@@ -53,14 +153,14 @@ def describe(species):
 ```python-ref
 # main.py
 
-from snake_helpers import describe
+import snake_helpers
 
-print(describe("ball"))
+print(snake_helpers.describe("ball"))
 ```
 
-The imported file has to sit in the same folder as the one importing it (or be installed like a real package). This is also why avoiding a library's name for your own file matters — covered in the [naming rules](foundations.md#naming-variables) on the Foundations page: a file named `random.py` shadows Python's own `random` module for anything else in that project.
+Avoid naming your own file after a library you use — your file named `random.py` shadows Python's own `random` module for anything else in that project. See the [file naming rules](workspace.md#step-2-write-and-run-a-python-file) for more.
 
-## The main guard
+### The main guard
 
 `if __name__ == "__main__":` controls what runs only when a file is executed directly — not when it's imported into another file.
 
@@ -72,15 +172,4 @@ if __name__ == "__main__":
     print(describe("ball"))
 ```
 
-`__name__` is a variable Python sets automatically: `"__main__"` when the file is run directly, or the file's own module name when it's imported elsewhere instead. Wrapping your "do the actual work" code in this check means another file can `import` yours — to reuse a function, say — without that code running as a side effect. Covered again, as one piece of a whole file's conventional layout, on the [Style](style.md#order) page.
-
-??? run "Run a main guard example"
-    All the examples above, combined into one script:
-
-    ```python
-    def describe(species):
-        return f"a {species} python"
-
-    if __name__ == "__main__":
-        print(describe("ball"))
-    ```
+`__name__` is a variable Python sets automatically: `"__main__"` when the file is run directly, or the file's own module name when it's imported elsewhere instead. Wrapping your "do the actual work" code in this check means another file can `import` yours — to reuse a function, say — without that main code running too. 
