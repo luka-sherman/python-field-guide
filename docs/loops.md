@@ -6,55 +6,152 @@ A **loop** repeats a block of code multiple times.
 
 | Loop type | Syntax | Use it for |
 |------|--------|------------|
-| <a href="#for-loops">`for`</a> | <a href="#for-loops">`for loop_variable in iterable:`</a> | <a href="#for-loops">A `for` loop goes through an **iterable** (something that contains multiple values) one value at a time, assigning each value to `loop_variable` as it goes.<ul><li><b>`range()`</b> — repeats a fixed number of times<ul><li>`loop_variable` represents the current count</li></ul></li><li><b>list / tuple / dict / set / string</b> — goes through each item in the collection<ul><li>`loop_variable` represents the current item</li></ul></li></ul></a> |
+| <a href="#for-loops">`for`</a> | <a href="#for-loops">`for loop_variable in iterable:`</a> | <a href="#for-loops">Goes through an **iterable** (something that contains multiple values) one value at a time, assigning each value to `loop_variable` as it goes.<ul><li>Runs the block of code once for each item in the iterable</li><li>Repeating something a set number of times, or counting passes — using a `range()`</li><li>Processing each item in something you already have — a list, tuple, dict, set, or string</li></ul></a> |
 | <a href="#while-loops">`while`</a> | <a href="#while-loops">`while condition:`</a> | <a href="#while-loops">A `while` loop repeats as long as a **condition** is `True`, checking the condition before it starts each pass.<ul><li>Use it when you don't know how many times the loop needs to run</li><li>The condition determines when the loop stops</li></ul></a> |
 
 </div>
 
+??? tip "Which loop do I need?"
+
+    ```mermaid
+    %%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
+    flowchart TD
+        choice{"Do you know what you're\nworking with, or how many\ntimes to repeat?"} -->|Yes| forConfirm["for loop!"]
+        forConfirm --> known{"Already have a collection\nto go through? (list, tuple,\ndict, set, or string)"}
+        choice -->|No, just know\nwhen to stop| whileConfirm["while loop!"]
+        whileConfirm --> whileloop["condition = a boolean expression"]
+        known -->|Yes| forvalue["iterable = the collection"]
+        known -->|No| forcount["iterable = range()"]
+
+        linkStyle 0 stroke:#3f6b52,stroke-width:2px
+        linkStyle 2 stroke:#3f6b52,stroke-width:2px
+        linkStyle 4 stroke:#3f6b52,stroke-width:2px
+        linkStyle 5 stroke:#a33f3f,stroke-width:2px
+
+        classDef decision fill:none,stroke:#8A8370,stroke-width:1px
+        classDef result fill:none,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
+        classDef confirm fill:none,stroke:#3f6b52,stroke-width:3px,color:#3f6b52
+        class known,choice decision
+        class forvalue,forcount,whileloop result
+        class forConfirm,whileConfirm confirm
+    ```
+
 ## For loops
 
-A `for` loop steps through something one item at a time, running its body once per pass — either **by count**, using a `range()` you generate, or **by value**, using a [collection](collections.md) you already have.
+A `for` loop goes through an **iterable** (something that contains multiple values) one value at a time, assigning each value to `loop_variable` as it goes. They types of iterables are: 
 
-### Loop over a range()
+| Iterable | Loop variable | Use it for |
+|---|---|---|
+| `range()` | represents the current count |Repeating a block of code a set number of times |
+| a Collection: list / tuple / dict / set / string | represents the current item | Repeating a block of code for each item in a collection |
 
-`range()` generates a sequence of numbers to loop over, built from three parts:
+See [common patterns](#common-patterns) for [accumulating](#accumulator) something new during a loop, or [counting](#counter), as you loop.
 
-- `start` — where to begin counting (default `0`)
-- `stop` — where to end — not included in the result
-- `step` — how much to count by each time (default `1`)
+You can use [control flow statements](#control-flow-statements) to [break](#break) a loop early or [continue](#continue) ahead to the next iteration as needed. 
 
-How many arguments you pass decides which of these you're actually setting — the rest fall back to their defaults.
+### Loop a certain number of times
 
-One argument sets just `stop`, counting up from the default `start` of `0`.
+#### iterable = range()
 
-```python-ref
-range(5)   # 0, 1, 2, 3, 4
-```
+- `range()` generates a sequence of numbers to loop over.
+- it will run the block of code once for each number in the sequence
+- The first time it runs, the loop_variable will be equal to the first number in the range sequence, and so on until the block has run as many times are there are numbers in the range sequence
 
-Two arguments set `start, stop`, counting up from `start` instead of `0`.
+- **The 3 parts of range():**
 
-```python-ref
-range(2, 6)   # 2, 3, 4, 5
-```
+    | range() part | Default value | Meaning |
+    |---|---|---|
+    | `start` | `0` | Where to start counting<ul><li>This is the first loop_variable value</li></ul> |
+    | `stop` | *(required — no default)* | Where to stop (exclusive)<ul><li>**not** included in the range sequence, so the last number is the one before</li></ul> |
+    | `step` | `1` | How much to count by to get to the next number<ul><li>starting with the `start` value, adds `step` to it each time to get the next number in the sequence</li></ul> |
 
-Three arguments set `start, stop, step`, counting by `step` instead of the default `1`.
+- **How many parts you specify**
 
-```python-ref
-range(2, 10, 3)   # 2, 5, 8
-```
+    | # of range parts given | Sets parts | Not set, so uses defaults for |
+    |---|---|---|
+    | 1 | `stop` | `start = 0`, `step = 1` |
+    | 2 | `start`, `stop` | `step = 1`|
+    | 3 | `start`, `stop`, `step` | - |
 
-```python
-for i in range(5):
-    print(i)
+    - **range(stop)** 
 
-for i in range(2, 6):
-    print(i)
+        ```python
+        for i in range(5):
+            print(i)
+        ```
 
-for i in range(2, 10, 3):
-    print(i)
-```
+        ```mermaid
+        %%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
+        flowchart LR
+            a(("0")) -->|"+1"| b(("1")) -->|"+1"| c(("2")) -->|"+1"| d(("3")) -->|"+1"| e(("4"))
+            e -.->|"+1"| f(("5"))
 
-#### Loop variable is an index
+            classDef included fill:none,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
+            classDef excluded fill:none,stroke:#8A8370,stroke-width:1px,stroke-dasharray:3 3,color:#8A8370
+            class a,b,c,d,e included
+            class f excluded
+        ```
+
+    - **range(start, stop)**
+
+        ```python
+        for i in range(2, 6):
+            print(i)
+        ```
+
+        ```mermaid
+        %%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
+        flowchart LR
+            a(("2")) -->|"+1"| b(("3")) -->|"+1"| c(("4")) -->|"+1"| d(("5"))
+            d -.->|"+1"| e(("6"))
+
+            classDef included fill:none,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
+            classDef excluded fill:none,stroke:#8A8370,stroke-width:1px,stroke-dasharray:3 3,color:#8A8370
+            class a,b,c,d included
+            class e excluded
+        ```
+
+    - **range(start, stop, step)**
+
+        ```python
+        for i in range(2, 8, 2):
+            print(i)
+        ```
+
+        ```mermaid
+        %%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
+        flowchart LR
+            a(("2")) -->|"+2"| b(("4")) -->|"+2"| c(("6"))
+            c -.->|"+2"| d(("8"))
+
+            classDef included fill:none,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
+            classDef excluded fill:none,stroke:#8A8370,stroke-width:1px,stroke-dasharray:3 3,color:#8A8370
+            class a,b,c included
+            class d excluded
+        ```
+
+- **Counting backwards**
+
+    If `start` is larger than `stop`, use a negative `step` to count backwards instead.
+
+    ```python
+    for i in range(5, 0, -1):
+        print(i)
+    ```
+
+    ```mermaid
+    %%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
+    flowchart LR
+        a(("5")) -->|"-1"| b(("4")) -->|"-1"| c(("3")) -->|"-1"| d(("2")) -->|"-1"| e(("1"))
+        e -.->|"-1"| f(("0"))
+
+        classDef included fill:none,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
+        classDef excluded fill:none,stroke:#8A8370,stroke-width:1px,stroke-dasharray:3 3,color:#8A8370
+        class a,b,c,d,e included
+        class f excluded
+    ```
+
+#### Loop variable = an index
 
 Naming the variable in a `range()` loop comes down to one of three choices:
 
@@ -88,7 +185,9 @@ Naming the variable in a `range()` loop comes down to one of three choices:
         print("hiss")
     ```
 
-### Loop over a collection
+### Loop through a collection
+
+#### iterable = collection
 
 A `for` loop steps through any type of collection[^str-collection] the same way — the difference is what each pass hands you to work with.
 
@@ -155,7 +254,7 @@ A `for` loop steps through any type of collection[^str-collection] the same way 
             print(s)
         ```
 
-#### Loop variable is the singular name
+#### Loop variable = singular item
 
 Looping over a collection follows a different naming convention than counting with `range()`: name the loop variable the **singular** of the collection's plural name — `for snake in snakes:`, `for length in lengths:` — so each pass reads as "this one item from the group." Site examples on this page often abbreviate to a single letter (`s` for `species`) to keep code blocks compact, but a real singular word is clearer in actual code.
 
@@ -177,8 +276,8 @@ for i, s in enumerate(species):
     print(i, s)
 ```
 
-??? tip "Loop two lists together with zip()"
-    `zip()` pairs up items from two (or more) sequences by position — the first item from each, then the second from each, and so on — stopping as soon as the shortest one runs out.
+??? tip "Loop two collections at the same time with zip()"
+    `zip()` pairs up items from two (or more) iterables by position — the first item from each, then the second from each, and so on — stopping as soon as the shortest one runs out. Works with any iterable, mixed types included — list, tuple, string, dict (its keys, by default), even a `range()`. Because it is based on order, using an unordered collection like `set` or plain `dict` can produce pairings in an unpredictable order.
 
     ```python
     species = ["burmese", "rock", "ball", "blood"]
@@ -188,18 +287,7 @@ for i, s in enumerate(species):
         print(s, ft)
     ```
 
-??? tip "Nested loops"
-    A loop can contain another loop — useful for combinations, grids, or nested collections. The inner loop runs all the way through for every single pass of the outer one.
-
-    ```python
-    species = ["burmese", "rock", "ball", "blood"]
-
-    for s in species:
-        for letter in s[:2]:
-            print(s, letter)
-    ```
-
-??? tip "List comprehensions: a for loop in one line"
+??? tip "List comprehensions: a one-line for loop"
     A list comprehension builds a new list by running an expression once per item — the same result as a `for` loop that appends to an empty list, written on a single line.
 
     ```python
@@ -222,7 +310,7 @@ for i, s in enumerate(species):
     print([s for s in species if s == "ball"])
     ```
 
-    Readable for a short, simple transformation — once the logic doesn't fit comfortably on one line, a regular `for` loop is usually clearer. More on that trade-off on the [Style](style.md#comprehensions-vs-loops) page.
+    Readable for a short, simple transformation — once the logic doesn't fit comfortably on one line, a regular `for` loop is usually clearer.
 
 ## While loops
 
@@ -627,6 +715,21 @@ while attempts > 0:
 print("out of attempts")
 ```
 
+### Nested loops
+
+A loop can contain another loop — any combination of `for` and `while` works, not just two of the same kind. Useful when each item in the outer collection has its own inner collection to go through, like a list of lists. The inner loop runs all the way through for every single pass of the outer one.
+
+```python
+species_tags = {
+    "ball": ["docile", "captive-bred"],
+    "burmese": ["large", "escape-risk"],
+}
+
+for species, tags in species_tags.items():
+    for tag in tags:
+        print(species, tag)
+```
+
 ??? run "Run a common patterns example"
     All the examples above, combined into one script:
 
@@ -665,6 +768,15 @@ print("out of attempts")
         print(attempts)
         attempts -= 1
     print("out of attempts")
+
+    species_tags = {
+        "ball": ["docile", "captive-bred"],
+        "burmese": ["large", "escape-risk"],
+    }
+
+    for species, tags in species_tags.items():
+        for tag in tags:
+            print(species, tag)
     ```
 
 ## Control Flow Statements
