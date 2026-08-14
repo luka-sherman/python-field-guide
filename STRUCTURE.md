@@ -129,6 +129,52 @@ staying inline.**
   library-page content (e.g. `libraries/pillow.md`'s per-method sections) — most content pages
   should never need to go past `###`.
 
+### Homepage keyword deep-links (`index.md`)
+
+Each card in `index.md`'s "What's inside" grid ends with a row of `` [`keyword`](page.md#anchor) ``
+links — one per concept the page teaches, so a reader can jump straight to the specific thing
+they're after instead of landing on the page and hunting.
+
+- **Coverage — every `##` and `###` heading needs an entry.** Not just "the topic is
+  represented somewhere nearby" — each heading gets its own link, using its own anchor. A page
+  with 5 `##` sections needs at least 5 entries. If two headings share slug text (e.g.
+  `collections.md`'s three "Access items" sections), MkDocs disambiguates the anchor with a
+  suffix (`#access-items`, `#access-items_1`, ...) — confirm the real slug in the built HTML
+  (`grep -n 'id="' site/<page>/index.html`) rather than guessing, since the suffix isn't
+  predictable from the heading text alone.
+- **Also include concrete Python syntax the page teaches, even without its own heading** — a
+  method or function genuinely explained in prose (e.g. `dict.get()`, explained inline under
+  Dictionaries' "Access items" on `collections.md`) is exactly the kind of thing a reader
+  searches for by name. Link it to the heading whose content covers it.
+  - **Exception: content inside a `???` admonition has no anchor of its own** (admonitions
+    aren't headings — see "Admonitions" below), so syntax explained only inside one (e.g.
+    `sort()` inside collections.md's "Sort lists" tip, `zip()` inside loops.md's tip) can't be
+    linked precisely. Link to the nearest real heading above it instead and accept the
+    imprecision (e.g. `.sort()` → `collections.md#loop-lists`, the section the tip sits inside)
+    — never invent an anchor that doesn't exist. If nothing precedes it (e.g. `type()` /
+    `isinstance()` sit in a tip before types.md's first `##`), link the bare page with no
+    fragment rather than a made-up one.
+  - Don't link *every* method mentioned in passing — only ones a page is actually teaching.
+    `print()` reappearing as an example call on `errors.md` or `style.md` isn't being taught
+    there (that's `foundations.md`'s job); only that page's own card should link it.
+- **Skip purely narrative/descriptive subheadings** — "What do you see when a program runs?",
+  "How do variables work?", "Structure of a print() statement" name a *question*, not a
+  reusable keyword. If a heading doesn't name a concrete concept or piece of syntax, it doesn't
+  need a card entry even though it still needs to exist as a heading per the rules above... to
+  be clear, the heading itself is still fine on the page; it just doesn't earn a homepage link.
+- **Order by heading level first, importance second — not top-to-bottom page order.** All `##`
+  entries come first, then all `###` entries, then any `####`/no-heading entries last; within
+  each of those tiers, sort most-to-least important rather than by page position. The two
+  orderings often coincide (pages are usually written in a sensible teaching order already), but
+  don't assume it — within the `##` tier, lead with the concept the card's own one-line
+  description is about; within the `###`/`####` tier, lead with the most commonly-needed related
+  syntax and put edge cases, advanced variants, or purely organizational headings (e.g. a page's
+  own "Common patterns" container heading) last in their tier.
+- **Verify with a real build, not by eye** — `mkdocs build` prints a `WARNING` for every
+  anchor/link it can't resolve; treat a clean build as the actual pass/fail check for this list,
+  since hand-checked slugs are easy to get subtly wrong (trailing punctuation, duplicate-heading
+  suffixes, etc).
+
 ### Admonitions (`??? type "..."`)
 
 Admonitions are for **helpful-but-not-necessary branches** — content a reader benefits from but
