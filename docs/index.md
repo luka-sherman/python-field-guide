@@ -199,7 +199,9 @@ hide:
 
 </div>
 
-??? ai "Why learn to code yourself, if AI can do it for you?"
+### FAQ
+
+=== ":material-creation: Why learn to code yourself, if AI can do it for you?"
 
     **Understanding programming fundamentals make AI more useful.** 
     
@@ -219,8 +221,7 @@ hide:
 
     **Learning to program on your own turns AI into a tool you can direct and verify, instead of one you're assuming got it right.**
 
-
-??? ai "How to use AI to support your learning?"
+=== ":material-creation: Using AI to learn"
 
     **Guide you through setting up your workspace** 
     
@@ -242,14 +243,16 @@ hide:
     
     Learning to program means making mistakes, getting stuck, and eventually figuring things out and forming a mental model. That's the process that **builds skills** you can rely on.
 
-??? python "What is Python, and what is it used for?"
+=== ":material-information-outline: What is Python?"
+
     **Python** is a general-purpose programming language known for readable syntax and a huge built-in and third-party library ecosystem — designed to be quick to write and easy to read back later, even by someone who didn't write it. It doesn't need to be compiled before it runs: write a `.py` file, then run it directly.
 
     That readability, plus the sheer range of libraries already built for it, is why it turns up almost everywhere: web backends, data analysis and machine learning, automating repetitive tasks, scientific computing, and quick scripts gluing other tools together — several of which are covered on this site's [Libraries](#libraries) pages. Python usually isn't the fastest language for raw performance, but it's often the fastest to write *correct* code in, which is why it's such a common first choice for a new project.
 
     That same readability is also why Python is such a common **first language to learn programming in**. Variables, conditionals, loops, functions, classes — the same fundamentals every language shares — read closer to plain English here than in most other languages, so you spend your effort learning to *think* like a programmer instead of fighting a stricter syntax. Once those fundamentals are solid, they carry over directly to whatever language you pick up next.
 
-??? info "What is this guide?"
+=== ":material-information-outline: What is this guide?"
+
     **Python Field Guide** is a free, in-browser reference for learning Python from the ground up — most code blocks are editable and runnable directly on the page, if you want to experiment with how something works.
 
     It's built for people learning Python — self-taught learners, students in an intro course, or anyone who wants one combined reference to work through from start to finish rather than a scattered pile of search results. 
