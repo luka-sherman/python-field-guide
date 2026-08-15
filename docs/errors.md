@@ -149,6 +149,54 @@ The name in the traceback's last line tells you which of these went wrong.
         print("lookup attempt finished")  # always runs, no matter what happened above
     ```
 
+## Debugging strategies
+
+The traceback tells you exactly where Python broke. When that's not enough — or the code runs to completion but the output is just wrong, so there's no traceback at all — these general techniques help close the gap between what you think the code does and what it's actually doing.
+
+### Read it out loud
+
+```python-ref
+for length in lengths:    # "for each length in lengths" — but a dict hands back its keys
+    if length > 6:        # so `length` is actually a species name here, not a number
+```
+
+Read your code line by line, out loud, saying in plain English what each line does and why — to a rubber duck, a pet, or just the room. This is often called **rubber duck debugging**: putting each line into words forces you to state assumptions you'd otherwise skim past while reading silently. Say "for each length in lengths" out loud and the mismatch jumps out — looping directly over a dict hands back its keys, not its values, so `length` here is actually a species name like `"ball python"`. That's exactly what raises the error below: you can't compare a string to `6`.
+
+```python-ref
+Traceback (most recent call last):
+  File "lengths.py", line 5, in <module>
+TypeError: '>' not supported between instances of 'str' and 'int'
+```
+
+The fix follows straight from the narration — loop over `lengths.values()` instead.
+
+### Print debugging
+
+```python-ref
+print(type(length), length)   # confirm what a value actually is, not what you assumed it was
+```
+
+Sprinkle `print()` calls between the lines you suspect, showing a variable's value (and [`type()`](types.md), if you're not sure) at that exact point in the run. This narrows down *where* your assumption about the code stopped matching reality — especially useful when nothing crashes and you're just staring at a wrong final answer, so there's no traceback pointing anywhere. Delete the `print()` calls once you've found the problem — they're a diagnostic, not part of the program.
+
+### Isolate the problem
+
+Comment out or delete code until the smallest version that still shows the bug is left, then add pieces back one at a time until it reappears — whatever you just added back is the culprit. Especially useful in a long script, where the traceback's line number is buried inside a function calling a function calling a function — cutting the problem down to a few lines removes everything that isn't actually relevant.
+
+??? run "Run a debugging strategies example"
+    The `lengths` bug from above, worked through with the techniques above:
+
+    ```python
+    lengths = {"ball python": 4.5, "burmese python": 12, "boa": 8}
+
+    long_snakes = 0
+    for length in lengths.values():   # fixed after reading the buggy version aloud — .values(), not the dict itself
+        print(type(length), length)   # print debugging: confirm each value really is a length
+        if length > 6:
+            long_snakes += 1
+
+    print("total:", long_snakes)      # total: 2
+    ```
+
 ## Using a debugger
 
 A **debugger** is a tool built into most code editors that lets you pause a running program and look around, instead of only seeing what it printed after the fact. Pause your code mid-run to inspect what's happening and inspect variables — instead of only reading `print()` outputs at the end. 

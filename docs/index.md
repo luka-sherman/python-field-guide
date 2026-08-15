@@ -123,7 +123,7 @@ hide:
 
     How to read error messages, handle them gracefully, and track down what went wrong.
 
-    [`try, except`](errors.md#handling-errors) · [`tracebacks`](errors.md#reading-errors) · [`debugger`](errors.md#using-a-debugger) · [`exception types`](errors.md#common-exception-types)
+    [`try, except`](errors.md#handling-errors) · [`tracebacks`](errors.md#reading-errors) · [`debugger`](errors.md#using-a-debugger) · [`debugging strategies`](errors.md#debugging-strategies) · [`exception types`](errors.md#common-exception-types) · [`rubber duck debugging`](errors.md#read-it-out-loud) · [`print debugging`](errors.md#print-debugging)
 
 </div>
 </div>
