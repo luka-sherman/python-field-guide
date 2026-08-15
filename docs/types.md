@@ -1,10 +1,12 @@
 # :material-shape-outline:{ .lg .middle } Basic data types
 
-Every value in Python has a **type**, which determines what operations it supports and how it behaves — Python figures this out from the value itself, since you never declare a type explicitly. A basic (or "scalar") data type holds a single, indivisible value, as opposed to a [collection](collections.md), which groups many values together. The basic types are also all **immutable**: once created, the value itself can never be changed in place — only replaced with a different value.
+Every value in Python has a **type**, which determines what operations it supports and how it behaves. 
+
+A basic ("scalar") data type holds a single value, as opposed to a [collection](collections.md) data type, which groups many values together.
 
 <div class="pt-jump-table" markdown="block">
 
-| Type | Example | Use it for |
+| Basic Type | Example | Use it for |
 |------|---------|------------|
 | <a href="#integers">**`int`**</a> | `5` | <ul><li>Counts — how many of something there are, like items in a list</li><li>Indexes — the position of an item in a sequence, like `species[2]`</li><li>IDs — a unique whole-number identifier, like a user or record ID</li></ul> |
 | <a href="#floats">**`float`**</a> | `4.5` | <ul><li>Measurements, ratios — anything with a decimal</li><li>Binary rounding errors mean `0.1 + 0.2 != 0.3`</li></ul> |
@@ -44,17 +46,17 @@ length = 5
 - The standard math operators — **`+`, `-`, `*`, `/`, `**`**. One surprise for beginners: `/` (true division) always returns a `float`, even when the numbers divide evenly.
 
     ```python-ref
-    length + 3     # 8
-    length - 2     # 3
-    length * 2     # 10
-    length / 2     # 2.5  (/ always returns a float)
-    length ** 2    # 25   (exponent)
+    length + 3   # 8
+    length - 2   # 3
+    length * 2   # 10
+    length / 2   # 2.5  (/ always returns a float)
+    length ** 2  # 25   (exponent)
     ```
 
 - **Combine** any of these with `=` for an augmented assignment — it does the calculation on the variable, and sets it equal to the variable, doing two things with one operation.
 
     ```python-ref
-    length += 1    # same as length = length + 1
+    length += 1  # same as length = length + 1
     ```
 
 #### Floor division & modulo
@@ -62,19 +64,19 @@ length = 5
 - **floor division `//`** divides two numbers and keeps only the whole-number part, dropping anything after the decimal — like asking "how many whole groups of 2 fit into 7?" 
 
     ```python-ref
-    7 // 2    # 3    (7 split into groups of 2 makes 3 full groups)
+    7 // 2  # 3 (7 split into groups of 2 makes 3 full groups)
     ```
 
 - **modulo `%`** returns the remainder after that floor division — the part `//` throws away. `//` and `%` are a pair: one tells you how many whole groups fit, the other tells you what's left afterward.
 
     ```python-ref
-    7 % 2     # 1    (7 split into groups of 2 leaves 1 behind)
+    7 % 2  # 1 (7 split into groups of 2 leaves 1 behind)
     ```
 
 - **`divmod()`** does both at once, returning `(quotient, remainder)` as a tuple — the same two values `//` and `%` give you separately, in one call.
 
     ```python-ref
-    divmod(7, 2)    # (3, 1) — same as (7 // 2, 7 % 2)
+    divmod(7, 2) # (3, 1) — same as (7 // 2, 7 % 2)
     ```
 
 #### Absolute value
@@ -82,9 +84,9 @@ length = 5
 - **`abs()`** returns a number with its sign dropped — negative becomes positive, positive stays unchanged.
 
     ```python-ref
-    abs(-5)      # 5
-    abs(5)       # 5
-    abs(-4.5)    # 4.5
+    abs(-5)    # 5
+    abs(5)     # 5
+    abs(-4.5)  # 4.5
     ```
 
 #### Convert
@@ -92,9 +94,9 @@ length = 5
 - **`int()`** converts a string of digits, or truncates a float toward zero. It cuts off the decimal — it does not round.
 
     ```python-ref
-    int("5")      # 5
-    int(5.9)      # 5   (cuts off decimal, doesn't round)
-    int(True)     # 1
+    int("5")   # 5
+    int(5.9)   # 5   (cuts off decimal, doesn't round)
+    int(True)  # 1
     ```
 
 ### Boolean expressions
@@ -150,7 +152,7 @@ A float is a number with a decimal point — for anything that isn't a whole num
 
 ```python-ref
 weight = 4.5
-weight    # 4.5
+weight        # 4.5
 ```
 
 ### Float operations
@@ -160,15 +162,15 @@ weight    # 4.5
 - Floats support the same operators as integers. Notably, `/` always returns a `float` — even `10 / 2`, which divides evenly, gives `5.0`, not `5`.
 
     ```python-ref
-    weight + 1.5    # 6.0
-    weight / 2      # 2.25
-    10 / 2          # 5.0  (still a float, even though it divides evenly)
+    weight + 1.5  # 6.0
+    weight / 2    # 2.25
+    10 / 2        # 5.0  (still a float, even though it divides evenly)
     ```
 
 - **Combine** any of these with `=` for an augmented assignment — it does the calculation on the variable, and sets it equal to the variable, doing two things with one operation.
 
     ```python-ref
-    weight += 1.5    # same as weight = weight + 1.5
+    weight += 1.5  # same as weight = weight + 1.5
     ```
 
 #### Floor division & modulo
@@ -176,19 +178,19 @@ weight    # 4.5
 - **floor division `//`** divides two numbers and keeps only the whole-number part, dropping anything after the decimal — like asking "how many whole groups of 2 fit into 7?" 
 
     ```python-ref
-    7.0 // 2    # 3.0    (7.0 split into groups of 2 makes 3 full groups)
+    7.0 // 2  # 3.0 (7.0 split into groups of 2 makes 3 full groups)
     ```
 
 - **modulo `%`** returns the remainder after that floor division — the part `//` throws away. `//` and `%` are a pair: one tells you how many whole groups fit, the other tells you what's left afterward.
 
     ```python-ref
-    7.0 % 2     # 1.0    (7.0 split into groups of 2 leaves 1 behind)
+    7.0 % 2  # 1.0 (7.0 split into groups of 2 leaves 1 behind)
     ```
 
 - **`divmod()`** does both at once, returning `(quotient, remainder)` as a tuple — the same two values `//` and `%` give you separately, in one call.
 
     ```python-ref
-    divmod(7.0, 2.0)    # (3.0, 1.0) — same as (7.0 // 2.0, 7.0 % 2.0)
+    divmod(7.0, 2.0)  # (3.0, 1.0) — same as (7.0 // 2.0, 7.0 % 2.0)
     ```
 
 #### Adjust
@@ -196,14 +198,14 @@ weight    # 4.5
 - **`abs()`** works the same way it does on an `int` — drops the sign, negative becomes positive.
 
     ```python-ref
-    abs(-4.5)    # 4.5
+    abs(-4.5)  # 4.5
     ```
 
 - **`round()`** rounds to the nearest whole number, or to a given number of decimal places. With no second argument it rounds to the nearest whole number — but Python uses "round half to even" (banker's rounding), so `round(4.5)` is `4`, not `5`. Pass a second argument to round to that many decimal places instead.
 
     ```python-ref
-    round(weight)          # 4  (Python rounds .5 to the nearest *even* number)
-    round(4.567, 2)        # 4.57
+    round(weight)    # 4  (Python rounds .5 to the nearest *even* number)
+    round(4.567, 2)  # 4.57
     ```
 
 #### Convert
@@ -211,8 +213,8 @@ weight    # 4.5
 - **`float()`** converts an integer or a numeric string into a float.
 
     ```python-ref
-    float(5)         # 5.0
-    float("4.5")      # 4.5
+    float(5)      # 5.0
+    float("4.5")  # 4.5
     ```
 
 ### Boolean expressions
@@ -222,7 +224,7 @@ weight    # 4.5
 - **Falsy:** `0.0`
 
 ```python-ref
-if weight:                  # runs — weight isn't 0.0
+if weight:                 # runs — weight isn't 0.0
     print("has a weight")
 ```
 
@@ -230,7 +232,7 @@ if weight:                  # runs — weight isn't 0.0
     Tiny rounding errors creep in, since most decimal fractions can't be stored exactly in binary.
 
     ```python-ref
-    0.1 + 0.2    # 0.30000000000000004
+    0.1 + 0.2  # 0.30000000000000004
     ```
 
     This is a property of floating-point math in virtually every programming language, not a Python bug. If you need exact decimal arithmetic, use the `decimal` library instead of `float`.
@@ -278,7 +280,7 @@ Strings have three defining traits:
 
 ```python-ref
 name = "burmese python"
-name    # "burmese python"
+name                     # "burmese python"
 ```
 
 ### String operations
@@ -290,21 +292,21 @@ Strings use the same index and slice syntax as lists. `0` is the first character
 - Index with `name[index]`.
 
     ```python-ref
-    name[0]      # "b"
-    name[-1]     # "n"
+    name[0]   # "b"
+    name[-1]  # "n"
     ```
 
 - A **slice** `name[start:end]` returns a substring from `start` up to (but not including) `end`.
 
     ```python-ref
-    name[0:7]    # "burmese"
+    name[0:7]  # "burmese"
     ```
 
 - A **step** `name[start:end:step]` skips characters instead of taking every one — leave `start`/`end` off to apply it to the whole string. A step of `-1` walks backward, which is the standard trick for reversing a string.
 
     ```python-ref
-    name[::2]     # "breepto"  — every 2nd character
-    name[::-1]    # "nohtyp esemrub"  — reversed
+    name[::2]   # "breepto"  — every 2nd character
+    name[::-1]  # "nohtyp esemrub"  — reversed
     ```
 
 #### Inspect
@@ -312,7 +314,7 @@ Strings use the same index and slice syntax as lists. `0` is the first character
 - **`len()`** returns how many characters are in a string.
 
     ```python-ref
-    len(name)              # 15
+    len(name)  # 15
     ```
 
 #### Combine
@@ -320,32 +322,32 @@ Strings use the same index and slice syntax as lists. `0` is the first character
 - **`,` in `print()`** separates multiple values with a space, converting non-strings automatically — but it only works inside `print()` (or similar functions), since it isn't actually building a string, just printing values side by side.
 
     ```python-ref
-    print(species, length_ft)    # ball 4.5 — quick, but can't be saved to a variable
+    print(species, length_ft)  # ball 4.5 — quick, but can't be saved to a variable
     ```
 
 - **`+`** joins strings end to end, building a real string you can store — but every piece must already be text, so joining a string with a number raises a `TypeError` unless you convert the number with `str()` first.
 
     ```python-ref
-    "ball" + " " + "python"    # "ball python"
+    "ball" + " " + "python"  # "ball python"
     ```
 
 - **`*`** repeats a string a given number of times.
 
     ```python-ref
-    "ball" * 3    # "ballballball"
+    "ball" * 3  # "ballballball"
     ```
 
 - **Combine** `+` or `*` with `=` for an augmented assignment — it does the calculation on the variable, and sets it equal to the variable, doing two things with one operation.
 
     ```python-ref
     name = "ball"
-    name += " python"    # same as name = name + " python"
+    name += " python"  # same as name = name + " python"
     ```
 
 - **`.join()`** glues a list of strings back together, using the string it's called on as the separator between each item.
 
     ```python-ref
-    "-".join(["burmese", "python"])       # "burmese-python"
+    "-".join(["burmese", "python"])  # "burmese-python"
     ```
 
 #### f-strings
@@ -366,44 +368,44 @@ Strings use the same index and slice syntax as lists. `0` is the first character
     - **align** — `<` left, `>` right, or `^` center, aligns *within* the width, so it requires a specificed width too.
 
         ```python-ref
-        f"{length:<6}"    # "5     " — left-aligned in 6 characters
-        f"{length:>6}"    # "     5" — right-aligned in 6 characters
-        f"{length:^6}"    # "  5   " — centered in 6 characters
+        f"{length:<6}"  # "5     " — left-aligned in 6 characters
+        f"{length:>6}"  # "     5" — right-aligned in 6 characters
+        f"{length:^6}"  # "  5   " — centered in 6 characters
         ```
 
     - **sign** — `-` is the default where only negative numbers get a sign, `+` forces a sign on every number, `=` forces the sign to the very front, before any zero-padding.
 
         ```python-ref
-        f"{5:+}"      # "+5" — always shows a sign
-        f"{-5:+}"     # "-5"
-        f"{5:=+06}"   # "+00005" — sign forced to the front, before the zero-padding
+        f"{5:+}"     # "+5" — always shows a sign
+        f"{-5:+}"    # "-5"
+        f"{5:=+06}"  # "+00005" — sign forced to the front, before the zero-padding
         ```
 
     - **width** — a plain number `width` pads the result to at least that many characters.
 
         ```python-ref
-        f"{length:6}"    # "     5" — padded to 6 characters wide
+        f"{length:6}"  # "     5" — padded to 6 characters wide
         ```
 
     - **thousands separator** - a `,` adds a comma to group every 3 digits.
 
         ```python-ref
-        f"{1234567.5:,}"    # "1,234,567.5"
+        f"{1234567.5:,}"  # "1,234,567.5"
         ```
 
     - **precision** — a `.` followed by a number `.digits` sets how many digits appear after the decimal point in a `f` and `%` type (detailed below), without a precision they default to 6 decimal places.
 
         ```python-ref
-        f"{length_ft:.2f}"    # "4.50" — 2 digits after the decimal
+        f"{length_ft:.2f}"  # "4.50" — 2 digits after the decimal
         ```
 
     - **type** — a letter at the very end — tells Python how to display the value: `d` for an integer, `f` for fixed-point notation (displayed with decimal places), `%` for a percentage.
 
         ```python-ref
-        f"{length:d}"        # "5" — treated as an integer
-        f"{length_ft:.2f}"   # "4.50" — fixed-point notation, 2 decimal places
-        f"{length_ft:f}"     # "4.500000" — no precision given, defaults to 6 digits
-        f"{0.25:.1%}"        # "25.0%" — treated as a percentage
+        f"{length:d}"       # "5" — treated as an integer
+        f"{length_ft:.2f}"  # "4.50" — fixed-point notation, 2 decimal places
+        f"{length_ft:f}"    # "4.500000" — no precision given, defaults to 6 digits
+        f"{0.25:.1%}"       # "25.0%" — treated as a percentage
         ```
 
 #### Modify
@@ -413,22 +415,22 @@ Since strings are immutable, these all return a **new** string rather than chang
 - **`.upper()`, `.lower()`, `.title()`, `.capitalize()`** change letter case. `.upper()`/`.lower()` change every character; `.title()` capitalizes every word; `.capitalize()` capitalizes only the first character and lowercases the rest.
 
     ```python-ref
-    name.upper()          # "BURMESE PYTHON"
-    name.lower()          # "burmese python"
-    name.title()          # "Burmese Python"
-    name.capitalize()     # "Burmese python"
+    name.upper()       # "BURMESE PYTHON"
+    name.lower()       # "burmese python"
+    name.title()       # "Burmese Python"
+    name.capitalize()  # "Burmese python"
     ```
 
 - **`.strip()`** removes leading and trailing whitespace.
 
     ```python-ref
-    "  ball  ".strip()    # "ball"
+    "  ball  ".strip()  # "ball"
     ```
 
 - **`.replace()`** swaps every occurrence of one substring for another.
 
     ```python-ref
-    name.replace("burmese", "ball")   # "ball python"
+    name.replace("burmese", "ball")  # "ball python"
     ```
 
 #### Search
@@ -436,19 +438,19 @@ Since strings are immutable, these all return a **new** string rather than chang
 - **`in`** checks whether one string contains another.
 
     ```python-ref
-    "python" in name          # True
+    "python" in name  # True
     ```
 
 - **`.find()`** returns the index where a substring first appears, or `-1` if it's not found.
 
     ```python-ref
-    name.find("python")       # 8
+    name.find("python")  # 8
     ```
 
 - **`.count()`** counts how many times a substring appears.
 
     ```python-ref
-    name.count("p")           # 1
+    name.count("p")  # 1
     ```
 
 #### Validate
@@ -456,18 +458,18 @@ Since strings are immutable, these all return a **new** string rather than chang
 - **`.startswith()`, `.endswith()`** check the beginning or end of a string specifically — faster to read than slicing and comparing manually.
 
     ```python-ref
-    name.startswith("burmese")   # True
-    name.endswith(".py")         # False
+    name.startswith("burmese")  # True
+    name.endswith(".py")        # False
     ```
 
 - **`.isdigit()`, `.isalpha()`** check whether every character is a digit, or a letter. Useful for validating input before converting it — `input()` always returns a string, even when the person typed a number.
 
     ```python-ref
-    age = input("How old are you? ")   # always a string, even if they type "8"
-    age.isdigit()                      # True if it's safe to pass to int()
+    age = input("How old are you? ")  # always a string, even if they type "8"
+    age.isdigit()                     # True if it's safe to pass to int()
 
     species = "ball"
-    species.isalpha()                  # True — every character is a letter
+    species.isalpha()                 # True — every character is a letter
     ```
 
 #### Convert
@@ -475,15 +477,15 @@ Since strings are immutable, these all return a **new** string rather than chang
 - **`str()`** converts almost any value into its text representation. Handy any time you need to combine a number with text, since `+` can't join a string and a number directly.
 
     ```python-ref
-    str(5)      # "5"
-    str(4.5)    # "4.5"
-    str(True)   # "True"
+    str(5)     # "5"
+    str(4.5)   # "4.5"
+    str(True)  # "True"
     ```
 
 - **`.split()`** converts a string into a list, breaking it apart wherever the separator appears. Uses whitespace as the separator by default.
 
     ```python-ref
-    name.split()                          # ["burmese", "python"]
+    name.split()  # ["burmese", "python"]
     ```
 
 ### Boolean expressions
@@ -493,7 +495,7 @@ Since strings are immutable, these all return a **new** string rather than chang
 - **Falsy:** the empty string `""`
 
 ```python-ref
-if name:                # runs — name isn't empty
+if name:                 # runs — name isn't empty
     print("has a name")
 ```
 
@@ -604,7 +606,7 @@ A boolean (`bool`) holds one of exactly two values, **`True`** or **`False`** �
 
 ```python-ref
 venomous = False
-venomous    # False
+venomous          # False
 ```
 
 ### Boolean operations
@@ -617,26 +619,26 @@ Several kinds of operators hand back a `bool`, each answering a different questi
 
     ```python-ref
     length = 5
-    length > 3     # True — is length bigger than 3?
-    length == 5    # True — is length equal to 5?
+    length > 3   # True — is length bigger than 3?
+    length == 5  # True — is length equal to 5?
     ```
 
 - **`is`, `is not`** check whether two names point to the *exact same object*, not just an equal-looking value.
 
     ```python-ref
-    venomous is None    # False — venomous is False, not None
+    venomous is None  # False — venomous is False, not None
     ```
 
 - **`in`, `not in`** check whether a value shows up inside a string, list, or other collection.
 
     ```python-ref
-    "python" in name    # True
+    "python" in name  # True
     ```
 
 - **`not`** flips a boolean to its opposite.
 
     ```python-ref
-    not venomous    # True — venomous is False, so not flips it
+    not venomous  # True — venomous is False, so not flips it
     ```
 
 #### Logical operators
@@ -654,19 +656,19 @@ Several kinds of operators hand back a `bool`, each answering a different questi
 - **`not` [boolean]** flips a boolean to its opposite.
 
     ```python-ref
-    not venomous    # not False → True
+    not venomous  # not False → True
     ```
 
 - **[boolean] `and` [boolean]** is `True` only if **both** sides are `True`.
 
     ```python-ref
-    length > 10 and venomous    # True and False → False
+    length > 10 and venomous  # True and False → False
     ```
 
 - **[boolean] `or` [boolean]** is `True` if **either** side is `True`.
 
     ```python-ref
-    length > 10 or venomous    # True or False → True
+    length > 10 or venomous  # True or False → True
     ```
 
 - **Order of operations:** When several logical operators appear together, Python evaluates them in the below order. Keeping this in mind, you can use parentheses to help construct your expressions. 
@@ -682,8 +684,8 @@ Several kinds of operators hand back a `bool`, each answering a different questi
     `True` behaves like `1` and `False` behaves like `0` in arithmetic.
 
     ```python-ref
-    isinstance(True, int)    # True
-    True + True               # 2
+    isinstance(True, int)  # True
+    True + True            # 2
     ```
 
 ??? run "Practice with booleans"
@@ -723,7 +725,7 @@ Several kinds of operators hand back a `bool`, each answering a different questi
 
 ```python-ref
 venomous = None
-venomous    # None
+venomous         # None
 ```
 
 ### Check for None
@@ -731,8 +733,8 @@ venomous    # None
 - **`is`, `is not`** compare against `None` — always use these, not `==`/`!=`. `is` checks that it's the *exact same object*, which is what you want for a singleton value like `None`.
 
     ```python-ref
-    venomous is None        # True
-    venomous is not None    # False
+    venomous is None      # True
+    venomous is not None  # False
     ```
 
 ### Boolean expressions
@@ -746,7 +748,7 @@ venomous    # None
     - Falsy: `None` (its only value)
 
     ```python-ref
-    if venomous:              # skipped — venomous is None
+    if venomous:                  # skipped — venomous is None
         print("found something")
     else:
         print("nothing found")

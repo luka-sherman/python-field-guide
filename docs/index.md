@@ -35,9 +35,9 @@ hide:
 
 -   :material-shape-outline:{ .lg .middle } [__Basics__](types.md)
 
-    The kind of value something is, like a number, text, or true/false.
+    Kinds of values, and what you can do with them.
 
-    [**`int`**](types.md#integers) · [**`float`**](types.md#floats) · [**`string`**](types.md#strings) · [**`bool`**](types.md#booleans) · [**`None`**](types.md#none)
+    [**`integer`**](types.md#integers) · [**`float`**](types.md#floats) · [**`string`**](types.md#strings) · [**`boolean`**](types.md#booleans) · [**`None`**](types.md#none)
 
     [`truthy/falsy`](types.md#boolean-expressions) · [`//, %, divmod()`](types.md#floor-division-modulo) · [`abs()`](types.md#absolute-value) · [`round()`](types.md#adjust) · [`indexing, slicing`](types.md#access-characters) · [`f-string`](types.md#f-strings) · [`.lower() .upper() .strip() .replace()`](types.md#modify) · [`.find() .count()`](types.md#search) · [`.startswith() .endswith() .isdigit() .isalpha()`](types.md#validate) · [`.split()`](types.md#convert_2) · [`is, in`](types.md#creating-a-boolean) · [`and, or, not`](types.md#logical-operators) · [`type() isinstance()`](types.md)
 
@@ -67,7 +67,7 @@ hide:
 
 -   :material-repeat:{ .lg .middle } [__Loops__](loops.md)
 
-    Repeats a block of code without writing it out multiple times.
+    Repeats a block of code multiple times.
 
     [**`for`**](loops.md#for-loops) · [**`while`**](loops.md#while-loops) · [**`break, continue`**](loops.md#control-flow-statements) · [**`common patterns`**](loops.md#common-patterns)
 
@@ -83,7 +83,7 @@ hide:
 
 -   :material-function-variant:{ .lg .middle } [__Functions__](functions.md)
 
-    Packages a block of code under a name, so it can be run again with different inputs instead of rewriting it each time.
+    Packages a block of code under a name, so it can be run again with different inputs.
 
     [**`def`**](functions.md#defining-a-function) · [**`*args, **kwargs`**](functions.md#flexible-arguments) · [**`scope`**](functions.md#scope) · [**`recursion`**](functions.md#recursion)
 
@@ -107,7 +107,7 @@ hide:
 
 -   :material-import:{ .lg .middle } [__Modules & Imports__](modules.md)
 
-    Splitting code across files, and pulling in code someone else already wrote.
+    Splitting code across files, and using someone else's code.
 
     [**`import`**](modules.md#importing-modules) · [**`your own module`**](modules.md#creating-your-own-module) · [**`module, package, library`**](modules.md#modules-vs-packages-vs-libraries)
 
@@ -115,7 +115,7 @@ hide:
 
 -   :material-file-document-outline:{ .lg .middle } [__Reading & Writing Files__](files.md)
 
-    Saves data outside the program itself, so it's still there the next time it runs.
+    Reads and writes text files to save data outside the program itself.
 
     [**`open()`**](files.md#opening-a-file) · [**`read()`**](files.md#reading-a-file) · [**`write()`**](files.md#writing-multiple-lines) · [**`append`**](files.md#appending-vs-overwriting)
 
@@ -129,15 +129,15 @@ hide:
 
 -   :material-palette-outline:{ .lg .middle } [__Style__](style.md)
 
-    Conventions for writing Python that stays readable as a file grows.
+    Conventions for writing standardized and readable Python code.
 
-    [**`PEP 8`**](style.md#pep-8-style-guide) · [**`pythonic patterns`**](style.md#pythonic-patterns) · [**`best practices`**](style.md#additional-best-practices) · [**`linter`**](style.md#linter-tool) · [**`checklist`**](style.md#checklist)
+    [**`PEP 8`**](style.md#pep-8-style-guide) · [**`Pythonic patterns`**](style.md#pythonic-patterns) · [**`best practices`**](style.md#additional-best-practices) · [**`linter`**](style.md#linter-tool) · [**`checklist`**](style.md#checklist)
 
     [`naming`](style.md#naming) · [`docstrings`](style.md#docstrings) · [`type hints`](style.md#type-hints) · [`order`](style.md#file-order) · [`constants`](style.md#constants) · [`catch specific exceptions`](style.md#catch-specific-exceptions)
 
 -   :material-bug-outline:{ .lg .middle } [__Errors__](errors.md)
 
-    How to read error messages, handle them gracefully, and track down what went wrong.
+    How to read error messages, handle them, and track down what went wrong.
 
     [**`try, except`**](errors.md#handling-errors) · [**`tracebacks`**](errors.md#reading-errors) · [**`debugger`**](errors.md#using-a-debugger) · [**`debugging strategies`**](errors.md#debugging-strategies)
 
