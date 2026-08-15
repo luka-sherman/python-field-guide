@@ -25,7 +25,11 @@
   --pt-code-fg: #F2EDE0;
   --pt-code-string: #C9E4D2;
   --pt-code-keyword: #E8C9A8;
-  --pt-code-comment: #8A8370;
+  /* #8A8370 (the original value) measured 4.22:1 against --pt-code-bg — under
+     WCAG AA's 4.5:1 minimum for normal text, flagged by axe-core. Same hue/
+     saturation, just lighter (5.06:1), so it still reads as muted relative to
+     --pt-code-fg without failing contrast. */
+  --pt-code-comment: #97917F;
 }
 
 [data-md-color-scheme="slate"] {
@@ -54,7 +58,11 @@
   --pt-code-fg: #F2EDE0;
   --pt-code-string: #C9E4D2;
   --pt-code-keyword: #E8C9A8;
-  --pt-code-comment: #8A8370;
+  /* #8A8370 (the original value) measured 4.22:1 against --pt-code-bg — under
+     WCAG AA's 4.5:1 minimum for normal text, flagged by axe-core. Same hue/
+     saturation, just lighter (5.06:1), so it still reads as muted relative to
+     --pt-code-fg without failing contrast. */
+  --pt-code-comment: #97917F;
 
   /* Very dark, low-saturation hues for the header's shimmer layer, below —
      deliberately close in value to --pt-bg so the movement stays subtle. */
@@ -101,6 +109,70 @@
   --md-footer-fg-color: var(--pt-ink);
   --md-footer-fg-color--light: var(--pt-text-secondary);
   --md-footer-fg-color--lighter: var(--pt-text-muted);
+}
+
+/* Material only styles the scrollbars of its own inner-scrolling regions
+   (the sidebar, code blocks, search) — not the page's own outer scrollbar,
+   which is left as the browser default. Give it the same thin/grey-until-
+   hover-then-accent-green treatment as the sidebar's .md-sidebar__scrollwrap,
+   reusing the same --md-accent-fg-color this palette already points at
+   green, at the same 0.2rem width Material's own scrollbars use.
+   scrollbar-color/-width is the standard (Firefox+) API; the
+   ::-webkit-scrollbar rules are the Chrome/Safari equivalent.
+
+   Deliberately on `body`, not `html`/`:root`: Material stamps
+   data-md-color-scheme on <body> (see CLAUDE.md's "Custom color palette on
+   Material" gotcha), so --md-accent-fg-color only resolves to the current
+   scheme's green on elements at-or-under <body> — on <html> itself it's
+   stuck on the plain `:root` rule's light-mode value even in dark mode.
+   Styling `body` instead of `html` sidesteps that entirely, and per the
+   CSSOM View spec browsers propagate the *body* element's scrollbar styling
+   to the viewport scrollbar whenever `html` has its default (visible)
+   overflow, which it does here — no separate dark-mode override needed. */
+/* On `html`, not `body`: Material sets `html{overflow-x:hidden}` (see its
+   compiled main.css), which per the CSSOM View spec means `html` itself
+   stays the page's real scrolling box — the "browsers propagate body's
+   scrollbar to the viewport" rule only kicks in when html's overflow is
+   left at its default (visible), which it isn't here. Styling `body`
+   instead produced no visible scrollbar at all. */
+html {
+  scrollbar-color: var(--md-default-fg-color--lighter) transparent;
+  scrollbar-width: thin;
+}
+
+/* Fixed on purpose, not --md-accent-fg-color/--pt-accent: those swap to a
+   brighter, more saturated green in dark mode (needed for contrast against
+   the dark background elsewhere), but here a single muted green is wanted
+   on both this page scrollbar and the sidebar's below, in every theme. */
+html:hover,
+html:focus-within {
+  scrollbar-color: #3f6b52 transparent;
+}
+
+html::-webkit-scrollbar {
+  width: 0.2rem;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: var(--md-default-fg-color--lighter);
+}
+
+html:hover::-webkit-scrollbar-thumb,
+html:focus-within::-webkit-scrollbar-thumb {
+  background-color: #3f6b52;
+}
+
+/* Override Material's own .md-sidebar__scrollwrap hover color (which uses
+   --md-accent-fg-color, i.e. the theme-adaptive green) to the same fixed
+   muted green as the page scrollbar above, so both match in every theme. */
+.md-sidebar__scrollwrap:hover,
+.md-sidebar__scrollwrap:focus-within {
+  scrollbar-color: #3f6b52 transparent;
+}
+
+.md-sidebar__scrollwrap:hover::-webkit-scrollbar-thumb,
+.md-sidebar__scrollwrap:focus-within::-webkit-scrollbar-thumb {
+  background-color: #3f6b52;
 }
 
 .md-header {
@@ -184,6 +256,22 @@
 .md-typeset a,
 .md-typeset a:visited {
   color: var(--pt-accent);
+}
+
+/* Body links sit in flowing prose with no non-color cue distinguishing them
+   from surrounding text at rest — flagged by axe's link-in-text-block rule.
+   Scoped narrower first (just .tabbed-content, where the original manual
+   audit happened to look), but a full axe sweep found the same issue on
+   plain inline cross-reference links throughout the content pages too, so
+   this covers .md-typeset generally. The homepage card grid opts back out
+   below — its title links are already bold + icon-prefixed, and the
+   keyword-link rows read as a reference list rather than prose. */
+.md-typeset a {
+  text-decoration: underline;
+}
+
+.md-typeset .grid.cards a {
+  text-decoration: none;
 }
 
 .md-nav__link--active,
@@ -439,8 +527,13 @@ input:checked + .md-consent__settings {
   color: var(--pt-ref-keyword);
 }
 
+/* --pt-text-muted (used elsewhere for de-emphasized page text) only reaches
+   ~3.3:1 against --pt-panel — under WCAG AA's 4.5:1 minimum for normal text,
+   flagged by axe-core. --pt-text-secondary clears it comfortably (6.6-7:1 in
+   both themes) since .pyodide-reference's panel is a bit darker/lighter than
+   the plain page background these mutes are usually set against. */
 .pyodide-reference .hljs-comment {
-  color: var(--pt-text-muted);
+  color: var(--pt-text-secondary);
 }
 
 /* Material hides .md-tabs below 76.234375em (its own mobile breakpoint) in
@@ -680,6 +773,12 @@ input:checked + .md-consent__settings {
    this targets the paragraph's `<a>` directly rather than `<strong> > a`. */
 .md-typeset .grid.cards > ul > li > p:first-child > a {
   outline: none;
+}
+
+.md-typeset .grid.cards > ul > li > p:first-child > a:focus-visible {
+  outline: 0.15rem solid var(--pt-accent);
+  outline-offset: 0.15rem;
+  border-radius: 0.1rem;
 }
 
 .md-typeset .grid.cards > ul > li > p:first-child > a:not(.pt-lib-badge)::after {

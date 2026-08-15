@@ -31,6 +31,9 @@
 
   function makeEditable(codeBlock) {
     codeBlock.classList.add("pyodide-editor");
+    codeBlock.setAttribute("role", "textbox");
+    codeBlock.setAttribute("aria-multiline", "true");
+    codeBlock.setAttribute("aria-label", "Editable Python code");
     import(CODEJAR_CDN).then(({ CodeJar }) => {
       CodeJar(codeBlock, highlightWithExistingTheme, {
         tab: "    ",
