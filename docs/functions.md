@@ -1,3 +1,9 @@
+---
+description: >-
+  Python functions explained with runnable examples: defining, calling, arguments,
+  *args/**kwargs, scope, and recursion.
+---
+
 # :material-function-variant:{ .lg .middle } Functions
 
 A **function** packages a block of code under a name, so it can be run again — with different inputs — instead of copying and pasting the same lines every time you need them. Python already has some built in (`print()`, `len()`), but `def` lets you write your own.

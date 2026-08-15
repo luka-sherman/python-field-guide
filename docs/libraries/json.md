@@ -1,3 +1,9 @@
+---
+description: >-
+  Reading and writing JSON data in Python with the json module: json.load, json.dump, and
+  working with nested data, with runnable examples.
+---
+
 # :material-code-json:{ .lg .middle } json library
 
 The **`json`** module reads and writes JSON ("JavaScript Object Notation") data — a plain-text format built on nested dicts and lists, which makes it the standard way structured data moves between programs, files, and web APIs. Every example below actually runs in your browser: Pyodide gives each page its own in-memory filesystem, so `open()` works exactly like it would on a real computer, just without anything being saved outside this page.

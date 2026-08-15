@@ -1,3 +1,9 @@
+---
+description: >-
+  The basics every Python program starts with: variables, print(), input(), and comments,
+  with runnable examples.
+---
+
 # :material-cube-outline:{ .lg .middle } Foundations
 
 ## Tips for getting started

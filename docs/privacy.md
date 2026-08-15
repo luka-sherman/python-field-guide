@@ -1,3 +1,7 @@
+---
+description: How Python Field Guide uses Google Analytics and what data it collects.
+---
+
 # Privacy policy
 
 This site uses Google Analytics to understand how visitors use it — which pages are read,

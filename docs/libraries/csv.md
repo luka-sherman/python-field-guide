@@ -1,3 +1,9 @@
+---
+description: >-
+  Reading and writing CSV files in Python with the csv module: csv.writer, csv.reader,
+  and DictReader, with runnable examples.
+---
+
 # :material-file-delimited-outline:{ .lg .middle } csv library
 
 The **`csv`** module reads and writes CSV ("comma-separated values") files — a plain-text table format that spreadsheets and databases can both open. Every example below actually runs in your browser: Pyodide gives each page its own in-memory filesystem, so `open()` works exactly like it would on a real computer, just without anything being saved outside this page.

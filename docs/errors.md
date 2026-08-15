@@ -1,3 +1,9 @@
+---
+description: >-
+  How to read Python error messages and tracebacks, handle them with try/except, and debug
+  with print statements or a debugger.
+---
+
 # :material-bug-outline:{ .lg .middle } Errors
 
 Your code had an error or didn't do what you expected — here are tools for figuring out why. 

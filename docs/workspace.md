@@ -1,3 +1,9 @@
+---
+description: >-
+  How to install Python, pick a code editor, and run your first .py file — a step-by-step
+  setup guide.
+---
+
 # :material-monitor:{ .lg .middle } Workspace Setup
 
 ## Step 0: Install Python

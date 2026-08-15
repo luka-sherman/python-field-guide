@@ -1,4 +1,5 @@
 ---
+description: Your feedback was received — thanks for helping improve Python Field Guide.
 hide:
   - navigation
   - toc

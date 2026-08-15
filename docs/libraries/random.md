@@ -1,3 +1,7 @@
+---
+description: Generating random numbers and making random selections in Python with the random module, with runnable examples.
+---
+
 # :material-dice-multiple:{ .lg .middle } random library
 
 The **`random`** module generates pseudo-random numbers and makes random selections — rolling a dice, shuffling a deck, or picking a specimen to feature at random.

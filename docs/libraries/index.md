@@ -1,3 +1,7 @@
+---
+description: An overview of popular Python libraries covered on this site, both built-in and third-party.
+---
+
 # Libraries
 
 Libraries allow us to apply the Python fundamentals to real tasks. These are a few popular ones, but there are many.

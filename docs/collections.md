@@ -1,3 +1,9 @@
+---
+description: >-
+  Python's collection types explained with runnable examples: lists, dictionaries, tuples,
+  and sets, plus how to loop through, filter, and combine them.
+---
+
 # :material-basket-outline:{ .lg .middle } Collection Data Types
 
 A **collection** is a single object that groups multiple values (like [basic types](types.md)) together and so they can be stored in one variable together and worked with as a unit. 

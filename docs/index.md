@@ -1,4 +1,7 @@
 ---
+description: >-
+  A free Python reference with runnable code examples covering data types, collections,
+  loops, functions, classes, error handling, and popular libraries.
 hide:
   - navigation
   - toc

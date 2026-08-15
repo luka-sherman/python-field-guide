@@ -1,3 +1,9 @@
+---
+description: >-
+  A Python style and code-quality checklist covering naming, formatting, docstrings,
+  linters, and common beginner mistakes.
+---
+
 # :material-palette-outline:{ .lg .middle } Style
 
 Code that works isn't automatically code that's easy to live with — following a shared set of conventions is what keeps a Python file manageable as it grows past a few lines.

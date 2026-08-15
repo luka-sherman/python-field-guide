@@ -1,3 +1,7 @@
+---
+description: How Python modules and imports work, including writing and importing your own, with runnable examples.
+---
+
 # :material-import:{ .lg .middle } Modules & Imports
 
 ## Modules vs packages vs libraries

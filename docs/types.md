@@ -1,3 +1,9 @@
+---
+description: >-
+  Python's basic data types explained with runnable examples: integers, floats,
+  strings, booleans, and None, plus the operations each one supports.
+---
+
 # :material-shape-outline:{ .lg .middle } Basic data types
 
 Every value in Python has a **type**, which determines what operations it supports and how it behaves. 

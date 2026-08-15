@@ -1,3 +1,9 @@
+---
+description: >-
+  Python conditionals explained with runnable examples: if/elif/else, match/case, and
+  boolean logic for branching program flow.
+---
+
 # :material-source-branch:{ .lg .middle } Conditionals
 
 A **conditional** lets a program make decisions by running a **block** of code only when a [condition](#boolean-expressions) is `True`. 

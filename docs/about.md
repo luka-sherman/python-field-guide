@@ -1,3 +1,7 @@
+---
+description: Why Python Field Guide exists, who built it, and how to send feedback or report a mistake.
+---
+
 # About this site
 
 ## Why I built this
@@ -33,7 +37,7 @@ This *isn't* meant to be a comprehensive Python guide, it's just my self-publish
 
 <form action="https://formspree.io/f/mgogjdop" method="POST" class="pt-feedback-form">
   <input type="hidden" name="_next" value="https://pythonfieldguide.com/thanks.html">
-  <input type="text" name="_gotcha" class="pt-field-extra" tabindex="-1" autocomplete="off">
+  <input type="text" name="_gotcha" class="pt-field-extra" tabindex="-1" autocomplete="off" aria-hidden="true">
 
   <label for="pt-feedback-name">Your name</label>
   <input type="text" id="pt-feedback-name" name="your_name" placeholder="First Last" required>

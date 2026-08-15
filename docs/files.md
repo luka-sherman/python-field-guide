@@ -1,3 +1,9 @@
+---
+description: >-
+  Reading and writing files in Python: opening and closing files, and working with text
+  and other formats, with runnable examples.
+---
+
 # :material-file-document-outline:{ .lg .middle } File I/O
 
 A file lets a program keep data around after it ends — `print()` shows something on screen, but it's gone the moment the program stops. Saving to a file means that data is still there the next time it runs.

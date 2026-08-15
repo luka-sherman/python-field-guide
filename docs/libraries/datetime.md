@@ -1,3 +1,9 @@
+---
+description: >-
+  Working with dates and times in Python using the datetime module: creating dates, date
+  arithmetic, and formatting with strftime/strptime.
+---
+
 # :material-calendar-clock:{ .lg .middle } datetime library
 
 The **`datetime`** module is Python's standard library for working with dates and times — logging when an observation happened, measuring how long ago it was, or formatting a date for display.

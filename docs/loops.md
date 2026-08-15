@@ -1,3 +1,9 @@
+---
+description: >-
+  Python's for and while loops explained with runnable examples: iterating collections,
+  break/continue, range(), enumerate(), and common patterns.
+---
+
 # :material-repeat:{ .lg .middle } Loops
 
 A **loop** repeats a block of code multiple times. 
