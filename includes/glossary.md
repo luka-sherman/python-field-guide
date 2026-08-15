@@ -33,3 +33,5 @@
 *[Packing]: Writing several values separated by commas, which implicitly builds a tuple — what's actually happening whenever you write a tuple literal
 *[unpacking]: Assigning each item in a tuple (or other iterable) to its own variable in one line, one name per item
 *[Unpacking]: Assigning each item in a tuple (or other iterable) to its own variable in one line, one name per item
+*[augmented assignment]: Combines an operation with reassignment in one step — count += 1 is shorthand for count = count + 1
+*[Augmented assignment]: Combines an operation with reassignment in one step — count += 1 is shorthand for count = count + 1

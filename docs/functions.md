@@ -60,13 +60,24 @@ def is_too_long(species, length_ft):
 
 ### Return values
 
-`return` sends a value back to the caller, instead of just printing it. Without a `return`, a function hands back `None` automatically — covered on the [Types](types.md#functions-return-none-by-default) page. `return` also exits the function immediately, skipping any code written after it.
+`return` sends a value back to the caller, instead of just printing it. `return` also exits the function immediately, skipping any code written after it.
 
 ```python-ref
 def describe(species):
     return f"a {species} python"
 
 message = describe("ball")    # "a ball python" — stored, not printed
+```
+
+If a function runs to the end without hitting a `return` statement, it returns `None` automatically. This is what you get back if a lookup silently "doesn't find" anything.
+
+```python-ref
+def find_species(name):
+    if name == "ball":
+        return "found it"
+    # falls through here for anything else — implicitly returns None
+
+result = find_species("cobra")    # None — the function fell through without a return
 ```
 
 ### Default parameter values
@@ -124,6 +135,15 @@ describe(species="ball", venomous=True)    # length_ft still uses its default
 
     message = describe("ball")
     print(message)
+
+
+    def find_species(name):
+        if name == "ball":
+            return "found it"
+        # falls through here for anything else — implicitly returns None
+
+    result = find_species("cobra")
+    print(result)
 
 
     def check_length(length_ft):

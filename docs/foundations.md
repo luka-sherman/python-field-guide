@@ -200,7 +200,7 @@ species = "burmese python"    # replaces the old value entirely
     a = b = 0
     ```
 
-    `species, length_ft = "ball python", 4.5` assigns each value to the matching name in order — the same unpacking mechanism covered on the [Collections](collections.md#unpacking) page. `a = b = 0` instead points every name at the *same* value, useful for initializing a few counters at once.
+    `species, length_ft = "ball python", 4.5` assigns each value to the matching name in order — the same unpacking mechanism covered on the [Collections](collections.md#packing-and-unpacking) page. `a = b = 0` instead points every name at the *same* value, useful for initializing a few counters at once.
 
 ??? run "Run a variables example"
     All the examples above, combined into one script:
@@ -277,7 +277,7 @@ You can also build one string yourself with `+` and print that instead of using 
 print(species + " " + str(length_ft) + " ft")    # ball python 4.5 ft — same output, more typing
 ```
 
-For building a full sentence out of text and variables, an [f-string](types.md#format-strings) is usually clearer than either approach.
+For building a full sentence out of text and variables, an [f-string](types.md#f-strings) is usually clearer than either approach.
 
 ??? run "Run a printing variables example"
     All the examples above, combined into one script:
@@ -398,7 +398,7 @@ Come back to this once you've read the [Types](types.md) page.
 
 Whatever the person types, `input()` always hands it back as a **string** — even a typed number comes back as text, not a real number.
 
-To use what the user has entered as a real number, you must convert it with `int()` or `float()`, covered on the [Types](types.md#convert-to-integer) page. Skipping this step causes an error the moment you try to do math with it — Python won't add a number to a string.
+To use what the user has entered as a real number, you must convert it with `int()` or `float()`, covered on the [Types](types.md#convert) page. Skipping this step causes an error the moment you try to do math with it — Python won't add a number to a string.
 
 ```python-ref
 age = input("How old are you? ")          # "8" — a string, not the number 8
