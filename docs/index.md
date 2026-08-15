@@ -25,6 +25,8 @@ hide:
 
     [**`variables`**](foundations.md#variables) · [**`print()`**](foundations.md#print-function) · [**`input()`**](foundations.md#input-function) · [**`comments`**](foundations.md#comments) · [**`tips for getting started`**](foundations.md#tips-for-getting-started)
 
+    [`how variables work`](foundations.md#how-do-variables-work) · [`converting input to a number`](foundations.md#converting-input-to-a-number) · [`TODO, FIXME`](foundations.md#single-line-comments-with)
+
 </div>
 </div>
 
@@ -37,17 +39,17 @@ hide:
 
     Kinds of values, and what you can do with them.
 
-    [**`integer`**](types.md#integers) · [**`float`**](types.md#floats) · [**`string`**](types.md#strings) · [**`boolean`**](types.md#booleans) · [**`None`**](types.md#none)
+    [**`integers`**](types.md#integers) · [**`floats`**](types.md#floats) · [**`strings`**](types.md#strings) · [**`booleans`**](types.md#booleans) · [**`None`**](types.md#none)
 
-    [`truthy/falsy`](types.md#boolean-expressions) · [`//, %, divmod()`](types.md#floor-division-modulo) · [`abs()`](types.md#absolute-value) · [`round()`](types.md#adjust) · [`indexing, slicing`](types.md#access-characters) · [`f-string`](types.md#f-strings) · [`.lower() .upper() .strip() .replace()`](types.md#modify) · [`.find() .count()`](types.md#search) · [`.startswith() .endswith() .isdigit() .isalpha()`](types.md#validate) · [`.split()`](types.md#convert_2) · [`is, in`](types.md#creating-a-boolean) · [`and, or, not`](types.md#logical-operators) · [`type() isinstance()`](types.md)
+    [`truthy/falsy`](types.md#boolean-expressions) · [`+ - * / **`](types.md#arithmetic) · [`+= -= *=`](types.md#arithmetic) · [`//, %, divmod()`](types.md#floor-division-modulo) · [`abs()`](types.md#absolute-value) · [`int()`](types.md#convert) · [`float()`](types.md#convert_1) · [`round()`](types.md#adjust) · [`indexing, slicing`](types.md#access-characters) · [`len()`](types.md#inspect) · [`, in print()`](types.md#combine) · [`f-string`](types.md#f-strings) · [`.lower() .upper() .strip() .replace()`](types.md#modify) · [`.find() .count()`](types.md#search) · [`.startswith() .endswith() .isdigit() .isalpha()`](types.md#validate) · [`str()`](types.md#convert_2) · [`.split()`](types.md#convert_2) · [`comparisons, is, in`](types.md#creating-a-boolean) · [`and, or, not`](types.md#logical-operators) · [`type() isinstance()`](types.md)
 
 -   :material-basket-outline:{ .lg .middle } [__Collections__](collections.md)
 
     Multiple related values grouped into one container, so you can work with them together.
 
-    [**`list`**](collections.md#lists) · [**`tuple`**](collections.md#tuples) · [**`dict`**](collections.md#dictionaries) · [**`set`**](collections.md#sets)
+    [**`lists`**](collections.md#lists) · [**`dictionaries`**](collections.md#dictionaries) · [**`tuples`**](collections.md#tuples) · [**`sets`**](collections.md#sets)
 
-    [`.append()`](collections.md#list-operations) · [`len()`](collections.md#list-operations) · [`in`](collections.md#list-operations) · [`min() max() sum()`](collections.md#list-operations) · [`.pop()`](collections.md#list-operations) · [`.sort()`](collections.md#list-operations) · [`.get()`](collections.md#dictionary-operations) · [`.keys() .values() .items()`](collections.md#dictionary-operations) · [`packing, unpacking`](collections.md#packing-and-unpacking)
+     [`.append()`](collections.md#add-item) · [`len()`](collections.md#inspect) · [`in`](collections.md#list-boolean-expressions) · [`min() max() sum()`](collections.md#arithmetic) · [`.pop()`](collections.md#remove-item) · [`.sort()`](collections.md#sort) · [`list comprehension`](collections.md#list-comprehension) · [`.get()`](collections.md#dictionary-operations) · [`.keys() .values() .items()`](collections.md#dictionary-operations) · [`packing, unpacking`](collections.md#packing-and-unpacking) · [`| & - ^`](collections.md#combine) · [`issubset() issuperset() isdisjoint()`](collections.md#compare)
 
 </div>
 </div>
@@ -63,7 +65,7 @@ hide:
 
     [**`if, elif, else`**](conditionals.md#if-elif-else) · [**`match, case`**](conditionals.md#match-case) · [**`break, continue`**](conditionals.md#control-flow-statements)
 
-    [`boolean expressions`](conditionals.md#boolean-expressions) · [`and, or, not`](conditionals.md#logical-operators) · [`unpacking`](conditionals.md#unpacking-a-tuple) · [`_ (wildcard)`](conditionals.md#default-value-_)
+    [`boolean expressions`](conditionals.md#boolean-expressions) · [`and, or, not`](conditionals.md#logical-operators) · [`unpacking`](conditionals.md#unpacking-a-tuple) · [`_ (wildcard)`](conditionals.md#default-value-_) · [`match with |`](conditionals.md#match-multiple-values-with) · [`case + if`](conditionals.md#case-if) · [`break`](conditionals.md#break) · [`continue`](conditionals.md#continue)
 
 -   :material-repeat:{ .lg .middle } [__Loops__](loops.md)
 
@@ -71,7 +73,7 @@ hide:
 
     [**`for`**](loops.md#for-loops) · [**`while`**](loops.md#while-loops) · [**`break, continue`**](loops.md#control-flow-statements) · [**`common patterns`**](loops.md#common-patterns)
 
-    [`loop through a collection`](loops.md#loop-through-a-collection) · [`accumulator`](loops.md#accumulator) · [`counter`](loops.md#counter) · [`nested loops`](loops.md#nested-loops) · [`range()`](loops.md#iterable-range) · [`enumerate()`](loops.md#loop-with-index-and-value) · [`reversed()`](loops.md#loop-in-reverse) · [`zip()`](loops.md#loop-with-index-and-value)
+    [`loop through a collection`](loops.md#loop-through-a-collection) · [`accumulator`](loops.md#accumulator) · [`counter`](loops.md#counter) · [`nested loops`](loops.md#nested-loops) · [`range()`](loops.md#iterable-range) · [`enumerate()`](loops.md#loop-with-index-and-value) · [`reversed()`](loops.md#loop-in-reverse) · [`zip()`](loops.md#loop-with-index-and-value) · [`loop a set number of times`](loops.md#loop-a-certain-number-of-times) · [`flag`](loops.md#using-a-flag) · [`sentinel`](loops.md#sentinel) · [`boolean expressions`](loops.md#boolean-expressions) · [`and, or, not`](loops.md#logical-operators) · [`break`](loops.md#break) · [`continue`](loops.md#continue) · [`else`](loops.md#else)
 
 </div>
 </div>
@@ -87,7 +89,7 @@ hide:
 
     [**`def`**](functions.md#defining-a-function) · [**`*args, **kwargs`**](functions.md#flexible-arguments) · [**`scope`**](functions.md#scope) · [**`recursion`**](functions.md#recursion)
 
-    [`return`](functions.md#return-values) · [`default parameter values`](functions.md#default-parameter-values) · [`keyword arguments`](functions.md#keyword-arguments) · [`docstrings`](functions.md#docstrings) · [`local vs global`](functions.md#local-vs-global-variables)
+    [`return`](functions.md#return-values) · [`default parameter values`](functions.md#default-parameter-values) · [`keyword arguments`](functions.md#keyword-arguments) · [`docstrings`](functions.md#docstrings) · [`local vs global`](functions.md#local-vs-global-variables) · [`*args`](functions.md#args) · [`**kwargs`](functions.md#kwargs)
 
 -   :material-package-variant:{ .lg .middle } [__Classes__](oop.md)
 
@@ -95,7 +97,7 @@ hide:
 
     [**`class`**](oop.md#classes-and-objects) · [**`inheritance`**](oop.md#inheritance) · [**`polymorphism`**](oop.md#polymorphism)
 
-    [`__init__()`](oop.md#the-__init__-method) · [`self`](oop.md#the-self-parameter) · [`super()`](oop.md#using-super)
+    [`__init__()`](oop.md#the-__init__-method) · [`self`](oop.md#the-self-parameter) · [`super()`](oop.md#using-super) · [`object methods`](oop.md#object-methods) · [`overriding __init__()`](oop.md#overriding-__init__) · [`adding attributes and methods`](oop.md#adding-attributes-and-methods) · [`overriding methods`](oop.md#overriding-methods) · [`same method name, unrelated classes`](oop.md#same-method-name-unrelated-classes) · [`polymorphism via inheritance`](oop.md#polymorphism-via-inheritance)
 
 </div>
 </div>
@@ -111,7 +113,7 @@ hide:
 
     [**`import`**](modules.md#importing-modules) · [**`your own module`**](modules.md#creating-your-own-module) · [**`module, package, library`**](modules.md#modules-vs-packages-vs-libraries)
 
-    [`from`](modules.md#from) · [`as`](modules.md#as) · [`main`](modules.md#the-main-guard) · [`import order`](modules.md#order-of-multiple-imports) · [`packages`](modules.md#packages) · [`nested paths`](modules.md#nested-paths)
+    [`from`](modules.md#from) · [`as`](modules.md#as) · [`main guard`](modules.md#the-main-guard) · [`import order`](modules.md#order-of-multiple-imports) · [`packages`](modules.md#packages) · [`nested paths`](modules.md#nested-paths)
 
 -   :material-file-document-outline:{ .lg .middle } [__Reading & Writing Files__](files.md)
 
@@ -133,7 +135,7 @@ hide:
 
     [**`PEP 8`**](style.md#pep-8-style-guide) · [**`Pythonic patterns`**](style.md#pythonic-patterns) · [**`best practices`**](style.md#additional-best-practices) · [**`linter`**](style.md#linter-tool) · [**`checklist`**](style.md#checklist)
 
-    [`naming`](style.md#naming) · [`docstrings`](style.md#docstrings) · [`type hints`](style.md#type-hints) · [`order`](style.md#file-order) · [`constants`](style.md#constants) · [`catch specific exceptions`](style.md#catch-specific-exceptions)
+    [`naming`](style.md#naming) · [`docstrings`](style.md#docstrings) · [`type hints`](style.md#type-hints) · [`order`](style.md#file-order) · [`constants`](style.md#constants) · [`catch exceptions`](style.md#catch-specific-exceptions) · [`quote style`](style.md#quote-style) · [`indentation`](style.md#indentation) · [`blank lines`](style.md#blank-lines) · [`whitespace`](style.md#whitespace) · [`comments`](style.md#comments) · [`common patterns`](style.md#common-patterns) · [`keep functions focused`](style.md#keep-functions-focused) · [`readable print output`](style.md#readable-print-output)
 
 -   :material-bug-outline:{ .lg .middle } [__Errors__](errors.md)
 
@@ -141,7 +143,7 @@ hide:
 
     [**`try, except`**](errors.md#handling-errors) · [**`tracebacks`**](errors.md#reading-errors) · [**`debugger`**](errors.md#using-a-debugger) · [**`debugging strategies`**](errors.md#debugging-strategies)
 
-    [`exception types`](errors.md#common-exception-types) · [`rubber duck debugging`](errors.md#read-it-out-loud) · [`print debugging`](errors.md#print-debugging)
+    [`exception types`](errors.md#common-exception-types) · [`rubber duck debugging`](errors.md#read-it-out-loud) · [`print debugging`](errors.md#print-debugging) · [`how to read a traceback`](errors.md#how-to-read-a-traceback) · [`isolate the problem`](errors.md#isolate-the-problem) · [`set breakpoints`](errors.md#step-0-set-breakpoints) · [`run in debug mode`](errors.md#step-1-run-in-debug-mode) · [`what you can do at a breakpoint`](errors.md#step-2-what-you-can-do-at-a-breakpoint)
 
 </div>
 </div>
@@ -165,7 +167,7 @@ hide:
 
     [**`install`**](libraries/datetime.md#install) · [**`import`**](libraries/datetime.md#import)
 
-    [`date`](libraries/datetime.md#creating-dates-and-times) · [`timedelta`](libraries/datetime.md#date-arithmetic) · [`strftime()`](libraries/datetime.md#formatting-with-strftime) · [`strptime()`](libraries/datetime.md#parsing-a-string-with-strptime)
+    [`date`](libraries/datetime.md#creating-dates-and-times) · [`timedelta`](libraries/datetime.md#date-arithmetic) · [`strftime()`](libraries/datetime.md#formatting-with-strftime) · [`strptime()`](libraries/datetime.md#parsing-a-string-with-strptime) · [`creating a specific date`](libraries/datetime.md#creating-a-specific-date) · [`difference between two dates`](libraries/datetime.md#difference-between-two-dates)
 
 -   :material-code-json:{ .lg .middle } [__json__](libraries/json.md) [:material-language-python:](libraries/json.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
@@ -173,7 +175,7 @@ hide:
 
     [**`install`**](libraries/json.md#install) · [**`import`**](libraries/json.md#import)
 
-    [`json.dump()`](libraries/json.md#writing-json-files) · [`json.load()`](libraries/json.md#reading-json-files) · [`json.dumps()`](libraries/json.md#working-with-strings-instead-of-files) · [`json.loads()`](libraries/json.md#working-with-strings-instead-of-files)
+    [`json.dump()`](libraries/json.md#writing-json-files) · [`json.load()`](libraries/json.md#reading-json-files) · [`json.dumps()`](libraries/json.md#working-with-strings-instead-of-files) · [`json.loads()`](libraries/json.md#working-with-strings-instead-of-files) · [`nested data`](libraries/json.md#nested-data)
 
 -   :material-matrix:{ .lg .middle } [__NumPy__](libraries/numpy.md) [:material-download-outline:](libraries/numpy.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
@@ -185,11 +187,11 @@ hide:
 
 -   :material-face-recognition:{ .lg .middle } [__OpenCV__](libraries/opencv.md) [:material-download-outline:](libraries/opencv.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
-    Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection.
+    Real-time image and video analysis.
 
     [**`install`**](libraries/opencv.md#install) · [**`import`**](libraries/opencv.md#import) · [**`reading, displaying, saving images`**](libraries/opencv.md#reading-displaying-and-saving-images) · [**`drawing`**](libraries/opencv.md#drawing-shapes-and-text) · [**`color spaces`**](libraries/opencv.md#color-spaces) · [**`CascadeClassifier`**](libraries/opencv.md#face-detection-with-cascade-classifiers) · [**`VideoCapture()`**](libraries/opencv.md#working-with-video) · [**`basic operations`**](libraries/opencv.md#basic-operations) · [**`thresholding, edge detection`**](libraries/opencv.md#thresholding-and-edge-detection) · [**`blurring`**](libraries/opencv.md#blurring) · [**`contours`**](libraries/opencv.md#contours)
 
-    [`imread()`](libraries/opencv.md#reading-a-file) · [`cvtColor()`](libraries/opencv.md#converting-color-spaces) · [`Canny()`](libraries/opencv.md#edge-detection) · [`resize()`](libraries/opencv.md#resize)
+    [`imread()`](libraries/opencv.md#reading-a-file) · [`cvtColor()`](libraries/opencv.md#converting-color-spaces) · [`Canny()`](libraries/opencv.md#edge-detection) · [`resize()`](libraries/opencv.md#resize) · [`displaying a window`](libraries/opencv.md#displaying-a-window) · [`saving a file`](libraries/opencv.md#saving-a-file) · [`cropping`](libraries/opencv.md#cropping) · [`rotating`](libraries/opencv.md#rotating) · [`shapes and lines`](libraries/opencv.md#shapes-and-lines) · [`text`](libraries/opencv.md#text) · [`threshold`](libraries/opencv.md#threshold) · [`gaussian blur`](libraries/opencv.md#gaussian-blur) · [`finding and drawing contours`](libraries/opencv.md#finding-and-drawing-contours) · [`detecting and labeling faces`](libraries/opencv.md#detecting-and-labeling-faces) · [`reading frames`](libraries/opencv.md#reading-frames)
 
 -   :material-table:{ .lg .middle } [__pandas__](libraries/pandas.md) [:material-download-outline:](libraries/pandas.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
@@ -204,6 +206,8 @@ hide:
     Opening, editing, and saving images, built around one `Image` object.
 
     [**`install`**](libraries/pillow.md#install) · [**`import`**](libraries/pillow.md#import) · [**`why Pillow?`**](libraries/pillow.md#why-pillow) · [**`Image`**](libraries/pillow.md#the-image) · [**`ImageOps`**](libraries/pillow.md#imageops-module) · [**`ImageDraw`**](libraries/pillow.md#imagedraw-module) · [**`ImageFont`**](libraries/pillow.md#imagefont-module) · [**`ImageColor`**](libraries/pillow.md#imagecolor-module) · [**`ImageFilter`**](libraries/pillow.md#imagefilter-module) · [**`ImageEnhance`**](libraries/pillow.md#imageenhance-module) · [**`ImageChops`**](libraries/pillow.md#imagechops-module) · [**`convert()`**](libraries/pillow.md#format-conversion) · [**`ImageSequence`**](libraries/pillow.md#imagesequence-module) · [**`putting it together`**](libraries/pillow.md#putting-it-together)
+
+    [`opening and saving images`](libraries/pillow.md#opening-and-saving-images) · [`basic operations`](libraries/pillow.md#basic-operations) · [`resize`](libraries/pillow.md#resize) · [`crop`](libraries/pillow.md#crop) · [`rotate and flip`](libraries/pillow.md#rotate-and-flip) · [`image modes`](libraries/pillow.md#image-modes) · [`common ImageOps functions`](libraries/pillow.md#common-imageops-functions) · [`shapes and lines`](libraries/pillow.md#shapes-and-lines) · [`loading a font`](libraries/pillow.md#loading-a-font) · [`converting color names`](libraries/pillow.md#converting-color-names) · [`applying a filter`](libraries/pillow.md#applying-a-filter) · [`enhancing an image`](libraries/pillow.md#enhancing-an-image) · [`comparing and combining images`](libraries/pillow.md#comparing-and-combining-images) · [`converting between formats`](libraries/pillow.md#converting-between-formats) · [`looping over GIF frames`](libraries/pillow.md#looping-over-gif-frames) · [`an interactive filter tool`](libraries/pillow.md#an-interactive-filter-tool)
 
 -   :material-dice-multiple:{ .lg .middle } [__random__](libraries/random.md) [:material-language-python:](libraries/random.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
@@ -227,6 +231,8 @@ hide:
     Creating desktop applications: text, buttons, dropdowns, forms, output, etc.
 
     [**`install`**](libraries/tkinter.md#install) · [**`import`**](libraries/tkinter.md#import) · [**`Tk()`**](libraries/tkinter.md#creating-a-window) · [**`Button`**](libraries/tkinter.md#widgets) · [**`pack()`**](libraries/tkinter.md#layout-managers) · [**`configure()`**](libraries/tkinter.md#configuring-widgets) · [**`command`**](libraries/tkinter.md#handling-events) · [**`ttk.Style`**](libraries/tkinter.md#styling-with-ttk) · [**`messagebox`**](libraries/tkinter.md#dialogs) · [**`winfo_width()`**](libraries/tkinter.md#introspecting-widgets) · [**`putting it together`**](libraries/tkinter.md#putting-it-together)
+
+    [`Label`](libraries/tkinter.md#label) · [`Entry`](libraries/tkinter.md#entry) · [`pack`](libraries/tkinter.md#pack) · [`grid`](libraries/tkinter.md#grid) · [`reading and changing options`](libraries/tkinter.md#reading-and-changing-options) · [`command callbacks`](libraries/tkinter.md#command-callbacks) · [`binding events`](libraries/tkinter.md#binding-events) · [`customizing a style`](libraries/tkinter.md#customizing-a-style) · [`message boxes`](libraries/tkinter.md#message-boxes) · [`file dialogs`](libraries/tkinter.md#file-dialogs) · [`winfo methods`](libraries/tkinter.md#winfo-methods) · [`a simple form`](libraries/tkinter.md#a-simple-form)
 
 </div>
 </div>
