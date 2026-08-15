@@ -7,8 +7,8 @@ A **collection** is a single object that groups multiple values (like [basic typ
 | Type | Example | Access values by | Use it for |
 |------|---------|:-----------------:|------------|
 | <a href="#lists">**`list`**</a> | `["ball", "burmese"]` | position # | <ul><li>An ordered group of items you can freely add to, remove from, or reorder</li><li>Not sure? Start here — the default, general-purpose choice</li></ul> |
-| <a href="#tuples">**`tuple`**</a> | `("ball", "burmese")` | position # | <ul><li>Like a list, but fixed — can't be changed once created</li><li>Values that should stay exactly as they are, like a coordinate pair</li></ul> |
 | <a href="#dictionaries">**`dict`**</a> | `{"species": "ball", "length_ft": 5}` | Name of a key | <ul><li>Values stored under names ("keys") instead of position, like `species`, `length_ft`</li><li>Use it to look values up by name</li><li>Can't have duplicate keys</li></ul> |
+| <a href="#tuples">**`tuple`**</a> | `("ball", "burmese")` | position # | <ul><li>Like a list, but fixed — can't be changed once created</li><li>Values that should stay exactly as they are, like a coordinate pair</li></ul> |
 | <a href="#sets">**`set`**</a> | `{"ball", "burmese"}` | Membership (`in`) | <ul><li>An unordered group where duplicates are automatically dropped</li><li>Use it for fast "is this in here?" checks</li></ul> |
 
 </div>
@@ -36,8 +36,6 @@ A list stores multiple items, in order, inside a single variable.
 species = ["burmese", "rock", "ball", "blood"]
 ```
 
-### Structured by index
-
 ```mermaid
 block-beta
   block:diagram
@@ -53,15 +51,16 @@ block-beta
   class diagram panel
 ```
 
-- The **index** of the first item is 0[^zero-index], next is 1, and so on.
+The **index** of the first item is 0[^zero-index], next is 1, and so on. 
+
+The **negative index** starts counting down from the end instead, starting at `-1` for the last item, -2 for the second-to-last, and so on. Each item can be referenced by its positive or negative index.
+
+### Access list items
+
+- Index with `list[index]`.
 
     ```python-ref
     species[0]    # "burmese"
-    ```
-
-- Alternatively, the **negative index** starts counting down from the end, starting at `-1` for the last item, -2 for the second-to-last, and so on. Each item can be referenced by its positive or negative index.
-
-    ```python-ref
     species[-1]   # "blood"
     ```
 
@@ -87,7 +86,7 @@ block-beta
         print(index, specie)  # 0 "burmese", then 1 "rock", then 2 "ball", then 3 "blood"
     ```
 
-### Boolean expressions
+### List boolean expressions
 
 - **`in`** checks whether a value exists in the list.
 
@@ -131,20 +130,6 @@ block-beta
     species.count("ball")     # 1
     ```
 
-#### Change item
-
-- **`list[index] = value`** changes the item at that index.
-
-    ```python-ref
-    species[1] = "carpet"      # ["burmese", "carpet", "ball", "blood"]
-    ```
-
-- **`list[start:end] = value`** changes a whole range at once — the replacement doesn't need to be the same length.
-
-    ```python-ref
-    species[1:3] = ["carpet"]  # ["burmese", "carpet", "blood"]
-    ```
-
 #### Add item
 
 - **`append()`** adds one item to the end of the list.
@@ -163,6 +148,20 @@ block-beta
 
     ```python-ref
     species.extend(["carpet", "central african rock"])  # ["burmese", "rock", "ball", "blood", "carpet", "central african rock"]
+    ```
+
+#### Change item
+
+- **`list[index] = value`** changes the item at that index.
+
+    ```python-ref
+    species[1] = "carpet"      # ["burmese", "carpet", "ball", "blood"]
+    ```
+
+- **`list[start:end] = value`** changes a whole range at once — the replacement doesn't need to be the same length.
+
+    ```python-ref
+    species[1:3] = ["carpet"]  # ["burmese", "carpet", "blood"]
     ```
 
 #### Remove item
@@ -235,7 +234,7 @@ block-beta
     sum(length_ft)  # 25
     ```
 
-#### Create new list
+#### Create
 
 - **`list()`** builds the same list from any iterable, if you'd rather not use literal brackets.
 
@@ -243,15 +242,11 @@ block-beta
     list(("burmese", "rock", "ball", "blood"))  # ["burmese", "rock", "ball", "blood"]
     ```
 
-#### Join two lists
-
 - **`+`** joins two lists into a new one.
 
     ```python-ref
     species + ["carpet", "boa"]  # ["burmese", "rock", "ball", "blood", "carpet", "boa"]
     ```
-
-#### Copy into new list
 
 - **`copy()`** makes a real, independent copy of the list — unlike `new_list = old_list`, which just points a second name at the same list, so a change through either name shows up in both.
 
@@ -353,205 +348,6 @@ block-beta
         print(species)
         ```
 
-## Tuples
-
-A tuple stores multiple items, in order, written in parentheses. They are **immutable** so the items can't be changed once its created. 
-
-```python-ref
-species = ("burmese", "rock", "ball", "blood")
-```
-
-### Structured by index
-
-```mermaid
-block-beta
-  block:diagram
-    columns 5
-    lblValue["Value"] v0["&quot;burmese&quot;"] v1["&quot;rock&quot;"] v2["&quot;ball&quot;"] v3["&quot;blood&quot;"]
-    lblIndex["Index"] i0["0"] i1["1"] i2["2"] i3["3"]
-    lblNeg["Negative index"] n0["-4"] n1["-3"] n2["-2"] n3["-1"]
-  end
-
-  classDef label fill:none,stroke:none,color:#8A8370
-  classDef panel fill:#23221E,stroke:#35342E,stroke-width:1px
-  class i0,i1,i2,i3,n0,n1,n2,n3,lblValue,lblIndex,lblNeg label
-  class diagram panel
-```
-
-- The **index** of the first item is 0[^zero-index], next is 1, and so on.
-
-    ```python-ref
-    species[0]    # "burmese"
-    ```
-
-- The **negative index** starts counting down from the end, starting at `-1` for the last item, -2 for the second-to-last, and so on. Each item can be referenced by it's positive or negative index.
-
-    ```python-ref
-    species[-1]   # "blood"
-    ```
-
-- A **slice** `tuple[start:end]` returns a new tuple containing items from `start` index up to (but not including) the `end` index.
-
-    ```python-ref
-    species[1:3]  # ("rock", "ball")
-    ```
-
-### Loop through a tuple
-
-- The [loop](loops.md#loop-through-a-collection) runs once for every item in the tuple, and on each pass the loop variable, *(i.e. `specie`)* is set to the next item in the tuple.
-
-    ```python-ref
-    for specie in species: 
-        print(specie)        # burmese  rock  ball  blood
-    ```
-
-- If you also want the index alongside the item, `enumerate()` hands back both together — works the same as on a list, since tuples support indexing too.
-
-    ```python-ref
-    for index, specie in enumerate(species): 
-        print(index, specie)  # 0 "burmese", then 1 "rock", then 2 "ball", then 3 "blood"
-    ```
-
-### Boolean expressions
-
-- **`in`** checks whether a value exists in the tuple.
-
-    ```python-ref
-    "rock" in species         # True
-    ```
-
-- **boolean expression:**
-
-    - Truthy: a tuple with contents
-
-    - Falsy: an empty tuple `()`
-
-    ```python-ref
-    if species:               # runs — species tuple has items
-        print("found some")
-    ```
-
-
-### Packing and unpacking
-
-- **Packing:** writing several values separated by commas, with or without the surrounding parentheses, implicitly builds a tuple.
-
-    ```python-ref
-    species = "burmese", "rock", "ball", "blood"  # parentheses optional — still a tuple
-    type(species)                                  # <class 'tuple'>
-    ```
-
-- **Unpacking:** assigns each item in a tuple to its own variable in one line. The number of variables has to match the number of items.
-
-    ```python-ref
-    a, b, c, d = species  # a="burmese"  b="rock"  c="ball"  d="blood"
-    ```
-
-    A [`match` statement](conditionals.md#unpacking-a-tuple) can do this same unpacking while also branching on the tuple's shape or specific values.
-
-    ```python-ref
-    snake = (12, "ball")
-    match snake:
-        case (length, "ball"):                    # tuple with 2 items, where second is "ball"
-            print(f"a {length} ft ball python")   # in this example, this case will run
-        case (length, specie):                    # tuple with any 2 items
-            print(f"a {length} ft {specie} python")
-        case (length,):                            # tuple with any 1 item
-            print(f"just a length: {length}")
-        case _:                                    # 0 items, or tuple with more than 2 items
-            print("invalid format")
-    ```
-
-### Tuple operations
-
-#### Inspect
-
-- **`count()`** counts how many times a value appears.
-
-    ```python-ref
-    species.count("burmese")  # 1
-    ```
-
-- **`index()`** finds the position of the first match — a tuple only has these ways to inspect it, since it can't be changed.
-
-    ```python-ref
-    species.index("ball")     # 2
-    ```
-
-#### Modify then reassign
-
-- **`+`** builds a new tuple with an item added — there's no `append()` or `remove()`, since tuples can't be changed. Note the trailing comma in `("carpet",)`, needed to make it a one-item tuple rather than just parentheses around a string.
-
-    ```python-ref
-    species                          # starting tuple: ("burmese", "rock", "ball", "blood")
-    species = species + ("carpet",)  # reassign to keep the change: ("burmese", "rock", "ball", "blood", "carpet")
-    ```
-
-- **Convert, edit, convert back** is good for bigger changes — since a tuple can't be edited directly, convert it to a list, edit that list normally, then convert the result back to a tuple and reassign it.
-
-    ```python-ref
-    species_list = list(species)     # convert to a list: ["burmese", "rock", "ball", "blood"]
-    species_list.append("carpet")    # edit it like any list: ["burmese", "rock", "ball", "blood", "carpet"]
-    species = tuple(species_list)    # convert back and reassign: ("burmese", "rock", "ball", "blood", "carpet")
-    ```
-
-#### Create
-
-- **`tuple()`** builds the same tuple from any iterable, if you'd rather not use literal parentheses.
-
-    ```python-ref
-    tuple(["burmese", "rock", "ball", "blood"])  # ("burmese", "rock", "ball", "blood")
-    ```
-
-??? run "Practice with tuples"
-    Each box below is fully editable — write your answer, then click Run.
-
-    **1. Access & check membership.** Print the last item, then check whether `"carpet"` is in the tuple.
-
-    ```python
-    species = ("indian", "carpet", "rock", "blood")
-
-    # your code here
-    ```
-
-    **2. Unpacking.** Unpack the tuple into four variables named `a`, `b`, `c`, `d`, then print them.
-
-    ```python
-    species = ("indian", "carpet", "rock", "blood")
-
-    # your code here
-    ```
-
-    **3. Work around immutability.** Tuples can't be appended to directly — build a new tuple with `"angolan"` added to the end, using `+`.
-
-    ```python
-    species = ("indian", "carpet", "rock", "blood")
-
-    # your code here
-
-    print(species)
-    ```
-
-    ??? note "Show solutions"
-        ```python
-        # 1. Access & check membership
-        species = ("indian", "carpet", "rock", "blood")
-        print(species[-1])
-        print("carpet" in species)
-        ```
-        ```python
-        # 2. Unpacking
-        species = ("indian", "carpet", "rock", "blood")
-        a, b, c, d = species
-        print(a, b, c, d)
-        ```
-        ```python
-        # 3. Work around immutability
-        species = ("indian", "carpet", "rock", "blood")
-        species = species + ("angolan",)
-        print(species)
-        ```
-
 ## Dictionaries
 
 A dictionary stores data as **key-value pair**, inside a single variable. There's no order/position to the keys. 
@@ -563,8 +359,6 @@ snake = {
     "venomous": False
     }
 ```
-
-### Structured by key-value pair
 
 ```mermaid
 %%{init: {"flowchart": {"nodeSpacing": 15}}}%%
@@ -591,6 +385,21 @@ flowchart LR
     - **No duplicate keys** — assigning a value to an existing key overwrites its value.
 
 - A **value** can be any type.
+
+### Access a value
+
+- **`dict[key]`** accesses a value by key, in square brackets. This *will* raise an error if the key is not present, so best practice is to use the below get() instead. 
+
+    ```python-ref
+    snake["species"]                  # "ball"
+    ```
+
+- **`get()`** does the same thing, but returns `None` if the key is not in the dict. You can provide an optinal default value to fall back on that will be returned if they key is not in the dict.
+
+    ```python-ref
+    snake.get("species")              # "ball"
+    snake.get("weight_lbs", 0)        # 0 — key is missing, so the default is returned instead of None
+    ```
 
 ### Loop through a dictionary
 
@@ -639,19 +448,12 @@ flowchart LR
 
 ### Dictionary operations
 
-#### Access a value
+#### Inspect
 
-- **`dict[key]`** accesses a value by key, in square brackets. This *will* raise an error if the key is not present, so best practice is to use the below get() instead. 
-
-    ```python-ref
-    snake["species"]                  # "ball"
-    ```
-
-- **`get()`** does the same thing, but returns `None` if the key is not in the dict. You can provide an optinal default value to fall back on that will be returned if they key is not in the dict.
+- **`len()`** returns how many key-value pairs are in a dictionary.
 
     ```python-ref
-    snake.get("species")              # "ball"
-    snake.get("weight_lbs", 0)        # 0 — key is missing, so the default is returned instead of None
+    len(snake)              # 3
     ```
 
 #### Update
@@ -695,21 +497,19 @@ flowchart LR
     snake.clear()          # {}
     ```
 
-#### Copy
-
-- **`copy()`** makes a real, independent copy of the dictionary — unlike `new_dict = old_dict`, which just points a second name at the same dictionary, so a change to either would effect both.
-
-    ```python-ref
-    same_dict = snake      # same_dict and snake are the same dictionary — mutating one mutates both
-    backup = snake.copy()  # backup is a separate, independent dictionary
-    ```
-
 #### Create
 
 - **`dict()`** builds the same dictionary using keyword arguments, if you'd rather not use literal braces.
 
     ```python-ref
     dict(species="ball", length_ft=5, venomous=False)  # {'species': 'ball', 'length_ft': 5, 'venomous': False}
+    ```
+
+- **`copy()`** makes a real, independent copy of the dictionary — unlike `new_dict = old_dict`, which just points a second name at the same dictionary, so a change to either would effect both.
+
+    ```python-ref
+    same_dict = snake      # same_dict and snake are the same dictionary — mutating one mutates both
+    backup = snake.copy()  # backup is a separate, independent dictionary
     ```
 
 ??? note "Nested dictionaries"
@@ -804,6 +604,222 @@ flowchart LR
         print(snakes["ball"]["length_ft"])
         ```
 
+## Tuples
+
+A tuple stores multiple items, in order, written in parentheses. They are **immutable** so the items can't be changed once its created. 
+
+```python-ref
+species = ("burmese", "rock", "ball", "blood")
+```
+
+```mermaid
+block-beta
+  block:diagram
+    columns 5
+    lblValue["Value"] v0["&quot;burmese&quot;"] v1["&quot;rock&quot;"] v2["&quot;ball&quot;"] v3["&quot;blood&quot;"]
+    lblIndex["Index"] i0["0"] i1["1"] i2["2"] i3["3"]
+    lblNeg["Negative index"] n0["-4"] n1["-3"] n2["-2"] n3["-1"]
+  end
+
+  classDef label fill:none,stroke:none,color:#8A8370
+  classDef panel fill:#23221E,stroke:#35342E,stroke-width:1px
+  class i0,i1,i2,i3,n0,n1,n2,n3,lblValue,lblIndex,lblNeg label
+  class diagram panel
+```
+
+The **index** of the first item is 0[^zero-index], next is 1, and so on. The **negative index** starts counting down from the end instead, starting at `-1` for the last item, -2 for the second-to-last, and so on. Each item can be referenced by its positive or negative index.
+
+### Access items
+
+- Index with `tuple[index]`.
+
+    ```python-ref
+    species[0]    # "burmese"
+    species[-1]   # "blood"
+    ```
+
+- A **slice** `tuple[start:end]` returns a new tuple containing items from `start` index up to (but not including) the `end` index.
+
+    ```python-ref
+    species[1:3]  # ("rock", "ball")
+    ```
+
+### Loop through a tuple
+
+- The [loop](loops.md#loop-through-a-collection) runs once for every item in the tuple, and on each pass the loop variable, *(i.e. `specie`)* is set to the next item in the tuple.
+
+    ```python-ref
+    for specie in species: 
+        print(specie)        # burmese  rock  ball  blood
+    ```
+
+- If you also want the index alongside the item, `enumerate()` hands back both together — works the same as on a list, since tuples support indexing too.
+
+    ```python-ref
+    for index, specie in enumerate(species): 
+        print(index, specie)  # 0 "burmese", then 1 "rock", then 2 "ball", then 3 "blood"
+    ```
+
+### Boolean expressions
+
+- **`in`** checks whether a value exists in the tuple.
+
+    ```python-ref
+    "rock" in species         # True
+    ```
+
+- **boolean expression:**
+
+    - Truthy: a tuple with contents
+
+    - Falsy: an empty tuple `()`
+
+    ```python-ref
+    if species:               # runs — species tuple has items
+        print("found some")
+    ```
+
+
+### Packing and unpacking
+
+- **Packing:** writing several values separated by commas, with or without the surrounding parentheses, implicitly builds a tuple.
+
+    ```python-ref
+    species = "burmese", "rock", "ball", "blood"  # parentheses optional — still a tuple
+    type(species)                                  # <class 'tuple'>
+    ```
+
+- **Unpacking:** assigns each item in a tuple to its own variable in one line. The number of variables has to match the number of items.
+
+    ```python-ref
+    a, b, c, d = species  # a="burmese"  b="rock"  c="ball"  d="blood"
+    ```
+
+    A [`match` statement](conditionals.md#unpacking-a-tuple) can do this same unpacking while also branching on the tuple's shape or specific values.
+
+    ```python-ref
+    snake = (12, "ball")
+    match snake:
+        case (length, "ball"):                    # tuple with 2 items, where second is "ball"
+            print(f"a {length} ft ball python")   # in this example, this case will run
+        case (length, specie):                    # tuple with any 2 items
+            print(f"a {length} ft {specie} python")
+        case (length,):                            # tuple with any 1 item
+            print(f"just a length: {length}")
+        case _:                                    # 0 items, or tuple with more than 2 items
+            print("invalid format")
+    ```
+
+### Tuple operations
+
+#### Inspect
+
+- **`len()`** returns how many items are in a tuple.
+
+    ```python-ref
+    len(species)              # 4
+    ```
+
+- **`count()`** counts how many times a value appears.
+
+    ```python-ref
+    species.count("burmese")  # 1
+    ```
+
+- **`index()`** finds the position of the first match.
+
+    ```python-ref
+    species.index("ball")     # 2
+    ```
+
+#### Arithmetic
+
+- **`min()`** finds the smallest item.
+
+    ```python-ref
+    length_ft = (12, 4.5, 3.5, 5)
+    min(length_ft)  # 3.5
+    ```
+
+- **`max()`** finds the largest item.
+
+    ```python-ref
+    max(length_ft)  # 12
+    ```
+
+- **`sum()`** adds every item together.
+
+    ```python-ref
+    sum(length_ft)  # 25
+    ```
+
+#### Convert to modify
+
+- **Convert to list -> edit -> convert back to tuple** builds a new tuple since a tuple can't be edited directly.
+
+    ```python-ref
+    species_list = list(species)     # convert tuple to a list
+    species_list.append("carpet")    # edit it like any list
+    species = tuple(species_list)    # convert back to tuple and reassign
+    ```
+
+#### Create
+
+- **`tuple()`** builds the same tuple from any iterable, if you'd rather not use literal parentheses.
+
+    ```python-ref
+    tuple(["burmese", "rock", "ball", "blood"])  # ("burmese", "rock", "ball", "blood")
+    ```
+
+??? run "Practice with tuples"
+    Each box below is fully editable — write your answer, then click Run.
+
+    **1. Access & check membership.** Print the last item, then check whether `"carpet"` is in the tuple.
+
+    ```python
+    species = ("indian", "carpet", "rock", "blood")
+
+    # your code here
+    ```
+
+    **2. Unpacking.** Unpack the tuple into four variables named `a`, `b`, `c`, `d`, then print them.
+
+    ```python
+    species = ("indian", "carpet", "rock", "blood")
+
+    # your code here
+    ```
+
+    **3. Work around immutability.** Tuples can't be appended to directly — build a new tuple with `"angolan"` added to the end, using `+`.
+
+    ```python
+    species = ("indian", "carpet", "rock", "blood")
+
+    # your code here
+
+    print(species)
+    ```
+
+    ??? note "Show solutions"
+        ```python
+        # 1. Access & check membership
+        species = ("indian", "carpet", "rock", "blood")
+        print(species[-1])
+        print("carpet" in species)
+        ```
+        ```python
+        # 2. Unpacking
+        species = ("indian", "carpet", "rock", "blood")
+        a, b, c, d = species
+        print(a, b, c, d)
+        ```
+        ```python
+        # 3. Work around immutability
+        species = ("indian", "carpet", "rock", "blood")
+        species = species + ("angolan",)
+        print(species)
+        ```
+
 ## Sets
 
 A set stores multiple items, in no particular order, inside a single variable — written with curly braces.
@@ -859,6 +875,35 @@ for specie in species:
     ```
 
 ### Set operations
+
+#### Inspect
+
+- **`len()`** returns how many items are in a set.
+
+    ```python-ref
+    len(species)              # 4
+    ```
+
+#### Arithmetic
+
+- **`min()`** finds the smallest item.
+
+    ```python-ref
+    length_ft = {12, 4.5, 3.5, 5}
+    min(length_ft)  # 3.5
+    ```
+
+- **`max()`** finds the largest item.
+
+    ```python-ref
+    max(length_ft)  # 12
+    ```
+
+- **`sum()`** adds every item together.
+
+    ```python-ref
+    sum(length_ft)  # 25
+    ```
 
 #### Update
 
@@ -928,6 +973,34 @@ pet_friendly = {"ball", "burmese", "corn snake"}
     constrictors - pet_friendly  # {"boa"}
     ```
 
+- **`^`** symmetric difference — in one set or the other, but not both.
+
+    ```python-ref
+    constrictors ^ pet_friendly  # {"boa", "corn snake"}
+    ```
+
+#### Compare
+
+These check a relationship between two sets and hand back a `bool`, rather than building a new set the way [Combine](#combine) does.
+
+- **`issubset()`** checks whether every item in this set is also in another set.
+
+    ```python-ref
+    {"ball", "burmese"}.issubset(constrictors)  # True
+    ```
+
+- **`issuperset()`** checks whether this set contains every item in another set — the reverse of `issubset()`.
+
+    ```python-ref
+    constrictors.issuperset({"ball"})  # True
+    ```
+
+- **`isdisjoint()`** checks whether two sets have no items in common.
+
+    ```python-ref
+    constrictors.isdisjoint({"cobra", "viper"})  # True
+    ```
+
 #### Create
 
 - **`set()`** builds the same set from any iterable, if you'd rather not use literal braces.
@@ -936,6 +1009,13 @@ pet_friendly = {"ball", "burmese", "corn snake"}
     set(["burmese", "rock", "ball", "blood"])  # {'burmese', 'rock', 'ball', 'blood'}
     ```
 
+- **`copy()`** makes a real, independent copy of the set — unlike `new_set = old_set`, which just points a second name at the same set, so a change through either name shows up in both.
+
+    ```python-ref
+    same_set = species       # same_set and species are the same set — mutating one mutates both
+    backup = species.copy()  # backup is a separate, independent set
+    ```
+    
 ??? tip "Removing duplicates from a list"
     Converting a list to a set and back is a common one-line way to drop duplicates — though it also throws away the original order, unless you sort or otherwise re-derive it.
 

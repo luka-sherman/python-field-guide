@@ -162,7 +162,7 @@ Avoid naming your own file after a library you use — your file named `random.p
 
 ### The main guard
 
-`if __name__ == "__main__":` controls what runs only when a file is executed directly — not when it's imported into another file.
+`if __name__ == "__main__":` controls what runs only when a file is run directly — not when it's imported into another file.
 
 ```python-ref
 def describe(species):
@@ -172,4 +172,4 @@ if __name__ == "__main__":
     print(describe("ball"))
 ```
 
-`__name__` is a variable Python sets automatically: `"__main__"` when the file is run directly, or the file's own module name when it's imported elsewhere instead. Wrapping your "do the actual work" code in this check means another file can `import` yours — to reuse a function, say — without that main code running too. 
+Wrapping your "do the actual work" code in this check means another file can `import` yours — to reuse a function, say — without that main code running too. 

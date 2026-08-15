@@ -742,7 +742,7 @@ A `match` can pick a different `case` depending on the tuple's length or the val
 
 ## Control flow statements
 
-`break` and `continue` are loop-control keywords, not conditional ones, but they almost always appear inside a conditional — checking a condition, then stopping the loop early (`break`) or skipping straight to the next pass (`continue`). They work the same way whether checked with `if`/`elif` or `match`/`case`, since neither creates its own loop scope — both just pass straight through to whatever loop contains them. Covered fully, with more examples, on the [Loops](loops.md#loop-control) page.
+`break` and `continue` are loop-control keywords, not conditional ones, but they almost always appear inside a conditional — checking a condition, then stopping the loop early (`break`) or skipping straight to the next pass (`continue`). They work the same way whether checked with `if`/`elif` or `match`/`case`, since neither creates its own loop scope — both just pass straight through to whatever loop contains them. Covered fully, with more examples, on the [Loops](loops.md#control-flow-statements) page.
 
 ### Break
 
