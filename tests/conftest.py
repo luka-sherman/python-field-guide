@@ -1,14 +1,21 @@
-"""Shared parsing helpers for the STRUCTURE.md compliance tests.
+"""Shared fixtures for the test suite.
 
-These tests check the *mechanically verifiable* rules in ../STRUCTURE.md — things like
+test_structure.py checks the *mechanically verifiable* rules in ../STRUCTURE.md — things like
 "numbered walkthroughs start at 0" or "every python-ref line ends in a comment". Rules that
 require editorial judgment (e.g. "is this admonition core enough to be always-open") are not
 encoded here; see the comments in test_structure.py for what's deliberately out of scope.
+
+test_accessibility.py and test_accessibility_browser.py check for accessibility regressions —
+the former statically (no browser), the latter by actually rendering pages with Playwright and
+running axe-core against them. Both build on the `built_site` fixture below.
 """
 
+import functools
+import http.server
 import re
 import subprocess
 import sys
+import threading
 from pathlib import Path
 
 import pytest
@@ -137,3 +144,24 @@ def built_site(tmp_path_factory):
         "stderr": proc.stderr,
         "site_dir": site_dir,
     }
+
+
+@pytest.fixture(scope="session")
+def site_url(built_site):
+    """Serve the built site over local HTTP for Playwright to navigate to.
+
+    A plain file:// URL mostly works for MkDocs output but some relative-asset assumptions
+    behave differently than a real deployment; a local HTTP server matches production closely
+    enough to trust the results without the overhead of a full `mkdocs serve`.
+    """
+    handler = functools.partial(
+        http.server.SimpleHTTPRequestHandler, directory=str(built_site["site_dir"])
+    )
+    server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        yield f"http://127.0.0.1:{server.server_port}"
+    finally:
+        server.shutdown()
+        thread.join()

@@ -43,11 +43,11 @@ DOC_IDS = [rel(p) for p in ALL_DOC_FILES]
 # legitimately start at 1. Each entry below is (file, first-item lineno, why it's not a
 # walkthrough) — verified by hand against the surrounding prose.
 NON_WALKTHROUGH_LISTS = {
-    ("foundations.md", 159): "variable naming rules — facts about names, not steps to perform",
-    ("foundations.md", 316): "describes what input() does, not steps the reader performs",
-    ("foundations.md", 416): "kinds of comments, an enumerated list not a sequence",
-    ("conditionals.md", 22): "describes if/elif/else execution order, not reader-performed steps",
-    ("style.md", 71): "file layout order, an enumerated structure not a walkthrough",
+    ("foundations.md", 165): "variable naming rules — facts about names, not steps to perform",
+    ("foundations.md", 322): "describes what input() does, not steps the reader performs",
+    ("foundations.md", 422): "kinds of comments, an enumerated list not a sequence",
+    ("conditionals.md", 28): "describes if/elif/else execution order, not reader-performed steps",
+    ("style.md", 77): "file layout order, an enumerated structure not a walkthrough",
 }
 
 TOP_LEVEL_ORDERED_ITEM_RE = re.compile(r"^(\d+)\.\s+\S")
@@ -131,13 +131,13 @@ def test_admonition_types_are_documented(path):
 # adds it deliberately (which is the point — it forces the "is this rare and justified" check
 # STRUCTURE.md asks for, rather than letting !!! quietly become the default).
 ALWAYS_OPEN_ALLOWLIST = {
-    ("errors.md", 49),  # the documented success/danger pair
-    ("errors.md", 54),
-    ("workspace.md", 181),
-    ("foundations.md", 447),
-    ("conditionals.md", 97),
-    ("loops.md", 196),
-    ("loops.md", 431),
+    ("errors.md", 55),  # the documented success/danger pair
+    ("errors.md", 60),
+    ("workspace.md", 187),
+    ("foundations.md", 453),
+    ("conditionals.md", 103),
+    ("loops.md", 202),
+    ("loops.md", 437),
 }
 
 
@@ -312,29 +312,44 @@ def test_mkdocs_build_has_no_warnings(built_site):
 # keyword deep-links")
 # ============================================================================
 
-# "Skip purely narrative/descriptive subheadings" — STRUCTURE.md names two examples verbatim
-# and this is their closest sibling (same section, same pattern: "Structure of an X()
-# statement" describing print()'s counterpart, input()). Everything else missing from
-# index.md below is a real coverage gap, not a narrative exemption.
-NO_HOMEPAGE_LINK_NEEDED = {
-    ("foundations.md", "what-do-you-see-when-a-program-runs"),
-    ("foundations.md", "structure-of-a-print-statement"),
-    ("foundations.md", "structure-of-an-input-statement"),
-}
-
+# A heading opts out of (or customizes) this check from the source markdown itself, via
+# attr_list (already enabled — see mkdocs.yml — and already used elsewhere for exactly this
+# kind of per-element metadata, e.g. `{ .pt-homepage-heading }`):
+#
+#   ## Heading text { data-card-link="skip" }
+#       — this heading is narrative/descriptive, not a reusable keyword (STRUCTURE.md's own
+#         examples: "What do you see when a program runs?"). No index.md entry required.
+#
+#   ## Heading text { data-card-link="your preferred link text" }
+#       — index.md must link to this heading's anchor using exactly that text. Catches the
+#         two ways this can drift: the link is missing, or it exists with different text than
+#         what's declared here.
+#
+#   ## Heading text                              (no attribute)
+#       — default: index.md must link to this heading's anchor, any text.
+#
+# attr_list attributes land directly on the rendered heading tag, so this reads straight off
+# the built HTML alongside id/text — no separate markdown-source parsing needed.
 PAGES_SKIPPED_FOR_COVERAGE = {"index.md", "404.md", "about.md", "privacy.md", "thanks.md", "libraries/index.md"}
 
-LINK_RE = re.compile(r"\]\(([\w./-]+\.md)(#[\w-]+)?\)")
-BUILT_HEADING_RE = re.compile(r'<h([23]) id="([^"]+)">(.*?)</h\1>', re.S)
+LINK_RE = re.compile(r"\[([^\]]*)\]\(([\w./-]+\.md)(#[\w-]+)?\)")
+BUILT_HEADING_RE = re.compile(r'<h([23])\s+([^>]*)>(.*?)</h\1>', re.S)
+ATTR_VALUE_RE = re.compile(r'(\w[\w-]*)="([^"]*)"')
 TAG_RE = re.compile(r"<[^>]+>")
+LINK_TEXT_DECORATION_RE = re.compile(r"[`*]")
+
+
+def _normalize_link_text(text: str) -> str:
+    return LINK_TEXT_DECORATION_RE.sub("", text).strip()
 
 
 def _index_links():
+    """page.md -> {anchor: link text (markdown decoration stripped)}, for every #anchor link."""
     index_text = (DOCS_DIR / "index.md").read_text()
-    linked: dict[str, set[str]] = {}
-    for page, anchor in LINK_RE.findall(index_text):
+    linked: dict[str, dict[str, str]] = {}
+    for text, page, anchor in LINK_RE.findall(index_text):
         if anchor:
-            linked.setdefault(page, set()).add(anchor[1:])
+            linked.setdefault(page, {})[anchor[1:]] = _normalize_link_text(text)
     return linked
 
 
@@ -354,15 +369,30 @@ def test_homepage_keyword_links_cover_all_headings(built_site, path):
     html_file = _html_path_for(built_site, md_rel)
     assert html_file.exists(), f"no build output for {md_rel} at {html_file}"
 
-    linked = _index_links().get(md_rel, set())
+    linked = _index_links().get(md_rel, {})
     failures = []
-    for level, anchor_id, text in BUILT_HEADING_RE.findall(html_file.read_text()):
-        if (md_rel, anchor_id) in NO_HOMEPAGE_LINK_NEEDED:
+    for level, attrs_raw, text in BUILT_HEADING_RE.findall(html_file.read_text()):
+        attrs = dict(ATTR_VALUE_RE.findall(attrs_raw))
+        anchor_id = attrs.get("id")
+        if not anchor_id:
             continue
-        if anchor_id not in linked:
-            clean_text = TAG_RE.sub("", text).strip()
-            failures.append(f"{md_rel}#{anchor_id} (h{level} {clean_text!r}) has no index.md keyword link")
+        declared = attrs.get("data-card-link")
+        if declared == "skip":
+            continue
+
+        clean_text = TAG_RE.sub("", text).strip()
+        actual_text = linked.get(anchor_id)
+        if actual_text is None:
+            suffix = f" — declared text: {declared!r}" if declared else ""
+            failures.append(f"{md_rel}#{anchor_id} (h{level} {clean_text!r}) has no index.md keyword link{suffix}")
+        elif declared and declared != actual_text:
+            failures.append(
+                f"{md_rel}#{anchor_id} (h{level} {clean_text!r}) linked as {actual_text!r}, "
+                f"but the heading declares {declared!r}"
+            )
     assert not failures, (
         "Every ##/### heading needs its own index.md keyword deep-link (STRUCTURE.md "
-        "'Homepage keyword deep-links: Coverage'):\n" + "\n".join(failures)
+        "'Homepage keyword deep-links: Coverage'). Add the link, or mark the heading "
+        '`{ data-card-link="skip" }` if it\'s intentionally not a reusable keyword:\n'
+        + "\n".join(failures)
     )

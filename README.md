@@ -41,12 +41,18 @@ mkdocs serve   # live-reloading dev server at http://127.0.0.1:8000
 
 ```bash
 source .venv/bin/activate
-pytest                 # checks docs/*.md against the mechanically-verifiable rules in STRUCTURE.md
+playwright install chromium   # one-time, downloads a browser binary for the accessibility tests
+pytest
 ```
 
-See [tests/test_structure.py](tests/test_structure.py) for what's covered and, in each test's
-docstring/comments, what's deliberately left out because it needs editorial judgment a text-only
-check can't make.
+- `tests/test_structure.py` checks `docs/*.md` against the mechanically-verifiable rules in
+  STRUCTURE.md. See its docstring/comments for what's covered and what's deliberately left out
+  because it needs editorial judgment a text-only check can't make.
+- `tests/test_accessibility.py` is a static (no-browser) regression check for a specific
+  accessibility bug pattern (an `outline: none` with no `:focus-visible` replacement).
+- `tests/test_accessibility_browser.py` renders real pages with Playwright and runs
+  [axe-core](https://github.com/dequelabs/axe-core) against them — the heaviest check in the
+  suite, since it needs `playwright install chromium` above and launches a real browser per run.
 
 ## Deploying
 
