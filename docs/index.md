@@ -83,7 +83,7 @@ hide:
 
     Bundles related data and functions into a reusable blueprint, so a program can create many similar objects without duplicating code.
 
-    [`class`](oop.md#classes-and-objects) · [`inheritance`](oop.md#inheritance) · [`polymorphism`](oop.md#polymorphism) · [`__init__()`](oop.md#the-init-method) · [`self`](oop.md#the-self-parameter) · [`super()`](oop.md#using-super)
+    [`class`](oop.md#classes-and-objects) · [`inheritance`](oop.md#inheritance) · [`polymorphism`](oop.md#polymorphism) · [`__init__()`](oop.md#the-__init__-method) · [`self`](oop.md#the-self-parameter) · [`super()`](oop.md#using-super)
 
 </div>
 </div>
@@ -247,7 +247,7 @@ hide:
 
     **Python** is a general-purpose programming language known for readable syntax and a huge built-in and third-party library ecosystem — designed to be quick to write and easy to read back later, even by someone who didn't write it. It doesn't need to be compiled before it runs: write a `.py` file, then run it directly.
 
-    That readability, plus the sheer range of libraries already built for it, is why it turns up almost everywhere: web backends, data analysis and machine learning, automating repetitive tasks, scientific computing, and quick scripts gluing other tools together — several of which are covered on this site's [Libraries](#libraries) pages. Python usually isn't the fastest language for raw performance, but it's often the fastest to write *correct* code in, which is why it's such a common first choice for a new project.
+    That readability, plus the sheer range of libraries already built for it, is why it turns up almost everywhere: web backends, data analysis and machine learning, automating repetitive tasks, scientific computing, and quick scripts gluing other tools together — several of which are covered on this site's [Libraries](#add-on-libraries) pages. Python usually isn't the fastest language for raw performance, but it's often the fastest to write *correct* code in, which is why it's such a common first choice for a new project.
 
     That same readability is also why Python is such a common **first language to learn programming in**. Variables, conditionals, loops, functions, classes — the same fundamentals every language shares — read closer to plain English here than in most other languages, so you spend your effort learning to *think* like a programmer instead of fighting a stricter syntax. Once those fundamentals are solid, they carry over directly to whatever language you pick up next.
 
