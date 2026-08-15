@@ -16,7 +16,7 @@
 
 ### What do you see when a program runs?
 
-When a python program is running, it won't show you anything on its own — it runs silently.
+When a Python program is running, it won't show you anything on its own — it runs silently.
 
 That's a problem for you as the developer — without some way to look inside, you can't follow along with what it's actually doing as it runs. 
 

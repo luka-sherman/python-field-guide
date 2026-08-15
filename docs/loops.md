@@ -790,7 +790,7 @@ for species, tags in species_tags.items():
             print(species, tag)
     ```
 
-## Control Flow Statements
+## Control flow statements
 
 A `for` loop and a `while` loop can both be redirected mid-run — cut short, skipped ahead by one pass, or wrapped up with a bit of code that only runs if nothing interrupted them. These keywords work identically in either loop type.
 

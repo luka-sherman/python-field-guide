@@ -2,9 +2,9 @@
 
 ## Step 0: Install Python
 
-1. Open your Terminal application *(Terminal on Mac/Linux, Command Prompt or PowerShell on Windows)* 
+0. Open your Terminal application *(Terminal on Mac/Linux, Command Prompt or PowerShell on Windows)* 
 
-2. Type this command and press ++return++ to "run" it:
+1. Type this command and press ++return++ to "run" it:
 
     ```bash
     python --version
@@ -18,7 +18,7 @@
     ??? info "If you see `Python 2.x.x`"
         Python 2 is installed. Python 2 reached end of life in 2020 and is no longer maintained.
 
-3. If you didn't see `Python 3.x.x` after running the last command, run this one:
+2. If you didn't see `Python 3.x.x` after running the last command, run this one:
         ```bash
         python3 --version
         ```
@@ -135,11 +135,11 @@ The terminal is a text-based way to navigate your computer's files and run progr
 
 It's good for running Python files that are already finished — either your own, or someone else's — without needing to open them in an editor. It's also handy for quickly re-running the same command over and over while testing.
 
-1. Open the terminal 
+0. Open the terminal 
 
     You can either use a dedicated terminal application (Terminal on Mac/Linux, Command Prompt or PowerShell on Windows), or if your code editor application has a terminal window you can use that. 
 
-2. Navigate to the folder ("location") your Python file is saved in using these commands:
+1. Navigate to the folder ("location") your Python file is saved in using these commands:
 
     ```bash
     pwd                  # What is my current location? Good to send first, or if you get lost
@@ -165,7 +165,7 @@ It's good for running Python files that are already finished — either your own
     /Users/luka/Documents/my_project
     ```
 
-3. Run the Python file
+2. Run the Python file
 
     Use whichever below command showed 3.x.x. when you checked your Python version above.
 
@@ -174,9 +174,9 @@ It's good for running Python files that are already finished — either your own
     python3 script.py
     ```
 
-4. To stop a running program: ++ctrl+c++ 
+3. To stop a running program: ++ctrl+c++ 
 
-5. You can now run a Python file again, or a different command.      
+4. You can now run a Python file again, or a different command.      
 
 !!! warning "Be careful what you send in the terminal"
     The terminal has no undo, and no confirmation prompt for most commands — it does exactly what you type, even if that means deleting or overwriting something permanently. Never paste a command you don't fully understand, especially from a random webpage or AI.

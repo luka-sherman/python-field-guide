@@ -25,7 +25,7 @@ hide:
 
     [**`variables`**](foundations.md#variables) · [**`print()`**](foundations.md#print-function) · [**`input()`**](foundations.md#input-function) · [**`comments`**](foundations.md#comments) · [**`tips for getting started`**](foundations.md#tips-for-getting-started)
 
-    [`how variables work`](foundations.md#how-do-variables-work) · [`converting input to a number`](foundations.md#converting-input-to-a-number) · [`TODO, FIXME`](foundations.md#single-line-comments-with)
+    [`how variables work`](foundations.md#how-do-variables-work) · [`naming variables`](foundations.md#naming-variables) · [`reassigning a variable`](foundations.md#reassigning-a-variable) · [`printing variables`](foundations.md#printing-variables) · [`building a string manually`](foundations.md#building-a-string-manually) · [`variables and types`](foundations.md#variables-and-types) · [`saving what the user types`](foundations.md#saving-what-the-user-types) · [`converting input to a number`](foundations.md#converting-input-to-a-number) · [`TODO, FIXME`](foundations.md#single-line-comments-with) · [`multi-line comments`](foundations.md#multi-line-comments-with)
 
 </div>
 </div>
@@ -41,7 +41,7 @@ hide:
 
     [**`integers`**](types.md#integers) · [**`floats`**](types.md#floats) · [**`strings`**](types.md#strings) · [**`booleans`**](types.md#booleans) · [**`None`**](types.md#none)
 
-    [`truthy/falsy`](types.md#boolean-expressions) · [`+ - * / **`](types.md#arithmetic) · [`+= -= *=`](types.md#arithmetic) · [`//, %, divmod()`](types.md#floor-division-modulo) · [`abs()`](types.md#absolute-value) · [`int()`](types.md#convert) · [`float()`](types.md#convert_1) · [`round()`](types.md#adjust) · [`indexing, slicing`](types.md#access-characters) · [`len()`](types.md#inspect) · [`, in print()`](types.md#combine) · [`f-string`](types.md#f-strings) · [`.lower() .upper() .strip() .replace()`](types.md#modify) · [`.find() .count()`](types.md#search) · [`.startswith() .endswith() .isdigit() .isalpha()`](types.md#validate) · [`str()`](types.md#convert_2) · [`.split()`](types.md#convert_2) · [`comparisons, is, in`](types.md#creating-a-boolean) · [`and, or, not`](types.md#logical-operators) · [`type() isinstance()`](types.md)
+    [`truthy/falsy`](types.md#boolean-expressions) · [`+ - * / **`](types.md#arithmetic) · [`+= -= *=`](types.md#arithmetic) · [`//, %, divmod()`](types.md#floor-division-modulo) · [`abs()`](types.md#absolute-value) · [`int()`](types.md#convert) · [`float()`](types.md#convert_1) · [`round()`](types.md#adjust) · [`indexing, slicing`](types.md#access-characters) · [`len()`](types.md#inspect) · [`, in print()`](types.md#combine) · [`f-string`](types.md#f-strings) · [`.lower() .upper() .strip() .replace()`](types.md#modify) · [`.find() .count()`](types.md#search) · [`.startswith() .endswith() .isdigit() .isalpha()`](types.md#validate) · [`str()`](types.md#convert_2) · [`.split()`](types.md#convert_2) · [`comparisons, is, in`](types.md#creating-a-boolean) · [`and, or, not`](types.md#logical-operators) · [`type() isinstance()`](types.md) · [`integer operations`](types.md#integer-operations) · [`float operations`](types.md#float-operations) · [`string operations`](types.md#string-operations) · [`boolean operations`](types.md#boolean-operations) · [`check for None`](types.md#check-for-none) · [`truthy/falsy (float)`](types.md#boolean-expressions_1) · [`truthy/falsy (str)`](types.md#boolean-expressions_2) · [`truthy/falsy (None)`](types.md#boolean-expressions_3)
 
 -   :material-basket-outline:{ .lg .middle } [__Collections__](collections.md)
 
@@ -49,7 +49,7 @@ hide:
 
     [**`lists`**](collections.md#lists) · [**`dictionaries`**](collections.md#dictionaries) · [**`tuples`**](collections.md#tuples) · [**`sets`**](collections.md#sets)
 
-     [`.append()`](collections.md#add-item) · [`len()`](collections.md#inspect) · [`in`](collections.md#list-boolean-expressions) · [`min() max() sum()`](collections.md#arithmetic) · [`.pop()`](collections.md#remove-item) · [`.sort()`](collections.md#sort) · [`list comprehension`](collections.md#list-comprehension) · [`.get()`](collections.md#dictionary-operations) · [`.keys() .values() .items()`](collections.md#dictionary-operations) · [`packing, unpacking`](collections.md#packing-and-unpacking) · [`| & - ^`](collections.md#combine) · [`issubset() issuperset() isdisjoint()`](collections.md#compare)
+     [`.append()`](collections.md#add-item) · [`len()`](collections.md#inspect) · [`in`](collections.md#list-boolean-expressions) · [`min() max() sum()`](collections.md#arithmetic) · [`.pop()`](collections.md#remove-item) · [`.sort()`](collections.md#sort) · [`list comprehension`](collections.md#list-comprehension) · [`.get()`](collections.md#dictionary-operations) · [`.keys() .values() .items()`](collections.md#dictionary-operations) · [`packing, unpacking`](collections.md#packing-and-unpacking) · [`| & - ^`](collections.md#combine) · [`issubset() issuperset() isdisjoint()`](collections.md#compare) · [`access list items`](collections.md#access-list-items) · [`loop through a list`](collections.md#loop-through-a-list) · [`list operations`](collections.md#list-operations) · [`access a value`](collections.md#access-a-value) · [`loop through a dictionary`](collections.md#loop-through-a-dictionary) · [`truthy/falsy (dict)`](collections.md#boolean-expressions) · [`access items`](collections.md#access-items) · [`loop through a tuple`](collections.md#loop-through-a-tuple) · [`truthy/falsy (tuple)`](collections.md#boolean-expressions_1) · [`tuple operations`](collections.md#tuple-operations) · [`loop through a set`](collections.md#loop-through-a-set) · [`truthy/falsy (set)`](collections.md#boolean-expressions_2) · [`set operations`](collections.md#set-operations)
 
 </div>
 </div>
@@ -73,7 +73,7 @@ hide:
 
     [**`for`**](loops.md#for-loops) · [**`while`**](loops.md#while-loops) · [**`break, continue`**](loops.md#control-flow-statements) · [**`common patterns`**](loops.md#common-patterns)
 
-    [`loop through a collection`](loops.md#loop-through-a-collection) · [`accumulator`](loops.md#accumulator) · [`counter`](loops.md#counter) · [`nested loops`](loops.md#nested-loops) · [`range()`](loops.md#iterable-range) · [`enumerate()`](loops.md#loop-with-index-and-value) · [`reversed()`](loops.md#loop-in-reverse) · [`zip()`](loops.md#loop-with-index-and-value) · [`loop a set number of times`](loops.md#loop-a-certain-number-of-times) · [`flag`](loops.md#using-a-flag) · [`sentinel`](loops.md#sentinel) · [`boolean expressions`](loops.md#boolean-expressions) · [`and, or, not`](loops.md#logical-operators) · [`break`](loops.md#break) · [`continue`](loops.md#continue) · [`else`](loops.md#else)
+    [`loop through a collection`](loops.md#loop-through-a-collection) · [`accumulator`](loops.md#accumulator) · [`counter`](loops.md#counter) · [`nested loops`](loops.md#nested-loops) · [`range()`](loops.md#iterable-range) · [`enumerate()`](loops.md#loop-with-index-and-value) · [`reversed()`](loops.md#loop-in-reverse) · [`zip()`](loops.md#loop-with-index-and-value) · [`loop a set number of times`](loops.md#loop-a-certain-number-of-times) · [`flag`](loops.md#using-a-flag) · [`sentinel`](loops.md#sentinel) · [`boolean expressions`](loops.md#boolean-expressions) · [`and, or, not`](loops.md#logical-operators) · [`break`](loops.md#break) · [`continue`](loops.md#continue) · [`else`](loops.md#else) · [`counter and flag names`](loops.md#counter-and-flag-names)
 
 </div>
 </div>
@@ -113,7 +113,7 @@ hide:
 
     [**`import`**](modules.md#importing-modules) · [**`your own module`**](modules.md#creating-your-own-module) · [**`module, package, library`**](modules.md#modules-vs-packages-vs-libraries)
 
-    [`from`](modules.md#from) · [`as`](modules.md#as) · [`main guard`](modules.md#the-main-guard) · [`import order`](modules.md#order-of-multiple-imports) · [`packages`](modules.md#packages) · [`nested paths`](modules.md#nested-paths)
+    [`import`](modules.md#import) · [`from`](modules.md#from) · [`as`](modules.md#as) · [`main guard`](modules.md#the-main-guard) · [`import order`](modules.md#order-of-multiple-imports) · [`packages`](modules.md#packages) · [`nested paths`](modules.md#nested-paths)
 
 -   :material-file-document-outline:{ .lg .middle } [__Reading & Writing Files__](files.md)
 
@@ -149,7 +149,7 @@ hide:
 </div>
 
 <div class="pt-category pt-category--wide" markdown="block">
-#### Add-on Libraries { .pt-homepage-heading }
+#### Add-on libraries { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
@@ -232,7 +232,7 @@ hide:
 
     [**`install`**](libraries/tkinter.md#install) · [**`import`**](libraries/tkinter.md#import) · [**`Tk()`**](libraries/tkinter.md#creating-a-window) · [**`Button`**](libraries/tkinter.md#widgets) · [**`pack()`**](libraries/tkinter.md#layout-managers) · [**`configure()`**](libraries/tkinter.md#configuring-widgets) · [**`command`**](libraries/tkinter.md#handling-events) · [**`ttk.Style`**](libraries/tkinter.md#styling-with-ttk) · [**`messagebox`**](libraries/tkinter.md#dialogs) · [**`winfo_width()`**](libraries/tkinter.md#introspecting-widgets) · [**`putting it together`**](libraries/tkinter.md#putting-it-together)
 
-    [`Label`](libraries/tkinter.md#label) · [`Entry`](libraries/tkinter.md#entry) · [`pack`](libraries/tkinter.md#pack) · [`grid`](libraries/tkinter.md#grid) · [`reading and changing options`](libraries/tkinter.md#reading-and-changing-options) · [`command callbacks`](libraries/tkinter.md#command-callbacks) · [`binding events`](libraries/tkinter.md#binding-events) · [`customizing a style`](libraries/tkinter.md#customizing-a-style) · [`message boxes`](libraries/tkinter.md#message-boxes) · [`file dialogs`](libraries/tkinter.md#file-dialogs) · [`winfo methods`](libraries/tkinter.md#winfo-methods) · [`a simple form`](libraries/tkinter.md#a-simple-form)
+    [`Label`](libraries/tkinter.md#label) · [`Button`](libraries/tkinter.md#button) · [`Entry`](libraries/tkinter.md#entry) · [`pack`](libraries/tkinter.md#pack) · [`grid`](libraries/tkinter.md#grid) · [`reading and changing options`](libraries/tkinter.md#reading-and-changing-options) · [`command callbacks`](libraries/tkinter.md#command-callbacks) · [`binding events`](libraries/tkinter.md#binding-events) · [`customizing a style`](libraries/tkinter.md#customizing-a-style) · [`message boxes`](libraries/tkinter.md#message-boxes) · [`file dialogs`](libraries/tkinter.md#file-dialogs) · [`winfo methods`](libraries/tkinter.md#winfo-methods) · [`a simple form`](libraries/tkinter.md#a-simple-form)
 
 </div>
 </div>

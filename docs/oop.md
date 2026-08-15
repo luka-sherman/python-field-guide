@@ -2,6 +2,24 @@
 
 **Object-oriented programming** groups related data and the functions that act on it into a single unit, instead of keeping them separate. A [dictionary](collections.md#dictionaries) can already hold a snake's data as key-value pairs — a **class** goes one step further, bundling that data together with the behavior (methods) that belongs to it.
 
+```mermaid
+classDiagram
+    class Snake {
+        +species
+        +length_ft
+        +__init__(species, length_ft)
+        +describe()
+        +__str__()
+    }
+    class Boa {
+        +region
+        +__init__(species, length_ft, region)
+        +describe()
+        +habitat()
+    }
+    Snake <|-- Boa
+```
+
 | Concept | Example | What it is |
 |---------|---------|------------|
 | Class | `class Snake:` | The blueprint — defines what data and behavior every object built from it will have |

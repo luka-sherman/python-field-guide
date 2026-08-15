@@ -23,7 +23,7 @@ I build software and spend a lot of time thinking about the small interaction de
 
 More about me at [lukasherman.com](https://lukasherman.com).
 
-## Helpful Feedback
+## Helpful feedback
 
 Spotted a mistake, or want to see something added? Let me know! 
 

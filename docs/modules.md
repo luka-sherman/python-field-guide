@@ -1,6 +1,6 @@
 # :material-import:{ .lg .middle } Modules & Imports
 
-## Modules vs Packages vs Libraries
+## Modules vs packages vs libraries
 
 A **module** is a Python file. Any `.py` file can be imported and used by another one. As a project grows, splitting related functions and classes into their own files, then importing between them, keeps any one file from becoming unmanageable.
 
