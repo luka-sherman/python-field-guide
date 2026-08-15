@@ -5,6 +5,12 @@ runnable code blocks, the shape every content page follows, house style for pros
 given piece of information belongs (heading, admonition, glossary, or footnote).
 [CLAUDE.md](CLAUDE.md) covers everything else (theme/CSS internals, commands, link maintenance).
 
+The rules that can be checked mechanically (numbered-list start, heading case, admonition
+types, `python-ref` comment format, homepage keyword-link coverage, and a clean `mkdocs build`)
+are enforced by `pytest` — see [tests/test_structure.py](tests/test_structure.py). Rules that
+need editorial judgment (is this content core enough for `!!!`, is this subheading a real skim
+target) aren't and can't be — that file's docstring says which is which.
+
 ## Pyodide runnable code blocks
 
 The "runnable code block" feature is entirely hand-wired in
@@ -196,6 +202,8 @@ Pick the existing type that matches the branch, don't invent new ones without a 
 | `??? warning` | A concrete "this will bite you" failure mode, not a generic caveat. |
 | `??? note` | A conceptual clarification that isn't a warning or a tip. |
 | `??? info` | Defining a term/concept adjacent to the page but not the topic itself. |
+| `??? failure` | The negative counterpart to a `success` branch — "this didn't work, here's what to do about it" (e.g. workspace.md's "download Python here" branch when `python --version` doesn't show 3.x.x). |
+| `!!! example` | An always-open side-by-side comparison the reader is meant to see without a click, not a branch — e.g. "how to loop each type," showing every collection type's loop pattern in one visible table. |
 
 Default to collapsed (`???`), not always-open (`!!!`) — an always-open admonition competes with
 the main prose for attention. Use `!!!` only when both are true:

@@ -37,6 +37,17 @@ pip install -r requirements.txt
 mkdocs serve   # live-reloading dev server at http://127.0.0.1:8000
 ```
 
+## Testing
+
+```bash
+source .venv/bin/activate
+pytest                 # checks docs/*.md against the mechanically-verifiable rules in STRUCTURE.md
+```
+
+See [tests/test_structure.py](tests/test_structure.py) for what's covered and, in each test's
+docstring/comments, what's deliberately left out because it needs editorial judgment a text-only
+check can't make.
+
 ## Deploying
 
 Pushes to `main` are automatically built and published to GitHub Pages by
