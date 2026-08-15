@@ -531,12 +531,48 @@ input:checked + .md-consent__settings {
    into the card's own background instead. */
 .md-typeset .grid.cards > ul > li code {
   background-color: transparent;
+  padding: 0;
   transition: background-color 0.15s;
 }
 
 .md-typeset .grid.cards > ul > li a:hover code {
   background-color: color-mix(in srgb, var(--pt-accent) 12%, transparent);
   border-radius: 0.15rem;
+}
+
+/* Keyword-link row: bold entries jump to a page's own top-level (`##`)
+   section; plain ones jump to something nested deeper (`###`/`####`).
+   Shrinking the plain ones reinforces that hierarchy visually. Targets
+   `a > code` directly (skipping `<strong>`) — a bold link's code sits one
+   level deeper, inside `a > strong > code` — so this direct-child selector
+   naturally only matches the non-bold links, no `:not(strong code)` needed.
+   0.62em, not 0.85em: Material's own `.md-typeset code` rule already sets
+   every code span to 0.85em, so anything at or above that is a no-op here —
+   this has to undercut that baseline to read as smaller at all. */
+.md-typeset .grid.cards > ul > li > p:not(:first-child) a > code {
+  font-size: 0.62em;
+}
+
+/* The keyword rows are long wrapping lists of short links, not prose, so
+   Material's 1.6 body line-height leaves them looking airy and stretched out
+   over many wrapped lines. Tightened to 1.35 — enough to noticeably compact
+   each card without the smaller code spans colliding line to line.
+   `nth-of-type(n+3)` = every paragraph from the third on: each card is
+   [1] title, [2] description, then one or two keyword rows (bold `##` links
+   first, smaller deeper links second — some cards only have the bold row).
+   Positional rather than `:last-child` so both rows are covered, and so the
+   description at [2] keeps normal readable spacing. */
+.md-typeset .grid.cards > ul > li > p:nth-of-type(n+3) {
+  line-height: 1.35;
+  margin-bottom: 0.25em;
+}
+
+/* The smaller second keyword row ([4] — deeper `###`/`####` links) can pack
+   tighter still than the bold row above it. Has to be set on the paragraph,
+   not the inline `code`: an inline line-height can't pull the line box below
+   the block's own strut, so styling the code span alone does nothing here. */
+.md-typeset .grid.cards > ul > li > p:nth-of-type(4) {
+  line-height: 1.1;
 }
 
 .md-typeset .grid.cards > ul > li > hr {
