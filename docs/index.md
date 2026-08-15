@@ -63,7 +63,7 @@ hide:
 
     Repeats a block of code without writing it out multiple times.
 
-    [`for`](loops.md#for-loops) · [`while`](loops.md#while-loops) · [`break, continue`](loops.md#control-flow-statements) · [`common patterns`](loops.md#common-patterns) · [`loop through a collection`](loops.md#loop-through-a-collection) · [`accumulator`](loops.md#accumulator) · [`counter`](loops.md#counter) · [`nested loops`](loops.md#nested-loops) · [`range()`](loops.md#iterable-range) · [`enumerate()`](loops.md#loop-with-index-and-value) · [`zip()`](loops.md#loop-with-index-and-value)
+    [`for`](loops.md#for-loops) · [`while`](loops.md#while-loops) · [`break, continue`](loops.md#control-flow-statements) · [`common patterns`](loops.md#common-patterns) · [`loop through a collection`](loops.md#loop-through-a-collection) · [`accumulator`](loops.md#accumulator) · [`counter`](loops.md#counter) · [`nested loops`](loops.md#nested-loops) · [`range()`](loops.md#iterable-range) · [`enumerate()`](loops.md#loop-with-index-and-value) · [`reversed()`](loops.md#loop-in-reverse) · [`zip()`](loops.md#loop-with-index-and-value)
 
 </div>
 </div>

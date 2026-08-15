@@ -276,6 +276,17 @@ for i, s in enumerate(species):
     print(i, s)
 ```
 
+#### Loop in reverse
+
+`reversed()` steps through a collection back to front, without needing to build a reversed copy first. Works on anything with a fixed order — list, tuple, string, `range()` — but not on a `set`, since it has no order to reverse.
+
+```python
+species = ["burmese", "rock", "ball", "blood"]
+
+for s in reversed(species):
+    print(s)     # blood  ball  rock  burmese
+```
+
 ??? tip "Loop two collections at the same time with zip()"
     `zip()` pairs up items from two (or more) iterables by position — the first item from each, then the second from each, and so on — stopping as soon as the shortest one runs out. Works with any iterable, mixed types included — list, tuple, string, dict (its keys, by default), even a `range()`. Because it is based on order, using an unordered collection like `set` or plain `dict` can produce pairings in an unpredictable order.
 
