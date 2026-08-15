@@ -1,5 +1,18 @@
 # :material-cube-outline:{ .lg .middle } Foundations
 
+## Tips for getting started
+
+A few suggestions if you're teaching yourself from this guide, rather than following a class or a bootcamp.
+
+- **Set up your editor first**, if you haven't — [Workspace Setup](workspace.md) covers installing Python and picking something to write code in.
+- **Work through the pages in order.** Later pages lean on earlier ones — [Types](types.md), [Collections](collections.md), [Conditionals](conditionals.md), and [Loops](loops.md) build on each other in roughly that order, so skipping ahead usually just means backtracking later.
+- **Type the examples yourself instead of copy-pasting them**, and actually click **Run** on the runnable blocks and edit them — change a value, rerun, see what changes. That's where a concept actually sticks, not from reading it.
+- **Errors are a normal, constant part of writing code, not a sign you did something wrong.** Once you hit your first one, the [Errors](errors.md) page — especially its [strategies for tracking one down](errors.md#debugging-strategies) — is worth reading properly rather than skimming.
+    - [Read it out loud](errors.md#read-it-out-loud)
+    - [Print debugging](errors.md#print-debugging)
+    - [Isolate the problem](errors.md#isolate-the-problem)
+- **Try building something small before you've finished the whole guide.** Once you've read through [Conditionals](conditionals.md) and [Loops](loops.md) you already have enough to write a real, if simple, program. The homepage [FAQ](index.md#faq) has more on using AI to help you learn, rather than to skip the learning.
+
 ## Print function
 
 ### What do you see when a program runs?

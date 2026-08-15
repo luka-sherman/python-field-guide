@@ -81,7 +81,7 @@ print("Hello, World!")
 3. Click the **Run button** (usually a green play icon or arrow) — most editors save your file automatically when you click Run, so there's no separate save step. 
 4. Find the output window in the application where it says `Hello, World!`, it should pop up on its own. 
 
-That's it! You've written and run your first Python program. From here, you can modify the code, run it again, and work through the rest of this guide to keep building your Python skills.
+That's it! You've written and run your first Python program. From here, you can modify the code, run it again, and [work through the rest of this guide](foundations.md#tips-for-getting-started) to keep building your Python programming skills.
 
 ??? tip "Rules for naming Python files"
     **A Python filename uses lowercase letters and numbers separated by hyphens, with .py as the extension.**

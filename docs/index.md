@@ -23,7 +23,7 @@ hide:
 
     The basic building blocks every Python program starts with: storing, displaying, and reading in values.
 
-    [`variables`](foundations.md#variables) · [`print()`](foundations.md#print-function) · [`input()`](foundations.md#input-function) · [`comments`](foundations.md#comments)
+    [`variables`](foundations.md#variables) · [`print()`](foundations.md#print-function) · [`input()`](foundations.md#input-function) · [`comments`](foundations.md#comments) · [`tips for getting started`](foundations.md#tips-for-getting-started)
 
 </div>
 </div>
@@ -230,6 +230,10 @@ hide:
     **Ask AI to explain, not solve.** 
     
     If you're stuck on your own code, ask what a line does or *why* you got a certain error. Let AI help you *understand* concepts, not write them for you.
+
+    **Have it write you a practice problem, not just solve one.** 
+    
+    Tell it your experience level, what topic you want to practice, and what you're specifically trying to get better at, and ask it to write *you* a small problem to solve — not the solution. That's the same kind of exercise a textbook or course would give you, just generated on demand and matched to exactly what you need next.
 
     **If you're stuck, clearly communicate your problem.** 
     
