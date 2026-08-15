@@ -2,17 +2,17 @@
 
 Every value in Python has a **type**, which determines what operations it supports and how it behaves. 
 
-A basic ("scalar") data type holds a single value, as opposed to a [collection](collections.md) data type, which groups many values together.
+A basic ("scalar") data type holds a single value, as opposed to a [collection](collections.md) data type, which groups multiple values together.
 
 <div class="pt-jump-table" markdown="block">
 
 | Basic Type | Example | Use it for |
 |------|---------|------------|
-| <a href="#integers">**`int`**</a> | `5` | <ul><li>Counts — how many of something there are, like items in a list</li><li>Indexes — the position of an item in a sequence, like `species[2]`</li><li>IDs — a unique whole-number identifier, like a user or record ID</li></ul> |
-| <a href="#floats">**`float`**</a> | `4.5` | <ul><li>Measurements, ratios — anything with a decimal</li><li>Binary rounding errors mean `0.1 + 0.2 != 0.3`</li></ul> |
-| <a href="#strings">**`str`**</a> | `"ball python"` | <ul><li>Text — names, labels, messages</li><li>Ordered and indexable like a list, but immutable — `.upper()`, `.replace()`, etc. return a *new* string</li></ul> |
-| <a href="#booleans">**`bool`**</a> | `True` | <ul><li>Flags, yes/no switches, comparison results (`length > 3`)</li><li>Secretly a subclass of `int` — `True + True == 2`</li></ul> |
-| <a href="#none">**`None`**</a> | `None` | <ul><li>Marking "no value yet" — a default placeholder, or what a function returns if it falls through without a `return`</li><li>Compare with `is None`, not `== None`</li><li>`not thing` also catches `None`, but it's true for any falsy value (`0`, `""`, `[]`) too — use `is None` when you mean *specifically* "no value"</li></ul> |
+| <a href="#integers">**`integer "int"`**</a> | <pre><code class="language-python-ref">5</code></pre> | <ul><li>Counts — how many of something there are, like items in a list</li><li>Indexes — the position of an item in a sequence, like `species[2]`</li><li>IDs — a unique whole-number identifier, like a user or record ID</li></ul> |
+| <a href="#floats">**`float`**</a> | <pre><code class="language-python-ref">4.5</code></pre> | <ul><li>Measurements, ratios — anything with a decimal</li><li>Binary rounding errors mean `0.1 + 0.2 != 0.3`</li></ul> |
+| <a href="#strings">**`string "str"`**</a> | <pre><code class="language-python-ref">"ball python"</code></pre> | <ul><li>Text — names, labels, messages</li><li>Ordered and indexable like a list, but immutable — `.upper()`, `.replace()`, etc. return a *new* string</li></ul> |
+| <a href="#booleans">**`boolean "bool"`**</a> | <pre><code class="language-python-ref">`True`</code></pre> | <ul><li>Flags, yes/no switches, comparison results (`length > 3`)</li><li>Secretly a subclass of `int` — `True + True == 2`</li></ul> |
+| <a href="#none">**`None`**</a> | <pre><code class="language-python-ref">None</code></pre> | <ul><li>Marking "no value yet" — a default placeholder, or what a function returns if it falls through without a `return`</li><li>Compare with `is None`, not `== None`</li><li>`not thing` also catches `None`, but it's true for any falsy value (`0`, `""`, `[]`) too — use `is None` when you mean *specifically* "no value"</li></ul> |
 
 </div>
 
@@ -152,7 +152,6 @@ A float is a number with a decimal point — for anything that isn't a whole num
 
 ```python-ref
 weight = 4.5
-weight        # 4.5
 ```
 
 ### Float operations
@@ -280,7 +279,6 @@ Strings have three defining traits:
 
 ```python-ref
 name = "burmese python"
-name                     # "burmese python"
 ```
 
 ### String operations
@@ -606,7 +604,6 @@ A boolean (`bool`) holds one of exactly two values, **`True`** or **`False`** �
 
 ```python-ref
 venomous = False
-venomous          # False
 ```
 
 ### Boolean operations
@@ -725,7 +722,6 @@ Several kinds of operators hand back a `bool`, each answering a different questi
 
 ```python-ref
 venomous = None
-venomous         # None
 ```
 
 ### Check for None

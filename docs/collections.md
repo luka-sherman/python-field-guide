@@ -6,10 +6,10 @@ A **collection** is a single object that groups multiple values (like [basic typ
 
 | Collection Type | Example | Access values by | Use it for |
 |------|---------|:-----------------:|------------|
-| <a href="#lists">**`list`**</a> | `["ball", "burmese"]` | position # | <ul><li>An ordered group of items you can freely add to, remove from, or reorder</li><li>Not sure? Start here — the default, general-purpose choice</li></ul> |
-| <a href="#dictionaries">**`dict`**</a> | `{"species": "ball", "length_ft": 5}` | Name of a key | <ul><li>Values stored under names ("keys") instead of position, like `species`, `length_ft`</li><li>Use it to look values up by name</li><li>Can't have duplicate keys</li></ul> |
-| <a href="#tuples">**`tuple`**</a> | `("ball", "burmese")` | position # | <ul><li>Like a list, but fixed — can't be changed once created</li><li>Values that should stay exactly as they are, like a coordinate pair</li></ul> |
-| <a href="#sets">**`set`**</a> | `{"ball", "burmese"}` | Membership (`in`) | <ul><li>An unordered group where duplicates are automatically dropped</li><li>Use it for fast "is this in here?" checks</li></ul> |
+| <a href="#lists">**`list`**</a> | <pre><code class="language-python-ref">["ball", "burmese"]</code></pre> | position # | <ul><li>An ordered group of items you can freely add to, remove from, or reorder</li><li>Not sure? Start here — the default, general-purpose choice</li></ul> |
+| <a href="#dictionaries">**`dictionary "dict"`**</a> | <pre><code class="language-python-ref">{&#10;  "species": "ball",&#10;  "length_ft": 5&#10;}</code></pre> | Name of a key | <ul><li>Values stored under names ("keys") instead of position, like `species`, `length_ft`</li><li>Use it to look values up by name</li><li>Can't have duplicate keys</li></ul> |
+| <a href="#tuples">**`tuple`**</a> | <pre><code class="language-python-ref">("ball", "burmese")</code></pre> | position # | <ul><li>Like a list, but fixed — can't be changed once created</li><li>Values that should stay exactly as they are, like a coordinate pair</li></ul> |
+| <a href="#sets">**`set`**</a> | <pre><code class="language-python-ref">{"ball", "burmese"}</code></pre> | Membership (`in`) | <ul><li>An unordered group where duplicates are automatically dropped</li><li>Use it for fast "is this in here?" checks</li></ul> |
 
 </div>
 
@@ -627,7 +627,9 @@ block-beta
   class diagram panel
 ```
 
-The **index** of the first item is 0[^zero-index], next is 1, and so on. The **negative index** starts counting down from the end instead, starting at `-1` for the last item, -2 for the second-to-last, and so on. Each item can be referenced by its positive or negative index.
+The **index** of the first item is 0[^zero-index], next is 1, and so on. 
+
+The **negative index** starts counting down from the end instead, starting at `-1` for the last item, -2 for the second-to-last, and so on. Each item can be referenced by its positive or negative index.
 
 ### Access items
 

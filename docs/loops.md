@@ -6,8 +6,8 @@ A **loop** repeats a block of code multiple times.
 
 | Loop type | Syntax | Use it for |
 |------|--------|------------|
-| <a href="#for-loops">`for`</a> | <a href="#for-loops">`for loop_variable in iterable:`</a> | <a href="#for-loops">Goes through an **iterable** (something that contains multiple values) one value at a time, assigning each value to `loop_variable` as it goes.<ul><li>Runs the block of code once for each item in the iterable</li><li>Repeating something a set number of times, or counting passes — using a `range()`</li><li>Processing each item in something you already have — a list, tuple, dict, set, or string</li></ul></a> |
-| <a href="#while-loops">`while`</a> | <a href="#while-loops">`while condition:`</a> | <a href="#while-loops">A `while` loop repeats as long as a **condition** is `True`, checking the condition before it starts each pass.<ul><li>Use it when you don't know how many times the loop needs to run</li><li>The condition determines when the loop stops</li></ul></a> |
+| <a href="#for-loops">**`for`**</a> | <pre><code class="language-python-ref">for loop_variable in iterable:</code></pre> | Goes through an **iterable** (something that contains multiple values) one value at a time, assigning each value to `loop_variable` as it goes.<ul><li>Runs the block of code once for each item in the iterable</li><li>Repeating something a set number of times, or counting passes — using a `range()`</li><li>Processing each item in something you already have — a list, tuple, dict, set, or string</li></ul> |
+| <a href="#while-loops">**`while`**</a> | <pre><code class="language-python-ref">while condition:</code></pre> | A `while` loop repeats as long as a **condition** is `True`, checking the condition before it starts each pass.<ul><li>Use it when you don't know how many times the loop needs to run</li><li>The condition determines when the loop stops</li></ul> |
 
 </div>
 
