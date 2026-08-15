@@ -180,6 +180,14 @@ hide:
 
     [`json.dump()`](libraries/json.md#writing-json-files) · [`json.load()`](libraries/json.md#reading-json-files) · [`json.dumps()`](libraries/json.md#working-with-strings-instead-of-files) · [`json.loads()`](libraries/json.md#working-with-strings-instead-of-files) · [`nested data`](libraries/json.md#nested-data)
 
+-   :material-chart-line:{ .lg .middle } [__matplotlib__](libraries/matplotlib.md) [:material-download-outline:](libraries/matplotlib.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
+
+    Charts and plots: line, bar, and scatter, built directly from plain Python data.
+
+    [**`install`**](libraries/matplotlib.md#install) · [**`import`**](libraries/matplotlib.md#import) · [**`line plots`**](libraries/matplotlib.md#line-plots) · [**`bar charts`**](libraries/matplotlib.md#bar-charts) · [**`scatter plots`**](libraries/matplotlib.md#scatter-plots) · [**`subplots`**](libraries/matplotlib.md#subplots) · [**`saving a figure`**](libraries/matplotlib.md#saving-a-figure)
+
+    [`labels and title`](libraries/matplotlib.md#labels-and-title) · [`multiple lines and a legend`](libraries/matplotlib.md#multiple-lines-and-a-legend)
+
 -   :material-matrix:{ .lg .middle } [__NumPy__](libraries/numpy.md) [:material-download-outline:](libraries/numpy.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Fast numeric arrays, with math applied to a whole array at once instead of item by item.

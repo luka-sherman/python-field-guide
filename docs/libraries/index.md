@@ -51,6 +51,12 @@ Libraries allow us to apply the Python fundamentals to real tasks. These are a f
 
 <div class="grid cards" markdown="block">
 
+-   :material-chart-line:{ .lg .middle } [__matplotlib__](matplotlib.md) [:material-download-outline:](matplotlib.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
+
+    Charts and plots: line, bar, and scatter, built directly from plain Python data.
+
+    [`install`](matplotlib.md#install) · [`import`](matplotlib.md#import) · [`line plots`](matplotlib.md#line-plots) · [`bar charts`](matplotlib.md#bar-charts) · [`scatter plots`](matplotlib.md#scatter-plots) · [`subplots`](matplotlib.md#subplots) · [`saving a figure`](matplotlib.md#saving-a-figure)
+
 -   :material-matrix:{ .lg .middle } [__NumPy__](numpy.md) [:material-download-outline:](numpy.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Fast numeric arrays, with math applied to a whole array at once instead of item by item.

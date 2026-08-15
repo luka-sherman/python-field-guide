@@ -27,6 +27,7 @@ nav:
           - random: libraries/random.md
           - Tkinter: libraries/tkinter.md
       - Third-Party:
+          - matplotlib: libraries/matplotlib.md
           - NumPy: libraries/numpy.md
           - OpenCV: libraries/opencv.md
           - pandas: libraries/pandas.md
