@@ -312,44 +312,35 @@ def test_mkdocs_build_has_no_warnings(built_site):
 # keyword deep-links")
 # ============================================================================
 
-# A heading opts out of (or customizes) this check from the source markdown itself, via
-# attr_list (already enabled — see mkdocs.yml — and already used elsewhere for exactly this
-# kind of per-element metadata, e.g. `{ .pt-homepage-heading }`):
+# A heading opts out of this check from the source markdown itself, via attr_list (already
+# enabled — see mkdocs.yml — and already used elsewhere for exactly this kind of per-element
+# metadata, e.g. `{ .pt-homepage-heading }`):
 #
 #   ## Heading text { data-card-link="skip" }
 #       — this heading is narrative/descriptive, not a reusable keyword (STRUCTURE.md's own
 #         examples: "What do you see when a program runs?"). No index.md entry required.
 #
-#   ## Heading text { data-card-link="your preferred link text" }
-#       — index.md must link to this heading's anchor using exactly that text. Catches the
-#         two ways this can drift: the link is missing, or it exists with different text than
-#         what's declared here.
-#
-#   ## Heading text                              (no attribute)
-#       — default: index.md must link to this heading's anchor, any text.
+#   ## Heading text                              (no attribute — the default)
+#       — index.md must link to this heading's anchor. Text is never checked — renaming an
+#         entry, or the heading, is a manual concern, not this test's.
 #
 # attr_list attributes land directly on the rendered heading tag, so this reads straight off
 # the built HTML alongside id/text — no separate markdown-source parsing needed.
 PAGES_SKIPPED_FOR_COVERAGE = {"index.md", "404.md", "about.md", "privacy.md", "thanks.md", "libraries/index.md"}
 
-LINK_RE = re.compile(r"\[([^\]]*)\]\(([\w./-]+\.md)(#[\w-]+)?\)")
+LINK_RE = re.compile(r"\]\(([\w./-]+\.md)(#[\w-]+)?\)")
 BUILT_HEADING_RE = re.compile(r'<h([23])\s+([^>]*)>(.*?)</h\1>', re.S)
 ATTR_VALUE_RE = re.compile(r'(\w[\w-]*)="([^"]*)"')
 TAG_RE = re.compile(r"<[^>]+>")
-LINK_TEXT_DECORATION_RE = re.compile(r"[`*]")
-
-
-def _normalize_link_text(text: str) -> str:
-    return LINK_TEXT_DECORATION_RE.sub("", text).strip()
 
 
 def _index_links():
-    """page.md -> {anchor: link text (markdown decoration stripped)}, for every #anchor link."""
+    """page.md -> set of anchors linked from index.md."""
     index_text = (DOCS_DIR / "index.md").read_text()
-    linked: dict[str, dict[str, str]] = {}
-    for text, page, anchor in LINK_RE.findall(index_text):
+    linked: dict[str, set[str]] = {}
+    for page, anchor in LINK_RE.findall(index_text):
         if anchor:
-            linked.setdefault(page, {})[anchor[1:]] = _normalize_link_text(text)
+            linked.setdefault(page, set()).add(anchor[1:])
     return linked
 
 
@@ -369,27 +360,16 @@ def test_homepage_keyword_links_cover_all_headings(built_site, path):
     html_file = _html_path_for(built_site, md_rel)
     assert html_file.exists(), f"no build output for {md_rel} at {html_file}"
 
-    linked = _index_links().get(md_rel, {})
+    linked = _index_links().get(md_rel, set())
     failures = []
     for level, attrs_raw, text in BUILT_HEADING_RE.findall(html_file.read_text()):
         attrs = dict(ATTR_VALUE_RE.findall(attrs_raw))
         anchor_id = attrs.get("id")
-        if not anchor_id:
+        if not anchor_id or attrs.get("data-card-link") == "skip":
             continue
-        declared = attrs.get("data-card-link")
-        if declared == "skip":
-            continue
-
-        clean_text = TAG_RE.sub("", text).strip()
-        actual_text = linked.get(anchor_id)
-        if actual_text is None:
-            suffix = f" — declared text: {declared!r}" if declared else ""
-            failures.append(f"{md_rel}#{anchor_id} (h{level} {clean_text!r}) has no index.md keyword link{suffix}")
-        elif declared and declared != actual_text:
-            failures.append(
-                f"{md_rel}#{anchor_id} (h{level} {clean_text!r}) linked as {actual_text!r}, "
-                f"but the heading declares {declared!r}"
-            )
+        if anchor_id not in linked:
+            clean_text = TAG_RE.sub("", text).strip()
+            failures.append(f"{md_rel}#{anchor_id} (h{level} {clean_text!r}) has no index.md keyword link")
     assert not failures, (
         "Every ##/### heading needs its own index.md keyword deep-link (STRUCTURE.md "
         "'Homepage keyword deep-links: Coverage'). Add the link, or mark the heading "

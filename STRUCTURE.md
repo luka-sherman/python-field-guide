@@ -168,6 +168,10 @@ they're after instead of landing on the page and hunting.
   reusable keyword. If a heading doesn't name a concrete concept or piece of syntax, it doesn't
   need a card entry even though it still needs to exist as a heading per the rules above... to
   be clear, the heading itself is still fine on the page; it just doesn't earn a homepage link.
+  Mark it `{ data-card-link="skip" }` (attr_list, appended to the heading line) so
+  `tests/test_homepage_keyword_links_cover_all_headings` knows the omission is deliberate
+  rather than flagging it as a gap. Any other heading just needs *a* link to its anchor — the
+  test doesn't check the link's text, so renaming an entry (or the heading) is a manual concern.
 - **Order by heading level first, importance second — not top-to-bottom page order.** All `##`
   entries come first, then all `###` entries, then any `####`/no-heading entries last; within
   each of those tiers, sort most-to-least important rather than by page position. The two
