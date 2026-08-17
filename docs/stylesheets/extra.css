@@ -869,6 +869,67 @@ input:checked + .md-consent__settings {
   background-color: color-mix(in srgb, var(--pt-danger) 12%, transparent);
 }
 
+/* Mermaid always inlines `style="max-width: <viewBox width>px"` directly on
+   the <svg>, capping it at its own natural drawn width regardless of how
+   much room the container actually has. For a tall, narrow diagram like a
+   TB swimlane (two lanes side by side, viewBox far taller than wide) that
+   locks it to a fraction of the content column. Overriding it here lets it
+   fill the column instead — needs !important since it's beating an inline
+   style attribute, not just cascade order. */
+.md-typeset .mermaid svg {
+  max-width: 100% !important;
+}
+
+/* Two-column comparison table (index.md's FAQ): the second column is the
+   "worse" option and the third the "better" one, tinted red/green as whole
+   columns so the contrast reads before any of the text does. Tints are
+   color-mix against the palette's own danger/accent rather than fixed
+   hexes, so they track both the cream and slate schemes. */
+.md-typeset .pt-compare table {
+  /* Material's default table (`table:not([class])`) is
+     `display: inline-block; max-width: 100%` — shrink-wrapped to its
+     content, not stretched to the column. The swimlane diagram right
+     below it in the other FAQ tab is forced to a true 100% width (see the
+     .mermaid svg rule above), so without this the two end up different
+     widths even though they sit in the same column. */
+  width: 100%;
+  display: table;
+}
+
+.md-typeset .pt-compare th:nth-child(2),
+.md-typeset .pt-compare td:nth-child(2) {
+  background-color: color-mix(in srgb, var(--pt-accent) 12%, transparent);
+}
+
+.md-typeset .pt-compare th:nth-child(3),
+.md-typeset .pt-compare td:nth-child(3) {
+  background-color: color-mix(in srgb, var(--pt-danger) 10%, transparent);
+}
+
+.md-typeset .pt-compare th:nth-child(2) {
+  color: var(--pt-accent);
+}
+
+.md-typeset .pt-compare th:nth-child(3) {
+  color: var(--pt-danger);
+}
+
+.md-typeset .pt-compare td {
+  vertical-align: top;
+}
+
+/* Bullet lists inside comparison cells sit flush with the cell's own text
+   rather than carrying a browser default margin — same problem (and fix)
+   as .pt-jump-table's nested lists above. */
+.md-typeset .pt-compare td ul {
+  margin: 0.2rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.md-typeset .pt-compare td ul li {
+  margin-bottom: 0.1rem;
+}
+
 /* Inline check/x icons (workspace.md's install-check step), colored to
    match the site's success/danger admonitions rather than left as
    default-color glyphs. */

@@ -252,62 +252,92 @@ hide:
 
 ### FAQ
 
-=== ":material-creation: Why learn to code yourself, if AI can do it for you?"
+??? ai "Why learn to code yourself, if AI can do it for you?"
 
-    **Understanding programming fundamentals make AI more useful.** 
-    
-    Once you understand these building blocks you can read code you didn't write, spot mistakes, understand *why* a solution works, and communicate your problem to AI more effectively.
+    <div class="pt-compare">
 
-    **Learning happens through productive struggle.** 
-    
-    The friction of working something out yourself, instead of being handed the answer, [is what builds understanding](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf). If you skip that struggle, you *won't develop the knowledge* to solve the problem again, adapt the answer, or recognize when it's wrong.
+    |  | Learn to do it yourself | Have AI do it for you |
+    |---|---|---|
+    | **Writing & struggling with code** | :material-check:{ .pt-icon-success } **Productive struggle** is what builds understanding<ul><li>You can solve the problem again on your own</li><li>Adapt the answer, and catch when it's wrong</li></ul> | :material-close:{ .pt-icon-fail } Being handed the answer skips [the friction that builds understanding](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf)<ul><li>If you skip that struggle, you *won't develop the knowledge* to solve the problem again, adapt the answer, or recognize when it's wrong.</li></ul> |
+    | **Reading & verifying code** | :material-check:{ .pt-icon-success } Understanding programming fundamentals makes AI more useful — you can read code you didn't write, and check it before you trust it<ul><li>Spot mistakes</li><li>Understand *why* a solution works</li><li>Communicate your problem to AI more effectively</li></ul> | :material-close:{ .pt-icon-fail } Inefficient communciation with AI if you don't fully understand what's going on, and AI code can look correct while being **wrong and insecure**<ul><li>You can't tell *why* a solution works</li><li>Researchers are already documenting this skill gap in [students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before they've [built their own foundation](https://dl.acm.org/doi/10.1145/3624720)</li><li>One [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) found developers using AI wrote *less* secure code — but were *more* confident it was secure</li></ul> |
+    | **On the job** | :material-check:{ .pt-icon-success } Employers are still hiring for understanding, not prompting<ul><li>Code review, debugging, and interviews all test whether you can reason about code</li><li>And judge whether it's correct</li><li>Learning to program on your own turns AI into a tool you can direct and verify, instead of one you're assuming got it right</li></ul> | :material-close:{ .pt-icon-fail } AI will likely be available at work too — but it isn't what's being tested |
 
-    **You need to be able to verify AI code.** 
-    
-    AI can generate code that looks correct while being wrong and insecure. Researchers are already documenting this skill gap in [students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before they've [built their own foundation](https://dl.acm.org/doi/10.1145/3624720), and one [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) found that developers using AI wrote *less* secure code—but were *more* confident that it was secure. 
+    </div>
 
-    **Employers are still hiring for understanding, not prompting.** 
-    
-    AI will likely be available on the job too, but code review, debugging, and interviews all test whether you can reason about code and judge whether it's correct.
+    **References**
 
-    **Learning to program on your own turns AI into a tool you can direct and verify, instead of one you're assuming got it right.**
+    - [The friction that builds understanding](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf) — E. Bjork & R. Bjork, on desirable difficulties in learning
+    - [Students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before [building their own foundation](https://dl.acm.org/doi/10.1145/3624720) — the documented skill gap
+    - [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) — developers using AI wrote less secure code, but were more confident it was secure
 
-=== ":material-creation: Using AI to learn"
 
-    **Guide you through setting up your workspace** 
-    
-    Setting up your computer for programming can be an intimidating hurdle, especially if you haven't used your Terminal before. Having AI walk you through the setup process can make this task **safer and accessible for solo beginners**. 
+??? ai "How to use AI to support your learning"
 
-    **Ask AI to explain, not solve.** 
-    
-    If you're stuck on your own code, ask what a line does or *why* you got a certain error. Let AI help you *understand* concepts, not write them for you.
+    ```mermaid
+    swimlane-beta TB
+        accTitle: Using AI to learn
+        accDescr: AI walks you through setup before you start. You attempt each problem yourself with autocomplete off, then check whether you can explain why it works and whether it actually holds up — if either check fails, you describe what you tried rather than handing over your code, so AI explains the concept instead of fixing it, and you try again. Passing both checks means you understand it well enough for a practice problem, or for the code review, debugging, and interviews that are what your job actually tests.
 
-    **Have it write you a practice problem, not just solve one.** 
-    
-    Tell it your experience level, what topic you want to practice, and what you're specifically trying to get better at, and ask it to write *you* a small problem to solve — not the solution. That's the same kind of exercise a textbook or course would give you, just generated on demand and matched to exactly what you need next.
+        subgraph You
+            you_help_setup(Need help setting up your computer to start programming?)
+            you_have_project(Do you have a project to work on?)
+            you_attempt(Attempt it yourself, autocomplete off so you understand everything that's there, utilize debug strategies)
+            you_writeup(Stuck? Write out your problem: what you expect to happen, what you're observing, what you've tried already, see if this helps you process or rethink your strategy)
+            you_finish("Learning to program means making mistakes, getting stuck, and eventually figuring things out and forming a mental model. That's the process that builds skills you can rely on to continue solving problems and detecting issues — ready for code review, debugging, and interviews, where AI won't be tested, your reasoning will. ")
+        end
 
-    **If you're stuck, clearly communicate your problem.** 
-    
-    Make a strong attempt before turning to AI. Then **describe** what you've tried, what you expected to happen, and exactly where you're stuck *instead of just dumping in your code and an error message*. The process of **putting your problem into words** is a significant learning tool, and will also gives AI the context it needs to provide more targeted, efficient help.
+        subgraph AI
+            ai_help_setup(AI can help guide you through setup on your exact device — which could make getting started more accessible for beginners)
+            ai_suggest_problem(Suggests a problem based on your skill level, interests, and what you're trying to improve)
+            explain(With that context AI can provide more targeted, efficient help. Don't just paste the code/error, ask AI to explain what a line does, or what an error means — an explanation to help you understand concepts, be clear you do NOT want it to write code, just explain)
+        end
 
-    **Disable AI autocomplete.** 
-    
-    Many code editors now have an AI autocomplete enabled, which reads your code as you write and suggests ways to finish it and whole functions to add. This is not helpful for a beginner and can you leave you **not understanding what your own code does**.
+       
+        ai_help_setup ~~~ you_help_setup
+        ai_suggest_problem ~~~ you_have_project
+        you_help_setup -->|Yes| ai_help_setup
+        you_help_setup -->|No| you_have_project
+        ai_help_setup --> you_have_project
+        
+        you_have_project -->|No| ai_suggest_problem
+        
+        you_have_project -->|Yes| you_attempt
+        
+        ai_suggest_problem --> you_attempt
+        you_attempt <--> you_writeup
+        you_attempt -->|Done!| you_finish
+        you_writeup --> |still stuck?| explain
+        explain --> you_attempt
+        explain ~~~ you_finish
 
-    **Don't outsource the productive struggle.** 
-    
-    Learning to program means making mistakes, getting stuck, and eventually figuring things out and forming a mental model. That's the process that **builds skills** you can rely on.
+        %% Edge label text colored red if it leads into the AI lane, green
+        %% if it leads into the You lane, matching the lane colors. This is
+        %% linkStyle's "color" property (not background) — the one styling
+        %% mechanism mermaid applies from inside its own closed shadow
+        %% root, so it's the only thing that actually reaches the label.
+        linkStyle 0 color:#a33f3f
+        linkStyle 1 color:#3f6b52
+        linkStyle 3 color:#3f6b52
+        linkStyle 4 color:#a33f3f
+        linkStyle 7 color:#3f6b52
+        linkStyle 8 color:#a33f3f
 
-=== ":material-information-outline: What is Python?"
+        classDef you fill:#3f6b521f,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
+        classDef ai fill:#a33f3f1a,stroke:#a33f3f,stroke-width:2px,color:#a33f3f
+        class you_writeup,you_help_setup,you_have_project,you_attempt,you_finish you
+        class explain,ai_help_setup,ai_suggest_problem ai
+        style You fill:#3f6b521f,stroke:#3f6b52,color:#3f6b52
+        style AI fill:#a33f3f1a,stroke:#a33f3f,color:#a33f3f
+    ```
 
-    **Python** is a general-purpose programming language known for readable syntax and a huge built-in and third-party library ecosystem — designed to be quick to write and easy to read back later, even by someone who didn't write it. It doesn't need to be compiled before it runs: write a `.py` file, then run it directly.
+??? info "What is Python, and what is this guide?"
 
-    That readability, plus the sheer range of libraries already built for it, is why it turns up almost everywhere: web backends, data analysis and machine learning, automating repetitive tasks, scientific computing, and quick scripts gluing other tools together — several of which are covered on this site's [Libraries](#add-on-libraries) pages. Python usually isn't the fastest language for raw performance, but it's often the fastest to write *correct* code in, which is why it's such a common first choice for a new project.
+    **Readable, and quick to write.** *Python* is a general-purpose language built for code that's easy to read back later — even by someone who didn't write it. No compiling: write a `.py` file, run it directly.
 
-    That same readability is also why Python is such a common **first language to learn programming in**. Variables, conditionals, loops, functions, classes — the same fundamentals every language shares — read closer to plain English here than in most other languages, so you spend your effort learning to *think* like a programmer instead of fighting a stricter syntax. Once those fundamentals are solid, they carry over directly to whatever language you pick up next.
+    - **Shows up everywhere** — web backends, data analysis and machine learning, automating repetitive tasks, scientific computing, quick glue scripts. Several of these are covered on this site's [Libraries](#add-on-libraries) pages.
+    - **The skills transfer.** Variables, conditionals, loops, functions, classes — the fundamentals every language shares — read closer to plain English here, so you spend your effort learning to *think* like a programmer instead of fighting a stricter syntax. Once solid, those fundamentals carry over to whatever language you pick up next.
+    - **Often the fastest language to write *correct* code in** — even though it's not the fastest to *run* — which is why it's such a common first choice for a new project.
 
-=== ":material-information-outline: What is this guide?"
+    **This guide.** *Python Field Guide* is a free, in-browser reference — most code blocks are editable and runnable directly on the page.
 
-    **Python Field Guide** is a free, in-browser reference for learning Python from the ground up — most code blocks are editable and runnable directly on the page, if you want to experiment with how something works.
-
-    It's built for people learning Python — self-taught learners, students in an intro course, or anyone who wants one combined reference to work through from start to finish rather than a scattered pile of search results. 
+    - **For learners** — self-taught, students in an intro course, or anyone who wants one combined reference to work through start to finish, instead of a scattered pile of search results.

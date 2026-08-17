@@ -122,3 +122,4 @@ extra_javascript:
   - javascripts/homepage_header_title.js
   - javascripts/a11y_patches.js
   - https://unpkg.com/mermaid@11/dist/mermaid.min.js
+  - javascripts/mermaid_config.js
