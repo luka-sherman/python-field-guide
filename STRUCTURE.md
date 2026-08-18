@@ -207,6 +207,7 @@ Pick the existing type that matches the branch, don't invent new ones without a 
 | `??? note` | A conceptual clarification that isn't a warning or a tip. |
 | `??? info` | Defining a term/concept adjacent to the page but not the topic itself. |
 | `??? failure` | The negative counterpart to a `success` branch — "this didn't work, here's what to do about it" (e.g. workspace.md's "download Python here" branch when `python --version` doesn't show 3.x.x). |
+| `??? ai` | Opinion/meta content specifically about learning with or around AI (e.g. index.md's FAQ tabs on whether/how to use AI while learning) — not used for teaching content about Python itself. |
 | `!!! example` | An always-open side-by-side comparison the reader is meant to see without a click, not a branch — e.g. "how to loop each type," showing every collection type's loop pattern in one visible table. |
 
 Default to collapsed (`???`), not always-open (`!!!`) — an always-open admonition competes with

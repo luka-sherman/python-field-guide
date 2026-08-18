@@ -102,7 +102,7 @@ def test_numbered_walkthroughs_start_at_zero(path):
 # without updating STRUCTURE.md, or STRUCTURE.md's table needs to grow — either way it's worth
 # a look.
 DOCUMENTED_ADMONITION_TYPES = {
-    "run", "tip", "warning", "note", "info", "failure", "example", "success", "danger",
+    "run", "tip", "warning", "note", "info", "failure", "example", "success", "danger", "ai",
 }
 
 ADMONITION_RE = re.compile(r"^\s*(\?\?\?|!!!)\s+(\w+)\s")
@@ -138,6 +138,7 @@ ALWAYS_OPEN_ALLOWLIST = {
     ("conditionals.md", 103),
     ("loops.md", 202),
     ("loops.md", 437),
+    ("types.md", 706),
 }
 
 
