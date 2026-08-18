@@ -387,6 +387,26 @@ input:checked + .md-consent__settings {
   mask-image: var(--md-admonition-icon--python);
 }
 
+/* ---- Built-in "tip" admonition, darkened ----
+   Material's default tip color (#00bfa5) is a bright neon teal that clashes
+   with this site's muted cream/ink/green palette — darkened the same way the
+   custom run/ai/python admonitions above are colored (border + 10%-opacity
+   title background + icon mask, all keyed off one hex). */
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  border-color: #00695c;
+}
+
+.md-typeset .tip > .admonition-title,
+.md-typeset .tip > summary {
+  background-color: rgba(0, 105, 92, 0.1);
+}
+
+.md-typeset .tip > .admonition-title::before,
+.md-typeset .tip > summary::before {
+  background-color: #00695c;
+}
+
 /* ---- Pyodide runnable / reference code blocks (theme-independent) ---- */
 
 .pyodide-runner {
@@ -648,24 +668,28 @@ input:checked + .md-consent__settings {
 
 /* The keyword rows are long wrapping lists of short links, not prose, so
    Material's 1.6 body line-height leaves them looking airy and stretched out
-   over many wrapped lines. Tightened to 1.35 — enough to noticeably compact
-   each card without the smaller code spans colliding line to line.
+   over many wrapped lines. Tightened further to 1.15.
    `nth-of-type(n+3)` = every paragraph from the third on: each card is
-   [1] title, [2] description, then one or two keyword rows (bold `##` links
-   first, smaller deeper links second — some cards only have the bold row).
-   Positional rather than `:last-child` so both rows are covered, and so the
-   description at [2] keeps normal readable spacing. */
+   [1] title, [2] description, then one keyword-group paragraph per `##`
+   heading (PROTOTYPE — see index.md's Basics card: each paragraph is a `##`'s
+   own bold link followed by its `###`/`####` children, mixed bold+plain
+   within one paragraph, rather than the old two-row "all bold, then all
+   plain" split — see git history if that split is ever reinstated instead).
+   Positional rather than `:last-child` so every group is covered, and so the
+   description at [2] keeps normal readable spacing.
+   A single line-height here applies to EVERY wrapped line in the paragraph
+   uniformly, including ones with only small `###`/`####` links on them — CSS
+   computes a block's line-box height from a "strut" based on the block's own
+   font-size/line-height on every line it lays out, regardless of what inline
+   content (bold vs. shrunk `code`) actually sits on that particular line.
+   Tried setting line-height directly on the `code` spans instead (hoping for
+   a shorter box on lines with only small text) — confirmed via
+   getClientRects() in the browser that it has zero effect, even at extreme
+   values, so this single shared value is the only lever that actually moves
+   real rendered height. */
 .md-typeset .grid.cards > ul > li > p:nth-of-type(n+3) {
-  line-height: 1.35;
-  margin-bottom: 0.25em;
-}
-
-/* The smaller second keyword row ([4] — deeper `###`/`####` links) can pack
-   tighter still than the bold row above it. Has to be set on the paragraph,
-   not the inline `code`: an inline line-height can't pull the line box below
-   the block's own strut, so styling the code span alone does nothing here. */
-.md-typeset .grid.cards > ul > li > p:nth-of-type(4) {
-  line-height: 1.1;
+  line-height: 1.15;
+  margin-bottom: 0.2em;
 }
 
 .md-typeset .grid.cards > ul > li > hr {
@@ -1074,16 +1098,34 @@ input:checked + .md-consent__settings {
   display: none;
 }
 
-/* Matches .md-typeset h2's own styling exactly (Material's default, since
-   this site doesn't override it) without being a real heading — used on
-   libraries.md's "Built-in libraries" / "Third-party libraries" labels,
-   which would otherwise appear in the sidebar via toc.integrate and
-   duplicate the Built-in/Third-Party nav groups already sitting beside it. */
+/* Bigger, bolder h2 with more breathing room than Material's default
+   (font-weight 300, 1.5625em, 1.6em/0.64em margins) — h2 marks a whole new
+   section on these long single-page docs, so it should read as a clear
+   break rather than a slightly-larger paragraph. .pt-fake-h2 below must be
+   kept in sync with these values. */
+.md-typeset h2 {
+  font-weight: 700;
+  font-size: 1.875em;
+  margin: 2.2em 0 0.8em;
+}
+
+/* h3 (Material default: font-weight 400) bolded to match h2's heavier
+   weight, so the heading hierarchy reads as consistently bold rather than
+   h2 standing out as the only bold level. */
+.md-typeset h3 {
+  font-weight: 700;
+}
+
+/* Matches .md-typeset h2's own styling exactly (see above) without being a
+   real heading — used on libraries.md's "Built-in libraries" /
+   "Third-party libraries" labels, which would otherwise appear in the
+   sidebar via toc.integrate and duplicate the Built-in/Third-Party nav
+   groups already sitting beside it. */
 .pt-fake-h2 {
-  font-weight: 300;
+  font-weight: 700;
   letter-spacing: -0.01em;
-  font-size: 1.5625em;
+  font-size: 1.875em;
   line-height: 1.4;
-  margin: 1.6em 0 0.64em;
+  margin: 2.2em 0 0.8em;
   color: var(--pt-ink);
 }
