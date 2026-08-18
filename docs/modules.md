@@ -12,9 +12,9 @@ A **package** is a folder of related modules grouped together so they can be imp
 
 ```mermaid
 flowchart LR
-    subgraph package["package"]
+    subgraph package["package (folder)"]
         direction LR
-        module1["module"] ~~~ module2["module"] ~~~ module3["module"]
+        module1["module1.py"] ~~~ module2["module2.py"] ~~~ module3["module3.py"]
     end
 
     style module1 stroke:#3f6b52,stroke-width:2px
@@ -56,9 +56,9 @@ print(rnd.randint(1, 10))
 
 ```mermaid
 flowchart LR
-    subgraph package["package"]
+    subgraph package["package (folder)"]
         direction LR
-        module1["module"] ~~~ module2["module"] ~~~ module3["module"]
+        module1["module1.py"] ~~~ module2["module2.py"] ~~~ module3["module3.py"]
     end
 
     style module1 stroke:#3f6b52,stroke-width:2px
@@ -78,7 +78,7 @@ print(randint(1, 10))
 
 ```mermaid
 flowchart LR
-    subgraph module["module"]
+    subgraph module["module.py"]
         direction LR
         function["function"] ~~~ class1["class"] ~~~ variable["variable"]
     end
@@ -101,9 +101,9 @@ print(describe("ball"))
 
 ```mermaid
 flowchart LR
-    subgraph package["package"]
+    subgraph package["package (folder)"]
         direction LR
-        subgraph module["module"]
+        subgraph module["module.py"]
             direction LR
             function["function"] ~~~ class1["class"] ~~~ variable["variable"]
         end
