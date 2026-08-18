@@ -20,7 +20,7 @@ description: >-
 
 ## Print function
 
-### What do you see when a program runs?
+### What do you see when a program runs? { data-card-link="skip" }
 
 When a Python program is running, it won't show you anything on its own — it runs silently.
 
@@ -75,7 +75,7 @@ class p1,p2,p3 plain
 
 Code editors have an **output** window at the bottom that shows the print statements as the program runs.
 
-### Structure of a print() statement
+### Structure of a print() statement { data-card-link="skip" }
 
 `print` is a [function](functions.md) — a named, reusable piece of code that does something when you "call" it by name. These building blocks are all you need to use `print()`:
 
@@ -130,7 +130,7 @@ Most sections on this site end with a collapsed block like the one below — ope
 
 ## Variables
 
-### How do variables work?
+### How do variables work? { data-card-link="skip" }
 
 A variable stores a value under a name so you can refer to that value again later instead of retyping it.
 
@@ -235,7 +235,7 @@ species = "burmese python"    # replaces the old value entirely
     print(a, b)
     ```
 
-### Printing variables
+### Printing variables { data-card-link="skip" }
 
 **To print a single variable:**
 
@@ -272,7 +272,7 @@ Commas are usually the easier choice for a quick print. Pass `sep="..."` to chan
 
 Once you're comfortable with the basics here, the [Collections](collections.md#list-operations) page covers printing the contents of a list or dict.
 
-### Building a string manually
+### Building a string manually { data-card-link="skip" }
 
 Come back to this once you've read the [Types](types.md) page.
 
@@ -302,7 +302,7 @@ For building a full sentence out of text and variables, an [f-string](types.md#f
     print(species, length_ft, sep=", ")
     ```
 
-### Variables and types
+### Variables and types { data-card-link="skip" }
 
 Come back to this once you've read the [Types](types.md) page.
 
@@ -330,7 +330,7 @@ print(first_name)
 
 The text inside the parentheses — `"What's your first name? "` — is the **prompt**: a message shown before the program waits, so the person knows what to type.
 
-### Structure of an input() statement
+### Structure of an input() statement { data-card-link="skip" }
 
 `input` is a **function**, same as `print` — these are the same building blocks, just with a variable assignment at the beginning to save what the user inputs:
 
@@ -385,7 +385,7 @@ last_name = input("Enter your last name: ")     # or can use a :
 
 They generally have an extra space before the last `"` — otherwise when the user starts typing their typing will be right up against the prompt with no gap, so it is harder to read. 
 
-### Saving what the user types
+### Saving what the user types { data-card-link="skip" }
 
 `input()` has to be assigned to a variable, or whatever was typed is thrown away — there's no other way to get back to it once the line finishes running.
 
@@ -397,7 +397,7 @@ name = input("What's your name? ")     # saved to the variable name
 print("Hello,", name)                  # now a usable variable
 ```
 
-### Converting input to a number
+### Converting input to a number { data-card-link="skip" }
 
 Come back to this once you've read the [Types](types.md) page.
 
@@ -415,7 +415,7 @@ print(age + 1)                            # 9 — works fine
 
 ## Comments
 
-### Single-line comments with \#
+### Single-line comments with \# { data-card-link="skip" }
 
 A `#` marks the rest of a line as a comment — so Python ignores it. There are multiple reasons for this: 
 
@@ -475,7 +475,7 @@ A `#` marks the rest of a line as a comment — so Python ignores it. There are 
     - **VS Code** needs an extension for this — [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree) is the most popular one, and adds a sidebar tree view of every tagged comment in your workspace.
     - **Thonny and IDLE** have no built-in equivalent — `TODO` still works as a plain comment, just without the aggregated list.
 
-### Multi-line comments with """
+### Multi-line comments with """ { data-card-link="skip" }
 
 A triple-quoted string on its own line acts like a comment spanning several lines.
 

@@ -20,7 +20,13 @@ hide:
 
     What you need to write and run Python on your own computer.
 
-    [**`installing Python`**](workspace.md#step-0-install-python) · [**`running a file`**](workspace.md#step-2-write-and-run-a-python-file) · [**`.py`**](workspace.md#step-2-write-and-run-a-python-file) · [**`code editors`**](workspace.md#step-1-pick-an-application-to-write-code-in) · [**`using the terminal`**](workspace.md#using-the-terminal-optional)
+    [**`installing Python`**](workspace.md#step-0-install-python)
+
+    [**`writing and running a .py file`**](workspace.md#step-2-write-and-run-a-python-file)
+
+    [**`code editor comparison`**](workspace.md#step-1-pick-an-application-to-write-code-in)
+
+    [**`using the terminal`**](workspace.md#using-the-terminal-optional)
 
 -   :material-cube-outline:{ .lg .middle } [__Foundations__](foundations.md)
 
