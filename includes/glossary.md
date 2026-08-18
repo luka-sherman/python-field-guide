@@ -35,3 +35,9 @@
 *[Unpacking]: Assigning each item in a tuple (or other iterable) to its own variable in one line, one name per item
 *[augmented assignment]: Combines an operation with reassignment in one step — count += 1 is shorthand for count = count + 1
 *[Augmented assignment]: Combines an operation with reassignment in one step — count += 1 is shorthand for count = count + 1
+*[compile]: Translate source code into machine instructions ahead of time, as a separate step before the program runs — Python doesn't need this because it instead reads and runs code directly, line by line
+*[Compile]: Translate source code into machine instructions ahead of time, as a separate step before the program runs — Python doesn't need this because it instead reads and runs code directly, line by line
+*[compiling]: Translating source code into machine instructions ahead of time, as a separate step before the program runs — Python doesn't need this because it instead reads and runs code directly, line by line
+*[Compiling]: Translating source code into machine instructions ahead of time, as a separate step before the program runs — Python doesn't need this because it instead reads and runs code directly, line by line
+*[truthiness]: Whether a value counts as True or False when used somewhere a bool is expected, even if it isn't a bool itself
+*[Truthiness]: Whether a value counts as True or False when used somewhere a bool is expected, even if it isn't a bool itself
