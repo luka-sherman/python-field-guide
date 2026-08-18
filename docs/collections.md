@@ -36,49 +36,85 @@ A **collection** is a single object that groups multiple values (like [basic typ
     
 ## Lists
 
-A list stores multiple items, in order, inside a single variable.
+### Create a list 
 
-```python-ref
-species = ["burmese", "rock", "ball", "blood"]
-```
-
-```mermaid
-block-beta
-  block:diagram
-    columns 5
-    lblValue["Value"] v0["&quot;burmese&quot;"] v1["&quot;rock&quot;"] v2["&quot;ball&quot;"] v3["&quot;blood&quot;"]
-    lblIndex["Index"] i0["0"] i1["1"] i2["2"] i3["3"]
-    lblNeg["Negative index"] n0["-4"] n1["-3"] n2["-2"] n3["-1"]
-  end
-
-  classDef label fill:none,stroke:none,color:#8A8370
-  classDef panel fill:#23221E,stroke:#35342E,stroke-width:1px
-  class i0,i1,i2,i3,n0,n1,n2,n3,lblValue,lblIndex,lblNeg label
-  class diagram panel
-```
-
-The **index** of the first item is 0[^zero-index], next is 1, and so on. 
-
-The **negative index** starts counting down from the end instead, starting at `-1` for the last item, -2 for the second-to-last, and so on. Each item can be referenced by its positive or negative index.
-
-### Access list items
-
-- Index with `list[index]`.
+- A list stores multiple items, in order, inside a single variable. The items can be any type. 
 
     ```python-ref
-    species[0]   # "burmese"
-    species[-1]  # "blood"
+    species = ["burmese", "rock", "ball", "blood"]
     ```
 
-- A **slice** `list[start:end]` returns a new list containing items from `start` index up to (but not including) the `end` index.
+- The **index** is the numbered position of an item. The index of the first item is 0[^zero-index], next is 1, and so on. 
 
-    ```python-ref
-    species[1:3]  # ["rock", "ball"], starts at index 1, stops at (doesn't include) index 3
+    ```mermaid
+    block-beta
+    block:diagram
+        columns 5
+        lblValue["Value"] v0["&quot;burmese&quot;"] v1["&quot;rock&quot;"] v2["&quot;ball&quot;"] v3["&quot;blood&quot;"]
+        lblIndex["Index"] i0["0"] i1["1"] i2["2"] i3["3"]
+        lblNeg["Negative index"] n0["-4"] n1["-3"] n2["-2"] n3["-1"]
+    end
+
+    classDef label fill:none,stroke:none,color:#8A8370
+    classDef panel fill:#23221E,stroke:#35342E,stroke-width:1px
+    class i0,i1,i2,i3,n0,n1,n2,n3,lblValue,lblIndex,lblNeg label
+    class diagram panel
     ```
 
-### Loop through a list
+- The **negative index** tells you how far from the end it is. It starts counting down from the end instead, starting at `-1` for the last item, -2 for the second-to-last, and so on. Each item can be referenced by its positive or negative index.
 
-- The most common way to [loop](loops.md#loop-through-a-collection) is directly over the items. The loop runs once for every item in the list, and on each pass the loop variable, *(i.e. `specie`)* is set to the next item in the list. 
+### Access and update items
+
+- **Index with `list[index]`** to return the item at that index (position number) of the list. 
+
+    To **update** the item at that index, set it equal to something else **`list[index] = new_item`**. 
+
+    *Run the below example, and change the indexes to see how they work:* 
+
+    ```python
+    species = ["burmese", "rock", "ball", "blood"]
+    print(species)
+    print(species[0])      # "burmese"
+    print(species[1])      # "rock"
+    print(species[-1])     # "blood"
+    
+    species[1] = "carpet"  # ["burmese", "carpet", "ball", "blood"]
+    print(species)
+    ```
+
+- **Acccess a range of multiple items at once:** 
+
+    - **Slice with `list[start:end]`** to return a new list containing items from the `start` index up to (but not including) the `end` index.
+
+        ```python-ref
+        species[1:3]  # ["rock", "ball"], starts at index 1, stops at (doesn't include) index 3
+        ```
+
+    - **Step with `list[start:end:step]`** to return a new list that can skip items instead of taking every one — `start`/`end` are optional so if you leave them off the step is applied to the whole list. A step of `-1` walks backward, which is the standard trick for reversing a list. You can also add a start and end range just like a slice. 
+
+        ```python-ref
+        species[::2]   # ["burmese", "ball"]  — every 2nd item
+        species[::-1]  # ["blood", "ball", "rock", "burmese"]  — reversed
+        ```
+
+    ??? tip "Assigning to a range"
+        Setting a slice or step `=` equal to a list will replaces that whole range at once with the new list. 
+
+        A plain **slice** accepts a replacement of *any* length — it doesn't need to match the range being replaced.
+
+        ```python-ref
+        species[1:3] = ["carpet", "rock"]  # ["burmese", "carpet", "rock", "blood"]
+        ```
+
+        A **step**, on the other hand, requires the replacement to supply *exactly* as many items as the step selected, or Python raises a `ValueError`.
+
+        ```python
+        species[::2] = ["carpet", "anaconda"]  # ["carpet", "rock", "anaconda", "blood"]
+        ```
+
+### [Loop](loops.md#loop-through-a-collection) through a list
+
+- Lists make it simple to loop directly over the items. The loop runs once for every item in the list, and on each pass the new loop variable, *(i.e. `specie`)* is set to the next item in the list. 
 
     ```python
     for specie in species: 
@@ -92,7 +128,7 @@ The **negative index** starts counting down from the end instead, starting at `-
         print(index, specie)  # 0 "burmese", then 1 "rock", then 2 "ball", then 3 "blood"
     ```
 
-### List boolean expressions
+### Boolean expressions
 
 - **`in`** checks whether a value exists in the list.
 
@@ -100,7 +136,39 @@ The **negative index** starts counting down from the end instead, starting at `-
     "burmese" in species  # True
     ```
 
-- **boolean expression:**
+- **`not in`** checks whether a value is missing from the list.
+
+    ```python-ref
+    "anaconda" not in species  # True
+    ```
+
+- **`==`, `!=`** checks whether a specific item is equal or not equal to something. 
+
+    ```python-ref
+    species[0] == "burmese"  # True
+    species[0] != "blood"    # True
+    ```
+
+    When comparing whole lists, it will say if the two lists have the same contents, in the same order.
+
+    ```python-ref
+    other_species = ["burmese", "rock", "ball", "blood"]
+
+    species == other_species        # True
+    species != ["ball", "burmese"]  # True
+    ```
+
+- **`is`** checks whether two variables point to the exact same list object, not just an equal one.
+
+    ```python-ref
+    same_species = species        # another name for the same list
+    copy_of_species = species[:]  # a separate list, equal contents
+
+    species is same_species       # True, same list
+    species is copy_of_species    # False, different list with equal contents
+    ```
+
+- **truthiness (boolean value of the whole list)**
 
     - Truthy: a list with contents 
     
@@ -154,20 +222,6 @@ The **negative index** starts counting down from the end instead, starting at `-
 
     ```python-ref
     species.extend(["carpet", "central african rock"])  # ["burmese", "rock", "ball", "blood", "carpet", "central african rock"]
-    ```
-
-#### Change item
-
-- **`list[index] = value`** changes the item at that index.
-
-    ```python-ref
-    species[1] = "carpet"  # ["burmese", "carpet", "ball", "blood"]
-    ```
-
-- **`list[start:end] = value`** changes a whole range at once — the replacement doesn't need to be the same length.
-
-    ```python-ref
-    species[1:3] = ["carpet"]  # ["burmese", "carpet", "blood"]
     ```
 
 #### Remove item
@@ -356,41 +410,43 @@ The **negative index** starts counting down from the end instead, starting at `-
 
 ## Dictionaries
 
-A dictionary stores data as **key-value pair**, inside a single variable. There's no order/position to the keys. 
+### Create a dictionary
 
-```python-ref
-snake = {
-    "species": "ball", 
-    "length_ft": 5, 
-    "venomous": False
-    }
-```
+- A dictionary stores data as **key-value pair**, inside a single variable. There's no order/position to the keys. 
 
-```mermaid
-%%{init: {"flowchart": {"nodeSpacing": 15}}}%%
-flowchart LR
-    subgraph snake["snake"]
-        direction LR
-        lblKey["`*Key*`"] ~~~ lblVal["`*Value*`"]
-        key1["species"] --> val1["'ball'"]
-        key2["length_ft"] --> val2["5"]
-        key3["venomous"] --> val3["False"]
-    end
+    ```python-ref
+    snake = {
+        "species": "ball", 
+        "length_ft": 5, 
+        "venomous": False
+        }
+    ```
 
-    style key1 stroke:#3f6b52,stroke-width:2px
-    style key2 stroke:#3f6b52,stroke-width:2px
-    style key3 stroke:#3f6b52,stroke-width:2px
-    style lblKey fill:none,stroke:none,color:#8A8370
-    style lblVal fill:none,stroke:none,color:#8A8370
-```
+    ```mermaid
+    %%{init: {"flowchart": {"nodeSpacing": 15}}}%%
+    flowchart LR
+        subgraph snake["snake"]
+            direction LR
+            lblKey["`*Key*`"] ~~~ lblVal["`*Value*`"]
+            key1["species"] --> val1["'ball'"]
+            key2["length_ft"] --> val2["5"]
+            key3["venomous"] --> val3["False"]
+        end
 
-- Each **key** points to exactly one value. 
+        style key1 stroke:#3f6b52,stroke-width:2px
+        style key2 stroke:#3f6b52,stroke-width:2px
+        style key3 stroke:#3f6b52,stroke-width:2px
+        style lblKey fill:none,stroke:none,color:#8A8370
+        style lblVal fill:none,stroke:none,color:#8A8370
+    ```
 
-    - **A key's type** can be a string, int, float, or tuple
+    - Each **key** points to exactly one value. 
 
-    - **No duplicate keys** — assigning a value to an existing key overwrites its value.
+        - **A key's type** can be a string, int, float, or tuple
 
-- A **value** can be any type.
+        - **No duplicate keys** — assigning a value to an existing key overwrites its value.
+
+    - A **value** can be any type.
 
 ### Access a value
 
@@ -436,6 +492,30 @@ flowchart LR
 
     ```python-ref
     "species" in snake  # True
+    ```
+
+- **`not in`** checks whether a key is missing. Or compare a specific value directly, like `snake["length_ft"] > 2`.
+
+    ```python-ref
+    "habitat" not in snake  # True
+    ```
+
+- **`==`** checks whether two dictionaries have the same keys and values, even if they're different objects. **`!=`** checks whether they differ.
+
+    ```python-ref
+    other_snake = {"species": "ball", "length_ft": 5, "venomous": False}
+
+    snake == other_snake  # True
+    ```
+
+- **`is`** checks whether two variables point to the exact same dictionary object, not just an equal one — use `==` to compare contents.
+
+    ```python-ref
+    same_snake = snake        # another name for the same dictionary
+    copy_of_snake = snake.copy()  # a separate dictionary, equal contents
+
+    snake is same_snake       # True, same dictionary
+    snake is copy_of_snake    # False, different dictionary with equal contents
     ```
 
 - **boolean expression:**
@@ -676,6 +756,30 @@ The **negative index** starts counting down from the end instead, starting at `-
     "rock" in species  # True
     ```
 
+- **`not in`** checks whether a value is missing from the tuple.
+
+    ```python-ref
+    "carpet" not in species  # True
+    ```
+
+- **`==`** checks whether two tuples have the same contents, in the same order. **`!=`** checks whether they differ. Or compare a specific item directly, like `species[0] == "burmese"`.
+
+    ```python-ref
+    other_species = ("burmese", "rock", "ball", "blood")
+
+    species == other_species  # True
+    species != ("burmese",)   # True
+    ```
+
+- **`is`** checks whether two variables point to the exact same tuple object, not just an equal one — use `==` to compare contents.
+
+    ```python-ref
+    same_species = species  # another name for the same tuple
+
+    species is same_species          # True, same tuple
+    species is ("burmese", "rock", "ball", "blood")  # False, different tuple with equal contents
+    ```
+
 - **boolean expression:**
 
     - Truthy: a tuple with contents
@@ -868,6 +972,32 @@ for specie in species:
     "burmese" in species  # True
     ```
 
+- **`not in`** checks whether a value is missing from the set.
+
+    ```python-ref
+    "cobra" not in species  # True
+    ```
+
+- **`==`** checks whether two sets have the same contents, regardless of order. **`!=`** checks whether they differ.
+
+    ```python-ref
+    other_species = {"burmese", "rock", "ball", "blood"}
+
+    species == other_species  # True
+    ```
+
+- **`is`** checks whether two variables point to the exact same set object, not just an equal one — use `==` to compare contents.
+
+    ```python-ref
+    same_species = species        # another name for the same set
+    copy_of_species = species.copy()  # a separate set, equal contents
+
+    species is same_species       # True, same set
+    species is copy_of_species    # False, different set with equal contents
+    ```
+
+- **`issubset()`, `issuperset()`, `isdisjoint()`** compare two sets and hand back a `bool` too — see [Set operations: Compare](#compare) for the full rundown.
+
 - **boolean expression:**
 
     - Truthy: a set with contents
@@ -882,7 +1012,7 @@ for specie in species:
         species.pop()
     ```
 
-### Set operations
+### Set operations { data-card-link="skip" }
 
 #### Inspect
 
