@@ -188,11 +188,23 @@ Sprinkle `print()` calls between the lines you suspect, showing a variable's val
 
 Comment out or delete code until the smallest version that still shows the bug is left, then add pieces back one at a time until it reappears — whatever you just added back is the culprit. Especially useful in a long script, where the traceback's line number is buried inside a function calling a function calling a function — cutting the problem down to a few lines removes everything that isn't actually relevant.
 
+### Flag it with TODO/FIXME
+
+```python-ref
+# TODO: handle the case where length_ft is negative
+length_ft = 4.5
+```
+
+Not every problem gets fixed the moment you spot it — sometimes you're mid-debugging something else and don't want to lose track of it. Marking a comment `TODO` flags a placeholder for "come back to this," not a fix in itself. `FIXME` is the same idea for something you know is actively broken rather than just unfinished.
+
+Some editors collect every `TODO`/`FIXME` in a project into one scannable list — PyCharm has a built-in TODO tool window (**View → Tool Windows → TODO**, or ++alt+6++), VS Code needs an extension like [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree), and Thonny/IDLE have no built-in equivalent (it still works as a plain comment, just without the aggregated list).
+
 ??? run "Run a debugging strategies example"
     The `lengths` bug from above, worked through with the techniques above:
 
     ```python
     lengths = {"ball python": 4.5, "burmese python": 12, "boa": 8}
+    # TODO: also count venomous snakes separately
 
     long_snakes = 0
     for length in lengths.values():   # fixed after reading the buggy version aloud — .values(), not the dict itself
