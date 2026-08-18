@@ -1,0 +1,39 @@
+# Python Field Guide
+
+> A free Python reference with runnable, in-browser code examples covering data types, collections, control flow, functions, classes, error handling, file I/O, style, and popular libraries. Built for beginners — every example uses the same recurring cast of snake species instead of generic placeholder values.
+
+Code blocks throughout the site run live in the browser via Pyodide, so examples can be edited and executed in place, not just read.
+
+## Core topics
+
+- [Workspace](https://pythonfieldguide.com/workspace/): How to install Python, pick a code editor, and run your first .py file.
+- [Foundations](https://pythonfieldguide.com/foundations/): Variables, print(), input(), and comments.
+- [Types](https://pythonfieldguide.com/types/): Integers, floats, strings, booleans, and None, plus the operations each one supports.
+- [Collections](https://pythonfieldguide.com/collections/): Lists, dictionaries, tuples, and sets, plus looping, filtering, and combining them.
+- [Conditionals](https://pythonfieldguide.com/conditionals/): if/elif/else, match/case, and boolean logic.
+- [Loops](https://pythonfieldguide.com/loops/): for and while loops, break/continue, range(), enumerate().
+- [Functions](https://pythonfieldguide.com/functions/): Defining, calling, arguments, *args/**kwargs, scope, and recursion.
+- [Classes](https://pythonfieldguide.com/oop/): Attributes, methods, and inheritance.
+- [Modules](https://pythonfieldguide.com/modules/): Writing and importing your own modules.
+- [Files](https://pythonfieldguide.com/files/): Opening, closing, reading, and writing files.
+- [Style](https://pythonfieldguide.com/style/): Naming, formatting, docstrings, linters, and common beginner mistakes.
+- [Errors](https://pythonfieldguide.com/errors/): Reading tracebacks, try/except, and debugging.
+
+## Libraries
+
+- [Libraries overview](https://pythonfieldguide.com/libraries/): Built-in and third-party libraries covered on this site.
+- [csv](https://pythonfieldguide.com/libraries/csv/): csv.writer, csv.reader, and DictReader.
+- [datetime](https://pythonfieldguide.com/libraries/datetime/): Creating dates, date arithmetic, and formatting.
+- [json](https://pythonfieldguide.com/libraries/json/): json.load, json.dump, and nested data.
+- [random](https://pythonfieldguide.com/libraries/random/): Random numbers and random selections.
+- [Tkinter](https://pythonfieldguide.com/libraries/tkinter/): Widgets, layout managers, event handling, and ttk styling.
+- [matplotlib](https://pythonfieldguide.com/libraries/matplotlib/): Line plots, bar charts, scatter plots, subplots, and saving figures.
+- [NumPy](https://pythonfieldguide.com/libraries/numpy/): Arrays, vectorized math, aggregation, and boolean-mask filtering.
+- [OpenCV](https://pythonfieldguide.com/libraries/opencv/): Reading images, color spaces, edge detection, contours, face detection.
+- [pandas](https://pythonfieldguide.com/libraries/pandas/): Building a DataFrame, sorting rows, and summarizing columns.
+- [Pillow](https://pythonfieldguide.com/libraries/pillow/): Resizing, cropping, drawing, filters, and format conversion.
+- [requests](https://pythonfieldguide.com/libraries/requests/): Fetching data, checking status codes, parsing JSON, and handling errors.
+
+## Optional
+
+- [About](https://pythonfieldguide.com/about/): Who built this site and why.

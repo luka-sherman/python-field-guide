@@ -1,0 +1,3232 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Python's basic data types explained with runnable examples: integers, floats, strings, booleans, and None, plus the operations each one supports.">
+      
+      
+      
+        <link rel="canonical" href="https://pythonfieldguide.com/types/">
+      
+      
+        <link rel="prev" href="../foundations/">
+      
+      
+        <link rel="next" href="../collections/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Types - Python Field Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-E5B3P6NCP0"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-E5B3P6NCP0",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-E5B3P6NCP0",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#basic-data-types" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python Field Guide" class="md-header__button md-logo" aria-label="Python Field Guide" data-md-component="logo">
+      
+  <img src="../img/favicon-large.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python Field Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Types
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  All
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../workspace/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Workspace
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../foundations/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Foundations
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Types
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../collections/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Collections
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../conditionals/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Conditionals
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../loops/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Loops
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../functions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Functions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../oop/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Classes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../modules/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Modules
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../files/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Files
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../style/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Style
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../errors/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Errors
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../libraries/" class="md-tabs__link">
+          
+  
+  
+  Libraries
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python Field Guide" class="md-nav__button md-logo" aria-label="Python Field Guide" data-md-component="logo">
+      
+  <img src="../img/favicon-large.png" alt="logo">
+
+    </a>
+    Python Field Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#integers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integer-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integer operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integer operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arithmetic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arithmetic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floor-division-modulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Floor division &amp; modulo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apply-arithmetic-to-a-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apply arithmetic to a variable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#absolute-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Absolute value
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convert
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolean expressions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#floats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Floats
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Floats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#float-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Float operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Float operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arithmetic_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arithmetic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floor-division-modulo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Floor division &amp; modulo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apply-arithmetic-to-a-variable_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apply arithmetic to a variable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adjust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adjust
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convert
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean-expressions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolean expressions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Strings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="String operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-characters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access characters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        f-strings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modify
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convert
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean-expressions_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolean expressions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#booleans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Booleans
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Booleans">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boolean-expressions_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolean expressions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical operators
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        None
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="None">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-for-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check for None
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean-expressions_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolean expressions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../collections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conditionals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Style
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Libraries
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Libraries
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_14_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_14_2" id="__nav_14_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Built-in
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_14_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Built-in
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    csv
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/datetime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    datetime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/json/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    json
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/random/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    random
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/tkinter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tkinter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_14_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_14_3" id="__nav_14_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Third-Party
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_14_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Third-Party
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/matplotlib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    matplotlib
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/numpy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NumPy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/opencv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/pillow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pillow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libraries/requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="basic-data-types"><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 13.5v8H3v-8zm-2 2H5v4h4zM12 2l5.5 9h-11zm0 3.86L10.08 9h3.84zM17.5 13c2.5 0 4.5 2 4.5 4.5S20 22 17.5 22 13 20 13 17.5s2-4.5 4.5-4.5m0 2a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5"/></svg></span> Basic data types</h1>
+<p>Every value in Python has a <strong>type</strong>, which determines what operations it supports and how it behaves. </p>
+<p>A basic ("scalar") data type holds a single value, as opposed to a <a href="../collections/">collection</a> data type, which groups multiple values together.</p>
+<div class="pt-jump-table">
+<table>
+<thead>
+<tr>
+<th>Basic Type</th>
+<th>Example</th>
+<th>Use it for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#integers"><strong><code>integer "int"</code></strong></a></td>
+<td><pre><code class="language-python-ref">5</code></pre></td>
+<td><ul><li>Counts — how many of something there are, like items in a list</li><li>Indexes — the position of an item in a sequence, like <code>species[2]</code></li><li>IDs — a unique whole-number identifier, like a user or record ID</li></ul></td>
+</tr>
+<tr>
+<td><a href="#floats"><strong><code>float</code></strong></a></td>
+<td><pre><code class="language-python-ref">4.5</code></pre></td>
+<td><ul><li>Measurements, ratios — anything with a decimal</li></ul></td>
+</tr>
+<tr>
+<td><a href="#strings"><strong><code>string "str"</code></strong></a></td>
+<td><pre><code class="language-python-ref">"ball python"</code></pre></td>
+<td><ul><li>Text — names, labels, messages</li><li>Ordered and indexable like a list, but <abbr title="Cannot be changed after creation — any &quot;change&quot; actually builds a brand new value">immutable</abbr> — <code>.upper()</code>, <code>.replace()</code>, etc. return a <em>new</em> string</li></ul></td>
+</tr>
+<tr>
+<td><a href="#booleans"><strong><code>boolean "bool"</code></strong></a></td>
+<td><pre><code class="language-python-ref"><code>True</code></code></pre></td>
+<td><ul><li>Flags, yes/no switches, comparison results (<code>length &gt; 3</code>)</li><li>Secretly a <abbr title="A class that inherits from another class, reusing (and optionally overriding) its attributes and methods">subclass</abbr> of <code>int</code> — <code>True + True == 2</code></li></ul></td>
+</tr>
+<tr>
+<td><a href="#none"><strong><code>None</code></strong></a></td>
+<td><pre><code class="language-python-ref">None</code></pre></td>
+<td><ul><li>Marking "no value yet" — a default placeholder, or what a function returns if it falls through without a <code>return</code></li><li>Compare with <code>is None</code>, not <code>== None</code></li><li><code>not thing</code> also catches <code>None</code>, but it's true for any <abbr title="Counts as False when used somewhere a bool is expected, even though the value itself isn't actually False — every value is either truthy or falsy">falsy</abbr> value (<code>0</code>, <code>""</code>, <code>[]</code>) too — use <code>is None</code> when you mean <em>specifically</em> "no value"</li></ul></td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="tip">
+<summary>Check what type a variable is</summary>
+<p><code>type()</code> shows the data type</p>
+<p><code>isinstance()</code> checks whether a value is that type.</p>
+<pre class="highlight"><code class="language-python-ref">weight = 5
+
+type(weight)        # &lt;class 'int'&gt;
+
+isinstance(5, int)  # True
+isinstance(5, str)  # False</code></pre>
+</details>
+<h2 id="integers">Integers</h2>
+<p>An integer a.k.a. "<code>int</code>" is a whole number — positive, negative, or zero — with no decimal point.</p>
+<pre class="highlight"><code class="language-python-ref">length = 5</code></pre>
+<h3 data-card-link="skip" id="integer-operations">Integer operations</h3>
+<h4 id="arithmetic">Arithmetic</h4>
+<p>If both sides are <code>int</code> the result will be <code>int</code>, except for division.</p>
+<ul>
+<li>
+<p><strong><code>+</code> addition</strong>, <strong><code>-</code> subtraction</strong></p>
+<pre class="highlight"><code class="language-python-ref">length + 3   # 8
+length - 2   # 3</code></pre>
+</li>
+<li>
+<p><strong><code>*</code> multiplication</strong>, <strong><code>/</code> division</strong> (division always returns a <a href="#floats"><code>float decimal</code></a>, even when the numbers divide evenly)</p>
+<pre class="highlight"><code class="language-python-ref">length * 2   # 10
+length / 2   # 2.5  (division always returns a float)</code></pre>
+</li>
+<li>
+<p><strong><code>**</code> exponent</strong> a<sup>b</sup> = <code>a**b</code></p>
+<pre class="highlight"><code class="language-python-ref">length ** 2  # 25   (length squared)</code></pre>
+</li>
+</ul>
+<h4 id="floor-division-modulo">Floor division &amp; modulo</h4>
+<ul>
+<li>
+<p><strong><code>//</code> floor division</strong> divides two numbers and keeps only the whole-number part, dropping anything after the decimal — like asking "how many whole groups of 2 fit into 7?" </p>
+<pre class="highlight"><code class="language-python-ref">7 // 2  # 3 (7 split into groups of 2 makes 3 full groups)</code></pre>
+</li>
+<li>
+<p><strong><code>%</code> modulo</strong> returns the remainder after that floor division — the part <code>//</code> throws away. <code>//</code> and <code>%</code> are a pair: one tells you how many whole groups fit, the other tells you what's left afterward.</p>
+<pre class="highlight"><code class="language-python-ref">7 % 2  # 1 (7 split into groups of 2 leaves 1 behind)</code></pre>
+</li>
+<li>
+<p><strong><code>divmod()</code></strong> does both at once, returning <code>(quotient, remainder)</code> as a tuple — the same two values <code>//</code> and <code>%</code> give you separately, in one call.</p>
+<pre class="highlight"><code class="language-python-ref">divmod(7, 2) # (3, 1) — same as (7 // 2, 7 % 2)</code></pre>
+</li>
+</ul>
+<h4 id="apply-arithmetic-to-a-variable">Apply arithmetic to a variable</h4>
+<ul>
+<li>
+<p><strong>Combine</strong> any of these arithmetic operations with <code>=</code> for an <abbr title="Combines an operation with reassignment in one step — count += 1 is shorthand for count = count + 1">augmented assignment</abbr> — it does that calculation on the variable, and updates the value of the variable, doing two things with one operation. Examples:  <strong><code>+=</code>  <code>-=</code>  <code>*=</code>  <code>/=</code>  <code>//=</code>  <code>%=</code>  <code>**=</code></strong>.</p>
+<pre class="highlight"><code class="language-python-ref">length = length + 1  # this way works, it's just longer
+
+length += 1          # same thing, written more concisely </code></pre>
+</li>
+</ul>
+<h4 id="absolute-value">Absolute value</h4>
+<ul>
+<li>
+<p><strong><code>abs()</code></strong> returns a number with its sign dropped — negative becomes positive, positive stays unchanged.</p>
+<pre class="highlight"><code class="language-python-ref">abs(-5)    # 5
+abs(5)     # 5
+abs(-4.5)  # 4.5</code></pre>
+</li>
+</ul>
+<h4 id="convert">Convert</h4>
+<ul>
+<li>
+<p><strong><code>int()</code></strong> converts a string of digits, or truncates a float toward zero. It cuts off the decimal — it does not round.</p>
+<pre class="highlight"><code class="language-python-ref">int("5")   # 5
+int(5.9)   # 5   (cuts off decimal, doesn't round)
+int(True)  # 1</code></pre>
+</li>
+</ul>
+<h3 id="boolean-expressions">Boolean expressions</h3>
+<ul>
+<li>
+<p><strong><code>==</code> <code>!=</code> <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code></strong> compare two numbers — see <a href="#booleans">comparisons by type</a> for the full rundown.</p>
+<pre class="highlight"><code class="language-python-ref">length == 5   # True, equal to
+length != 4   # True, not equal to
+length &gt; 3    # True, greater than
+length &lt; 10   # True, less than
+length &gt;= 5   # True, greater than or equal to
+length &lt;= 5   # True, less than or equal to</code></pre>
+</li>
+<li>
+<p><strong><abbr title="Counts as True when used somewhere a bool is expected, even though the value itself isn't actually True — every value is either truthy or falsy">Truthy</abbr>:</strong> any nonzero integer</p>
+</li>
+<li>
+<p><strong><abbr title="Counts as False when used somewhere a bool is expected, even though the value itself isn't actually False — every value is either truthy or falsy">Falsy</abbr>:</strong> <code>0</code></p>
+</li>
+</ul>
+<pre class="highlight"><code class="language-python-ref">if length:                 # runs — length isn't 0
+    print("has a length")
+
+while length:              # loops until length reaches 0
+    length -= 1</code></pre>
+<details class="run">
+<summary>Practice with integers</summary>
+<pre class="highlight"><code class="language-python">length = 5
+
+print(length + 3)
+print(length - 2)
+print(length * 2)
+print(length / 2)
+print(length // 2)
+print(length % 2)
+print(divmod(length, 2))
+print(length ** 2)
+
+length += 1
+print(length)
+
+print(abs(-5))
+print(abs(5))
+
+print(int("5"))
+print(int(5.9))
+print(int(True))
+
+length = 5
+if length:
+    print("has a length")
+
+while length:
+    length -= 1
+print(length)</code></pre>
+</details>
+<h2 id="floats">Floats</h2>
+<p>A float is a number with a decimal point — for anything that isn't a whole number.</p>
+<pre class="highlight"><code class="language-python-ref">weight = 4.5</code></pre>
+<h3 data-card-link="skip" id="float-operations">Float operations</h3>
+<h4 id="arithmetic_1">Arithmetic</h4>
+<p>If either side of arithmetic is <code>float</code> the result will be <code>float</code>, except for division.</p>
+<ul>
+<li>
+<p><strong><code>+</code> addition</strong>, <strong><code>-</code> subtraction</strong></p>
+<pre class="highlight"><code class="language-python-ref">weight + 3   # 7.5
+weight - 2   # 2.5</code></pre>
+</li>
+<li>
+<p><strong><code>*</code> multiplication</strong>, <strong><code>/</code> division</strong></p>
+<pre class="highlight"><code class="language-python-ref">weight * 2   # 9.0
+weight / 2   # 2.25</code></pre>
+</li>
+<li>
+<p><strong><code>**</code> exponent</strong> a<sup>b</sup> = <code>a**b</code></p>
+<pre class="highlight"><code class="language-python-ref">weight ** 2  # 20.25   (weight squared)</code></pre>
+</li>
+</ul>
+<h4 id="floor-division-modulo_1">Floor division &amp; modulo</h4>
+<ul>
+<li>
+<p><strong>floor division <code>//</code></strong> divides two numbers and keeps only the whole-number part, dropping anything after the decimal — like asking "how many whole groups of 2 fit into 7?" </p>
+<pre class="highlight"><code class="language-python-ref">7.0 // 2  # 3.0 (7.0 split into groups of 2 makes 3 full groups)</code></pre>
+</li>
+<li>
+<p><strong>modulo <code>%</code></strong> returns the remainder after that floor division — the part <code>//</code> throws away. <code>//</code> and <code>%</code> are a pair: one tells you how many whole groups fit, the other tells you what's left afterward.</p>
+<pre class="highlight"><code class="language-python-ref">7.0 % 2  # 1.0 (7.0 split into groups of 2 leaves 1 behind)</code></pre>
+</li>
+<li>
+<p><strong><code>divmod()</code></strong> does both at once, returning <code>(quotient, remainder)</code> as a tuple — the same two values <code>//</code> and <code>%</code> give you separately, in one call.</p>
+<pre class="highlight"><code class="language-python-ref">divmod(7.0, 2.0)  # (3.0, 1.0) — same as (7.0 // 2.0, 7.0 % 2.0)</code></pre>
+</li>
+</ul>
+<h4 id="apply-arithmetic-to-a-variable_1">Apply arithmetic to a variable</h4>
+<ul>
+<li>
+<p><strong>Combine</strong> any of these arithmetic operations with <code>=</code> for an <abbr title="Combines an operation with reassignment in one step — count += 1 is shorthand for count = count + 1">augmented assignment</abbr> — it does that calculation on the variable, and updates the value of the variable, doing two things with one operation. Examples:  <strong><code>+=</code>  <code>-=</code>  <code>*=</code>  <code>/=</code>  <code>//=</code>  <code>%=</code>  <code>**=</code></strong>.</p>
+<pre class="highlight"><code class="language-python-ref">length = length + 1  # this way works, it's just longer
+
+length += 1          # same thing, written more concisely </code></pre>
+</li>
+</ul>
+<h4 id="adjust">Adjust</h4>
+<ul>
+<li>
+<p><strong><code>abs()</code></strong> works the same way it does on an <code>int</code> — drops the sign, negative becomes positive.</p>
+<pre class="highlight"><code class="language-python-ref">abs(-4.5)  # 4.5</code></pre>
+</li>
+<li>
+<p><strong><code>round()</code></strong> rounds to the nearest whole number, or to a given number of decimal places. With no second argument it rounds to the nearest whole number — but Python uses "round half to even" (banker's rounding), so <code>round(4.5)</code> is <code>4</code>, not <code>5</code>. Pass a second argument to round to that many decimal places instead.</p>
+<pre class="highlight"><code class="language-python-ref">round(weight)    # 4  (Python rounds .5 to the nearest *even* number)
+round(4.567, 2)  # 4.57</code></pre>
+</li>
+</ul>
+<h4 id="convert_1">Convert</h4>
+<ul>
+<li>
+<p><strong><code>float()</code></strong> converts an integer or a numeric string into a float.</p>
+<pre class="highlight"><code class="language-python-ref">float(5)      # 5.0
+float("4.5")  # 4.5</code></pre>
+</li>
+</ul>
+<h3 id="boolean-expressions_1">Boolean expressions</h3>
+<ul>
+<li>
+<p><strong><code>==</code> <code>!=</code> <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code></strong> compare two numbers — see <a href="#booleans">comparisons by type</a> for the full rundown.</p>
+<pre class="highlight"><code class="language-python-ref">weight == 4.5   # True, equal to
+weight != 5.0   # True, not equal to
+weight &gt; 3.0    # True, greater than
+weight &lt; 10.0   # True, less than
+weight &gt;= 4.5   # True, greater than or equal to
+weight &lt;= 4.5   # True, less than or equal to</code></pre>
+</li>
+<li>
+<p><strong><abbr title="Counts as True when used somewhere a bool is expected, even though the value itself isn't actually True — every value is either truthy or falsy">Truthy</abbr>:</strong> any nonzero float</p>
+</li>
+<li>
+<p><strong><abbr title="Counts as False when used somewhere a bool is expected, even though the value itself isn't actually False — every value is either truthy or falsy">Falsy</abbr>:</strong> <code>0.0</code></p>
+</li>
+</ul>
+<pre class="highlight"><code class="language-python-ref">if weight:                 # runs — weight isn't 0.0
+    print("has a weight")</code></pre>
+<details class="warning">
+<summary>Floating-point precision</summary>
+<p>Tiny rounding errors creep in, since most decimal fractions can't be stored exactly in binary.</p>
+<pre class="highlight"><code class="language-python-ref">0.1 + 0.2  # 0.30000000000000004</code></pre>
+<p>This is a property of floating-point math in virtually every programming language, not a Python bug. If you need exact decimal arithmetic, use the <code>decimal</code> library instead of <code>float</code>.</p>
+</details>
+<details class="run">
+<summary>Practice with floats</summary>
+<pre class="highlight"><code class="language-python">weight = 4.5
+
+print(weight + 1.5)
+print(weight / 2)
+print(10 / 2)
+
+weight += 1.5
+print(weight)
+weight = 4.5
+
+print(weight // 2)
+print(weight % 2)
+
+print(round(weight))
+print(round(4.567, 2))
+
+print(float(5))
+print(float("4.5"))
+
+if weight:
+    print("has a weight")
+
+print(0.1 + 0.2)
+print(round(0.1 + 0.2, 2))</code></pre>
+</details>
+<h2 id="strings">Strings</h2>
+<p>A string stores text — a sequence of characters — inside a single variable.<sup id="fnref:str-collection"><a class="footnote-ref" href="#fn:str-collection">1</a></sup></p>
+<p>Strings have three defining traits:</p>
+<ul>
+<li><strong>Ordered</strong> — characters keep the position they're written in.</li>
+<li><strong><abbr title="Cannot be changed after creation — any &quot;change&quot; actually builds a brand new value">Immutable</abbr></strong> — unlike a list, a string can't be changed in place; every "modification" actually builds a new string.</li>
+<li><strong>Indexable</strong> — since a string is a sequence, it supports the same <code>[]</code> indexing and slicing as a list.</li>
+</ul>
+<pre class="highlight"><code class="language-python-ref">name = "burmese python"</code></pre>
+<h3 data-card-link="skip" id="string-operations">String operations</h3>
+<h4 id="access-characters">Access characters</h4>
+<p>Strings use the same index and slice syntax as lists. <code>0</code> is the first character, negative indexes count from the end, and <code>start:end</code> slices out a substring.</p>
+<ul>
+<li>
+<p>Index with <code>name[index]</code>.</p>
+<pre class="highlight"><code class="language-python-ref">name[0]   # "b"
+name[-1]  # "n"</code></pre>
+</li>
+<li>
+<p>A <strong>slice</strong> <code>name[start:end]</code> returns a substring from <code>start</code> up to (but not including) <code>end</code>.</p>
+<pre class="highlight"><code class="language-python-ref">name[0:7]  # "burmese"</code></pre>
+</li>
+<li>
+<p>A <strong>step</strong> <code>name[start:end:step]</code> skips characters instead of taking every one — leave <code>start</code>/<code>end</code> off to apply it to the whole string. A step of <code>-1</code> walks backward, which is the standard trick for reversing a string.</p>
+<pre class="highlight"><code class="language-python-ref">name[::2]   # "breepto"  — every 2nd character
+name[::-1]  # "nohtyp esemrub"  — reversed</code></pre>
+</li>
+</ul>
+<h4 id="inspect">Inspect</h4>
+<ul>
+<li>
+<p><strong><code>len()</code></strong> returns how many characters are in a string.</p>
+<pre class="highlight"><code class="language-python-ref">len(name)  # 15</code></pre>
+</li>
+</ul>
+<h4 id="combine">Combine</h4>
+<ul>
+<li>
+<p><strong><code>+</code> joins</strong> strings end to end, building a real string you can store — but every piece must already be text, so joining a string with a number raises a <code>TypeError</code> unless you convert the number with <code>str()</code> first.</p>
+<pre class="highlight"><code class="language-python-ref">"ball" + " " + "python"  # "ball python"</code></pre>
+<ul>
+<li>
+<p><strong>combine +=</strong> for an <abbr title="Combines an operation with reassignment in one step — count += 1 is shorthand for count = count + 1">augmented assignment</abbr> — join something to a string then update the variable with the new value, doing two things with one operation.</p>
+<pre class="highlight"><code class="language-python-ref">name = name + "python"  # long way
+name += "python"        # short way</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>*</code> repeats</strong> a string a given number of times.</p>
+<pre class="highlight"><code class="language-python-ref">"ball" * 3  # "ballballball"</code></pre>
+<ul>
+<li>
+<p><strong>combine *=</strong> for an <abbr title="Combines an operation with reassignment in one step — count += 1 is shorthand for count = count + 1">augmented assignment</abbr> — repeat the string a given number of times then update the variable with the value, doing two things with one operation.</p>
+<pre class="highlight"><code class="language-python-ref">name = name * 3  # long way
+name *= 3        # short way</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>.join()</code></strong> glues a list of strings back together, using the string it's called on as the separator between each item.</p>
+<pre class="highlight"><code class="language-python-ref">"-".join(["burmese", "python"])  # "burmese-python"</code></pre>
+</li>
+</ul>
+<h4 id="f-strings">f-strings</h4>
+<ul>
+<li>
+<p>An <strong>f-string</strong> lets you embed variables directly inside <code>{}</code> and is a good choice once a string has multiple variables in it. Put a variable's name inside the <code>{}</code> and the variable's value will be inserted inside. </p>
+<pre class="highlight"><code class="language-python-ref">species = "ball"
+length = 5
+
+print(f"{species} is {length} feet")  # "ball is 5 feet"</code></pre>
+</li>
+<li>
+<p><strong><code>.format()</code></strong> is the older way to build a string with embedded values — <code>{}</code> placeholders in the string are filled in with the arguments passed to <code>.format()</code>, in order, instead of reading variable names directly.</p>
+<pre class="highlight"><code class="language-python-ref">"{} {}".format(species, length)  # "ball 5"</code></pre>
+</li>
+<li>
+<p>A <strong>format spec</strong> is an optional add-on <em>inside</em> one <code>{}</code> placeholder — it goes after the <code>value:</code> and controls how that value is displayed. It's built from <strong>one or more optional</strong> pieces, stacked together in this order: </p>
+<p><code>{ value : [align] [sign] [width] [thousand separator ,] [.precision] [type] }</code></p>
+<ul>
+<li>
+<p><strong>align</strong> — <code>&lt;</code> left, <code>&gt;</code> right, or <code>^</code> center, aligns <em>within</em> the width, so it requires a specificed width too.</p>
+<pre class="highlight"><code class="language-python-ref">f"{length:&lt;6}"  # "5     " — left-aligned in 6 characters
+f"{length:&gt;6}"  # "     5" — right-aligned in 6 characters
+f"{length:^6}"  # "  5   " — centered in 6 characters</code></pre>
+</li>
+<li>
+<p><strong>sign</strong> — <code>-</code> is the default where only negative numbers get a sign, <code>+</code> forces a sign on every number, <code>=</code> forces the sign to the very front, before any zero-padding.</p>
+<pre class="highlight"><code class="language-python-ref">f"{5:+}"     # "+5" — always shows a sign
+f"{-5:+}"    # "-5"
+f"{5:=+06}"  # "+00005" — sign forced to the front, before the zero-padding</code></pre>
+</li>
+<li>
+<p><strong>width</strong> — a plain number <code>width</code> pads the result to at least that many characters.</p>
+<pre class="highlight"><code class="language-python-ref">f"{length:6}"  # "     5" — padded to 6 characters wide</code></pre>
+</li>
+<li>
+<p><strong>thousands separator</strong> - a <code>,</code> adds a comma to group every 3 digits.</p>
+<pre class="highlight"><code class="language-python-ref">f"{1234567.5:,}"  # "1,234,567.5"</code></pre>
+</li>
+<li>
+<p><strong>precision</strong> — a <code>.</code> followed by a number <code>.digits</code> sets how many digits appear after the decimal point in a <code>f</code> and <code>%</code> type (detailed below), without a precision they default to 6 decimal places.</p>
+<pre class="highlight"><code class="language-python-ref">f"{length_ft:.2f}"  # "4.50" — 2 digits after the decimal</code></pre>
+</li>
+<li>
+<p><strong>type</strong> — a letter at the very end — tells Python how to display the value: <code>d</code> for an integer, <code>f</code> for fixed-point notation (displayed with decimal places), <code>%</code> for a percentage.</p>
+<pre class="highlight"><code class="language-python-ref">f"{length:d}"       # "5" — treated as an integer
+f"{length_ft:.2f}"  # "4.50" — fixed-point notation, 2 decimal places
+f"{length_ft:f}"    # "4.500000" — no precision given, defaults to 6 digits
+f"{0.25:.1%}"       # "25.0%" — treated as a percentage</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="modify">Modify</h4>
+<p>Since strings are <abbr title="Cannot be changed after creation — any &quot;change&quot; actually builds a brand new value">immutable</abbr>, these all return a <strong>new</strong> string rather than changing the original.</p>
+<ul>
+<li>
+<p><strong><code>.upper()</code>, <code>.lower()</code>, <code>.title()</code>, <code>.capitalize()</code></strong> change letter case. <code>.upper()</code>/<code>.lower()</code> change every character; <code>.title()</code> capitalizes every word; <code>.capitalize()</code> capitalizes only the first character and lowercases the rest.</p>
+<pre class="highlight"><code class="language-python-ref">name.upper()       # "BURMESE PYTHON"
+name.lower()       # "burmese python"
+name.title()       # "Burmese Python"
+name.capitalize()  # "Burmese python"</code></pre>
+</li>
+<li>
+<p><strong><code>.strip()</code></strong> removes leading and trailing whitespace.</p>
+<pre class="highlight"><code class="language-python-ref">"  ball  ".strip()  # "ball"</code></pre>
+</li>
+<li>
+<p><strong><code>.replace()</code></strong> swaps every occurrence of one substring for another.</p>
+<pre class="highlight"><code class="language-python-ref">name.replace("burmese", "ball")  # "ball python"</code></pre>
+</li>
+</ul>
+<h4 id="search">Search</h4>
+<ul>
+<li>
+<p><strong><code>in</code></strong> checks whether one string contains another.</p>
+<pre class="highlight"><code class="language-python-ref">"python" in name  # True</code></pre>
+</li>
+<li>
+<p><strong><code>.find()</code></strong> returns the index where a substring first appears, or <code>-1</code> if it's not found.</p>
+<pre class="highlight"><code class="language-python-ref">name.find("python")  # 8</code></pre>
+</li>
+<li>
+<p><strong><code>.count()</code></strong> counts how many times a substring appears.</p>
+<pre class="highlight"><code class="language-python-ref">name.count("p")  # 1</code></pre>
+</li>
+</ul>
+<h4 id="validate">Validate</h4>
+<ul>
+<li>
+<p><strong><code>.startswith()</code>, <code>.endswith()</code></strong> check the beginning or end of a string specifically — faster to read than slicing and comparing manually.</p>
+<pre class="highlight"><code class="language-python-ref">name.startswith("burmese")  # True
+name.endswith(".py")        # False</code></pre>
+</li>
+<li>
+<p><strong><code>.isdigit()</code>, <code>.isalpha()</code></strong> check whether every character is a digit, or a letter. Useful for validating input before converting it — <code>input()</code> always returns a string, even when the person typed a number.</p>
+<pre class="highlight"><code class="language-python-ref">age = input("How old are you? ")  # always a string, even if they type "8"
+age.isdigit()                     # True if it's safe to pass to int()
+
+species = "ball"
+species.isalpha()                 # True — every character is a letter</code></pre>
+</li>
+</ul>
+<h4 id="convert_2">Convert</h4>
+<ul>
+<li>
+<p><strong><code>str()</code></strong> converts almost any value into its text representation. Handy any time you need to combine a number with text, since <code>+</code> can't join a string and a number directly.</p>
+<pre class="highlight"><code class="language-python-ref">str(5)     # "5"
+str(4.5)   # "4.5"
+str(True)  # "True"</code></pre>
+</li>
+<li>
+<p><strong><code>.split()</code></strong> converts a string into a list, breaking it apart wherever the separator appears. Uses whitespace as the separator by default.</p>
+<pre class="highlight"><code class="language-python-ref">name.split()  # ["burmese", "python"]</code></pre>
+</li>
+</ul>
+<h3 id="boolean-expressions_2">Boolean expressions</h3>
+<ul>
+<li>
+<p><strong><code>==</code> <code>!=</code></strong> check whether two strings are equal.</p>
+<pre class="highlight"><code class="language-python-ref">name == "burmese python"  # True, equal to
+name != "ball python"     # True, not equal to</code></pre>
+</li>
+<li>
+<p><strong><code>in</code> <code>not in</code></strong> check whether one string is a substring of another.</p>
+<pre class="highlight"><code class="language-python-ref">"python" in name       # True, is a substring
+"anaconda" not in name # True, is not a substring</code></pre>
+</li>
+<li>
+<p><strong><code>&gt;</code> <code>&lt;</code></strong> compare strings alphabetically — see <a href="#booleans">comparisons by type</a> for the full rundown.</p>
+<pre class="highlight"><code class="language-python-ref">name &gt; "ball python"  # True, comes after alphabetically
+name &lt; "ball python"  # False, doesn't come before alphabetically</code></pre>
+</li>
+<li>
+<p><strong><abbr title="Counts as True when used somewhere a bool is expected, even though the value itself isn't actually True — every value is either truthy or falsy">Truthy</abbr>:</strong> any non-empty string — even one that's just whitespace</p>
+</li>
+<li>
+<p><strong><abbr title="Counts as False when used somewhere a bool is expected, even though the value itself isn't actually False — every value is either truthy or falsy">Falsy</abbr>:</strong> the empty string <code>""</code></p>
+</li>
+</ul>
+<pre class="highlight"><code class="language-python-ref">if name:                 # runs — name isn't empty
+    print("has a name")</code></pre>
+<details class="run">
+<summary>Practice with strings</summary>
+<pre class="highlight"><code class="language-python">name = "burmese python"
+
+print(len(name))
+
+print(name[0])
+print(name[-1])
+print(name[0:7])
+print(name[8:])
+
+print(name[::2])
+print(name[::-1])
+
+species = "ball"
+name = species + " " + "python"
+print(name)
+
+print(species * 3)
+
+name = "ball"
+name += " python"
+print(name)
+
+species = "ball"
+length = 5
+sentence = f"the {species} python is about {length} feet long"
+print(sentence)
+
+print(f"{length:6}")
+print(f"{length:&lt;6}")
+print(f"{length:&gt;6}")
+print(f"{length:^6}")
+
+print(f"{1234567.5:,}")
+
+length_ft = 4.5
+print(f"{length_ft:.2f}")
+print(f"{length_ft:f}")
+print(f"{length_ft:.2f} ft")
+
+print(f"{length:d}")
+print(f"{0.25:.1%}")
+print(f"{1234.5:,.2f}")
+
+species = "ball"
+length_ft = 4.5
+
+print(species, length_ft)                    # comma — fine for a quick printout
+
+name = species + " " + str(length_ft)         # + — needs str() to include a number
+print(name)
+
+print(f"{species} is {length_ft} ft")         # f-string — no manual conversion needed
+
+name = "burmese python"
+
+print(name.upper())
+print(name.lower())
+print(name.title())
+print(name.capitalize())
+
+padded = "  ball python  "
+print(padded.strip())
+
+print(name.replace("burmese", "ball"))
+
+name = "burmese python"
+parts = name.split()
+print(parts)
+
+rejoined = "-".join(parts)
+print(rejoined)
+
+name = "burmese python"
+
+print("python" in name)
+print("cobra" in name)
+
+print(name.find("python"))
+print(name.count("p"))
+
+print(name.startswith("burmese"))
+print(name.endswith(".py"))
+
+age = "8"
+print(age.isdigit())
+
+species = "ball"
+print(species.isalpha())
+
+print(str(5))
+print(str(4.5))
+print(str(True))
+
+name = "burmese python"
+if name:
+    print("has a name")</code></pre>
+</details>
+<h2 id="booleans">Booleans</h2>
+<p>A boolean (<code>bool</code>) holds one of exactly two values, <strong><code>True</code></strong> or <strong><code>False</code></strong> — often used to represent yes/no, on/off, or the result of a comparison. They are used in <a href="../conditionals/#if--elif--else">if statements</a> and <a href="../loops/#while-loops">while loops</a>.</p>
+<pre class="highlight"><code class="language-python-ref">venomous = False</code></pre>
+<h3 id="boolean-expressions_3">Boolean expressions</h3>
+<ul>
+<li>
+<p>A <strong>boolean expression</strong> is a boolean value (<code>True</code> or <code>False</code>) or anything that produces one, and is treated as the <strong>condition</strong> that must be <code>True</code> in order to run a <abbr title="A group of indented lines under a colon that Python runs together as one unit — the body of an if, loop, function, or class">block</abbr> of code.</p>
+</li>
+<li>
+<p>A comparison looks different depending on the type of value being checked, as shown below. All of these comparisons result in a <code>True</code> or <code>False</code> boolean expression. </p>
+<div class="admonition example">
+<p class="admonition-title">Comparisons by type</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:8"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><input id="__tabbed_1_8" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">int, float</label><label for="__tabbed_1_2">str</label><label for="__tabbed_1_3">bool</label><label for="__tabbed_1_4">None</label><label for="__tabbed_1_5">list</label><label for="__tabbed_1_6">tuple</label><label for="__tabbed_1_7">dict</label><label for="__tabbed_1_8">set</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>==</code></td>
+<td>equal to</td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>not equal to</td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>greater than</td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>less than</td>
+</tr>
+<tr>
+<td><code>&gt;=</code></td>
+<td>greater than or equal to</td>
+</tr>
+<tr>
+<td><code>&lt;=</code></td>
+<td>less than or equal to</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-python-ref">length = 12
+
+if length == 12:             # equal to
+    print("exactly 12 ft")
+
+if length != 4:              # not equal
+    print("not 4 ft")
+
+if length &gt; 10:              # greater than
+    print("long snake")
+
+if length &lt; 20:              # less than
+    print("under 20 ft")
+
+if length &gt;= 12:             # greater than or equal to
+    print("at least 12 ft")
+
+if length &lt;= 12.5:           # less than or equal to
+    print("12.5 ft or shorter")</code></pre>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>==</code></td>
+<td>equal to</td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>not equal to</td>
+</tr>
+<tr>
+<td><code>in</code></td>
+<td>is a substring</td>
+</tr>
+<tr>
+<td><code>not in</code></td>
+<td>is not a substring</td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>comes after alphabetically</td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>comes before alphabetically</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-python-ref">name = "burmese python"
+
+if name == "burmese python":   # equal to
+    print("it's a burmese")
+
+if name != "ball python":      # not equal
+    print("not a ball python")
+
+if "python" in name:           # is it a substring
+    print("name contains 'python'")
+
+if "anaconda" not in name:     # is it not a substring
+    print("name doesn't mention anaconda")
+
+if name &gt; "ball python":       # alphabetical comparison
+    print("comes after 'ball python' alphabetically")</code></pre>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[bool]</code></td>
+<td>is the bool True</td>
+</tr>
+<tr>
+<td><code>not [bool]</code></td>
+<td>is the bool False</td>
+</tr>
+</tbody>
+</table>
+<p>Don't compare booleans with <code>== True</code> or <code>is True</code> — a boolean is already the condition, so just use the value directly (or <code>not</code> the value).</p>
+<pre class="highlight"><code class="language-python-ref">venomous = False
+
+if venomous:                   # is it True — don't write venomous == True
+    print("handle with care")
+
+if not venomous:               # is it False — don't write venomous == False
+    print("safe to handle")</code></pre>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>is</code></td>
+<td>is None</td>
+</tr>
+<tr>
+<td><code>is not</code></td>
+<td>is not None</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-python-ref">age = None
+
+if age is None:                # is it None
+    print("age not recorded")
+
+if age is not None:            # is it anything else
+    print("age was recorded")</code></pre>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>in</code></td>
+<td>value exists in the list</td>
+</tr>
+<tr>
+<td><code>not in</code></td>
+<td>value is missing from the list</td>
+</tr>
+<tr>
+<td><code>==</code></td>
+<td>same contents, in the same order</td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>different contents</td>
+</tr>
+</tbody>
+</table>
+<p>Or compare a specific item directly, like <code>species[0] == "ball"</code>.</p>
+<pre class="highlight"><code class="language-python-ref">species = ["ball", "burmese", "boa"]
+other_species = ["ball", "burmese", "boa"]
+
+if "ball" in species:          # is the value in the list
+    print("ball python is in the list")
+
+if "anaconda" not in species:  # is the value missing from the list
+    print("anaconda isn't in the list")
+
+if species == other_species:   # is it the same contents, in the same order
+    print("both lists match")
+
+if "ball" == species[0]:       # compare a specific item
+    print("ball python is the first item")</code></pre>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>==</code></td>
+<td>same contents, even if it's a different object</td>
+</tr>
+<tr>
+<td><code>is</code></td>
+<td>the exact same object, not just an equal one</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-python-ref">snake = ["ball", "burmese"]
+other_snake = ["ball", "burmese"]   # separate list, but equal contents
+
+if snake == other_snake:      # do they contain the same items?
+    print("equal contents")
+
+if snake != ["ball"]:         # different contents
+    print("not equal to a single-item list")
+
+same_snake = snake                  # another name for `snake`
+if snake is same_snake:             # same_snake and snake point to the exact same list
+    print("this really is the same list")
+
+if snake is not other_snake:        # it's a different list, even though contents match
+    print("but not the same list")</code></pre>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>in</code></td>
+<td>value exists in the tuple</td>
+</tr>
+<tr>
+<td><code>not in</code></td>
+<td>value is missing from the tuple</td>
+</tr>
+<tr>
+<td><code>==</code></td>
+<td>same contents, in the same order</td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>different contents</td>
+</tr>
+</tbody>
+</table>
+<p>Or compare a specific item directly, like <code>snake[0] == "ball"</code>.</p>
+<pre class="highlight"><code class="language-python-ref">snake = ("ball", "5ft", "not venomous")
+other_snake = ("ball", "5ft", "not venomous")
+
+if "ball" in snake:
+    print("species ball is in the tuple")
+
+if snake == other_snake:
+    print("tuples match")
+
+if "ball" == snake[0]:
+    print("ball python is the first item")</code></pre>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>==</code></td>
+<td>same contents, even if it's a different object</td>
+</tr>
+<tr>
+<td><code>is</code></td>
+<td>the exact same object, not just an equal one</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-python-ref">snake = ("ball", "burmese")
+other_snake = ("ball", "burmese")   # separate tuple, but equal contents
+
+if snake == other_snake:      # do they contain the same items?
+    print("equal contents")
+
+same_snake = snake                  # another name for `snake`
+if snake is same_snake:             # same_snake and snake point to the exact same tuple
+    print("this really is the same tuple")
+
+if snake is not other_snake:        # it's a different tuple, even though contents match
+    print("but not the same tuple")</code></pre>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>in</code></td>
+<td>key exists</td>
+</tr>
+<tr>
+<td><code>not in</code></td>
+<td>key is missing</td>
+</tr>
+</tbody>
+</table>
+<p>Or compare a specific value directly, like <code>snake["length"] &gt; 2</code>.</p>
+<pre class="highlight"><code class="language-python-ref">snake = {"species": "ball", "length": 3, "venomous": False}
+
+if "venomous" in snake:        # is it a key
+    print("snake dict tracks venomous status")
+
+if "habitat" not in snake:     # is it not a key
+    print("snake dict has no habitat key")
+
+if snake["length"] &gt; 2:        # compare a specific value
+    print("snake in dict is over 2 ft")</code></pre>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>==</code></td>
+<td>same keys and values, even if it's a different object</td>
+</tr>
+<tr>
+<td><code>is</code></td>
+<td>the exact same object, not just an equal one</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-python-ref">snake = {"species": "ball", "length": 3}
+other_snake = {"species": "ball", "length": 3}   # separate dict, but equal contents
+
+if snake == other_snake:      # do they contain the same keys and values?
+    print("equal contents")
+
+same_snake = snake                  # another name for `snake`
+if snake is same_snake:             # same_snake and snake point to the exact same dict
+    print("this really is the same dict")
+
+if snake is not other_snake:        # it's a different dict, even though contents match
+    print("but not the same dict")</code></pre>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>in</code></td>
+<td>value exists in the set</td>
+</tr>
+<tr>
+<td><code>not in</code></td>
+<td>value is missing from the set</td>
+</tr>
+<tr>
+<td><code>==</code></td>
+<td>same contents, regardless of order</td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>different contents</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-python-ref">species = {"ball", "burmese", "boa"}
+other_species = {"ball", "burmese", "boa"}
+
+if "ball" in species:          # is the value in the set
+    print("ball python is in the set")
+
+if "anaconda" not in species:  # is the value missing from the set
+    print("anaconda isn't in the set")
+
+if species == other_species:   # same contents, regardless of order
+    print("both sets match")</code></pre>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>is</code></td>
+<td>the exact same object, not just an equal one</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-python-ref">same_species = species              # another name for `species`
+if species is same_species:         # same_species and species point to the exact same set
+    print("this really is the same set")
+
+if species is not other_species:    # it's a different set, even though contents match
+    print("but not the same set")</code></pre>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>issubset()</code></td>
+<td>every item in this set is also in another set</td>
+</tr>
+<tr>
+<td><code>issuperset()</code></td>
+<td>this set contains every item in another set</td>
+</tr>
+<tr>
+<td><code>isdisjoint()</code></td>
+<td>the two sets share no items at all</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-python-ref">constrictors = {"ball", "burmese", "boa"}
+
+{"ball", "burmese"}.issubset(constrictors)   # True
+constrictors.issuperset({"ball"})            # True
+constrictors.isdisjoint({"cobra", "viper"})  # True</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ul>
+<h3 id="logical-operators">Logical operators</h3>
+<p><code>not</code>, <code>and</code>, <code>or</code> combine booleans (or boolean expressions) to create more complex meanings.</p>
+<table>
+<thead>
+<tr>
+<th><code>A</code> (boolean)</th>
+<th><code>B</code> (boolean)</th>
+<th><code>not A</code> — flips to the opposite</th>
+<th><code>A and B</code> — <code>True</code> only if both are <code>True</code></th>
+<th><code>A or B</code> — <code>True</code> if either is <code>True</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="pt-bool-true">True</span></td>
+<td><span class="pt-bool-true">True</span></td>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-true">True</span></td>
+<td><span class="pt-bool-true">True</span></td>
+</tr>
+<tr>
+<td><span class="pt-bool-true">True</span></td>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-true">True</span></td>
+</tr>
+<tr>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-true">True</span></td>
+<td><span class="pt-bool-true">True</span></td>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-true">True</span></td>
+</tr>
+<tr>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-true">True</span></td>
+<td><span class="pt-bool-false">False</span></td>
+<td><span class="pt-bool-false">False</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p><strong><code>not</code> [boolean]</strong> flips a boolean to its opposite.</p>
+<pre class="highlight"><code class="language-python-ref">not venomous  # not False → True</code></pre>
+</li>
+<li>
+<p><strong>[boolean] <code>and</code> [boolean]</strong> is <code>True</code> only if <strong>both</strong> sides are <code>True</code>.</p>
+<pre class="highlight"><code class="language-python-ref">length &gt; 10 and venomous  # True and False → False</code></pre>
+</li>
+<li>
+<p><strong>[boolean] <code>or</code> [boolean]</strong> is <code>True</code> if <strong>either</strong> side is <code>True</code>.</p>
+<pre class="highlight"><code class="language-python-ref">length &gt; 10 or venomous  # True or False → True</code></pre>
+</li>
+<li>
+<p><strong>Order of operations:</strong> When several logical operators appear together, Python evaluates them in the below order. Keeping this in mind, you can use parentheses to help construct your expressions. </p>
+<ol>
+<li>
+<p><code>not</code></p>
+</li>
+<li>
+<p><code>and</code></p>
+</li>
+<li>
+<p><code>or</code></p>
+</li>
+</ol>
+</li>
+</ul>
+<details class="note">
+<summary>Bool is a <abbr title="A class that inherits from another class, reusing (and optionally overriding) its attributes and methods">subclass</abbr> of int</summary>
+<p><code>True</code> behaves like <code>1</code> and <code>False</code> behaves like <code>0</code> in arithmetic.</p>
+<pre class="highlight"><code class="language-python-ref">isinstance(True, int)  # True
+True + True            # 2</code></pre>
+</details>
+<details class="run">
+<summary>Practice with booleans</summary>
+<pre class="highlight"><code class="language-python">length = 5
+
+print(length &gt; 3)
+print(length == 5)
+print(length != 5)
+
+venomous = False
+print(venomous is None)
+
+name = "burmese python"
+print("python" in name)
+
+is_python = True
+is_venomous = False
+
+print(is_python and is_venomous)
+print(is_python or is_venomous)
+print(not is_venomous)
+
+if is_venomous:
+    print("be careful")
+else:
+    print("should be safe")
+
+print(isinstance(True, int))
+print(True + True)</code></pre>
+</details>
+<h2 id="none">None</h2>
+<p><code>None</code> represents the absence of a value — Python's way of saying "nothing here," distinct from <code>0</code>, <code>False</code>, or an empty string.</p>
+<pre class="highlight"><code class="language-python-ref">venomous = None</code></pre>
+<h3 id="check-for-none">Check for None</h3>
+<ul>
+<li>
+<p><strong><code>is</code>, <code>is not</code></strong> compare against <code>None</code> — always use these, not <code>==</code>/<code>!=</code>. <code>is</code> checks that it's the <em>exact same object</em>, which is what you want for a singleton value like <code>None</code>.</p>
+<pre class="highlight"><code class="language-python-ref">venomous is None      # True
+venomous is not None  # False</code></pre>
+</li>
+</ul>
+<h3 id="boolean-expressions_4">Boolean expressions</h3>
+<p><code>None</code> is always <abbr title="Counts as False when used somewhere a bool is expected, even though the value itself isn't actually False — every value is either truthy or falsy">falsy</abbr> — there's no "sometimes <abbr title="Counts as True when used somewhere a bool is expected, even though the value itself isn't actually True — every value is either truthy or falsy">truthy</abbr>" case, since it's the one value that only ever means "nothing here."</p>
+<ul>
+<li>
+<p><strong>boolean expression:</strong></p>
+<ul>
+<li>
+<p><abbr title="Counts as True when used somewhere a bool is expected, even though the value itself isn't actually True — every value is either truthy or falsy">Truthy</abbr>: never — <code>None</code> has no <abbr title="Counts as True when used somewhere a bool is expected, even though the value itself isn't actually True — every value is either truthy or falsy">truthy</abbr> case</p>
+</li>
+<li>
+<p><abbr title="Counts as False when used somewhere a bool is expected, even though the value itself isn't actually False — every value is either truthy or falsy">Falsy</abbr>: <code>None</code> (its only value)</p>
+</li>
+</ul>
+<pre class="highlight"><code class="language-python-ref">if venomous:                  # skipped — venomous is None
+    print("found something")
+else:
+    print("nothing found")</code></pre>
+</li>
+</ul>
+<details class="run">
+<summary>Practice with None</summary>
+<pre class="highlight"><code class="language-python">venomous = None
+
+print(venomous is None)
+print(venomous is not None)
+
+if venomous:
+    print("found something")
+else:
+    print("nothing found")</code></pre>
+</details>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:str-collection">
+<p>Structurally, a string is a collection — it's <abbr title="Anything that can hand back its items one at a time — a list, string, range, dict, and more — whether you're looping over it, converting it, or unpacking it">iterable</abbr>, indexable, and has a length, the same as a list. It's covered here rather than on the <a href="../collections/">Collections</a> page because of how it's normally <em>used</em>: as one indivisible piece of text, not as a group of separate items you add to or remove from one at a time.&#160;<a class="footnote-backref" href="#fnref:str-collection" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../foundations/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Foundations">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Foundations
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../collections/" class="md-footer__link md-footer__link--next" aria-label="Next: Collections">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Collections
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; <span id="copyright-year">2026</span> Luka
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="/about/" target="_blank" rel="noopener" title="About" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/privacy/" target="_blank" rel="noopener" title="Privacy policy" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5zm0 6c1.4 0 2.8 1.1 2.8 2.5V11c.6 0 1.2.6 1.2 1.3v3.5c0 .6-.6 1.2-1.3 1.2H9.2c-.6 0-1.2-.6-1.2-1.3v-3.5c0-.6.6-1.2 1.2-1.2V9.5C9.2 8.1 10.6 7 12 7m0 1.2c-.8 0-1.5.5-1.5 1.3V11h3V9.5c0-.8-.7-1.3-1.5-1.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.expand", "navigation.footer", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "toc.integrate", "content.code.copy", "content.tooltips", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      
+        <script src="../javascripts/pyodide_runner.js"></script>
+      
+        <script src="../javascripts/copyright_year.js"></script>
+      
+        <script src="../javascripts/external_links.js"></script>
+      
+        <script src="../javascripts/homepage_header_title.js"></script>
+      
+        <script src="../javascripts/a11y_patches.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+        <script src="../javascripts/mermaid_config.js"></script>
+      
+    
+  </body>
+</html>

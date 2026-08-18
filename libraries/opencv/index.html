@@ -1,0 +1,2279 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Computer vision in Python with OpenCV: reading and displaying images, color spaces, edge detection, contours, and face detection.">
+      
+      
+      
+        <link rel="canonical" href="https://pythonfieldguide.com/libraries/opencv/">
+      
+      
+        <link rel="prev" href="../numpy/">
+      
+      
+        <link rel="next" href="../pandas/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>OpenCV - Python Field Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-E5B3P6NCP0"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-E5B3P6NCP0",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-E5B3P6NCP0",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#opencv-library" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Python Field Guide" class="md-header__button md-logo" aria-label="Python Field Guide" data-md-component="logo">
+      
+  <img src="../../img/favicon-large.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python Field Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              OpenCV
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  All
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../workspace/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Workspace
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../foundations/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Foundations
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../types/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Types
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../collections/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Collections
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../conditionals/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Conditionals
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../loops/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Loops
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../functions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Functions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../oop/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Classes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../modules/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Modules
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../files/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Files
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../style/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Style
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../errors/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Errors
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Libraries
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Python Field Guide" class="md-nav__button md-logo" aria-label="Python Field Guide" data-md-component="logo">
+      
+  <img src="../../img/favicon-large.png" alt="logo">
+
+    </a>
+    Python Field Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conditionals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../style/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Style
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Libraries
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Libraries
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_14_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_14_2" id="__nav_14_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Built-in
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_14_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Built-in
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    csv
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datetime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    datetime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../json/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    json
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../random/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    random
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tkinter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tkinter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_14_3" id="__nav_14_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Third-Party
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_14_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_14_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Third-Party
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../matplotlib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    matplotlib
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../numpy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NumPy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCV
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-displaying-and-saving-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading, displaying, and saving images
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reading, displaying, and saving images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reading-a-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading a file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#displaying-a-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Displaying a window
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saving-a-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saving a file
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#color-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Color spaces
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Color spaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#converting-color-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Converting color spaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cropping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cropping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotating
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drawing-shapes-and-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Drawing shapes and text
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Drawing shapes and text">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shapes-and-lines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shapes and lines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Text
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thresholding-and-edge-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thresholding and edge detection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Thresholding and edge detection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#threshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Threshold
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edge-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edge detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blurring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Blurring
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blurring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gaussian-blur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gaussian blur
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contours" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contours
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contours">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-and-drawing-contours" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding and drawing contours
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#face-detection-with-cascade-classifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Face detection with cascade classifiers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Face detection with cascade classifiers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detecting-and-labeling-faces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detecting and labeling faces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-video" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Working with video
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Working with video">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reading-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading frames
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pillow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pillow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="opencv-library"><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 11.75A1.25 1.25 0 0 0 7.75 13 1.25 1.25 0 0 0 9 14.25 1.25 1.25 0 0 0 10.25 13 1.25 1.25 0 0 0 9 11.75m6 0A1.25 1.25 0 0 0 13.75 13 1.25 1.25 0 0 0 15 14.25 1.25 1.25 0 0 0 16.25 13 1.25 1.25 0 0 0 15 11.75M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18a8 8 0 0 1-8-8 4 4 0 0 1 0-.86 10.05 10.05 0 0 0 5.26-5.37A9.99 9.99 0 0 0 17.42 10c.76 0 1.51-.09 2.25-.26 1.25 4.26-1.17 8.69-5.41 9.93-.76.22-1.5.33-2.26.33M0 2a2 2 0 0 1 2-2h4v2H2v4H0zm24 20a2 2 0 0 1-2 2h-4v-2h4v-4h2zM2 24a2 2 0 0 1-2-2v-4h2v4h4v2zM22 0a2 2 0 0 1 2 2v4h-2V2h-4V0z"/></svg></span> OpenCV library</h1>
+<p><strong>OpenCV</strong> (imported as <code>cv2</code>) is Python's standard library for computer vision — real-time image and video analysis, rather than the straightforward photo editing <a href="../pillow/">Pillow</a> is built for. It's a third-party package, originally written in C++ with a thin Python wrapper over it, which shows up in a couple of its API choices: images load as plain NumPy arrays instead of a dedicated <code>Image</code> class, and in <strong>BGR</strong> (blue-green-red) channel order rather than the RGB most other tools expect. Like Pillow and <a href="../tkinter/">Tkinter</a>, OpenCV produces visual, often interactive output — a window showing an image or a live camera feed — that can't run inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local <code>.py</code> file alongside an image and run them with <code>python</code> to see the results.</p>
+<h2 id="install">Install</h2>
+<pre class="highlight"><code class="language-bash">pip install opencv-python</code></pre>
+<h2 id="import">Import</h2>
+<p>OpenCV's package name (<code>opencv-python</code>) doesn't match its import name — it's always imported as <code>cv2</code>.</p>
+<pre class="highlight"><code class="language-python-ref">import cv2</code></pre>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Mat</code></td>
+<td>OpenCV's name (from its C++ origins) for an image — in Python it's just a NumPy <code>ndarray</code>, so array indexing and slicing double as OpenCV's crop tool.</td>
+</tr>
+<tr>
+<td>BGR</td>
+<td>The channel order OpenCV loads color images in by default — blue, green, red — the reverse of the RGB order most other tools (and humans) expect.</td>
+</tr>
+<tr>
+<td>Grayscale</td>
+<td>A single-channel image storing brightness only, no color — required by several operations (thresholding, edge detection, face detection) before they'll run.</td>
+</tr>
+<tr>
+<td>Kernel</td>
+<td>A small matrix of numbers used to blur, sharpen, or otherwise transform an image by combining each pixel with its neighbors.</td>
+</tr>
+<tr>
+<td>Threshold</td>
+<td>A cutoff brightness value used to turn a grayscale image into pure black and white.</td>
+</tr>
+<tr>
+<td>Contour</td>
+<td>A curve joining the continuous points along a shape's boundary, used to count, measure, or outline objects in an image.</td>
+</tr>
+<tr>
+<td>Cascade classifier</td>
+<td>A pre-trained model, shipped with OpenCV, that scans an image for a specific object — most commonly a face.</td>
+</tr>
+<tr>
+<td>Frame</td>
+<td>One still image out of a video, read and processed one at a time in a loop.</td>
+</tr>
+</tbody>
+</table>
+<p>For a broader comparison of OpenCV against Pillow and other Python image libraries, see the table on the <a href="../pillow/#why-pillow">Pillow page</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#reading-displaying-and-saving-images">Reading, displaying, and saving images</a></td>
+<td>Getting a file from disk into a variable, and back out again.</td>
+</tr>
+<tr>
+<td><a href="#color-spaces">Color spaces</a></td>
+<td>Converting between BGR, RGB, grayscale, and HSV.</td>
+</tr>
+<tr>
+<td><a href="#basic-operations">Basic operations</a></td>
+<td>Resizing, cropping (via NumPy slicing), and rotating.</td>
+</tr>
+<tr>
+<td><a href="#drawing-shapes-and-text">Drawing shapes and text</a></td>
+<td>Annotating an image directly, in place.</td>
+</tr>
+<tr>
+<td><a href="#thresholding-and-edge-detection">Thresholding and edge detection</a></td>
+<td>Reducing an image to just the boundaries or regions that matter.</td>
+</tr>
+<tr>
+<td><a href="#blurring">Blurring</a></td>
+<td>Smoothing out noise before further analysis.</td>
+</tr>
+<tr>
+<td><a href="#contours">Contours</a></td>
+<td>Finding and outlining distinct shapes in a black-and-white image.</td>
+</tr>
+<tr>
+<td><a href="#face-detection-with-cascade-classifiers">Face detection with cascade classifiers</a></td>
+<td>Locating faces (or other objects) at multiple positions and scales.</td>
+</tr>
+<tr>
+<td><a href="#working-with-video">Working with video</a></td>
+<td>Applying any of the above to a live camera feed or video file, one frame at a time.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="reading-displaying-and-saving-images">Reading, displaying, and saving images</h2>
+<p>Every OpenCV workflow starts the same way: load a file into an array, do something to it, then optionally write the result back out.</p>
+<pre class="highlight"><code class="language-python-ref">import cv2
+
+img = cv2.imread("snake.jpg")
+print(img.shape)   # (600, 800, 3) -- height, width, channels
+
+cv2.imshow("field guide", img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+cv2.imwrite("snake_copy.png", img)</code></pre>
+<h3 id="reading-a-file">Reading a file</h3>
+<p><code>cv2.imread(path)</code> loads immediately into a full NumPy array — unlike Pillow's <code>Image.open()</code>, there's no lazy header-only read; the whole pixel grid is decoded right away. <code>.shape</code> reports <code>(height, width, channels)</code>, the opposite order of Pillow's <code>.size</code>, which gives <code>(width, height)</code>. If the path is wrong, <code>imread()</code> doesn't raise an error — it silently returns <code>None</code>, so check for that before doing anything else with the result.</p>
+<pre class="highlight"><code class="language-python-ref">img = cv2.imread("snake.jpg")
+if img is None:
+    print("could not read file")
+else:
+    print(img.shape)   # (600, 800, 3)</code></pre>
+<pre class="highlight"><code class="language-python-ref">import cv2
+
+img = cv2.imread("snake.jpg")
+if img is None:
+    print("could not read file")
+else:
+    print(img.shape)</code></pre>
+<h3 id="displaying-a-window">Displaying a window</h3>
+<p><code>cv2.imshow(title, img)</code> opens a window showing the image, but it closes immediately unless paired with <code>cv2.waitKey(0)</code>, which pauses the program until a key is pressed. <code>cv2.destroyAllWindows()</code> then closes every OpenCV window still open. All three need a real display attached — they're for local development, not headless scripts.</p>
+<pre class="highlight"><code class="language-python-ref">cv2.imshow("field guide", img)
+cv2.waitKey(0)          # 0 = wait forever for a keypress
+cv2.destroyAllWindows()</code></pre>
+<pre class="highlight"><code class="language-python-ref">import cv2
+
+img = cv2.imread("snake.jpg")
+cv2.imshow("field guide", img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()</code></pre>
+<h3 id="saving-a-file">Saving a file</h3>
+<p><code>cv2.imwrite(path, img)</code> writes the array back to disk, inferring the format from the file extension the same way Pillow's <code>.save()</code> does. It returns <code>True</code>/<code>False</code> instead of raising an <abbr title="Python's formal term for the type of error that was raised, like KeyError or ValueError">exception</abbr> on failure, so check the return value if the write matters.</p>
+<pre class="highlight"><code class="language-python-ref">saved = cv2.imwrite("snake_copy.png", img)
+print(saved)   # True</code></pre>
+<pre class="highlight"><code class="language-python-ref">import cv2
+
+img = cv2.imread("snake.jpg")
+saved = cv2.imwrite("snake_copy.png", img)
+print(saved)</code></pre>
+<h2 id="color-spaces">Color spaces</h2>
+<p>OpenCV loads color images in <strong>BGR</strong> order rather than RGB — a holdover from its early camera-driver roots — so handing a BGR array to a tool that expects RGB (like <code>matplotlib</code>) shows swapped colors unless it's converted first. <code>cv2.cvtColor()</code> handles every conversion between color spaces.</p>
+<pre class="highlight"><code class="language-python-ref">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)</code></pre>
+<h3 id="converting-color-spaces">Converting color spaces</h3>
+<p><code>cv2.cvtColor(img, code)</code> — the <code>code</code> names which conversion to run, always written <code>COLOR_&lt;FROM&gt;2&lt;TO&gt;</code>. <code>COLOR_BGR2GRAY</code> collapses color down to a single grayscale channel, <code>COLOR_BGR2RGB</code> just reorders channels for tools that expect RGB, and <code>COLOR_BGR2HSV</code> switches to hue/saturation/value, which turns "everything that's green" into a range check on one channel instead of three.</p>
+<pre class="highlight"><code class="language-python-ref">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+print(gray.shape)   # (600, 800) -- no channel dimension</code></pre>
+<pre class="highlight"><code class="language-python-ref">import cv2
+
+img = cv2.imread("snake.jpg")
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+print(gray.shape)
+cv2.imwrite("snake_gray.png", gray)</code></pre>
+<details class="tip">
+<summary>The BGR vs RGB gotcha</summary>
+<p>Forgetting this conversion is one of the most common OpenCV mistakes — a photo loaded with <code>cv2.imread()</code> and handed straight to something expecting RGB (like <code>matplotlib.pyplot.imshow()</code>) renders with blue and red swapped, with no error raised to explain why the colors look wrong.</p>
+<pre class="highlight"><code class="language-python-ref">import cv2
+import matplotlib.pyplot as plt
+
+img = cv2.imread("snake.jpg")               # loaded as BGR
+correct = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+plt.imshow(correct)                          # colors display correctly</code></pre>
+</details>
+<h2 id="basic-operations">Basic operations</h2>
+<p>A <code>Mat</code> is really just a NumPy array under the hood, so some "operations" are plain NumPy indexing rather than an OpenCV-specific method — cropping in particular.</p>
+<pre class="highlight"><code class="language-python-ref">resized = cv2.resize(img, (400, 300))
+cropped = img[50:250, 0:200]
+rotated = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)</code></pre>
+<h3 id="resize">Resize</h3>
+<p><code>cv2.resize(img, (width, height))</code> stretches the image to an exact new size — the same tradeoff as Pillow's <code>.resize()</code>, it doesn't preserve the original aspect ratio unless the new dimensions are computed to match it.</p>
+<pre class="highlight"><code class="language-python-ref">resized = cv2.resize(img, (200, 150))
+print(resized.shape)   # (150, 200, 3)</code></pre>
+<pre class="highlight"><code class="language-python-ref">import cv2
+
+img = cv2.imread("snake.jpg")
+resized = cv2.resize(img, (200, 150))
+print(resized.shape)</code></pre>
+<h3 id="cropping">Cropping</h3>
+<p>Since a <code>Mat</code> is just a NumPy array, cropping is a plain slice: <code>img[y1:y2, x1:x2]</code> — rows (height) first, then columns (width), the reverse of the <code>(x, y)</code> order most drawing functions use. There's no dedicated <code>.crop()</code> method to reach for.</p>
+<pre class="highlight"><code class="language-python-ref">cropped = img[50:250, 0:200]   # rows 50-250, columns 0-200
+print(cropped.shape)   # (200, 200, 3)</code></pre>
+<pre class="highlight"><code class="language-python-ref">import cv2
+
+img = cv2.imread("snake.jpg")
+cropped = img[50:250, 0:200]
+print(cropped.shape)</code></pre>
+<h3 id="rotating">Rotating</h3>
+<p><code>cv2.rotate(img, code)</code> handles clean 90°-multiple rotations with a fixed set of codes (<code>ROTATE_90_CLOCKWISE</code>, <code>ROTATE_180</code>, <code>ROTATE_90_COUNTERCLOCKWISE</code>). For an arbitrary angle, build a rotation matrix with <code>cv2.getRotationMatrix2D()</code> and apply it with <code>cv2.warpAffine()</code>.</p>
+<pre class="highlight"><code class="language-python-ref">rotated = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+
+height, width = img.shape[:2]
+matrix = cv2.getRotationMatrix2D((width / 2, height / 2), 45, 1.0)
+rotated_45 = cv2.warpAffine(img, matrix, (width, height))</code></pre>
+<pre class="highlight"><code class="language-python-ref">import cv2
+
+img = cv2.imread("snake.jpg")
+rotated = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+
+height, width = img.shape[:2]
+matrix = cv2.getRotationMatrix2D((width / 2, height / 2), 45, 1.0)
+rotated_45 = cv2.warpAffine(img, matrix, (width, height))
+cv2.imwrite("rotated.jpg", rotated_45)</code></pre>
+<h2 id="drawing-shapes-and-text">Drawing shapes and text</h2>
+<p>Drawing functions modify a <code>Mat</code> directly, in place — there's no separate drawing-context object like Pillow's <code>ImageDraw.Draw()</code>.</p>
+<pre class="highlight"><code class="language-python-ref">cv2.rectangle(img, (10, 10), (100, 60), (0, 128, 0), 3)
+cv2.putText(img, "handler", (15, 90), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 128, 0), 2)</code></pre>
+<h3 id="shapes-and-lines">Shapes and lines</h3>
+<p><code>cv2.rectangle()</code>, <code>cv2.circle()</code>, and <code>cv2.line()</code> each take two corner/center points, a <strong>BGR</strong> color tuple, and a thickness in pixels — pass <code>-1</code> as the thickness to fill the shape solid instead of outlining it.</p>
+<pre class="highlight"><code class="language-python-ref">cv2.rectangle(img, (10, 10), (100, 60), (0, 128, 0), 3)     # outline, 3px
+cv2.circle(img, (150, 40), 25, (0, 200, 255), -1)           # filled
+cv2.line(img, (0, 0), (100, 100), (0, 0, 0), 2)</code></pre>
+<pre class="highlight"><code class="language-python-ref">import cv2
+import numpy as np
+
+canvas = np.full((120, 200, 3), 255, dtype="uint8")   # blank white canvas
+cv2.rectangle(canvas, (10, 10), (100, 60), (0, 128, 0), 3)
+cv2.circle(canvas, (150, 40), 25, (0, 200, 255), -1)
+cv2.imwrite("shapes.png", canvas)</code></pre>
+<h3 id="text">Text</h3>
+<p><code>cv2.putText()</code> needs a font (one of the built-in <code>cv2.FONT_HERSHEY_*</code> constants — there's no custom font loading the way Pillow's <code>ImageFont</code> offers), a size scale rather than a point size, and a position given as the text's <strong>bottom-left</strong> corner rather than its top-left.</p>
+<pre class="highlight"><code class="language-python-ref">cv2.putText(canvas, "burmese python", (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)</code></pre>
+<pre class="highlight"><code class="language-python-ref">import cv2
+import numpy as np
+
+canvas = np.full((120, 200, 3), 255, dtype="uint8")
+cv2.putText(canvas, "burmese python", (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
+cv2.imwrite("labeled.png", canvas)</code></pre>
+<h2 id="thresholding-and-edge-detection">Thresholding and edge detection</h2>
+<p>Both operations reduce an image down to just the information that matters for a specific analysis task, throwing away "how bright" or "how gradual" in favor of a hard yes/no per pixel.</p>
+<pre class="highlight"><code class="language-python-ref">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+_, thresholded = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
+edges = cv2.Canny(gray, 100, 200)</code></pre>
+<h3 id="threshold">Threshold</h3>
+<p><code>cv2.threshold(img, cutoff, max_value, method)</code> turns a grayscale image into pure black-and-white: every pixel above <code>cutoff</code> becomes <code>max_value</code> (usually <code>255</code>, white), everything else becomes <code>0</code> (black). It returns a tuple — the cutoff value actually used, and the resulting image — which is why the example throws the first value away with <code>_</code>.</p>
+<pre class="highlight"><code class="language-python-ref">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+_, thresholded = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)</code></pre>
+<pre class="highlight"><code class="language-python-ref">import cv2
+
+img = cv2.imread("snake.jpg")
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+_, thresholded = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
+cv2.imwrite("thresholded.png", thresholded)</code></pre>
+<h3 id="edge-detection">Edge detection</h3>
+<p><code>cv2.Canny(img, low, high)</code> traces outlines wherever brightness changes sharply, and works best on a grayscale image. <code>low</code> and <code>high</code> set two brightness-change thresholds — a change above <code>high</code> is always kept as an edge, a change below <code>low</code> is always discarded, and anything in between is kept only if it connects to a pixel already counted as an edge.</p>
+<pre class="highlight"><code class="language-python-ref">edges = cv2.Canny(gray, 100, 200)</code></pre>
+<pre class="highlight"><code class="language-python-ref">import cv2
+
+img = cv2.imread("snake.jpg")
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+edges = cv2.Canny(gray, 100, 200)
+cv2.imwrite("edges.png", edges)</code></pre>
+<h2 id="blurring">Blurring</h2>
+<p>Smoothing an image slightly, before edge detection or thresholding, often removes small specks of noise that would otherwise show up as false edges or scattered dark pixels.</p>
+<pre class="highlight"><code class="language-python-ref">blurred = cv2.GaussianBlur(img, (5, 5), 0)</code></pre>
+<h3 id="gaussian-blur">Gaussian blur</h3>
+<p><code>cv2.GaussianBlur(img, kernel_size, sigma)</code> averages each pixel with its neighbors, weighted so nearby pixels count more than far ones. Both numbers in <code>kernel_size</code> (width, height) must be odd, and a larger kernel blurs more heavily. <code>sigma</code> — the spread of that weighting — can usually be left at <code>0</code> to let OpenCV calculate it automatically from the kernel size.</p>
+<pre class="highlight"><code class="language-python-ref">blurred = cv2.GaussianBlur(img, (5, 5), 0)
+heavily_blurred = cv2.GaussianBlur(img, (21, 21), 0)</code></pre>
+<pre class="highlight"><code class="language-python-ref">import cv2
+
+img = cv2.imread("snake.jpg")
+blurred = cv2.GaussianBlur(img, (5, 5), 0)
+heavily_blurred = cv2.GaussianBlur(img, (21, 21), 0)
+cv2.imwrite("blurred.jpg", blurred)</code></pre>
+<h2 id="contours">Contours</h2>
+<p>A <strong>contour</strong> is a curve joining the continuous points along a shape's boundary — useful for counting objects in an image, measuring their size, or outlining just the shapes rather than the whole image.</p>
+<pre class="highlight"><code class="language-python-ref">contours, _ = cv2.findContours(thresholded, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+cv2.drawContours(img, contours, -1, (0, 128, 0), 2)</code></pre>
+<h3 id="finding-and-drawing-contours">Finding and drawing contours</h3>
+<p><code>cv2.findContours()</code> needs a black-and-white image (usually the output of <code>cv2.threshold()</code> or <code>cv2.Canny()</code>) and returns a list of contours, each a list of boundary points. <code>cv2.drawContours(img, contours, index, color, thickness)</code> draws them back onto an image — pass <code>-1</code> as the index to draw every contour found rather than just one.</p>
+<pre class="highlight"><code class="language-python-ref">contours, _ = cv2.findContours(thresholded, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+print(len(contours))   # number of separate shapes found
+cv2.drawContours(img, contours, -1, (0, 128, 0), 2)</code></pre>
+<pre class="highlight"><code class="language-python-ref">import cv2
+
+img = cv2.imread("snake.jpg")
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+_, thresholded = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
+contours, _ = cv2.findContours(thresholded, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+cv2.drawContours(img, contours, -1, (0, 128, 0), 2)
+cv2.imwrite("contours.png", img)</code></pre>
+<h2 id="face-detection-with-cascade-classifiers">Face detection with cascade classifiers</h2>
+<p>A <strong>cascade classifier</strong> is a pre-trained model, shipped with OpenCV itself, that scans an image at many positions and scales looking for a specific object — most commonly, faces.</p>
+<pre class="highlight"><code class="language-python-ref">face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)</code></pre>
+<h3 id="detecting-and-labeling-faces">Detecting and labeling faces</h3>
+<p><code>cv2.data.haarcascades</code> points to OpenCV's own folder of pre-trained <code>.xml</code> cascade files, so no separate download is needed for common detectors like frontal faces. <code>.detectMultiScale()</code> returns a list of <code>(x, y, width, height)</code> boxes, one per match — looping over them lets you draw a box (and a label) around each one found.</p>
+<pre class="highlight"><code class="language-python-ref">faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)
+for (x, y, w, h) in faces:
+    cv2.rectangle(img, (x, y), (x + w, y + h), (0, 128, 0), 2)
+    cv2.putText(img, "handler", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 128, 0), 2)</code></pre>
+<pre class="highlight"><code class="language-python-ref">import cv2
+
+img = cv2.imread("handler.jpg")
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)
+
+for (x, y, w, h) in faces:
+    cv2.rectangle(img, (x, y), (x + w, y + h), (0, 128, 0), 2)
+    cv2.putText(img, "handler", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 128, 0), 2)
+
+cv2.imwrite("detected.jpg", img)</code></pre>
+<h2 id="working-with-video">Working with video</h2>
+<p>A video is really just a sequence of frames, read and processed one at a time — everything covered above (color conversion, drawing, detection) applies to a single video frame exactly the same way it applies to a still image.</p>
+<pre class="highlight"><code class="language-python-ref">capture = cv2.VideoCapture(0)   # 0 = default webcam
+while True:
+    success, frame = capture.read()
+    if not success:
+        break
+    cv2.imshow("field guide", frame)
+    if cv2.waitKey(1) == ord("q"):
+        break
+capture.release()
+cv2.destroyAllWindows()</code></pre>
+<h3 id="reading-frames">Reading frames</h3>
+<p><code>cv2.VideoCapture(source)</code> opens a webcam (an integer index, <code>0</code> for the default camera) or a video file (a path string). <code>.read()</code> returns <code>(success, frame)</code> each time it's called — <code>success</code> becomes <code>False</code> once a video file runs out of frames, which is what ends the loop naturally. <code>cv2.waitKey(1)</code> keeps the display window responsive and doubles as a keypress check (here, <code>q</code> to quit) without blocking the way <code>waitKey(0)</code> does. <code>.release()</code> frees the camera/file so other programs can use it again.</p>
+<pre class="highlight"><code class="language-python-ref">import cv2
+
+capture = cv2.VideoCapture("snake_slither.mp4")
+frame_count = 0
+
+while True:
+    success, frame = capture.read()
+    if not success:
+        break
+    frame_count += 1
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    cv2.imwrite(f"frame_{frame_count}.png", gray)
+
+capture.release()
+print(f"saved {frame_count} frames")</code></pre>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../numpy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: NumPy">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                NumPy
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../pandas/" class="md-footer__link md-footer__link--next" aria-label="Next: pandas">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                pandas
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; <span id="copyright-year">2026</span> Luka
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="/about/" target="_blank" rel="noopener" title="About" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/privacy/" target="_blank" rel="noopener" title="Privacy policy" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5zm0 6c1.4 0 2.8 1.1 2.8 2.5V11c.6 0 1.2.6 1.2 1.3v3.5c0 .6-.6 1.2-1.3 1.2H9.2c-.6 0-1.2-.6-1.2-1.3v-3.5c0-.6.6-1.2 1.2-1.2V9.5C9.2 8.1 10.6 7 12 7m0 1.2c-.8 0-1.5.5-1.5 1.3V11h3V9.5c0-.8-.7-1.3-1.5-1.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.expand", "navigation.footer", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "toc.integrate", "content.code.copy", "content.tooltips", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      
+        <script src="../../javascripts/pyodide_runner.js"></script>
+      
+        <script src="../../javascripts/copyright_year.js"></script>
+      
+        <script src="../../javascripts/external_links.js"></script>
+      
+        <script src="../../javascripts/homepage_header_title.js"></script>
+      
+        <script src="../../javascripts/a11y_patches.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid_config.js"></script>
+      
+    
+  </body>
+</html>
