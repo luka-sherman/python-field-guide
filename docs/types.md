@@ -15,7 +15,7 @@ A basic ("scalar") data type holds a single value, as opposed to a [collection](
 | Basic Type | Example | Use it for |
 |------|---------|------------|
 | <a href="#integers">**`integer "int"`**</a> | <pre><code class="language-python-ref">5</code></pre> | <ul><li>Counts — how many of something there are, like items in a list</li><li>Indexes — the position of an item in a sequence, like `species[2]`</li><li>IDs — a unique whole-number identifier, like a user or record ID</li></ul> |
-| <a href="#floats">**`float`**</a> | <pre><code class="language-python-ref">4.5</code></pre> | <ul><li>Measurements, ratios — anything with a decimal</li><li>Binary rounding errors mean `0.1 + 0.2 != 0.3`</li></ul> |
+| <a href="#floats">**`float`**</a> | <pre><code class="language-python-ref">4.5</code></pre> | <ul><li>Measurements, ratios — anything with a decimal</li></ul> |
 | <a href="#strings">**`string "str"`**</a> | <pre><code class="language-python-ref">"ball python"</code></pre> | <ul><li>Text — names, labels, messages</li><li>Ordered and indexable like a list, but immutable — `.upper()`, `.replace()`, etc. return a *new* string</li></ul> |
 | <a href="#booleans">**`boolean "bool"`**</a> | <pre><code class="language-python-ref">`True`</code></pre> | <ul><li>Flags, yes/no switches, comparison results (`length > 3`)</li><li>Secretly a subclass of `int` — `True + True == 2`</li></ul> |
 | <a href="#none">**`None`**</a> | <pre><code class="language-python-ref">None</code></pre> | <ul><li>Marking "no value yet" — a default placeholder, or what a function returns if it falls through without a `return`</li><li>Compare with `is None`, not `== None`</li><li>`not thing` also catches `None`, but it's true for any falsy value (`0`, `""`, `[]`) too — use `is None` when you mean *specifically* "no value"</li></ul> |
@@ -39,41 +39,47 @@ A basic ("scalar") data type holds a single value, as opposed to a [collection](
 
 ## Integers
 
-An integer (`int`) is a whole number — positive, negative, or zero — with no decimal point.
+An integer a.k.a. "`int`" is a whole number — positive, negative, or zero — with no decimal point.
 
 ```python-ref
 length = 5
 ```
 
-### Integer operations
+### Integer operations { data-card-link="skip" }
 
 #### Arithmetic
 
-- The standard math operators — **`+`, `-`, `*`, `/`, `**`**. One surprise for beginners: `/` (true division) always returns a `float`, even when the numbers divide evenly.
+If both sides are `int` the result will be `int`, except for division.
+
+- **`+` addition**, **`-` subtraction**
 
     ```python-ref
     length + 3   # 8
     length - 2   # 3
-    length * 2   # 10
-    length / 2   # 2.5  (/ always returns a float)
-    length ** 2  # 25   (exponent)
     ```
 
-- **Combine** any of these with `=` for an augmented assignment — it does the calculation on the variable, and sets it equal to the variable, doing two things with one operation.
+- **`*` multiplication**, **`/` division** (division always returns a [`float decimal`](#floats), even when the numbers divide evenly)
 
     ```python-ref
-    length += 1  # same as length = length + 1
+    length * 2   # 10
+    length / 2   # 2.5  (division always returns a float)
+    ```
+
+- **`**` exponent** a^b^ = `a**b`
+
+    ```python-ref
+    length ** 2  # 25   (length squared)
     ```
 
 #### Floor division & modulo
 
-- **floor division `//`** divides two numbers and keeps only the whole-number part, dropping anything after the decimal — like asking "how many whole groups of 2 fit into 7?" 
+- **`//` floor division** divides two numbers and keeps only the whole-number part, dropping anything after the decimal — like asking "how many whole groups of 2 fit into 7?" 
 
     ```python-ref
     7 // 2  # 3 (7 split into groups of 2 makes 3 full groups)
     ```
 
-- **modulo `%`** returns the remainder after that floor division — the part `//` throws away. `//` and `%` are a pair: one tells you how many whole groups fit, the other tells you what's left afterward.
+- **`%` modulo** returns the remainder after that floor division — the part `//` throws away. `//` and `%` are a pair: one tells you how many whole groups fit, the other tells you what's left afterward.
 
     ```python-ref
     7 % 2  # 1 (7 split into groups of 2 leaves 1 behind)
@@ -83,6 +89,16 @@ length = 5
 
     ```python-ref
     divmod(7, 2) # (3, 1) — same as (7 // 2, 7 % 2)
+    ```
+
+#### Apply arithmetic to a variable
+
+- **Combine** any of these arithmetic operations with `=` for an augmented assignment — it does that calculation on the variable, and updates the value of the variable, doing two things with one operation. Examples:  **`+=`  `-=`  `*=`  `/=`  `//=`  `%=`  `**=`**.
+
+    ```python-ref
+    length = length + 1  # this way works, it's just longer
+    
+    length += 1          # same thing, written more concisely 
     ```
 
 #### Absolute value
@@ -106,6 +122,17 @@ length = 5
     ```
 
 ### Boolean expressions
+
+- **`==` `!=` `>` `<` `>=` `<=`** compare two numbers — see [comparisons by type](#booleans) for the full rundown.
+
+    ```python-ref
+    length == 5   # True, equal to
+    length != 4   # True, not equal to
+    length > 3    # True, greater than
+    length < 10   # True, less than
+    length >= 5   # True, greater than or equal to
+    length <= 5   # True, less than or equal to
+    ```
 
 - **Truthy:** any nonzero integer
 
@@ -160,23 +187,32 @@ A float is a number with a decimal point — for anything that isn't a whole num
 weight = 4.5
 ```
 
-### Float operations
+### Float operations { data-card-link="skip" }
 
 #### Arithmetic
 
-- Floats support the same operators as integers. Notably, `/` always returns a `float` — even `10 / 2`, which divides evenly, gives `5.0`, not `5`.
+If either side of arithmetic is `float` the result will be `float`, except for division.
+
+- **`+` addition**, **`-` subtraction**
 
     ```python-ref
-    weight + 1.5  # 6.0
-    weight / 2    # 2.25
-    10 / 2        # 5.0  (still a float, even though it divides evenly)
+    weight + 3   # 7.5
+    weight - 2   # 2.5
     ```
 
-- **Combine** any of these with `=` for an augmented assignment — it does the calculation on the variable, and sets it equal to the variable, doing two things with one operation.
+- **`*` multiplication**, **`/` division**
 
     ```python-ref
-    weight += 1.5  # same as weight = weight + 1.5
+    weight * 2   # 9.0
+    weight / 2   # 2.25
     ```
+
+- **`**` exponent** a^b^ = `a**b`
+
+    ```python-ref
+    weight ** 2  # 20.25   (weight squared)
+    ```
+
 
 #### Floor division & modulo
 
@@ -196,6 +232,16 @@ weight = 4.5
 
     ```python-ref
     divmod(7.0, 2.0)  # (3.0, 1.0) — same as (7.0 // 2.0, 7.0 % 2.0)
+    ```
+
+#### Apply arithmetic to a variable
+
+- **Combine** any of these arithmetic operations with `=` for an augmented assignment — it does that calculation on the variable, and updates the value of the variable, doing two things with one operation. Examples:  **`+=`  `-=`  `*=`  `/=`  `//=`  `%=`  `**=`**.
+
+    ```python-ref
+    length = length + 1  # this way works, it's just longer
+    
+    length += 1          # same thing, written more concisely 
     ```
 
 #### Adjust
@@ -223,6 +269,17 @@ weight = 4.5
     ```
 
 ### Boolean expressions
+
+- **`==` `!=` `>` `<` `>=` `<=`** compare two numbers — see [comparisons by type](#booleans) for the full rundown.
+
+    ```python-ref
+    weight == 4.5   # True, equal to
+    weight != 5.0   # True, not equal to
+    weight > 3.0    # True, greater than
+    weight < 10.0   # True, less than
+    weight >= 4.5   # True, greater than or equal to
+    weight <= 4.5   # True, less than or equal to
+    ```
 
 - **Truthy:** any nonzero float
 
@@ -287,7 +344,7 @@ Strings have three defining traits:
 name = "burmese python"
 ```
 
-### String operations
+### String operations { data-card-link="skip" }
 
 #### Access characters
 
@@ -323,30 +380,31 @@ Strings use the same index and slice syntax as lists. `0` is the first character
 
 #### Combine
 
-- **`,` in `print()`** separates multiple values with a space, converting non-strings automatically — but it only works inside `print()` (or similar functions), since it isn't actually building a string, just printing values side by side.
-
-    ```python-ref
-    print(species, length_ft)  # ball 4.5 — quick, but can't be saved to a variable
-    ```
-
-- **`+`** joins strings end to end, building a real string you can store — but every piece must already be text, so joining a string with a number raises a `TypeError` unless you convert the number with `str()` first.
+- **`+` joins** strings end to end, building a real string you can store — but every piece must already be text, so joining a string with a number raises a `TypeError` unless you convert the number with `str()` first.
 
     ```python-ref
     "ball" + " " + "python"  # "ball python"
     ```
 
-- **`*`** repeats a string a given number of times.
+    - **combine \+=** for an augmented assignment — join something to a string then update the variable with the new value, doing two things with one operation.
+
+        ```python-ref
+        name = name + "python"  # long way
+        name += "python"        # short way
+        ```
+
+- **`*` repeats** a string a given number of times.
 
     ```python-ref
     "ball" * 3  # "ballballball"
     ```
 
-- **Combine** `+` or `*` with `=` for an augmented assignment — it does the calculation on the variable, and sets it equal to the variable, doing two things with one operation.
+    - **combine \*=** for an augmented assignment — repeat the string a given number of times then update the variable with the value, doing two things with one operation.
 
-    ```python-ref
-    name = "ball"
-    name += " python"  # same as name = name + " python"
-    ```
+        ```python-ref
+        name = name * 3  # long way
+        name *= 3        # short way
+        ```
 
 - **`.join()`** glues a list of strings back together, using the string it's called on as the separator between each item.
 
@@ -363,6 +421,12 @@ Strings use the same index and slice syntax as lists. `0` is the first character
     length = 5
 
     print(f"{species} is {length} feet")  # "ball is 5 feet"
+    ```
+
+- **`.format()`** is the older way to build a string with embedded values — `{}` placeholders in the string are filled in with the arguments passed to `.format()`, in order, instead of reading variable names directly.
+
+    ```python-ref
+    "{} {}".format(species, length)  # "ball 5"
     ```
 
 - A **format spec** is an optional add-on *inside* one `{}` placeholder — it goes after the `value:` and controls how that value is displayed. It's built from **one or more optional** pieces, stacked together in this order: 
@@ -494,6 +558,27 @@ Since strings are immutable, these all return a **new** string rather than chang
 
 ### Boolean expressions
 
+- **`==` `!=`** check whether two strings are equal.
+
+    ```python-ref
+    name == "burmese python"  # True, equal to
+    name != "ball python"     # True, not equal to
+    ```
+
+- **`in` `not in`** check whether one string is a substring of another.
+
+    ```python-ref
+    "python" in name       # True, is a substring
+    "anaconda" not in name # True, is not a substring
+    ```
+
+- **`>` `<`** compare strings alphabetically — see [comparisons by type](#booleans) for the full rundown.
+
+    ```python-ref
+    name > "ball python"  # True, comes after alphabetically
+    name < "ball python"  # False, doesn't come before alphabetically
+    ```
+
 - **Truthy:** any non-empty string — even one that's just whitespace
 
 - **Falsy:** the empty string `""`
@@ -606,47 +691,310 @@ if name:                 # runs — name isn't empty
 
 ## Booleans
 
-A boolean (`bool`) holds one of exactly two values, **`True`** or **`False`** — often used to represent yes/no, on/off, or the result of a comparison.
+A boolean (`bool`) holds one of exactly two values, **`True`** or **`False`** — often used to represent yes/no, on/off, or the result of a comparison. They are used in [if statements](conditionals.md#if--elif--else) and [while loops](loops.md#while-loops).
 
 ```python-ref
 venomous = False
 ```
 
-### Boolean operations
+### Boolean expressions
 
-#### Creating a boolean
+- A **boolean expression** is a boolean value (`True` or `False`) or anything that produces one, and is treated as the **condition** that must be `True` in order to run a block of code.
 
-Several kinds of operators hand back a `bool`, each answering a different question:
+- A comparison looks different depending on the type of value being checked, as shown below. All of these comparisons result in a `True` or `False` boolean expression. 
 
-- **`>`, `<`, `>=`, `<=`, `==`, `!=`** compare two values — is one bigger, smaller, or equal to the other?
+    !!! example "Comparisons by type"
 
-    ```python-ref
-    length = 5
-    length > 3   # True — is length bigger than 3?
-    length == 5  # True — is length equal to 5?
-    ```
+        === "int, float"
 
-- **`is`, `is not`** check whether two names point to the *exact same object*, not just an equal-looking value.
+            | Operator | Meaning |
+            |---|---|
+            | `==` | equal to |
+            | `!=` | not equal to |
+            | `>` | greater than |
+            | `<` | less than |
+            | `>=` | greater than or equal to |
+            | `<=` | less than or equal to |
 
-    ```python-ref
-    venomous is None  # False — venomous is False, not None
-    ```
+            ```python-ref
+            length = 12
 
-- **`in`, `not in`** check whether a value shows up inside a string, list, or other collection.
+            if length == 12:             # equal to
+                print("exactly 12 ft")
 
-    ```python-ref
-    "python" in name  # True
-    ```
+            if length != 4:              # not equal
+                print("not 4 ft")
 
-- **`not`** flips a boolean to its opposite.
+            if length > 10:              # greater than
+                print("long snake")
 
-    ```python-ref
-    not venomous  # True — venomous is False, so not flips it
-    ```
+            if length < 20:              # less than
+                print("under 20 ft")
 
-#### Logical operators
+            if length >= 12:             # greater than or equal to
+                print("at least 12 ft")
 
-`not`, `and`, `or` combine booleans to create more complex meanings.
+            if length <= 12.5:           # less than or equal to
+                print("12.5 ft or shorter")
+            ```
+
+        === "str"
+
+            | Operator | Meaning |
+            |---|---|
+            | `==` | equal to |
+            | `!=` | not equal to |
+            | `in` | is a substring |
+            | `not in` | is not a substring |
+            | `>` | comes after alphabetically |
+            | `<` | comes before alphabetically |
+
+            ```python-ref
+            name = "burmese python"
+
+            if name == "burmese python":   # equal to
+                print("it's a burmese")
+
+            if name != "ball python":      # not equal
+                print("not a ball python")
+
+            if "python" in name:           # is it a substring
+                print("name contains 'python'")
+
+            if "anaconda" not in name:     # is it not a substring
+                print("name doesn't mention anaconda")
+
+            if name > "ball python":       # alphabetical comparison
+                print("comes after 'ball python' alphabetically")
+            ```
+
+        === "bool"
+
+            | Check | Meaning |
+            |---|---|
+            | `[bool]` | is the bool True |
+            | `not [bool]` | is the bool False |
+
+            Don't compare booleans with `== True` or `is True` — a boolean is already the condition, so just use the value directly (or `not` the value).
+
+            ```python-ref
+            venomous = False
+
+            if venomous:                   # is it True — don't write venomous == True
+                print("handle with care")
+
+            if not venomous:               # is it False — don't write venomous == False
+                print("safe to handle")
+            ```
+
+        === "None"
+
+            | Operator | Meaning |
+            |---|---|
+            | `is` | is None |
+            | `is not` | is not None |
+
+            ```python-ref
+            age = None
+
+            if age is None:                # is it None
+                print("age not recorded")
+
+            if age is not None:            # is it anything else
+                print("age was recorded")
+            ```
+
+        === "list"
+
+            | Operator | Meaning |
+            |---|---|
+            | `in` | value exists in the list |
+            | `not in` | value is missing from the list |
+            | `==` | same contents, in the same order |
+            | `!=` | different contents |
+
+            Or compare a specific item directly, like `species[0] == "ball"`.
+
+            ```python-ref
+            species = ["ball", "burmese", "boa"]
+            other_species = ["ball", "burmese", "boa"]
+
+            if "ball" in species:          # is the value in the list
+                print("ball python is in the list")
+
+            if "anaconda" not in species:  # is the value missing from the list
+                print("anaconda isn't in the list")
+
+            if species == other_species:   # is it the same contents, in the same order
+                print("both lists match")
+
+            if "ball" == species[0]:       # compare a specific item
+                print("ball python is the first item")
+            ```
+
+            | Operator | Meaning |
+            |---|---|
+            | `==` | same contents, even if it's a different object |
+            | `is` | the exact same object, not just an equal one |
+
+            ```python-ref
+            snake = ["ball", "burmese"]
+            other_snake = ["ball", "burmese"]   # separate list, but equal contents
+
+            if snake == other_snake:      # do they contain the same items?
+                print("equal contents")
+
+            if snake != ["ball"]:         # different contents
+                print("not equal to a single-item list")
+
+            same_snake = snake                  # another name for `snake`
+            if snake is same_snake:             # same_snake and snake point to the exact same list
+                print("this really is the same list")
+
+            if snake is not other_snake:        # it's a different list, even though contents match
+                print("but not the same list")
+            ```
+
+        === "tuple"
+
+            | Operator | Meaning |
+            |---|---|
+            | `in` | value exists in the tuple |
+            | `not in` | value is missing from the tuple |
+            | `==` | same contents, in the same order |
+            | `!=` | different contents |
+
+            Or compare a specific item directly, like `snake[0] == "ball"`.
+
+            ```python-ref
+            snake = ("ball", "5ft", "not venomous")
+            other_snake = ("ball", "5ft", "not venomous")
+
+            if "ball" in snake:
+                print("species ball is in the tuple")
+
+            if snake == other_snake:
+                print("tuples match")
+
+            if "ball" == snake[0]:
+                print("ball python is the first item")
+            ```
+
+            | Operator | Meaning |
+            |---|---|
+            | `==` | same contents, even if it's a different object |
+            | `is` | the exact same object, not just an equal one |
+
+            ```python-ref
+            snake = ("ball", "burmese")
+            other_snake = ("ball", "burmese")   # separate tuple, but equal contents
+
+            if snake == other_snake:      # do they contain the same items?
+                print("equal contents")
+
+            same_snake = snake                  # another name for `snake`
+            if snake is same_snake:             # same_snake and snake point to the exact same tuple
+                print("this really is the same tuple")
+
+            if snake is not other_snake:        # it's a different tuple, even though contents match
+                print("but not the same tuple")
+            ```
+
+        === "dict"
+
+            | Operator | Meaning |
+            |---|---|
+            | `in` | key exists |
+            | `not in` | key is missing |
+
+            Or compare a specific value directly, like `snake["length"] > 2`.
+
+            ```python-ref
+            snake = {"species": "ball", "length": 3, "venomous": False}
+
+            if "venomous" in snake:        # is it a key
+                print("snake dict tracks venomous status")
+
+            if "habitat" not in snake:     # is it not a key
+                print("snake dict has no habitat key")
+
+            if snake["length"] > 2:        # compare a specific value
+                print("snake in dict is over 2 ft")
+            ```
+
+            | Operator | Meaning |
+            |---|---|
+            | `==` | same keys and values, even if it's a different object |
+            | `is` | the exact same object, not just an equal one |
+
+            ```python-ref
+            snake = {"species": "ball", "length": 3}
+            other_snake = {"species": "ball", "length": 3}   # separate dict, but equal contents
+
+            if snake == other_snake:      # do they contain the same keys and values?
+                print("equal contents")
+
+            same_snake = snake                  # another name for `snake`
+            if snake is same_snake:             # same_snake and snake point to the exact same dict
+                print("this really is the same dict")
+
+            if snake is not other_snake:        # it's a different dict, even though contents match
+                print("but not the same dict")
+            ```
+
+        === "set"
+
+            | Operator | Meaning |
+            |---|---|
+            | `in` | value exists in the set |
+            | `not in` | value is missing from the set |
+            | `==` | same contents, regardless of order |
+            | `!=` | different contents |
+
+            ```python-ref
+            species = {"ball", "burmese", "boa"}
+            other_species = {"ball", "burmese", "boa"}
+
+            if "ball" in species:          # is the value in the set
+                print("ball python is in the set")
+
+            if "anaconda" not in species:  # is the value missing from the set
+                print("anaconda isn't in the set")
+
+            if species == other_species:   # same contents, regardless of order
+                print("both sets match")
+            ```
+
+            | Operator | Meaning |
+            |---|---|
+            | `is` | the exact same object, not just an equal one |
+
+            ```python-ref
+            same_species = species              # another name for `species`
+            if species is same_species:         # same_species and species point to the exact same set
+                print("this really is the same set")
+
+            if species is not other_species:    # it's a different set, even though contents match
+                print("but not the same set")
+            ```
+
+            | Operator | Meaning |
+            |---|---|
+            | `issubset()` | every item in this set is also in another set |
+            | `issuperset()` | this set contains every item in another set |
+            | `isdisjoint()` | the two sets share no items at all |
+
+            ```python-ref
+            constrictors = {"ball", "burmese", "boa"}
+
+            {"ball", "burmese"}.issubset(constrictors)   # True
+            constrictors.issuperset({"ball"})            # True
+            constrictors.isdisjoint({"cobra", "viper"})  # True
+            ```
+
+### Logical operators
+
+`not`, `and`, `or` combine booleans (or boolean expressions) to create more complex meanings.
 
 
 | `A` (boolean) | `B` (boolean) | `not A` — flips to the opposite | `A and B` — `True` only if both are `True` | `A or B` — `True` if either is `True` |
