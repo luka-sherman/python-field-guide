@@ -14,6 +14,12 @@
   --pt-hairline: #DED2B4;
   --pt-border-soft: #C9BE9E;
   --pt-accent: #3f6b52;
+  /* h2/h3 heading colors: both a shade darker/more-saturated than
+     --pt-accent (used for buttons, success icons, etc.) so headings read as
+     deliberately weightier than an inline accent, with h3 lighter than h2
+     but still clearly bold rather than de-emphasized. */
+  --pt-heading-h2: #2f5843;
+  --pt-heading-h3: #4f7360;
   --pt-ref-keyword: #8a5a2e;
   --pt-danger: #a33f3f;
 
@@ -46,6 +52,8 @@
   --pt-hairline: #33362f;
   --pt-border-soft: #454940;
   --pt-accent: #6fbf8f;
+  --pt-heading-h2: #4f9c72;
+  --pt-heading-h3: #6b8f7a;
   --pt-ref-keyword: #e8c9a8;
   --pt-danger: #e38181;
 
@@ -1101,19 +1109,24 @@ input:checked + .md-consent__settings {
 /* Bigger, bolder h2 with more breathing room than Material's default
    (font-weight 300, 1.5625em, 1.6em/0.64em margins) — h2 marks a whole new
    section on these long single-page docs, so it should read as a clear
-   break rather than a slightly-larger paragraph. .pt-fake-h2 below must be
-   kept in sync with these values. */
+   break rather than a slightly-larger paragraph. Colored (rather than a
+   left border or background panel) so the hierarchy reads from the text
+   itself without wrapping section content in a box. .pt-fake-h2 below must
+   be kept in sync with these values. */
 .md-typeset h2 {
   font-weight: 700;
   font-size: 1.875em;
   margin: 2.2em 0 0.8em;
+  color: var(--pt-heading-h2);
 }
 
 /* h3 (Material default: font-weight 400) bolded to match h2's heavier
-   weight, so the heading hierarchy reads as consistently bold rather than
-   h2 standing out as the only bold level. */
+   weight, and colored one step lighter than h2 (--pt-heading-h3) so the
+   hierarchy reads as consistently bold text in a shared color family,
+   rather than h2 standing out as the only styled level. */
 .md-typeset h3 {
   font-weight: 700;
+  color: var(--pt-heading-h3);
 }
 
 /* Matches .md-typeset h2's own styling exactly (see above) without being a
@@ -1127,5 +1140,5 @@ input:checked + .md-consent__settings {
   font-size: 1.875em;
   line-height: 1.4;
   margin: 2.2em 0 0.8em;
-  color: var(--pt-ink);
+  color: var(--pt-heading-h2);
 }
