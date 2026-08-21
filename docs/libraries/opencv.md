@@ -6,6 +6,8 @@ description: >-
 
 # :material-face-recognition:{ .lg .middle } OpenCV library
 
+[Official documentation :material-open-in-new:](https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html){ target="_blank" }
+
 **OpenCV** (imported as `cv2`) is Python's standard library for computer vision — real-time image and video analysis, rather than the straightforward photo editing [Pillow](pillow.md) is built for. It's a third-party package, originally written in C++ with a thin Python wrapper over it, which shows up in a couple of its API choices: images load as plain NumPy arrays instead of a dedicated `Image` class, and in **BGR** (blue-green-red) channel order rather than the RGB most other tools expect. Like Pillow and [Tkinter](tkinter.md), OpenCV produces visual, often interactive output — a window showing an image or a live camera feed — that can't run inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file alongside an image and run them with `python` to see the results.
 
 ## Install

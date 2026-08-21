@@ -6,6 +6,8 @@ description: >-
 
 # :material-calendar-clock:{ .lg .middle } datetime library
 
+[Official documentation :material-open-in-new:](https://docs.python.org/3/library/datetime.html){ target="_blank" }
+
 The **`datetime`** module is Python's standard library for working with dates and times — logging when an observation happened, measuring how long ago it was, or formatting a date for display.
 
 ## Install
