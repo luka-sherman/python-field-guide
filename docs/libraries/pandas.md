@@ -8,6 +8,8 @@ description: >-
 
 [Official documentation :material-open-in-new:](https://pandas.pydata.org/docs/){ target="_blank" }
 
+pandas is an open-source project, funded by nonprofit [NumFOCUS](https://numfocus.org/).
+
 **pandas** (imported as `pd`) is Python's standard library for tabular data — rows and columns, like a spreadsheet, with tools for filtering, sorting, and summarizing built in. It's a third-party package, not part of the standard library, and is built on top of [NumPy](numpy.md).
 
 ## Install
