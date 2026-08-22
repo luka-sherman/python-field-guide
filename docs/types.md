@@ -146,6 +146,8 @@ while length:              # loops until length reaches 0
     length -= 1
 ```
 
+### Going further
+
 ??? run "Practice with integers"
     
     ```python
@@ -289,6 +291,8 @@ If either side of arithmetic is `float` the result will be `float`, except for d
 if weight:                 # runs — weight isn't 0.0
     print("has a weight")
 ```
+
+### Going further
 
 ??? warning "Floating-point precision"
     Tiny rounding errors creep in, since most decimal fractions can't be stored exactly in binary.
@@ -587,6 +591,8 @@ Since strings are immutable, these all return a **new** string rather than chang
 if name:                 # runs — name isn't empty
     print("has a name")
 ```
+
+### Going further
 
 ??? run "Practice with strings"
 
@@ -1030,6 +1036,7 @@ venomous = False
 
     3. `or`
 
+### Going further
 
 ??? note "Bool is a subclass of int"
     `True` behaves like `1` and `False` behaves like `0` in arithmetic.
@@ -1103,6 +1110,8 @@ venomous = None
     else:
         print("nothing found")
     ```
+
+### Going further
 
 ??? run "Practice with None"
 
