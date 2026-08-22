@@ -41,3 +41,7 @@
 *[Compiling]: Translating source code into machine instructions ahead of time, as a separate step before the program runs — Python doesn't need this because it instead reads and runs code directly, line by line
 *[truthiness]: Whether a value counts as True or False when used somewhere a bool is expected, even if it isn't a bool itself
 *[Truthiness]: Whether a value counts as True or False when used somewhere a bool is expected, even if it isn't a bool itself
+*[hashable]: Can be used as a dict key or set member because it never changes after creation — most immutable types qualify, like int, float, str, bool, None, and tuple
+*[Hashable]: Can be used as a dict key or set member because it never changes after creation — most immutable types qualify, like int, float, str, bool, None, and tuple
+*[queue]: A line of items processed in the order they arrive — the first one added is the first one handled
+*[Queue]: A line of items processed in the order they arrive — the first one added is the first one handled

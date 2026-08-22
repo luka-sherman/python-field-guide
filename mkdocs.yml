@@ -21,6 +21,7 @@ nav:
   - Libraries:
       - All: libraries/index.md
       - Built-in:
+          - collections: libraries/collections.md
           - csv: libraries/csv.md
           - datetime: libraries/datetime.md
           - json: libraries/json.md

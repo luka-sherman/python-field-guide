@@ -13,6 +13,12 @@ Libraries allow us to apply the Python fundamentals to real tasks. These are a f
 
 <div class="grid cards" markdown="block">
 
+-   :material-format-list-group:{ .lg .middle } [__collections__](collections.md) [:material-language-python:](collections.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+
+    Specialized containers: counting items, grouping with defaults, named tuples, fast queues.
+
+    [`install`](collections.md#install) · [`import`](collections.md#import) · [`Counter`](collections.md#counter) · [`defaultdict`](collections.md#defaultdict) · [`namedtuple`](collections.md#namedtuple) · [`deque`](collections.md#deque) · [`OrderedDict`](collections.md#ordereddict) · [`ChainMap`](collections.md#chainmap)
+
 -   :material-file-delimited-outline:{ .lg .middle } [__csv__](csv.md) [:material-language-python:](csv.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Reading and writing spreadsheets.

@@ -130,15 +130,11 @@ A **collection** is a single object that groups multiple values (like [basic typ
 
 ### Boolean expressions
 
-- **`in`** checks whether a value exists in the list.
+- **`in`, `not in`** checks whether a value exists or is missing in the list.
 
     ```python-ref
     "burmese" in species  # True
-    ```
 
-- **`not in`** checks whether a value is missing from the list.
-
-    ```python-ref
     "anaconda" not in species  # True
     ```
 
@@ -158,7 +154,7 @@ A **collection** is a single object that groups multiple values (like [basic typ
     species != ["ball", "burmese"]  # True
     ```
 
-- **`is`** checks whether two variables point to the exact same list object, not just an equal one.
+- **`is`, `is not`** checks whether two variables point to the exact same list object, not just an equal one.
 
     ```python-ref
     same_species = species        # another name for the same list
@@ -168,7 +164,7 @@ A **collection** is a single object that groups multiple values (like [basic typ
     species is copy_of_species    # False, different list with equal contents
     ```
 
-- **truthiness (boolean value of the whole list)**
+- **`is list empty`** truthiness (boolean value of the whole list)
 
     - Truthy: a list with contents 
     
@@ -325,6 +321,8 @@ A **collection** is a single object that groups multiple values (like [basic typ
     [s.title() for s in species]        # ["Burmese", "Rock", "Ball", "Blood"]
     ```
 
+### Going further
+
 ??? run "Practice with lists"
     Each box below is fully editable — write your answer, then click Run.
 
@@ -408,11 +406,22 @@ A **collection** is a single object that groups multiple values (like [basic typ
         print(species)
         ```
 
+??? tip "Extending lists with `collections.deque`"
+    A list can already add or remove items from the end cheaply, but doing the same at the
+    *front* — `species.insert(0, item)` or `species.pop(0)` — means Python has to shift every
+    other item over. The [`collections`](libraries/collections.md) library's
+    [`deque`](libraries/collections.md#deque) adds fast `appendleft()`/`popleft()` methods for
+    exactly that case. Switch to it when items are being added or removed from both ends
+    often, like a queue of items processed in the order they arrive — not for a list that's
+    mostly read or only changed at the end, where a plain list is simpler and already fast.
+    See the [collections library page](libraries/collections.md) for the rest of `deque`'s
+    methods (`rotate()`, `maxlen=`, and more) and for the other list-adjacent tools it adds.
+
 ## Dictionaries
 
 ### Create a dictionary
 
-- A dictionary stores data as **key-value pair**, inside a single variable. There's no order/position to the keys. 
+- A dictionary stores data as **key-value pairs**, inside a single variable. Values are looked up by key, not by a numbered position like a list's index — a dict does remember the order keys were added in, but that order isn't how you access anything.
 
     ```python-ref
     snake = {
@@ -614,6 +623,8 @@ A **collection** is a single object that groups multiple values (like [basic typ
     snakes["burmese"]["length_ft"]  # 16
     ```
 
+### Going further
+
 ??? run "Practice with dictionaries"
     Each box below is fully editable — write your answer, then click Run.
 
@@ -689,6 +700,27 @@ A **collection** is a single object that groups multiple values (like [basic typ
         }
         print(snakes["ball"]["length_ft"])
         ```
+
+??? tip "Extending dicts with `collections`"
+    A plain dict can tally counts or group items, but both take extra setup code: checking
+    whether a key exists before incrementing it, or before appending to a list under it. The
+    [`collections`](libraries/collections.md) library adds several dicts that handle cases
+    like these automatically.
+
+    - [`Counter`](libraries/collections.md#counter) counts items in a sequence directly —
+      reach for it as soon as a dict's job is "how many times does each item show up."
+    - [`defaultdict`](libraries/collections.md#defaultdict) supplies an empty value (a list,
+      a set, `0`) the first time a new key is used, so grouping items under keys that aren't
+      known ahead of time doesn't need an `if key not in dict` check before every write.
+    - [`OrderedDict`](libraries/collections.md#ordereddict) is worth reaching for only when
+      order itself needs to be compared or reordered — a plain dict already remembers
+      insertion order, but its `==` ignores that order, and it has no `move_to_end()`.
+    - [`ChainMap`](libraries/collections.md#chainmap) layers several dicts together — like a
+      set of overrides checked before a set of defaults — without copying or merging them
+      into a new dict.
+
+    See the [collections library page](libraries/collections.md) for the full method list on
+    each of these.
 
 ## Tuples
 
@@ -883,6 +915,8 @@ The **negative index** starts counting down from the end instead, starting at `-
     tuple(["burmese", "rock", "ball", "blood"])  # ("burmese", "rock", "ball", "blood")
     ```
 
+### Going further
+
 ??? run "Practice with tuples"
     Each box below is fully editable — write your answer, then click Run.
 
@@ -931,6 +965,18 @@ The **negative index** starts counting down from the end instead, starting at `-
         species = species + ("angolan",)
         print(species)
         ```
+
+??? tip "Extending tuples with `collections.namedtuple`"
+    A plain tuple's items can only be accessed by position — `snake[1]` doesn't say what
+    that value actually means without checking back how the tuple was built. The
+    [`collections`](libraries/collections.md) library's
+    [`namedtuple`](libraries/collections.md#namedtuple) builds a tuple type with named fields,
+    so the same value reads as `snake.length_ft`. Switch to it once a tuple's positions start
+    needing a mental lookup table to remember, or once several tuples share the same shape
+    throughout a program — a single `namedtuple` definition documents that shape once instead
+    of repeating a comment at every literal.
+    See the [collections library page](libraries/collections.md) for `namedtuple`'s other
+    methods (`_asdict()`, `_replace()`, default field values) and the rest of the module.
 
 ## Sets
 
@@ -1161,6 +1207,8 @@ These check a relationship between two sets and hand back a `bool`, rather than 
     species = ["ball", "burmese", "ball", "boa", "burmese"]
     list(set(species))  # ["burmese", "ball", "boa"] — order not guaranteed
     ```
+
+### Going further
 
 ??? run "Practice with sets"
     Each box below is fully editable — write your answer, then click Run.
