@@ -212,13 +212,27 @@ hide:
 
 <div class="grid cards" markdown="block">
 
+-   :material-format-list-group:{ .lg .middle } [__collections__](libraries/collections.md) [:material-language-python:](libraries/collections.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+
+    Specialized containers: counting items, grouping with defaults, named tuples, fast queues.
+
+    [**`Counter`**](libraries/collections.md#counter) [`counts[item]`](libraries/collections.md#count) [`most_common()`](libraries/collections.md#count) [`total()`](libraries/collections.md#count) [`elements()`](libraries/collections.md#inspect) [`update()`](libraries/collections.md#update) [`subtract()`](libraries/collections.md#update) [`+ - & |`](libraries/collections.md#combine)
+
+    [**`defaultdict`**](libraries/collections.md#defaultdict) [`default_factory`](libraries/collections.md#defaultdict) [`.get()`](libraries/collections.md#reading-vs-writing)
+
+    [**`namedtuple`**](libraries/collections.md#namedtuple) [`defaults=`](libraries/collections.md#create) [`_make()`](libraries/collections.md#create) [`_asdict()`](libraries/collections.md#convert) [`_replace()`](libraries/collections.md#convert) [`_fields`](libraries/collections.md#inspect_1) [`_field_defaults`](libraries/collections.md#inspect_1)
+
+    [**`deque`**](libraries/collections.md#deque) [`append()`](libraries/collections.md#add) [`appendleft()`](libraries/collections.md#add) [`extend()`](libraries/collections.md#add) [`extendleft()`](libraries/collections.md#add) [`insert()`](libraries/collections.md#add) [`pop()`](libraries/collections.md#remove) [`popleft()`](libraries/collections.md#remove) [`remove()`](libraries/collections.md#remove) [`clear()`](libraries/collections.md#remove) [`count()`](libraries/collections.md#inspect_2) [`index()`](libraries/collections.md#inspect_2) [`copy()`](libraries/collections.md#inspect_2) [`rotate()`](libraries/collections.md#reorder) [`reverse()`](libraries/collections.md#reorder) [`maxlen=`](libraries/collections.md#reorder)
+
+    [**`OrderedDict`**](libraries/collections.md#ordereddict) [`move_to_end()`](libraries/collections.md#reorder_1) [`popitem()`](libraries/collections.md#reorder_1) [`==`](libraries/collections.md#compare)
+
+    [**`ChainMap`**](libraries/collections.md#chainmap) [`new_child()`](libraries/collections.md#extend) [`.maps`](libraries/collections.md#inspect_3) [`.parents`](libraries/collections.md#inspect_3)
+
+    [**`User* wrapper`**](libraries/collections.md#user-wrapper-classes) [`UserDict`](libraries/collections.md#user-wrapper-classes) [`UserList`](libraries/collections.md#user-wrapper-classes) [`UserString`](libraries/collections.md#user-wrapper-classes)
+
 -   :material-file-delimited-outline:{ .lg .middle } [__csv__](libraries/csv.md) [:material-language-python:](libraries/csv.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Reading and writing spreadsheets.
-
-    [**`install`**](libraries/csv.md#install)
-
-    [**`import`**](libraries/csv.md#import)
 
     [`csv.writer`](libraries/csv.md#writing-csv-files)
 

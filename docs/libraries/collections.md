@@ -60,7 +60,9 @@ print(counts)  # Counter({'ball': 3, 'burmese': 2, 'boa': 1})
 from collections import Counter
 ```
 
-### Count & inspect
+### Counter operations
+
+#### Count
 
 - **`counts[item]`** looks up an item's count. Missing items return `0` instead of raising
   `KeyError`, unlike indexing a plain dict.
@@ -84,6 +86,8 @@ from collections import Counter
     counts.total()  # 6
     ```
 
+#### Inspect
+
 - **`elements()`** does the reverse of counting — expands a `Counter` back out into an
   iterator that repeats each item by its count.
 
@@ -91,7 +95,7 @@ from collections import Counter
     list(counts.elements())  # ['ball', 'ball', 'ball', 'burmese', 'burmese', 'boa']
     ```
 
-### Update & combine
+#### Update
 
 - **`update()`** adds more items to an existing `Counter`, incrementing counts instead of
   replacing them — the counting equivalent of a list's `.extend()`. Passing another `Counter`
@@ -107,6 +111,8 @@ from collections import Counter
     ```python-ref
     counts.subtract({"ball": 1, "cobra": 1})  # ball: 3, cobra: -1
     ```
+
+#### Combine
 
 - **`+` / `-` / `&` / `|`** combine two `Counter` objects item by item, returning a new one:
   add counts, subtract counts (dropping anything that would go negative), take the minimum of
@@ -320,7 +326,9 @@ Like a plain tuple, a `namedtuple` instance is immutable — there's no `snake.l
 from collections import namedtuple
 ```
 
-### Create
+### namedtuple operations
+
+#### Create
 
 - **`namedtuple(name, fields)`** — `fields` can be a list of strings, or one
   space/comma-separated string (`"species length_ft"`).
@@ -346,7 +354,7 @@ from collections import namedtuple
     Snake._make(row)  # Snake(species='burmese', length_ft=12, venomous=False)
     ```
 
-### Convert & inspect
+#### Convert
 
 - **`_asdict()`** converts an instance to a regular dict.
 
@@ -360,6 +368,8 @@ from collections import namedtuple
     ```python-ref
     snake._replace(length_ft=6)  # Snake(species='ball', length_ft=6, venomous=False)
     ```
+
+#### Inspect
 
 - **`_fields`** lists the field names; **`_field_defaults`** reports the defaults as a dict,
   the same information `defaults=` set, mapped back to field names.
@@ -451,7 +461,9 @@ print(queue)  # deque(['blood', 'ball', 'burmese', 'boa', 'cobra'])
 from collections import deque
 ```
 
-### Add & remove
+### deque operations
+
+#### Add
 
 - **`append()` / `appendleft()`** add one item to the right or left end.
 
@@ -468,6 +480,14 @@ from collections import deque
     queue.extendleft(["ball", "blood"])    # add several to the left, one at a time
     ```
 
+- **`insert()`** adds one item at a specific index, exactly like a list's `insert()`.
+
+    ```python-ref
+    queue.insert(1, "viper")
+    ```
+
+#### Remove
+
 - **`pop()` / `popleft()`** remove and return the item from the right or left end.
 
     ```python-ref
@@ -475,16 +495,15 @@ from collections import deque
     queue.popleft()   # removes and returns the first item
     ```
 
-- **`insert()` / `remove()` / `clear()`** work exactly like their list equivalents: insert at
-  an index, delete the first matching value, or empty the deque out entirely.
+- **`remove()` / `clear()`** work exactly like their list equivalents: delete the first
+  matching value, or empty the deque out entirely.
 
     ```python-ref
-    queue.insert(1, "viper")
     queue.remove("boa")
     queue.clear()
     ```
 
-### Inspect & reorder
+#### Inspect
 
 - **`count()` / `index()`** count occurrences of a value, or find its first position — same
   as on a list.
@@ -494,6 +513,14 @@ from collections import deque
     queue.index("cobra")
     ```
 
+- **`copy()`** makes an independent copy — same as on a list.
+
+    ```python-ref
+    backup = queue.copy()
+    ```
+
+#### Reorder
+
 - **`rotate(n)`** shifts every item `n` places to the right (or left, with a negative `n`),
   wrapping the ones that fall off the end back around to the other side.
 
@@ -501,12 +528,10 @@ from collections import deque
     queue.rotate(1)
     ```
 
-- **`reverse()` / `copy()`** flip the order in place, or make an independent copy — same as
-  on a list.
+- **`reverse()`** flips the order in place — same as on a list.
 
     ```python-ref
     queue.reverse()
-    backup = queue.copy()
     ```
 
 - **`maxlen=`**, passed when creating the deque, caps it at a fixed size. If the starting
@@ -604,6 +629,10 @@ snake = OrderedDict([("species", "ball"), ("length_ft", 5), ("venomous", False)]
 from collections import OrderedDict
 ```
 
+### OrderedDict operations
+
+#### Reorder
+
 - **`move_to_end(key, last=True)`** relocates an existing key to the back (or, with
   `last=False`, to the front).
 
@@ -618,6 +647,8 @@ from collections import OrderedDict
     ```python-ref
     snake.popitem(last=False)  # ('species', 'ball')
     ```
+
+#### Compare
 
 - **`==`** checks order as well as contents — two plain dicts with the same items in a
   different order are still equal, but two `OrderedDict` objects aren't.
@@ -643,21 +674,18 @@ print(snake["venomous"])  # True — found in overrides, checked first
 print(snake["docile"])    # True — not in overrides, falls back to defaults
 ```
 
+Writing to a `ChainMap` (`snake["docile"] = False`) only ever changes the first dict in the
+chain — the rest are left untouched, read-only from the `ChainMap`'s point of view.
+
 ### Import
 
 ```python-ref
 from collections import ChainMap
 ```
 
-- Writing to a `ChainMap` (`snake["docile"] = False`) only ever changes the first dict in the
-  chain — the rest are left untouched, read-only from the `ChainMap`'s point of view.
+### ChainMap operations
 
-- **`.maps`** is the underlying list of dicts, in search order, so it can be inspected or
-  edited directly.
-
-    ```python-ref
-    snake.maps  # [{'venomous': True}, {'venomous': False, 'docile': True}]
-    ```
+#### Extend
 
 - **`new_child(m)`** returns a new `ChainMap` with `m` (an empty dict by default) added to
   the front — useful for pushing a fresh, temporary layer of overrides on top without
@@ -668,7 +696,17 @@ from collections import ChainMap
     scoped["venomous"]  # None — the new front dict wins
     ```
 
-- **`.parents`** is the reverse: a new `ChainMap` with the *first* dict dropped.
+#### Inspect
+
+- **`.maps`** is the underlying list of dicts, in search order, so it can be inspected or
+  edited directly.
+
+    ```python-ref
+    snake.maps  # [{'venomous': True}, {'venomous': False, 'docile': True}]
+    ```
+
+- **`.parents`** is the reverse of `new_child()`: a new `ChainMap` with the *first* dict
+  dropped.
 
     ```python-ref
     scoped.parents["venomous"]  # True — back to what snake itself would return
