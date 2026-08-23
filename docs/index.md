@@ -362,7 +362,7 @@ hide:
 
     [**`choice()`**](libraries/random.md#random-selections) [`shuffle()`](libraries/random.md#shuffling-a-list) [`sample()`](libraries/random.md#sampling-without-replacement)
 
--   :material-api:{ .lg .middle } [__requests__](libraries/requests.md) [:material-download-outline:](libraries/requests.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
+-   :material-webhook:{ .lg .middle } [__requests__](libraries/requests.md) [:material-download-outline:](libraries/requests.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Fetching data over the internet, like asking a website or API for information.
 

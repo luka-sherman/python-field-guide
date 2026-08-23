@@ -4,7 +4,7 @@ description: >-
   status codes, parsing JSON, and handling errors.
 ---
 
-# :material-api:{ .lg .middle } requests library
+# :material-webhook:{ .lg .middle } requests library
 
 [Official documentation :material-open-in-new:](https://requests.readthedocs.io/en/latest/){ target="_blank" }
 
