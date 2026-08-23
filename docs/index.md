@@ -228,10 +228,6 @@ hide:
 
     Calculating and formatting dates and times.
 
-    [**`install`**](libraries/datetime.md#install)
-
-    [**`import`**](libraries/datetime.md#import)
-
     [`date`](libraries/datetime.md#creating-dates-and-times) [`strftime()`](libraries/datetime.md#formatting-with-strftime) [`creating a specific date`](libraries/datetime.md#creating-a-specific-date)
 
     [`timedelta`](libraries/datetime.md#date-arithmetic) [`strptime()`](libraries/datetime.md#parsing-a-string-with-strptime) [`difference between two dates`](libraries/datetime.md#difference-between-two-dates)
@@ -239,10 +235,6 @@ hide:
 -   :material-code-json:{ .lg .middle } [__json__](libraries/json.md) [:material-language-python:](libraries/json.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Reading and writing JSON data: nested dicts and lists, saved to a file or a string.
-
-    [**`install`**](libraries/json.md#install)
-
-    [**`import`**](libraries/json.md#import)
 
     [`json.dump()`](libraries/json.md#writing-json-files)
 
@@ -253,10 +245,6 @@ hide:
 -   :material-chart-line:{ .lg .middle } [__matplotlib__](libraries/matplotlib.md) [:material-download-outline:](libraries/matplotlib.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Charts and plots: line, bar, and scatter, built directly from plain Python data.
-
-    [**`install`**](libraries/matplotlib.md#install)
-
-    [**`import`**](libraries/matplotlib.md#import)
 
     [**`line plots`**](libraries/matplotlib.md#line-plots) [`labels and title`](libraries/matplotlib.md#labels-and-title) [`multiple lines and a legend`](libraries/matplotlib.md#multiple-lines-and-a-legend)
 
@@ -272,10 +260,6 @@ hide:
 
     Fast numeric arrays, with math applied to a whole array at once instead of item by item.
 
-    [**`install`**](libraries/numpy.md#install)
-
-    [**`import`**](libraries/numpy.md#import)
-
     [**`array operations`**](libraries/numpy.md#array-operations) [`mean()`](libraries/numpy.md#aggregating-an-array) [`boolean mask`](libraries/numpy.md#filtering-with-a-boolean-mask)
 
     [`ndarray`](libraries/numpy.md#creating-arrays) [`arange()`](libraries/numpy.md#building-arrays-without-a-list)
@@ -283,10 +267,6 @@ hide:
 -   :material-face-recognition:{ .lg .middle } [__OpenCV__](libraries/opencv.md) [:material-download-outline:](libraries/opencv.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Real-time image and video analysis.
-
-    [**`install`**](libraries/opencv.md#install)
-
-    [**`import`**](libraries/opencv.md#import)
 
     [**`reading, displaying, saving images`**](libraries/opencv.md#reading-displaying-and-saving-images) [`imread()`](libraries/opencv.md#reading-a-file) [`displaying a window`](libraries/opencv.md#displaying-a-window) [`saving a file`](libraries/opencv.md#saving-a-file)
 
@@ -310,10 +290,6 @@ hide:
 
     Tabular data: rows and columns, like a spreadsheet, built on top of NumPy.
 
-    [**`install`**](libraries/pandas.md#install)
-
-    [**`import`**](libraries/pandas.md#import)
-
     [**`DataFrame`**](libraries/pandas.md#building-a-dataframe)
 
     [**`working with a DataFrame`**](libraries/pandas.md#working-with-a-dataframe) [`sort_values()`](libraries/pandas.md#sorting-rows) [`mean()`](libraries/pandas.md#summarizing-a-column)
@@ -321,10 +297,6 @@ hide:
 -   :material-image-outline:{ .lg .middle } [__Pillow__](libraries/pillow.md) [:material-download-outline:](libraries/pillow.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Opening, editing, and saving images, built around one `Image` object.
-
-    [**`install`**](libraries/pillow.md#install)
-
-    [**`import`**](libraries/pillow.md#import)
 
     [**`why Pillow?`**](libraries/pillow.md#why-pillow)
 
@@ -354,10 +326,6 @@ hide:
 
     Random numbers, random picks, shuffled order.
 
-    [**`install`**](libraries/random.md#install)
-
-    [**`import`**](libraries/random.md#import)
-
     [**`randint()`**](libraries/random.md#random-numbers)
 
     [**`choice()`**](libraries/random.md#random-selections) [`shuffle()`](libraries/random.md#shuffling-a-list) [`sample()`](libraries/random.md#sampling-without-replacement)
@@ -366,10 +334,6 @@ hide:
 
     Fetching data over the internet, like asking a website or API for information.
 
-    [**`install`**](libraries/requests.md#install)
-
-    [**`import`**](libraries/requests.md#import)
-
     [**`get()`**](libraries/requests.md#making-a-request) [`status_code`](libraries/requests.md#checking-the-status-code) [`json()`](libraries/requests.md#parsing-json) [`params`](libraries/requests.md#query-parameters)
 
     [**`error handling`**](libraries/requests.md#handling-request-errors)
@@ -377,10 +341,6 @@ hide:
 -   :material-application-outline:{ .lg .middle } [__Tkinter__](libraries/tkinter.md) [:material-language-python:](libraries/tkinter.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Creating desktop applications: text, buttons, dropdowns, forms, output, etc.
-
-    [**`install`**](libraries/tkinter.md#install)
-
-    [**`import`**](libraries/tkinter.md#import)
 
     [**`Tk()`**](libraries/tkinter.md#creating-a-window)
 
