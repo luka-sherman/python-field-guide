@@ -20,20 +20,24 @@ nav:
   - Errors: errors.md
   - Libraries:
       - All: libraries/index.md
-      - Built-in:
+      - Utilities:
           - collections: libraries/collections.md
-          - csv: libraries/csv.md
           - datetime: libraries/datetime.md
-          - json: libraries/json.md
           - random: libraries/random.md
-          - Tkinter: libraries/tkinter.md
-      - Third-Party:
+      - Data analysis:
+          - csv: libraries/csv.md
           - matplotlib: libraries/matplotlib.md
           - NumPy: libraries/numpy.md
-          - OpenCV: libraries/opencv.md
           - pandas: libraries/pandas.md
-          - Pillow: libraries/pillow.md
+      - APIs:
+          - json: libraries/json.md
           - requests: libraries/requests.md
+      - Image editing:
+          - Pillow: libraries/pillow.md
+      - Computer vision:
+          - OpenCV: libraries/opencv.md
+      - Desktop UIs:
+          - Tkinter: libraries/tkinter.md
 
 theme:
   name: material
