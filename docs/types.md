@@ -711,7 +711,7 @@ if name:                 # runs — name isn't empty
 
 ## Booleans
 
-A boolean (`bool`) holds one of exactly two values, **`True`** or **`False`** — often used to represent yes/no, on/off, or the result of a comparison. They are used in [if statements](conditionals.md#if--elif--else) and [while loops](loops.md#while-loops).
+A boolean (`bool`) holds one of exactly two values, **`True`** or **`False`** — often used to represent yes/no, on/off, or the result of a comparison. They are used in [if statements](conditionals.md#if-elif-else) and [while loops](loops.md#while-loops).
 
 ```python-ref
 venomous = False
