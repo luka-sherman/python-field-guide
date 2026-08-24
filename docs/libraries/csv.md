@@ -10,9 +10,15 @@ description: >-
 
 The **`csv`** module reads and writes CSV ("comma-separated values") files — a plain-text table format that spreadsheets and databases can both open. Every example below actually runs in your browser: Pyodide gives each page its own in-memory filesystem, so `open()` works exactly like it would on a real computer, just without anything being saved outside this page.
 
+<div class="pfg-section" markdown="block">
+
 ## Install
 
 `csv` ships with Python's standard library — nothing to install.
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Import
 
@@ -28,6 +34,10 @@ import csv
 | `csv.reader` | A list per row | Reading plain rows of values |
 | `csv.DictWriter` | A dict per row | Writing rows keyed by column name |
 | `csv.DictReader` | A dict per row | Reading rows keyed by column name |
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Writing CSV files
 
@@ -76,6 +86,10 @@ print("wrote snakes.csv")
         writer.writerow(["species", "length_ft"])
         writer.writerows(rows)
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Reading CSV files
 
@@ -137,3 +151,6 @@ for row in csv.DictReader(file):
         for row in csv.DictReader(file):
             print(row["species"], float(row["length_ft"]))
     ```
+
+</div>
+

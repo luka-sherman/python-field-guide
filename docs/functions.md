@@ -15,6 +15,8 @@ A **function** packages a block of code under a name, so it can be run again —
 | Return value | `return f"a {species} python"` | The value a function sends back to whatever called it |
 | Default value | `def describe(species="ball"):` | A fallback used when the caller doesn't supply that argument |
 
+<div class="pfg-section" markdown="block">
+
 ## Defining a function
 
 `def` names a function and lists the parameters it expects; the indented block underneath is what runs each time it's called.
@@ -177,6 +179,10 @@ describe(species="ball", venomous=True)    # length_ft still uses its default
     print(describe(species="burmese", length_ft=12))
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Flexible arguments
 
 `*args` and `**kwargs` let a function accept an unpredictable number of arguments, instead of a fixed list of parameters.
@@ -236,6 +242,10 @@ describe(species="ball", length_ft=5)
 
     describe(species="ball", length_ft=5, venomous=False)
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Scope
 
@@ -304,6 +314,10 @@ def show_species():
     print(count)
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Recursion
 
 A function can call itself — this is called **recursion**, an alternative to a loop for problems that break down into smaller versions of themselves.
@@ -365,3 +379,6 @@ Every recursive function needs two parts:
         n -= 1
     print("liftoff")
     ```
+
+</div>
+

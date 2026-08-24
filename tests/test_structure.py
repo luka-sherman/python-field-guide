@@ -43,11 +43,11 @@ DOC_IDS = [rel(p) for p in ALL_DOC_FILES]
 # legitimately start at 1. Each entry below is (file, first-item lineno, why it's not a
 # walkthrough) — verified by hand against the surrounding prose.
 NON_WALKTHROUGH_LISTS = {
-    ("foundations.md", 165): "variable naming rules — facts about names, not steps to perform",
-    ("foundations.md", 322): "describes what input() does, not steps the reader performs",
-    ("foundations.md", 422): "kinds of comments, an enumerated list not a sequence",
-    ("conditionals.md", 28): "describes if/elif/else execution order, not reader-performed steps",
-    ("style.md", 77): "file layout order, an enumerated structure not a walkthrough",
+    ("foundations.md", 177): "variable naming rules — facts about names, not steps to perform",
+    ("foundations.md", 338): "describes what input() does, not steps the reader performs",
+    ("foundations.md", 442): "kinds of comments, an enumerated list not a sequence",
+    ("conditionals.md", 30): "describes if/elif/else execution order, not reader-performed steps",
+    ("style.md", 87): "file layout order, an enumerated structure not a walkthrough",
 }
 
 TOP_LEVEL_ORDERED_ITEM_RE = re.compile(r"^(\d+)\.\s+\S")
@@ -131,14 +131,14 @@ def test_admonition_types_are_documented(path):
 # adds it deliberately (which is the point — it forces the "is this rare and justified" check
 # STRUCTURE.md asks for, rather than letting !!! quietly become the default).
 ALWAYS_OPEN_ALLOWLIST = {
-    ("errors.md", 55),  # the documented success/danger pair
-    ("errors.md", 60),
-    ("workspace.md", 187),
-    ("foundations.md", 453),
-    ("conditionals.md", 103),
-    ("loops.md", 202),
-    ("loops.md", 437),
-    ("types.md", 706),
+    ("errors.md", 61),  # the documented success/danger pair
+    ("errors.md", 66),
+    ("workspace.md", 199),
+    ("foundations.md", 473),
+    ("conditionals.md", 105),
+    ("loops.md", 204),
+    ("loops.md", 445),
+    ("types.md", 726),
 }
 
 

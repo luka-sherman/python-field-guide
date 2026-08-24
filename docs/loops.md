@@ -42,6 +42,8 @@ A **loop** repeats a block of code multiple times.
         class forConfirm,whileConfirm confirm
     ```
 
+<div class="pfg-section" markdown="block">
+
 ## For loops
 
 A `for` loop goes through an **iterable** (something that contains multiple values) one value at a time, assigning each value to `loop_variable` as it goes. They types of iterables are: 
@@ -330,6 +332,10 @@ for s in reversed(species):
     ```
 
     Readable for a short, simple transformation — once the logic doesn't fit comfortably on one line, a regular `for` loop is usually clearer.
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## While loops
 
@@ -678,6 +684,10 @@ A and B here are [boolean expressions](#boolean-expressions).
 
 **Order of operations:** When several logical operators appear together, Python evaluates `not` first, then `and`, then `or`. Even when parentheses aren't required, they often make the condition much easier to read.
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Common patterns
 
 A few variable patterns show up across both `for` and `while` loops, tracking something as the loop runs rather than controlling it directly.
@@ -799,6 +809,10 @@ for species, tags in species_tags.items():
         for tag in tags:
             print(species, tag)
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Control flow statements
 
@@ -937,3 +951,6 @@ else:
 
     print("loop finished without doing anything each pass")
     ```
+
+</div>
+

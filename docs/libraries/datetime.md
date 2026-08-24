@@ -10,9 +10,15 @@ description: >-
 
 The **`datetime`** module is Python's standard library for working with dates and times — logging when an observation happened, measuring how long ago it was, or formatting a date for display.
 
+<div class="pfg-section" markdown="block">
+
 ## Install
 
 `datetime` ships with Python's standard library — nothing to install.
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Import
 
@@ -28,6 +34,10 @@ from datetime import date, datetime, timedelta
 | `time` | A time of day, no date | `time(14, 30)` |
 | `datetime` | A date and time together | `datetime(2026, 7, 23, 14, 30)` |
 | `timedelta` | A duration — the gap between two dates/times | `timedelta(days=7)` |
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Creating dates and times
 
@@ -84,6 +94,10 @@ observed.strftime("%B %d, %Y")    # "July 23, 2026"
     print(observed.strftime("%B %d, %Y"))
     print(observed.strftime("%Y-%m-%d"))
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Date arithmetic
 
@@ -142,3 +156,6 @@ datetime.strptime("2026-07-23", "%Y-%m-%d")    # datetime(2026, 7, 23, 0, 0)
     print(parsed)
     print(parsed.year)
     ```
+
+</div>
+

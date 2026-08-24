@@ -1120,6 +1120,26 @@ input:checked + .md-consent__settings {
   color: var(--pt-heading-h2);
 }
 
+/* Groups each h2 and everything under it into one visual panel. The
+   .pfg-section wrapper is written by hand in each page's markdown
+   (`<div class="pfg-section" markdown="block"> ... </div>`, enabled by the
+   md_in_html extension — same pattern as .pt-jump-table) around every h2
+   section, since CSS alone can't group "a heading + all its following
+   siblings" without an actual wrapping element. The wrapper takes over the
+   h2's own top margin so sections stack with consistent spacing regardless
+   of the heading's own margin. */
+.md-typeset .pfg-section {
+  background: var(--pt-panel);
+  border: 1px solid var(--pt-hairline);
+  border-radius: 8px;
+  padding: 0.5em 2em 2em;
+  margin: 2.2em 0;
+}
+
+.md-typeset .pfg-section > h2:first-child {
+  margin-top: 0.7em;
+}
+
 /* h3 (Material default: font-weight 400) bolded to match h2's heavier
    weight, and colored one step lighter than h2 (--pt-heading-h3) so the
    hierarchy reads as consistently bold text in a shared color family,

@@ -12,11 +12,17 @@ matplotlib is an open-source project, funded by nonprofit [NumFOCUS](https://num
 
 **matplotlib** (its plotting interface imported as `plt`) is Python's foundational library for creating charts — line plots, bar charts, scatter plots — directly from plain Python data. It's a third-party package, not part of the standard library, but it's the base most other Python plotting tools are built on top of. Like [Pillow](pillow.md) and [OpenCV](opencv.md), matplotlib produces visual output — a chart shown in a window or saved to a file — which can't be shown inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file and run them with `python` to see the results.
 
+<div class="pfg-section" markdown="block">
+
 ## Install
 
 ```bash
 pip install matplotlib
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Import
 
@@ -43,6 +49,10 @@ For everyday charts, matplotlib offers the most control and the widest compatibi
 | `plt.savefig()` | Writes the current figure to an image file instead of (or as well as) showing it. |
 | Legend | A key mapping each line or bar's color back to its `label`, built from every `label=` passed to a plotting call. |
 | Subplot | One of several Axes arranged in a grid within a single figure, for showing more than one chart at once. |
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Line plots
 
@@ -95,6 +105,10 @@ plt.show()
     plt.show()          # starts and shows a separate, second figure
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Bar charts
 
 `plt.bar(labels, values)` draws one bar per label — suited to comparing a value across categories, rather than showing change over a continuous range the way a line plot does.
@@ -109,6 +123,10 @@ plt.bar(species, lengths_ft)
 plt.ylabel("length (ft)")
 plt.show()
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Scatter plots
 
@@ -125,6 +143,10 @@ plt.xlabel("length (ft)")
 plt.ylabel("weight (lb)")
 plt.show()
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Subplots
 
@@ -144,6 +166,10 @@ axes[1].set_title("length by species")
 plt.show()
 ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Saving a figure
 
 `plt.savefig(filename)` writes the current figure to a file instead of opening a window — the way to produce a chart image for a report, a webpage, or anywhere a live Python process won't be running to show it.
@@ -159,3 +185,6 @@ plt.title("growth by species")
 plt.legend()
 plt.savefig("growth_comparison.png")
 ```
+
+</div>
+

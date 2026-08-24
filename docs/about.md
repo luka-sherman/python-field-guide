@@ -4,6 +4,8 @@ description: Why Python Field Guide exists, who built it, and how to send feedba
 
 # About this site
 
+<div class="pfg-section" markdown="block">
+
 ## Why I built this
 
 My name's Luka, I'm a software engineer and Intro Python teacher. 
@@ -21,11 +23,19 @@ I couldn't find a site my students would consistently use that had:
 
 I'm hoping this can be a helpful cheatsheet for others to quickly reference syntax and structures. 
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## About me 
 
 I build software and spend a lot of time thinking about the small interaction details that decide whether something actually gets used or just abandoned — I've always liked designing and building things that solve a need.
 
 More about me at [lukasherman.com](https://lukasherman.com).
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Helpful feedback
 
@@ -50,3 +60,6 @@ This *isn't* meant to be a comprehensive Python guide, it's just my self-publish
 
   <button type="submit">Send helpful feedback</button>
 </form>
+
+</div>
+

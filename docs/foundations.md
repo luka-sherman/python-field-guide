@@ -6,6 +6,8 @@ description: >-
 
 # :material-cube-outline:{ .lg .middle } Foundations
 
+<div class="pfg-section" markdown="block">
+
 ## Tips for getting started
 
 - **[Setup](workspace.md) your workspace first** so you can run Python on your computer and edit Python files. 
@@ -17,6 +19,10 @@ description: >-
     - [Isolate the problem](errors.md#isolate-the-problem)
 - **Try building something small before you've finished the whole guide.** Once you've read through [Conditionals](conditionals.md) and [Loops](loops.md) you already have enough to write a program. 
 - The homepage [FAQ](index.md#faq) has more on using AI to help you learn.
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Print function
 
@@ -129,6 +135,10 @@ Most sections on this site end with a collapsed block like the one below — ope
     print("hello, field guide")
     print(4.5)
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Variables
 
@@ -317,6 +327,10 @@ species = 12                  # now an int — Python allows this
 
 Other languages fix a variable to one type permanently at creation; Python doesn't. Every value still has its own type — [covered in full here](types.md) — a variable is just a name that can point at any of them, one at a time.
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Input function
 
 `input()` allows the program to get typed input from the user
@@ -415,6 +429,10 @@ age = int(input("How old are you? "))     # 8 — now a real int
 print(age + 1)                            # 9 — works fine
 ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Comments
 
 ### Single-line comments with \# { data-card-link="skip" }
@@ -512,3 +530,6 @@ length_ft = 4.5
 ```
 
 More on docstring conventions on the [Style](style.md#docstrings) page.
+
+</div>
+

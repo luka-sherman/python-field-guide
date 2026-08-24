@@ -12,11 +12,17 @@ requests is an open-source project maintained by volunteer contributors.
 
 **`requests`** is a library for fetching data over the internet — asking a website or API for information, the same way a browser does, but from inside a Python program. It's not part of the standard library, but it's the de facto standard for this in Python, favored over the built-in `urllib` for its much simpler syntax. Every example on this page makes a real network call, which this site's in-browser sandbox can't do — copy them into a local `.py` file and run them with `python` to see the results.
 
+<div class="pfg-section" markdown="block">
+
 ## Install
 
 ```bash
 pip install requests
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Import
 
@@ -45,6 +51,10 @@ import requests
 - **`aiohttp`** — built specifically for `async`/`await` from the ground up, aimed at programs making many requests at once.
 
 For everyday use, `requests` offers the best balance of simplicity and capability — most tasks are one function call.
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Making a request
 
@@ -122,6 +132,10 @@ comments = response.json()
 print(len(comments))
 ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Handling request errors
 
 A network call can fail in ways that have nothing to do with your code — the [Errors](../errors.md#handling-errors) page covers `try`/`except` in general; a couple of exceptions are specific to `requests`.
@@ -149,3 +163,6 @@ else:
 ```
 
 Passing `timeout=5` (seconds) is worth doing on every request — without it, a request that never gets a response will hang your program indefinitely instead of raising `Timeout`.
+
+</div>
+

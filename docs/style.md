@@ -13,6 +13,8 @@ Code that works isn't automatically code that's easy to live with — following 
 - **Easier to debug** — a predictable layout means you already know where to look when something breaks
 - **Easier for others to work with** — working on a collaborative project means others **review** your code before approving it and **merge** it in with everyone else's changes; consistent style means they can focus on what you actually changed, instead of different formatting choices
 
+<div class="pfg-section" markdown="block">
+
 ## Checklist
 
 A few things worth double-checking before calling a script finished — each links to the full rule further down this page. Run a [linter](#linter-tool) first, since it catches most of this automatically; what's left afterward has to be checked by eye.
@@ -39,6 +41,10 @@ A few things worth double-checking before calling a script finished — each lin
 - [ ] **[File names](workspace.md#step-2-write-and-run-a-python-file)** — `snake_case.py`, no hyphens or spaces
 - [ ] **[Readable print output](#readable-print-output)** — `\n`/`\t` and separator rows used to space out console output
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Linter tool
 
 A **linter** is a tool that scans your code and flags issues like [PEP 8](#pep-8-style-guide), Python's official style guide, and [Pythonic](#pythonic-patterns) idioms automatically. It reads your file, checks it against its rule set, and prints a report: one line per violation, giving the file, line number, a rule code, and a short message. 
@@ -63,6 +69,10 @@ A **formatter** tool (either separate, or a combined linter+formatter), actually
 | PyCharm | `Settings > Plugins >` tool name, then restart | Built-in inspections run automatically, no setup needed; plugins do too, once installed. Underlines issues, hover for full message. Full issue list in `View > Tool Windows > Problems`. | `Code > Format Code` |
 | VS Code | `View > Extensions >` tool name | Underlines issues, hover for full message. Full issue list in `View > Problems`. | Trigger via `Format Document`, or set it as the default formatter in `settings.json` |
 | Outside of an IDE | Send in terminal: `pip install` [tool name] | print report in the terminal:<ul><li>`pylint your_file.py`</li><li>`ruff check your_file.py`</li></ul> | rewrite the file directly:<ul><li>`black your_file.py`</li><li>`ruff format your_file.py`</li></ul>|
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## PEP 8 style guide
 
@@ -250,6 +260,10 @@ length_ft = 4.5  # too short       # PEP 8 — two spaces before, one after
 # check length                     # PEP 8
 ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Pythonic patterns
 
 **Pythonic** code uses Python's own built-in features and standard patterns, instead of verbose work arounds. 
@@ -328,6 +342,10 @@ A few of these a beginner tends to write out longhand before learning the built-
 
     a, b = b, a                          # Pythonic — tuple unpacking swaps directly
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Additional best practices
 
@@ -442,3 +460,5 @@ print("=" * 40)
     [ascii text resource](https://patorjk.com/software/taag/#p=display&f=Isometric1&t=Type+Something+&x=none&v=4&h=4&w=80&we=false)
 
     [ascii art resource](https://www.asciiart.eu/#google_vignette)
+</div>
+

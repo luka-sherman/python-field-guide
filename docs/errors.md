@@ -8,6 +8,8 @@ description: >-
 
 Your code had an error or didn't do what you expected — here are tools for figuring out why. 
 
+<div class="pfg-section" markdown="block">
+
 ## Reading errors
 
 An **error** is Python's way of telling you it couldn't do what your code asked — a typo it can't parse, a variable that doesn't exist, dividing by zero, and so on. When Python hits one, it stops the program right there. That's not a sign you've broken something unrecoverable — it's Python pointing at the exact spot to look.
@@ -40,6 +42,10 @@ Traceback (most recent call last):
   File "/usr/lib/python3.11/random.py", line 449, in choice
 IndexError: list index out of range
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Handling errors
 
@@ -157,6 +163,10 @@ The name in the traceback's last line tells you which of these went wrong.
         print("lookup attempt finished")  # always runs, no matter what happened above
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Debugging strategies
 
 The traceback tells you exactly where Python broke. When that's not enough — or the code runs to completion but the output is just wrong, so there's no traceback at all — these general techniques help close the gap between what you think the code does and what it's actually doing.
@@ -218,6 +228,10 @@ Some editors collect every `TODO`/`FIXME` in a project into one scannable list �
 
     print("total:", long_snakes)      # total: 2
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Using a debugger
 
@@ -288,3 +302,6 @@ When it gets to a breakpoint it will pause, and you can use these controls to mo
         - **Stop button:** Red square, same tool window
         - **Where output shows:** Same "Debug" tool window
         - **Inspecting variables:** Same tool window, or hover over a variable in the editor
+
+</div>
+

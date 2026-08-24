@@ -12,11 +12,17 @@ Pillow is an open-source project maintained by volunteer contributors.
 
 **Pillow** (imported as `PIL`) is Python's standard library for opening, editing, and saving image files — photos, screenshots, thumbnails, anything in a common format like JPEG or PNG. It's a third-party package, not part of the standard library, but it's the de facto standard for image work in Python. Like [Tkinter](tkinter.md), Pillow ultimately produces visual output — a saved or displayed image — which can't be shown inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file alongside an image and run them with `python` to see the results.
 
+<div class="pfg-section" markdown="block">
+
 ## Install
 
 ```bash
 pip install pillow
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Import
 
@@ -25,6 +31,10 @@ Pillow's package name (`pillow`) doesn't match its import name — it's imported
 ```python-ref
 from PIL import Image
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Why Pillow?
 
@@ -63,6 +73,10 @@ Beyond the base [`Image`](#the-image) object, Pillow's functionality is spread a
 | [`ImageOps`](#imageops-module) | One-line convenience operations — auto-contrast, mirroring, inverting. |
 | [`ImageChops`](#imagechops-module) | Combining two same-size images pixel by pixel — diffing, blending. |
 | [`ImageSequence`](#imagesequence-module) | Looping over every frame of an animated image, like a GIF. |
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## The Image
 
@@ -207,6 +221,10 @@ rgba = img.convert("RGBA")
 print(grayscale.mode, rgba.mode)
 ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## ImageOps module
 
 The `ImageOps` module collects common one-line transforms that would otherwise take several steps to write by hand — contrast fixes, mirroring, and color inversion among them.
@@ -237,6 +255,10 @@ mirrored = ImageOps.mirror(img)
 inverted = ImageOps.invert(img.convert("RGB"))
 fixed.save("fixed.jpg")
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## ImageDraw module
 
@@ -356,6 +378,10 @@ img.save("shapes.png")
     img.save("generated.png")
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## ImageFont module
 
 `ImageDraw.text()` works with no extra setup, but falls back to a small built-in bitmap font. `ImageFont` loads an actual `.ttf` font file at a chosen size, for anything larger or more legible.
@@ -386,6 +412,10 @@ draw.text((10, 15), "burmese python", fill="black", font=font)
 img.save("labeled.png")
 ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## ImageColor module
 
 Drawing methods accept a color as a plain name (`"green"`) or a hex string (`"#3f6b52"`), but sometimes you need that same color as an actual `(r, g, b)` tuple — to do math on it, blend it with another color, or store it in a data structure like the `Shape` class above. `ImageColor.getrgb()` converts either format into the tuple Pillow uses internally.
@@ -414,6 +444,10 @@ green_rgb = ImageColor.getrgb("green")
 hex_rgb = ImageColor.getrgb("#3f6b52")
 print(green_rgb, hex_rgb)
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## ImageFilter module
 
@@ -448,6 +482,10 @@ sharpened.save("sharpened.jpg")
 outlined.save("outlined.jpg")
 ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## ImageEnhance module
 
 Where `ImageFilter` applies a fixed preset, `ImageEnhance` lets you dial an existing quality — brightness, contrast, color, sharpness — up or down by an exact amount.
@@ -478,6 +516,10 @@ more_colorful = ImageEnhance.Color(img).enhance(2.0)
 brighter.save("brighter.jpg")
 more_colorful.save("more_colorful.jpg")
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## ImageChops module
 
@@ -510,6 +552,10 @@ print(diff.getbbox())
 diff.save("diff.jpg")
 ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Format conversion
 
 Because `.save()` infers the output format from the file extension, converting between formats is usually just an open-then-save with a different name — with a couple of format-specific details worth knowing.
@@ -534,6 +580,10 @@ from PIL import Image
 img = Image.open("snake.png")
 img.convert("RGB").save("snake.jpg")
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## ImageSequence module
 
@@ -564,6 +614,10 @@ for frame in ImageSequence.Iterator(gif):
     print(frame.tell(), frame.size)
     frame.save(f"frame_{frame.tell()}.png")
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Putting it together
 
@@ -619,3 +673,6 @@ while True:
     result.save(f"{choice}.jpg")
     print(f"saved {choice}.jpg")
 ```
+
+</div>
+

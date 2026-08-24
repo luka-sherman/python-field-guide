@@ -34,6 +34,8 @@ A **collection** is a single object that groups multiple values (like [basic typ
     isinstance(5, dict)  # False
     ```
     
+<div class="pfg-section" markdown="block">
+
 ## Lists
 
 ### Create a list 
@@ -417,6 +419,10 @@ A **collection** is a single object that groups multiple values (like [basic typ
     See the [collections library page](libraries/collections.md) for the rest of `deque`'s
     methods (`rotate()`, `maxlen=`, and more) and for the other list-adjacent tools it adds.
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Dictionaries
 
 ### Create a dictionary
@@ -722,6 +728,10 @@ A **collection** is a single object that groups multiple values (like [basic typ
     See the [collections library page](libraries/collections.md) for the full method list on
     each of these.
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Tuples
 
 A tuple stores multiple items, in order, written in parentheses. They are **immutable** so the items can't be changed once its created. 
@@ -977,6 +987,10 @@ The **negative index** starts counting down from the end instead, starting at `-
     of repeating a comment at every literal.
     See the [collections library page](libraries/collections.md) for `namedtuple`'s other
     methods (`_asdict()`, `_replace()`, default field values) and the rest of the module.
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Sets
 
@@ -1262,3 +1276,6 @@ These check a relationship between two sets and hand back a `bool`, rather than 
         ```
 
 [^zero-index]: In programming, counting generally starts at 0, not 1. That's because an index isn't really a count of "how manyth" item something is — it's an *offset*, the number of steps from the start. The first item is 0 steps away, so it gets index `0`. It feels different from counting out loud ("first, second, third..."), but it's the convention nearly every programming language follows.
+
+</div>
+

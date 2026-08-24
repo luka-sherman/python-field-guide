@@ -19,6 +19,8 @@ flowchart LR
     program -->|"write()"| file
 ```
 
+<div class="pfg-section" markdown="block">
+
 ## Opening a file
 
 `open()` returns a file object to read from or write to. Wrap it in a `with` block so it's closed automatically once you're done, even if something goes wrong partway through.
@@ -56,6 +58,10 @@ The second argument is the **mode** — what you intend to do with the file:
 
     print("saved")
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Reading a file
 
@@ -112,6 +118,10 @@ with open("notes.txt", "r") as file:
             print(line.strip())
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Writing multiple lines
 
 `.write()` doesn't add a newline for you — add one yourself at the end of each line, usually by looping over a list.
@@ -137,6 +147,10 @@ with open("notes.txt", "w") as file:
     with open("notes.txt", "r") as file:
         print(file.read())
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Appending vs. overwriting
 
@@ -185,3 +199,6 @@ with open("notes.txt", "r") as file:
     ```
 
 For reading and writing rows of structured, comma-separated data specifically, see the [csv](libraries/csv.md) page under Libraries — it's built on the same `open()` and file-mode basics covered here.
+
+</div>
+

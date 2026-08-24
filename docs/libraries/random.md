@@ -8,9 +8,15 @@ description: Generating random numbers and making random selections in Python wi
 
 The **`random`** module generates pseudo-random numbers and makes random selections — rolling a dice, shuffling a deck, or picking a specimen to feature at random.
 
+<div class="pfg-section" markdown="block">
+
 ## Install
 
 `random` ships with Python's standard library — nothing to install.
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Import
 
@@ -27,6 +33,10 @@ import random
 | `choice(seq)` | One random item from a sequence | `choice(species)` |
 | `shuffle(seq)` | Reorders a list in place, returns `None` | `shuffle(species)` |
 | `sample(seq, k)` | `k` unique random items, as a new list | `sample(species, 2)` |
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Random numbers
 
@@ -62,6 +72,10 @@ print(random.randint(1, 6))
     print(random.randint(1, 6))
     print(random.randint(1, 6))
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Random selections
 
@@ -115,3 +129,6 @@ random.sample(species, 2)    # e.g. ["burmese", "blood"] — 2 distinct items
     species = ["ball", "burmese", "boa", "blood"]
     print(random.sample(species, 2))
     ```
+
+</div>
+

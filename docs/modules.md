@@ -4,6 +4,8 @@ description: How Python modules and imports work, including writing and importin
 
 # :material-import:{ .lg .middle } Modules & Imports
 
+<div class="pfg-section" markdown="block">
+
 ## Modules vs packages vs libraries
 
 A **module** is a Python file. Any `.py` file can be imported and used by another one. As a project grows, splitting related functions and classes into their own files, then importing between them, keeps any one file from becoming unmanageable.
@@ -23,6 +25,10 @@ flowchart LR
 ```
 
 **Library** is the informal umbrella term for either: a single module or a whole package — that's organized to be reused across projects. The [Libraries page](libraries/index.md) highlights a few common published libraries. 
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Importing modules
 
@@ -143,6 +149,10 @@ import requests                  # third-party — installed separately
 import snake_data                # your own file
 ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Creating your own module
 
 Your own `.py` files import the same way — use the filename, without `.py`, as the module name.
@@ -177,3 +187,6 @@ if __name__ == "__main__":
 ```
 
 Wrapping your "do the actual work" code in this check means another file can `import` yours — to reuse a function, say — without that main code running too. 
+
+</div>
+

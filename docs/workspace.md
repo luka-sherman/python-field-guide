@@ -6,6 +6,8 @@ description: >-
 
 # :material-monitor:{ .lg .middle } Workspace Setup
 
+<div class="pfg-section" markdown="block">
+
 ## Step 0: Install Python
 
 0. Open your Terminal application *(Terminal on Mac/Linux, Command Prompt or PowerShell on Windows)* 
@@ -48,7 +50,9 @@ description: >-
 
             Usually already installed. If `python3 --version` failed, install via your package manager (e.g. `sudo apt install python3`)
 
+</div>
 
+<div class="pfg-section" markdown="block">
 
 ## Step 1: Pick an application to write code in
 
@@ -73,6 +77,10 @@ Download one of the **free** code editors below. You can always switch later.
     The source code that it is built from is publicly available for anyone to see, modify, and improve. 
     
     *Thonny* is maintained by volunteers in the open-source community. *VS Code* and *PyCharm* are made by companies but also have open-source elements.
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Step 2: Write and run a Python file
 
@@ -134,6 +142,10 @@ That's it! You've written and run your first Python program. From here, you can 
 ??? tip "Reading error messages"
 
     When you see red error text, the [Errors](errors.md#reading-errors) page covers how to read it.
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Using the terminal *(optional)*
 
@@ -216,3 +228,5 @@ It's good for running Python files that are already finished — either your own
     4. **Stop a running Python file:**
 
         ++ctrl+c++ 
+</div>
+

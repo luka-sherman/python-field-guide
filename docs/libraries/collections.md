@@ -33,14 +33,24 @@ built-in [`str`](../types.md#strings) [`list`](../collections.md#lists) [`dict`]
 
 </div>
 
+<div class="pfg-section" markdown="block">
+
 ## Install
 
 `collections` ships with Python's standard library — nothing to install.
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Import
 
 Each class is imported individually by name, rather than through a `collections.` prefix —
 so the import line differs per class, shown under its own "Import" heading below.
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Counter
 
@@ -186,6 +196,10 @@ from collections import Counter
         print(counts.total())
         ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## defaultdict
 
 A plain `dict` raises `KeyError` when indexing a missing key. `defaultdict` instead takes
@@ -302,6 +316,10 @@ from collections import defaultdict
             by_family[snake["family"]] += 1
         print(by_family)
         ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## namedtuple
 
@@ -438,6 +456,10 @@ from collections import namedtuple
         snake = Snake("boa", 8)
         print(snake._asdict())
         ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## deque
 
@@ -615,6 +637,10 @@ from collections import deque
         print(recent)
         ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## OrderedDict
 
 Until Python 3.7 (released in 2018), a plain `dict` didn't guarantee it would remember insertion order — `OrderedDict` existed specifically to add that guarantee. Now it's mostly seen in legacy code written before 3.7, and in code that specifically needs its reordering functionality.
@@ -656,6 +682,10 @@ from collections import OrderedDict
     ```python-ref
     OrderedDict([("a", 1), ("b", 2)]) == OrderedDict([("b", 2), ("a", 1)])  # False
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## ChainMap
 
@@ -712,6 +742,10 @@ from collections import ChainMap
     scoped.parents["venomous"]  # True — back to what snake itself would return
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## User\* wrapper classes
 
 `UserDict`, `UserList`, and `UserString` wrap a plain `dict`, `list`, or `str` for
@@ -741,3 +775,6 @@ turns out not to work, not as a first choice for everyday container code.
 
 [^subclassing]: Defining a new class that inherits from another class, reusing (and
     optionally overriding) its attributes and methods.
+
+</div>
+

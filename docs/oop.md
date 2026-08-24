@@ -34,6 +34,8 @@ classDiagram
 | Method | `def describe(self):` | A function that belongs to a class and acts on a specific object |
 | Inheritance | `class Boa(Snake):` | A new class that reuses — and can extend or override — another class's attributes and methods |
 
+<div class="pfg-section" markdown="block">
+
 ## Classes and objects
 
 A class is a blueprint for creating objects — it defines what attributes and methods every object built from it will have. An object is one specific instance built from that blueprint, with its own copy of the attributes.
@@ -219,6 +221,10 @@ ball.describe()    # "a 5 ft ball python"
     print(s)
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Inheritance
 
 A child class reuses — and can extend or override — everything defined in a parent class, instead of rewriting it from scratch. The parent is also called the **base class**; the child is the **derived class**.
@@ -370,6 +376,10 @@ boa.describe()      # "a heavy-bodied constrictor" — Boa's version replaces it
     print(boa.describe())
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Polymorphism
 
 **Polymorphism** ("many forms") means the same method or function name behaves differently depending on which object it's called on — so you can call `.describe()` on any snake-like object without needing to know exactly which one it is.
@@ -445,3 +455,6 @@ for s in (snake, boa): print(s.describe())
     for s in (snake, boa):
         print(s.describe())
     ```
+
+</div>
+

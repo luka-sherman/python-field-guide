@@ -12,11 +12,17 @@ OpenCV is stewarded by nonprofit [OpenCV.org](https://opencv.org/).
 
 **OpenCV** (imported as `cv2`) is Python's standard library for computer vision — real-time image and video analysis, rather than the straightforward photo editing [Pillow](pillow.md) is built for. It's a third-party package, originally written in C++ with a thin Python wrapper over it, which shows up in a couple of its API choices: images load as plain NumPy arrays instead of a dedicated `Image` class, and in **BGR** (blue-green-red) channel order rather than the RGB most other tools expect. Like Pillow and [Tkinter](tkinter.md), OpenCV produces visual, often interactive output — a window showing an image or a live camera feed — that can't run inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file alongside an image and run them with `python` to see the results.
 
+<div class="pfg-section" markdown="block">
+
 ## Install
 
 ```bash
 pip install opencv-python
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Import
 
@@ -50,6 +56,10 @@ For a broader comparison of OpenCV against Pillow and other Python image librari
 | [Contours](#contours) | Finding and outlining distinct shapes in a black-and-white image. |
 | [Face detection with cascade classifiers](#face-detection-with-cascade-classifiers) | Locating faces (or other objects) at multiple positions and scales. |
 | [Working with video](#working-with-video) | Applying any of the above to a live camera feed or video file, one frame at a time. |
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Reading, displaying, and saving images
 
@@ -126,6 +136,10 @@ saved = cv2.imwrite("snake_copy.png", img)
 print(saved)
 ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Color spaces
 
 OpenCV loads color images in **BGR** order rather than RGB — a holdover from its early camera-driver roots — so handing a BGR array to a tool that expects RGB (like `matplotlib`) shows swapped colors unless it's converted first. `cv2.cvtColor()` handles every conversion between color spaces.
@@ -165,6 +179,10 @@ cv2.imwrite("snake_gray.png", gray)
     correct = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     plt.imshow(correct)                          # colors display correctly
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Basic operations
 
@@ -234,6 +252,10 @@ rotated_45 = cv2.warpAffine(img, matrix, (width, height))
 cv2.imwrite("rotated.jpg", rotated_45)
 ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Drawing shapes and text
 
 Drawing functions modify a `Mat` directly, in place — there's no separate drawing-context object like Pillow's `ImageDraw.Draw()`.
@@ -280,6 +302,10 @@ cv2.putText(canvas, "burmese python", (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.8, 
 cv2.imwrite("labeled.png", canvas)
 ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Thresholding and edge detection
 
 Both operations reduce an image down to just the information that matters for a specific analysis task, throwing away "how bright" or "how gradual" in favor of a hard yes/no per pixel.
@@ -325,6 +351,10 @@ edges = cv2.Canny(gray, 100, 200)
 cv2.imwrite("edges.png", edges)
 ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Blurring
 
 Smoothing an image slightly, before edge detection or thresholding, often removes small specks of noise that would otherwise show up as false edges or scattered dark pixels.
@@ -350,6 +380,10 @@ blurred = cv2.GaussianBlur(img, (5, 5), 0)
 heavily_blurred = cv2.GaussianBlur(img, (21, 21), 0)
 cv2.imwrite("blurred.jpg", blurred)
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Contours
 
@@ -380,6 +414,10 @@ contours, _ = cv2.findContours(thresholded, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_
 cv2.drawContours(img, contours, -1, (0, 128, 0), 2)
 cv2.imwrite("contours.png", img)
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Face detection with cascade classifiers
 
@@ -416,6 +454,10 @@ for (x, y, w, h) in faces:
 
 cv2.imwrite("detected.jpg", img)
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Working with video
 
@@ -455,3 +497,6 @@ while True:
 capture.release()
 print(f"saved {frame_count} frames")
 ```
+
+</div>
+

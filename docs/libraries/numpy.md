@@ -12,11 +12,17 @@ NumPy is an open-source project, with fiscal sponsorship from the nonprofit [Num
 
 **NumPy** (imported as `np`) is Python's standard library for fast numeric arrays — the foundation nearly every other data or scientific library in Python is built on. It's a third-party package, not part of the standard library. A NumPy `ndarray` looks similar to a `list`, but every element is the same type and math operations apply to the whole array at once, instead of one item at a time.
 
+<div class="pfg-section" markdown="block">
+
 ## Install
 
 ```bash
 pip install numpy
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Import
 
@@ -30,6 +36,10 @@ import numpy as np
 |------|-------|------------------|
 | `list` | Any mix of types | Element-by-element, usually with a loop |
 | `ndarray` | One type, fixed size | Applied to the whole array at once ("vectorized") |
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Creating arrays
 
@@ -69,6 +79,10 @@ np.arange(0, 10, 2)    # array([0, 2, 4, 6, 8])
     print(np.arange(4))
     print(np.arange(0, 10, 2))
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Array operations
 
@@ -129,3 +143,6 @@ lengths_ft[lengths_ft > 7]  # array([12., 8.])
     print(mask)
     print(lengths_ft[mask])
     ```
+
+</div>
+

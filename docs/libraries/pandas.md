@@ -12,11 +12,17 @@ pandas is an open-source project, funded by nonprofit [NumFOCUS](https://numfocu
 
 **pandas** (imported as `pd`) is Python's standard library for tabular data — rows and columns, like a spreadsheet, with tools for filtering, sorting, and summarizing built in. It's a third-party package, not part of the standard library, and is built on top of [NumPy](numpy.md).
 
+<div class="pfg-section" markdown="block">
+
 ## Install
 
 ```bash
 pip install pandas
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Import
 
@@ -30,6 +36,10 @@ import pandas as pd
 |------|-------|------|
 | `Series` | One column of labeled values | A single spreadsheet column |
 | `DataFrame` | Many columns, sharing an index | A whole spreadsheet or table |
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Building a DataFrame
 
@@ -78,6 +88,10 @@ print(snakes)
 
     print(snakes)
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Working with a DataFrame
 
@@ -149,3 +163,6 @@ snakes["length_ft"].max()     # 12.0
     print(snakes["length_ft"].mean())
     print(snakes["length_ft"].max())
     ```
+
+</div>
+

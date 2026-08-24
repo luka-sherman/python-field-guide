@@ -10,9 +10,15 @@ description: >-
 
 The **`json`** module reads and writes JSON ("JavaScript Object Notation") data — a plain-text format built on nested dicts and lists, which makes it the standard way structured data moves between programs, files, and web APIs. Every example below actually runs in your browser: Pyodide gives each page its own in-memory filesystem, so `open()` works exactly like it would on a real computer, just without anything being saved outside this page.
 
+<div class="pfg-section" markdown="block">
+
 ## Install
 
 `json` ships with Python's standard library — nothing to install.
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Import
 
@@ -28,6 +34,10 @@ import json
 | `json.load()` | An open file → a Python object | Loading data from disk |
 | `json.dumps()` | A Python object → a string | Sending data somewhere, like an API request body |
 | `json.loads()` | A string → a Python object | Parsing JSON text you already have in memory |
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Writing JSON files
 
@@ -68,6 +78,10 @@ print("wrote snake.json")
     with open("snake.json", "w") as file:
         json.dump(snake, file, indent=2)
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Reading JSON files
 
@@ -135,6 +149,10 @@ print(data["sightings"][0])    # "2024-03-15"
     print(data["sightings"][0])
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Working with strings instead of files
 
 `json.dumps()`/`json.loads()` do the same conversion as `dump()`/`load()`, but to and from a string in memory rather than a file — the pair to reach for when the JSON is coming from somewhere other than disk, like an API response. The [`requests`](requests.md) library's own `.json()` method — covered on that page — is really just calling `json.loads()` on the response text for you.
@@ -162,3 +180,6 @@ data = json.loads(text)     # back to {"species": "ball", "length_ft": 4.5}
     data = json.loads(text)
     print(data)
     ```
+
+</div>
+

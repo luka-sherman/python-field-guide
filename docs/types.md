@@ -37,6 +37,8 @@ A basic ("scalar") data type holds a single value, as opposed to a [collection](
     isinstance(5, str)  # False
     ```
 
+<div class="pfg-section" markdown="block">
+
 ## Integers
 
 An integer a.k.a. "`int`" is a whole number — positive, negative, or zero — with no decimal point.
@@ -180,6 +182,10 @@ while length:              # loops until length reaches 0
         length -= 1
     print(length)
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Floats
 
@@ -331,6 +337,10 @@ if weight:                 # runs — weight isn't 0.0
     print(0.1 + 0.2)
     print(round(0.1 + 0.2, 2))
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Strings
 
@@ -694,6 +704,10 @@ if name:                 # runs — name isn't empty
     if name:
         print("has a name")
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Booleans
 
@@ -1077,6 +1091,10 @@ venomous = False
     print(True + True)
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## None
 
 `None` represents the absence of a value — Python's way of saying "nothing here," distinct from `0`, `False`, or an empty string.
@@ -1126,3 +1144,6 @@ venomous = None
     else:
         print("nothing found")
     ```
+
+</div>
+

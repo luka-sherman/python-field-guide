@@ -21,6 +21,8 @@ The condition ends with a colon `:`, and the block is the lines indented underne
 
 </div>
 
+<div class="pfg-section" markdown="block">
+
 ## If / elif / else
 
 A chain of `if`, `elif`, and `else`: 
@@ -544,6 +546,10 @@ A and B here are [boolean expressions](#boolean-expressions).
     print(status)
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Match / case
 
 A `match` statement compares one value against several `case` options and runs the code for the first matching `case`.
@@ -750,6 +756,10 @@ A `match` can pick a different `case` depending on the tuple's length or the val
             print("small")
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Control flow statements
 
 `break` and `continue` are loop-control keywords, not conditional ones, but they almost always appear inside a conditional — checking a condition, then stopping the loop early (`break`) or skipping straight to the next pass (`continue`). They work the same way whether checked with `if`/`elif` or `match`/`case`, since neither creates its own loop scope — both just pass straight through to whatever loop contains them. Covered fully, with more examples, on the [Loops](loops.md#control-flow-statements) page.
@@ -873,3 +883,6 @@ for s in species:
 
     print("checked venomous status, no action taken yet")
     ```
+
+</div>
+

@@ -10,9 +10,15 @@ description: >-
 
 **Tkinter** is Python's built-in toolkit for building desktop GUI applications — windows, buttons, text fields, and the rest of a traditional app interface, all driven from your Python variables, functions, and objects. A GUI needs a real window and display to run in, though, so unlike the rest of this field guide, the examples below aren't runnable in the browser — copy them into a local `.py` file  to see them in action.
 
+<div class="pfg-section" markdown="block">
+
 ## Install
 
 Tkinter ships with the standard library — no extra install is needed on your own machine.
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Import
 
@@ -31,6 +37,10 @@ from tkinter import ttk
 | Event loop | The `mainloop()` call that keeps the window open and listening for clicks, keystrokes, and other input until it's closed. |
 | Callback | A function you write that Tkinter calls automatically when something happens, like a button being clicked. |
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Creating a window
 
 Every Tkinter app starts the same way: create a root window, add widgets to it, then hand control over to the event loop with `mainloop()` — nothing appears on screen until that final call.
@@ -44,6 +54,10 @@ root.geometry("300x150")
 
 root.mainloop()
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Widgets
 
@@ -182,6 +196,10 @@ root.mainloop()
     root.mainloop()
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Layout managers
 
 A widget doesn't appear on screen until you tell Tkinter where to put it, using one of three geometry managers. Mixing more than one inside the *same* parent widget causes layout bugs, so pick one per container.
@@ -251,6 +269,10 @@ root.mainloop()
     root.mainloop()
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Configuring widgets
 
 Every widget has a set of options that control its appearance and behavior — `text`, `width`, `state`, and dozens more depending on the widget type. Set them when you create the widget, or change them afterward with `.configure()` (or the equivalent bracket/dictionary syntax) and read them back with `.cget()`.
@@ -287,6 +309,10 @@ def rename():
 ttk.Button(root, text="Rename", command=rename).pack()
 root.mainloop()
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Handling events
 
@@ -374,6 +400,10 @@ root.mainloop()
     root.mainloop()
     ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Styling with ttk
 
 Classic Tkinter widgets render with Tk's original 1990s look, which stands out from every other app on a modern OS — this is exactly the gap `ttk` closes by delegating drawing to the OS's native theme engine. A `ttk.Style` object lets you customize colors and fonts on top of that native look without losing it.
@@ -406,6 +436,10 @@ style.configure("Accent.TButton", foreground="white", background="#3f6b52")
 ttk.Button(root, text="Save", style="Accent.TButton").pack()
 root.mainloop()
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Dialogs
 
@@ -468,6 +502,10 @@ ttk.Button(root, text="Open", command=open_file).pack()
 root.mainloop()
 ```
 
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Introspecting widgets
 
 Every widget can report details about itself — its size, position, class, or place in the widget hierarchy — through a family of `winfo_*` methods. Useful for debugging a layout, or for writing code that adapts to a widget's actual on-screen size rather than a hardcoded guess.
@@ -503,6 +541,10 @@ print("root's children:", root.winfo_children())
 
 root.mainloop()
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
 
 ## Putting it together
 
@@ -567,3 +609,6 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+</div>
+
