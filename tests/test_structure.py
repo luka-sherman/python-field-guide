@@ -159,6 +159,39 @@ def test_always_open_admonitions_are_reviewed(path):
 
 
 # ============================================================================
+# md_in_html block wrappers never nest inside a list item or admonition
+# ============================================================================
+
+# A `markdown="block"`/`markdown="1"` HTML wrapper (e.g. `<div class="pfg-diagram-frame"
+# markdown="block">`) indented under a `- ` list item or a `??? `/`!!! ` admonition has broken
+# rendering before: the div got swallowed into a *preceding* code fence's raw text instead of
+# being parsed, corrupting the page (confirmed by hand across several pages; fixed by reverting
+# those wrappers back to plain, unwrapped HTML). Scoped specifically to the `markdown=`
+# attribute, not "any HTML in a list/admonition" — plain raw HTML with no `markdown=` attribute
+# (e.g. `.pt-compare`'s `<div class="pt-compare">`, or a bare `<p class="pfg-diagram-caption">`
+# caption) already nests inside admonitions/lists safely throughout this site and isn't what
+# broke, so it's not flagged here.
+MD_IN_HTML_BLOCK_RE = re.compile(r'^(?P<indent>\s+)<\w+[^>]*\bmarkdown="(?:block|1)"')
+
+
+@pytest.mark.parametrize("path", ALL_DOC_FILES, ids=DOC_IDS)
+def test_md_in_html_blocks_are_not_indented(path):
+    failures = []
+    for lineno, raw, in_fence, _ in iter_lines(path):
+        if in_fence:
+            continue
+        if MD_IN_HTML_BLOCK_RE.match(raw):
+            failures.append(f"{rel(path)}:{lineno}: {raw.strip()!r}")
+    assert not failures, (
+        "A markdown=\"block\"/\"1\" HTML wrapper is indented, meaning it's nested inside a list "
+        "item or admonition — this exact pattern has broken rendering before (see the comment "
+        "above this test). Move the wrapper to the top level, or if it must live in a list/"
+        "admonition, drop the `markdown=` attribute and use plain HTML instead:\n"
+        + "\n".join(failures)
+    )
+
+
+# ============================================================================
 # Headings use sentence case (STRUCTURE.md "Text style conventions" / "Headings")
 # ============================================================================
 
