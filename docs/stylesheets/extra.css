@@ -1,3 +1,14 @@
+/* Cormorant Garamond is a display face used only for h1/h2 — theme.font in
+   mkdocs.yml already handles the Google Fonts import for the body/code
+   fonts (Source Serif 4 / JetBrains Mono), but that mechanism only covers
+   one text + one code font, so this third face needs its own import. */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap');
+
+.md-typeset h1,
+.md-typeset h2 {
+  font-family: "Cormorant Garamond", serif;
+}
+
 /* Light ("default") and dark ("slate") variants of the site's palette. The
    plain `:root` selector is the fallback for elements that don't sit under
    a `[data-md-color-scheme]`-tagged body yet; `[data-md-color-scheme]`
@@ -6,22 +17,22 @@
    needed on <body>). */
 :root,
 [data-md-color-scheme="default"] {
-  --pt-bg: #FAF6EE;
-  --pt-panel: #F4EEDF;
-  --pt-ink: #2B2A26;
-  --pt-text-secondary: #55503F;
+  --pt-bg: #F0ECE4;
+  --pt-panel: #FAF6EE;
+  --pt-ink: #211910;
+  --pt-text-secondary: #5D5449;
   --pt-text-muted: #8A8370;
-  --pt-hairline: #DED2B4;
-  --pt-border-soft: #C9BE9E;
-  --pt-accent: #3f6b52;
+  --pt-hairline: #D8D0C2;
+  --pt-border-soft: #B8AC99;
+  --pt-accent: #185B37;
   /* h2/h3 heading colors: both a shade darker/more-saturated than
      --pt-accent (used for buttons, success icons, etc.) so headings read as
      deliberately weightier than an inline accent, with h3 lighter than h2
      but still clearly bold rather than de-emphasized. */
-  --pt-heading-h2: #2f5843;
-  --pt-heading-h3: #4f7360;
-  --pt-ref-keyword: #8a5a2e;
-  --pt-danger: #a33f3f;
+  --pt-heading-h2: #004C24;
+  --pt-heading-h3: #33724C;
+  --pt-ref-keyword: #9D712D;
+  --pt-danger: #933331;
 
   /* The runnable code block (.pyodide-runner) is deliberately the inverse of
      the page's own scheme — a dark "terminal" panel on the light site — so
@@ -39,23 +50,23 @@
 }
 
 [data-md-color-scheme="slate"] {
-  --pt-bg: #1a1d21;
-  --pt-panel: #23272b;
+  --pt-bg: #121417;
+  --pt-panel: #1a1d21;
   /* Dimmed from a near-white e8e6df: pure/near-white body text on a dark
      background reads as harsh and causes halation. Material's own dark-theme
      guidance uses ~87% white over the surface color rather than white
      outright — this keeps that same restraint while staying on-palette
      (warm, not neutral gray). */
-  --pt-ink: #d3d2cc;
-  --pt-text-secondary: #b0ac9e;
+  --pt-ink: #E8E4DD;
+  --pt-text-secondary: #9D978E;
   --pt-text-muted: #7d796b;
-  --pt-hairline: #33362f;
-  --pt-border-soft: #454940;
-  --pt-accent: #6fbf8f;
-  --pt-heading-h2: #4f9c72;
-  --pt-heading-h3: #6b8f7a;
-  --pt-ref-keyword: #e8c9a8;
-  --pt-danger: #e38181;
+  --pt-hairline: #28231A;
+  --pt-border-soft: #3E372D;
+  --pt-accent: #57966E;
+  --pt-heading-h2: #3A8357;
+  --pt-heading-h3: #6FA783;
+  --pt-ref-keyword: #C99B5A;
+  --pt-danger: #C25D58;
 
   /* Same dark terminal panel as the light scheme (not inverted) — the
      runnable block should read as dark in dark mode too, matching the
@@ -154,7 +165,7 @@ html {
    on both this page scrollbar and the sidebar's below, in every theme. */
 html:hover,
 html:focus-within {
-  scrollbar-color: #3f6b52 transparent;
+  scrollbar-color: #185B37 transparent;
 }
 
 html::-webkit-scrollbar {
@@ -167,7 +178,7 @@ html::-webkit-scrollbar-thumb {
 
 html:hover::-webkit-scrollbar-thumb,
 html:focus-within::-webkit-scrollbar-thumb {
-  background-color: #3f6b52;
+  background-color: #185B37;
 }
 
 /* Override Material's own .md-sidebar__scrollwrap hover color (which uses
@@ -175,12 +186,12 @@ html:focus-within::-webkit-scrollbar-thumb {
    muted green as the page scrollbar above, so both match in every theme. */
 .md-sidebar__scrollwrap:hover,
 .md-sidebar__scrollwrap:focus-within {
-  scrollbar-color: #3f6b52 transparent;
+  scrollbar-color: #185B37 transparent;
 }
 
 .md-sidebar__scrollwrap:hover::-webkit-scrollbar-thumb,
 .md-sidebar__scrollwrap:focus-within::-webkit-scrollbar-thumb {
-  background-color: #3f6b52;
+  background-color: #185B37;
 }
 
 .md-header {
@@ -731,14 +742,6 @@ input:checked + .md-consent__settings {
   gap: 0.6rem;
 }
 
-/* Used on libraries/index.md: its two categories (Built-in/Third-party)
-   stack vertically instead of sharing a row like the homepage's do — that
-   page has a left sidebar eating into the available width, and stacking
-   reads better there than two narrow side-by-side columns. */
-.pt-category-grid--stacked {
-  grid-template-columns: 1fr;
-}
-
 /* No lone-box-in-the-last-row rule needed currently: 6 non-wide categories
    (Get started, Data types, Control flow, Code organization, Robust
    programming, Files & modules) fill 3 full rows of 2 evenly ahead of the
@@ -880,6 +883,14 @@ input:checked + .md-consent__settings {
   margin: 0;
 }
 
+/* First column ("Class"/"Collection Type") shouldn't wrap mid-name (e.g.
+   "UserDict"/"UserList"/"UserString" breaking across two lines) even on a
+   narrower content column — those names read better on one line than
+   wrapped. */
+.pt-jump-table td:first-child {
+  white-space: nowrap;
+}
+
 /* True/False badges for truth-table style call-outs. */
 .pt-bool-true,
 .pt-bool-false {
@@ -910,6 +921,13 @@ input:checked + .md-consent__settings {
    style attribute, not just cascade order. */
 .md-typeset .mermaid svg {
   max-width: 100% !important;
+}
+
+/* `display: block` matches .pfg-diagram-frame's own box behavior (see the
+   "Diagram frame" component further down, which supplies the actual
+   border/padding) instead of the inline-ish default mermaid renders with. */
+.md-typeset .mermaid {
+  display: block;
 }
 
 /* Two-column comparison table (index.md's FAQ): the second column is the
@@ -1109,13 +1127,18 @@ input:checked + .md-consent__settings {
 /* Bigger, bolder h2 with more breathing room than Material's default
    (font-weight 300, 1.5625em, 1.6em/0.64em margins) — h2 marks a whole new
    section on these long single-page docs, so it should read as a clear
-   break rather than a slightly-larger paragraph. Colored (rather than a
-   left border or background panel) so the hierarchy reads from the text
-   itself without wrapping section content in a box. .pt-fake-h2 below must
-   be kept in sync with these values. */
+   break rather than a slightly-larger paragraph. Sized close to the page's
+   own h1 (Material default 2em) rather than staying a visibly smaller
+   second tier — the Cormorant Garamond display face (see top of file)
+   already reads heavier than the body serif at the same size, so pushing
+   the size up too makes h2 read as equally weighty as h1, not just bold.
+   Colored (rather than a left border or background panel) so the hierarchy
+   reads from the text itself without wrapping section content in a box.
+   .pt-fake-h2 below must be kept in sync with these values. */
 .md-typeset h2 {
   font-weight: 700;
-  font-size: 1.875em;
+  font-size: 2.375em;
+  line-height: 1.25;
   margin: 2.2em 0 0.8em;
   color: var(--pt-heading-h2);
 }
@@ -1133,7 +1156,7 @@ input:checked + .md-consent__settings {
   border: 1px solid var(--pt-hairline);
   border-radius: 8px;
   padding: 0.5em 2em 2em;
-  margin: 2.2em 0;
+  margin: 4em 0;
 }
 
 .md-typeset .pfg-section > h2:first-child {
@@ -1155,10 +1178,11 @@ input:checked + .md-consent__settings {
    sidebar via toc.integrate and duplicate the Built-in/Third-Party nav
    groups already sitting beside it. */
 .pt-fake-h2 {
+  font-family: "Cormorant Garamond", serif;
   font-weight: 700;
   letter-spacing: -0.01em;
-  font-size: 1.875em;
-  line-height: 1.4;
+  font-size: 2.375em;
+  line-height: 1.25;
   margin: 2.2em 0 0.8em;
   color: var(--pt-heading-h2);
 }
@@ -1208,13 +1232,55 @@ input:checked + .md-consent__settings {
   right: -5.5px;
 }
 
-/* ---- Diagram callout convention ----
+/* ---- Diagram frame ----
+   One shared visual frame for every diagram on the site, so a reader sees
+   the same "this is a diagram" border regardless of which kind it is:
+   a mermaid flowchart or a hand-built illustration plate
+   (.pfg-diagram__plate below) both draw from this single selector list
+   rather than each maintaining its own copy of the border/padding values.
+
+   .pfg-diagram-frame wraps a ```mermaid fence and its caption together —
+   `<div class="pfg-diagram-frame" markdown="block"> ```mermaid ... ```
+   <p class="pfg-diagram-caption">Fig. N — subject</p> </div>` — so the
+   label sits *inside* the border with the diagram, not floating below it.
+   A wrapper is required (rather than styling .md-typeset .mermaid
+   directly) because the caption is a separate element the border needs to
+   enclose. */
+.md-typeset .pfg-diagram-frame,
+.pfg-diagram__plate {
+  border: 6px double var(--pt-border-soft);
+  padding: 44px;
+}
+
+/* Small mono eyebrow label ("Fig. 1 — package layout"). Inside
+   .pfg-diagram-frame it's the last element in the box, so its own
+   margin-top is what separates it from the diagram above; inside
+   .pfg-diagram__legend (the illustration convention below) it's the first
+   line instead, so that context flips the margin to sit above it. */
+.pfg-diagram-caption {
+  font-family: var(--md-code-font);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pt-text-muted);
+  margin-top: 0.75em;
+}
+
+.pfg-diagram__legend > .pfg-diagram-caption {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+/* ---- Diagram illustration convention ----
    Placeholder pattern for illustration slots pending real Victorian-style
    snake artwork — see design_handoff_mkdocs_field_guide/README.md. Markup:
-   a <div class="field-diagram"> containing the hatch box (with numbered
-   <span class="field-diagram__pin"> pins positioned via inline style) next
-   to a <div class="field-diagram__legend"> caption/key list. */
-.field-diagram {
+   a <div class="pfg-diagram"> containing the hatch-pattern plate (framed by
+   .pfg-diagram__plate above, sharing mermaid's own border) with numbered
+   <span class="pfg-diagram__pin"> pins positioned via inline style, next to
+   a <div class="pfg-diagram__legend"> caption/key list — its first line
+   should carry class="pfg-diagram-caption" for the "Fig. N — <subject>"
+   label. */
+.pfg-diagram {
   display: flex;
   gap: 2em;
   flex-wrap: wrap;
@@ -1222,7 +1288,7 @@ input:checked + .md-consent__settings {
   margin: 1.5em 0;
 }
 
-.field-diagram__plate {
+.pfg-diagram__plate {
   position: relative;
   flex: 1 1 320px;
   min-height: 240px;
@@ -1231,10 +1297,9 @@ input:checked + .md-consent__settings {
     var(--pt-panel) 0 10px,
     var(--pt-bg) 10px 20px
   );
-  border: 1px solid var(--pt-hairline);
 }
 
-.field-diagram__pin {
+.pfg-diagram__pin {
   position: absolute;
   display: flex;
   align-items: center;
@@ -1249,24 +1314,15 @@ input:checked + .md-consent__settings {
   font-weight: 700;
 }
 
-.field-diagram__legend {
+.pfg-diagram__legend {
   flex: 1 1 240px;
 }
 
-.field-diagram__legend-eyebrow {
-  font-family: var(--md-code-font);
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--pt-text-muted);
-  margin-bottom: 0.5em;
-}
-
-.field-diagram__legend ol {
+.pfg-diagram__legend ol {
   line-height: 2;
   padding-left: 1.2em;
 }
 
-.field-diagram__legend ol strong {
+.pfg-diagram__legend ol strong {
   color: var(--pt-accent);
 }
