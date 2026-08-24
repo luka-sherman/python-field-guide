@@ -45,8 +45,8 @@ theme:
   language: en
   logo: img/favicon-large.png
   font:
-    text: Inter
-    code: IBM Plex Mono
+    text: Source Serif 4
+    code: JetBrains Mono
   palette:
     - scheme: slate
       primary: custom

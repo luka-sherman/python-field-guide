@@ -1162,3 +1162,111 @@ input:checked + .md-consent__settings {
   margin: 2.2em 0 0.8em;
   color: var(--pt-heading-h2);
 }
+
+/* ---- Field-plate frame card ----
+   A bordered "plate" box for callouts/quote blocks, per the Victorian
+   field-guide design system. Plain `.field-plate` is a 6px double border;
+   add `.ornate` for four brass corner diamonds. Not wired into any
+   admonition — apply directly to a <div class="field-plate"> wrapping
+   markdown (needs md_in_html's markdown="block" to render nested markdown). */
+.field-plate {
+  border: 6px double var(--pt-border-soft);
+  padding: 44px;
+  position: relative;
+  margin: 1.5em 0;
+}
+
+.field-plate.ornate::before,
+.field-plate.ornate::after,
+.field-plate.ornate .field-plate__corner-bl,
+.field-plate.ornate .field-plate__corner-br {
+  content: "";
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  background: var(--pt-ref-keyword);
+  transform: rotate(45deg);
+}
+
+.field-plate.ornate::before {
+  top: -5.5px;
+  left: -5.5px;
+}
+
+.field-plate.ornate::after {
+  top: -5.5px;
+  right: -5.5px;
+}
+
+.field-plate.ornate .field-plate__corner-bl {
+  bottom: -5.5px;
+  left: -5.5px;
+}
+
+.field-plate.ornate .field-plate__corner-br {
+  bottom: -5.5px;
+  right: -5.5px;
+}
+
+/* ---- Diagram callout convention ----
+   Placeholder pattern for illustration slots pending real Victorian-style
+   snake artwork — see design_handoff_mkdocs_field_guide/README.md. Markup:
+   a <div class="field-diagram"> containing the hatch box (with numbered
+   <span class="field-diagram__pin"> pins positioned via inline style) next
+   to a <div class="field-diagram__legend"> caption/key list. */
+.field-diagram {
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 1.5em 0;
+}
+
+.field-diagram__plate {
+  position: relative;
+  flex: 1 1 320px;
+  min-height: 240px;
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--pt-panel) 0 10px,
+    var(--pt-bg) 10px 20px
+  );
+  border: 1px solid var(--pt-hairline);
+}
+
+.field-diagram__pin {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--pt-danger);
+  color: #fff;
+  font-family: var(--md-code-font);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.field-diagram__legend {
+  flex: 1 1 240px;
+}
+
+.field-diagram__legend-eyebrow {
+  font-family: var(--md-code-font);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pt-text-muted);
+  margin-bottom: 0.5em;
+}
+
+.field-diagram__legend ol {
+  line-height: 2;
+  padding-left: 1.2em;
+}
+
+.field-diagram__legend ol strong {
+  color: var(--pt-accent);
+}
