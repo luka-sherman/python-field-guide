@@ -923,10 +923,24 @@ input:checked + .md-consent__settings {
   max-width: 100% !important;
 }
 
-/* `display: block` matches .pfg-diagram-frame's own box behavior (see the
-   "Diagram frame" component further down, which supplies the actual
-   border/padding) instead of the inline-ish default mermaid renders with. */
+/* Every mermaid diagram site-wide gets this same frame by default — its
+   caption (if any) then sits *below* the border as a separate element.
+   That's the fallback for a diagram nested inside an admonition (`??? tip`,
+   `!!! example`, etc.): putting the caption inside the border there would
+   need a second markdown="block" div nested inside the admonition's own
+   indented block, which is exactly the nesting depth that broke mermaid's
+   rendering once already (see git history) — so admonition diagrams keep
+   the plain, unwrapped border. Everywhere else, a page instead wraps the
+   fence in `.pfg-diagram-frame` (see "Diagram frame" component further
+   down) to pull the caption inside the border; that wrapper suppresses
+   this rule below so the two don't double up. Targets the pre/div.mermaid
+   element superfences renders the fence into, not the inner <svg>, so the
+   border/padding sit around the whole diagram. `display: block` matches
+   .pfg-diagram-frame's own box behavior instead of the inline-ish default
+   mermaid renders with. */
 .md-typeset .mermaid {
+  border: 6px double var(--pt-border-soft);
+  padding: 22px;
   display: block;
 }
 
@@ -1187,83 +1201,60 @@ input:checked + .md-consent__settings {
   color: var(--pt-heading-h2);
 }
 
-/* ---- Field-plate frame card ----
-   A bordered "plate" box for callouts/quote blocks, per the Victorian
-   field-guide design system. Plain `.field-plate` is a 6px double border;
-   add `.ornate` for four brass corner diamonds. Not wired into any
-   admonition — apply directly to a <div class="field-plate"> wrapping
-   markdown (needs md_in_html's markdown="block" to render nested markdown). */
-.field-plate {
-  border: 6px double var(--pt-border-soft);
-  padding: 44px;
-  position: relative;
-  margin: 1.5em 0;
-}
-
-.field-plate.ornate::before,
-.field-plate.ornate::after,
-.field-plate.ornate .field-plate__corner-bl,
-.field-plate.ornate .field-plate__corner-br {
-  content: "";
-  position: absolute;
-  width: 11px;
-  height: 11px;
-  background: var(--pt-ref-keyword);
-  transform: rotate(45deg);
-}
-
-.field-plate.ornate::before {
-  top: -5.5px;
-  left: -5.5px;
-}
-
-.field-plate.ornate::after {
-  top: -5.5px;
-  right: -5.5px;
-}
-
-.field-plate.ornate .field-plate__corner-bl {
-  bottom: -5.5px;
-  left: -5.5px;
-}
-
-.field-plate.ornate .field-plate__corner-br {
-  bottom: -5.5px;
-  right: -5.5px;
-}
-
 /* ---- Diagram frame ----
    One shared visual frame for every diagram on the site, so a reader sees
    the same "this is a diagram" border regardless of which kind it is:
-   a mermaid flowchart or a hand-built illustration plate
-   (.pfg-diagram__plate below) both draw from this single selector list
-   rather than each maintaining its own copy of the border/padding values.
+   the base border/padding on .md-typeset .mermaid (above) covers a plain
+   diagram, .pfg-diagram-frame (below) covers a wrapped one, and
+   .pfg-diagram__plate (the illustration convention) reuses the same
+   values here rather than keeping its own copy.
 
-   .pfg-diagram-frame wraps a ```mermaid fence and its caption together —
-   `<div class="pfg-diagram-frame" markdown="block"> ```mermaid ... ```
-   <p class="pfg-diagram-caption">Fig. N — subject</p> </div>` — so the
-   label sits *inside* the border with the diagram, not floating below it.
-   A wrapper is required (rather than styling .md-typeset .mermaid
-   directly) because the caption is a separate element the border needs to
-   enclose. */
-.md-typeset .pfg-diagram-frame,
+   Two caption placements, picked per diagram:
+   - Plain (no wrapper) — caption is a <p class="pfg-diagram-caption"> sibling
+     right after the ```mermaid fence, rendering *below* the border. This is
+     the required form inside an admonition (`??? tip`, `!!! example`, etc.):
+     a second markdown="block" div nested inside the admonition's own
+     indented block is exactly the nesting depth that broke mermaid's
+     rendering once already (see git history) — so admonition diagrams
+     always use this plain form.
+   - Wrapped — `<div class="pfg-diagram-frame" markdown="block">` around
+     the fence and its caption together, so the caption sits *inside* the
+     border instead. Safe everywhere else (top-level content, list items),
+     just not inside an admonition. The nested .mermaid's own border is
+     suppressed here so the two frames don't double up. */
+.pfg-diagram-frame,
 .pfg-diagram__plate {
   border: 6px double var(--pt-border-soft);
-  padding: 44px;
+  padding: 22px;
 }
 
-/* Small mono eyebrow label ("Fig. 1 — package layout"). Inside
-   .pfg-diagram-frame it's the last element in the box, so its own
-   margin-top is what separates it from the diagram above; inside
-   .pfg-diagram__legend (the illustration convention below) it's the first
-   line instead, so that context flips the margin to sit above it. */
+/* The diagram sits slightly further right than the caption below it — that
+   offset is added here as this child's own extra padding-left on top of
+   the frame's base 44px, rather than pulling the caption left with a
+   negative margin, so nothing in the frame ever needs one. */
+.pfg-diagram-frame .mermaid {
+  border: none;
+  padding: 0 0 0 6px;
+}
+
+/* Small mono eyebrow label ("Fig. 1 — package layout"), placed per the two
+   forms above. Inside .pfg-diagram-frame it's the last element in the box,
+   so its own margin-top is what separates it from the diagram above; as a
+   plain sibling below an unwrapped .mermaid, that same margin-top serves
+   the equivalent purpose. .pfg-diagram__legend below reuses this class too,
+   for its "Fig. N — <subject>" line at the *top* of the legend instead —
+   see the margin-flip rule right after this one. */
 .pfg-diagram-caption {
   font-family: var(--md-code-font);
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--pt-text-muted);
-  margin-top: 0.75em;
+  margin-top: 1.5em;
+  /* Material's .md-typeset p sets its own margin-bottom (1.25em); left
+     alone that adds extra space below the caption inside .pfg-diagram-frame
+     that the left/right padding doesn't have a matching equivalent for. */
+  margin-bottom: 0;
 }
 
 .pfg-diagram__legend > .pfg-diagram-caption {

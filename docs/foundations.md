@@ -32,6 +32,8 @@ When a Python program is running, it won't show you anything on its own — it r
 
 That's a problem for you as the developer — without some way to look inside, you can't follow along with what it's actually doing as it runs. 
 
+<div class="pfg-diagram-frame" markdown="block">
+
 ```mermaid
 flowchart LR
     black@{ shape: procs, label: "your program" }
@@ -46,7 +48,13 @@ flowchart LR
     class black blackbox
 ```
 
+<p class="pfg-diagram-caption">Fig. 3a — a program runs silently, start to end</p>
+
+</div>
+
 `print()` solves that: it's a line of code you can add at checkpoints throughout your program, that displays a value so you can see what's happening as your program runs.
+
+<div class="pfg-diagram-frame" markdown="block">
 
 ```mermaid
 flowchart TB
@@ -79,11 +87,17 @@ classDef plain fill:none,stroke:none
 class p1,p2,p3 plain
 ```
 
+<p class="pfg-diagram-caption">Fig. 3b — print() checkpoints along a running program</p>
+
+</div>
+
 Code editors have an **output** window at the bottom that shows the print statements as the program runs.
 
 ### Structure of a print() statement { data-card-link="skip" }
 
 `print` is a [function](functions.md) — a named, reusable piece of code that does something when you "call" it by name. These building blocks are all you need to use `print()`:
+
+<div class="pfg-diagram-frame" markdown="block">
 
 ```mermaid
 flowchart TB
@@ -119,6 +133,10 @@ class p,o,c punct
 style code fill:none,stroke:none
 ```
 
+<p class="pfg-diagram-caption">Fig. 3c — the parts of a print() statement</p>
+
+</div>
+
 ```python-ref
 print("hello, field guide")   # when printing words, add quotes around them
 print(4.5)                    # when printing a number, you do not need quotes
@@ -148,6 +166,8 @@ A variable stores a value under a name so you can refer to that value again late
 
 Think of a variable as a labeled bucket: the name (`species`) is the label, and the value (`burmese`) is whatever's currently inside. Pour in a new value later, and it replaces the old one — the bucket keeps its name, but not its contents.
 
+<div class="pfg-diagram-frame" markdown="block">
+
 ```mermaid
 flowchart TB
     n1["burmese"] --> b1[("species")]
@@ -156,6 +176,10 @@ flowchart TB
     classDef plain fill:none,stroke:none
     class n1,n2 plain
 ```
+
+<p class="pfg-diagram-caption">Fig. 3d — values stored in the species and length variables</p>
+
+</div>
 
 Now you can reference the variable `species` and it will be equal to the value `burmese`.
 
@@ -350,6 +374,8 @@ The text inside the parentheses — `"What's your first name? "` — is the **pr
 
 `input` is a **function**, same as `print` — these are the same building blocks, just with a variable assignment at the beginning to save what the user inputs:
 
+<div class="pfg-diagram-frame" markdown="block">
+
 ```mermaid
 flowchart TB
 
@@ -389,6 +415,10 @@ class eq,i,o,c punct
 
 style code fill:none,stroke:none
 ```
+
+<p class="pfg-diagram-caption">Fig. 3e — the parts of an input() statement</p>
+
+</div>
 
 **Prompt format:**
 

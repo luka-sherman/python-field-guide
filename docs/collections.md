@@ -46,22 +46,28 @@ A **collection** is a single object that groups multiple values (like [basic typ
     species = ["burmese", "rock", "ball", "blood"]
     ```
 
-- The **index** is the numbered position of an item. The index of the first item is 0[^zero-index], next is 1, and so on. 
+The **index** is the numbered position of an item. The index of the first item is 0[^zero-index], next is 1, and so on. 
 
-    ```mermaid
-    block-beta
-    block:diagram
-        columns 5
-        lblValue["Value"] v0["&quot;burmese&quot;"] v1["&quot;rock&quot;"] v2["&quot;ball&quot;"] v3["&quot;blood&quot;"]
-        lblIndex["Index"] i0["0"] i1["1"] i2["2"] i3["3"]
-        lblNeg["Negative index"] n0["-4"] n1["-3"] n2["-2"] n3["-1"]
-    end
+<div class="pfg-diagram-frame" markdown="block">
 
-    classDef label fill:none,stroke:none,color:#8A8370
-    classDef panel fill:#23221E,stroke:#35342E,stroke-width:1px
-    class i0,i1,i2,i3,n0,n1,n2,n3,lblValue,lblIndex,lblNeg label
-    class diagram panel
-    ```
+```mermaid
+block-beta
+block:diagram
+    columns 5
+    lblValue["Value"] v0["&quot;burmese&quot;"] v1["&quot;rock&quot;"] v2["&quot;ball&quot;"] v3["&quot;blood&quot;"]
+    lblIndex["Index"] i0["0"] i1["1"] i2["2"] i3["3"]
+    lblNeg["Negative index"] n0["-4"] n1["-3"] n2["-2"] n3["-1"]
+end
+
+classDef label fill:none,stroke:none,color:#8A8370
+classDef panel fill:#23221E,stroke:#35342E,stroke-width:1px
+class i0,i1,i2,i3,n0,n1,n2,n3,lblValue,lblIndex,lblNeg label
+class diagram panel
+```
+
+<p class="pfg-diagram-caption">Fig. 5a — list values with their positive and negative indexes</p>
+
+</div>
 
 - The **negative index** tells you how far from the end it is. It starts counting down from the end instead, starting at `-1` for the last item, -2 for the second-to-last, and so on. Each item can be referenced by its positive or negative index.
 
@@ -437,23 +443,29 @@ A **collection** is a single object that groups multiple values (like [basic typ
         }
     ```
 
-    ```mermaid
-    %%{init: {"flowchart": {"nodeSpacing": 15}}}%%
-    flowchart LR
-        subgraph snake["snake"]
-            direction LR
-            lblKey["`*Key*`"] ~~~ lblVal["`*Value*`"]
-            key1["species"] --> val1["'ball'"]
-            key2["length_ft"] --> val2["5"]
-            key3["venomous"] --> val3["False"]
-        end
+<div class="pfg-diagram-frame" markdown="block">
 
-        style key1 stroke:#3f6b52,stroke-width:2px
-        style key2 stroke:#3f6b52,stroke-width:2px
-        style key3 stroke:#3f6b52,stroke-width:2px
-        style lblKey fill:none,stroke:none,color:#8A8370
-        style lblVal fill:none,stroke:none,color:#8A8370
-    ```
+```mermaid
+%%{init: {"flowchart": {"nodeSpacing": 15}}}%%
+flowchart LR
+    subgraph snake["snake"]
+        direction LR
+        lblKey["`*Key*`"] ~~~ lblVal["`*Value*`"]
+        key1["species"] --> val1["'ball'"]
+        key2["length_ft"] --> val2["5"]
+        key3["venomous"] --> val3["False"]
+    end
+
+    style key1 stroke:#3f6b52,stroke-width:2px
+    style key2 stroke:#3f6b52,stroke-width:2px
+    style key3 stroke:#3f6b52,stroke-width:2px
+    style lblKey fill:none,stroke:none,color:#8A8370
+    style lblVal fill:none,stroke:none,color:#8A8370
+```
+
+<p class="pfg-diagram-caption">Fig. 5b — a dict's key-value pairs</p>
+
+</div>
 
     - Each **key** points to exactly one value. 
 
@@ -740,6 +752,8 @@ A tuple stores multiple items, in order, written in parentheses. They are **immu
 species = ("burmese", "rock", "ball", "blood")
 ```
 
+<div class="pfg-diagram-frame" markdown="block">
+
 ```mermaid
 block-beta
   block:diagram
@@ -754,6 +768,10 @@ block-beta
   class i0,i1,i2,i3,n0,n1,n2,n3,lblValue,lblIndex,lblNeg label
   class diagram panel
 ```
+
+<p class="pfg-diagram-caption">Fig. 5c — tuple values with their positive and negative indexes</p>
+
+</div>
 
 The **index** of the first item is 0[^zero-index], next is 1, and so on. 
 
@@ -1002,6 +1020,8 @@ Because items have no fixed position, there's no indexing. Duplicates are irrele
 species = {"burmese", "rock", "ball", "blood"}  # order not fixed
 ```
 
+<div class="pfg-diagram-frame" markdown="block">
+
 ```mermaid
 block-beta
   block:diagram
@@ -1014,6 +1034,10 @@ block-beta
   class lblValue label
   class diagram panel
 ```
+
+<p class="pfg-diagram-caption">Fig. 5d — set values with no fixed order</p>
+
+</div>
 
 ### Loop through a set
 

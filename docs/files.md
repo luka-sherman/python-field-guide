@@ -10,6 +10,8 @@ A file lets a program keep data around after it ends — `print()` shows somethi
 
 **I/O** stands for **input/output** — the general term for a program reading data in or sending data out, to somewhere other than just the screen. `print()` and `input()`, already covered on the [Foundations](foundations.md#print-function) page, are technically I/O too — output to the terminal, input from the keyboard. "File I/O" narrows that down to reading from and writing to files on disk specifically.
 
+<div class="pfg-diagram-frame" markdown="block">
+
 ```mermaid
 flowchart LR
     program@{ shape: procs, label: "your_program.py" }
@@ -18,6 +20,10 @@ flowchart LR
     file -->|"read()"| program
     program -->|"write()"| file
 ```
+
+<p class="pfg-diagram-caption">Fig. 11a — a program reading from and writing to a file</p>
+
+</div>
 
 <div class="pfg-section" markdown="block">
 
@@ -156,6 +162,8 @@ with open("notes.txt", "w") as file:
 
 `"w"` erases whatever was already in the file before writing anything new — opening a file you meant to add to with `"w"` is a common way to accidentally lose data. Use `"a"` instead to add to the end, keeping the existing contents in place.
 
+<div class="pfg-diagram-frame" markdown="block">
+
 ```mermaid
 flowchart TB
 
@@ -174,6 +182,10 @@ modeW ~~~ modeA
 style modeW fill:none,stroke:none
 style modeA fill:none,stroke:none
 ```
+
+<p class="pfg-diagram-caption">Fig. 11b — overwrite mode vs. append mode</p>
+
+</div>
 
 ```python-ref
 with open("notes.txt", "a") as file:

@@ -12,6 +12,8 @@ A **module** is a Python file. Any `.py` file can be imported and used by anothe
 
 A **package** is a folder of related modules grouped together so they can be imported as one unit.
 
+<div class="pfg-diagram-frame" markdown="block">
+
 ```mermaid
 flowchart LR
     subgraph package["package (folder)"]
@@ -23,6 +25,10 @@ flowchart LR
     style module2 stroke:#3f6b52,stroke-width:2px
     style module3 stroke:#3f6b52,stroke-width:2px
 ```
+
+<p class="pfg-diagram-caption">Fig. 10a — a package containing modules</p>
+
+</div>
 
 **Library** is the informal umbrella term for either: a single module or a whole package — that's organized to be reused across projects. The [Libraries page](libraries/index.md) highlights a few common published libraries. 
 
@@ -60,6 +66,8 @@ print(rnd.randint(1, 10))
 
 `from` package `import` module
 
+<div class="pfg-diagram-frame" markdown="block">
+
 ```mermaid
 flowchart LR
     subgraph package["package (folder)"]
@@ -72,6 +80,10 @@ flowchart LR
     style module3 stroke:#3f6b52,stroke-width:2px
 ```
 
+<p class="pfg-diagram-caption">Fig. 10b — example of a package's contents</p>
+
+</div>
+
 ```python-ref
 from random import randint     # specify with module with from
 
@@ -81,6 +93,8 @@ print(randint(1, 10))
 #### Modules
 
 `from` module `import` function/class/variable
+
+<div class="pfg-diagram-frame" markdown="block">
 
 ```mermaid
 flowchart LR
@@ -95,6 +109,10 @@ flowchart LR
     style variable stroke:#a3529c,stroke-width:2px
 ```
 
+<p class="pfg-diagram-caption">Fig. 10c — example of a module's contents</p>
+
+</div>
+
 ```python-ref
 from snake_helpers import describe     # describe is a function inside snake_helpers.py
 
@@ -104,6 +122,8 @@ print(describe("ball"))
 #### Nested paths
 
 `from` package.module `import` function/class/variable
+
+<div class="pfg-diagram-frame" markdown="block">
 
 ```mermaid
 flowchart LR
@@ -120,6 +140,10 @@ flowchart LR
     style class1 stroke:#b5824a,stroke-width:2px
     style variable stroke:#a3529c,stroke-width:2px
 ```
+
+<p class="pfg-diagram-caption">Fig. 10d — example of a module inside a package</p>
+
+</div>
 
 ```python-ref
 from os.path import join     # os is a package, path is one of its modules

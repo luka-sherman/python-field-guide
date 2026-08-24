@@ -42,6 +42,8 @@ A **loop** repeats a block of code multiple times.
         class forConfirm,whileConfirm confirm
     ```
 
+    <p class="pfg-diagram-caption">Fig. 7a — choosing between a for loop and a while loop</p>
+
 <div class="pfg-section" markdown="block">
 
 ## For loops
@@ -65,99 +67,123 @@ You can use [control flow statements](#control-flow-statements) to [break](#brea
 - it will run the block of code once for each number in the sequence
 - The first time it runs, the loop_variable will be equal to the first number in the range sequence, and so on until the block has run as many times are there are numbers in the range sequence
 
-- **The 3 parts of range():**
+**The 3 parts of range():**
 
-    | range() part | Default value | Meaning |
-    |---|---|---|
-    | `start` | `0` | Where to start counting<ul><li>This is the first loop_variable value</li></ul> |
-    | `stop` | *(required — no default)* | Where to stop (exclusive)<ul><li>**not** included in the range sequence, so the last number is the one before</li></ul> |
-    | `step` | `1` | How much to count by to get to the next number<ul><li>starting with the `start` value, adds `step` to it each time to get the next number in the sequence</li></ul> |
+| range() part | Default value | Meaning |
+|---|---|---|
+| `start` | `0` | Where to start counting<ul><li>This is the first loop_variable value</li></ul> |
+| `stop` | *(required — no default)* | Where to stop (exclusive)<ul><li>**not** included in the range sequence, so the last number is the one before</li></ul> |
+| `step` | `1` | How much to count by to get to the next number<ul><li>starting with the `start` value, adds `step` to it each time to get the next number in the sequence</li></ul> |
 
-- **How many parts you specify**
+**How many parts you specify**
 
-    | # of range parts given | Sets parts | Not set, so uses defaults for |
-    |---|---|---|
-    | 1 | `stop` | `start = 0`, `step = 1` |
-    | 2 | `start`, `stop` | `step = 1`|
-    | 3 | `start`, `stop`, `step` | - |
+| # of range parts given | Sets parts | Not set, so uses defaults for |
+|---|---|---|
+| 1 | `stop` | `start = 0`, `step = 1` |
+| 2 | `start`, `stop` | `step = 1`|
+| 3 | `start`, `stop`, `step` | - |
 
-    - **range(stop)** 
+**range(stop)** 
 
-        ```python
-        for i in range(5):
-            print(i)
-        ```
+```python
+for i in range(5):
+    print(i)
+```
 
-        ```mermaid
-        %%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
-        flowchart LR
-            a(("0")) -->|"+1"| b(("1")) -->|"+1"| c(("2")) -->|"+1"| d(("3")) -->|"+1"| e(("4"))
-            e -.->|"+1"| f(("5"))
+<div class="pfg-diagram-frame" markdown="block">
 
-            classDef included fill:none,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
-            classDef excluded fill:none,stroke:#8A8370,stroke-width:1px,stroke-dasharray:3 3,color:#8A8370
-            class a,b,c,d,e included
-            class f excluded
-        ```
+```mermaid
+%%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
+flowchart LR
+    a(("0")) -->|"+1"| b(("1")) -->|"+1"| c(("2")) -->|"+1"| d(("3")) -->|"+1"| e(("4"))
+    e -.->|"+1"| f(("5"))
 
-    - **range(start, stop)**
+    classDef included fill:none,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
+    classDef excluded fill:none,stroke:#8A8370,stroke-width:1px,stroke-dasharray:3 3,color:#8A8370
+    class a,b,c,d,e included
+    class f excluded
+```
 
-        ```python
-        for i in range(2, 6):
-            print(i)
-        ```
+<p class="pfg-diagram-caption">Fig. 7b — range(stop): start default is 0, step default is 1</p>
 
-        ```mermaid
-        %%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
-        flowchart LR
-            a(("2")) -->|"+1"| b(("3")) -->|"+1"| c(("4")) -->|"+1"| d(("5"))
-            d -.->|"+1"| e(("6"))
+</div>
 
-            classDef included fill:none,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
-            classDef excluded fill:none,stroke:#8A8370,stroke-width:1px,stroke-dasharray:3 3,color:#8A8370
-            class a,b,c,d included
-            class e excluded
-        ```
+**range(start, stop)**
 
-    - **range(start, stop, step)**
+```python
+for i in range(2, 6):
+    print(i)
+```
 
-        ```python
-        for i in range(2, 8, 2):
-            print(i)
-        ```
+<div class="pfg-diagram-frame" markdown="block">
 
-        ```mermaid
-        %%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
-        flowchart LR
-            a(("2")) -->|"+2"| b(("4")) -->|"+2"| c(("6"))
-            c -.->|"+2"| d(("8"))
+```mermaid
+%%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
+flowchart LR
+    a(("2")) -->|"+1"| b(("3")) -->|"+1"| c(("4")) -->|"+1"| d(("5"))
+    d -.->|"+1"| e(("6"))
 
-            classDef included fill:none,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
-            classDef excluded fill:none,stroke:#8A8370,stroke-width:1px,stroke-dasharray:3 3,color:#8A8370
-            class a,b,c included
-            class d excluded
-        ```
+    classDef included fill:none,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
+    classDef excluded fill:none,stroke:#8A8370,stroke-width:1px,stroke-dasharray:3 3,color:#8A8370
+    class a,b,c,d included
+    class e excluded
+```
 
-- **Counting backwards**
+<p class="pfg-diagram-caption">Fig. 7c — range(2, 6): start is inclusive, stop is exclusive</p>
 
-    If `start` is larger than `stop`, use a negative `step` to count backwards instead.
+</div>
 
-    ```python
-    for i in range(5, 0, -1):
-        print(i)
-    ```
+**range(start, stop, step)**
 
-    ```mermaid
-    %%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
-    flowchart LR
-        a(("5")) -->|"-1"| b(("4")) -->|"-1"| c(("3")) -->|"-1"| d(("2")) -->|"-1"| e(("1"))
-        e -.->|"-1"| f(("0"))
+```python
+for i in range(2, 8, 2):
+    print(i)
+```
 
-        classDef included fill:none,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
-        classDef excluded fill:none,stroke:#8A8370,stroke-width:1px,stroke-dasharray:3 3,color:#8A8370
-        class a,b,c,d,e included
-        class f excluded
-    ```
+<div class="pfg-diagram-frame" markdown="block">
+
+```mermaid
+%%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
+flowchart LR
+    a(("2")) -->|"+2"| b(("4")) -->|"+2"| c(("6"))
+    c -.->|"+2"| d(("8"))
+
+    classDef included fill:none,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
+    classDef excluded fill:none,stroke:#8A8370,stroke-width:1px,stroke-dasharray:3 3,color:#8A8370
+    class a,b,c included
+    class d excluded
+```
+
+<p class="pfg-diagram-caption">Fig. 7d — range(2, 8, 2): stepping by 2</p>
+
+</div>
+
+**Counting backwards**
+
+If `start` is larger than `stop`, use a negative `step` to count backwards instead.
+
+```python
+for i in range(5, 0, -1):
+    print(i)
+```
+
+<div class="pfg-diagram-frame" markdown="block">
+
+```mermaid
+%%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
+flowchart LR
+    a(("5")) -->|"-1"| b(("4")) -->|"-1"| c(("3")) -->|"-1"| d(("2")) -->|"-1"| e(("1"))
+    e -.->|"-1"| f(("0"))
+
+    classDef included fill:none,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
+    classDef excluded fill:none,stroke:#8A8370,stroke-width:1px,stroke-dasharray:3 3,color:#8A8370
+    class a,b,c,d,e included
+    class f excluded
+```
+
+<p class="pfg-diagram-caption">Fig. 7e — range(5, 0, -1): counting backwards with a negative step</p>
+
+</div>
 
 #### Loop variable = an index
 
