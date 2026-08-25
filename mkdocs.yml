@@ -64,11 +64,13 @@ theme:
     - navigation.expand
     - navigation.footer
     - navigation.instant
+    - navigation.instant.prefetch
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
     - toc.integrate
+    - toc.follow
     - content.code.copy
     - content.tooltips
     - search.suggest
