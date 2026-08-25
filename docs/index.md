@@ -207,8 +207,10 @@ hide:
 </div>
 </div>
 
+# Add-On Libraries
+
 <div class="pt-category pt-category--wide" markdown="block">
-#### Add-on libraries { .pt-homepage-heading }
+#### Utilities { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
@@ -230,14 +232,6 @@ hide:
 
     [**`User* wrapper`**](libraries/collections.md#user-wrapper-classes) [`UserDict`](libraries/collections.md#user-wrapper-classes) [`UserList`](libraries/collections.md#user-wrapper-classes) [`UserString`](libraries/collections.md#user-wrapper-classes)
 
--   :material-file-delimited-outline:{ .lg .middle } [__csv__](libraries/csv.md) [:material-language-python:](libraries/csv.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
-
-    Reading and writing spreadsheets.
-
-    [`csv.writer`](libraries/csv.md#writing-csv-files)
-
-    [`csv.reader`](libraries/csv.md#reading-csv-files) [`DictReader`](libraries/csv.md#reading-rows-as-dictionaries)
-
 -   :material-calendar-clock:{ .lg .middle } [__datetime__](libraries/datetime.md) [:material-language-python:](libraries/datetime.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Calculating and formatting dates and times.
@@ -246,15 +240,29 @@ hide:
 
     [`timedelta`](libraries/datetime.md#date-arithmetic) [`strptime()`](libraries/datetime.md#parsing-a-string-with-strptime) [`difference between two dates`](libraries/datetime.md#difference-between-two-dates)
 
--   :material-code-json:{ .lg .middle } [__json__](libraries/json.md) [:material-language-python:](libraries/json.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+-   :material-dice-multiple:{ .lg .middle } [__random__](libraries/random.md) [:material-language-python:](libraries/random.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
-    Reading and writing JSON data: nested dicts and lists, saved to a file or a string.
+    Random numbers, random picks, shuffled order.
 
-    [`json.dump()`](libraries/json.md#writing-json-files)
+    [**`randint()`**](libraries/random.md#random-numbers)
 
-    [`json.load()`](libraries/json.md#reading-json-files) [`nested data`](libraries/json.md#nested-data)
+    [**`choice()`**](libraries/random.md#random-selections) [`shuffle()`](libraries/random.md#shuffling-a-list) [`sample()`](libraries/random.md#sampling-without-replacement)
 
-    [`json.loads()`](libraries/json.md#working-with-strings-instead-of-files)
+</div>
+</div>
+
+<div class="pt-category pt-category--wide" markdown="block">
+#### Data analysis { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-file-delimited-outline:{ .lg .middle } [__csv__](libraries/csv.md) [:material-language-python:](libraries/csv.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+
+    Reading and writing spreadsheets.
+
+    [`csv.writer`](libraries/csv.md#writing-csv-files)
+
+    [`csv.reader`](libraries/csv.md#reading-csv-files) [`DictReader`](libraries/csv.md#reading-rows-as-dictionaries)
 
 -   :material-chart-line:{ .lg .middle } [__matplotlib__](libraries/matplotlib.md) [:material-download-outline:](libraries/matplotlib.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
@@ -278,28 +286,6 @@ hide:
 
     [`ndarray`](libraries/numpy.md#creating-arrays) [`arange()`](libraries/numpy.md#building-arrays-without-a-list)
 
--   :material-face-recognition:{ .lg .middle } [__OpenCV__](libraries/opencv.md) [:material-download-outline:](libraries/opencv.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
-
-    Real-time image and video analysis.
-
-    [**`reading, displaying, saving images`**](libraries/opencv.md#reading-displaying-and-saving-images) [`imread()`](libraries/opencv.md#reading-a-file) [`displaying a window`](libraries/opencv.md#displaying-a-window) [`saving a file`](libraries/opencv.md#saving-a-file)
-
-    [**`drawing`**](libraries/opencv.md#drawing-shapes-and-text) [`shapes and lines`](libraries/opencv.md#shapes-and-lines) [`text`](libraries/opencv.md#text)
-
-    [**`color spaces`**](libraries/opencv.md#color-spaces) [`cvtColor()`](libraries/opencv.md#converting-color-spaces)
-
-    [**`CascadeClassifier`**](libraries/opencv.md#face-detection-with-cascade-classifiers) [`detecting and labeling faces`](libraries/opencv.md#detecting-and-labeling-faces)
-
-    [**`VideoCapture()`**](libraries/opencv.md#working-with-video) [`reading frames`](libraries/opencv.md#reading-frames)
-
-    [**`basic operations`**](libraries/opencv.md#basic-operations) [`resize()`](libraries/opencv.md#resize) [`cropping`](libraries/opencv.md#cropping) [`rotating`](libraries/opencv.md#rotating)
-
-    [**`thresholding, edge detection`**](libraries/opencv.md#thresholding-and-edge-detection) [`Canny()`](libraries/opencv.md#edge-detection) [`threshold`](libraries/opencv.md#threshold)
-
-    [**`blurring`**](libraries/opencv.md#blurring) [`gaussian blur`](libraries/opencv.md#gaussian-blur)
-
-    [**`contours`**](libraries/opencv.md#contours) [`finding and drawing contours`](libraries/opencv.md#finding-and-drawing-contours)
-
 -   :material-table:{ .lg .middle } [__pandas__](libraries/pandas.md) [:material-download-outline:](libraries/pandas.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Tabular data: rows and columns, like a spreadsheet, built on top of NumPy.
@@ -307,6 +293,40 @@ hide:
     [**`DataFrame`**](libraries/pandas.md#building-a-dataframe)
 
     [**`working with a DataFrame`**](libraries/pandas.md#working-with-a-dataframe) [`sort_values()`](libraries/pandas.md#sorting-rows) [`mean()`](libraries/pandas.md#summarizing-a-column)
+
+</div>
+</div>
+
+<div class="pt-category pt-category--wide" markdown="block">
+#### APIs { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-code-json:{ .lg .middle } [__json__](libraries/json.md) [:material-language-python:](libraries/json.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+
+    Reading and writing JSON data: nested dicts and lists, saved to a file or a string.
+
+    [`json.dump()`](libraries/json.md#writing-json-files)
+
+    [`json.load()`](libraries/json.md#reading-json-files) [`nested data`](libraries/json.md#nested-data)
+
+    [`json.loads()`](libraries/json.md#working-with-strings-instead-of-files)
+
+-   :material-webhook:{ .lg .middle } [__requests__](libraries/requests.md) [:material-download-outline:](libraries/requests.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
+
+    Fetching data over the internet, like asking a website or API for information.
+
+    [**`get()`**](libraries/requests.md#making-a-request) [`status_code`](libraries/requests.md#checking-the-status-code) [`json()`](libraries/requests.md#parsing-json) [`params`](libraries/requests.md#query-parameters)
+
+    [**`error handling`**](libraries/requests.md#handling-request-errors)
+
+</div>
+</div>
+
+<div class="pt-category pt-category--wide" markdown="block">
+#### Image editing { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
 
 -   :material-image-outline:{ .lg .middle } [__Pillow__](libraries/pillow.md) [:material-download-outline:](libraries/pillow.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
@@ -336,21 +356,43 @@ hide:
 
     [**`putting it together`**](libraries/pillow.md#putting-it-together) [`an interactive filter tool`](libraries/pillow.md#an-interactive-filter-tool)
 
--   :material-dice-multiple:{ .lg .middle } [__random__](libraries/random.md) [:material-language-python:](libraries/random.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+</div>
+</div>
 
-    Random numbers, random picks, shuffled order.
+<div class="pt-category pt-category--wide" markdown="block">
+#### Computer vision { .pt-homepage-heading }
 
-    [**`randint()`**](libraries/random.md#random-numbers)
+<div class="grid cards" markdown="block">
 
-    [**`choice()`**](libraries/random.md#random-selections) [`shuffle()`](libraries/random.md#shuffling-a-list) [`sample()`](libraries/random.md#sampling-without-replacement)
+-   :material-face-recognition:{ .lg .middle } [__OpenCV__](libraries/opencv.md) [:material-download-outline:](libraries/opencv.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
--   :material-webhook:{ .lg .middle } [__requests__](libraries/requests.md) [:material-download-outline:](libraries/requests.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
+    Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection.
 
-    Fetching data over the internet, like asking a website or API for information.
+    [**`reading, displaying, saving images`**](libraries/opencv.md#reading-displaying-and-saving-images) [`imread()`](libraries/opencv.md#reading-a-file) [`displaying a window`](libraries/opencv.md#displaying-a-window) [`saving a file`](libraries/opencv.md#saving-a-file)
 
-    [**`get()`**](libraries/requests.md#making-a-request) [`status_code`](libraries/requests.md#checking-the-status-code) [`json()`](libraries/requests.md#parsing-json) [`params`](libraries/requests.md#query-parameters)
+    [**`drawing`**](libraries/opencv.md#drawing-shapes-and-text) [`shapes and lines`](libraries/opencv.md#shapes-and-lines) [`text`](libraries/opencv.md#text)
 
-    [**`error handling`**](libraries/requests.md#handling-request-errors)
+    [**`color spaces`**](libraries/opencv.md#color-spaces) [`cvtColor()`](libraries/opencv.md#converting-color-spaces)
+
+    [**`CascadeClassifier`**](libraries/opencv.md#face-detection-with-cascade-classifiers) [`detecting and labeling faces`](libraries/opencv.md#detecting-and-labeling-faces)
+
+    [**`VideoCapture()`**](libraries/opencv.md#working-with-video) [`reading frames`](libraries/opencv.md#reading-frames)
+
+    [**`basic operations`**](libraries/opencv.md#basic-operations) [`resize()`](libraries/opencv.md#resize) [`cropping`](libraries/opencv.md#cropping) [`rotating`](libraries/opencv.md#rotating)
+
+    [**`thresholding, edge detection`**](libraries/opencv.md#thresholding-and-edge-detection) [`Canny()`](libraries/opencv.md#edge-detection) [`threshold`](libraries/opencv.md#threshold)
+
+    [**`blurring`**](libraries/opencv.md#blurring) [`gaussian blur`](libraries/opencv.md#gaussian-blur)
+
+    [**`contours`**](libraries/opencv.md#contours) [`finding and drawing contours`](libraries/opencv.md#finding-and-drawing-contours)
+
+</div>
+</div>
+
+<div class="pt-category pt-category--wide" markdown="block">
+#### Desktop UIs { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
 
 -   :material-application-outline:{ .lg .middle } [__Tkinter__](libraries/tkinter.md) [:material-language-python:](libraries/tkinter.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
@@ -464,7 +506,7 @@ hide:
 
     **Readable, and quick to write.** *Python* is a general-purpose language built for code that's easy to read back later — even by someone who didn't write it. No compiling: write a `.py` file, run it directly.
 
-    - **Shows up everywhere** — web backends, data analysis and machine learning, automating repetitive tasks, scientific computing, quick glue scripts. Several of these are covered on this site's [Libraries](#add-on-libraries) pages.
+    - **Shows up everywhere** — web backends, data analysis and machine learning, automating repetitive tasks, scientific computing, quick glue scripts. Several of these are covered on this site's [Libraries](#utilities) pages.
     - **The skills transfer.** Variables, conditionals, loops, functions, classes — the fundamentals every language shares — read closer to plain English here, so you spend your effort learning to *think* like a programmer instead of fighting a stricter syntax. Once solid, those fundamentals carry over to whatever language you pick up next.
     - **Often the fastest language to write *correct* code in** — even though it's not the fastest to *run* — which is why it's such a common first choice for a new project.
 
