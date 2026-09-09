@@ -42,13 +42,13 @@ A **collection** is a single object that groups multiple values (like [basic typ
 
 - A list stores multiple items, in order, inside a single variable. The items can be any type. 
 
-    ```python-ref
-    species = ["burmese", "rock", "ball", "blood"]
-    ```
-
-The **index** is the numbered position of an item. The index of the first item is 0[^zero-index], next is 1, and so on. 
+- The **index** is the numbered position of an item. The index of the first item is 0[^zero-index], next is 1, and so on. 
 
 <div class="pfg-diagram-frame" markdown="block">
+
+```python-ref
+    species = ["burmese", "rock", "ball", "blood"]
+```
 
 ```mermaid
 block-beta
@@ -69,7 +69,9 @@ class diagram panel
 
 </div>
 
-- The **negative index** tells you how far from the end it is. It starts counting down from the end instead, starting at `-1` for the last item, -2 for the second-to-last, and so on. Each item can be referenced by its positive or negative index.
+- The **negative index** tells you how far from the end it is. It starts counting down from the end instead, starting at `-1` for the last item, -2 for the second-to-last, and so on. 
+
+- Each item can be referenced by its positive or negative index.
 
 ### Access and update items
 
@@ -86,8 +88,8 @@ class diagram panel
     print(species[1])      # "rock"
     print(species[-1])     # "blood"
     
-    species[1] = "carpet"  # ["burmese", "carpet", "ball", "blood"]
-    print(species)
+    species[1] = "carpet"  # update item at index 1
+    print(species)         # ["burmese", "carpet", "ball", "blood"]
     ```
 
 - **Acccess a range of multiple items at once:** 
@@ -435,15 +437,15 @@ class diagram panel
 
 - A dictionary stores data as **key-value pairs**, inside a single variable. Values are looked up by key, not by a numbered position like a list's index — a dict does remember the order keys were added in, but that order isn't how you access anything.
 
-    ```python-ref
-    snake = {
-        "species": "ball", 
-        "length_ft": 5, 
-        "venomous": False
-        }
-    ```
-
 <div class="pfg-diagram-frame" markdown="block">
+
+```python-ref
+snake = {
+    "species": "ball", 
+    "length_ft": 5, 
+    "venomous": False
+    }
+```
 
 ```mermaid
 %%{init: {"flowchart": {"nodeSpacing": 15}}}%%
@@ -467,13 +469,13 @@ flowchart LR
 
 </div>
 
-    - Each **key** points to exactly one value. 
+- Each **key** points to exactly one value. 
 
-        - **A key's type** can be a string, int, float, or tuple
+    - **A key's type** can be a string, int, float, or tuple
 
-        - **No duplicate keys** — assigning a value to an existing key overwrites its value.
+    - **No duplicate keys** — assigning a value to an existing key overwrites its value.
 
-    - A **value** can be any type.
+- A **value** can be any type.
 
 ### Access a value
 
@@ -748,11 +750,11 @@ flowchart LR
 
 A tuple stores multiple items, in order, written in parentheses. They are **immutable** so the items can't be changed once its created. 
 
+<div class="pfg-diagram-frame" markdown="block">
+
 ```python-ref
 species = ("burmese", "rock", "ball", "blood")
 ```
-
-<div class="pfg-diagram-frame" markdown="block">
 
 ```mermaid
 block-beta
@@ -1016,11 +1018,11 @@ A set stores multiple items, in no particular order, inside a single variable �
 
 Because items have no fixed position, there's no indexing. Duplicates are irrelevant because adding a value that's already there changes nothing; a set can only ever hold each value once.
 
+<div class="pfg-diagram-frame" markdown="block">
+
 ```python-ref
 species = {"burmese", "rock", "ball", "blood"}  # order not fixed
 ```
-
-<div class="pfg-diagram-frame" markdown="block">
 
 ```mermaid
 block-beta
