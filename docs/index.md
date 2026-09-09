@@ -500,7 +500,7 @@ hide:
         style AI fill:#a33f3f1a,stroke:#a33f3f,color:#a33f3f
     ```
 
-    <p class="pfg-diagram-caption">Fig. 1a — when to use AI while learning to program</p>
+    <p class="pfg-diagram-caption">FIG: when to use AI while learning to program</p>
 
 ??? info "What is Python, and what is this guide?"
 

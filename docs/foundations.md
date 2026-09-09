@@ -13,12 +13,12 @@ description: >-
 - **[Setup](workspace.md) your workspace first** so you can run Python on your computer and edit Python files. 
 - **Work through the pages in order.** 
 - **Type the examples yourself**, and actually click **Run** on the runnable blocks and edit them — change a value, rerun, see what changes. That's where a concept actually sticks, not from reading it.
-- **Errors are a normal, constant part of writing code, not a sign you did something wrong.** Once you hit your first one, the [Errors](errors.md) page — especially its [strategies for tracking one down](errors.md#debugging-strategies) — is worth reading properly rather than skimming.
+- **Errors are a normal, constant part of writing code, not a sign you did something wrong.** Once you hit your first one, the [Errors](errors.md) page contains [strategies for resolving them](errors.md#debugging-strategies).
     - [Read it out loud](errors.md#read-it-out-loud)
     - [Print debugging](errors.md#print-debugging)
     - [Isolate the problem](errors.md#isolate-the-problem)
-- **Try building something small before you've finished the whole guide.** Once you've read through [Conditionals](conditionals.md) and [Loops](loops.md) you already have enough to write a program. 
-- The homepage [FAQ](index.md#faq) has more on using AI to help you learn.
+- **Try building something small.** Once you've read through [Conditionals](conditionals.md) and [Loops](loops.md) you already have enough to write a program. 
+- The homepage FAQ has more on [using AI to help you learn](index.md#faq).
 
 </div>
 
@@ -48,7 +48,7 @@ flowchart LR
     class black blackbox
 ```
 
-<p class="pfg-diagram-caption">Fig. 3a — a program runs silently, start to end</p>
+<p class="pfg-diagram-caption">FIG: a program runs silently, start to end</p>
 
 </div>
 
@@ -87,7 +87,7 @@ classDef plain fill:none,stroke:none
 class p1,p2,p3 plain
 ```
 
-<p class="pfg-diagram-caption">Fig. 3b — print() checkpoints along a running program</p>
+<p class="pfg-diagram-caption">FIG: print() checkpoints along a running program</p>
 
 </div>
 
@@ -133,7 +133,7 @@ class p,o,c punct
 style code fill:none,stroke:none
 ```
 
-<p class="pfg-diagram-caption">Fig. 3c — the parts of a print() statement</p>
+<p class="pfg-diagram-caption">FIG: the parts of a print() statement</p>
 
 </div>
 
@@ -177,7 +177,7 @@ flowchart TB
     class n1,n2 plain
 ```
 
-<p class="pfg-diagram-caption">Fig. 3d — values stored in the species and length variables</p>
+<p class="pfg-diagram-caption">FIG: values stored in the species and length variables</p>
 
 </div>
 
@@ -416,7 +416,7 @@ class eq,i,o,c punct
 style code fill:none,stroke:none
 ```
 
-<p class="pfg-diagram-caption">Fig. 3e — the parts of an input() statement</p>
+<p class="pfg-diagram-caption">FIG: the parts of an input() statement</p>
 
 </div>
 

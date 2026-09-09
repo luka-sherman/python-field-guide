@@ -42,13 +42,13 @@ A **loop** repeats a block of code multiple times.
         class forConfirm,whileConfirm confirm
     ```
 
-    <p class="pfg-diagram-caption">Fig. 7a — choosing between a for loop and a while loop</p>
+    <p class="pfg-diagram-caption">FIG: choosing between a for loop and a while loop</p>
 
 <div class="pfg-section" markdown="block">
 
 ## For loops
 
-A `for` loop goes through an **iterable** (something that contains multiple values) one value at a time, assigning each value to `loop_variable` as it goes. They types of iterables are: 
+A `for` loop goes through an **iterable** (something that contains multiple values) one value at a time, assigning each value to `loop_variable` as it goes. The types of iterables are: 
 
 | Iterable | Loop variable | Use it for |
 |---|---|---|
@@ -104,7 +104,7 @@ flowchart LR
     class f excluded
 ```
 
-<p class="pfg-diagram-caption">Fig. 7b — range(stop): start default is 0, step default is 1</p>
+<p class="pfg-diagram-caption">FIG: range(stop): start default is 0, step default is 1</p>
 
 </div>
 
@@ -129,7 +129,7 @@ flowchart LR
     class e excluded
 ```
 
-<p class="pfg-diagram-caption">Fig. 7c — range(2, 6): start is inclusive, stop is exclusive</p>
+<p class="pfg-diagram-caption">FIG: range(2, 6): start is inclusive, stop is exclusive</p>
 
 </div>
 
@@ -154,7 +154,7 @@ flowchart LR
     class d excluded
 ```
 
-<p class="pfg-diagram-caption">Fig. 7d — range(2, 8, 2): stepping by 2</p>
+<p class="pfg-diagram-caption">FIG: range(2, 8, 2): stepping by 2</p>
 
 </div>
 
@@ -181,7 +181,7 @@ flowchart LR
     class f excluded
 ```
 
-<p class="pfg-diagram-caption">Fig. 7e — range(5, 0, -1): counting backwards with a negative step</p>
+<p class="pfg-diagram-caption">FIG: range(5, 0, -1): counting backwards with a negative step</p>
 
 </div>
 

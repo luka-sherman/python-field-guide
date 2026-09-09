@@ -21,7 +21,7 @@ flowchart LR
     program -->|"write()"| file
 ```
 
-<p class="pfg-diagram-caption">Fig. 11a — a program reading from and writing to a file</p>
+<p class="pfg-diagram-caption">FIG: a program reading from and writing to a file</p>
 
 </div>
 
@@ -183,7 +183,7 @@ style modeW fill:none,stroke:none
 style modeA fill:none,stroke:none
 ```
 
-<p class="pfg-diagram-caption">Fig. 11b — overwrite mode vs. append mode</p>
+<p class="pfg-diagram-caption">FIG: overwrite mode vs. append mode</p>
 
 </div>
 

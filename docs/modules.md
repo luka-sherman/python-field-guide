@@ -26,7 +26,7 @@ flowchart LR
     style module3 stroke:#3f6b52,stroke-width:2px
 ```
 
-<p class="pfg-diagram-caption">Fig. 10a — a package containing modules</p>
+<p class="pfg-diagram-caption">FIG: a package containing modules</p>
 
 </div>
 
@@ -80,7 +80,7 @@ flowchart LR
     style module3 stroke:#3f6b52,stroke-width:2px
 ```
 
-<p class="pfg-diagram-caption">Fig. 10b — example of a package's contents</p>
+<p class="pfg-diagram-caption">FIG: example of a package's contents</p>
 
 </div>
 
@@ -109,7 +109,7 @@ flowchart LR
     style variable stroke:#a3529c,stroke-width:2px
 ```
 
-<p class="pfg-diagram-caption">Fig. 10c — example of a module's contents</p>
+<p class="pfg-diagram-caption">FIG: example of a module's contents</p>
 
 </div>
 
@@ -141,7 +141,7 @@ flowchart LR
     style variable stroke:#a3529c,stroke-width:2px
 ```
 
-<p class="pfg-diagram-caption">Fig. 10d — example of a module inside a package</p>
+<p class="pfg-diagram-caption">FIG: example of a module inside a package</p>
 
 </div>
 

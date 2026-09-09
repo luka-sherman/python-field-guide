@@ -87,7 +87,7 @@ else:                              # lastly comes one optional else
         linkStyle 10 stroke:#3f6b52,stroke-width:2px
     ```
 
-    <p class="pfg-diagram-caption">Fig. 6a — the if/elif/else decision path</p>
+    <p class="pfg-diagram-caption">FIG: the if/elif/else decision path</p>
 
 ### Boolean expressions
 
@@ -604,7 +604,7 @@ match species:
         linkStyle 8 stroke:#3f6b52,stroke-width:2px
     ```
 
-    <p class="pfg-diagram-caption">Fig. 6b — the match/case decision path</p>
+    <p class="pfg-diagram-caption">FIG: the match/case decision path</p>
 
 ??? tip "Matching an int"
     A `case` can compare any type of value, not just strings.

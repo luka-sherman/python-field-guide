@@ -28,7 +28,7 @@ classDiagram
     Snake <|-- Boa
 ```
 
-<p class="pfg-diagram-caption">Fig. 9a — example of a class</p>
+<p class="pfg-diagram-caption">FIG: example of a class</p>
 
 </div>
 

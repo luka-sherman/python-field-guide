@@ -65,7 +65,7 @@ class i0,i1,i2,i3,n0,n1,n2,n3,lblValue,lblIndex,lblNeg label
 class diagram panel
 ```
 
-<p class="pfg-diagram-caption">Fig. 5a — list values with their positive and negative indexes</p>
+<p class="pfg-diagram-caption">FIG: list values with their positive and negative indexes</p>
 
 </div>
 
@@ -463,7 +463,7 @@ flowchart LR
     style lblVal fill:none,stroke:none,color:#8A8370
 ```
 
-<p class="pfg-diagram-caption">Fig. 5b — a dict's key-value pairs</p>
+<p class="pfg-diagram-caption">FIG: a dict's key-value pairs</p>
 
 </div>
 
@@ -769,7 +769,7 @@ block-beta
   class diagram panel
 ```
 
-<p class="pfg-diagram-caption">Fig. 5c — tuple values with their positive and negative indexes</p>
+<p class="pfg-diagram-caption">FIG: tuple values with their positive and negative indexes</p>
 
 </div>
 
@@ -1035,7 +1035,7 @@ block-beta
   class diagram panel
 ```
 
-<p class="pfg-diagram-caption">Fig. 5d — set values with no fixed order</p>
+<p class="pfg-diagram-caption">FIG: set values with no fixed order</p>
 
 </div>
 

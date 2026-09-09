@@ -1237,12 +1237,12 @@ input:checked + .md-consent__settings {
   padding: 0 0 0 6px;
 }
 
-/* Small mono eyebrow label ("Fig. 1 — package layout"), placed per the two
+/* Small mono eyebrow label ("FIG: package layout"), placed per the two
    forms above. Inside .pfg-diagram-frame it's the last element in the box,
    so its own margin-top is what separates it from the diagram above; as a
    plain sibling below an unwrapped .mermaid, that same margin-top serves
    the equivalent purpose. .pfg-diagram__legend below reuses this class too,
-   for its "Fig. N — <subject>" line at the *top* of the legend instead —
+   for its "FIG: <subject>" line at the *top* of the legend instead —
    see the margin-flip rule right after this one. */
 .pfg-diagram-caption {
   font-family: var(--md-code-font);
@@ -1269,7 +1269,7 @@ input:checked + .md-consent__settings {
    .pfg-diagram__plate above, sharing mermaid's own border) with numbered
    <span class="pfg-diagram__pin"> pins positioned via inline style, next to
    a <div class="pfg-diagram__legend"> caption/key list — its first line
-   should carry class="pfg-diagram-caption" for the "Fig. N — <subject>"
+   should carry class="pfg-diagram-caption" for the "FIG: <subject>"
    label. */
 .pfg-diagram {
   display: flex;
