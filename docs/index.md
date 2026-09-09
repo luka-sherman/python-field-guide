@@ -435,12 +435,6 @@ hide:
 
     </div>
 
-    **References**
-
-    - [The friction that builds understanding](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf) — E. Bjork & R. Bjork, on desirable difficulties in learning
-    - [Students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before [building their own foundation](https://dl.acm.org/doi/10.1145/3624720) — the documented skill gap
-    - [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) — developers using AI wrote less secure code, but were more confident it was secure
-
 ??? ai "How to use AI to support your learning"
 
     ```mermaid
