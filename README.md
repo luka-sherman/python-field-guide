@@ -1,9 +1,11 @@
-# [Python Field Guide](https://pythonfieldguide.com)
+# [PythonFieldGuide.com breakdown](https://pythonfieldguide.com)
 
-## README Contents
+## Table of Contents
 
 - [What this is](#what-this-is)
-- [How it's built](#how-its-built)
+- [Site generator](#site-generator)
+- [Runnable code blocks](#runnable-code-blocks)
+- [Styling](#styling)
 - [Content conventions](#content-conventions)
 - [Running locally](#running-locally)
 - [Testing](#testing)
@@ -15,6 +17,8 @@
 
 Quick cheatsheet for basic Python.
 
+This is a casual and unpolished personal project, started in Aug '26.
+
 I wrote and built this from scratch — it started as a few quick-reference explanations on loops and lists for high-school intro-Python students working on their first projects, and evolved from there. I couldn't find a resource my students would consistently use that had:
 
 - simple explanations for beginners without technical jargon
@@ -24,19 +28,17 @@ I wrote and built this from scratch — it started as a few quick-reference expl
 - quick intuitive navigation, see everything in one place
 - clean, minimal UI — some sites were visually dated, and less enjoyable for beginners
 
-## How it's built
+## Site generator
 
-### Site generator
-
-#### MkDocs
+### MkDocs
 
 MkDocs is a static-site generator, which turns a tree of Markdown files into a documentation website. For bonus points it's written in Python.
 
-#### Material for MkDocs
+### Material for MkDocs
 
 Material for MkDocs is a theme and feature layer for MkDocs. When I found myself overriding too much of the default theme's formatting, I transitioned to this to override less — though I still maintain some custom CSS.
 
-#### PyMdown Extensions
+### PyMdown Extensions
 
 PyMdown Extensions is a bundle of Markdown extensions, which adds authoring features on top of plain Markdown. In use here:
 
@@ -50,7 +52,7 @@ PyMdown Extensions is a bundle of Markdown extensions, which adds authoring feat
 - `snippets` — auto-appends `includes/glossary.md` to every page, a list of `*[term]: definition` entries that the `abbr` extension (plus Material's `content.tooltips`) turns into the hover tooltips on keywords
 - `highlight` — set to `use_pygments: false`, so client-side highlight.js does the syntax highlighting instead of build-time Pygments
 
-#### Standard Markdown extensions
+### Standard Markdown extensions
 
 These ship with Python-Markdown and are enabled alongside the PyMdown set:
 
@@ -61,27 +63,27 @@ These ship with Python-Markdown and are enabled alongside the PyMdown set:
 - `md_in_html` — Markdown parsed inside raw HTML blocks, e.g. the card grids
 - `tables` — pipe tables
 
-### Runnable code blocks
+## Runnable code blocks
 
-#### Pyodide
+### Pyodide
 
 Pyodide is CPython compiled to WebAssembly, which runs Python in the browser with no download or install. It powers the runnable blocks, so readers can execute and tweak an example inline. The runtime is pulled from a CDN on demand the first time someone clicks Run.
 
-#### CodeJar
+### CodeJar
 
 CodeJar is a ~2KB code editor, which makes an element editable in place with live syntax highlighting. It wraps each Pyodide block so you can change a value and rerun without leaving the page.
 
-#### highlight.js
+### highlight.js
 
 highlight.js is a syntax highlighter, which colors code in the browser. It handles both the static examples and whatever a reader types into a CodeJar block. Pygments, MkDocs's usual build-time highlighter, is switched off in favor of it.
 
-### Styling
+## Styling
 
-#### Mermaid
+### Mermaid
 
 Mermaid is a diagram renderer, which draws flowcharts and diagrams from a plain-text description. A small config shim themes them to the site palette.
 
-#### Google Fonts
+### Google Fonts
 
 Google Fonts is a web-font host, which serves font files to the page from its CDN. It provides the two typefaces — Source Serif 4 for text, JetBrains Mono for code — wired in through Material's native font config.
 
