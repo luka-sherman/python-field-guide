@@ -118,6 +118,9 @@ extra:
     - icon: material/shield-lock
       link: /privacy/
       name: Privacy policy
+    - icon: fontawesome/brands/github
+      link: https://github.com/luka-sherman/python-field-guide
+      name: Source on GitHub
 
 extra_css:
   - stylesheets/extra.css
