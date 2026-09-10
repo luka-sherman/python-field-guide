@@ -34,6 +34,11 @@
     codeBlock.setAttribute("role", "textbox");
     codeBlock.setAttribute("aria-multiline", "true");
     codeBlock.setAttribute("aria-label", "Editable Python code");
+    // Reachable by Tab even before CodeJar's CDN module resolves (or if it
+    // fails to): without this the element advertises role="textbox" but a
+    // keyboard user can't focus it. CodeJar's own contenteditable keeps it
+    // focusable once loaded; an explicit tabindex="0" is harmless alongside.
+    codeBlock.tabIndex = 0;
     import(CODEJAR_CDN).then(({ CodeJar }) => {
       CodeJar(codeBlock, highlightWithExistingTheme, {
         tab: "    ",
@@ -74,6 +79,14 @@
     const output = document.createElement("pre");
     output.className = "pyodide-runner__output";
     output.hidden = true;
+    // Announce results to assistive tech when they land. role="status" carries
+    // an implicit aria-live="polite"; both are set for older AT that only honors
+    // one. Note: toggling `hidden` right before writing text can still cost the
+    // very first announcement on some screen reader / browser pairs — acceptable
+    // for now, revisit if it proves a problem in real use.
+    output.setAttribute("role", "status");
+    output.setAttribute("aria-live", "polite");
+    output.setAttribute("aria-atomic", "true");
 
     pre.insertAdjacentElement("beforebegin", wrapper);
     wrapper.appendChild(pre);

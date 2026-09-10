@@ -177,9 +177,13 @@ pytest is the standard Python test runner, which discovers `test_*` functions ac
   because it needs editorial judgment a text-only check can't make.
 - `tests/test_accessibility.py` is a static (no-browser) regression check for a specific
   accessibility bug pattern (an `outline: none` with no `:focus-visible` replacement).
-- `tests/test_accessibility_browser.py` renders real pages with Playwright and runs
-  axe-core against them — the heaviest check in the suite, since it needs
-  `playwright install chromium` above and launches a real browser per run.
+- The browser-based accessibility tier (`test_accessibility_browser.py`,
+  `test_accessibility_runnable.py`, `test_accessibility_keyboard.py`) renders real pages with
+  Playwright and checks: axe-core over representative pages in light/dark mode and at
+  mobile/tablet widths; the hand-wired Pyodide runnable blocks (accessible names, keyboard
+  focus order, the output live region); and keyboard navigation (skip link, a visible focus
+  ring on every tab stop, no positive tabindex, palette toggle reachable). It's the heaviest
+  part of the suite — needs `playwright install chromium` above and launches a real browser.
 
 ### Playwright
 

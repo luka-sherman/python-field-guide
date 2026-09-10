@@ -5,9 +5,16 @@ test_structure.py checks the *mechanically verifiable* rules in ../STRUCTURE.md 
 require editorial judgment (e.g. "is this admonition core enough to be always-open") are not
 encoded here; see the comments in test_structure.py for what's deliberately out of scope.
 
-test_accessibility.py and test_accessibility_browser.py check for accessibility regressions —
-the former statically (no browser), the latter by actually rendering pages with Playwright and
-running axe-core against them. Both build on the `built_site` fixture below.
+The accessibility checks are tiered:
+  - test_accessibility.py — static, no browser (a specific `outline: none` CSS bug pattern).
+  - test_accessibility_browser.py — Playwright + axe-core over representative pages, in light
+    and dark mode and at mobile / tablet widths.
+  - test_accessibility_runnable.py — the hand-wired Pyodide runnable code block feature:
+    accessible names, keyboard focus order, the output live region.
+  - test_accessibility_keyboard.py — keyboard navigation: skip link, visible focus on every
+    tab stop, no positive tabindex, palette toggle operable.
+The browser tiers share `built_site` / `site_url` and the axe helpers (`run_axe`,
+`format_violations`, `DISABLED_RULES`) defined below.
 """
 
 import functools
@@ -165,3 +172,65 @@ def site_url(built_site):
     finally:
         server.shutdown()
         thread.join()
+
+
+# --- shared axe-core plumbing for the browser-based a11y tiers ---
+#
+# test_accessibility_browser.py, test_accessibility_runnable.py, and
+# test_accessibility_keyboard.py all inject the same vendored axe build and
+# silence the same rule set, so it lives here rather than being copied.
+
+# Vendored rather than fetched from a CDN at test time, so a run doesn't depend on
+# network access to a third party. Pinned to axe-core 4.10.2 — to update, download a
+# newer axe.min.js from https://github.com/dequelabs/axe-core/releases over this file.
+VENDOR_AXE_JS = Path(__file__).parent / "vendor" / "axe.min.js"
+
+# Rules that fire on Material for MkDocs' own theme templates, not this repo's code —
+# confirmed by manual audit to be present even on an otherwise-clean page. Silenced
+# rather than chased, since fixing them means patching Material's own partials. If a
+# Material upgrade fixes these upstream, this set should shrink accordingly.
+KNOWN_UPSTREAM_RULES = {
+    "aria-dialog-name",  # Material's search dialog (.md-search) has no accessible name
+    "landmark-unique",  # Material's code-block toolbar landmark collides on multi-code pages
+}
+
+# Issues that ARE this repo's own doing but are a deliberate design choice, not a bug.
+# Kept separate from KNOWN_UPSTREAM_RULES because the fix, if ever wanted, lives here.
+KNOWN_ACCEPTED_RULES = {
+    # index.md's hidden <h1> (site branding) is followed by #### category headings with
+    # no ##/### between them — the #### level is used for its CSS sizing, not to claim
+    # h2/h3's place in the outline. Accepted tradeoff, not something to fix here.
+    "heading-order",
+}
+
+DISABLED_RULES = KNOWN_UPSTREAM_RULES | KNOWN_ACCEPTED_RULES
+
+
+def run_axe(page, extra_disabled=(), context=None):
+    """Inject the vendored axe-core and return its violations for the page's current DOM.
+
+    `extra_disabled` adds to DISABLED_RULES for one call — e.g. a test that deliberately
+    puts the page in a state where an unrelated rule would otherwise noise up the result.
+    `context` is an optional CSS selector to scope the scan to (axe's include context), for
+    a test that's only about one component rather than the whole page.
+    """
+    page.add_script_tag(path=str(VENDOR_AXE_JS))
+    disabled = sorted(set(DISABLED_RULES).union(extra_disabled))
+    result = page.evaluate(
+        """([disabledRules, ctx]) => axe.run(ctx || document, {
+            rules: Object.fromEntries(disabledRules.map((id) => [id, { enabled: false }]))
+        })""",
+        [disabled, context],
+    )
+    return result["violations"]
+
+
+def format_violations(violations):
+    """Render axe violations as a short, greppable block for an assertion message."""
+    lines = []
+    for v in violations:
+        targets = [n["target"] for n in v["nodes"][:5]]
+        lines.append(
+            f"[{v['impact']}] {v['id']}: {v['help']} ({len(v['nodes'])} node(s)) — {targets}"
+        )
+    return "\n".join(lines)

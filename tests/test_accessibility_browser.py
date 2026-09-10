@@ -5,37 +5,15 @@ analysis can't — ARIA labeling, color contrast, focus visibility, scrollable-r
 access — the same kinds of issues a manual axe-core audit found real bugs with. It's also the
 heavier tier: needs a one-time `playwright install chromium` (see README.md's Testing
 section), and every run launches a real headless browser against a real `mkdocs build`.
-"""
 
-from pathlib import Path
+Sibling browser tiers, sharing conftest's `site_url` + axe helpers:
+  - test_accessibility_runnable.py — the Pyodide runnable code block feature
+  - test_accessibility_keyboard.py — keyboard navigation
+"""
 
 import pytest
 
-# Vendored rather than fetched from a CDN at test time, so a run doesn't depend on network
-# access to a third party. Pinned to axe-core 4.10.2 — to update, download a newer
-# axe.min.js from https://github.com/dequelabs/axe-core/releases over this file.
-VENDOR_AXE_JS = Path(__file__).parent / "vendor" / "axe.min.js"
-
-# Issues that live in Material for MkDocs' own theme templates, not this repo's code —
-# confirmed by manual audit to be present even on an otherwise-clean page. Excluded here
-# rather than chased, since fixing them means patching Material's own partials, not this
-# repo's CSS/JS/content. If a Material upgrade ever fixes these upstream, this set (and the
-# rules it silences) should shrink accordingly.
-KNOWN_UPSTREAM_RULES = {
-    "aria-dialog-name",  # Material's search dialog (.md-search) has no accessible name
-    "landmark-unique",  # Material's code-block toolbar landmark collides on multi-code pages
-}
-
-# Issues that ARE this repo's own doing but are a deliberate design choice, not a bug — kept
-# separate from KNOWN_UPSTREAM_RULES because the fix (if ever wanted) lives here, not upstream.
-KNOWN_ACCEPTED_RULES = {
-    # index.md's hidden <h1> (site branding) is followed by #### category headings with no
-    # ##/### between them — the #### level is used for its CSS sizing, not to claim h2/h3's
-    # place in the outline. Confirmed as an accepted tradeoff, not something to fix here.
-    "heading-order",
-}
-
-DISABLED_RULES = KNOWN_UPSTREAM_RULES | KNOWN_ACCEPTED_RULES
+from conftest import format_violations, run_axe
 
 # One representative page per distinct kind of content on the site, not all ~28 pages, to
 # keep this fast — but enough to cover the site's actual variety: the homepage (card grid,
@@ -44,46 +22,93 @@ DISABLED_RULES = KNOWN_UPSTREAM_RULES | KNOWN_ACCEPTED_RULES
 # full of images.
 PAGES = ["/", "/types/", "/workspace/", "/collections/", "/libraries/pillow/"]
 
+# The pages whose palette does the most work — card grid, wide truth tables — re-checked
+# with the dark scheme active. (Material lists `slate` first, so dark is already the
+# default the PAGES run above scans; this forces the *other* direction explicitly too.)
+LIGHT_MODE_PAGES = ["/", "/collections/"]
 
-def _run_axe(page):
-    page.add_script_tag(path=str(VENDOR_AXE_JS))
-    result = page.evaluate(
-        """(disabledRules) => axe.run(document, {
-            rules: Object.fromEntries(disabledRules.map((id) => [id, { enabled: false }]))
-        })""",
-        list(DISABLED_RULES),
+MOBILE_VIEWPORT = {"width": 375, "height": 812}
+# Between Material's own tab-bar breakpoint (~1220px) and extra.css's override that pulls
+# it back down to 45em (~720px): a width where the custom media query keeps the tab bar
+# visible when stock Material would have collapsed it to the hamburger.
+TABLET_VIEWPORT = {"width": 800, "height": 1024}
+
+
+def _select_scheme(page, scheme):
+    """Flip Material's palette to `scheme` ('default' = light, 'slate' = dark).
+
+    Material keeps the palette radio out of the normal visibility flow (the visible
+    control is a styled sibling label), so Playwright's actionability checks never see
+    it as clickable. Dispatching the click directly gets the same "input change fires,
+    Material's own JS reacts" result without depending on which label is visible when.
+    """
+    page.evaluate(
+        "(s) => document.querySelector(`input[data-md-color-scheme=\"${s}\"]`).click()",
+        scheme,
     )
-    return result["violations"]
-
-
-def _format_violations(violations):
-    lines = []
-    for v in violations:
-        targets = [n["target"] for n in v["nodes"][:5]]
-        lines.append(
-            f"[{v['impact']}] {v['id']}: {v['help']} ({len(v['nodes'])} node(s)) — {targets}"
-        )
-    return "\n".join(lines)
+    page.wait_for_timeout(200)  # let the palette CSS variables settle before scanning
 
 
 @pytest.mark.parametrize("path", PAGES)
 def test_page_has_no_axe_violations(page, site_url, path):
     page.goto(f"{site_url}{path}")
-    violations = _run_axe(page)
-    assert not violations, f"axe-core violations on {path}:\n" + _format_violations(violations)
+    violations = run_axe(page)
+    assert not violations, f"axe-core violations on {path}:\n" + format_violations(violations)
+
+
+@pytest.mark.parametrize("path", LIGHT_MODE_PAGES)
+def test_page_has_no_axe_violations_in_light_mode(page, site_url, path):
+    page.goto(f"{site_url}{path}")
+    _select_scheme(page, "default")
+    violations = run_axe(page)
+    assert not violations, (
+        f"axe-core violations on {path} (light mode):\n" + format_violations(violations)
+    )
 
 
 def test_homepage_has_no_axe_violations_in_dark_mode(page, site_url):
     page.goto(site_url)
-    # Material's palette toggle is a radio input its own CSS keeps out of the
-    # normal visibility flow (the visible control is a styled sibling label),
-    # so Playwright's actionability checks never see it as clickable. A real
-    # user's click reaches it via that label; dispatching the click directly
-    # in the page gets the same "input change fires, Material's own JS reacts"
-    # result without depending on which label happens to be visible when.
-    page.evaluate('document.querySelector(\'input[data-md-color-scheme="slate"]\').click()')
-    page.wait_for_timeout(200)  # let the palette CSS variables settle before scanning
-    violations = _run_axe(page)
+    _select_scheme(page, "slate")
+    violations = run_axe(page)
     assert not violations, (
-        "axe-core violations on homepage (dark mode):\n" + _format_violations(violations)
+        "axe-core violations on homepage (dark mode):\n" + format_violations(violations)
+    )
+
+
+@pytest.mark.parametrize("path", ["/", "/collections/"])
+def test_page_has_no_axe_violations_on_mobile(page, site_url, path):
+    page.set_viewport_size(MOBILE_VIEWPORT)
+    page.goto(f"{site_url}{path}")
+    violations = run_axe(page)
+    assert not violations, (
+        f"axe-core violations on {path} at {MOBILE_VIEWPORT['width']}px:\n"
+        + format_violations(violations)
+    )
+
+
+def test_mobile_nav_drawer_has_no_axe_violations(page, site_url):
+    """The hamburger drawer is a different DOM subtree than the desktop tab nav."""
+    page.set_viewport_size(MOBILE_VIEWPORT)
+    page.goto(f"{site_url}/collections/")
+    page.evaluate(
+        """() => {
+            const drawer = document.getElementById('__drawer');
+            drawer.checked = true;
+            drawer.dispatchEvent(new Event('change'));
+        }"""
+    )
+    page.wait_for_timeout(150)
+    violations = run_axe(page)
+    assert not violations, (
+        "axe-core violations with the mobile nav drawer open:\n" + format_violations(violations)
+    )
+
+
+def test_tablet_width_has_no_axe_violations(page, site_url):
+    page.set_viewport_size(TABLET_VIEWPORT)
+    page.goto(f"{site_url}/types/")
+    violations = run_axe(page)
+    assert not violations, (
+        f"axe-core violations at {TABLET_VIEWPORT['width']}px (custom tab-bar breakpoint):\n"
+        + format_violations(violations)
     )
