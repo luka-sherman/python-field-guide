@@ -9,7 +9,6 @@
 ## Table of Contents
 
 - [What this is](#what-this-is)
-- [By the numbers](#by-the-numbers)
 - [Content](#content)
 - [Site generator](#site-generator)
 - [Client-side rendering](#client-side-rendering)
@@ -39,6 +38,8 @@ I wrote and built this from scratch — it started as a few quick-reference expl
 ## Content
 
 Pages are hand-written by me *(very much a work in progress)*.
+
+On the homepage there is a compacted quick reference cheatsheet that includes most python keywords that are covered on that page. As this content evolved so did the structure, it was an immense amount of technical writing and information architecture. 
 
 **Core Python**
 
