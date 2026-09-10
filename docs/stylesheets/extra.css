@@ -1,7 +1,3 @@
-/* Cormorant Garamond is a display face used only for h1/h2 — theme.font in
-   mkdocs.yml already handles the Google Fonts import for the body/code
-   fonts (Source Serif 4 / JetBrains Mono), but that mechanism only covers
-   one text + one code font, so this third face needs its own import. */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap');
 
 .md-typeset h1,
@@ -9,64 +5,41 @@
   font-family: "Cormorant Garamond", serif;
 }
 
-/* Light ("default") and dark ("slate") variants of the site's palette. The
-   plain `:root` selector is the fallback for elements that don't sit under
-   a `[data-md-color-scheme]`-tagged body yet; `[data-md-color-scheme]`
-   itself is what actually flips per the header toggle (see mkdocs.yml
-   theme.palette, and the mapping block below for why both selectors are
-   needed on <body>). */
 :root,
 [data-md-color-scheme="default"] {
   --pt-bg: #F0ECE4;
   --pt-panel: #FAF6EE;
   --pt-ink: #211910;
   --pt-text-secondary: #5D5449;
-  --pt-text-muted: #8A8370;
+  --pt-text-muted: #6A6556;
   --pt-hairline: #D8D0C2;
   --pt-border-soft: #B8AC99;
   --pt-accent: #185B37;
-  /* h2/h3 heading colors: both a shade darker/more-saturated than
-     --pt-accent (used for buttons, success icons, etc.) so headings read as
-     deliberately weightier than an inline accent, with h3 lighter than h2
-     but still clearly bold rather than de-emphasized. */
   --pt-heading-h2: #004C24;
   --pt-heading-h3: #33724C;
-  --pt-ref-keyword: #9D712D;
+  --pt-ref-keyword: #825E25;
   --pt-danger: #933331;
-
-  /* The runnable code block (.pyodide-runner) is deliberately the inverse of
-     the page's own scheme — a dark "terminal" panel on the light site — so
-     these track opposite to --pt-bg/--pt-ink rather than matching them. */
   --pt-code-bg: #23221E;
   --pt-code-border: #35342E;
   --pt-code-fg: #F2EDE0;
   --pt-code-string: #C9E4D2;
   --pt-code-keyword: #E8C9A8;
-  /* #8A8370 (the original value) measured 4.22:1 against --pt-code-bg — under
-     WCAG AA's 4.5:1 minimum for normal text, flagged by axe-core. Same hue/
-     saturation, just lighter (5.06:1), so it still reads as muted relative to
-     --pt-code-fg without failing contrast. */
   --pt-code-comment: #97917F;
 }
 
 [data-md-color-scheme="slate"] {
   --pt-bg: #121417;
   --pt-panel: #1a1d21;
-  /* Dimmed from a near-white e8e6df: pure/near-white body text on a dark
-     background reads as harsh and causes halation. Material's own dark-theme
-     guidance uses ~87% white over the surface color rather than white
-     outright — this keeps that same restraint while staying on-palette
-     (warm, not neutral gray). */
   --pt-ink: #E8E4DD;
   --pt-text-secondary: #9D978E;
-  --pt-text-muted: #7d796b;
+  --pt-text-muted: #8F8B7C;
   --pt-hairline: #28231A;
   --pt-border-soft: #3E372D;
-  --pt-accent: #57966E;
+  --pt-accent: #68A87F;
   --pt-heading-h2: #3A8357;
   --pt-heading-h3: #6FA783;
   --pt-ref-keyword: #C99B5A;
-  --pt-danger: #C25D58;
+  --pt-danger: #CB7671;
 
   /* Same dark terminal panel as the light scheme (not inverted) — the
      runnable block should read as dark in dark mode too, matching the
@@ -77,14 +50,8 @@
   --pt-code-fg: #F2EDE0;
   --pt-code-string: #C9E4D2;
   --pt-code-keyword: #E8C9A8;
-  /* #8A8370 (the original value) measured 4.22:1 against --pt-code-bg — under
-     WCAG AA's 4.5:1 minimum for normal text, flagged by axe-core. Same hue/
-     saturation, just lighter (5.06:1), so it still reads as muted relative to
-     --pt-code-fg without failing contrast. */
   --pt-code-comment: #97917F;
 
-  /* Very dark, low-saturation hues for the header's shimmer layer, below —
-     deliberately close in value to --pt-bg so the movement stays subtle. */
   --pt-shimmer-indigo: #201f3d;
   --pt-shimmer-purple: #2a1c3d;
   --pt-shimmer-green: #17281f;
@@ -119,10 +86,6 @@
   --md-code-bg-color: var(--pt-panel);
   --md-code-fg-color: var(--pt-ink);
 
-  /* Match the footer to the page background instead of Material's default
-     dark band — its default white-on-dark fg colors are swapped for our own
-     ink/text variables below so text stays readable against the now-lighter
-     (light scheme) background. */
   --md-footer-bg-color: var(--pt-bg);
   --md-footer-bg-color--dark: var(--pt-bg);
   --md-footer-fg-color: var(--pt-ink);
@@ -130,30 +93,6 @@
   --md-footer-fg-color--lighter: var(--pt-text-muted);
 }
 
-/* Material only styles the scrollbars of its own inner-scrolling regions
-   (the sidebar, code blocks, search) — not the page's own outer scrollbar,
-   which is left as the browser default. Give it the same thin/grey-until-
-   hover-then-accent-green treatment as the sidebar's .md-sidebar__scrollwrap,
-   reusing the same --md-accent-fg-color this palette already points at
-   green, at the same 0.2rem width Material's own scrollbars use.
-   scrollbar-color/-width is the standard (Firefox+) API; the
-   ::-webkit-scrollbar rules are the Chrome/Safari equivalent.
-
-   Deliberately on `body`, not `html`/`:root`: Material stamps
-   data-md-color-scheme on <body> (see CLAUDE.md's "Custom color palette on
-   Material" gotcha), so --md-accent-fg-color only resolves to the current
-   scheme's green on elements at-or-under <body> — on <html> itself it's
-   stuck on the plain `:root` rule's light-mode value even in dark mode.
-   Styling `body` instead of `html` sidesteps that entirely, and per the
-   CSSOM View spec browsers propagate the *body* element's scrollbar styling
-   to the viewport scrollbar whenever `html` has its default (visible)
-   overflow, which it does here — no separate dark-mode override needed. */
-/* On `html`, not `body`: Material sets `html{overflow-x:hidden}` (see its
-   compiled main.css), which per the CSSOM View spec means `html` itself
-   stays the page's real scrolling box — the "browsers propagate body's
-   scrollbar to the viewport" rule only kicks in when html's overflow is
-   left at its default (visible), which it isn't here. Styling `body`
-   instead produced no visible scrollbar at all. */
 html {
   scrollbar-color: var(--md-default-fg-color--lighter) transparent;
   scrollbar-width: thin;
@@ -247,10 +186,6 @@ html:focus-within::-webkit-scrollbar-thumb {
   100% { background-position: 0 0, 14px 18px, 0% 50%; }
 }
 
-/* Ring around the header logo, matching the color and width of the rings
-   that make up the header's own scale-pattern background above — same
-   purple, same ~2px band, just at higher opacity than the background's 0.2
-   so it still reads clearly at the logo's much smaller size. */
 .md-header__button.md-logo img {
   border: 1px solid rgba(103, 58, 183, 0.6);
 }
@@ -300,25 +235,12 @@ html:focus-within::-webkit-scrollbar-thumb {
   font-weight: 700;
 }
 
-/* Material gives every glossary `<abbr>` (see includes/glossary.md) a dotted
-   underline + help cursor by default, to signal "hover for a definition."
-   Inside a link — or inside the homepage's card grid, where the "stretched
-   link" pattern (see CLAUDE.md's Homepage section) makes the whole <li>
-   clickable via a sibling ::after overlay rather than an actual <a>
-   ancestor around the abbr's text — that affordance is misleading rather
-   than helpful, so drop it there. The hover tooltip (the `title` attribute
-   itself) still works; this only removes the visual underline/cursor cue. */
 .md-typeset a abbr,
 .md-typeset .grid.cards abbr {
   border-bottom: none;
   cursor: inherit;
 }
 
-/* Same --md-primary-fg-color indirection as above: Material's outline-style
-   .md-button (used for the consent banner's "Manage settings"/"Reject"
-   controls) sets color/border to --md-primary-fg-color, which we've
-   overridden to a cream tone for text on the dark header — invisible on the
-   consent banner's cream page background until :hover. */
 .md-consent .md-button:not(.md-button--primary) {
   color: var(--pt-ink);
   border-color: var(--pt-ink);
@@ -438,9 +360,6 @@ input:checked + .md-consent__settings {
   margin-top: 0.25em;
 }
 
-/* Styled to match the site's .md-button (border, radius, hover-invert)
-   rather than reusing that class directly, since this is a <button>
-   injected by JS, not the <a>.md-button markdown/attr_list produces. */
 .pyodide-runner__run-btn {
   display: inline-flex;
   align-items: center;
@@ -566,27 +485,16 @@ input:checked + .md-consent__settings {
   color: var(--pt-ref-keyword);
 }
 
-/* --pt-text-muted (used elsewhere for de-emphasized page text) only reaches
-   ~3.3:1 against --pt-panel — under WCAG AA's 4.5:1 minimum for normal text,
-   flagged by axe-core. --pt-text-secondary clears it comfortably (6.6-7:1 in
-   both themes) since .pyodide-reference's panel is a bit darker/lighter than
-   the plain page background these mutes are usually set against. */
 .pyodide-reference .hljs-comment {
   color: var(--pt-text-secondary);
 }
 
-/* Material hides .md-tabs below 76.234375em (its own mobile breakpoint) in
-   favor of the hamburger drawer. Keep the tabs bar visible further down —
-   there's still room for it above phone widths. */
 @media screen and (min-width: 45em) and (max-width: 76.234375em) {
   .md-tabs {
     display: block;
   }
 }
 
-/* .md-button borrows --md-primary-fg-color for its text/border, which our
-   palette repurposes as near-white for the dark header — invisible on the
-   page's cream background. Give buttons their own explicit colors instead. */
 .md-typeset .md-button {
   color: var(--pt-ink);
   border-color: var(--pt-border-soft);
@@ -611,11 +519,6 @@ input:checked + .md-consent__settings {
   border-color: var(--pt-ink);
 }
 
-/* Native Material card grid (div.grid.cards) used on the homepage in place
-   of a plain bullet list. Spacing here (grid gap, card padding, and the
-   paragraph/hr rules below) is kept deliberately tight — this grid also
-   carries the homepage's category sections, and the goal there is fitting
-   as many card grids on screen as possible without scrolling. */
 .md-typeset .grid.cards {
   margin-top: 0.8rem;
   margin-bottom: 0;
@@ -640,15 +543,6 @@ input:checked + .md-consent__settings {
   transition: box-shadow 0.15s, transform 0.15s;
 }
 
-/* Add-on Libraries cards are darkened straight toward black rather than
-   mixed with --pt-ink like the standard card background above — --pt-ink
-   is the near-white text color in dark mode, so mixing more of it in would
-   have made the card lighter there instead of darker. Mixing toward black
-   darkens consistently in both schemes. A subtle visual cue that this
-   section is a different kind (external, install-required content) from
-   the rest of the homepage grid. Scoped to `.pt-category--wide` since it's
-   currently the only homepage category with that class (see the layout
-   comment above). */
 .pt-category--wide .grid.cards > ul > li {
   background-color: color-mix(in srgb, var(--pt-panel) 80%, black 20%);
 }
@@ -657,10 +551,6 @@ input:checked + .md-consent__settings {
   margin: 0 0 0.4em;
 }
 
-/* Inline code spans (the keyword-link row at the bottom of each card) keep
-   Material's default chip background otherwise, which reads as a distinct
-   pill sitting on top of the card. Made transparent so they blend directly
-   into the card's own background instead. */
 .md-typeset .grid.cards > ul > li code {
   background-color: transparent;
   padding: 0;
@@ -672,40 +562,10 @@ input:checked + .md-consent__settings {
   border-radius: 0.15rem;
 }
 
-/* Keyword-link row: bold entries jump to a page's own top-level (`##`)
-   section; plain ones jump to something nested deeper (`###`/`####`).
-   Shrinking the plain ones reinforces that hierarchy visually. Targets
-   `a > code` directly (skipping `<strong>`) — a bold link's code sits one
-   level deeper, inside `a > strong > code` — so this direct-child selector
-   naturally only matches the non-bold links, no `:not(strong code)` needed.
-   0.62em, not 0.85em: Material's own `.md-typeset code` rule already sets
-   every code span to 0.85em, so anything at or above that is a no-op here —
-   this has to undercut that baseline to read as smaller at all. */
 .md-typeset .grid.cards > ul > li > p:not(:first-child) a > code {
   font-size: 0.62em;
 }
 
-/* The keyword rows are long wrapping lists of short links, not prose, so
-   Material's 1.6 body line-height leaves them looking airy and stretched out
-   over many wrapped lines. Tightened further to 1.15.
-   `nth-of-type(n+3)` = every paragraph from the third on: each card is
-   [1] title, [2] description, then one keyword-group paragraph per `##`
-   heading (PROTOTYPE — see index.md's Basics card: each paragraph is a `##`'s
-   own bold link followed by its `###`/`####` children, mixed bold+plain
-   within one paragraph, rather than the old two-row "all bold, then all
-   plain" split — see git history if that split is ever reinstated instead).
-   Positional rather than `:last-child` so every group is covered, and so the
-   description at [2] keeps normal readable spacing.
-   A single line-height here applies to EVERY wrapped line in the paragraph
-   uniformly, including ones with only small `###`/`####` links on them — CSS
-   computes a block's line-box height from a "strut" based on the block's own
-   font-size/line-height on every line it lays out, regardless of what inline
-   content (bold vs. shrunk `code`) actually sits on that particular line.
-   Tried setting line-height directly on the `code` spans instead (hoping for
-   a shorter box on lines with only small text) — confirmed via
-   getClientRects() in the browser that it has zero effect, even at extreme
-   values, so this single shared value is the only lever that actually moves
-   real rendered height. */
 .md-typeset .grid.cards > ul > li > p:nth-of-type(n+3) {
   line-height: 1.15;
   margin-bottom: 0.2em;
@@ -714,53 +574,16 @@ input:checked + .md-consent__settings {
 .md-typeset .grid.cards > ul > li > hr {
   margin: 0.4em 0;
 }
-
-/* Homepage category headings (`#### Heading { .pt-homepage-heading }`) —
-   tighter margins than a normal h4 so each section's grid follows right
-   after it, condensing the page further. Scoped to this class rather than
-   `h4` generally, since other pages (e.g. libraries/pillow.md) use plain
-   #### headings that should keep normal spacing. */
 .md-typeset h4.pt-homepage-heading {
   margin: 0.3rem 0 0.1rem;
 }
 
-/* Homepage layout: categories are boxes in an outer grid (`.pt-category-grid`),
-   each holding its own `.pt-homepage-heading` and a nested `.grid.cards` —
-   instead of one full-width section per category, two categories share a
-   row, fitting more of the page on screen at once. Fixed at 2 columns
-   (rather than `repeat(auto-fit, minmax(...))`) so a box's row-mate is
-   always predictable — both so `align-items: stretch` (the grid default,
-   simply not overridden here) makes same-row boxes match height even when
-   one has more/longer cards, and so the lone-box-in-the-last-row rule below
-   knows which child that is. Collapses to 1 column below 45em, matching the
-   card grid's own breakpoint. Libraries has too many cards to sit next to
-   another category at a readable width, so `.pt-category--wide` spans it
-   across both columns regardless of position. */
 .pt-category-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.6rem;
 }
 
-/* No lone-box-in-the-last-row rule needed currently: 6 non-wide categories
-   (Get started, Data types, Control flow, Code organization, Robust
-   programming, Files & modules) fill 3 full rows of 2 evenly ahead of the
-   always-wide Libraries. If that count ever goes odd again, re-add a
-   `.pt-category:nth-child(N) { grid-column: 1 / -1; }` rule for whichever
-   position is left alone — CSS has no way to detect that automatically. */
-
-/* Every non-wide category currently holds exactly 2 cards. Above 45em the
-   outer .pt-category-grid is already 2 columns, but the inner .grid.cards
-   grid (`auto-fit, minmax(11rem, 1fr)`) collapses to 1 column on its own
-   whenever a category's half-width column dips below ~2 card-widths —
-   which happens well before the outer grid itself collapses at 45em,
-   producing a stretch of viewport widths where each category box is tall
-   (cards stacked) instead of a matching pair sitting side by side. Forcing
-   2 explicit columns here keeps cards side by side for that entire range;
-   it doesn't change anything at wide desktop widths, where auto-fit was
-   already resolving to 2 columns on its own. Scoped away from
-   `.pt-category--wide` (Libraries) since that one holds far more than 2
-   cards and still needs auto-fit to wrap them properly. */
 @media (min-width: 45em) {
   .pt-category:not(.pt-category--wide) .grid.cards > ul {
     grid-template-columns: repeat(2, 1fr);
@@ -792,20 +615,10 @@ input:checked + .md-consent__settings {
   transform: translateY(-0.1rem);
 }
 
-/* Card icon color: every card's main icon (to the left of its name) is
-   green, on page cards and library cards alike. */
 .md-typeset .grid.cards > ul > li > p:first-child > .twemoji {
   color: var(--pt-accent);
 }
 
-/* Stretched-link pattern: the card's title link (icon + bold heading, first
-   paragraph) expands to fill the whole box, so clicking anywhere on the card
-   goes to its page. Anything meant to stay independently clickable above
-   that overlay — the inline keyword links further down — needs its own
-   stacking context. Markdown's `[__Title__](page.md)` wraps the link around
-   the bold text (`<a><strong>` — link is the outer tag), unlike the site's
-   older `**[Title](page.md)**` cards which nested the other way round, so
-   this targets the paragraph's `<a>` directly rather than `<strong> > a`. */
 .md-typeset .grid.cards > ul > li > p:first-child > a {
   outline: none;
 }
@@ -828,13 +641,6 @@ input:checked + .md-consent__settings {
   z-index: 2;
 }
 
-/* Library cards' built-in/third-party badge: a small icon in the corner,
-   linking to the same page as the card itself, with the label surfaced as
-   a hover tooltip (via content.tooltips) instead of spelling it out in
-   every card's body. It's a real link (not just an icon) so it stays
-   clickable — needs its own position/z-index, like the inline links
-   above, to sit above the stretched-link overlay covering the rest of
-   the card, rather than swallowing the click. */
 .md-typeset .grid.cards > ul > li .pt-lib-badge {
   position: absolute;
   top: 0.7rem;
@@ -852,17 +658,6 @@ input:checked + .md-consent__settings {
   color: var(--pt-text-muted);
 }
 
-/* "Jump to section" comparison tables (types/collections/conditionals/loops
-   top table). Each cell's text is wrapped in a real `<a>` to that row's
-   section — kept unstyled (inherits the surrounding text color, no
-   underline) so it doesn't read as a normal blue hyperlink, with a subtle
-   hover state as the only hint it's clickable. Deliberately not the
-   stretched-link overlay pattern used elsewhere on the site: an earlier
-   version of this table used a `::after` overlay stretched across the
-   whole `<tr>` for a bigger click target, but that's an extra layer of
-   invisible click-interception this table doesn't need — real anchors
-   covering the actual text are simpler and don't risk swallowing clicks
-   meant for something else. */
 .pt-jump-table td a {
   color: inherit;
   text-decoration: none;
@@ -872,26 +667,14 @@ input:checked + .md-consent__settings {
   text-decoration: underline;
 }
 
-/* The "Use it for" column wraps its bullet list inside the same <a> as
-   every other column's plain text, so its <ul> is a grandchild of <td>
-   (td > a > ul), not a direct child. Material's own table CSS only zeroes
-   out margin-top/margin-bottom on the td's direct first/last child, so it
-   never reaches this nested <ul> — leaving its default browser margin
-   (~1em top and bottom) intact and making the list look vertically
-   centered with extra padding, unlike every other column in this table. */
 .pt-jump-table td a > ul {
   margin: 0;
 }
 
-/* First column ("Class"/"Collection Type") shouldn't wrap mid-name (e.g.
-   "UserDict"/"UserList"/"UserString" breaking across two lines) even on a
-   narrower content column — those names read better on one line than
-   wrapped. */
 .pt-jump-table td:first-child {
   white-space: nowrap;
 }
 
-/* True/False badges for truth-table style call-outs. */
 .pt-bool-true,
 .pt-bool-false {
   display: inline-block;
@@ -912,50 +695,17 @@ input:checked + .md-consent__settings {
   background-color: color-mix(in srgb, var(--pt-danger) 12%, transparent);
 }
 
-/* Mermaid always inlines `style="max-width: <viewBox width>px"` directly on
-   the <svg>, capping it at its own natural drawn width regardless of how
-   much room the container actually has. For a tall, narrow diagram like a
-   TB swimlane (two lanes side by side, viewBox far taller than wide) that
-   locks it to a fraction of the content column. Overriding it here lets it
-   fill the column instead — needs !important since it's beating an inline
-   style attribute, not just cascade order. */
 .md-typeset .mermaid svg {
   max-width: 100% !important;
 }
 
-/* Every mermaid diagram site-wide gets this same frame by default — its
-   caption (if any) then sits *below* the border as a separate element.
-   That's the fallback for a diagram nested inside an admonition (`??? tip`,
-   `!!! example`, etc.): putting the caption inside the border there would
-   need a second markdown="block" div nested inside the admonition's own
-   indented block, which is exactly the nesting depth that broke mermaid's
-   rendering once already (see git history) — so admonition diagrams keep
-   the plain, unwrapped border. Everywhere else, a page instead wraps the
-   fence in `.pfg-diagram-frame` (see "Diagram frame" component further
-   down) to pull the caption inside the border; that wrapper suppresses
-   this rule below so the two don't double up. Targets the pre/div.mermaid
-   element superfences renders the fence into, not the inner <svg>, so the
-   border/padding sit around the whole diagram. `display: block` matches
-   .pfg-diagram-frame's own box behavior instead of the inline-ish default
-   mermaid renders with. */
 .md-typeset .mermaid {
   border: 6px double var(--pt-border-soft);
   padding: 22px;
   display: block;
 }
 
-/* Two-column comparison table (index.md's FAQ): the second column is the
-   "worse" option and the third the "better" one, tinted red/green as whole
-   columns so the contrast reads before any of the text does. Tints are
-   color-mix against the palette's own danger/accent rather than fixed
-   hexes, so they track both the cream and slate schemes. */
 .md-typeset .pt-compare table {
-  /* Material's default table (`table:not([class])`) is
-     `display: inline-block; max-width: 100%` — shrink-wrapped to its
-     content, not stretched to the column. The swimlane diagram right
-     below it in the other FAQ tab is forced to a true 100% width (see the
-     .mermaid svg rule above), so without this the two end up different
-     widths even though they sit in the same column. */
   width: 100%;
   display: table;
 }
@@ -982,9 +732,6 @@ input:checked + .md-consent__settings {
   vertical-align: top;
 }
 
-/* Bullet lists inside comparison cells sit flush with the cell's own text
-   rather than carrying a browser default margin — same problem (and fix)
-   as .pt-jump-table's nested lists above. */
 .md-typeset .pt-compare td ul {
   margin: 0.2rem 0 0;
   padding-left: 1.1rem;
@@ -994,9 +741,6 @@ input:checked + .md-consent__settings {
   margin-bottom: 0.1rem;
 }
 
-/* Inline check/x icons (workspace.md's install-check step), colored to
-   match the site's success/danger admonitions rather than left as
-   default-color glyphs. */
 .pt-icon-success,
 .pt-icon-fail {
   vertical-align: -0.15em;
@@ -1068,9 +812,6 @@ input:checked + .md-consent__settings {
   border-color: var(--pt-ink);
 }
 
-/* Spam-trap field on the feedback form: visually hidden (not display:none)
-   so simple bots that skip hidden fields still fill it in — real users
-   never see or reach it. */
 .pt-field-extra {
   position: absolute;
   width: 1px;
@@ -1094,61 +835,26 @@ input:checked + .md-consent__settings {
   white-space: nowrap;
 }
 
-/* Material zeroes the *actual* first DOM child's top margin
-   (`.md-typeset > :first-child { margin-top: 0 }`) so only its own fixed
-   top padding/spacer shows above content. That reset lands on the hidden
-   H1 above, not the first visible element after it — mirror the reset here
-   so the homepage's top spacing matches every other page's. */
 .md-content__inner > .pt-visually-hidden + * {
   margin-top: 0;
 }
 
-/* Library pages: unlike every other tab (a single standalone page), the
-   Built-in/Third-Party groups each list several sibling pages, so the
-   sidebar shows the whole group instead of just the current page like it
-   does everywhere else. Once one of those pages is active, hide its
-   inactive siblings so only the current page (and its own heading
-   breakdown, one level deeper) remains. Scoped with :has() so a group with
-   no active page in it — including when viewing the "All" overview, which
-   sits a level up from both groups — still lists every page normally. */
 .md-nav[data-md-level="2"]:has(> .md-nav__list > .md-nav__item--active)
   > .md-nav__list
   > .md-nav__item:not(.md-nav__item--active) {
   display: none;
 }
 
-/* Same idea one level up: once a page inside Built-in *or* Third-Party is
-   active, hide the other (inactive) group — "Third-Party" when Built-in is
-   active, or vice versa. The plain "All" leaf link is deliberately left
-   alone here (unlike the inactive group), so "Libraries" and "All" both
-   stay visible above the current page — only the sibling pages/group are
-   pruned. Same :has() guard keeps the "All" overview page (no active group)
-   showing everything normally. */
 .md-nav[data-md-level="1"]:has(> .md-nav__list > .md-nav__item--nested.md-nav__item--active)
   > .md-nav__list
   > .md-nav__item--nested:not(.md-nav__item--active) {
   display: none;
 }
 
-/* The active group's own li has to stay (it's what contains the current
-   page), but its toggle label ("Built-in"/"Third-Party") can go — the
-   nested list beneath it, containing the current page, isn't controlled by
-   that label's own visibility. */
 .md-nav[data-md-level="1"] > .md-nav__list > .md-nav__item--nested.md-nav__item--active > .md-nav__link {
   display: none;
 }
 
-/* Bigger, bolder h2 with more breathing room than Material's default
-   (font-weight 300, 1.5625em, 1.6em/0.64em margins) — h2 marks a whole new
-   section on these long single-page docs, so it should read as a clear
-   break rather than a slightly-larger paragraph. Sized close to the page's
-   own h1 (Material default 2em) rather than staying a visibly smaller
-   second tier — the Cormorant Garamond display face (see top of file)
-   already reads heavier than the body serif at the same size, so pushing
-   the size up too makes h2 read as equally weighty as h1, not just bold.
-   Colored (rather than a left border or background panel) so the hierarchy
-   reads from the text itself without wrapping section content in a box.
-   .pt-fake-h2 below must be kept in sync with these values. */
 .md-typeset h2 {
   font-weight: 700;
   font-size: 2.375em;
@@ -1157,14 +863,6 @@ input:checked + .md-consent__settings {
   color: var(--pt-heading-h2);
 }
 
-/* Groups each h2 and everything under it into one visual panel. The
-   .pfg-section wrapper is written by hand in each page's markdown
-   (`<div class="pfg-section" markdown="block"> ... </div>`, enabled by the
-   md_in_html extension — same pattern as .pt-jump-table) around every h2
-   section, since CSS alone can't group "a heading + all its following
-   siblings" without an actual wrapping element. The wrapper takes over the
-   h2's own top margin so sections stack with consistent spacing regardless
-   of the heading's own margin. */
 .md-typeset .pfg-section {
   background: var(--pt-panel);
   border: 1px solid var(--pt-hairline);
@@ -1177,20 +875,11 @@ input:checked + .md-consent__settings {
   margin-top: 0.7em;
 }
 
-/* h3 (Material default: font-weight 400) bolded to match h2's heavier
-   weight, and colored one step lighter than h2 (--pt-heading-h3) so the
-   hierarchy reads as consistently bold text in a shared color family,
-   rather than h2 standing out as the only styled level. */
 .md-typeset h3 {
   font-weight: 700;
   color: var(--pt-heading-h3);
 }
 
-/* Matches .md-typeset h2's own styling exactly (see above) without being a
-   real heading — used on libraries.md's "Built-in libraries" /
-   "Third-party libraries" labels, which would otherwise appear in the
-   sidebar via toc.integrate and duplicate the Built-in/Third-Party nav
-   groups already sitting beside it. */
 .pt-fake-h2 {
   font-family: "Cormorant Garamond", serif;
   font-weight: 700;
@@ -1201,49 +890,17 @@ input:checked + .md-consent__settings {
   color: var(--pt-heading-h2);
 }
 
-/* ---- Diagram frame ----
-   One shared visual frame for every diagram on the site, so a reader sees
-   the same "this is a diagram" border regardless of which kind it is:
-   the base border/padding on .md-typeset .mermaid (above) covers a plain
-   diagram, .pfg-diagram-frame (below) covers a wrapped one, and
-   .pfg-diagram__plate (the illustration convention) reuses the same
-   values here rather than keeping its own copy.
-
-   Two caption placements, picked per diagram:
-   - Plain (no wrapper) — caption is a <p class="pfg-diagram-caption"> sibling
-     right after the ```mermaid fence, rendering *below* the border. This is
-     the required form inside an admonition (`??? tip`, `!!! example`, etc.):
-     a second markdown="block" div nested inside the admonition's own
-     indented block is exactly the nesting depth that broke mermaid's
-     rendering once already (see git history) — so admonition diagrams
-     always use this plain form.
-   - Wrapped — `<div class="pfg-diagram-frame" markdown="block">` around
-     the fence and its caption together, so the caption sits *inside* the
-     border instead. Safe everywhere else (top-level content, list items),
-     just not inside an admonition. The nested .mermaid's own border is
-     suppressed here so the two frames don't double up. */
 .pfg-diagram-frame,
 .pfg-diagram__plate {
   border: 6px double var(--pt-border-soft);
   padding: 22px;
 }
 
-/* The diagram sits slightly further right than the caption below it — that
-   offset is added here as this child's own extra padding-left on top of
-   the frame's base 44px, rather than pulling the caption left with a
-   negative margin, so nothing in the frame ever needs one. */
 .pfg-diagram-frame .mermaid {
   border: none;
   padding: 0 0 0 6px;
 }
 
-/* Small mono eyebrow label ("FIG: package layout"), placed per the two
-   forms above. Inside .pfg-diagram-frame it's the last element in the box,
-   so its own margin-top is what separates it from the diagram above; as a
-   plain sibling below an unwrapped .mermaid, that same margin-top serves
-   the equivalent purpose. .pfg-diagram__legend below reuses this class too,
-   for its "FIG: <subject>" line at the *top* of the legend instead —
-   see the margin-flip rule right after this one. */
 .pfg-diagram-caption {
   font-family: var(--md-code-font);
   font-size: 0.7rem;
@@ -1251,9 +908,6 @@ input:checked + .md-consent__settings {
   text-transform: uppercase;
   color: var(--pt-text-muted);
   margin-top: 1.5em;
-  /* Material's .md-typeset p sets its own margin-bottom (1.25em); left
-     alone that adds extra space below the caption inside .pfg-diagram-frame
-     that the left/right padding doesn't have a matching equivalent for. */
   margin-bottom: 0;
 }
 
@@ -1262,15 +916,7 @@ input:checked + .md-consent__settings {
   margin-bottom: 0.5em;
 }
 
-/* ---- Diagram illustration convention ----
-   Placeholder pattern for illustration slots pending real Victorian-style
-   snake artwork — see design_handoff_mkdocs_field_guide/README.md. Markup:
-   a <div class="pfg-diagram"> containing the hatch-pattern plate (framed by
-   .pfg-diagram__plate above, sharing mermaid's own border) with numbered
-   <span class="pfg-diagram__pin"> pins positioned via inline style, next to
-   a <div class="pfg-diagram__legend"> caption/key list — its first line
-   should carry class="pfg-diagram-caption" for the "FIG: <subject>"
-   label. */
+/* ---- Diagram illustration convention ---- */
 .pfg-diagram {
   display: flex;
   gap: 2em;
