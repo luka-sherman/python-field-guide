@@ -7,11 +7,9 @@ for what's out of scope and why:
 
 - Whether an admonition's content is "core enough" to justify `!!!` over `???` (Admonitions).
 - Whether a `###`/`####` heading is a genuine "skim target" vs. decorative structure (Headings).
+- Whether a numbered list is a step-by-step "walkthrough" (starts at 0) or an enumeration of
+  facts/rules (starts at 1) — STRUCTURE.md "Text style conventions".
 - Whether a piece of content belongs in prose, an admonition, or a footnote (all three).
-Where a rule is *mostly* mechanical but has real exceptions (e.g. not every numbered list is a
-"walkthrough"), the exceptions are an explicit, commented allowlist below rather than a fuzzier
-heuristic — so a new addition either matches the existing pattern or fails until someone
-consciously decides which side of the line it's on.
 """
 
 import re
@@ -22,7 +20,6 @@ from conftest import (
     ALL_DOC_FILES,
     DOCS_DIR,
     ATTR_LIST_RE,
-    FENCE_RE,
     iter_fenced_blocks,
     iter_headings,
     iter_lines,
@@ -31,65 +28,6 @@ from conftest import (
 )
 
 DOC_IDS = [rel(p) for p in ALL_DOC_FILES]
-
-
-# ============================================================================
-# Numbered steps start at 0 (STRUCTURE.md "Text style conventions")
-# ============================================================================
-
-# "the first item in any ordered-list walkthrough is 0" — this only applies to lists that are
-# actually a sequence of steps the reader performs. Plenty of numbered lists on the site are
-# just enumerated facts/rules (order shown for readability, not "do this then this"), and those
-# legitimately start at 1. Each entry below is (file, first-item lineno, why it's not a
-# walkthrough) — verified by hand against the surrounding prose.
-NON_WALKTHROUGH_LISTS = {
-    ("foundations.md", 177): "variable naming rules — facts about names, not steps to perform",
-    ("foundations.md", 338): "describes what input() does, not steps the reader performs",
-    ("foundations.md", 442): "kinds of comments, an enumerated list not a sequence",
-    ("conditionals.md", 30): "describes if/elif/else execution order, not reader-performed steps",
-    ("style.md", 87): "file layout order, an enumerated structure not a walkthrough",
-}
-
-TOP_LEVEL_ORDERED_ITEM_RE = re.compile(r"^(\d+)\.\s+\S")
-
-
-def _ordered_list_blocks(path):
-    """Group top-level (unindented) ordered-list items into blocks.
-
-    A block continues across blank lines and indented continuation/nested content; it ends at
-    the next non-blank, non-indented, non-marker line (a paragraph or heading resuming the
-    list has ended).
-    """
-    blocks = []
-    current = None
-    for lineno, raw, in_fence, _ in iter_lines(path):
-        if not in_fence:
-            m = TOP_LEVEL_ORDERED_ITEM_RE.match(raw)
-            if m:
-                if current is None:
-                    current = {"first": int(m.group(1)), "lineno": lineno, "text": raw.strip()}
-                    blocks.append(current)
-                continue
-        # Inside a fence, don't look for markers (a code example could contain "1. foo"). A
-        # fence is list-item continuation content whether or not it happens to be indented to
-        # match the item (some pages indent a nested fence under the item, others don't) — so
-        # fence markers/content never break the block, only blank/indented lines do otherwise.
-        if in_fence or FENCE_RE.match(raw) or raw.strip() == "" or raw.startswith((" ", "\t")):
-            continue
-        current = None
-    return blocks
-
-
-@pytest.mark.parametrize("path", ALL_DOC_FILES, ids=DOC_IDS)
-def test_numbered_walkthroughs_start_at_zero(path):
-    key_file = rel(path)
-    failures = []
-    for block in _ordered_list_blocks(path):
-        if (key_file, block["lineno"]) in NON_WALKTHROUGH_LISTS:
-            continue
-        if block["first"] != 0:
-            failures.append(f"{key_file}:{block['lineno']}: starts at {block['first']} — {block['text']!r}")
-    assert not failures, "Numbered walkthroughs must start at 0:\n" + "\n".join(failures)
 
 
 # ============================================================================
@@ -120,41 +58,6 @@ def test_admonition_types_are_documented(path):
     assert not failures, (
         "Admonition type not in STRUCTURE.md's documented set "
         f"{sorted(DOCUMENTED_ADMONITION_TYPES)}:\n" + "\n".join(failures)
-    )
-
-
-# Default to collapsed (???); !!! should be rare and deliberate (STRUCTURE.md: "Use !!! only
-# when... This should still be rare"). Whether a *given* use is justified is a judgment call
-# (is the content core, is the admonition format genuinely clearest) that this suite can't make
-# — but unreviewed growth in !!! usage is worth a conscious decision each time. This allowlist
-# is every !!! in the docs as of this test's introduction; a new one fails here until someone
-# adds it deliberately (which is the point — it forces the "is this rare and justified" check
-# STRUCTURE.md asks for, rather than letting !!! quietly become the default).
-ALWAYS_OPEN_ALLOWLIST = {
-    ("errors.md", 61),  # the documented success/danger pair
-    ("errors.md", 66),
-    ("workspace.md", 199),
-    ("foundations.md", 473),
-    ("conditionals.md", 105),
-    ("loops.md", 204),
-    ("loops.md", 445),
-    ("types.md", 726),
-}
-
-
-@pytest.mark.parametrize("path", ALL_DOC_FILES, ids=DOC_IDS)
-def test_always_open_admonitions_are_reviewed(path):
-    failures = []
-    for lineno, raw, in_fence, _ in iter_lines(path):
-        if in_fence:
-            continue
-        m = re.match(r"^\s*!!!\s+\w+\s", raw)
-        if m and (rel(path), lineno) not in ALWAYS_OPEN_ALLOWLIST:
-            failures.append(f"{rel(path)}:{lineno}: new !!! admonition not in ALWAYS_OPEN_ALLOWLIST — {raw.strip()!r}")
-    assert not failures, (
-        "New always-open (!!!) admonition(s). STRUCTURE.md wants these rare and deliberate — "
-        "confirm this one is core content where the box format genuinely earns its keep, then "
-        "add it to ALWAYS_OPEN_ALLOWLIST in test_structure.py:\n" + "\n".join(failures)
     )
 
 

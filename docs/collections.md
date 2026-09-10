@@ -433,7 +433,7 @@ class diagram panel
 
 ## Dictionaries
 
-### Create a dictionary
+### Create a dictionary { data-card-link="skip" }
 
 - A dictionary stores data as **key-value pairs**, inside a single variable. Values are looked up by key, not by a numbered position like a list's index — a dict does remember the order keys were added in, but that order isn't how you access anything.
 
