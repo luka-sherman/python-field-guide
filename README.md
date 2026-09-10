@@ -1,4 +1,4 @@
-# [PythonFieldGuide.com](https://pythonfieldguide.com) breakdown
+# [PythonFieldGuide.com](https://pythonfieldguide.com)
 
 [![Live site](https://img.shields.io/badge/live-pythonfieldguide.com-2e7d32)](https://pythonfieldguide.com)
 [![Deploy](https://github.com/luka-sherman/python-field-guide/actions/workflows/deploy.yml/badge.svg)](https://github.com/luka-sherman/python-field-guide/actions/workflows/deploy.yml)

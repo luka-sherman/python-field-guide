@@ -188,7 +188,7 @@ class diagram panel
         species.pop()
     ```
 
-### List operations
+### List operations { data-card-link="skip" }
 
 #### Inspect
 
@@ -884,7 +884,7 @@ The **negative index** starts counting down from the end instead, starting at `-
             print("invalid format")
     ```
 
-### Tuple operations
+### Tuple operations { data-card-link="skip" }
 
 #### Inspect
 

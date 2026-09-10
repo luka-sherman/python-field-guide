@@ -18,27 +18,27 @@ hide:
 
 -   :material-monitor:{ .lg .middle } [__Workspace Setup__](workspace.md)
 
-    What you need to write and run Python on your own computer.
+    Write Python on your computer.
 
-    [**`installing Python`**](workspace.md#step-0-install-python)
+    [**`install`**](workspace.md#step-0-install-python)
 
-    [**`writing and running a .py file`**](workspace.md#step-2-write-and-run-a-python-file)
+    [**`write and run .py file`**](workspace.md#step-2-write-and-run-a-python-file)
 
-    [**`code editor comparison`**](workspace.md#step-1-pick-an-application-to-write-code-in)
+    [**`code editors`**](workspace.md#step-1-pick-an-application-to-write-code-in)
 
-    [**`using the terminal`**](workspace.md#using-the-terminal-optional)
+    [**`Terminal application`**](workspace.md#using-the-terminal-optional)
 
 -   :material-cube-outline:{ .lg .middle } [__Foundations__](foundations.md)
 
-    The basic building blocks every Python program starts with: storing, displaying, and reading in values.
+    Storing, displaying, and inputting values.
 
-    [**`variables`**](foundations.md#variables) [`naming`](foundations.md#naming-variables) [`printing`](foundations.md#printing-variables) [`reassigning`](foundations.md#reassigning-a-variable) [`types`](foundations.md#variables-and-types)
+    [**`variables`**](foundations.md#variables): [`naming`](foundations.md#naming-variables) [`printing`](foundations.md#printing-variables) [`reassigning`](foundations.md#reassigning-a-variable) [`types`](foundations.md#variables-and-types)
 
-    [**`print()`**](foundations.md#print-function)
+    [**`print`**](foundations.md#print-function)
 
-    [**`input()`**](foundations.md#input-function)
+    [**`input`**](foundations.md#input-function)
 
-    [**`comments`**](foundations.md#comments) [`#`](foundations.md#single-line-comments-with) [`"""`](foundations.md#multi-line-comments-with) [`FIXME`](foundations.md#single-line-comments-with) [`TODO`](foundations.md#single-line-comments-with)
+    [**`comments`**](foundations.md#comments): [`"""`](foundations.md#multi-line-comments-with) [`#`](foundations.md#single-line-comments-with) [`FIXME`](foundations.md#single-line-comments-with) [`TODO`](foundations.md#single-line-comments-with)
 
     [**`tips for getting started`**](foundations.md#tips-for-getting-started)
 
@@ -54,31 +54,31 @@ hide:
 
     Kinds of values, and what you can do with them.
 
-    [`isinstance()`](types.md) [`type()`](types.md)
+    [`isinstance`](types.md) [`type`](types.md)
 
-    [**`integers`**](types.md#integers) [`+ - * / **`](types.md#arithmetic) [`//, %, divmod()`](types.md#floor-division-modulo) [`+= -= *= /= //= %= **=`](types.md#apply-arithmetic-to-a-variable) [`abs()`](types.md#absolute-value) [`int()`](types.md#convert) [`boolean expressions`](types.md#boolean-expressions)
+    [**`integers`**](types.md#integers): [`+ - * / **`](types.md#arithmetic) [`+= -= *= /= //= %= **=`](types.md#apply-arithmetic-to-a-variable) [`// % divmod`](types.md#floor-division-modulo) [`abs`](types.md#absolute-value) [`boolean expressions`](types.md#boolean-expressions) [`int`](types.md#convert)
 
-    [**`floats`**](types.md#floats) [`+ - * / **`](types.md#arithmetic_1) [`//, %, divmod()`](types.md#floor-division-modulo_1) [`+= -= *= /= //= %= **=`](types.md#apply-arithmetic-to-a-variable_1) [`abs()`](types.md#adjust) [`float()`](types.md#convert_1) [`round()`](types.md#adjust) [`boolean expressions`](types.md#boolean-expressions_1)
+    [**`floats`**](types.md#floats): [`+ - * / **`](types.md#arithmetic_1) [`+= -= *= /= //= %= **=`](types.md#apply-arithmetic-to-a-variable_1) [`// % divmod`](types.md#floor-division-modulo_1) [`abs`](types.md#adjust) [`boolean expressions`](types.md#boolean-expressions_1) [`float`](types.md#convert_1) [`round`](types.md#adjust)
 
-    [**`strings`**](types.md#strings) [`+ * += *=`](types.md#combine) [`.capitalize()`](types.md#modify) [`combine`](types.md#combine) [`.count()`](types.md#search) [`.endswith()`](types.md#validate) [`f-string`](types.md#f-strings) [`.find()`](types.md#search) [`.format()`](types.md#f-strings) [`in`](types.md#search) [`index[]`](types.md#access-characters) [`.isalpha()`](types.md#validate) [`.isdigit()`](types.md#validate) [`.join()`](types.md#combine) [`len()`](types.md#inspect) [`.lower()`](types.md#modify) [`.replace()`](types.md#modify) [`slice[:]`](types.md#access-characters) [`.split()`](types.md#convert_2) [`.startswith()`](types.md#validate) [`step[::]`](types.md#access-characters) [`str()`](types.md#convert_2)  [`.strip()`](types.md#modify) [`.title()`](types.md#modify) [`.upper()`](types.md#modify) [`boolean expressions`](types.md#boolean-expressions_2) 
+    [**`strings`**](types.md#strings): [`+ * += *=`](types.md#combine) [`boolean expressions`](types.md#boolean-expressions_2) [`capitalize`](types.md#modify) [`combine`](types.md#combine) [`count`](types.md#search) [`endswith`](types.md#validate) [`f-string`](types.md#f-strings) [`find`](types.md#search) [`format`](types.md#f-strings) [`in`](types.md#search) [`index`](types.md#access-characters) [`isalpha`](types.md#validate) [`isdigit`](types.md#validate) [`join`](types.md#combine) [`len`](types.md#inspect) [`lower`](types.md#modify) [`replace`](types.md#modify) [`slice`](types.md#access-characters) [`split`](types.md#convert_2) [`startswith`](types.md#validate) [`step`](types.md#access-characters) [`str`](types.md#convert_2) [`strip`](types.md#modify) [`title`](types.md#modify) [`upper`](types.md#modify)
 
-    [**`booleans`**](types.md#booleans) [`== != > < >= <=`](types.md#boolean-expressions_3) [`and`](types.md#logical-operators)  [`in`](types.md#boolean-expressions_3) [`is`](types.md#boolean-expressions_3) [`not`](types.md#logical-operators)  [`or`](types.md#logical-operators)
+    [**`booleans`**](types.md#booleans): [`== != > < >= <=`](types.md#boolean-expressions_3) [`and`](types.md#logical-operators) [`in`](types.md#boolean-expressions_3) [`is`](types.md#boolean-expressions_3) [`not`](types.md#logical-operators) [`or`](types.md#logical-operators)
 
-    [**`None`**](types.md#none) [`is not`](types.md#check-for-none) [`boolean expressions`](types.md#boolean-expressions_4) 
+    [**`None`**](types.md#none): [`boolean expressions`](types.md#boolean-expressions_4) [`is`](types.md#check-for-none) [`is not`](types.md#check-for-none)
 
 -   :material-basket-outline:{ .lg .middle } [__Collections__](collections.md)
 
-    Multiple related values grouped into one container, so you can work with them together.
+    Multiple related values grouped into one container.
 
-    [`isinstance()`](collections.md) [`type()`](collections.md)
+    [`isinstance`](collections.md) [`type`](collections.md)
 
-    [**`lists`**](collections.md#lists) [`+`](collections.md#create) [`.append()`](collections.md#add-item) [`.clear()`](collections.md#remove-item) [`comprehension`](collections.md#list-comprehension) [`copy()`](collections.md#create) [`count()`](collections.md#inspect) [`create`](collections.md#create-a-list) [`del`](collections.md#remove-item) [`.extend()`](collections.md#add-item) [`in`](collections.md#boolean-expressions) [`index`](collections.md#create-a-list) [`index()`](collections.md#inspect) [`.insert()`](collections.md#add-item) [`item`](collections.md#lists) [`len()`](collections.md#inspect) [`list operations`](collections.md#list-operations) [`list()`](collections.md#create) [`loop`](collections.md#loop-through-a-list) [`max()`](collections.md#arithmetic) [`min()`](collections.md#arithmetic) [`.pop()`](collections.md#remove-item) [`remove()`](collections.md#remove-item) [`reverse()`](collections.md#sort) [`slice`](collections.md#access-and-update-items) [`.sort()`](collections.md#sort) [`sorted()`](collections.md#sort) [`step`](collections.md#access-and-update-items) [`sum()`](collections.md#arithmetic) [`boolean expressions`](collections.md#boolean-expressions)
+    [**`lists`**](collections.md#lists): [`+`](collections.md#create) [`append`](collections.md#add-item) [`boolean expressions`](collections.md#boolean-expressions) [`clear`](collections.md#remove-item) [`comprehension`](collections.md#list-comprehension) [`copy`](collections.md#create) [`count`](collections.md#inspect) [`create`](collections.md#create-a-list) [`del`](collections.md#remove-item) [`extend`](collections.md#add-item) [`in`](collections.md#boolean-expressions) [`index`](collections.md#create-a-list) [`index`](collections.md#inspect) [`insert`](collections.md#add-item) [`item`](collections.md#lists) [`len`](collections.md#inspect) [`list`](collections.md#create) [`loop`](collections.md#loop-through-a-list) [`max`](collections.md#arithmetic) [`min`](collections.md#arithmetic) [`pop`](collections.md#remove-item) [`remove`](collections.md#remove-item) [`reverse`](collections.md#sort) [`slice`](collections.md#access-and-update-items) [`sort`](collections.md#sort) [`sorted`](collections.md#sort) [`step`](collections.md#access-and-update-items) [`sum`](collections.md#arithmetic)
 
-    [**`dictionaries`**](collections.md#dictionaries) [`access a value`](collections.md#access-a-value) [`clear()`](collections.md#remove_1) [`copy()`](collections.md#create_1) [`del()`](collections.md#remove_1) [`dict()`](collections.md#create_1) [`.get()`](collections.md#dictionary-operations) [`.items()`](collections.md#loop-through-a-dictionary) [`key`](collections.md#dictionaries) [`len()`](collections.md#inspect_1) [`loop`](collections.md#loop-through-a-dictionary) [`pop()`](collections.md#remove_1) [`popitem()`](collections.md#remove_1) [`update()`](collections.md#update_1) [`value`](collections.md#dictionaries) [`.values()`](collections.md#loop-through-a-dictionary) [`boolean expressions`](collections.md#boolean-expressions_1)
+    [**`dictionaries`**](collections.md#dictionaries): [`access a value`](collections.md#access-a-value) [`boolean expressions`](collections.md#boolean-expressions_1) [`clear`](collections.md#remove_1) [`copy`](collections.md#create_1) [`del`](collections.md#remove_1) [`dict`](collections.md#create_1) [`get`](collections.md#dictionary-operations) [`items`](collections.md#loop-through-a-dictionary) [`key`](collections.md#dictionaries) [`len`](collections.md#inspect_1) [`loop`](collections.md#loop-through-a-dictionary) [`pop`](collections.md#remove_1) [`popitem`](collections.md#remove_1) [`update`](collections.md#update_1) [`value`](collections.md#dictionaries) [`values`](collections.md#loop-through-a-dictionary)
 
-    [**`tuples`**](collections.md#tuples) [`access items`](collections.md#access-items) [`count()`](collections.md#inspect_2) [`immmutable`](collections.md#tuples) [`index`](collections.md#tuples) [`index()`](collections.md#inspect_2) [`len()`](collections.md#inspect_2) [`loop`](collections.md#loop-through-a-tuple) [`max()`](collections.md#arithmetic_1) [`min()`](collections.md#arithmetic_1) [`packing`](collections.md#packing-and-unpacking) [`sum()`](collections.md#arithmetic_1) [`tuple operations`](collections.md#tuple-operations) [`tuple()`](collections.md#create_2) [`unpacking`](collections.md#packing-and-unpacking)  [`boolean expressions`](collections.md#boolean-expressions_2)
+    [**`tuples`**](collections.md#tuples): [`access items`](collections.md#access-items) [`boolean expressions`](collections.md#boolean-expressions_2) [`count`](collections.md#inspect_2) [`immmutable`](collections.md#tuples) [`index`](collections.md#tuples) [`index`](collections.md#inspect_2) [`len`](collections.md#inspect_2) [`loop`](collections.md#loop-through-a-tuple) [`max`](collections.md#arithmetic_1) [`min`](collections.md#arithmetic_1) [`packing`](collections.md#packing-and-unpacking) [`sum`](collections.md#arithmetic_1) [`tuple`](collections.md#create_2) [`unpacking`](collections.md#packing-and-unpacking)
 
-    [**`sets`**](collections.md#sets) [`| & - ^`](collections.md#combine) [`add()`](collections.md#update_1) [`clear()`](collections.md#remove_1) [`copy()`](collections.md#create_3) [`discard()`](collections.md#remove_1) [`isdisjoint()`](collections.md#compare) [`issubset()`](collections.md#compare) [`issuperset()`](collections.md#compare) [`len()`](collections.md#inspect_3) [`loop`](collections.md#loop-through-a-set) [`max()`](collections.md#arithmetic_2) [`min()`](collections.md#arithmetic_2) [`pop()`](collections.md#remove_1) [`remove()`](collections.md#remove_1) [`set()`](collections.md#create_3) [`sum()`](collections.md#arithmetic_2) [`update`](collections.md#update_1) [`boolean expressions`](collections.md#boolean-expressions_3)
+    [**`sets`**](collections.md#sets): [`add`](collections.md#update_1) [`boolean expressions`](collections.md#boolean-expressions_3) [`clear`](collections.md#remove_1) [`copy`](collections.md#create_3) [`discard`](collections.md#remove_1) [`isdisjoint`](collections.md#compare) [`issubset`](collections.md#compare) [`issuperset`](collections.md#compare) [`len`](collections.md#inspect_3) [`loop`](collections.md#loop-through-a-set) [`max`](collections.md#arithmetic_2) [`min`](collections.md#arithmetic_2) [`pop`](collections.md#remove_1) [`remove`](collections.md#remove_1) [`set`](collections.md#create_3) [`sum`](collections.md#arithmetic_2) [`update`](collections.md#update_1) [`| & - ^`](collections.md#combine)
 
 </div>
 </div>
@@ -90,25 +90,25 @@ hide:
 
 -   :material-source-branch:{ .lg .middle } [__Conditionals__](conditionals.md)
 
-    Lets a program make decisions, running different code depending on whether something is true.
+    Make decisions about when to run different sections of code.
 
-    [**`if, elif, else`**](conditionals.md#if-elif-else) [`boolean expressions`](conditionals.md#boolean-expressions) [`and, or, not`](conditionals.md#logical-operators)
+    [**`if, elif, else`**](conditionals.md#if-elif-else): [`and, or, not`](conditionals.md#logical-operators) [`boolean expressions`](conditionals.md#boolean-expressions)
 
-    [**`match, case`**](conditionals.md#match-case) [`unpacking`](conditionals.md#unpacking-a-tuple) [`_ (wildcard)`](conditionals.md#default-value-_) [`match with |`](conditionals.md#match-multiple-values-with) [`case + if`](conditionals.md#case-if)
+    [**`match, case`**](conditionals.md#match-case): [`_ wildcard`](conditionals.md#default-value-_) [`case + if`](conditionals.md#case-if) [`match with |`](conditionals.md#match-multiple-values-with) [`unpacking`](conditionals.md#unpacking-a-tuple)
 
-    [**`break, continue`**](conditionals.md#control-flow-statements) [`break`](conditionals.md#break) [`continue`](conditionals.md#continue)
+    [**`break, continue`**](conditionals.md#control-flow-statements): [`break`](conditionals.md#break) [`continue`](conditionals.md#continue) [`pass`](conditionals.md#going-further_2)
 
 -   :material-repeat:{ .lg .middle } [__Loops__](loops.md)
 
-    Repeats a block of code multiple times.
+    Repeat a block of code multiple times.
 
-    [**`for`**](loops.md#for-loops) [`loop through a collection`](loops.md#loop-through-a-collection) [`loop a set number of times`](loops.md#loop-a-certain-number-of-times) [`range()`](loops.md#iterable-range) [`enumerate()`](loops.md#loop-with-index-and-value) [`reversed()`](loops.md#loop-in-reverse) [`zip()`](loops.md#loop-with-index-and-value)
+    [**`for`**](loops.md#for-loops): [`enumerate`](loops.md#loop-with-index-and-value) [`loop a set number of times`](loops.md#loop-a- certain-number-of-times) [`loop through a collection`](loops.md#loop-through-a-collection) [`range`](loops.md#iterable-range) [`reversed`](loops.md#loop-in-reverse) [`zip`](loops.md#loop-with-index-and-value)
 
-    [**`while`**](loops.md#while-loops) [`flag`](loops.md#using-a-flag) [`sentinel`](loops.md#sentinel) [`boolean expressions`](loops.md#boolean-expressions) [`and, or, not`](loops.md#logical-operators) [`counter and flag names`](loops.md#counter-and-flag-names)
+    [**`while`**](loops.md#while-loops): [`and`](loops.md#logical-operators) [`boolean expressions`](loops.md#boolean-expressions) [`counter and flag names`](loops.md#counter-and-flag-names) [`flag`](loops.md#using-a-flag) [`not`](loops.md#logical-operators) [`or`](loops.md#logical-operators) [`sentinel`](loops.md#sentinel)
 
-    [**`break, continue`**](loops.md#control-flow-statements) [`break`](loops.md#break) [`continue`](loops.md#continue) [`else`](loops.md#else)
+    [**`break, continue`**](loops.md#control-flow-statements): [`break`](loops.md#break) [`continue`](loops.md#continue) [`else`](loops.md#else)
 
-    [**`common patterns`**](loops.md#common-patterns) [`accumulator`](loops.md#accumulator) [`counter`](loops.md#counter) [`nested loops`](loops.md#nested-loops)
+    [**`common patterns`**](loops.md#common-patterns): [`accumulator`](loops.md#accumulator) [`counter`](loops.md#counter) [`nested loops`](loops.md#nested-loops) [`pass`](loops.md#going-further_2)
 
 </div>
 </div>
@@ -120,25 +120,25 @@ hide:
 
 -   :material-function-variant:{ .lg .middle } [__Functions__](functions.md)
 
-    Packages a block of code under a name, so it can be run again with different inputs.
+    Package a block of code to run it multiple times.
 
-    [**`def`**](functions.md#defining-a-function) [`return`](functions.md#return-values) [`default parameter values`](functions.md#default-parameter-values) [`keyword arguments`](functions.md#keyword-arguments) [`docstrings`](functions.md#docstrings)
+    [**`def`**](functions.md#defining-a-function): [`default parameter values`](functions.md#default-parameter-values) [`docstrings`](functions.md#docstrings) [`keyword arguments`](functions.md#keyword-arguments) [`return`](functions.md#return-values)
 
-    [**`*args, **kwargs`**](functions.md#flexible-arguments) [`*args`](functions.md#args) [`**kwargs`](functions.md#kwargs)
+    [**`*args`**](functions.md#args), [**`**kwargs`**](functions.md#kwargs)
 
-    [**`scope`**](functions.md#scope) [`local vs global`](functions.md#local-vs-global-variables)
+    [**`scope`**](functions.md#scope): [`local vs global`](functions.md#local-vs-global-variables)
 
     [**`recursion`**](functions.md#recursion)
 
 -   :material-package-variant:{ .lg .middle } [__Classes__](oop.md)
 
-    Bundles related data and functions into a reusable blueprint, so a program can create many similar objects without duplicating code.
+    Bundle related values and functions to a reusable blueprint for similar objects.
 
-    [**`class`**](oop.md#classes-and-objects) [`__init__()`](oop.md#the-__init__-method) [`self`](oop.md#the-self-parameter) [`object methods`](oop.md#object-methods)
+    [**`class`**](oop.md#classes-and-objects): [`__init__()`](oop.md#the-__init__-method) [`object methods`](oop.md#object-methods) [`self`](oop.md#the-self-parameter)
 
-    [**`inheritance`**](oop.md#inheritance) [`super()`](oop.md#using-super) [`overriding __init__()`](oop.md#overriding-__init__) [`adding attributes and methods`](oop.md#adding-attributes-and-methods) [`overriding methods`](oop.md#overriding-methods)
+    [**`inheritance`**](oop.md#inheritance): [`adding attributes and methods`](oop.md#adding-attributes-and-methods) [`overriding __init__()`](oop.md#overriding-__init__) [`overriding methods`](oop.md#overriding-methods) [`super()`](oop.md#using-super)
 
-    [**`polymorphism`**](oop.md#polymorphism) [`same method name, unrelated classes`](oop.md#same-method-name-unrelated-classes) [`polymorphism via inheritance`](oop.md#polymorphism-via-inheritance)
+    [**`polymorphism`**](oop.md#polymorphism): [`polymorphism via inheritance`](oop.md#polymorphism-via-inheritance) [`same method name, unrelated classes`](oop.md#same-method-name-unrelated-classes)
 
 </div>
 </div>
@@ -152,15 +152,15 @@ hide:
 
     Splitting code across files, and using someone else's code.
 
-    [**`import`**](modules.md#importing-modules) [`import`](modules.md#import) [`from`](modules.md#from) [`as`](modules.md#as) [`import order`](modules.md#order-of-multiple-imports) [`packages`](modules.md#packages) [`nested paths`](modules.md#nested-paths)
+    [**`import`**](modules.md#importing-modules): [`as`](modules.md#as) [`from`](modules.md#from) [`import`](modules.md#import) [`import order`](modules.md#order-of-multiple-imports) [`nested paths`](modules.md#nested-paths) [`packages`](modules.md#packages)
 
-    [**`your own module`**](modules.md#creating-your-own-module) [`main guard`](modules.md#the-main-guard)
+    [**`your own module`**](modules.md#creating-your-own-module): [`main guard`](modules.md#the-main-guard)
 
     [**`module, package, library`**](modules.md#modules-vs-packages-vs-libraries)
 
 -   :material-file-document-outline:{ .lg .middle } [__Reading & Writing Files__](files.md)
 
-    Reads and writes text files to save data outside the program itself.
+    Read and write text files on your computer.
 
     [**`open()`**](files.md#opening-a-file)
 
@@ -180,13 +180,13 @@ hide:
 
 -   :material-palette-outline:{ .lg .middle } [__Style__](style.md)
 
-    Conventions for writing standardized and readable Python code.
+    Conventions for standardized and readable Python.
 
-    [**`PEP 8`**](style.md#pep-8-style-guide) [`naming`](style.md#naming) [`docstrings`](style.md#docstrings) [`order`](style.md#file-order) [`constants`](style.md#constants) [`quote style`](style.md#quote-style) [`indentation`](style.md#indentation) [`blank lines`](style.md#blank-lines) [`whitespace`](style.md#whitespace) [`comments`](style.md#comments)
+    [**`PEP 8`**](style.md#pep-8-style-guide): [`blank lines`](style.md#blank-lines) [`comments`](style.md#comments) [`constants`](style.md#constants) [`docstrings`](style.md#docstrings) [`indentation`](style.md#indentation) [`naming`](style.md#naming) [`order`](style.md#file-order) [`quote style`](style.md#quote-style) [`whitespace`](style.md#whitespace)
 
-    [**`Pythonic patterns`**](style.md#pythonic-patterns) [`common patterns`](style.md#common-patterns)
+    [**`Pythonic patterns`**](style.md#pythonic-patterns): [`common patterns`](style.md#common-patterns)
 
-    [**`best practices`**](style.md#additional-best-practices) [`type hints`](style.md#type-hints) [`catch exceptions`](style.md#catch-specific-exceptions) [`keep functions focused`](style.md#keep-functions-focused) [`readable print output`](style.md#readable-print-output)
+    [**`best practices`**](style.md#additional-best-practices): [`catch exceptions`](style.md#catch-specific-exceptions) [`keep functions focused`](style.md#keep-functions-focused) [`readable print output`](style.md#readable-print-output) [`type hints`](style.md#type-hints)
 
     [**`linter`**](style.md#linter-tool)
 
@@ -194,64 +194,94 @@ hide:
 
 -   :material-bug-outline:{ .lg .middle } [__Errors__](errors.md)
 
-    How to read error messages, handle them, and track down what went wrong.
+    How to understand, manage, and fix errors.
 
-    [**`try, except`**](errors.md#handling-errors) [`exception types`](errors.md#common-exception-types)
+    [**`try, except`**](errors.md#handling-errors): [`exception types`](errors.md#common-exception-types)
 
-    [**`tracebacks`**](errors.md#reading-errors) [`how to read a traceback`](errors.md#how-to-read-a-traceback)
+    [**`tracebacks`**](errors.md#reading-errors): [`how to read a traceback`](errors.md#how-to-read-a-traceback)
 
-    [**`debugger`**](errors.md#using-a-debugger) [`set breakpoints`](errors.md#step-0-set-breakpoints) [`run in debug mode`](errors.md#step-1-run-in-debug-mode) [`what you can do at a breakpoint`](errors.md#step-2-what-you-can-do-at-a-breakpoint)
+    [**`debugger`**](errors.md#using-a-debugger): [`run in debug mode`](errors.md#step-1-run-in-debug-mode) [`set breakpoints`](errors.md#step-0-set-breakpoints) [`what you can do at a breakpoint`](errors.md#step-2-what-you-can-do-at-a-breakpoint)
 
-    [**`debugging strategies`**](errors.md#debugging-strategies) [`rubber duck debugging`](errors.md#read-it-out-loud) [`print debugging`](errors.md#print-debugging) [`isolate the problem`](errors.md#isolate-the-problem) [`TODO, FIXME`](errors.md#flag-it-with-todofixme)
+    [**`debugging strategies`**](errors.md#debugging-strategies): [`isolate the problem`](errors.md#isolate-the-problem) [`print debugging`](errors.md#print-debugging) [`rubber duck debugging`](errors.md#read-it-out-loud) [`TODO, FIXME`](errors.md#flag-it-with-todofixme)
 
 </div>
 </div>
 
 # Add-On Libraries
 
-<div class="pt-category pt-category--wide" markdown="block">
+<div class="pt-category pt-category--wide pt-lib--3" markdown="block">
 #### Utilities { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
 -   :material-format-list-group:{ .lg .middle } [__collections__](libraries/collections.md) [:material-language-python:](libraries/collections.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
-    Specialized containers: counting items, grouping with defaults, named tuples, fast queues.
+    Specialized containers with advanced functionality.
 
-    [**`Counter`**](libraries/collections.md#counter) [`counts[item]`](libraries/collections.md#count) [`most_common()`](libraries/collections.md#count) [`total()`](libraries/collections.md#count) [`elements()`](libraries/collections.md#inspect) [`update()`](libraries/collections.md#update) [`subtract()`](libraries/collections.md#update) [`+ - & |`](libraries/collections.md#combine)
+    [**`Counter`**](libraries/collections.md#counter): [`+ - & |`](libraries/collections.md#combine) [`counts[item]`](libraries/collections.md#count) [`elements`](libraries/collections.md#inspect) [`most_common`](libraries/collections.md#count) [`subtract`](libraries/collections.md#update) [`total`](libraries/collections.md#count) [`update`](libraries/collections.md#update)
 
-    [**`defaultdict`**](libraries/collections.md#defaultdict) [`default_factory`](libraries/collections.md#defaultdict) [`.get()`](libraries/collections.md#reading-vs-writing)
+    [**`defaultdict`**](libraries/collections.md#defaultdict): [`default_factory`](libraries/collections.md#defaultdict) [`get`](libraries/collections.md#reading-vs-writing)
 
-    [**`namedtuple`**](libraries/collections.md#namedtuple) [`defaults=`](libraries/collections.md#create) [`_make()`](libraries/collections.md#create) [`_asdict()`](libraries/collections.md#convert) [`_replace()`](libraries/collections.md#convert) [`_fields`](libraries/collections.md#inspect_1) [`_field_defaults`](libraries/collections.md#inspect_1)
+    [**`namedtuple`**](libraries/collections.md#namedtuple): [`_asdict`](libraries/collections.md#convert) [`_field_defaults`](libraries/collections.md#inspect_1) [`_fields`](libraries/collections.md#inspect_1) [`_make`](libraries/collections.md#create) [`_replace`](libraries/collections.md#convert) [`defaults=`](libraries/collections.md#create)
 
-    [**`deque`**](libraries/collections.md#deque) [`append()`](libraries/collections.md#add) [`appendleft()`](libraries/collections.md#add) [`extend()`](libraries/collections.md#add) [`extendleft()`](libraries/collections.md#add) [`insert()`](libraries/collections.md#add) [`pop()`](libraries/collections.md#remove) [`popleft()`](libraries/collections.md#remove) [`remove()`](libraries/collections.md#remove) [`clear()`](libraries/collections.md#remove) [`count()`](libraries/collections.md#inspect_2) [`index()`](libraries/collections.md#inspect_2) [`copy()`](libraries/collections.md#inspect_2) [`rotate()`](libraries/collections.md#reorder) [`reverse()`](libraries/collections.md#reorder) [`maxlen=`](libraries/collections.md#reorder)
+    [**`deque`**](libraries/collections.md#deque): [`append`](libraries/collections.md#add) [`appendleft`](libraries/collections.md#add) [`clear`](libraries/collections.md#remove) [`copy`](libraries/collections.md#inspect_2) [`count`](libraries/collections.md#inspect_2) [`extend`](libraries/collections.md#add) [`extendleft`](libraries/collections.md#add) [`index`](libraries/collections.md#inspect_2) [`insert`](libraries/collections.md#add) [`maxlen=`](libraries/collections.md#reorder) [`pop`](libraries/collections.md#remove) [`popleft`](libraries/collections.md#remove) [`remove`](libraries/collections.md#remove) [`reverse`](libraries/collections.md#reorder) [`rotate`](libraries/collections.md#reorder)
 
-    [**`OrderedDict`**](libraries/collections.md#ordereddict) [`move_to_end()`](libraries/collections.md#reorder_1) [`popitem()`](libraries/collections.md#reorder_1) [`==`](libraries/collections.md#compare)
+    [**`OrderedDict`**](libraries/collections.md#ordereddict): [`==`](libraries/collections.md#compare) [`move_to_end`](libraries/collections.md#reorder_1) [`popitem`](libraries/collections.md#reorder_1)
 
-    [**`ChainMap`**](libraries/collections.md#chainmap) [`new_child()`](libraries/collections.md#extend) [`.maps`](libraries/collections.md#inspect_3) [`.parents`](libraries/collections.md#inspect_3)
+    [**`ChainMap`**](libraries/collections.md#chainmap): [`maps`](libraries/collections.md#inspect_3) [`new_child`](libraries/collections.md#extend) [`parents`](libraries/collections.md#inspect_3)
 
-    [**`User* wrapper`**](libraries/collections.md#user-wrapper-classes) [`UserDict`](libraries/collections.md#user-wrapper-classes) [`UserList`](libraries/collections.md#user-wrapper-classes) [`UserString`](libraries/collections.md#user-wrapper-classes)
+    [**`User* wrapper`**](libraries/collections.md#user-wrapper-classes): [`UserDict`](libraries/collections.md#user-wrapper-classes) [`UserList`](libraries/collections.md#user-wrapper-classes) [`UserString`](libraries/collections.md#user-wrapper-classes)
 
 -   :material-calendar-clock:{ .lg .middle } [__datetime__](libraries/datetime.md) [:material-language-python:](libraries/datetime.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Calculating and formatting dates and times.
 
-    [`date`](libraries/datetime.md#creating-dates-and-times) [`strftime()`](libraries/datetime.md#formatting-with-strftime) [`creating a specific date`](libraries/datetime.md#creating-a-specific-date)
+    [`creating a specific date`](libraries/datetime.md#creating-a-specific-date) [`date`](libraries/datetime.md#creating-dates-and-times) [`strftime`](libraries/datetime.md#formatting-with-strftime)
 
-    [`timedelta`](libraries/datetime.md#date-arithmetic) [`strptime()`](libraries/datetime.md#parsing-a-string-with-strptime) [`difference between two dates`](libraries/datetime.md#difference-between-two-dates)
+    [`difference between two dates`](libraries/datetime.md#difference-between-two-dates) [`strptime`](libraries/datetime.md#parsing-a-string-with-strptime) [`timedelta`](libraries/datetime.md#date-arithmetic)
 
 -   :material-dice-multiple:{ .lg .middle } [__random__](libraries/random.md) [:material-language-python:](libraries/random.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
 
     Random numbers, random picks, shuffled order.
 
-    [**`randint()`**](libraries/random.md#random-numbers)
+    [**`randint`**](libraries/random.md#random-numbers)
 
-    [**`choice()`**](libraries/random.md#random-selections) [`shuffle()`](libraries/random.md#shuffling-a-list) [`sample()`](libraries/random.md#sampling-without-replacement)
+    [**`choice`**](libraries/random.md#random-selections): [`sample`](libraries/random.md#sampling-without-replacement) [`shuffle`](libraries/random.md#shuffling-a-list)
 
 </div>
 </div>
 
-<div class="pt-category pt-category--wide" markdown="block">
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+#### Desktop UIs { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-application-outline:{ .lg .middle } [__Tkinter__](libraries/tkinter.md) [:material-language-python:](libraries/tkinter.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+
+    Creating desktop applications: text, buttons, dropdowns, forms, output, etc.
+
+    [**`Tk`**](libraries/tkinter.md#creating-a-window)
+
+    [**`Button`**](libraries/tkinter.md#widgets): [`Button`](libraries/tkinter.md#button) [`Entry`](libraries/tkinter.md#entry) [`Label`](libraries/tkinter.md#label)
+
+    [**`pack`**](libraries/tkinter.md#layout-managers): [`grid`](libraries/tkinter.md#grid) [`pack`](libraries/tkinter.md#pack)
+
+    [**`configure`**](libraries/tkinter.md#configuring-widgets): [`reading and changing options`](libraries/tkinter.md#reading-and-changing-options)
+
+    [**`command`**](libraries/tkinter.md#handling-events): [`binding events`](libraries/tkinter.md#binding-events) [`command callbacks`](libraries/tkinter.md#command-callbacks)
+
+    [**`Style`**](libraries/tkinter.md#styling-with-ttk): [`customizing a style`](libraries/tkinter.md#customizing-a-style)
+
+    [**`messagebox`**](libraries/tkinter.md#dialogs): [`file dialogs`](libraries/tkinter.md#file-dialogs) [`message boxes`](libraries/tkinter.md#message-boxes)
+
+    [**`winfo_width`**](libraries/tkinter.md#introspecting-widgets): [`winfo methods`](libraries/tkinter.md#winfo-methods)
+
+    [**`putting it together`**](libraries/tkinter.md#putting-it-together): [`a simple form`](libraries/tkinter.md#a-simple-form)
+
+</div>
+</div>
+
+<div class="pt-category pt-category--wide pt-lib--4" markdown="block">
 #### Data analysis { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
@@ -260,15 +290,15 @@ hide:
 
     Reading and writing spreadsheets.
 
-    [`csv.writer`](libraries/csv.md#writing-csv-files)
+    [`writer`](libraries/csv.md#writing-csv-files)
 
-    [`csv.reader`](libraries/csv.md#reading-csv-files) [`DictReader`](libraries/csv.md#reading-rows-as-dictionaries)
+    [`DictReader`](libraries/csv.md#reading-rows-as-dictionaries) [`reader`](libraries/csv.md#reading-csv-files)
 
 -   :material-chart-line:{ .lg .middle } [__matplotlib__](libraries/matplotlib.md) [:material-download-outline:](libraries/matplotlib.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Charts and plots: line, bar, and scatter, built directly from plain Python data.
 
-    [**`line plots`**](libraries/matplotlib.md#line-plots) [`labels and title`](libraries/matplotlib.md#labels-and-title) [`multiple lines and a legend`](libraries/matplotlib.md#multiple-lines-and-a-legend)
+    [**`line plots`**](libraries/matplotlib.md#line-plots): [`labels and title`](libraries/matplotlib.md#labels-and-title) [`multiple lines and a legend`](libraries/matplotlib.md#multiple-lines-and-a-legend)
 
     [**`bar charts`**](libraries/matplotlib.md#bar-charts)
 
@@ -282,9 +312,9 @@ hide:
 
     Fast numeric arrays, with math applied to a whole array at once instead of item by item.
 
-    [**`array operations`**](libraries/numpy.md#array-operations) [`mean()`](libraries/numpy.md#aggregating-an-array) [`boolean mask`](libraries/numpy.md#filtering-with-a-boolean-mask)
+    [**`array operations`**](libraries/numpy.md#array-operations): [`boolean mask`](libraries/numpy.md#filtering-with-a-boolean-mask) [`mean`](libraries/numpy.md#aggregating-an-array)
 
-    [`ndarray`](libraries/numpy.md#creating-arrays) [`arange()`](libraries/numpy.md#building-arrays-without-a-list)
+    [`arange`](libraries/numpy.md#building-arrays-without-a-list) [`ndarray`](libraries/numpy.md#creating-arrays)
 
 -   :material-table:{ .lg .middle } [__pandas__](libraries/pandas.md) [:material-download-outline:](libraries/pandas.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
@@ -292,12 +322,12 @@ hide:
 
     [**`DataFrame`**](libraries/pandas.md#building-a-dataframe)
 
-    [**`working with a DataFrame`**](libraries/pandas.md#working-with-a-dataframe) [`sort_values()`](libraries/pandas.md#sorting-rows) [`mean()`](libraries/pandas.md#summarizing-a-column)
+    [**`working with a DataFrame`**](libraries/pandas.md#working-with-a-dataframe): [`mean`](libraries/pandas.md#summarizing-a-column) [`sort_values`](libraries/pandas.md#sorting-rows)
 
 </div>
 </div>
 
-<div class="pt-category pt-category--wide" markdown="block">
+<div class="pt-category pt-category--wide pt-lib--2" markdown="block">
 #### APIs { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
@@ -306,60 +336,60 @@ hide:
 
     Reading and writing JSON data: nested dicts and lists, saved to a file or a string.
 
-    [`json.dump()`](libraries/json.md#writing-json-files)
+    [`dump`](libraries/json.md#writing-json-files)
 
-    [`json.load()`](libraries/json.md#reading-json-files) [`nested data`](libraries/json.md#nested-data)
+    [`load`](libraries/json.md#reading-json-files) [`nested data`](libraries/json.md#nested-data)
 
-    [`json.loads()`](libraries/json.md#working-with-strings-instead-of-files)
+    [`loads`](libraries/json.md#working-with-strings-instead-of-files)
 
 -   :material-webhook:{ .lg .middle } [__requests__](libraries/requests.md) [:material-download-outline:](libraries/requests.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
     Fetching data over the internet, like asking a website or API for information.
 
-    [**`get()`**](libraries/requests.md#making-a-request) [`status_code`](libraries/requests.md#checking-the-status-code) [`json()`](libraries/requests.md#parsing-json) [`params`](libraries/requests.md#query-parameters)
+    [**`get`**](libraries/requests.md#making-a-request): [`json`](libraries/requests.md#parsing-json) [`params`](libraries/requests.md#query-parameters) [`status_code`](libraries/requests.md#checking-the-status-code)
 
     [**`error handling`**](libraries/requests.md#handling-request-errors)
 
 </div>
 </div>
 
-<div class="pt-category pt-category--wide" markdown="block">
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
 #### Image editing { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
 -   :material-image-outline:{ .lg .middle } [__Pillow__](libraries/pillow.md) [:material-download-outline:](libraries/pillow.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
-    Opening, editing, and saving images, built around one `Image` object.
+    Opening, editing, and saving images, built around one Image object.
 
     [**`why Pillow?`**](libraries/pillow.md#why-pillow)
 
-    [**`Image`**](libraries/pillow.md#the-image) [`opening and saving images`](libraries/pillow.md#opening-and-saving-images) [`basic operations`](libraries/pillow.md#basic-operations) [`image modes`](libraries/pillow.md#image-modes) [`resize`](libraries/pillow.md#resize) [`crop`](libraries/pillow.md#crop) [`rotate and flip`](libraries/pillow.md#rotate-and-flip)
+    [**`Image`**](libraries/pillow.md#the-image): [`basic operations`](libraries/pillow.md#basic-operations) [`crop`](libraries/pillow.md#crop) [`image modes`](libraries/pillow.md#image-modes) [`opening and saving images`](libraries/pillow.md#opening-and-saving-images) [`resize`](libraries/pillow.md#resize) [`rotate and flip`](libraries/pillow.md#rotate-and-flip)
 
-    [**`ImageOps`**](libraries/pillow.md#imageops-module) [`common ImageOps functions`](libraries/pillow.md#common-imageops-functions)
+    [**`ImageOps`**](libraries/pillow.md#imageops-module): [`common ImageOps functions`](libraries/pillow.md#common-imageops-functions)
 
-    [**`ImageDraw`**](libraries/pillow.md#imagedraw-module) [`shapes and lines`](libraries/pillow.md#shapes-and-lines)
+    [**`ImageDraw`**](libraries/pillow.md#imagedraw-module): [`shapes and lines`](libraries/pillow.md#shapes-and-lines)
 
-    [**`ImageFont`**](libraries/pillow.md#imagefont-module) [`loading a font`](libraries/pillow.md#loading-a-font)
+    [**`ImageFont`**](libraries/pillow.md#imagefont-module): [`loading a font`](libraries/pillow.md#loading-a-font)
 
-    [**`ImageColor`**](libraries/pillow.md#imagecolor-module) [`converting color names`](libraries/pillow.md#converting-color-names)
+    [**`ImageColor`**](libraries/pillow.md#imagecolor-module): [`converting color names`](libraries/pillow.md#converting-color-names)
 
-    [**`ImageFilter`**](libraries/pillow.md#imagefilter-module) [`applying a filter`](libraries/pillow.md#applying-a-filter)
+    [**`ImageFilter`**](libraries/pillow.md#imagefilter-module): [`applying a filter`](libraries/pillow.md#applying-a-filter)
 
-    [**`ImageEnhance`**](libraries/pillow.md#imageenhance-module) [`enhancing an image`](libraries/pillow.md#enhancing-an-image)
+    [**`ImageEnhance`**](libraries/pillow.md#imageenhance-module): [`enhancing an image`](libraries/pillow.md#enhancing-an-image)
 
-    [**`ImageChops`**](libraries/pillow.md#imagechops-module) [`comparing and combining images`](libraries/pillow.md#comparing-and-combining-images)
+    [**`ImageChops`**](libraries/pillow.md#imagechops-module): [`comparing and combining images`](libraries/pillow.md#comparing-and-combining-images)
 
-    [**`convert()`**](libraries/pillow.md#format-conversion) [`converting between formats`](libraries/pillow.md#converting-between-formats)
+    [**`convert`**](libraries/pillow.md#format-conversion): [`converting between formats`](libraries/pillow.md#converting-between-formats)
 
-    [**`ImageSequence`**](libraries/pillow.md#imagesequence-module) [`looping over GIF frames`](libraries/pillow.md#looping-over-gif-frames)
+    [**`ImageSequence`**](libraries/pillow.md#imagesequence-module): [`looping over GIF frames`](libraries/pillow.md#looping-over-gif-frames)
 
-    [**`putting it together`**](libraries/pillow.md#putting-it-together) [`an interactive filter tool`](libraries/pillow.md#an-interactive-filter-tool)
+    [**`putting it together`**](libraries/pillow.md#putting-it-together): [`an interactive filter tool`](libraries/pillow.md#an-interactive-filter-tool)
 
 </div>
 </div>
 
-<div class="pt-category pt-category--wide" markdown="block">
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
 #### Computer vision { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
@@ -368,53 +398,23 @@ hide:
 
     Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection.
 
-    [**`reading, displaying, saving images`**](libraries/opencv.md#reading-displaying-and-saving-images) [`imread()`](libraries/opencv.md#reading-a-file) [`displaying a window`](libraries/opencv.md#displaying-a-window) [`saving a file`](libraries/opencv.md#saving-a-file)
+    [**`reading, displaying, saving images`**](libraries/opencv.md#reading-displaying-and-saving-images): [`displaying a window`](libraries/opencv.md#displaying-a-window) [`imread`](libraries/opencv.md#reading-a-file) [`saving a file`](libraries/opencv.md#saving-a-file)
 
-    [**`drawing`**](libraries/opencv.md#drawing-shapes-and-text) [`shapes and lines`](libraries/opencv.md#shapes-and-lines) [`text`](libraries/opencv.md#text)
+    [**`drawing`**](libraries/opencv.md#drawing-shapes-and-text): [`shapes and lines`](libraries/opencv.md#shapes-and-lines) [`text`](libraries/opencv.md#text)
 
-    [**`color spaces`**](libraries/opencv.md#color-spaces) [`cvtColor()`](libraries/opencv.md#converting-color-spaces)
+    [**`color spaces`**](libraries/opencv.md#color-spaces): [`cvtColor`](libraries/opencv.md#converting-color-spaces)
 
-    [**`CascadeClassifier`**](libraries/opencv.md#face-detection-with-cascade-classifiers) [`detecting and labeling faces`](libraries/opencv.md#detecting-and-labeling-faces)
+    [**`CascadeClassifier`**](libraries/opencv.md#face-detection-with-cascade-classifiers): [`detecting and labeling faces`](libraries/opencv.md#detecting-and-labeling-faces)
 
-    [**`VideoCapture()`**](libraries/opencv.md#working-with-video) [`reading frames`](libraries/opencv.md#reading-frames)
+    [**`VideoCapture`**](libraries/opencv.md#working-with-video): [`reading frames`](libraries/opencv.md#reading-frames)
 
-    [**`basic operations`**](libraries/opencv.md#basic-operations) [`resize()`](libraries/opencv.md#resize) [`cropping`](libraries/opencv.md#cropping) [`rotating`](libraries/opencv.md#rotating)
+    [**`basic operations`**](libraries/opencv.md#basic-operations): [`cropping`](libraries/opencv.md#cropping) [`resize`](libraries/opencv.md#resize) [`rotating`](libraries/opencv.md#rotating)
 
-    [**`thresholding, edge detection`**](libraries/opencv.md#thresholding-and-edge-detection) [`Canny()`](libraries/opencv.md#edge-detection) [`threshold`](libraries/opencv.md#threshold)
+    [**`thresholding, edge detection`**](libraries/opencv.md#thresholding-and-edge-detection): [`Canny`](libraries/opencv.md#edge-detection) [`threshold`](libraries/opencv.md#threshold)
 
-    [**`blurring`**](libraries/opencv.md#blurring) [`gaussian blur`](libraries/opencv.md#gaussian-blur)
+    [**`blurring`**](libraries/opencv.md#blurring): [`gaussian blur`](libraries/opencv.md#gaussian-blur)
 
-    [**`contours`**](libraries/opencv.md#contours) [`finding and drawing contours`](libraries/opencv.md#finding-and-drawing-contours)
-
-</div>
-</div>
-
-<div class="pt-category pt-category--wide" markdown="block">
-#### Desktop UIs { .pt-homepage-heading }
-
-<div class="grid cards" markdown="block">
-
--   :material-application-outline:{ .lg .middle } [__Tkinter__](libraries/tkinter.md) [:material-language-python:](libraries/tkinter.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
-
-    Creating desktop applications: text, buttons, dropdowns, forms, output, etc.
-
-    [**`Tk()`**](libraries/tkinter.md#creating-a-window)
-
-    [**`Button`**](libraries/tkinter.md#widgets) [`Label`](libraries/tkinter.md#label) [`Button`](libraries/tkinter.md#button) [`Entry`](libraries/tkinter.md#entry)
-
-    [**`pack()`**](libraries/tkinter.md#layout-managers) [`pack`](libraries/tkinter.md#pack) [`grid`](libraries/tkinter.md#grid)
-
-    [**`configure()`**](libraries/tkinter.md#configuring-widgets) [`reading and changing options`](libraries/tkinter.md#reading-and-changing-options)
-
-    [**`command`**](libraries/tkinter.md#handling-events) [`command callbacks`](libraries/tkinter.md#command-callbacks) [`binding events`](libraries/tkinter.md#binding-events)
-
-    [**`ttk.Style`**](libraries/tkinter.md#styling-with-ttk) [`customizing a style`](libraries/tkinter.md#customizing-a-style)
-
-    [**`messagebox`**](libraries/tkinter.md#dialogs) [`message boxes`](libraries/tkinter.md#message-boxes) [`file dialogs`](libraries/tkinter.md#file-dialogs)
-
-    [**`winfo_width()`**](libraries/tkinter.md#introspecting-widgets) [`winfo methods`](libraries/tkinter.md#winfo-methods)
-
-    [**`putting it together`**](libraries/tkinter.md#putting-it-together) [`a simple form`](libraries/tkinter.md#a-simple-form)
+    [**`contours`**](libraries/opencv.md#contours): [`finding and drawing contours`](libraries/opencv.md#finding-and-drawing-contours)
 
 </div>
 </div>
