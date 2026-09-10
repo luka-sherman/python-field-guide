@@ -61,17 +61,15 @@ On the homepage there is a compacted quick reference cheatsheet that includes mo
 
 ## Site generator
 
-### MkDocs
+### [MkDocs](https://www.mkdocs.org/)
 
-MkDocs is a static-site generator, which turns a tree of Markdown files into a documentation website. For bonus points it's written in Python.
+A static-site generator, which turns a tree of Markdown files into a documentation website. For bonus points it's written in Python.
 
-### Material for MkDocs
+### [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
 
-Material for MkDocs is a theme and feature layer for MkDocs. When I found myself overriding too much of the default theme's formatting, I transitioned to this to override less — though I still maintain some custom CSS.
+A theme and feature layer for MkDocs. When I found myself overriding too much of the default theme's formatting, I transitioned to this to rewrite less — though I still maintain some custom CSS.
 
-### PyMdown Extensions
-
-PyMdown Extensions is a bundle of Markdown extensions, which adds authoring features on top of plain Markdown. In use here:
+### [PyMdown Extensions](https://facelessuser.github.io/pymdown-extensions/):
 
 - `tabbed` — tabbed content blocks
 - `details` — collapsible admonitions
@@ -83,46 +81,44 @@ PyMdown Extensions is a bundle of Markdown extensions, which adds authoring feat
 - `snippets` — auto-appends `includes/glossary.md` to every page, a list of `*[term]: definition` entries that the `abbr` extension (plus Material's `content.tooltips`) turns into the hover tooltips on keywords
 - `highlight` — set to `use_pygments: false`, so client-side highlight.js does the syntax highlighting instead of build-time Pygments
 
-### Standard Markdown extensions
+### [Python-Markdown extensions](https://python-markdown.github.io/):
 
-These ship with Python-Markdown and are enabled alongside the PyMdown set:
-
-- `footnotes` — the `[^1]` reference notes
+- `footnotes` 
 - `abbr` — the glossary tooltips (fed by `snippets` above)
-- `admonition` — the note/warning callout boxes
+- `admonition` — the note/tip/warning callout boxes that can be collapsible
 - `attr_list` — `{ .class #id }` attributes on elements, e.g. the homepage buttons
-- `md_in_html` — Markdown parsed inside raw HTML blocks, e.g. the card grids
-- `tables` — pipe tables
+- `md_in_html` — Markdown parsed inside raw HTML blocks, e.g. the card grids on the homepage
+- `tables` — pipe tables, in use at the top of some pages to compare components
 
 ## Client-side rendering
 
 Things MkDocs doesn't produce at build time — JavaScript turns them into their final form in the reader's browser.
 
-### Pyodide
+### [Pyodide](https://pyodide.org/)
 
-Pyodide is CPython compiled to WebAssembly, which runs Python in the browser with no download or install. It powers the runnable blocks, so readers can execute and tweak an example inline. The runtime is pulled from a CDN on demand the first time someone clicks Run.
+CPython compiled to WebAssembly, which runs Python in the browser with no download or install. It powers the runnable blocks, so readers can execute and tweak an example inline. The runtime is pulled from a CDN on demand the first time someone clicks Run.
 
-### CodeJar
+### [CodeJar](https://medv.io/codejar/)
 
-CodeJar is a ~2KB code editor, which makes an element editable in place with live syntax highlighting. It wraps each Pyodide block so you can change a value and rerun without leaving the page.
+A ~2KB code editor, which makes an element editable in place with live syntax highlighting. It wraps each Pyodide block so you can change a value and rerun without leaving the page.
 
-### highlight.js
+### [highlight.js](https://highlightjs.org/)
 
-highlight.js is a syntax highlighter, which colors code in the browser. It handles both the static examples and whatever a reader types into a CodeJar block. Pygments, MkDocs's usual build-time highlighter, is switched off in favor of it.
+A syntax highlighter, which colors code in the browser. It handles both the static examples and whatever a reader types into a CodeJar block. Pygments, MkDocs's usual build-time highlighter, is switched off in favor of it.
 
-### Mermaid
+### [Mermaid](https://mermaid.js.org/)
 
-Mermaid is a diagram renderer, which draws flowcharts and diagrams from a plain-text description. Fenced `mermaid` blocks in the Markdown are rendered to SVG on page load; a small config shim themes them to the site palette.
+A diagram renderer, which draws flowcharts and diagrams from a plain-text description. Fenced `mermaid` blocks in the Markdown are rendered to SVG on page load.
 
 ## Theme
 
-### Custom palette
+### Custom CSS
 
-The cream/ink/green color scheme is a set of CSS-variable overrides in `docs/stylesheets/extra.css` on top of Material's default theme, rather than one of Material's built-in palettes. Most of the site's hand-written CSS lives in that one file.
+Styling, primarily centered on making the homepage a compact all-in-one dashboard view. 
 
-### Google Fonts
+### [Google Fonts](https://fonts.google.com/)
 
-Google Fonts is a web-font host, which serves font files to the page from its CDN. It provides the two typefaces — Source Serif 4 for text, JetBrains Mono for code — wired in through Material's native font config.
+Serves font files to the page. It provides the two typefaces — Source Serif 4 for text, JetBrains Mono for code — wired in through Material's native font config.
 
 ## Content conventions
 
@@ -160,17 +156,15 @@ mkdocs serve   # live-reloading dev server at http://127.0.0.1:8000
 
 ## Testing
 
-Install the browser binary once, then run the suite:
+The site's main features are integrations of client-side libraries, plus a custom CSS layered over
+Material. This test suite covers
+the invariants nothing else checks: the runnable code blocks still execute in a browser, the
+palette clears WCAG AA contrast in light and dark mode, the custom CSS doesn't trap keyboard
+focus or swallow clicks, and every content page keeps the structure the homepage cards link to.
 
-```bash
-source .venv/bin/activate
-playwright install chromium   # one-time, downloads a browser binary for the accessibility tests
-pytest
-```
+### [pytest](https://docs.pytest.org/)
 
-### pytest
-
-pytest is the standard Python test runner, which discovers `test_*` functions across the repo and reports what passed. It's the single entry point for the whole suite:
+The standard Python test runner, which discovers `test_*` functions across the repo and reports what passed. It's the single entry point for the whole suite:
 
 - `tests/test_structure.py` checks `docs/*.md` against the mechanically-verifiable rules in
   STRUCTURE.md. See its docstring/comments for what's covered and what's deliberately left out
@@ -185,23 +179,38 @@ pytest is the standard Python test runner, which discovers `test_*` functions ac
   ring on every tab stop, no positive tabindex, palette toggle reachable). It's the heaviest
   part of the suite — needs `playwright install chromium` above and launches a real browser.
 
-### Playwright
+### [Playwright](https://playwright.dev/)
 
-Playwright is a browser-automation library, which drives a real browser from code to load pages and read back the rendered result. Here it launches a headless Chromium so the accessibility pass sees each page exactly as a browser builds it.
+A browser-automation library, which drives a real browser from code to load pages and read back the rendered result. Here it launches a headless Chromium so the accessibility pass sees each page exactly as a browser builds it.
 
-### axe-core
+### [axe-core](https://github.com/dequelabs/axe-core)
 
-[axe-core](https://github.com/dequelabs/axe-core) is an accessibility rule engine, which scans a rendered page's DOM for WCAG violations. It runs inside the Playwright browser against every fully rendered page.
+An accessibility rule engine, which scans a rendered page's DOM for WCAG violations. It runs inside the Playwright browser against every fully rendered page.
+
+### Continuous integration
+
+1. Work is done on the `development` branch.
+2. A `development` -> `main` pull request is opened.
+3. [`test.yml`](.github/workflows/test.yml) runs the full `pytest` suite in GitHub Actions against the pull request.
+4. Merging into `main` publishes the site: [`deploy.yml`](.github/workflows/deploy.yml) builds it and pushes the output to GitHub Pages.
+
+### Running the tests locally
+
+```bash
+source .venv/bin/activate
+playwright install chromium   # one-time, downloads a browser binary for the accessibility tests
+pytest
+```
 
 ## Deploying
 
-### GitHub Actions
+### [GitHub Actions](https://github.com/features/actions)
 
-GitHub Actions is GitHub's built-in CI/CD runner, which executes a workflow of commands on their servers in response to repo events like a push. Here, [.github/workflows/deploy.yml](.github/workflows/deploy.yml) runs on every push to `main`. It installs `requirements.txt` and runs `mkdocs gh-deploy --force`, which builds the site and pushes the static output to the `gh-pages` branch. No manual deploy step is needed — just push to `main`. A push is usually live within a few minutes.
+GitHub's built-in CI/CD runner, which executes a workflow of commands on their servers in response to repo events like a push. Here, [.github/workflows/deploy.yml](.github/workflows/deploy.yml) runs on every push to `main`. It installs `requirements.txt` and runs `mkdocs gh-deploy --force`, which builds the site and pushes the static output to the `gh-pages` branch. No manual deploy step is needed — just push to `main`. A push is usually live within a few minutes.
 
-### GitHub Pages
+### [GitHub Pages](https://pages.github.com/)
 
-GitHub Pages is GitHub's free static-site host, which serves the files on a chosen branch of a repo as a website. Here it serves the built site from the `gh-pages` branch at my custom domain.
+GitHub's free static-site host, which serves the files on a chosen branch of a repo as a website. Here it serves the built site from the `gh-pages` branch at my custom domain.
 
 ### Purchased .com domain
 
@@ -209,7 +218,7 @@ The domain is set up via the [docs/CNAME](docs/CNAME) file, which MkDocs copies 
 
 ## Analytics
 
-Google Analytics (GA4) is wired in through Material's built-in support. I immediately noticed the library pages drawing more traffic than the rest of the site, so I built those out further.
+[Google Analytics](https://marketingplatform.google.com/about/analytics/) (GA4) is wired in through Material's built-in support. I immediately noticed the library pages drawing more traffic than the rest of the site, so I built those out further.
 
 ## License
 
