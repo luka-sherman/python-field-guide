@@ -1,11 +1,19 @@
-# [PythonFieldGuide.com breakdown](https://pythonfieldguide.com)
+# [PythonFieldGuide.com](https://pythonfieldguide.com) breakdown
+
+[![Live site](https://img.shields.io/badge/live-pythonfieldguide.com-2e7d32)](https://pythonfieldguide.com)
+[![Deploy](https://github.com/luka-sherman/python-field-guide/actions/workflows/deploy.yml/badge.svg)](https://github.com/luka-sherman/python-field-guide/actions/workflows/deploy.yml)
+[![Built with Material for MkDocs](https://img.shields.io/badge/built%20with-Material%20for%20MkDocs-526cfe?logo=materialformkdocs&logoColor=white)](https://squidfunk.github.io/mkdocs-material/)
+[![Runnable code via Pyodide](https://img.shields.io/badge/runnable%20code-Pyodide-3776ab?logo=python&logoColor=white)](https://pyodide.org)
+[![Accessibility tested with axe-core](https://img.shields.io/badge/a11y-axe--core%20tested-663399)](https://github.com/dequelabs/axe-core)
 
 ## Table of Contents
 
 - [What this is](#what-this-is)
+- [By the numbers](#by-the-numbers)
+- [Content](#content)
 - [Site generator](#site-generator)
-- [Runnable code blocks](#runnable-code-blocks)
-- [Styling](#styling)
+- [Client-side rendering](#client-side-rendering)
+- [Theme](#theme)
 - [Content conventions](#content-conventions)
 - [Running locally](#running-locally)
 - [Testing](#testing)
@@ -17,7 +25,7 @@
 
 Quick cheatsheet for basic Python.
 
-This is a casual and unpolished personal project, started in Aug '26.
+**This is a casual and unpolished personal project, started in Aug '26.**
 
 I wrote and built this from scratch — it started as a few quick-reference explanations on loops and lists for high-school intro-Python students working on their first projects, and evolved from there. I couldn't find a resource my students would consistently use that had:
 
@@ -27,6 +35,28 @@ I wrote and built this from scratch — it started as a few quick-reference expl
 - at-a-glance reminders for students who already knew a concept but needed a refresher on the specifics or syntax
 - quick intuitive navigation, see everything in one place
 - clean, minimal UI — some sites were visually dated, and less enjoyable for beginners
+
+## Content
+
+Pages are hand-written by me *(very much a work in progress)*.
+
+**Core Python**
+
+- **Get started** — Workspace setup, Foundations
+- **Data types** — Scalars (int, float, str, bool, None), Collections (list, dict, tuple, set)
+- **Control flow** — Conditionals, Loops
+- **Code organization** — Functions, Classes
+- **External files and resources** — Modules & imports, Reading & writing files
+- **Robust programming practices** — Style, Errors
+
+**Add-on libraries** 
+
+- **Utilities** — collections, datetime, random
+- **Data analysis** — csv, matplotlib, NumPy, pandas
+- **APIs** — json, requests
+- **Image editing** — Pillow
+- **Computer vision** — OpenCV
+- **Desktop UIs** — Tkinter
 
 ## Site generator
 
@@ -63,7 +93,9 @@ These ship with Python-Markdown and are enabled alongside the PyMdown set:
 - `md_in_html` — Markdown parsed inside raw HTML blocks, e.g. the card grids
 - `tables` — pipe tables
 
-## Runnable code blocks
+## Client-side rendering
+
+Things MkDocs doesn't produce at build time — JavaScript turns them into their final form in the reader's browser.
 
 ### Pyodide
 
@@ -77,11 +109,15 @@ CodeJar is a ~2KB code editor, which makes an element editable in place with liv
 
 highlight.js is a syntax highlighter, which colors code in the browser. It handles both the static examples and whatever a reader types into a CodeJar block. Pygments, MkDocs's usual build-time highlighter, is switched off in favor of it.
 
-## Styling
-
 ### Mermaid
 
-Mermaid is a diagram renderer, which draws flowcharts and diagrams from a plain-text description. A small config shim themes them to the site palette.
+Mermaid is a diagram renderer, which draws flowcharts and diagrams from a plain-text description. Fenced `mermaid` blocks in the Markdown are rendered to SVG on page load; a small config shim themes them to the site palette.
+
+## Theme
+
+### Custom palette
+
+The cream/ink/green color scheme is a set of CSS-variable overrides in `docs/stylesheets/extra.css` on top of Material's default theme, rather than one of Material's built-in palettes. Most of the site's hand-written CSS lives in that one file.
 
 ### Google Fonts
 
@@ -89,7 +125,7 @@ Google Fonts is a web-font host, which serves font files to the page from its CD
 
 ## Content conventions
 
-[STRUCTURE.md](STRUCTURE.md) is the reference for authoring or editing pages. It covers:
+I found myself writing so much content for this, and needing to jump between different pages so frequently while I was editing, that I created a structure guide to help the site stay consistent as it grows over time. [STRUCTURE.md](STRUCTURE.md) is the reference for authoring or editing pages. It covers:
 
 - **Runnable code blocks** — how the Pyodide/CodeJar feature is wired (detection of
   ` ```python ` fences, lazy CDN load, stdout capture, editable re-highlighting), and the
@@ -164,7 +200,7 @@ GitHub Pages is GitHub's free static-site host, which serves the files on a chos
 
 ### Purchased .com domain
 
-The domain is set up via the [docs/CNAME](docs/CNAME) file (`pythonfieldguide.com`), which MkDocs copies into every build so Pages keeps serving there. On my registrar I added apex `A` records pointing at GitHub's Pages IPs.
+The domain is set up via the [docs/CNAME](docs/CNAME) file, which MkDocs copies into every build so Pages keeps serving there. On my registrar I then added apex `A` records pointing at GitHub's Pages IPs.
 
 ## Analytics
 
