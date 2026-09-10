@@ -14,7 +14,7 @@ pandas is an open-source project, funded by nonprofit [NumFOCUS](https://numfocu
 
 <div class="pfg-section" markdown="block">
 
-## Install
+## Install { data-card-link="skip" }
 
 ```bash
 pip install pandas
@@ -24,7 +24,7 @@ pip install pandas
 
 <div class="pfg-section" markdown="block">
 
-## Import
+## Import { data-card-link="skip" }
 
 `pd` is the near-universal alias for pandas — used throughout this page and in virtually every codebase that imports it.
 

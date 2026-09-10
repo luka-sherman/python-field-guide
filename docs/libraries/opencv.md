@@ -14,7 +14,7 @@ OpenCV is stewarded by nonprofit [OpenCV.org](https://opencv.org/).
 
 <div class="pfg-section" markdown="block">
 
-## Install
+## Install { data-card-link="skip" }
 
 ```bash
 pip install opencv-python
@@ -24,7 +24,7 @@ pip install opencv-python
 
 <div class="pfg-section" markdown="block">
 
-## Import
+## Import { data-card-link="skip" }
 
 OpenCV's package name (`opencv-python`) doesn't match its import name — it's always imported as `cv2`.
 

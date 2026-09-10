@@ -12,7 +12,7 @@ The **`json`** module reads and writes JSON ("JavaScript Object Notation") data 
 
 <div class="pfg-section" markdown="block">
 
-## Install
+## Install { data-card-link="skip" }
 
 `json` ships with Python's standard library — nothing to install.
 
@@ -20,7 +20,7 @@ The **`json`** module reads and writes JSON ("JavaScript Object Notation") data 
 
 <div class="pfg-section" markdown="block">
 
-## Import
+## Import { data-card-link="skip" }
 
 The whole module is used through the `json.` prefix, so a plain import is all you need.
 

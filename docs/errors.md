@@ -103,7 +103,7 @@ The name in the traceback's last line tells you which of these went wrong.
 | `SyntaxError` | The code isn't valid Python at all — a missing colon, mismatched parentheses |
 | `IndentationError` | A specific kind of `SyntaxError` for inconsistent or incorrect indentation |
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? tip "Catching multiple exceptions"
     List several exception types in one `except` to handle them the same way. Separate `except` blocks work too, if each error type needs different handling — Python checks them top to bottom and runs the first one that matches.
@@ -211,7 +211,7 @@ Not every problem gets fixed the moment you spot it — sometimes you're mid-deb
 
 Some editors collect every `TODO`/`FIXME` in a project into one scannable list — PyCharm has a built-in TODO tool window (**View → Tool Windows → TODO**, or ++alt+6++), VS Code needs an extension like [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree), and Thonny/IDLE have no built-in equivalent (it still works as a plain comment, just without the aggregated list).
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? run "Run a debugging strategies example"
     The `lengths` bug from above, worked through with the techniques above:
@@ -262,7 +262,7 @@ When it gets to a breakpoint it will pause, and you can use these controls to mo
 | **Continue/Resume** (▶) | Runs until the next breakpoint, or finishes if there are none left | You're done inspecting the current pause point and want to jump ahead |
 | **Stop debugging** | Ends the debug session entirely | You're done, instead of stepping or continuing all the way through |
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? tip "Where debugging controls are in each editor"
     Where to find the debugger, and what it calls things, varies by editor.

@@ -12,7 +12,7 @@ The **`csv`** module reads and writes CSV ("comma-separated values") files — a
 
 <div class="pfg-section" markdown="block">
 
-## Install
+## Install { data-card-link="skip" }
 
 `csv` ships with Python's standard library — nothing to install.
 
@@ -20,7 +20,7 @@ The **`csv`** module reads and writes CSV ("comma-separated values") files — a
 
 <div class="pfg-section" markdown="block">
 
-## Import
+## Import { data-card-link="skip" }
 
 The whole module is used through the `csv.` prefix, so a plain import is all you need.
 

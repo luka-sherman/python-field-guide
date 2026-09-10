@@ -12,7 +12,7 @@ description: >-
 
 <div class="pfg-section" markdown="block">
 
-## Install
+## Install { data-card-link="skip" }
 
 Tkinter ships with the standard library — no extra install is needed on your own machine.
 
@@ -20,7 +20,7 @@ Tkinter ships with the standard library — no extra install is needed on your o
 
 <div class="pfg-section" markdown="block">
 
-## Import
+## Import { data-card-link="skip" }
 
 `tk` is the near-universal alias for the base module; the themed `ttk` widgets (used throughout this page) are imported separately.
 

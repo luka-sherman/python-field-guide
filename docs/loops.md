@@ -321,7 +321,7 @@ for s in reversed(species):
     print(s)     # blood  ball  rock  burmese
 ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? tip "Loop two collections at the same time with zip()"
     `zip()` pairs up items from two (or more) iterables by position — the first item from each, then the second from each, and so on — stopping as soon as the shortest one runs out. Works with any iterable, mixed types included — list, tuple, string, dict (its keys, by default), even a `range()`. Because it is based on order, using an unordered collection like `set` or plain `dict` can produce pairings in an unpredictable order.
@@ -785,7 +785,7 @@ for species, tags in species_tags.items():
         print(species, tag)
 ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? run "Run a common patterns example"
     All the examples above, combined into one script:
@@ -907,7 +907,7 @@ else:
     print("done")                # 0  1  2  done
 ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? tip "pass placeholder"
     Temporarily fill an empty loop body when you're not ready to write the inside code yet. Python doesn't allow an empty block after a colon. `pass` does nothing, but acts as a placeholder until you're ready to add code so that the empty block won't cause a syntax error in the meantime. Covered in more detail on the [Conditionals](conditionals.md#if-elif-else) page.

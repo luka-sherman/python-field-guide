@@ -14,7 +14,7 @@ matplotlib is an open-source project, funded by nonprofit [NumFOCUS](https://num
 
 <div class="pfg-section" markdown="block">
 
-## Install
+## Install { data-card-link="skip" }
 
 ```bash
 pip install matplotlib
@@ -24,7 +24,7 @@ pip install matplotlib
 
 <div class="pfg-section" markdown="block">
 
-## Import
+## Import { data-card-link="skip" }
 
 matplotlib's plotting interface lives in its `pyplot` submodule, conventionally imported under the alias `plt` — used throughout this page and in virtually every codebase that imports it.
 

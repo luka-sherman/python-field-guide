@@ -148,7 +148,7 @@ while length:              # loops until length reaches 0
     length -= 1
 ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? run "Practice with integers"
     
@@ -298,7 +298,7 @@ if weight:                 # runs — weight isn't 0.0
     print("has a weight")
 ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? warning "Floating-point precision"
     Tiny rounding errors creep in, since most decimal fractions can't be stored exactly in binary.
@@ -602,7 +602,7 @@ if name:                 # runs — name isn't empty
     print("has a name")
 ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? run "Practice with strings"
 
@@ -1050,7 +1050,7 @@ venomous = False
 
     3. `or`
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? note "Bool is a subclass of int"
     `True` behaves like `1` and `False` behaves like `0` in arithmetic.
@@ -1129,7 +1129,7 @@ venomous = None
         print("nothing found")
     ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? run "Practice with None"
 

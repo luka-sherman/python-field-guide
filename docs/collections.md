@@ -331,7 +331,7 @@ class diagram panel
     [s.title() for s in species]        # ["Burmese", "Rock", "Ball", "Blood"]
     ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? run "Practice with lists"
     Each box below is fully editable — write your answer, then click Run.
@@ -643,7 +643,7 @@ flowchart LR
     snakes["burmese"]["length_ft"]  # 16
     ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? run "Practice with dictionaries"
     Each box below is fully editable — write your answer, then click Run.
@@ -945,7 +945,7 @@ The **negative index** starts counting down from the end instead, starting at `-
     tuple(["burmese", "rock", "ball", "blood"])  # ("burmese", "rock", "ball", "blood")
     ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? run "Practice with tuples"
     Each box below is fully editable — write your answer, then click Run.
@@ -1248,7 +1248,7 @@ These check a relationship between two sets and hand back a `bool`, rather than 
     list(set(species))  # ["burmese", "ball", "boa"] — order not guaranteed
     ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? run "Practice with sets"
     Each box below is fully editable — write your answer, then click Run.

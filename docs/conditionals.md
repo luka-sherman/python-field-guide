@@ -346,7 +346,7 @@ A and B here are [boolean expressions](#boolean-expressions).
 
 **Order of operations:** When several logical operators appear together, Python evaluates `not` first, then `and`, then `or`. Even when parentheses aren't required, they often make the condition much easier to read.
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? tip "Nested if"
     Checks a second condition only after the first is `True`. An `if` can contain another `if`, checked only once the outer condition is already `True` — each level of nesting adds another decision. If both conditions are simple, combining them with [`and`](#logical-operators) is usually clearer than nesting.
@@ -681,7 +681,7 @@ match snake:
 
 A `match` can pick a different `case` depending on the tuple's length or the value in a specific position, while *still* unpacking the rest into names — all in one step, as shown above. Compare with regular assignment (`length, species = snake`), which always unpacks the same way, would crash on a 1- or 3-item tuple, and can't pick a different case based on species.
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? run "Run a match/case example"
     All the examples above, combined into one script:
@@ -818,7 +818,7 @@ for s in species:
             print(s)
 ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? tip "pass placeholder"
     Temporarily fill an empty block when you're not ready to write the inside code yet. Python doesn't allow an empty block after a colon. `pass` does nothing, but acts as a placeholder until you're ready to add code so that the empty block won't cause a syntax error in the meantime — works the same way after `if`/`elif`/`else` and `case` alike.

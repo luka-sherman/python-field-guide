@@ -111,7 +111,7 @@ def describe(species, length_ft=5, venomous=False):
 describe(species="ball", venomous=True)    # length_ft still uses its default
 ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? tip "pass placeholder"
     Temporarily fill an empty function body when you're not ready to write the inside code yet. Python doesn't allow an empty block after a colon. `pass` does nothing, but acts as a placeholder until you're ready to add code so that the empty block won't cause a syntax error in the meantime. Covered in more detail on the [Conditionals](conditionals.md#if-elif-else) page.
@@ -216,7 +216,7 @@ def describe(**details):
 describe(species="ball", length_ft=5)
 ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? run "Run a flexible arguments example"
     All the examples above, combined into one script:
@@ -270,7 +270,7 @@ def show_species():
     print(species)    # reads the global — no error
 ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? tip "Modifying a global variable"
     `global` tells Python that an assignment inside a function should change the global variable, not create a local one. Without `global`, `count += 1` here would raise an error — Python sees the assignment and treats `count` as local for the whole function, then finds no local `count` to add to. `global` is needed occasionally, but reaching for it often is usually a sign the code would read more clearly passing values in and returning them instead.

@@ -35,7 +35,7 @@ built-in [`str`](../types.md#strings) [`list`](../collections.md#lists) [`dict`]
 
 <div class="pfg-section" markdown="block">
 
-## Install
+## Install { data-card-link="skip" }
 
 `collections` ships with Python's standard library — nothing to install.
 
@@ -43,7 +43,7 @@ built-in [`str`](../types.md#strings) [`list`](../collections.md#lists) [`dict`]
 
 <div class="pfg-section" markdown="block">
 
-## Import
+## Import { data-card-link="skip" }
 
 Each class is imported individually by name, rather than through a `collections.` prefix —
 so the import line differs per class, shown under its own "Import" heading below.
@@ -64,13 +64,13 @@ counts = Counter(species)
 print(counts)  # Counter({'ball': 3, 'burmese': 2, 'boa': 1})
 ```
 
-### Import
+### Import { data-card-link="skip" }
 
 ```python-ref
 from collections import Counter
 ```
 
-### Counter operations
+### Counter operations { data-card-link="skip" }
 
 #### Count
 
@@ -223,7 +223,7 @@ print(by_venomous)
 # defaultdict(<class 'list'>, {False: ['ball'], True: ['cobra'], 'unknown': ['burmese']})
 ```
 
-### Import
+### Import { data-card-link="skip" }
 
 ```python-ref
 from collections import defaultdict
@@ -338,13 +338,13 @@ print(snake[0])          # "ball" — still works by position too
 
 Like a plain tuple, a `namedtuple` instance is immutable — there's no `snake.length_ft = 6`.
 
-### Import
+### Import { data-card-link="skip" }
 
 ```python-ref
 from collections import namedtuple
 ```
 
-### namedtuple operations
+### namedtuple operations { data-card-link="skip" }
 
 #### Create
 
@@ -477,13 +477,13 @@ queue.appendleft("blood")  # add to the left end
 print(queue)  # deque(['blood', 'ball', 'burmese', 'boa', 'cobra'])
 ```
 
-### Import
+### Import { data-card-link="skip" }
 
 ```python-ref
 from collections import deque
 ```
 
-### deque operations
+### deque operations { data-card-link="skip" }
 
 #### Add
 
@@ -649,13 +649,13 @@ Until Python 3.7 (released in 2018), a plain `dict` didn't guarantee it would re
 snake = OrderedDict([("species", "ball"), ("length_ft", 5), ("venomous", False)])
 ```
 
-### Import
+### Import { data-card-link="skip" }
 
 ```python-ref
 from collections import OrderedDict
 ```
 
-### OrderedDict operations
+### OrderedDict operations { data-card-link="skip" }
 
 #### Reorder
 
@@ -707,13 +707,13 @@ print(snake["docile"])    # True — not in overrides, falls back to defaults
 Writing to a `ChainMap` (`snake["docile"] = False`) only ever changes the first dict in the
 chain — the rest are left untouched, read-only from the `ChainMap`'s point of view.
 
-### Import
+### Import { data-card-link="skip" }
 
 ```python-ref
 from collections import ChainMap
 ```
 
-### ChainMap operations
+### ChainMap operations { data-card-link="skip" }
 
 #### Extend
 
@@ -764,7 +764,7 @@ snake["SPECIES"] = "ball"
 print(snake)  # {'species': 'ball'} — key was lowercased on the way in
 ```
 
-### Import
+### Import { data-card-link="skip" }
 
 ```python-ref
 from collections import UserDict, UserList, UserString

@@ -14,7 +14,7 @@ Pillow is an open-source project maintained by volunteer contributors.
 
 <div class="pfg-section" markdown="block">
 
-## Install
+## Install { data-card-link="skip" }
 
 ```bash
 pip install pillow
@@ -24,7 +24,7 @@ pip install pillow
 
 <div class="pfg-section" markdown="block">
 
-## Import
+## Import { data-card-link="skip" }
 
 Pillow's package name (`pillow`) doesn't match its import name — it's imported as `PIL`, and `Image` specifically is used throughout this page.
 

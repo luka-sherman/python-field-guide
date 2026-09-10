@@ -14,7 +14,7 @@ requests is an open-source project maintained by volunteer contributors.
 
 <div class="pfg-section" markdown="block">
 
-## Install
+## Install { data-card-link="skip" }
 
 ```bash
 pip install requests
@@ -24,7 +24,7 @@ pip install requests
 
 <div class="pfg-section" markdown="block">
 
-## Import
+## Import { data-card-link="skip" }
 
 The whole module is used through the `requests.` prefix, so a plain import is all you need.
 

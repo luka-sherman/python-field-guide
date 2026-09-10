@@ -107,7 +107,7 @@ A method is just a function defined inside a class. Since it always receives `se
 ball.describe()    # "a 5 ft ball python"
 ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? tip "The `__str__()` method"
     Controls what `print()` shows for an object, instead of its memory address. By default, `print()`-ing an object just shows its memory address, which isn't very useful.
@@ -289,7 +289,7 @@ snake.describe()    # "a 5 ft ball python"        — Snake's own version
 boa.describe()      # "a heavy-bodied constrictor" — Boa's version replaces it
 ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? run "Run an inheritance example"
     All the examples above, combined into one script:
@@ -415,7 +415,7 @@ for s in (snake, boa): print(s.describe())
 # a heavy-bodied constrictor
 ```
 
-### Going further
+### Going further { data-card-link="skip" }
 
 ??? run "Run a polymorphism example"
     All the examples above, combined into one script:

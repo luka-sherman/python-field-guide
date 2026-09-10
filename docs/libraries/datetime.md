@@ -12,7 +12,7 @@ The **`datetime`** module is Python's standard library for working with dates an
 
 <div class="pfg-section" markdown="block">
 
-## Install
+## Install { data-card-link="skip" }
 
 `datetime` ships with Python's standard library — nothing to install.
 
@@ -20,7 +20,7 @@ The **`datetime`** module is Python's standard library for working with dates an
 
 <div class="pfg-section" markdown="block">
 
-## Import
+## Import { data-card-link="skip" }
 
 Each class below is imported individually by name, rather than through a `datetime.` prefix.
 
