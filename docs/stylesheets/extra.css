@@ -19,6 +19,8 @@
   --pt-section-bg: color-mix(in srgb, var(--pt-bg), color-mix(in srgb, var(--pt-panel) 84%, var(--pt-ink)));
   /* a punchier, more saturated green than the old #185B37 */
   --pt-accent: #0B7038;
+  /* card description text + the library-card badge icon */
+  --pt-desc-blue: #255C6E;
   --pt-heading-h2: #004C24;
   --pt-heading-h3: #33724C;
   --pt-ref-keyword: #825E25;
@@ -41,6 +43,7 @@
   --pt-border-soft: #3E372D;
   --pt-section-bg: color-mix(in srgb, var(--pt-bg) 10%, var(--pt-panel));
   --pt-accent: #68A87F;
+  --pt-desc-blue: #6E9BC0;
   --pt-heading-h2: #3A8357;
   --pt-heading-h3: #6FA783;
   --pt-ref-keyword: #C99B5A;
@@ -569,8 +572,8 @@ input:checked + .md-consent__settings {
   /* A shallow, wide corner banner. width vs height set the diagonal's angle;
      the badge (repositioned below) is placed on this triangle's centroid so it
      reads as centred on the wedge. */
-  width: 4.5rem;
-  height: 3rem;
+  width: 3rem;
+  height: 2.5rem;
   background: linear-gradient(
     to bottom left,
     var(--pt-section-bg) 0 49.5%,
@@ -736,8 +739,8 @@ input:checked + .md-consent__settings {
 
 .md-typeset .grid.cards > ul > li .pt-lib-badge {
   position: absolute;
-  top: 0.7rem;
-  right: 0.8rem;
+  top: 0.35rem;
+  right: 0.35rem;
   z-index: 2;
 }
 
@@ -748,7 +751,7 @@ input:checked + .md-consent__settings {
 
 .md-typeset .grid.cards a.pt-lib-badge--builtin,
 .md-typeset .grid.cards a.pt-lib-badge--third-party {
-  color: var(--pt-text-muted);
+  color: var(--pt-desc-blue);
 }
 
 /* Homepage cards, dark mode only: green is reserved for the smaller non-bold
@@ -767,10 +770,10 @@ input:checked + .md-consent__settings {
    (#68A87F) in saturation/lightness so the two read as a pair. ~4.8:1 on the
    card, passes AA. */
 [data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:nth-of-type(2) {
-  color: #6E9BC0;
+  color: var(--pt-desc-blue);
 }
 
-[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > a,
+[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > a:not(.pt-lib-badge),
 [data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > a strong {
   color: var(--pt-ink);
 }
@@ -789,7 +792,7 @@ input:checked + .md-consent__settings {
 
 /* Light mode: black card titles and bold keyword leads (e.g. "integers"), a
    deep teal-blue for the descriptions (pairs with the green sub-tags). */
-[data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > a,
+[data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > a:not(.pt-lib-badge),
 [data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > a strong,
 [data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:not(:first-child) a strong,
 [data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:not(:first-child) a strong > code {
@@ -801,7 +804,7 @@ input:checked + .md-consent__settings {
 }
 
 [data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:nth-of-type(2) {
-  color: #255C6E;
+  color: var(--pt-desc-blue);
 }
 
 .pt-jump-table td a {
