@@ -270,7 +270,7 @@ length_ft = 4.5  # too short       # PEP 8 — two spaces before, one after
 
 There's no single tool that reliably flags all "unpythonic" code the way PEP 8 has a document to check against. The real habit is asking *"does Python already have a built-in way to do this?"* before writing a manual loop, counter, or flag — an instinct built over time to recognize the built-in pattern.
 
-Other programming langues have different features and patterns, so if code is translated from another langauge into Python it might not be written very clearly. Pythonic code tends to be less buggy and faster.
+Other programming languages have different features and patterns, so if code is translated from another language into Python it might not be written very clearly. Pythonic code tends to be less buggy and faster.
 
 ### Common patterns
 
@@ -388,7 +388,7 @@ Repeating the same few lines in multiple places is a sign to pull them into thei
 
 ### Catch specific exceptions
 
-Catch the exact exception you expect (`except ValueError:`) instead of a bare `except:` — a bare `except` also silently swallows errors you didn't anticipate, including a typo in your own code, and even catches things like a keyboard interrupt (++ctrl+c++) that usually shouldn't be caught at all. Full `try`/`except` mechanics are covered on the [Errors](errors.md#handling-errors) page.
+Catch the exact exception you expect (`except ValueError:`) instead of a bare `except:` — a bare `except` also silently swallows errors you didn't anticipate, including a typo in your own code, and even catches things like a keyboard interrupt (++ctrl+c++) that usually shouldn't be caught at all. Full `try`/`except` mechanics are covered on the [Errors](errors.md#catch-with-tryexcept) page.
 
 ```python-ref
 try:

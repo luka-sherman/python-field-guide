@@ -54,31 +54,23 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 </div>
 
 <div class="pt-category pt-category--wide pt-lib--1" markdown="block">
-#### Desktop UIs { .pt-homepage-heading }
+#### Testing { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
--   :material-application-outline:{ .lg .middle } [__Tkinter__](tkinter.md) [:material-language-python:](tkinter.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+-   :material-test-tube:{ .lg .middle } [__pytest__](pytest.md) [:material-download-outline:](pytest.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
-    Creating desktop applications: text, buttons, dropdowns, forms, output, etc.
+    Writing and running tests: assertions, fixtures, and parametrizing.
 
-    [**`Tk`**](tkinter.md#creating-a-window)
+    [**`writing and running a test`**](pytest.md#writing-and-running-a-test): [`from the command line`](pytest.md#from-the-command-line)
 
-    [**`Button`**](tkinter.md#widgets): [`Button`](tkinter.md#button) [`Entry`](tkinter.md#entry) [`Label`](tkinter.md#label)
+    [**`reading a failure`**](pytest.md#reading-a-failure)
 
-    [**`pack`**](tkinter.md#layout-managers): [`grid`](tkinter.md#grid) [`pack`](tkinter.md#pack)
+    [**`fixtures`**](pytest.md#fixtures)
 
-    [**`configure`**](tkinter.md#configuring-widgets): [`reading and changing options`](tkinter.md#reading-and-changing-options)
+    [**`parametrizing tests`**](pytest.md#parametrizing-tests)
 
-    [**`command`**](tkinter.md#handling-events): [`binding events`](tkinter.md#binding-events) [`command callbacks`](tkinter.md#command-callbacks)
-
-    [**`Style`**](tkinter.md#styling-with-ttk): [`customizing a style`](tkinter.md#customizing-a-style)
-
-    [**`messagebox`**](tkinter.md#dialogs): [`file dialogs`](tkinter.md#file-dialogs) [`message boxes`](tkinter.md#message-boxes)
-
-    [**`winfo_width`**](tkinter.md#introspecting-widgets): [`winfo methods`](tkinter.md#winfo-methods)
-
-    [**`putting it together`**](tkinter.md#putting-it-together): [`a simple form`](tkinter.md#a-simple-form)
+    [**`testing for exceptions`**](pytest.md#testing-for-exceptions)
 
 </div>
 </div>
@@ -187,6 +179,36 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
     [**`ImageSequence`**](pillow.md#imagesequence-module): [`looping over GIF frames`](pillow.md#looping-over-gif-frames)
 
     [**`putting it together`**](pillow.md#putting-it-together): [`an interactive filter tool`](pillow.md#an-interactive-filter-tool)
+
+</div>
+</div>
+
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+#### Desktop UIs { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-application-outline:{ .lg .middle } [__Tkinter__](tkinter.md) [:material-language-python:](tkinter.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+
+    Creating desktop applications: text, buttons, dropdowns, forms, output, etc.
+
+    [**`Tk`**](tkinter.md#creating-a-window)
+
+    [**`Button`**](tkinter.md#widgets): [`Button`](tkinter.md#button) [`Entry`](tkinter.md#entry) [`Label`](tkinter.md#label)
+
+    [**`pack`**](tkinter.md#layout-managers): [`grid`](tkinter.md#grid) [`pack`](tkinter.md#pack)
+
+    [**`configure`**](tkinter.md#configuring-widgets): [`reading and changing options`](tkinter.md#reading-and-changing-options)
+
+    [**`command`**](tkinter.md#handling-events): [`binding events`](tkinter.md#binding-events) [`command callbacks`](tkinter.md#command-callbacks)
+
+    [**`Style`**](tkinter.md#styling-with-ttk): [`customizing a style`](tkinter.md#customizing-a-style)
+
+    [**`messagebox`**](tkinter.md#dialogs): [`file dialogs`](tkinter.md#file-dialogs) [`message boxes`](tkinter.md#message-boxes)
+
+    [**`winfo_width`**](tkinter.md#introspecting-widgets): [`winfo methods`](tkinter.md#winfo-methods)
+
+    [**`putting it together`**](tkinter.md#putting-it-together): [`a simple form`](tkinter.md#a-simple-form)
 
 </div>
 </div>

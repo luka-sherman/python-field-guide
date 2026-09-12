@@ -111,10 +111,10 @@
         const pyodide = await loadPyodideRuntime();
 
         // Pure-stdlib code runs as-is, but third-party packages (numpy,
-        // pandas, ...) ship as separate Pyodide wheels that must be fetched
-        // before the `import` inside the snippet will succeed.
+        // pandas, pytest, ...) ship as separate Pyodide wheels that must be
+        // fetched before the `import` inside the snippet will succeed.
         const source = codeBlock.textContent;
-        const neededPackages = ["numpy", "pandas"].filter((pkg) =>
+        const neededPackages = ["numpy", "pandas", "pytest"].filter((pkg) =>
           new RegExp(`\\bimport\\s+${pkg}\\b|\\bfrom\\s+${pkg}\\b`).test(source)
         );
         if (neededPackages.length) {

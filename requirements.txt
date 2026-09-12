@@ -3,3 +3,4 @@ mkdocs-material
 pytest
 playwright
 pytest-playwright
+codespell

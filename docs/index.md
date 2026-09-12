@@ -102,7 +102,7 @@ hide:
 
     Repeat a block of code multiple times.
 
-    [**`for`**](loops.md#for-loops): [`enumerate`](loops.md#loop-with-index-and-value) [`loop a set number of times`](loops.md#loop-a- certain-number-of-times) [`loop through a collection`](loops.md#loop-through-a-collection) [`range`](loops.md#iterable-range) [`reversed`](loops.md#loop-in-reverse) [`zip`](loops.md#loop-with-index-and-value)
+    [**`for`**](loops.md#for-loops): [`enumerate`](loops.md#loop-with-index-and-value) [`loop a set number of times`](loops.md#loop-a-certain-number-of-times) [`loop through a collection`](loops.md#loop-through-a-collection) [`range`](loops.md#iterable-range) [`reversed`](loops.md#loop-in-reverse) [`zip`](loops.md#loop-with-index-and-value)
 
     [**`while`**](loops.md#while-loops): [`and`](loops.md#logical-operators) [`boolean expressions`](loops.md#boolean-expressions) [`counter and flag names`](loops.md#counter-and-flag-names) [`flag`](loops.md#using-a-flag) [`not`](loops.md#logical-operators) [`or`](loops.md#logical-operators) [`sentinel`](loops.md#sentinel)
 
@@ -124,7 +124,7 @@ hide:
 
     [**`def`**](functions.md#defining-a-function): [`default parameter values`](functions.md#default-parameter-values) [`docstrings`](functions.md#docstrings) [`keyword arguments`](functions.md#keyword-arguments) [`return`](functions.md#return-values)
 
-    [**`*args`**](functions.md#args), [**`**kwargs`**](functions.md#kwargs)
+    [**`flexible arguments`**](functions.md#flexible-arguments): [`*args`](functions.md#args) [`**kwargs`](functions.md#kwargs)
 
     [**`scope`**](functions.md#scope): [`local vs global`](functions.md#local-vs-global-variables)
 
@@ -196,13 +196,11 @@ hide:
 
     How to understand, manage, and fix errors.
 
-    [**`try, except`**](errors.md#handling-errors): [`exception types`](errors.md#common-exception-types)
+    [**`kinds of errors`**](errors.md#kinds-of-errors): [`syntax errors`](errors.md#syntax-errors) [`runtime errors`](errors.md#runtime-errors) [`logic errors`](errors.md#logic-errors)
 
-    [**`tracebacks`**](errors.md#reading-errors): [`how to read a traceback`](errors.md#how-to-read-a-traceback)
+    [**`fixing errors`**](errors.md#fixing-errors): [`tracebacks`](errors.md#reading-a-traceback) [`reading a syntax error message`](errors.md#reading-a-syntax-error-message) [`try, except`](errors.md#catch-with-tryexcept) [`debugging strategies`](errors.md#debugging-strategies) [`isolate the problem`](errors.md#isolate-the-problem) [`print debugging`](errors.md#print-debugging) [`rubber duck debugging`](errors.md#read-it-out-loud) [`debugger tool`](errors.md#debugger-tool) [`TODO, FIXME`](errors.md#flag-as-todofixme) [`testing`](errors.md#detect-errors-with-testing)
 
-    [**`debugger`**](errors.md#using-a-debugger): [`run in debug mode`](errors.md#step-1-run-in-debug-mode) [`set breakpoints`](errors.md#step-0-set-breakpoints) [`what you can do at a breakpoint`](errors.md#step-2-what-you-can-do-at-a-breakpoint)
-
-    [**`debugging strategies`**](errors.md#debugging-strategies): [`isolate the problem`](errors.md#isolate-the-problem) [`print debugging`](errors.md#print-debugging) [`rubber duck debugging`](errors.md#read-it-out-loud) [`TODO, FIXME`](errors.md#flag-it-with-todofixme)
+    [**`detect errors with testing`**](errors.md#detect-errors-with-testing)
 
 </div>
 </div>
@@ -252,31 +250,23 @@ hide:
 </div>
 
 <div class="pt-category pt-category--wide pt-lib--1" markdown="block">
-#### Desktop UIs { .pt-homepage-heading }
+#### Testing { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
--   :material-application-outline:{ .lg .middle } [__Tkinter__](libraries/tkinter.md) [:material-language-python:](libraries/tkinter.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+-   :material-test-tube:{ .lg .middle } [__pytest__](libraries/pytest.md) [:material-download-outline:](libraries/pytest.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
 
-    Creating desktop applications: text, buttons, dropdowns, forms, output, etc.
+    Writing and running tests: assertions, fixtures, and parametrizing.
 
-    [**`Tk`**](libraries/tkinter.md#creating-a-window)
+    [**`writing and running a test`**](libraries/pytest.md#writing-and-running-a-test): [`from the command line`](libraries/pytest.md#from-the-command-line)
 
-    [**`Button`**](libraries/tkinter.md#widgets): [`Button`](libraries/tkinter.md#button) [`Entry`](libraries/tkinter.md#entry) [`Label`](libraries/tkinter.md#label)
+    [**`reading a failure`**](libraries/pytest.md#reading-a-failure)
 
-    [**`pack`**](libraries/tkinter.md#layout-managers): [`grid`](libraries/tkinter.md#grid) [`pack`](libraries/tkinter.md#pack)
+    [**`fixtures`**](libraries/pytest.md#fixtures)
 
-    [**`configure`**](libraries/tkinter.md#configuring-widgets): [`reading and changing options`](libraries/tkinter.md#reading-and-changing-options)
+    [**`parametrizing tests`**](libraries/pytest.md#parametrizing-tests)
 
-    [**`command`**](libraries/tkinter.md#handling-events): [`binding events`](libraries/tkinter.md#binding-events) [`command callbacks`](libraries/tkinter.md#command-callbacks)
-
-    [**`Style`**](libraries/tkinter.md#styling-with-ttk): [`customizing a style`](libraries/tkinter.md#customizing-a-style)
-
-    [**`messagebox`**](libraries/tkinter.md#dialogs): [`file dialogs`](libraries/tkinter.md#file-dialogs) [`message boxes`](libraries/tkinter.md#message-boxes)
-
-    [**`winfo_width`**](libraries/tkinter.md#introspecting-widgets): [`winfo methods`](libraries/tkinter.md#winfo-methods)
-
-    [**`putting it together`**](libraries/tkinter.md#putting-it-together): [`a simple form`](libraries/tkinter.md#a-simple-form)
+    [**`testing for exceptions`**](libraries/pytest.md#testing-for-exceptions)
 
 </div>
 </div>
@@ -390,6 +380,36 @@ hide:
 </div>
 
 <div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+#### Desktop UIs { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-application-outline:{ .lg .middle } [__Tkinter__](libraries/tkinter.md) [:material-language-python:](libraries/tkinter.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+
+    Creating desktop applications: text, buttons, dropdowns, forms, output, etc.
+
+    [**`Tk`**](libraries/tkinter.md#creating-a-window)
+
+    [**`Button`**](libraries/tkinter.md#widgets): [`Button`](libraries/tkinter.md#button) [`Entry`](libraries/tkinter.md#entry) [`Label`](libraries/tkinter.md#label)
+
+    [**`pack`**](libraries/tkinter.md#layout-managers): [`grid`](libraries/tkinter.md#grid) [`pack`](libraries/tkinter.md#pack)
+
+    [**`configure`**](libraries/tkinter.md#configuring-widgets): [`reading and changing options`](libraries/tkinter.md#reading-and-changing-options)
+
+    [**`command`**](libraries/tkinter.md#handling-events): [`binding events`](libraries/tkinter.md#binding-events) [`command callbacks`](libraries/tkinter.md#command-callbacks)
+
+    [**`Style`**](libraries/tkinter.md#styling-with-ttk): [`customizing a style`](libraries/tkinter.md#customizing-a-style)
+
+    [**`messagebox`**](libraries/tkinter.md#dialogs): [`file dialogs`](libraries/tkinter.md#file-dialogs) [`message boxes`](libraries/tkinter.md#message-boxes)
+
+    [**`winfo_width`**](libraries/tkinter.md#introspecting-widgets): [`winfo methods`](libraries/tkinter.md#winfo-methods)
+
+    [**`putting it together`**](libraries/tkinter.md#putting-it-together): [`a simple form`](libraries/tkinter.md#a-simple-form)
+
+</div>
+</div>
+
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
 #### Computer vision { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
@@ -430,7 +450,7 @@ hide:
     |  | Learn to do it yourself | Have AI do it for you |
     |---|---|---|
     | **Writing & struggling with code** | :material-check:{ .pt-icon-success } **Productive struggle** is what builds understanding<ul><li>You can solve the problem again on your own</li><li>Adapt the answer, and catch when it's wrong</li></ul> | :material-close:{ .pt-icon-fail } Being handed the answer skips [the friction that builds understanding](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf)<ul><li>If you skip that struggle, you *won't develop the knowledge* to solve the problem again, adapt the answer, or recognize when it's wrong.</li></ul> |
-    | **Reading & verifying code** | :material-check:{ .pt-icon-success } Understanding programming fundamentals makes AI more useful — you can read code you didn't write, and check it before you trust it<ul><li>Spot mistakes</li><li>Understand *why* a solution works</li><li>Communicate your problem to AI more effectively</li></ul> | :material-close:{ .pt-icon-fail } Inefficient communciation with AI if you don't fully understand what's going on, and AI code can look correct while being **wrong and insecure**<ul><li>You can't tell *why* a solution works</li><li>Researchers are already documenting this skill gap in [students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before they've [built their own foundation](https://dl.acm.org/doi/10.1145/3624720)</li><li>One [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) found developers using AI wrote *less* secure code — but were *more* confident it was secure</li></ul> |
+    | **Reading & verifying code** | :material-check:{ .pt-icon-success } Understanding programming fundamentals makes AI more useful — you can read code you didn't write, and check it before you trust it<ul><li>Spot mistakes</li><li>Understand *why* a solution works</li><li>Communicate your problem to AI more effectively</li></ul> | :material-close:{ .pt-icon-fail } Inefficient communication with AI if you don't fully understand what's going on, and AI code can look correct while being **wrong and insecure**<ul><li>You can't tell *why* a solution works</li><li>Researchers are already documenting this skill gap in [students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before they've [built their own foundation](https://dl.acm.org/doi/10.1145/3624720)</li><li>One [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) found developers using AI wrote *less* secure code — but were *more* confident it was secure</li></ul> |
     | **On the job** | :material-check:{ .pt-icon-success } Employers are still hiring for understanding, not prompting<ul><li>Code review, debugging, and interviews all test whether you can reason about code</li><li>And judge whether it's correct</li><li>Learning to program on your own turns AI into a tool you can direct and verify, instead of one you're assuming got it right</li></ul> | :material-close:{ .pt-icon-fail } AI will likely be available at work too — but it isn't what's being tested |
 
     </div>
