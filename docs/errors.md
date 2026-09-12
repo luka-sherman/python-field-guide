@@ -34,7 +34,7 @@ The code doesn't follow Python's grammar rules, so it can't read or run the file
 
 | | [Read error message](#reading-a-syntax-error-message) | [`try`/`except`](#catch-with-tryexcept) | [Debugging strategies](#debugging-strategies) | [Debugger tool](#debugger-tool) | [Testing](#detect-errors-with-testing) |
 |---|:---:|:---:|:---:|:---:|:---:|
-| Ways to fix syntax errors | :material-check:{ .pt-icon-success }<br>Points to where Python couldn't understand | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } |
+| Ways to fix syntax errors | :material-check:{ .pt-icon-success }<br>Points to what Python couldn't read | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } |
 
 </div>
 
@@ -238,20 +238,12 @@ These general techniques help close the gap between what you think the code does
 
 #### Read it out loud { .pt-fake-h3 }
 
-```python-ref
-for length in lengths:    # "for each length in lengths" — but a dict hands back its keys
-    if length > 6:        # so `length` is actually a species name here, not a number
-```
-
-Read your code line by line, out loud, saying in plain English what each line does and why. This is often called **rubber duck debugging**: putting each line into words forces you to state assumptions you'd otherwise skim past while reading silently. Say "for each length in lengths" out loud and the mismatch jumps out — looping directly over a dict hands back its keys, not its values, so `length` here is actually a species name like `"ball python"`. That's exactly what raises the error below: you can't compare a string to `6`.
+Read your code line by line, out loud, saying in plain English what each line does and why. This is often called **rubber duck debugging**: putting each line into words forces you to state assumptions you'd otherwise skim past while reading silently. 
 
 ```python-ref
-Traceback (most recent call last):
-  File "lengths.py", line 5, in <module>
-TypeError: '>' not supported between instances of 'str' and 'int'
+if length < 1 and length > 20:               # "If length is under 1 and length is over 20..." 
+    print("that length doesn't look right")  # "impossible condition, should use `or` instead of `and`!"
 ```
-
-The fix follows straight from the narration — loop over `lengths.values()` instead.
 
 #### Print debugging { .pt-fake-h3 }
 
@@ -259,22 +251,43 @@ The fix follows straight from the narration — loop over `lengths.values()` ins
 print(type(length), length)   # confirm what a value actually is, not what you assumed it was
 ```
 
-Sprinkle `print()` calls between the lines you suspect, showing a variable's value (and [`type()`](types.md), if you're not sure) at that exact point in the run. This narrows down *where* your assumption about the code stopped matching reality — especially useful when nothing crashes and you're just staring at a wrong final answer, so there's no traceback pointing anywhere. Delete the `print()` calls once you've found the problem — they're a diagnostic, not part of the program.
+Sprinkle `print()` calls between the lines you suspect, showing a variable's value (and [`type()`](types.md), if you're not sure) at that exact point in the run. This narrows down *where* your assumption about the code stopped matching reality — especially useful when nothing crashes and you're just staring at a wrong final answer, so there's no traceback pointing anywhere. Delete the `print()` calls once you've found the problem.
 
 #### Isolate the problem { .pt-fake-h3 }
 
-Comment out or delete code until the smallest version that still shows the bug is left, then add pieces back one at a time until it reappears — whatever you just added back is the culprit. Especially useful in a long script, where the traceback's line number is buried inside a function calling a function calling a function — cutting the problem down to a few lines removes everything that isn't actually relevant.
+Comment out or delete sections of code until you find the smallest version that still shows the problem. Especially useful for syntax errors you can't obviously spot, since the pointer Python gives you isn't always exactly where the mistake is.
 
 #### Flag as TODO/FIXME { .pt-fake-h3 }
 
 ```python-ref
 # TODO: handle the case where length_ft is negative
 length_ft = 4.5
+
+# FIXME: math incorrect
+def to_inches(length_ft):
+    return length_ft * 10
 ```
 
-Not every problem gets fixed the moment you spot it — sometimes you're mid-debugging something else and don't want to lose track of it. Marking a comment `TODO` flags a placeholder for "come back to this," not a fix in itself. `FIXME` is the same idea for something you know is actively broken rather than just unfinished.
+Not every problem gets fixed the moment you spot it — sometimes you're mid-debugging something else and don't want to lose track of it. Marking a comment `TODO` creates a reminder for yourself to "come back to this." `FIXME` is the same idea for something you know is actively broken rather than just unfinished.
 
-Some editors collect every `TODO`/`FIXME` in a project into one scannable list — PyCharm has a built-in TODO tool window (**View → Tool Windows → TODO**, or ++alt+6++), VS Code needs an extension like [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree), and Thonny/IDLE have no built-in equivalent (it still works as a plain comment, just without the aggregated list).
+??? tip "Collecting TODO/FIXME comments in each editor"
+    Some editors collect every `TODO`/`FIXME` in a project into one scannable list.
+
+    === "PyCharm"
+
+        Built-in TODO tool window (**View → Tool Windows → TODO**, or ++alt+6++) collects every `TODO`/`FIXME` in the project into one scannable list.
+
+    === "VS Code"
+
+        No built-in aggregator, but an extension like [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree) adds one.
+
+    === "Thonny"
+
+        No built-in equivalent — it still works as a plain comment, just without an aggregated list.
+
+    === "IDLE"
+
+        No built-in equivalent — it still works as a plain comment, just without an aggregated list.
 
 </div>
 
@@ -342,7 +355,7 @@ A **debugger** is a tool built into most code editors that lets you pause a runn
 
 ### Detect errors with testing { .pt-fake-h2 }
 
-You're here because something broke. A **test** is a small script that checks your code's behavior automatically, so the same mistake gets caught the moment it's introduced — instead of the next time someone happens to run into it by hand.
+A **test** is a small script that checks your code's behavior automatically, so the mistake gets caught the moment it's introduced.
 
 ```python-ref
 def get_length(species, lengths):
@@ -353,28 +366,11 @@ def test_missing_species_returns_none():
     assert get_length("reticulated python", lengths) is None
 ```
 
-[pytest](libraries/pytest.md) is the standard tool for this in Python — a function named `test_*` is one check, a plain `assert` states what should be true, and running the file reports exactly which checks passed and which failed, the same way `python` reports which line of your code raised an error.
+[pytest](libraries/pytest.md) is the standard tool for this in Python — a function starting with `test_` is one check, and inside it `assert` states what should be true. Running the file reports exactly which checks passed and which failed, the same way `python` reports which line of your code raised an error.
 
-Tests are especially good at catching [logic errors](#logic-errors) — the one category on this page with no traceback at all, where the only way to notice something's wrong is comparing the actual output against what you expected. A test makes that exact comparison every time, automatically, instead of relying on you to notice by eye.
+Tests are especially good at catching [logic errors](#logic-errors) — where the only way to notice something's wrong is comparing the actual output against what you expected. A test does that comparison automatically, instead of relying on you to notice by eye.
 
-They're just as useful for [runtime errors](#runtime-errors) — a test can exercise an edge case you wouldn't normally hit by hand (an empty input, a missing key, a zero divisor), and `pytest.raises()` even lets you assert that a specific exception *should* fire, so you catch both "this crashes when it shouldn't" and "this doesn't crash when it should." [Syntax errors](#syntax-errors) are the one category tests can't help with — the file has to actually parse before pytest can even import it to run anything.
-
-??? run "Run a test example"
-    ```python
-    import pytest
-
-    with open("test_lengths.py", "w") as file:
-        file.write(
-            "def get_length(species, lengths):\n"
-            "    return lengths.get(species)\n"
-            "\n"
-            "def test_missing_species_returns_none():\n"
-            "    lengths = {\"ball python\": 4.5, \"burmese python\": 12}\n"
-            "    assert get_length(\"reticulated python\", lengths) is None\n"
-        )
-
-    pytest.main(["-v", "test_lengths.py"])
-    ```
+They're also useful for [runtime errors](#runtime-errors) — a test can exercise an edge case you wouldn't normally hit every time (an empty input, a missing key, a zero divisor), and `pytest.raises()` even lets you assert that a specific exception *should* fire, so you catch both "this crashes when it shouldn't" and "this doesn't crash when it should."
 
 </div>
 
