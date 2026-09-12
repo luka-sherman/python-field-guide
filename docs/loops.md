@@ -323,6 +323,21 @@ for s in reversed(species):
 
 ### Going further { data-card-link="skip" }
 
+??? warning "Modifying a list while looping over it"
+    Adding to or removing from a list while a `for` loop is walking over it shifts every item after the change into a different position — the loop keeps advancing by index, so it silently skips over whatever slid into the spot it already passed.
+
+    ```python-ref
+    species = ["ball", "burmese", "boa"]
+
+    for specie in species:
+        if specie == "burmese":
+            species.remove(specie)  # "boa" slides into "burmese"'s spot...
+
+    species  # ["ball", "boa"] — looks right here, but skips items in longer lists
+    ```
+
+    Loop over a copy instead, so the list being changed and the list being walked aren't the same object — `for specie in species.copy():` (equivalently `species[:]` or `list(species)`).
+
 ??? tip "Loop two collections at the same time with zip()"
     `zip()` pairs up items from two (or more) iterables by position — the first item from each, then the second from each, and so on — stopping as soon as the shortest one runs out. Works with any iterable, mixed types included — list, tuple, string, dict (its keys, by default), even a `range()`. Because it is based on order, using an unordered collection like `set` or plain `dict` can produce pairings in an unpredictable order.
 

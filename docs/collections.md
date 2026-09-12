@@ -333,6 +333,20 @@ class diagram panel
 
 ### Going further { data-card-link="skip" }
 
+??? warning "In-place list methods return None"
+    `append()`, `insert()`, `extend()`, `sort()`, `reverse()`, and `remove()` all change the list directly and return `None` — not the changed list. Reassigning the variable to one of their results replaces the list itself with `None`, and the next call on it raises `AttributeError: 'NoneType' object has no attribute '...'`.
+
+    ```python-ref
+    species = species.append("carpet")  # species is now None, not the updated list
+    species.sort()                      # AttributeError: 'NoneType' object has no attribute 'sort'
+    ```
+
+    Call the method on its own line instead — the list was already changed in place, nothing to reassign.
+
+    ```python-ref
+    species.append("carpet")  # correct — no assignment needed
+    ```
+
 ??? run "Practice with lists"
     Each box below is fully editable — write your answer, then click Run.
 

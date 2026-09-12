@@ -309,6 +309,8 @@ if weight:                 # runs — weight isn't 0.0
 
     This is a property of floating-point math in virtually every programming language, not a Python bug. If you need exact decimal arithmetic, use the `decimal` library instead of `float`.
 
+    It also means two floats that *should* be equal can compare unequal with `==` — `0.1 + 0.2 == 0.3` is `False`. Round both sides first (`round(x, 2) == round(y, 2)`), or check they're close enough instead of exactly equal.
+
 ??? run "Practice with floats"
 
     ```python
@@ -1130,6 +1132,18 @@ venomous = None
     ```
 
 ### Going further { data-card-link="skip" }
+
+??? warning "is vs =="
+    `is` checks whether two variables point to the *exact same object* in memory, not whether their values are equal — that's what makes it correct for `None` (there's ever only one), but wrong for almost everything else. Small integers and short strings happen to work with `is` too, because Python reuses those specific objects internally, which makes the mistake easy to miss until it silently breaks on a larger number or a value built some other way.
+
+    ```python-ref
+    a = 1000
+    b = 1000
+    a == b   # True — same value
+    a is b   # usually False — different objects, even though the value matches
+    ```
+
+    Use `==`/`!=` to compare values, and reserve `is`/`is not` for `None`.
 
 ??? run "Practice with None"
 

@@ -121,6 +121,28 @@ describe(species="ball", venomous=True)    # length_ft still uses its default
         pass    # placeholder — does nothing, but prevents a syntax error
     ```
 
+??? warning "Mutable default argument"
+    A default value is only ever created **once**, when the function is defined — not fresh on every call. For a list or dict default, that means every call sharing that default is silently reading and writing the *same* object, so it keeps growing across calls instead of starting empty each time.
+
+    ```python-ref
+    def add_sighting(species, log=[]):    # log=[] is created once, not per call
+        log.append(species)
+        return log
+
+    add_sighting("ball")       # ["ball"]
+    add_sighting("burmese")    # ["ball", "burmese"] — the same list, not a fresh one
+    ```
+
+    Default to `None` instead, and create the list inside the function body:
+
+    ```python-ref
+    def add_sighting(species, log=None):
+        if log is None:
+            log = []
+        log.append(species)
+        return log
+    ```
+
 ??? run "Run a function example"
     All the examples above, combined into one script:
 
