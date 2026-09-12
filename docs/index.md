@@ -209,6 +209,28 @@ hide:
 
 # Add-On Libraries
 
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+#### Testing { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-test-tube:{ .lg .middle } [__pytest__](libraries/pytest.md) [:material-download-outline:](libraries/pytest.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
+
+    Writing and running tests: assertions, fixtures, and parametrizing.
+
+    [**`writing and running a test`**](libraries/pytest.md#writing-and-running-a-test): [`from the command line`](libraries/pytest.md#from-the-command-line)
+
+    [**`reading a failure`**](libraries/pytest.md#reading-a-failure)
+
+    [**`fixtures`**](libraries/pytest.md#fixtures)
+
+    [**`parametrizing tests`**](libraries/pytest.md#parametrizing-tests)
+
+    [**`testing for exceptions`**](libraries/pytest.md#testing-for-exceptions)
+
+</div>
+</div>
+
 <div class="pt-category pt-category--wide pt-lib--3" markdown="block">
 #### Utilities { .pt-homepage-heading }
 
@@ -247,28 +269,6 @@ hide:
     [**`randint`**](libraries/random.md#random-numbers)
 
     [**`choice`**](libraries/random.md#random-selections): [`sample`](libraries/random.md#sampling-without-replacement) [`shuffle`](libraries/random.md#shuffling-a-list)
-
-</div>
-</div>
-
-<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
-#### Testing { .pt-homepage-heading }
-
-<div class="grid cards" markdown="block">
-
--   :material-test-tube:{ .lg .middle } [__pytest__](libraries/pytest.md) [:material-download-outline:](libraries/pytest.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
-
-    Writing and running tests: assertions, fixtures, and parametrizing.
-
-    [**`writing and running a test`**](libraries/pytest.md#writing-and-running-a-test): [`from the command line`](libraries/pytest.md#from-the-command-line)
-
-    [**`reading a failure`**](libraries/pytest.md#reading-a-failure)
-
-    [**`fixtures`**](libraries/pytest.md#fixtures)
-
-    [**`parametrizing tests`**](libraries/pytest.md#parametrizing-tests)
-
-    [**`testing for exceptions`**](libraries/pytest.md#testing-for-exceptions)
 
 </div>
 </div>

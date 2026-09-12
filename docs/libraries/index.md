@@ -11,6 +11,28 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
 <div class="pt-category-grid" markdown="block">
 
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+#### Testing { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-test-tube:{ .lg .middle } [__pytest__](pytest.md) [:material-download-outline:](pytest.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
+
+    Writing and running tests: assertions, fixtures, and parametrizing.
+
+    [**`writing and running a test`**](pytest.md#writing-and-running-a-test): [`from the command line`](pytest.md#from-the-command-line)
+
+    [**`reading a failure`**](pytest.md#reading-a-failure)
+
+    [**`fixtures`**](pytest.md#fixtures)
+
+    [**`parametrizing tests`**](pytest.md#parametrizing-tests)
+
+    [**`testing for exceptions`**](pytest.md#testing-for-exceptions)
+
+</div>
+</div>
+
 <div class="pt-category pt-category--wide pt-lib--3" markdown="block">
 #### Utilities { .pt-homepage-heading }
 
@@ -49,28 +71,6 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
     [**`randint`**](random.md#random-numbers)
 
     [**`choice`**](random.md#random-selections): [`sample`](random.md#sampling-without-replacement) [`shuffle`](random.md#shuffling-a-list)
-
-</div>
-</div>
-
-<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
-#### Testing { .pt-homepage-heading }
-
-<div class="grid cards" markdown="block">
-
--   :material-test-tube:{ .lg .middle } [__pytest__](pytest.md) [:material-download-outline:](pytest.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
-
-    Writing and running tests: assertions, fixtures, and parametrizing.
-
-    [**`writing and running a test`**](pytest.md#writing-and-running-a-test): [`from the command line`](pytest.md#from-the-command-line)
-
-    [**`reading a failure`**](pytest.md#reading-a-failure)
-
-    [**`fixtures`**](pytest.md#fixtures)
-
-    [**`parametrizing tests`**](pytest.md#parametrizing-tests)
-
-    [**`testing for exceptions`**](pytest.md#testing-for-exceptions)
 
 </div>
 </div>
