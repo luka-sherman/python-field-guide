@@ -232,7 +232,7 @@ It's good for running Python files that are already finished — either your own
 
 <div class="pfg-section" markdown="block">
 
-## Using a virtual environment *(optional)*
+## Virtual environments *(optional)*
 
 Sometimes you'll want to install [external libraries](./libraries/index.md) for your project. A **virtual environment** keeps each project's installed libraries in their own separate folder instead of installing them onto your computer.
 
@@ -250,10 +250,10 @@ Sometimes you'll want to install [external libraries](./libraries/index.md) for 
 1. Create a `venv` folder holding a private copy of Python and its libraries. This only needs to happen the first time you run your project.
 
     ```bash
-    python -m venv venv  # or use python3, depnding on what you saw in Step 0 above
+    python -m venv venv  # or use python3, depending on what you saw in Step 0 above
     ```
 
-2. Activate it, you need to do this every  every time you open a new terminal window: 
+2. Activate it, you need to do this every time you open a new terminal window: 
 
     === "macOS/Linux"
 

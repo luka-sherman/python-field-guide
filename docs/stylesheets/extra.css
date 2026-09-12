@@ -336,6 +336,20 @@ input:checked + .md-consent__settings {
   mask-image: var(--md-admonition-icon--python);
 }
 
+/* Material's own summary focus ring is gated behind a JS-added `.focus-visible`
+   class (an old keydown-tracking polyfill it ships), not the native
+   `:focus-visible` pseudo-class — `.md-typeset summary:not(.focus-visible)`
+   unconditionally zeroes the outline until that class shows up. Restore a
+   visible indicator via the native pseudo-class directly, same pattern used
+   for the run button and card links elsewhere in this file, so keyboard focus
+   on our custom run/ai/python collapsible admonitions is never silently blank. */
+.md-typeset .run > summary:focus-visible,
+.md-typeset .ai > summary:focus-visible,
+.md-typeset .python > summary:focus-visible {
+  outline: 0.15rem solid var(--pt-accent);
+  outline-offset: 0.15rem;
+}
+
 /* ---- Built-in "tip" admonition, darkened ----
    Material's default tip color (#00bfa5) is a bright neon teal that clashes
    with this site's muted cream/ink/green palette — darkened the same way the

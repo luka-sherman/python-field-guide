@@ -28,7 +28,7 @@ hide:
 
     [**`Terminal application`**](workspace.md#using-the-terminal-optional)
 
-    [**`virtual environments`**](workspace.md#using-a-virtual-environment-optional)
+    [**`virtual environments`**](workspace.md#virtual-environments-optional)
 
 -   :material-cube-outline:{ .lg .middle } [__Foundations__](foundations.md)
 
