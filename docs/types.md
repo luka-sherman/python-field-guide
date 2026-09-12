@@ -449,7 +449,7 @@ Strings use the same index and slice syntax as lists. `0` is the first character
 
     `{ value : [align] [sign] [width] [thousand separator ,] [.precision] [type] }`
 
-    - **align** — `<` left, `>` right, or `^` center, aligns *within* the width, so it requires a specificed width too.
+    - **align** — `<` left, `>` right, or `^` center, aligns *within* the width, so it requires a specified width too.
 
         ```python-ref
         f"{length:<6}"  # "5     " — left-aligned in 6 characters

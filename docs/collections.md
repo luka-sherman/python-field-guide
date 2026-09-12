@@ -92,7 +92,7 @@ class diagram panel
     print(species)         # ["burmese", "carpet", "ball", "blood"]
     ```
 
-- **Acccess a range of multiple items at once:** 
+- **Access a range of multiple items at once:** 
 
     - **Slice with `list[start:end]`** to return a new list containing items from the `start` index up to (but not including) the `end` index.
 
@@ -499,7 +499,7 @@ flowchart LR
     snake["species"]  # "ball"
     ```
 
-- **`get()`** does the same thing, but returns `None` if the key is not in the dict. You can provide an optinal default value to fall back on that will be returned if they key is not in the dict.
+- **`get()`** does the same thing, but returns `None` if the key is not in the dict. You can provide an optional default value to fall back on that will be returned if the key is not in the dict.
 
     ```python-ref
     snake.get("species")        # "ball"

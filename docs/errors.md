@@ -93,7 +93,7 @@ Think about what programming concepts the failing line is using (data type, loop
 
 A logic error is a bug Python doesn't notice, it finishes running but gives you an **unexpected result** because the reasoning itself was **inaccurate**.
 
-Think about what programming concepts you are using (data types, loops, conditionals, etc.) and revist those pages on this site to confirm you're applying them correctly.
+Think about what programming concepts you are using (data types, loops, conditionals, etc.) and revisit those pages on this site to confirm you're applying them correctly.
 
 <div class="pt-jump-table" markdown="block">
 
