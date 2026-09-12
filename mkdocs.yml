@@ -38,6 +38,8 @@ nav:
           - OpenCV: libraries/opencv.md
       - Desktop UIs:
           - Tkinter: libraries/tkinter.md
+      - Testing:
+          - pytest: libraries/pytest.md
 
 theme:
   name: material

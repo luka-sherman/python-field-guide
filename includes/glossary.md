@@ -45,3 +45,7 @@
 *[Hashable]: Can be used as a dict key or set member because it never changes after creation — most immutable types qualify, like int, float, str, bool, None, and tuple
 *[queue]: A line of items processed in the order they arrive — the first one added is the first one handled
 *[Queue]: A line of items processed in the order they arrive — the first one added is the first one handled
+*[bug]: A mistake in your code that makes it do the wrong thing, whether or not Python actually notices and raises an error
+*[Bug]: A mistake in your code that makes it do the wrong thing, whether or not Python actually notices and raises an error
+*[syntax]: The grammatical rules for what counts as validly structured code, checked before any of it runs — independent of whether the logic is actually correct
+*[Syntax]: The grammatical rules for what counts as validly structured code, checked before any of it runs — independent of whether the logic is actually correct

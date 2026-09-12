@@ -62,7 +62,7 @@ A **code editor** or an **IDE** ("Integrated Development Environment") is a text
 - **Running code is easier** — click a Run button from your IDE instead of typing Terminal commands every time
 - **Code completion** — the editor suggests function names and variables as you type, saving time and reducing typos
 - **Error detection** — it warns you about common mistakes before you run the code
-- **[Debugging](errors.md#using-a-debugger)** — pause your code mid-run and inspect variables to track down bugs, instead of only reading output after the fact
+- **[Debugging](errors.md#debugger-tool)** — pause your code mid-run and inspect variables to track down bugs, instead of only reading output after the fact
 
 Download one of the **free** code editors below. You can always switch later.
 
@@ -141,7 +141,7 @@ That's it! You've written and run your first Python program. From here, you can 
         
 ??? tip "Reading error messages"
 
-    When you see red error text, the [Errors](errors.md#reading-errors) page covers how to read it.
+    When you see red error text, the [Errors](errors.md#reading-a-traceback) page covers how to read it.
 
 </div>
 
@@ -228,5 +228,107 @@ It's good for running Python files that are already finished — either your own
     4. **Stop a running Python file:**
 
         ++ctrl+c++ 
+</div>
+
+<div class="pfg-section" markdown="block">
+
+## Virtual environments *(optional)*
+
+Sometimes you'll want to install [external libraries](./libraries/index.md) for your project. A **virtual environment** keeps each project's installed libraries in their own separate folder instead of installing them onto your computer.
+
+**Benefits:**
+
+- **Easy to share your setup** — save the exact libraries a project needs so someone else (or you, on another computer) can recreate it exactly
+- **Safe to experiment** — try out a new library and delete it later without affecting anything else on your computer
+- **Avoids permission problems** — installs into a folder you own, instead of needing admin access to install onto your whole computer
+- **Keeps projects independent** — one project's installed libraries can't conflict with another's
+
+**To setup and run a virtual environment:**
+
+0. [Open the terminal](#using-the-terminal-optional) and navigate to your project folder 
+
+1. Create a `venv` folder holding a private copy of Python and its libraries. This only needs to happen the first time you run your project.
+
+    ```bash
+    python -m venv venv  # or use python3, depending on what you saw in Step 0 above
+    ```
+
+2. Activate it, you need to do this every time you open a new terminal window: 
+
+    === "macOS/Linux"
+
+        ```bash
+        source venv/bin/activate
+        ```
+
+    === "Windows"
+
+        ```bash
+        venv\Scripts\activate
+        ```
+
+    Your terminal prompt now starts with `(venv)`, showing the virtual environment is active. Forgetting to activate the virtual environment first means any commands will run against your system-wide Python instead.
+
+3. Install the libraries your project needs into the active virtual environment. First, install each library with `pip`:
+
+    ```bash
+    pip install requests pandas
+    ```
+
+4. Then save the exact versions you just installed to a file, so this same setup can be recreated later without remembering which libraries or versions you used:
+
+    ```bash
+    pip freeze > requirements.txt
+    ```
+
+5. This creates a `requirements.txt` file listing what you installed, you can open it to check. Alternatively, you can skip steps 4 and 5 by writing `requirements.txt` yourself in your code editor, it is a plain text file with one library per line.
+
+    ```
+    requests==2.31.0
+    pandas==2.2.0
+    ```
+
+    **Every time after that** — a different computer, a recreated `venv`, someone else running the project — you can now install all of the dependent libraries straight from the requirements file:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Run your program the same way as before:
+
+    ```bash
+    python script.py  # or python3
+    ```
+
+    No different from [running a file from the terminal](#using-the-terminal-optional) — as
+    long as the virtual environment is active, `python`/`pip` automatically point at its copy of
+    Python and its libraries instead of your system-wide one.
+
+5. Deactivate when you're done:
+
+    ```bash
+    deactivate
+    ```
+
+!!! danger "Never use `sudo` to fix a permission error"
+    If `pip install` fails with a permission error, it's almost always because the virtual
+    environment isn't activated — check for `(venv)` at the start of your prompt and run Step 2
+    again. Running `sudo pip install` instead installs directly into your computer's system
+    Python, which some operating systems (Linux especially) depend on internally — overwriting
+    or mismatching one of those libraries can break unrelated system tools, sometimes badly
+    enough to require reinstalling the OS.
+
+!!! warning "Don't move, rename, or copy the project venv folder to another computer"
+    The `venv` folder stores absolute file paths pointing back to its own location. Moving or
+    renaming the project folder — or copying it to a different computer — silently breaks
+    activation. If that happens, delete the `venv` folder and repeat Step 1 to recreate it;
+    never move or copy `venv` itself. This is also why `venv` isn't something you back up or
+    share directly — share `requirements.txt` instead, and let each computer create its own.
+
+??? tip "Keep the venv folder out of version control"
+    If your project uses git, add `venv/` to `.gitignore`. It can contain thousands of files,
+    it's specific to your computer, and anyone else can recreate it in seconds from
+    `requirements.txt` — committing it just bloats the repository for no benefit.
+
 </div>
 

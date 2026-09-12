@@ -336,6 +336,20 @@ input:checked + .md-consent__settings {
   mask-image: var(--md-admonition-icon--python);
 }
 
+/* Material's own summary focus ring is gated behind a JS-added `.focus-visible`
+   class (an old keydown-tracking polyfill it ships), not the native
+   `:focus-visible` pseudo-class — `.md-typeset summary:not(.focus-visible)`
+   unconditionally zeroes the outline until that class shows up. Restore a
+   visible indicator via the native pseudo-class directly, same pattern used
+   for the run button and card links elsewhere in this file, so keyboard focus
+   on our custom run/ai/python collapsible admonitions is never silently blank. */
+.md-typeset .run > summary:focus-visible,
+.md-typeset .ai > summary:focus-visible,
+.md-typeset .python > summary:focus-visible {
+  outline: 0.15rem solid var(--pt-accent);
+  outline-offset: 0.15rem;
+}
+
 /* ---- Built-in "tip" admonition, darkened ----
    Material's default tip color (#00bfa5) is a bright neon teal that clashes
    with this site's muted cream/ink/green palette — darkened the same way the
@@ -824,6 +838,22 @@ input:checked + .md-consent__settings {
   white-space: nowrap;
 }
 
+.pt-jump-table code {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.pt-checklist-table th:first-child,
+.pt-checklist-table td:first-child {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.pt-checklist-table code {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
 .pt-bool-true,
 .pt-bool-false {
   display: inline-block;
@@ -1020,7 +1050,8 @@ input:checked + .md-consent__settings {
   margin: 4em 0;
 }
 
-.md-typeset .pfg-section > h2:first-child {
+.md-typeset .pfg-section > h2:first-child,
+.md-typeset .pfg-section > h3:first-child {
   margin-top: 0.7em;
 }
 
@@ -1029,7 +1060,7 @@ input:checked + .md-consent__settings {
   color: var(--pt-heading-h3);
 }
 
-.pt-fake-h2 {
+.md-typeset .pt-fake-h2 {
   font-family: "Cormorant Garamond", serif;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -1037,6 +1068,15 @@ input:checked + .md-consent__settings {
   line-height: 1.25;
   margin: 2.2em 0 0.8em;
   color: var(--pt-heading-h2);
+}
+
+.md-typeset .pt-fake-h3 {
+  font-weight: 700;
+  letter-spacing: -0.0125em;
+  font-size: 1.25em;
+  line-height: 1.5;
+  margin: 0.875em 0 1em;
+  color: var(--pt-heading-h3);
 }
 
 .pfg-diagram-frame,

@@ -14,7 +14,7 @@ description: >-
     `from collections import ...`. For the built-in `list`, `dict`, `tuple`, and `set` types
     themselves, see [Collections](../collections.md).
 
-The **`collections`** module adds specialized containers with added functionaility on top of the
+The **`collections`** module adds specialized containers with added functionality on top of the
 built-in [`str`](../types.md#strings) [`list`](../collections.md#lists) [`dict`](../collections.md#dictionaries) [`tuple`](../collections.md#tuples) and [`set`](../collections.md#sets).
 
 <div class="pt-jump-table" markdown="block">

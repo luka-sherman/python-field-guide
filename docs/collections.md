@@ -92,7 +92,7 @@ class diagram panel
     print(species)         # ["burmese", "carpet", "ball", "blood"]
     ```
 
-- **Acccess a range of multiple items at once:** 
+- **Access a range of multiple items at once:** 
 
     - **Slice with `list[start:end]`** to return a new list containing items from the `start` index up to (but not including) the `end` index.
 
@@ -333,6 +333,20 @@ class diagram panel
 
 ### Going further { data-card-link="skip" }
 
+??? warning "In-place list methods return None"
+    `append()`, `insert()`, `extend()`, `sort()`, `reverse()`, and `remove()` all change the list directly and return `None` — not the changed list. Reassigning the variable to one of their results replaces the list itself with `None`, and the next call on it raises `AttributeError: 'NoneType' object has no attribute '...'`.
+
+    ```python-ref
+    species = species.append("carpet")  # species is now None, not the updated list
+    species.sort()                      # AttributeError: 'NoneType' object has no attribute 'sort'
+    ```
+
+    Call the method on its own line instead — the list was already changed in place, nothing to reassign.
+
+    ```python-ref
+    species.append("carpet")  # correct — no assignment needed
+    ```
+
 ??? run "Practice with lists"
     Each box below is fully editable — write your answer, then click Run.
 
@@ -485,7 +499,7 @@ flowchart LR
     snake["species"]  # "ball"
     ```
 
-- **`get()`** does the same thing, but returns `None` if the key is not in the dict. You can provide an optinal default value to fall back on that will be returned if they key is not in the dict.
+- **`get()`** does the same thing, but returns `None` if the key is not in the dict. You can provide an optional default value to fall back on that will be returned if the key is not in the dict.
 
     ```python-ref
     snake.get("species")        # "ball"
