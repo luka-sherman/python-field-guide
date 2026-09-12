@@ -933,6 +933,17 @@ input:checked + .md-consent__settings {
   color: var(--pt-danger);
 }
 
+/* .twemoji is display:inline-flex in Material's own CSS, an atomic inline
+   box that a wrapping <a>'s text-decoration underline can't draw through —
+   so the hover underline on .pt-jump-table td a (see below) never showed for
+   icon-only cells. A bottom box-shadow fakes the same underline without
+   taking up layout space, colored to match the icon via currentColor.
+   Only :material-check: is ever linked — :material-close: cells aren't
+   clickable, since "not applicable" has nowhere useful to jump to. */
+.pt-jump-table td a:hover .pt-icon-success {
+  box-shadow: 0 0.125em 0 0 currentColor;
+}
+
 /* Feedback form on about.md, posting to Formspree */
 .pt-feedback-form {
   display: flex;
