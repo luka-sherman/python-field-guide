@@ -33,6 +33,16 @@
       el.hidden = hidden;
       el = el.nextElementSibling;
     }
+
+    // Many pages wrap a whole ## section in <div class="pfg-section"> for
+    // its own card-style border/background (raw HTML in the markdown, not
+    // generated). Hiding the heading and its siblings above leaves that
+    // wrapper behind as an empty card, so hide it too when the heading is
+    // its first child.
+    const wrapper = heading.parentElement;
+    if (wrapper && wrapper.classList.contains("pfg-section") && wrapper.firstElementChild === heading) {
+      wrapper.hidden = hidden;
+    }
   }
 
   // toc.integrate puts headings in the same nav as site links — hide the

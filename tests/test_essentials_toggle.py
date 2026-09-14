@@ -81,6 +81,31 @@ def test_admonition_inside_a_hidden_section_is_actually_hidden(page, site_url):
     )
 
 
+def test_pfg_section_wrapper_is_hidden_with_its_heading(page, site_url):
+    """Regression: many pages wrap a whole ## section in raw
+    `<div class="pfg-section">` for its own card-style border/background (not
+    generated — written directly in the markdown). setSectionHidden only hid the
+    heading and its flow siblings, which sit *inside* that wrapper — the wrapper
+    itself was never touched, so it stayed on screen as an empty bordered card
+    once everything inside it was hidden."""
+    page.goto(f"{site_url}/collections/?simplified=true")
+
+    result = page.evaluate(
+        """() => {
+            const heading = document.getElementById('tuples');
+            const wrapper = heading.closest('.pfg-section');
+            return {
+                wrapperFound: !!wrapper,
+                wrapperHidden: wrapper ? wrapper.hidden : null,
+                wrapperDisplay: wrapper ? getComputedStyle(wrapper).display : null,
+            };
+        }"""
+    )
+    assert result["wrapperFound"], "expected #tuples to sit inside a .pfg-section wrapper"
+    assert result["wrapperHidden"] is True, "the .pfg-section wrapper should be hidden too"
+    assert result["wrapperDisplay"] == "none", "the wrapper is still rendering as an empty card"
+
+
 def test_link_to_hidden_section_recovers_to_advanced(page, site_url):
     """collections.md's own cheat-sheet table (near the top) links to #tuples even
     while the "Tuples" heading itself is hidden by data-advanced — clicking that visible
