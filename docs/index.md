@@ -889,15 +889,3 @@ hide:
     ```
 
     <p class="pfg-diagram-caption">FIG: when to use AI while learning to program</p>
-
-??? info "What is Python, and what is this guide?"
-
-    **Readable, and quick to write.** *Python* is a general-purpose language built for code that's easy to read back later — even by someone who didn't write it. No compiling: write a `.py` file, run it directly.
-
-    - **Shows up everywhere** — web backends, data analysis and machine learning, automating repetitive tasks, scientific computing, quick glue scripts. Several of these are covered on this site's [Libraries](#utilities) pages.
-    - **The skills transfer.** Variables, conditionals, loops, functions, classes — the fundamentals every language shares — read closer to plain English here, so you spend your effort learning to *think* like a programmer instead of fighting a stricter syntax. Once solid, those fundamentals carry over to whatever language you pick up next.
-    - **Often the fastest language to write *correct* code in** — even though it's not the fastest to *run* — which is why it's such a common first choice for a new project.
-
-    **This guide.** *Python Field Guide* is a free, in-browser reference — most code blocks are editable and runnable directly on the page.
-
-    - **For learners** — self-taught, students in an intro course, or anyone who wants one combined reference to work through start to finish, instead of a scattered pile of search results.
