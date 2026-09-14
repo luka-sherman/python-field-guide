@@ -320,12 +320,9 @@ hide:
     [**`recursion`**](functions.md#recursion)
 
     [**`decorators`**](functions.md#decorators): 
-    [`accepting any arguments`](functions.md#accepting-any-arguments) 
-    [`applying a decorator manually`](functions.md#applying-a-decorator-manually) 
-    [`decorators with arguments`](functions.md#decorators-with-arguments) 
-    [`preserving identity`](functions.md#preserving-identity) 
-    [`stacking decorators`](functions.md#stacking-decorators) 
-    [`wrapping the call`](functions.md#wrapping-the-call) 
+    [`arguments`](functions.md#accepting-any-arguments) 
+    [`original function`](functions.md#returning-the-function-unchanged) 
+    [`wrapping`](functions.md#wrapping-the-call)
 
 -   :material-package-variant:{ .lg .middle } [__Classes__](oop.md)
 
