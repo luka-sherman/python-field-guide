@@ -17,8 +17,7 @@
   /* background of the homepage category container ("outer grid" boxes); the
      library-card corner wedge + border track this. */
   --pt-section-bg: color-mix(in srgb, var(--pt-bg), color-mix(in srgb, var(--pt-panel) 84%, var(--pt-ink)));
-  /* a punchier, more saturated green than the old #185B37 */
-  --pt-accent: #0B7038;
+  --pt-accent: #08542A;
   /* card description text + the library-card badge icon */
   --pt-desc-blue: #255C6E;
   --pt-heading-h2: #004C24;
