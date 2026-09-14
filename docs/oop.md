@@ -233,7 +233,7 @@ ball.describe()    # "a 5 ft ball python"
 
 ## Method decorators
 
-Python provides three built-in [decorators](functions.md#decorators) for methods that change how the method is called and add functionality:
+Python provides 3 built-in [decorators](functions.md#decorators) for methods that change how the method is called and add functionality:
 
 ```python-ref
 class Snake:

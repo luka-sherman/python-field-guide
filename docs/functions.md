@@ -470,7 +470,7 @@ A decorator can run its own code around a function call by returning a different
 
 ```python
 def decorator_name(func):              # func is the function being decorated (here it's "describe()")
-    def wrapper():                     # desfines a new function that runs in place of func from now on
+    def wrapper():                     # defines a new function that runs in place of func from now on
         print("looking up a snake...")
         func()                         # calls the original, still reachable through func
         print("found it")
