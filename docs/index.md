@@ -106,18 +106,18 @@ hide:
     [**`how to write and run .py file`**](workspace.md#step-2-write-and-run-a-python-file): 
     [`file naming`](workspace.md#step-2-write-and-run-a-python-file) 
 
-    [**`Terminal`**](workspace.md#using-the-terminal-optional): 
-    [`cd`](workspace.md#using-the-terminal-optional) 
-    [`ls`](workspace.md#using-the-terminal-optional) 
-    [`pwd`](workspace.md#using-the-terminal-optional) 
-    [`shortcuts`](workspace.md#using-the-terminal-optional) 
+    [**`Terminal`**](workspace.md#using-the-terminal): 
+    [`cd`](workspace.md#using-the-terminal) 
+    [`ls`](workspace.md#using-the-terminal) 
+    [`pwd`](workspace.md#using-the-terminal) 
+    [`shortcuts`](workspace.md#using-the-terminal) 
     {: data-advanced="true" }
 
-    [**`virtual environments`**](workspace.md#virtual-environments-optional): 
-    [`activate`](workspace.md#virtual-environments-optional) 
-    [`pip`](workspace.md#virtual-environments-optional) 
-    [`requirements.txt`](workspace.md#virtual-environments-optional) 
-    [`venv`](workspace.md#virtual-environments-optional) 
+    [**`virtual environments`**](workspace.md#virtual-environments): 
+    [`activate`](workspace.md#virtual-environments) 
+    [`pip`](workspace.md#virtual-environments) 
+    [`requirements.txt`](workspace.md#virtual-environments) 
+    [`venv`](workspace.md#virtual-environments) 
     {: data-advanced="true" }
 
 -   :material-cube-outline:{ .lg .middle } [__Foundations__](foundations.md)
