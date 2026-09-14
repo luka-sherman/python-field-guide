@@ -37,10 +37,10 @@ TABLET_VIEWPORT = {"width": 800, "height": 1024}
 def _select_scheme(page, scheme):
     """Flip Material's palette to `scheme` ('default' = light, 'slate' = dark).
 
-    Material keeps the palette radio out of the normal visibility flow (the visible
-    control is a styled sibling label), so Playwright's actionability checks never see
-    it as clickable. Dispatching the click directly gets the same "input change fires,
-    Material's own JS reacts" result without depending on which label is visible when.
+    docs/javascripts/essentials_toggle.js replaces the visible light/dark control with its
+    own buttons and hides Material's native radio entirely, so Playwright can't click it
+    as a normal user control. Clicking it directly still fires the same input change that
+    Material's own JS (and our buttons) rely on to apply and persist the scheme.
     """
     page.evaluate(
         "(s) => document.querySelector(`input[data-md-color-scheme=\"${s}\"]`).click()",

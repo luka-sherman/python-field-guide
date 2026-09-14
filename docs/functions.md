@@ -323,7 +323,7 @@ describe(species="ball", length_ft=5)
 
 <div class="pfg-section" markdown="block">
 
-## Scope
+## Scope { data-advanced="true" }
 
 A variable created inside a function is **local** — it only exists while that function is running, and isn't visible outside it.
 
@@ -394,7 +394,7 @@ def show_species():
 
 <div class="pfg-section" markdown="block">
 
-## Recursion
+## Recursion { data-advanced="true" }
 
 A function can call itself — this is called **recursion**, an alternative to a loop for problems that break down into smaller versions of themselves.
 
@@ -460,7 +460,7 @@ Every recursive function needs two parts:
 
 <div class="pfg-section" markdown="block">
 
-## Decorators
+## Decorators { data-advanced="true" }
 
 **`@decorator`** lets you add behavior to a function without editing the function's own code — write the behavior once, then apply it to as many functions as you want. It's written as `@decorator_name`, placed directly above a `def`, and takes one function in, returning a function out[^callable].
 

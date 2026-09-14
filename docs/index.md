@@ -38,12 +38,14 @@ hide:
     [`ls`](workspace.md#using-the-terminal-optional) 
     [`pwd`](workspace.md#using-the-terminal-optional) 
     [`shortcuts`](workspace.md#using-the-terminal-optional) 
+    {: data-advanced="true" }
 
     [**`virtual environments`**](workspace.md#virtual-environments-optional): 
     [`activate`](workspace.md#virtual-environments-optional) 
     [`pip`](workspace.md#virtual-environments-optional) 
     [`requirements.txt`](workspace.md#virtual-environments-optional) 
     [`venv`](workspace.md#virtual-environments-optional) 
+    {: data-advanced="true" }
 
 -   :material-cube-outline:{ .lg .middle } [__Foundations__](foundations.md)
 
@@ -209,6 +211,7 @@ hide:
     [`sum`](collections.md#arithmetic_1) 
     [`tuple`](collections.md#create_2) 
     [`unpacking`](collections.md#packing-and-unpacking) 
+    {: data-advanced="true" }
 
     [**`sets`**](collections.md#sets): 
     [`add`](collections.md#update_1) 
@@ -229,6 +232,7 @@ hide:
     [`sum`](collections.md#arithmetic_2) 
     [`update`](collections.md#update_1) 
     [`| & - ^`](collections.md#combine) 
+    {: data-advanced="true" }
 
 </div>
 </div>
@@ -316,8 +320,10 @@ hide:
 
     [**`scope`**](functions.md#scope): 
     [`local vs global`](functions.md#local-vs-global-variables) 
+    {: data-advanced="true" }
 
     [**`recursion`**](functions.md#recursion)
+    {: data-advanced="true" }
 
     [**`decorators`**](functions.md#decorators): 
     [`arguments`](functions.md#accepting-arguments) 
@@ -325,6 +331,7 @@ hide:
     [`original function`](functions.md#returning-the-original-function) 
     [`stacking`](functions.md#advanced-uses) 
     [`wrapping`](functions.md#wrapping-the-call)
+    {: data-advanced="true" }
 
 -   :material-package-variant:{ .lg .middle } [__Classes__](oop.md)
 
@@ -339,6 +346,7 @@ hide:
     [`@classmethod`](oop.md#classmethod) 
     [`@property`](oop.md#property) 
     [`@staticmethod`](oop.md#staticmethod) 
+    {: data-advanced="true" }
 
     [**`inheritance`**](oop.md#inheritance): 
     [`adding attributes and methods`](oop.md#adding-attributes-and-methods) 
@@ -349,6 +357,7 @@ hide:
     [**`polymorphism`**](oop.md#polymorphism): 
     [`polymorphism via inheritance`](oop.md#polymorphism-via-inheritance) 
     [`same method name, unrelated classes`](oop.md#same-method-name-unrelated-classes) 
+    {: data-advanced="true" }
 
 </div>
 </div>
@@ -453,7 +462,7 @@ hide:
 
 # Add-On Libraries
 
-<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-advanced="true">
 #### Testing { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
@@ -484,6 +493,7 @@ hide:
 
 -   :material-format-list-group:{ .lg .middle } [__collections__](libraries/collections.md) 
 [:material-language-python:](libraries/collections.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
+    {: data-advanced="card" }
 
     Specialized containers with advanced functionality.
 
@@ -601,6 +611,7 @@ hide:
 
 -   :material-matrix:{ .lg .middle } [__NumPy__](libraries/numpy.md) 
 [:material-download-outline:](libraries/numpy.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
+    {: data-advanced="card" }
 
     Fast numeric arrays, with math applied to a whole array at once instead of item by item.
 
@@ -613,6 +624,7 @@ hide:
 
 -   :material-table:{ .lg .middle } [__pandas__](libraries/pandas.md) 
 [:material-download-outline:](libraries/pandas.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
+    {: data-advanced="card" }
 
     Tabular data: rows and columns, like a spreadsheet, built on top of NumPy.
 
@@ -754,13 +766,14 @@ hide:
 </div>
 </div>
 
-<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-advanced="true">
 #### Computer vision { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
 -   :material-face-recognition:{ .lg .middle } [__OpenCV__](libraries/opencv.md) 
 [:material-download-outline:](libraries/opencv.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
+    {: data-advanced="card" }
 
     Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection.
 
