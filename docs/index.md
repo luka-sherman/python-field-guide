@@ -74,7 +74,7 @@ hide:
 
     [`isinstance`](collections.md) [`type`](collections.md)
 
-    [**`lists`**](collections.md#lists): [`+`](collections.md#create) [`append`](collections.md#add-item) [`boolean expressions`](collections.md#boolean-expressions) [`clear`](collections.md#remove-item) [`comprehension`](collections.md#list-comprehension) [`copy`](collections.md#create) [`count`](collections.md#inspect) [`create`](collections.md#create-a-list) [`del`](collections.md#remove-item) [`extend`](collections.md#add-item) [`in`](collections.md#boolean-expressions) [`index`](collections.md#create-a-list) [`index`](collections.md#inspect) [`insert`](collections.md#add-item) [`item`](collections.md#lists) [`len`](collections.md#inspect) [`list`](collections.md#create) [`loop`](collections.md#loop-through-a-list) [`max`](collections.md#arithmetic) [`min`](collections.md#arithmetic) [`pop`](collections.md#remove-item) [`remove`](collections.md#remove-item) [`reverse`](collections.md#sort) [`slice`](collections.md#access-and-update-items) [`sort`](collections.md#sort) [`sorted`](collections.md#sort) [`step`](collections.md#access-and-update-items) [`sum`](collections.md#arithmetic)
+    [**`lists`**](collections.md#lists): [`+`](collections.md#create) [`append`](collections.md#add-item) [`boolean expressions`](collections.md#boolean-expressions) [`clear`](collections.md#remove-item) [`comprehension`](collections.md#list-comprehension) [`copy`](collections.md#create) [`count`](collections.md#inspect) [`create`](collections.md#create-a-list) [`del`](collections.md#remove-item) [`extend`](collections.md#add-item) [`in`](collections.md#boolean-expressions) [`index`](collections.md#create-a-list) [`insert`](collections.md#add-item) [`item`](collections.md#lists) [`len`](collections.md#inspect) [`list`](collections.md#create) [`loop`](collections.md#loop-through-a-list) [`max`](collections.md#arithmetic) [`min`](collections.md#arithmetic) [`pop`](collections.md#remove-item) [`remove`](collections.md#remove-item) [`reverse`](collections.md#sort) [`slice`](collections.md#access-and-update-items) [`sort`](collections.md#sort) [`sorted`](collections.md#sort) [`step`](collections.md#access-and-update-items) [`sum`](collections.md#arithmetic)
 
     [**`dictionaries`**](collections.md#dictionaries): [`access a value`](collections.md#access-a-value) [`boolean expressions`](collections.md#boolean-expressions_1) [`clear`](collections.md#remove_1) [`copy`](collections.md#create_1) [`del`](collections.md#remove_1) [`dict`](collections.md#create_1) [`get`](collections.md#dictionary-operations) [`items`](collections.md#loop-through-a-dictionary) [`key`](collections.md#dictionaries) [`len`](collections.md#inspect_1) [`loop`](collections.md#loop-through-a-dictionary) [`pop`](collections.md#remove_1) [`popitem`](collections.md#remove_1) [`update`](collections.md#update_1) [`value`](collections.md#dictionaries) [`values`](collections.md#loop-through-a-dictionary)
 
@@ -92,13 +92,13 @@ hide:
 
 -   :material-source-branch:{ .lg .middle } [__Conditionals__](conditionals.md)
 
-    Make decisions about when to run different sections of code.
+    Decision points that run code only if a condition is met.
 
     [**`if, elif, else`**](conditionals.md#if-elif-else): [`and, or, not`](conditionals.md#logical-operators) [`boolean expressions`](conditionals.md#boolean-expressions)
 
     [**`match, case`**](conditionals.md#match-case): [`_ wildcard`](conditionals.md#default-value-_) [`case + if`](conditionals.md#case-if) [`match with |`](conditionals.md#match-multiple-values-with) [`unpacking`](conditionals.md#unpacking-a-tuple)
 
-    [**`break, continue`**](conditionals.md#control-flow-statements): [`break`](conditionals.md#break) [`continue`](conditionals.md#continue) [`pass`](conditionals.md#going-further_2)
+    [**`control flow`**](conditionals.md#control-flow-statements): [`break`](conditionals.md#break) [`continue`](conditionals.md#continue) [`pass`](conditionals.md#going-further_2)
 
 -   :material-repeat:{ .lg .middle } [__Loops__](loops.md)
 
@@ -108,9 +108,10 @@ hide:
 
     [**`while`**](loops.md#while-loops): [`and`](loops.md#logical-operators) [`boolean expressions`](loops.md#boolean-expressions) [`counter and flag names`](loops.md#counter-and-flag-names) [`flag`](loops.md#using-a-flag) [`not`](loops.md#logical-operators) [`or`](loops.md#logical-operators) [`sentinel`](loops.md#sentinel)
 
-    [**`break, continue`**](loops.md#control-flow-statements): [`break`](loops.md#break) [`continue`](loops.md#continue) [`else`](loops.md#else)
+    [**`common patterns`**](loops.md#common-patterns): [`accumulator`](loops.md#accumulator) [`counter`](loops.md#counter) [`nested loops`](loops.md#nested-loops) 
 
-    [**`common patterns`**](loops.md#common-patterns): [`accumulator`](loops.md#accumulator) [`counter`](loops.md#counter) [`nested loops`](loops.md#nested-loops) [`pass`](loops.md#going-further_2)
+    [**`control flow`**](loops.md#control-flow-statements): [`break`](loops.md#break) [`continue`](loops.md#continue) [`else`](loops.md#else) [`pass`](loops.md#going-further_2)
+
 
 </div>
 </div>
@@ -122,9 +123,9 @@ hide:
 
 -   :material-function-variant:{ .lg .middle } [__Functions__](functions.md)
 
-    Package a block of code to run it multiple times.
+    Package a named block of code to run it at any time.
 
-    [**`def`**](functions.md#defining-a-function): [`default parameter values`](functions.md#default-parameter-values) [`docstrings`](functions.md#docstrings) [`keyword arguments`](functions.md#keyword-arguments) [`return`](functions.md#return-values)
+    [**`def`**](functions.md#defining-a-function): [`default parameter values`](functions.md#default-parameter-values) [`docstrings`](functions.md#docstrings) [`keep functions focused`](functions.md#keep-functions-focused) [`keyword arguments`](functions.md#keyword-arguments) [`return`](functions.md#return-values) [`type hints`](functions.md#type-hints)
 
     [**`flexible arguments`**](functions.md#flexible-arguments): [`*args`](functions.md#args) [`**kwargs`](functions.md#kwargs)
 
@@ -188,7 +189,7 @@ hide:
 
     [**`Pythonic patterns`**](style.md#pythonic-patterns): [`common patterns`](style.md#common-patterns)
 
-    [**`best practices`**](style.md#additional-best-practices): [`catch exceptions`](style.md#catch-specific-exceptions) [`keep functions focused`](style.md#keep-functions-focused) [`readable print output`](style.md#readable-print-output) [`type hints`](style.md#type-hints)
+    [**`best practices`**](style.md#additional-best-practices)
 
     [**`linter`**](style.md#linter-tool)
 
@@ -196,13 +197,13 @@ hide:
 
 -   :material-bug-outline:{ .lg .middle } [__Errors__](errors.md)
 
-    How to understand, manage, and fix errors.
+    How to understand, fix, and handle errors.
 
-    [**`kinds of errors`**](errors.md#kinds-of-errors): [`syntax errors`](errors.md#syntax-errors) [`runtime errors`](errors.md#runtime-errors) [`logic errors`](errors.md#logic-errors)
+    [**`kinds of errors`**](errors.md#kinds-of-errors): [`syntax errors`](errors.md#syntax-errors) [`runtime errors`](errors.md#runtime-errors) [`logic errors`](errors.md#logic-errors) [`bugs`](errors.md)
 
-    [**`fixing errors`**](errors.md#fixing-errors): [`tracebacks`](errors.md#reading-a-traceback) [`reading a syntax error message`](errors.md#reading-a-syntax-error-message) [`try, except`](errors.md#catch-with-tryexcept) [`debugging strategies`](errors.md#debugging-strategies) [`isolate the problem`](errors.md#isolate-the-problem) [`print debugging`](errors.md#print-debugging) [`rubber duck debugging`](errors.md#read-it-out-loud) [`debugger tool`](errors.md#debugger-tool) [`TODO, FIXME`](errors.md#flag-as-todofixme) [`testing`](errors.md#detect-errors-with-testing)
+    [**`fixing errors`**](errors.md#fixing-errors): [`tracebacks`](errors.md#reading-a-traceback) [`syntax error message`](errors.md#reading-a-syntax-error-message) [`debugging strategies`](errors.md#debugging-strategies) [`isolate problems`](errors.md#isolate-the-problem) [`print debugging`](errors.md#print-debugging) [`rubber duck debugging`](errors.md#read-it-out-loud) [`debugger tool`](errors.md#debugger-tool) [`TODO / FIXME`](errors.md#flag-as-todofixme) [`testing`](errors.md#detect-errors-with-testing)
 
-    [**`detect errors with testing`**](errors.md#detect-errors-with-testing)
+    [**`handling errors`**](errors.md#handling-errors): [`try/except`](errors.md#catch-with-tryexcept) [`catch specific exceptions`](errors.md#catch-specific-exceptions) [`raise`](errors.md#raise) [`finally`](errors.md#finally) [`else`](errors.md#finally)
 
 </div>
 </div>

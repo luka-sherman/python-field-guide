@@ -111,6 +111,54 @@ def describe(species, length_ft=5, venomous=False):
 describe(species="ball", venomous=True)    # length_ft still uses its default
 ```
 
+### Type hints
+
+A **type hint** annotates a parameter or return value with the type it's expected to be — `species: str`, `length_ft: float`, `-> bool` — without Python enforcing it at runtime; it's documentation an editor or a separate type checker (like `mypy`) can check for you.
+
+```python-ref
+def is_unusually_long(species: str, length_ft: float) -> bool:
+    return length_ft > 5
+```
+
+A wrong type still runs — Python doesn't stop you from calling `is_unusually_long("ball python", "4.5")` with a string instead of a `float` — the hint only helps a tool catch the mismatch before you do, and helps a reader (or their editor) see what's expected without reading the function body.
+
+### Keep functions focused
+
+A function should do one thing. If you find yourself describing it with "and" — "loads the species *and* saves it *and* prints a summary" — it's probably three functions.
+
+```python-ref
+def load_and_describe(species):    # doing too much
+    ...
+
+def load_species(species):         # one job each
+    ...
+
+def describe(species):
+    ...
+```
+
+Repeating the same few lines in multiple places is a sign to pull them into their own function instead — commonly called **DRY** ("don't repeat yourself"). It also means a fix only has to happen in one place, instead of every place the lines were copied to.
+
+??? tip "Guard clauses: return early instead of nesting"
+    Handle the exception case first and return, rather than wrapping the rest of the function in an `else`. It keeps the normal path at the lowest indentation level, instead of nested one level deeper for every added check.
+
+    ```python-ref
+    def describe(length_ft):
+        if length_ft > 0:
+            return f"{length_ft} ft"
+        else:
+            return "unknown length"
+    ```
+
+    ```python-ref
+    def describe(length_ft):
+        if length_ft <= 0:
+            return "unknown length"
+        return f"{length_ft} ft"
+    ```
+
+    Both versions do the same thing — the second reads top to bottom without having to track which `if` branch you're inside.
+
 ### Going further { data-card-link="skip" }
 
 ??? tip "pass placeholder"
