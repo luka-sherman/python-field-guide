@@ -21,8 +21,8 @@ hide:
     Write Python on your computer.
 
     [**`install`**](workspace.md#step-0-install-python): 
-    [`version`](workspace.md#step-0-install-python) 
     [`download`](workspace.md#step-0-install-python) 
+    [`version`](workspace.md#step-0-install-python) 
 
     [**`code editors`**](workspace.md#step-1-pick-an-application-to-write-code-in): 
     [`IDLE`](workspace.md#step-1-pick-an-application-to-write-code-in) 
@@ -34,16 +34,16 @@ hide:
     [`file naming`](workspace.md#step-2-write-and-run-a-python-file) 
 
     [**`Terminal`**](workspace.md#using-the-terminal-optional): 
-    [`pwd`](workspace.md#using-the-terminal-optional) 
     [`cd`](workspace.md#using-the-terminal-optional) 
     [`ls`](workspace.md#using-the-terminal-optional) 
+    [`pwd`](workspace.md#using-the-terminal-optional) 
     [`shortcuts`](workspace.md#using-the-terminal-optional) 
 
     [**`virtual environments`**](workspace.md#virtual-environments-optional): 
-    [`venv`](workspace.md#virtual-environments-optional) 
     [`activate`](workspace.md#virtual-environments-optional) 
     [`pip`](workspace.md#virtual-environments-optional) 
     [`requirements.txt`](workspace.md#virtual-environments-optional) 
+    [`venv`](workspace.md#virtual-environments-optional) 
 
 -   :material-cube-outline:{ .lg .middle } [__Foundations__](foundations.md)
 
@@ -311,8 +311,8 @@ hide:
     [`type hints`](functions.md#type-hints) 
 
     [**`flexible arguments`**](functions.md#flexible-arguments): 
-    [`*args`](functions.md#args) 
     [`**kwargs`](functions.md#kwargs) 
+    [`*args`](functions.md#args) 
 
     [**`scope`**](functions.md#scope): 
     [`local vs global`](functions.md#local-vs-global-variables) 
@@ -320,12 +320,12 @@ hide:
     [**`recursion`**](functions.md#recursion)
 
     [**`decorators`**](functions.md#decorators): 
-    [`wrapping the call`](functions.md#wrapping-the-call) 
     [`accepting any arguments`](functions.md#accepting-any-arguments) 
     [`applying a decorator manually`](functions.md#applying-a-decorator-manually) 
     [`decorators with arguments`](functions.md#decorators-with-arguments) 
-    [`stacking decorators`](functions.md#stacking-decorators) 
     [`preserving identity`](functions.md#preserving-identity) 
+    [`stacking decorators`](functions.md#stacking-decorators) 
+    [`wrapping the call`](functions.md#wrapping-the-call) 
 
 -   :material-package-variant:{ .lg .middle } [__Classes__](oop.md)
 
@@ -337,9 +337,9 @@ hide:
     [`self`](oop.md#the-self-parameter) 
 
     [**`method decorators`**](oop.md#method-decorators): 
+    [`@classmethod`](oop.md#classmethod) 
     [`@property`](oop.md#property) 
     [`@staticmethod`](oop.md#staticmethod) 
-    [`@classmethod`](oop.md#classmethod) 
 
     [**`inheritance`**](oop.md#inheritance): 
     [`adding attributes and methods`](oop.md#adding-attributes-and-methods) 
@@ -424,29 +424,30 @@ hide:
 
     How to understand, fix, and handle errors.
 
-    [**`kinds of errors`**](errors.md#kinds-of-errors): 
-    [`syntax errors`](errors.md#syntax-errors) 
-    [`runtime errors`](errors.md#runtime-errors) 
-    [`logic errors`](errors.md#logic-errors) 
+    [**`kinds`**](errors.md#kinds-of-errors): 
     [`bugs`](errors.md) 
+    [`exceptions`](errors.md) 
+    [`logic errors`](errors.md#logic-errors) 
+    [`runtime errors`](errors.md#runtime-errors) 
+    [`syntax errors`](errors.md#syntax-errors) 
 
-    [**`fixing errors`**](errors.md#fixing-errors): 
-    [`tracebacks`](errors.md#reading-a-traceback) 
-    [`syntax error message`](errors.md#reading-a-syntax-error-message) 
+    [**`fixing`**](errors.md#fixing-errors): 
+    [`debugger tool`](errors.md#debugger-tool) 
     [`debugging strategies`](errors.md#debugging-strategies) 
     [`isolate problems`](errors.md#isolate-the-problem) 
     [`print debugging`](errors.md#print-debugging) 
     [`rubber duck debugging`](errors.md#read-it-out-loud) 
-    [`debugger tool`](errors.md#debugger-tool) 
-    [`TODO / FIXME`](errors.md#flag-as-todofixme) 
+    [`syntax error message`](errors.md#reading-a-syntax-error-message) 
     [`testing`](errors.md#detect-errors-with-testing) 
+    [`TODO / FIXME`](errors.md#flag-as-todofixme) 
+    [`tracebacks`](errors.md#reading-a-traceback) 
 
-    [**`handling errors`**](errors.md#handling-errors): 
+    [**`handling`**](errors.md#handling-errors): 
     [`assert`](errors.md#assert-a-condition) 
-    [`try/except`](errors.md#catch-with-tryexcept) 
-    [`raise`](errors.md#raise-an-exception) 
-    [`finally`](errors.md#finally) 
     [`else`](errors.md#finally) 
+    [`finally`](errors.md#finally) 
+    [`raise`](errors.md#raise-an-exception) 
+    [`try/except`](errors.md#catch-with-tryexcept) 
 
 </div>
 </div>
