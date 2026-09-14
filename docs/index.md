@@ -422,7 +422,7 @@ hide:
 
 -   :material-bug-outline:{ .lg .middle } [__Errors__](errors.md)
 
-    How to understand, fix, and handle errors.
+    Resolve bugs, read and utilize exceptions.
 
     [**`kinds`**](errors.md#kinds-of-errors): 
     [`bugs`](errors.md) 

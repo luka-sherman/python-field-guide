@@ -49,3 +49,9 @@
 *[Bug]: A mistake in your code that makes it do the wrong thing, whether or not Python actually notices and raises an error
 *[syntax]: The grammatical rules for what counts as validly structured code, checked before any of it runs — independent of whether the logic is actually correct
 *[Syntax]: The grammatical rules for what counts as validly structured code, checked before any of it runs — independent of whether the logic is actually correct
+*[callable]: Can be called with parentheses to run it, the way a function can — includes functions, classes, and any object with a __call__ method
+*[Callable]: Can be called with parentheses to run it, the way a function can — includes functions, classes, and any object with a __call__ method
+*[graceful]: Handling a failure without crashing or losing data — continuing on, showing a clear message, or falling back to a default instead of stopping abruptly
+*[Graceful]: Handling a failure without crashing or losing data — continuing on, showing a clear message, or falling back to a default instead of stopping abruptly
+*[gracefully]: In a way that handles a failure without crashing or losing data — continuing on, showing a clear message, or falling back to a default instead of stopping abruptly
+*[Gracefully]: In a way that handles a failure without crashing or losing data — continuing on, showing a clear message, or falling back to a default instead of stopping abruptly
