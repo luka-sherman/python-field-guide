@@ -39,7 +39,7 @@ A few things worth double-checking before calling a script finished — each lin
 - [ ] **[Type hints](#type-hints)** — used on a function signature where the types aren't obvious?
 - [ ] **[Tuple unpacking instead of a temporary variable](#common-patterns)** — swapping two variables directly
 - [ ] **[File names](workspace.md#step-2-write-and-run-a-python-file)** — `snake_case.py`, no hyphens or spaces
-- [ ] **[Readable print output](#readable-print-output)** — `\n`/`\t` and separator rows used to space out console output
+- [ ] **[Escape sequences](foundations.md#escape-sequences)** — `\n`/`\t` and separator rows used to space out console output
 
 </div>
 
@@ -412,25 +412,6 @@ def is_unusually_long(species: str, length_ft: float) -> bool:
 ```
 
 A wrong type still runs — Python doesn't stop you from calling `is_unusually_long("ball python", "4.5")` with a string instead of a `float` — the hint only helps a tool catch the mismatch before you do, and helps a reader (or their editor) see what's expected without reading the function body.
-
-### Readable print output
-
-`\n` and `\t` are **escape sequences** — `\n` inserts a line break, `\t` a tab — so a single `print()` call can space out multi-line or columned output.
-
-```python
-print(f"species: burmese\nlength: 10 ft\n")
-print("species\t\tlength_ft")
-print("ball python\t4.5")
-```
-
-A row of repeated characters makes a quick visual separator between sections of console output, useful for breaking up a long script's output into readable chunks.
-
-```python
-print("survey results")
-print("=" * 40)
-```
-
-### Going further { data-card-link="skip" }
 
 ??? tip "Be creative with ASCII art"
     Write in the terminal with bubble letters or draw images through creative character use.

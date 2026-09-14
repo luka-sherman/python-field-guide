@@ -36,7 +36,7 @@ hide:
 
     [**`variables`**](foundations.md#variables): [`naming`](foundations.md#naming-variables) [`printing`](foundations.md#printing-variables) [`reassigning`](foundations.md#reassigning-a-variable) [`types`](foundations.md#variables-and-types)
 
-    [**`print`**](foundations.md#print-function)
+    [**`print`**](foundations.md#print-function): [`escape sequences`](foundations.md#escape-sequences)
 
     [**`input`**](foundations.md#input-function)
 
