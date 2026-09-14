@@ -18,7 +18,7 @@ description: >-
     - [Print debugging](errors.md#print-debugging)
     - [Isolate the problem](errors.md#isolate-the-problem)
 - **Try building something small.** Once you've read through [Conditionals](conditionals.md) and [Loops](loops.md) you already have enough to write a program. 
-- The homepage FAQ has more on [using AI to help you learn](index.md#faq).
+- The homepage has more on [using AI to help you learn](index.md).
 
 </div>
 

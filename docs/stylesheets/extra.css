@@ -260,6 +260,13 @@ html:focus-within::-webkit-scrollbar-thumb {
   text-decoration: none;
 }
 
+/* Tab labels aren't prose links — Material wraps each one in an <a> purely
+   for keyboard/anchor navigation between tabs, not as a clickable reference,
+   so the link-in-text-block underline doesn't apply here. */
+.md-typeset .tabbed-labels a {
+  text-decoration: none;
+}
+
 .md-nav__link--active,
 .md-nav__item .md-nav__link--active,
 .md-nav__item--active > .md-nav__link {
