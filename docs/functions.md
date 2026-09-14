@@ -537,7 +537,7 @@ def total_length(*lengths):
 print(total_length(5, 12, 8))    # prints "called with (5, 12, 8)", then 25 — same decorator, different signature
 ```
 
-### Advanced Uses { data-card-link="skip" }
+### Advanced uses
 
 ??? tip "Decorators with arguments"
     A decorator that needs its own settings takes those arguments one level out — a function that *returns* a decorator, instead of being one directly. This is how a decorator like Flask's `@app.route("/users")` gets its own argument (the URL path), separate from whatever function it ends up decorating.

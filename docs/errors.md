@@ -353,7 +353,7 @@ except ValueError:                            # separate for different handling
 
 #### finally  { .pt-fake-h3 }
 
-`finally` is an optinal block that always runs after `try`/`except`, whether or not an exception happened — used for cleanup that has to happen either way, like closing a file.
+`finally` is an optional block that always runs after `try`/`except`, whether or not an exception happened — used for cleanup that has to happen either way, like closing a file.
 
 ```python-ref
 try:

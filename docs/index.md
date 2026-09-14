@@ -320,8 +320,10 @@ hide:
     [**`recursion`**](functions.md#recursion)
 
     [**`decorators`**](functions.md#decorators): 
-    [`arguments`](functions.md#accepting-any-arguments) 
-    [`original function`](functions.md#returning-the-function-unchanged) 
+    [`arguments`](functions.md#accepting-arguments) 
+    [`identity`](functions.md#advanced-uses) 
+    [`original function`](functions.md#returning-the-original-function) 
+    [`stacking`](functions.md#advanced-uses) 
     [`wrapping`](functions.md#wrapping-the-call)
 
 -   :material-package-variant:{ .lg .middle } [__Classes__](oop.md)
