@@ -16,11 +16,13 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
 <div class="grid cards" markdown="block">
 
--   :material-test-tube:{ .lg .middle } [__pytest__](pytest.md) [:material-download-outline:](pytest.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
+-   :material-test-tube:{ .lg .middle } [__pytest__](pytest.md) 
+[:material-download-outline:](pytest.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
 
     Writing and running tests: assertions, fixtures, and parametrizing.
 
-    [**`writing and running a test`**](pytest.md#writing-and-running-a-test): [`from the command line`](pytest.md#from-the-command-line)
+    [**`writing and running a test`**](pytest.md#writing-and-running-a-test): 
+    [`from the command line`](pytest.md#from-the-command-line) 
 
     [**`reading a failure`**](pytest.md#reading-a-failure)
 
@@ -38,39 +40,87 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
 <div class="grid cards" markdown="block">
 
--   :material-format-list-group:{ .lg .middle } [__collections__](collections.md) [:material-language-python:](collections.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+-   :material-format-list-group:{ .lg .middle } [__collections__](collections.md) 
+[:material-language-python:](collections.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
     Specialized containers: counting items, grouping with defaults, named tuples, fast queues.
 
-    [**`Counter`**](collections.md#counter): [`+ - & |`](collections.md#combine) [`counts[item]`](collections.md#count) [`elements`](collections.md#inspect) [`most_common`](collections.md#count) [`subtract`](collections.md#update) [`total`](collections.md#count) [`update`](collections.md#update)
+    [**`Counter`**](collections.md#counter): 
+    [`+ - & |`](collections.md#combine) 
+    [`counts[item]`](collections.md#count) 
+    [`elements`](collections.md#inspect) 
+    [`most_common`](collections.md#count) 
+    [`subtract`](collections.md#update) 
+    [`total`](collections.md#count) 
+    [`update`](collections.md#update) 
 
-    [**`defaultdict`**](collections.md#defaultdict): [`default_factory`](collections.md#defaultdict) [`get`](collections.md#reading-vs-writing)
+    [**`defaultdict`**](collections.md#defaultdict): 
+    [`default_factory`](collections.md#defaultdict) 
+    [`get`](collections.md#reading-vs-writing) 
 
-    [**`namedtuple`**](collections.md#namedtuple): [`_asdict`](collections.md#convert) [`_field_defaults`](collections.md#inspect_1) [`_fields`](collections.md#inspect_1) [`_make`](collections.md#create) [`_replace`](collections.md#convert) [`defaults=`](collections.md#create)
+    [**`namedtuple`**](collections.md#namedtuple): 
+    [`_asdict`](collections.md#convert) 
+    [`_field_defaults`](collections.md#inspect_1) 
+    [`_fields`](collections.md#inspect_1) 
+    [`_make`](collections.md#create) 
+    [`_replace`](collections.md#convert) 
+    [`defaults=`](collections.md#create) 
 
-    [**`deque`**](collections.md#deque): [`append`](collections.md#add) [`appendleft`](collections.md#add) [`clear`](collections.md#remove) [`copy`](collections.md#inspect_2) [`count`](collections.md#inspect_2) [`extend`](collections.md#add) [`extendleft`](collections.md#add) [`index`](collections.md#inspect_2) [`insert`](collections.md#add) [`maxlen=`](collections.md#reorder) [`pop`](collections.md#remove) [`popleft`](collections.md#remove) [`remove`](collections.md#remove) [`reverse`](collections.md#reorder) [`rotate`](collections.md#reorder)
+    [**`deque`**](collections.md#deque): 
+    [`append`](collections.md#add) 
+    [`appendleft`](collections.md#add) 
+    [`clear`](collections.md#remove) 
+    [`copy`](collections.md#inspect_2) 
+    [`count`](collections.md#inspect_2) 
+    [`extend`](collections.md#add) 
+    [`extendleft`](collections.md#add) 
+    [`index`](collections.md#inspect_2) 
+    [`insert`](collections.md#add) 
+    [`maxlen=`](collections.md#reorder) 
+    [`pop`](collections.md#remove) 
+    [`popleft`](collections.md#remove) 
+    [`remove`](collections.md#remove) 
+    [`reverse`](collections.md#reorder) 
+    [`rotate`](collections.md#reorder) 
 
-    [**`OrderedDict`**](collections.md#ordereddict): [`==`](collections.md#compare) [`move_to_end`](collections.md#reorder_1) [`popitem`](collections.md#reorder_1)
+    [**`OrderedDict`**](collections.md#ordereddict): 
+    [`==`](collections.md#compare) 
+    [`move_to_end`](collections.md#reorder_1) 
+    [`popitem`](collections.md#reorder_1) 
 
-    [**`ChainMap`**](collections.md#chainmap): [`maps`](collections.md#inspect_3) [`new_child`](collections.md#extend) [`parents`](collections.md#inspect_3)
+    [**`ChainMap`**](collections.md#chainmap): 
+    [`maps`](collections.md#inspect_3) 
+    [`new_child`](collections.md#extend) 
+    [`parents`](collections.md#inspect_3) 
 
-    [**`User* wrapper`**](collections.md#user-wrapper-classes): [`UserDict`](collections.md#user-wrapper-classes) [`UserList`](collections.md#user-wrapper-classes) [`UserString`](collections.md#user-wrapper-classes)
+    [**`User* wrapper`**](collections.md#user-wrapper-classes): 
+    [`UserDict`](collections.md#user-wrapper-classes) 
+    [`UserList`](collections.md#user-wrapper-classes) 
+    [`UserString`](collections.md#user-wrapper-classes) 
 
--   :material-calendar-clock:{ .lg .middle } [__datetime__](datetime.md) [:material-language-python:](datetime.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+-   :material-calendar-clock:{ .lg .middle } [__datetime__](datetime.md) 
+[:material-language-python:](datetime.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
     Calculating and formatting dates and times.
 
-    [`creating a specific date`](datetime.md#creating-a-specific-date) [`date`](datetime.md#creating-dates-and-times) [`strftime`](datetime.md#formatting-with-strftime)
+    [`creating a specific date`](datetime.md#creating-a-specific-date) 
+    [`date`](datetime.md#creating-dates-and-times) 
+    [`strftime`](datetime.md#formatting-with-strftime) 
 
-    [`difference between two dates`](datetime.md#difference-between-two-dates) [`strptime`](datetime.md#parsing-a-string-with-strptime) [`timedelta`](datetime.md#date-arithmetic)
+    [`difference between two dates`](datetime.md#difference-between-two-dates) 
+    [`strptime`](datetime.md#parsing-a-string-with-strptime) 
+    [`timedelta`](datetime.md#date-arithmetic) 
 
--   :material-dice-multiple:{ .lg .middle } [__random__](random.md) [:material-language-python:](random.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+-   :material-dice-multiple:{ .lg .middle } [__random__](random.md) 
+[:material-language-python:](random.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
     Random numbers, random picks, shuffled order.
 
     [**`randint`**](random.md#random-numbers)
 
-    [**`choice`**](random.md#random-selections): [`sample`](random.md#sampling-without-replacement) [`shuffle`](random.md#shuffling-a-list)
+    [**`choice`**](random.md#random-selections): 
+    [`sample`](random.md#sampling-without-replacement) 
+    [`shuffle`](random.md#shuffling-a-list) 
 
 </div>
 </div>
@@ -80,19 +130,24 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
 <div class="grid cards" markdown="block">
 
--   :material-file-delimited-outline:{ .lg .middle } [__csv__](csv.md) [:material-language-python:](csv.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+-   :material-file-delimited-outline:{ .lg .middle } [__csv__](csv.md) 
+[:material-language-python:](csv.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
     Reading and writing spreadsheets.
 
     [`writer`](csv.md#writing-csv-files)
 
-    [`DictReader`](csv.md#reading-rows-as-dictionaries) [`reader`](csv.md#reading-csv-files)
+    [`DictReader`](csv.md#reading-rows-as-dictionaries) 
+    [`reader`](csv.md#reading-csv-files) 
 
--   :material-chart-line:{ .lg .middle } [__matplotlib__](matplotlib.md) [:material-download-outline:](matplotlib.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
+-   :material-chart-line:{ .lg .middle } [__matplotlib__](matplotlib.md) 
+[:material-download-outline:](matplotlib.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
 
     Charts and plots: line, bar, and scatter, built directly from plain Python data.
 
-    [**`line plots`**](matplotlib.md#line-plots): [`labels and title`](matplotlib.md#labels-and-title) [`multiple lines and a legend`](matplotlib.md#multiple-lines-and-a-legend)
+    [**`line plots`**](matplotlib.md#line-plots): 
+    [`labels and title`](matplotlib.md#labels-and-title) 
+    [`multiple lines and a legend`](matplotlib.md#multiple-lines-and-a-legend) 
 
     [**`bar charts`**](matplotlib.md#bar-charts)
 
@@ -102,21 +157,28 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
     [**`saving a figure`**](matplotlib.md#saving-a-figure)
 
--   :material-matrix:{ .lg .middle } [__NumPy__](numpy.md) [:material-download-outline:](numpy.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
+-   :material-matrix:{ .lg .middle } [__NumPy__](numpy.md) 
+[:material-download-outline:](numpy.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
 
     Fast numeric arrays, with math applied to a whole array at once instead of item by item.
 
-    [**`array operations`**](numpy.md#array-operations): [`boolean mask`](numpy.md#filtering-with-a-boolean-mask) [`mean`](numpy.md#aggregating-an-array)
+    [**`array operations`**](numpy.md#array-operations): 
+    [`boolean mask`](numpy.md#filtering-with-a-boolean-mask) 
+    [`mean`](numpy.md#aggregating-an-array) 
 
-    [`arange`](numpy.md#building-arrays-without-a-list) [`ndarray`](numpy.md#creating-arrays)
+    [`arange`](numpy.md#building-arrays-without-a-list) 
+    [`ndarray`](numpy.md#creating-arrays) 
 
--   :material-table:{ .lg .middle } [__pandas__](pandas.md) [:material-download-outline:](pandas.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
+-   :material-table:{ .lg .middle } [__pandas__](pandas.md) 
+[:material-download-outline:](pandas.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
 
     Tabular data: rows and columns, like a spreadsheet, built on top of NumPy.
 
     [**`DataFrame`**](pandas.md#building-a-dataframe)
 
-    [**`working with a DataFrame`**](pandas.md#working-with-a-dataframe): [`mean`](pandas.md#summarizing-a-column) [`sort_values`](pandas.md#sorting-rows)
+    [**`working with a DataFrame`**](pandas.md#working-with-a-dataframe): 
+    [`mean`](pandas.md#summarizing-a-column) 
+    [`sort_values`](pandas.md#sorting-rows) 
 
 </div>
 </div>
@@ -126,21 +188,27 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
 <div class="grid cards" markdown="block">
 
--   :material-code-json:{ .lg .middle } [__json__](json.md) [:material-language-python:](json.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+-   :material-code-json:{ .lg .middle } [__json__](json.md) 
+[:material-language-python:](json.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
     Reading and writing JSON data: nested dicts and lists, saved to a file or a string.
 
     [`dump`](json.md#writing-json-files)
 
-    [`load`](json.md#reading-json-files) [`nested data`](json.md#nested-data)
+    [`load`](json.md#reading-json-files) 
+    [`nested data`](json.md#nested-data) 
 
     [`loads`](json.md#working-with-strings-instead-of-files)
 
--   :material-webhook:{ .lg .middle } [__requests__](requests.md) [:material-download-outline:](requests.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
+-   :material-webhook:{ .lg .middle } [__requests__](requests.md) 
+[:material-download-outline:](requests.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
 
     Fetching data over the internet, like asking a website or API for information.
 
-    [**`get`**](requests.md#making-a-request): [`json`](requests.md#parsing-json) [`params`](requests.md#query-parameters) [`status_code`](requests.md#checking-the-status-code)
+    [**`get`**](requests.md#making-a-request): 
+    [`json`](requests.md#parsing-json) 
+    [`params`](requests.md#query-parameters) 
+    [`status_code`](requests.md#checking-the-status-code) 
 
     [**`error handling`**](requests.md#handling-request-errors)
 
@@ -152,33 +220,50 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
 <div class="grid cards" markdown="block">
 
--   :material-image-outline:{ .lg .middle } [__Pillow__](pillow.md) [:material-download-outline:](pillow.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
+-   :material-image-outline:{ .lg .middle } [__Pillow__](pillow.md) 
+[:material-download-outline:](pillow.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
 
     Opening, editing, and saving images, built around one Image object.
 
     [**`why Pillow?`**](pillow.md#why-pillow)
 
-    [**`Image`**](pillow.md#the-image): [`basic operations`](pillow.md#basic-operations) [`crop`](pillow.md#crop) [`image modes`](pillow.md#image-modes) [`opening and saving images`](pillow.md#opening-and-saving-images) [`resize`](pillow.md#resize) [`rotate and flip`](pillow.md#rotate-and-flip)
+    [**`Image`**](pillow.md#the-image): 
+    [`basic operations`](pillow.md#basic-operations) 
+    [`crop`](pillow.md#crop) 
+    [`image modes`](pillow.md#image-modes) 
+    [`opening and saving images`](pillow.md#opening-and-saving-images) 
+    [`resize`](pillow.md#resize) 
+    [`rotate and flip`](pillow.md#rotate-and-flip) 
 
-    [**`ImageOps`**](pillow.md#imageops-module): [`common ImageOps functions`](pillow.md#common-imageops-functions)
+    [**`ImageOps`**](pillow.md#imageops-module): 
+    [`common ImageOps functions`](pillow.md#common-imageops-functions) 
 
-    [**`ImageDraw`**](pillow.md#imagedraw-module): [`shapes and lines`](pillow.md#shapes-and-lines)
+    [**`ImageDraw`**](pillow.md#imagedraw-module): 
+    [`shapes and lines`](pillow.md#shapes-and-lines) 
 
-    [**`ImageFont`**](pillow.md#imagefont-module): [`loading a font`](pillow.md#loading-a-font)
+    [**`ImageFont`**](pillow.md#imagefont-module): 
+    [`loading a font`](pillow.md#loading-a-font) 
 
-    [**`ImageColor`**](pillow.md#imagecolor-module): [`converting color names`](pillow.md#converting-color-names)
+    [**`ImageColor`**](pillow.md#imagecolor-module): 
+    [`converting color names`](pillow.md#converting-color-names) 
 
-    [**`ImageFilter`**](pillow.md#imagefilter-module): [`applying a filter`](pillow.md#applying-a-filter)
+    [**`ImageFilter`**](pillow.md#imagefilter-module): 
+    [`applying a filter`](pillow.md#applying-a-filter) 
 
-    [**`ImageEnhance`**](pillow.md#imageenhance-module): [`enhancing an image`](pillow.md#enhancing-an-image)
+    [**`ImageEnhance`**](pillow.md#imageenhance-module): 
+    [`enhancing an image`](pillow.md#enhancing-an-image) 
 
-    [**`ImageChops`**](pillow.md#imagechops-module): [`comparing and combining images`](pillow.md#comparing-and-combining-images)
+    [**`ImageChops`**](pillow.md#imagechops-module): 
+    [`comparing and combining images`](pillow.md#comparing-and-combining-images) 
 
-    [**`convert`**](pillow.md#format-conversion): [`converting between formats`](pillow.md#converting-between-formats)
+    [**`convert`**](pillow.md#format-conversion): 
+    [`converting between formats`](pillow.md#converting-between-formats) 
 
-    [**`ImageSequence`**](pillow.md#imagesequence-module): [`looping over GIF frames`](pillow.md#looping-over-gif-frames)
+    [**`ImageSequence`**](pillow.md#imagesequence-module): 
+    [`looping over GIF frames`](pillow.md#looping-over-gif-frames) 
 
-    [**`putting it together`**](pillow.md#putting-it-together): [`an interactive filter tool`](pillow.md#an-interactive-filter-tool)
+    [**`putting it together`**](pillow.md#putting-it-together): 
+    [`an interactive filter tool`](pillow.md#an-interactive-filter-tool) 
 
 </div>
 </div>
@@ -188,27 +273,41 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
 <div class="grid cards" markdown="block">
 
--   :material-application-outline:{ .lg .middle } [__Tkinter__](tkinter.md) [:material-language-python:](tkinter.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" }
+-   :material-application-outline:{ .lg .middle } [__Tkinter__](tkinter.md) 
+[:material-language-python:](tkinter.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
     Creating desktop applications: text, buttons, dropdowns, forms, output, etc.
 
     [**`Tk`**](tkinter.md#creating-a-window)
 
-    [**`Button`**](tkinter.md#widgets): [`Button`](tkinter.md#button) [`Entry`](tkinter.md#entry) [`Label`](tkinter.md#label)
+    [**`Button`**](tkinter.md#widgets): 
+    [`Button`](tkinter.md#button) 
+    [`Entry`](tkinter.md#entry) 
+    [`Label`](tkinter.md#label) 
 
-    [**`pack`**](tkinter.md#layout-managers): [`grid`](tkinter.md#grid) [`pack`](tkinter.md#pack)
+    [**`pack`**](tkinter.md#layout-managers): 
+    [`grid`](tkinter.md#grid) 
+    [`pack`](tkinter.md#pack) 
 
-    [**`configure`**](tkinter.md#configuring-widgets): [`reading and changing options`](tkinter.md#reading-and-changing-options)
+    [**`configure`**](tkinter.md#configuring-widgets): 
+    [`reading and changing options`](tkinter.md#reading-and-changing-options) 
 
-    [**`command`**](tkinter.md#handling-events): [`binding events`](tkinter.md#binding-events) [`command callbacks`](tkinter.md#command-callbacks)
+    [**`command`**](tkinter.md#handling-events): 
+    [`binding events`](tkinter.md#binding-events) 
+    [`command callbacks`](tkinter.md#command-callbacks) 
 
-    [**`Style`**](tkinter.md#styling-with-ttk): [`customizing a style`](tkinter.md#customizing-a-style)
+    [**`Style`**](tkinter.md#styling-with-ttk): 
+    [`customizing a style`](tkinter.md#customizing-a-style) 
 
-    [**`messagebox`**](tkinter.md#dialogs): [`file dialogs`](tkinter.md#file-dialogs) [`message boxes`](tkinter.md#message-boxes)
+    [**`messagebox`**](tkinter.md#dialogs): 
+    [`file dialogs`](tkinter.md#file-dialogs) 
+    [`message boxes`](tkinter.md#message-boxes) 
 
-    [**`winfo_width`**](tkinter.md#introspecting-widgets): [`winfo methods`](tkinter.md#winfo-methods)
+    [**`winfo_width`**](tkinter.md#introspecting-widgets): 
+    [`winfo methods`](tkinter.md#winfo-methods) 
 
-    [**`putting it together`**](tkinter.md#putting-it-together): [`a simple form`](tkinter.md#a-simple-form)
+    [**`putting it together`**](tkinter.md#putting-it-together): 
+    [`a simple form`](tkinter.md#a-simple-form) 
 
 </div>
 </div>
@@ -218,27 +317,43 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
 <div class="grid cards" markdown="block">
 
--   :material-face-recognition:{ .lg .middle } [__OpenCV__](opencv.md) [:material-download-outline:](opencv.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" }
+-   :material-face-recognition:{ .lg .middle } [__OpenCV__](opencv.md) 
+[:material-download-outline:](opencv.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
 
     Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection.
 
-    [**`reading, displaying, saving images`**](opencv.md#reading-displaying-and-saving-images): [`displaying a window`](opencv.md#displaying-a-window) [`imread`](opencv.md#reading-a-file) [`saving a file`](opencv.md#saving-a-file)
+    [**`reading, displaying, saving images`**](opencv.md#reading-displaying-and-saving-images): 
+    [`displaying a window`](opencv.md#displaying-a-window) 
+    [`imread`](opencv.md#reading-a-file) 
+    [`saving a file`](opencv.md#saving-a-file) 
 
-    [**`drawing`**](opencv.md#drawing-shapes-and-text): [`shapes and lines`](opencv.md#shapes-and-lines) [`text`](opencv.md#text)
+    [**`drawing`**](opencv.md#drawing-shapes-and-text): 
+    [`shapes and lines`](opencv.md#shapes-and-lines) 
+    [`text`](opencv.md#text) 
 
-    [**`color spaces`**](opencv.md#color-spaces): [`cvtColor`](opencv.md#converting-color-spaces)
+    [**`color spaces`**](opencv.md#color-spaces): 
+    [`cvtColor`](opencv.md#converting-color-spaces) 
 
-    [**`CascadeClassifier`**](opencv.md#face-detection-with-cascade-classifiers): [`detecting and labeling faces`](opencv.md#detecting-and-labeling-faces)
+    [**`CascadeClassifier`**](opencv.md#face-detection-with-cascade-classifiers): 
+    [`detecting and labeling faces`](opencv.md#detecting-and-labeling-faces) 
 
-    [**`VideoCapture`**](opencv.md#working-with-video): [`reading frames`](opencv.md#reading-frames)
+    [**`VideoCapture`**](opencv.md#working-with-video): 
+    [`reading frames`](opencv.md#reading-frames) 
 
-    [**`basic operations`**](opencv.md#basic-operations): [`cropping`](opencv.md#cropping) [`resize`](opencv.md#resize) [`rotating`](opencv.md#rotating)
+    [**`basic operations`**](opencv.md#basic-operations): 
+    [`cropping`](opencv.md#cropping) 
+    [`resize`](opencv.md#resize) 
+    [`rotating`](opencv.md#rotating) 
 
-    [**`thresholding, edge detection`**](opencv.md#thresholding-and-edge-detection): [`Canny`](opencv.md#edge-detection) [`threshold`](opencv.md#threshold)
+    [**`thresholding, edge detection`**](opencv.md#thresholding-and-edge-detection): 
+    [`Canny`](opencv.md#edge-detection) 
+    [`threshold`](opencv.md#threshold) 
 
-    [**`blurring`**](opencv.md#blurring): [`gaussian blur`](opencv.md#gaussian-blur)
+    [**`blurring`**](opencv.md#blurring): 
+    [`gaussian blur`](opencv.md#gaussian-blur) 
 
-    [**`contours`**](opencv.md#contours): [`finding and drawing contours`](opencv.md#finding-and-drawing-contours)
+    [**`contours`**](opencv.md#contours): 
+    [`finding and drawing contours`](opencv.md#finding-and-drawing-contours) 
 
 </div>
 </div>
