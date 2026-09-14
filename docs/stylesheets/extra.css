@@ -30,6 +30,10 @@
   --pt-code-string: #C9E4D2;
   --pt-code-keyword: #E8C9A8;
   --pt-code-comment: #97917F;
+
+  --pt-shimmer-gold: #D9C48C;
+  --pt-shimmer-sage: #B9CDAE;
+  --pt-shimmer-clay: #CBA989;
 }
 
 [data-md-color-scheme="slate"] {
@@ -181,8 +185,29 @@ html:focus-within::-webkit-scrollbar-thumb {
   background-position: 0 0, 14px 18px, 0% 50%;
 }
 
+/* Same decorative scale-ring + shimmer treatment, light (default) scheme.
+   Ring colors swap from dark mode's purple/indigo jewel tones to the site's
+   own gold/green palette (--pt-ref-keyword, --pt-accent), since purple reads
+   as an unrelated outlier against cream rather than a deliberate accent the
+   way it does against slate's near-black background. Shimmer hues likewise
+   swap to warm gold/sage/clay (--pt-shimmer-*) instead of indigo/purple/green
+   — colors close in value to --pt-bg so it stays a faint sheen, not a band. */
+[data-md-color-scheme="default"] .md-header {
+  background-image:
+    radial-gradient(circle at 100% 50%, transparent 14px, rgba(130, 94, 37, 0.07) 15px, rgba(8, 84, 42, 0.07) 16px, transparent 17px),
+    radial-gradient(circle at 100% 50%, transparent 14px, rgba(8, 84, 42, 0.07) 15px, rgba(130, 94, 37, 0.07) 16px, transparent 17px),
+    linear-gradient(120deg,
+      color-mix(in srgb, var(--pt-shimmer-gold) 18%, transparent),
+      color-mix(in srgb, var(--pt-shimmer-sage) 18%, transparent),
+      color-mix(in srgb, var(--pt-shimmer-clay) 18%, transparent),
+      color-mix(in srgb, var(--pt-shimmer-gold) 18%, transparent));
+  background-size: 28px 36px, 28px 36px, 320% 320%;
+  background-position: 0 0, 14px 18px, 0% 50%;
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  [data-md-color-scheme="slate"] .md-header {
+  [data-md-color-scheme="slate"] .md-header,
+  [data-md-color-scheme="default"] .md-header {
     animation: pt-header-shimmer 22s ease-in-out infinite;
   }
 }
