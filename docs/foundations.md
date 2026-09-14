@@ -144,6 +144,31 @@ print(4.5)                    # when printing a number, you do not need quotes
 
 Most sections on this site end with a collapsed block like the one below — open it, click **Run**, and try editing the code and running it again.
 
+### Escape sequences
+
+`\n` and `\t` are **escape sequences** — `\n` inserts a line break, `\t` a tab — so a single `print()` call can space out multi-line or columned output.
+
+```python
+print(f"species: burmese\nlength: 10 ft\n")
+print("species\t\tlength_ft")
+print("ball python\t4.5")
+```
+
+`\"`, `\'`, and `\\` escape a character that would otherwise end the string early or be read as another backslash — a quote matching the one the string started with, or a literal backslash itself.
+
+```python
+print("she said \"hello\"")   # a double quote inside a double-quoted string
+print('it\'s a python')        # a single quote inside a single-quoted string
+print("C:\\snakes")            # a literal backslash
+```
+
+A row of repeated characters makes a quick visual separator between sections of console output, useful for breaking up a long script's output into readable chunks.
+
+```python
+print("survey results")
+print("=" * 40)
+```
+
 ### Going further { data-card-link="skip" }
 
 ??? run "Run a print() example"
@@ -152,6 +177,20 @@ Most sections on this site end with a collapsed block like the one below — ope
     ```python
     print("hello, field guide")
     print(4.5)
+
+
+    print(f"species: burmese\nlength: 10 ft\n")
+    print("species\t\tlength_ft")
+    print("ball python\t4.5")
+
+
+    print("she said \"hello\"")
+    print('it\'s a python')
+    print("C:\\snakes")
+
+
+    print("survey results")
+    print("=" * 40)
     ```
 
 </div>

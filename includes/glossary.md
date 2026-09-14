@@ -1,7 +1,13 @@
 *[exception]: Python's formal term for the type of error that was raised, like KeyError or ValueError
 *[Exception]: Python's formal term for the type of error that was raised, like KeyError or ValueError
+*[expensive]: Takes a relatively long time or a lot of memory to run — not about money
+*[Expensive]: Takes a relatively long time or a lot of memory to run — not about money
 *[constructor]: The method that runs automatically to set up a new object's starting values
 *[Constructor]: The method that runs automatically to set up a new object's starting values
+*[object]: A specific thing built from a class, with its own independent copy of that class's data
+*[Object]: A specific thing built from a class, with its own independent copy of that class's data
+*[instance]: Another word for an object — a specific thing built from a class, with its own independent copy of that class's data
+*[Instance]: Another word for an object — a specific thing built from a class, with its own independent copy of that class's data
 *[boolean mask]: A same-size array of True/False values, used to filter another array or column down to just the matching rows
 *[Boolean mask]: A same-size array of True/False values, used to filter another array or column down to just the matching rows
 *[iterable]: Anything that can hand back its items one at a time — a list, string, range, dict, and more — whether you're looping over it, converting it, or unpacking it
@@ -20,6 +26,8 @@
 *[Block]: A group of indented lines under a colon that Python runs together as one unit — the body of an if, loop, function, or class
 *[convention]: An agreed-upon way of doing something that Python doesn't enforce, followed anyway so code stays predictable to other readers
 *[Convention]: An agreed-upon way of doing something that Python doesn't enforce, followed anyway so code stays predictable to other readers
+*[conventionally]: By convention — an agreed-upon way of doing something that Python doesn't enforce, followed anyway so code stays predictable to other readers
+*[Conventionally]: By convention — an agreed-upon way of doing something that Python doesn't enforce, followed anyway so code stays predictable to other readers
 *[truthy]: Counts as True when used somewhere a bool is expected, even though the value itself isn't actually True — every value is either truthy or falsy
 *[Truthy]: Counts as True when used somewhere a bool is expected, even though the value itself isn't actually True — every value is either truthy or falsy
 *[falsy]: Counts as False when used somewhere a bool is expected, even though the value itself isn't actually False — every value is either truthy or falsy
@@ -49,3 +57,9 @@
 *[Bug]: A mistake in your code that makes it do the wrong thing, whether or not Python actually notices and raises an error
 *[syntax]: The grammatical rules for what counts as validly structured code, checked before any of it runs — independent of whether the logic is actually correct
 *[Syntax]: The grammatical rules for what counts as validly structured code, checked before any of it runs — independent of whether the logic is actually correct
+*[callable]: Can be called with parentheses to run it, the way a function can — includes functions, classes, and any object with a __call__ method
+*[Callable]: Can be called with parentheses to run it, the way a function can — includes functions, classes, and any object with a __call__ method
+*[graceful]: Handling a failure without crashing or losing data — continuing on, showing a clear message, or falling back to a default instead of stopping abruptly
+*[Graceful]: Handling a failure without crashing or losing data — continuing on, showing a clear message, or falling back to a default instead of stopping abruptly
+*[gracefully]: In a way that handles a failure without crashing or losing data — continuing on, showing a clear message, or falling back to a default instead of stopping abruptly
+*[Gracefully]: In a way that handles a failure without crashing or losing data — continuing on, showing a clear message, or falling back to a default instead of stopping abruptly

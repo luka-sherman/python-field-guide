@@ -6,19 +6,21 @@ description: >-
 
 # :material-bug-outline:{ .lg .middle } Errors
 
-**Errors** occur when a line of code is impossible to run, so the program stops and displays an error message with information on what went wrong and where. 
+**"Errors"** occur when a line of code is impossible to run, so the program stops and displays a message with information on what went wrong and where. 
 
-**"Bugs"** are the general term for *any* mistake or error in your code, like logic errors. 
+**"Bugs"** are the general term for errors or *any mistake* in your code, like logic errors. 
 
-They are part of programming, and will happen constantly. Once you know what kind of error you have, you can check for common causes, and try one of these ways of fixing it:
+**"Exceptions"** are Python's formal term for the type of error that was raised, like `KeyError` or `ValueError`.
+
+They are part of programming, and happen constantly. Based on the kind of error, there are different methods to identify and fix them:
 
 <div class="pt-jump-table" markdown="block">
 
-|  | [Read traceback/error](#reading-a-traceback) | [`try`/`except`](#catch-with-tryexcept) | [Debugging strategies](#debugging-strategies) | [Debugger tool](#debugger-tool) | [Testing](#detect-errors-with-testing) |
+|  | [Read tracebacks/errors](#reading-a-traceback) | [handle with try/except](#catch-with-tryexcept) | [Debugging strategies](#debugging-strategies) | [Debugger tool](#debugger-tool) | [Testing](#detect-errors-with-testing) |
 |----------|:---:|:---:|:---:|:---:|:---:|
-| [Syntax errors](#syntax-errors) | :material-check:{ .pt-icon-success } | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } |
-| [Runtime errors](#runtime-errors) | :material-check:{ .pt-icon-success } | :material-check:{ .pt-icon-success } | :material-check:{ .pt-icon-success } | :material-check:{ .pt-icon-success } | :material-check:{ .pt-icon-success } |
-| [Logic errors](#logic-errors) | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } | :material-check:{ .pt-icon-success } | :material-check:{ .pt-icon-success } | :material-check:{ .pt-icon-success } |
+| [**Syntax errors**<br>(incorrect grammar, can't read file)](#syntax-errors) | [:material-check:{ .pt-icon-success }](#reading-a-traceback) | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } |
+| [**Runtime errors**<br>(crashes when code can't execute)](#runtime-errors) | [:material-check:{ .pt-icon-success }](#reading-a-traceback) | [:material-check:{ .pt-icon-success }](#catch-with-tryexcept) | [:material-check:{ .pt-icon-success }](#debugging-strategies) | [:material-check:{ .pt-icon-success }](#debugger-tool) | [:material-check:{ .pt-icon-success }](#detect-errors-with-testing) |
+| [**Logic errors**<br>(runs, but gives unexpected output)](#logic-errors) | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } | [:material-check:{ .pt-icon-success }](#debugging-strategies) | [:material-check:{ .pt-icon-success }](#debugger-tool) | [:material-check:{ .pt-icon-success }](#detect-errors-with-testing) |
 
 </div>
 
@@ -28,13 +30,13 @@ They are part of programming, and will happen constantly. Once you know what kin
 
 ### Syntax errors { .pt-fake-h2 }
 
-The code doesn't follow Python's grammar rules, so it can't read or run the file. These errors must be fixed directly.
+The code doesn't follow Python's grammar rules, so it can't read or run the file. These errors must be fixed directly. These are often incorrect punctuation, spacing, or typos.
 
 <div class="pt-jump-table" markdown="block">
 
-| | [Read error message](#reading-a-syntax-error-message) | [`try`/`except`](#catch-with-tryexcept) | [Debugging strategies](#debugging-strategies) | [Debugger tool](#debugger-tool) | [Testing](#detect-errors-with-testing) |
+| | [Read error message](#reading-a-syntax-error-message) | [handle with try/except](#catch-with-tryexcept) | [Debugging strategies](#debugging-strategies) | [Debugger tool](#debugger-tool) | [Testing](#detect-errors-with-testing) |
 |---|:---:|:---:|:---:|:---:|:---:|
-| Ways to fix syntax errors | :material-check:{ .pt-icon-success }<br>Points to what Python couldn't read | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } |
+| Ways to fix syntax errors | [:material-check:{ .pt-icon-success }<br>Points to what Python couldn't read](#reading-a-syntax-error-message) | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } | :material-close:{ .pt-icon-fail } |
 
 </div>
 
@@ -54,15 +56,15 @@ The code doesn't follow Python's grammar rules, so it can't read or run the file
 
 ### Runtime errors { .pt-fake-h2 }
 
-A **runtime error** happens once a program is already running — the code is grammatically correct, but unable to execute.
+A **runtime error** crashes when a line of code is impossible to execute. It is grammatically correct so is able to read the file and start running, until it encounters something it can't do so it stops and gives you a specific error name. 
 
 Think about what programming concepts the failing line is using (data type, loop, conditional, etc), and revisit that page on this site to confirm you're applying it correctly.
 
 <div class="pt-jump-table" markdown="block">
 
-|  | [Read traceback message](#reading-a-traceback) | [`try`/`except`](#catch-with-tryexcept) | [Debugging strategies](#debugging-strategies) | [Debugger tool](#debugger-tool) | [Testing](#detect-errors-with-testing) |
+|  | [Read tracebacks](#reading-a-traceback) | [handle with try/except](#catch-with-tryexcept) | [Debugging strategies](#debugging-strategies) | [Debugger tool](#debugger-tool) | [Testing](#detect-errors-with-testing) |
 |---|:---:|:---:|:---:|:---:|:---:|
-| Ways to fix runtime errors | :material-check:{ .pt-icon-success }<br>Tells you exactly where it broke | :material-check:{ .pt-icon-success }<br>Use when the failure is expected and outside your control | :material-check:{ .pt-icon-success }<br>Figure out why it failed | :material-check:{ .pt-icon-success }<br>Step through the code to see exactly what's happening | :material-check:{ .pt-icon-success }<br>Lock in the fix to prevent it from happening again |
+| Ways to fix runtime errors | [:material-check:{ .pt-icon-success }<br>Tells you exactly where it broke](#reading-a-traceback) | [:material-check:{ .pt-icon-success }<br>Use when the failure is expected and outside your control](#catch-with-tryexcept) | [:material-check:{ .pt-icon-success }<br>Figure out why it failed](#debugging-strategies) | [:material-check:{ .pt-icon-success }<br>Step through the code to see exactly what's happening](#debugger-tool) | [:material-check:{ .pt-icon-success }<br>Lock in the fix to prevent it from happening again](#detect-errors-with-testing) |
 
 </div>
 
@@ -70,6 +72,7 @@ Think about what programming concepts the failing line is using (data type, loop
 
 | Kind of runtime error | Happens when | Check for |
 |-------|---------------|-----------|
+| **`AssertionError`** | An [`assert`](#assert-a-condition) statement's condition was `False` | <ul><li>The condition itself is wrong — double check the logic being asserted.</li><li>If this should always be checked, not just during development, use [`raise`](#raise-an-exception) instead — `assert` gets stripped out when Python runs with the `-O flag`.</li></ul> |
 | **`AttributeError`** | Calling a method or attribute that doesn't exist on that object | <ul><li>Typo in a method name.</li><li>A method that is being called on the wrong type: `"ball".append(...)` fails since `.append()` can only be applied to `list` not `str`.</li><li>A variable holds `None` instead of the object you meant to call a method on — often a function returned None instead of an expected value.</li><li>Reassigning a variable to the result of an in-place list method like `.append()` or `.sort()` — those return `None`, not the changed list.</li><li>A local file named the same as a library you import, see [file naming rules](workspace.md#step-2-write-and-run-a-python-file).</li></ul> |
 | **`FileNotFoundError`** | Trying to open a file that doesn't exist at that path | <ul><li>A typo in the filename, path, extension, or case. Open your file browser (Finder/  File Explorer) and check directly.</li><li>The path is relative to your current working directory</li><li>Meant to create a file but opened in read mode `"r"` instead of write mode `"w"` which creates the file if it doesn't exist.</li></ul> |
 | **`ImportError`** | Importing a name that doesn't exist in a module that *was* found | <ul><li>The module itself was found, but `from module import name` is asking for something that doesn't exist inside it — a typo in `name`.</li><li>The name exists, but in a different module than the one you're importing it from.</li><li>A local file named the same as a library you import, see [file naming rules](workspace.md#step-2-write-and-run-a-python-file).</li><li>Two of your own files importing from each other — restructure so one of them doesn't need to import the other, often by moving the shared piece into a third file.</li></ul> |
@@ -97,9 +100,9 @@ Think about what programming concepts you are using (data types, loops, conditio
 
 <div class="pt-jump-table" markdown="block">
 
-|  | [Read traceback/error](#reading-a-traceback) | [`try`/`except`](#catch-with-tryexcept) | [Debugging strategies](#debugging-strategies) | [Debugger tool](#debugger-tool) | [Testing](#detect-errors-with-testing) |
+|  | [Read tracebacks/errors](#reading-a-traceback) | [handle with try/except](#catch-with-tryexcept) | [Debugging strategies](#debugging-strategies) | [Debugger tool](#debugger-tool) | [Testing](#detect-errors-with-testing) |
 |---|:---:|:---:|:---:|:---:|:---:|
-| Ways to fix logic errors? | :material-close:{ .pt-icon-fail }<br>No error message is shown | :material-close:{ .pt-icon-fail }<br>No error is raised | :material-check:{ .pt-icon-success }<br>Helps you find exactly where the code's behavior diverges from what you expected | :material-check:{ .pt-icon-success }<br>Especially useful, since there's no error message to point you anywhere | :material-check:{ .pt-icon-success }<br>State your expected output, so the mistake gets caught automatically next time |
+| Ways to fix logic errors? | :material-close:{ .pt-icon-fail }<br>No error message is shown | :material-close:{ .pt-icon-fail }<br>No error is raised | [:material-check:{ .pt-icon-success }<br>Helps you find exactly where the code's behavior diverges from what you expected](#debugging-strategies) | [:material-check:{ .pt-icon-success }<br>See what is happening line by line](#debugger-tool) | [:material-check:{ .pt-icon-success }<br>State your expected output, so the mistake gets caught automatically next time](#detect-errors-with-testing) |
 
 </div>
 
@@ -154,79 +157,6 @@ Traceback (most recent call last):
   File "/usr/lib/python3.11/random.py", line 449, in choice
 IndexError: list index out of range
 ```
-
-</div>
-
-<div class="pfg-section" markdown="block">
-
-### Catch with try/except { .pt-fake-h2 }
-
-`try`/`except` lets your program handle [runtime errors](#runtime-errors) and then continue without crashing.
-
-```python-ref
-try:
-    [run this block of code first]  # only the line(s) that could cause the error
-except [error name]:  # i.e. KeyError, ValueError, etc
-    [if the try block caused the specified error, then continue and run this code]
-```
-
-#### When to use it  { .pt-fake-h3 }
-
-!!! success "Handle it with try/except"
-    - The failure is genuinely outside your control — a file that might not exist, a network call, user input you can't fully validate ahead of time
-    - The failure is an expected, normal outcome — not a mistake
-    - You have real alternative logic to run instead, like a fallback value or a retry — not just silencing the error
-
-!!! danger "Fix the code instead"
-    - You don't know what is causing the error
-    - It is in your control to fix the error
-    - Just wanting to make errors stop — often a sign there is a bug
-
-#### Catching multiple exceptions  { .pt-fake-h3 }
-
-List several exception types in one `except` to handle them the same way. Separate `except` blocks work too, if each error type needs different handling — Python checks them top to bottom and runs the first one that matches.
-
-```python-ref
-try:
-    length = float(lengths[species])
-except (KeyError, TypeError):                 #  handle these the same way
-    print("couldn't look up that species")
-except ValueError:                            # separate for different handling
-    print("length on record isn't a number")
-```
-
-#### Optional else and finally blocks  { .pt-fake-h3 }
-
-`else` runs only if `try` succeeded, but it won't trigger the `except` block. This isn't commonly used.
-
-`finally` always runs, and is for cleanup that has to happen either way, like closing a file.
-
-
-```python-ref
-try:
-    length = lengths[species]         # attempted first
-except KeyError:
-    print("no length on record")      # runs only on a KeyError
-else:
-    print(f"found it: {length} ft")   # runs only if try succeeded
-finally:
-    print("lookup attempt finished")  # always runs
-```
-
-??? run "Run a try/except example"
-    A case where try/except is the right tool — converting a value that might not be a valid number:
-
-    ```python
-    raw_length = "n/a"
-
-    print("trying to read the length")
-
-    try:
-        length = float(raw_length)
-        print(f"length: {length} ft")
-    except ValueError:
-        print(f"couldn't read '{raw_length}' as a number")
-    ```
 
 </div>
 
@@ -371,6 +301,153 @@ def test_missing_species_returns_none():
 Tests are especially good at catching [logic errors](#logic-errors) — where the only way to notice something's wrong is comparing the actual output against what you expected. A test does that comparison automatically, instead of relying on you to notice by eye.
 
 They're also useful for [runtime errors](#runtime-errors) — a test can exercise an edge case you wouldn't normally hit every time (an empty input, a missing key, a zero divisor), and `pytest.raises()` even lets you assert that a specific exception *should* fire, so you catch both "this crashes when it shouldn't" and "this doesn't crash when it should."
+
+</div>
+
+## Handling errors:
+
+<div class="pfg-section" markdown="block">
+
+### Catch with try/except { .pt-fake-h2 }
+
+`try`/`except` lets your program handle [runtime errors](#runtime-errors) and then continue without crashing.
+
+```python-ref
+try:
+    [run this block of code first]  # only the line(s) that could cause the error
+except [error name]:  # i.e. KeyError, ValueError, etc
+    [if the try block caused the specified error, then continue and run this code]
+```
+
+!!! success "Handle it with try/except"
+    - The failure is genuinely outside your control — a file that might not exist, a network call, user input you can't fully validate ahead of time
+    - The failure is an expected, normal outcome — not a mistake
+    - You have real alternative logic to run instead, like a fallback value or a retry — not just silencing the error
+
+!!! danger "Fix the code instead"
+    - You don't know what is causing the error
+    - It is in your control to fix the error
+    - Just wanting to make errors stop — often a sign there is a bug
+
+#### Catch specific exceptions  { .pt-fake-h3 }
+
+Catch the exact exception you expect (`except ValueError:`) instead of a bare `except:` — a bare `except` also silently swallows errors you didn't anticipate, including a typo in your own code, and even catches things like a keyboard interrupt (++ctrl+c++) that usually shouldn't be caught at all.
+
+```python-ref
+try:
+    length_ft = float(user_input)
+except ValueError:                 # only catches what you actually expect
+    print("invalid input")
+```
+
+List several exception types in one `except` to handle them the same way. Separate `except` blocks work too, if each error type needs different handling — Python checks them top to bottom and runs the first one that matches.
+
+```python-ref
+try:
+    length = float(lengths[species])
+except (KeyError, TypeError):                 #  handle these the same way
+    print("couldn't look up that species")
+except ValueError:                            # separate for different handling
+    print("length on record isn't a number")
+```
+
+#### finally  { .pt-fake-h3 }
+
+`finally` is an optional block that always runs after `try`/`except`, whether or not an exception happened — used for cleanup that has to happen either way, like closing a file.
+
+```python-ref
+try:
+    length = lengths[species]         # attempted first
+except KeyError:
+    print("no length on record")      # runs only on a KeyError
+finally:
+    print("lookup attempt finished")  # always runs
+```
+
+??? tip "Optional`else` block that runs if `try` succeeded"
+    `else` runs only if `try` succeeded, and won't trigger the `except` block if it fails — useful for keeping code that should only run on success out of the `try` block itself, so a bug in it doesn't get wrongly caught by the same `except`.
+
+    ```python-ref
+    try:
+        length = lengths[species]         # attempted first
+    except KeyError:
+        print("no length on record")      # runs only on a KeyError
+    else:
+        print(f"found it: {length} ft")   # runs only if try succeeded
+    ```
+
+??? run "Run a try/except example"
+    A case where try/except is the right tool — converting a value that might not be a valid number:
+
+    ```python
+    raw_length = "n/a"
+
+    print("trying to read the length")
+
+    try:
+        length = float(raw_length)
+        print(f"length: {length} ft")
+    except ValueError:
+        print(f"couldn't read '{raw_length}' as a number")
+    ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
+### Raise an exception { .pt-fake-h2 }
+
+**`Raise` triggers an exception yourself,** instead of waiting for one to happen naturally — useful for stopping bad input or state before it causes a more confusing error later.
+
+```python-ref
+def set_length(length_ft):
+    if length_ft < 0:
+        raise ValueError("length can't be negative")
+    return length_ft
+```
+
+Whoever calls the code with `raise` can then put it inside a [`try`/`except`](#catch-with-tryexcept) and handle it gracefully:
+
+```python-ref
+try:
+    set_length(-2)
+except ValueError as e:
+    print(e)
+```
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
+### Assert a condition { .pt-fake-h2 }
+
+**`assert` raises an `AssertionError` if a condition is False** — the same idea as `raise`, but meant for checking your own assumptions while you're still writing and testing the code, not for validating things that need to be checked every time the program is run. Catching a wrong assumption immediately, with a traceback pointing at it, is easier to debug than discovering it later as a [logic error](#logic-errors).
+
+```python-ref
+assert [boolean expression]             # raises AssertionError if condition is False 
+assert [boolean expression], [message]  # can add an optional message
+```
+
+```python-ref
+assert length_ft > 0, "length should be positive"
+```
+
+If `length_ft` is `-1`, that line raises `AssertionError`, with `message` as the text:
+
+```python-ref
+Traceback (most recent call last):
+  File "lengths.py", line 1, in <module>
+AssertionError: length should be positive
+```
+
+Like any other exception, `AssertionError` can be caught with [`try`/`except`](#catch-with-tryexcept):
+
+```python-ref
+try:
+    assert length_ft > 0, "length should be positive"
+except AssertionError as e:
+    print(e)
+```
 
 </div>
 

@@ -21,10 +21,10 @@ A few things worth double-checking before calling a script finished — each lin
 
 - [ ] **[Run a linter check](#linter-tool)** — catches many of the following automatically, but it can be good practice to check manually instead to get familiar with writing it correctly from the start:
     - [ ] **[File Order](#file-order)** — standardized file layout
-    - [ ] **[Mutable default arguments](#common-patterns)** — a default list/dict shared across every call
+    - [ ] **[Mutable default arguments](functions.md#defining-a-function)** — a default list/dict shared across every call
     - [ ] **[`is None` instead of `== None`](#common-patterns)** — a real correctness risk, not just style
-    - [ ] **[`with open(...)` instead of manual `open()`/`close()`](#common-patterns)** — avoids a file left open if something goes wrong
-    - [ ] **[Catch specific exceptions](#catch-specific-exceptions)** — no bare `except:` swallowing errors you didn't expect
+    - [ ] **[`with open(...)` instead of manual `open()`/`close()`](files.md#opening-a-file)** — avoids a file left open if something goes wrong
+    - [ ] **[Catch specific exceptions](errors.md#catch-specific-exceptions)** — no bare `except:` swallowing errors you didn't expect
     - [ ] **[Naming](#naming)** — does every variable and function name say what it holds?
     - [ ] **[Docstrings](#docstrings)** — does every function and file explain what it does?
     - [ ] **[Truthy checks instead of `len(x) > 0`](#common-patterns)** — test a collection directly
@@ -33,13 +33,13 @@ A few things worth double-checking before calling a script finished — each lin
     - [ ] **[Blank lines](#blank-lines)** — two around top-level functions/classes, one between methods
     - [ ] **[Whitespace](#whitespace)** — spaces around operators, but not around a keyword argument's `=`
     - [ ] **[Comments](#comments)** — two spaces before an inline `#`, one space after
-- [ ] **[Keep functions focused](#keep-functions-focused)** — does each function do just one job, with no repeated logic a [linter](#linter-tool) won't flag on its own?
+- [ ] **[Keep functions focused](functions.md#keep-functions-focused)** — does each function do just one job, with no repeated logic a [linter](#linter-tool) won't flag on its own?
 - [ ] **[Constants](#constants)** — are unchanging numbers pulled out into named `ALL_CAPS` values?
 - [ ] **[Quote style](#quote-style)** — one quote style used consistently throughout the file
-- [ ] **[Type hints](#type-hints)** — used on a function signature where the types aren't obvious?
-- [ ] **[Tuple unpacking instead of a temporary variable](#common-patterns)** — swapping two variables directly
+- [ ] **[Type hints](functions.md#type-hints)** — used on a function signature where the types aren't obvious?
+- [ ] **[Tuple unpacking instead of a temporary variable](collections.md#packing-and-unpacking)** — swapping two variables directly
 - [ ] **[File names](workspace.md#step-2-write-and-run-a-python-file)** — `snake_case.py`, no hyphens or spaces
-- [ ] **[Readable print output](#readable-print-output)** — `\n`/`\t` and separator rows used to space out console output
+- [ ] **[Escape sequences](foundations.md#escape-sequences)** — `\n`/`\t` and separator rows used to space out console output
 
 </div>
 
@@ -296,17 +296,6 @@ A few of these a beginner tends to write out longhand before learning the built-
         print(i, s)
     ```
 
-- **`with open(...)` instead of a manual `open()`/`close()` pair** — a context manager guarantees the file gets closed even if something goes wrong partway through
-
-    ```python-ref
-    file = open("notes.txt")           # works, but there's a risk of locking the file in a buffer
-    contents = file.read()
-    file.close()
-
-    with open("notes.txt") as file:    # Pythonic — closes automatically, even on error
-        contents = file.read()
-    ```
-
 - **`is None` instead of `== None`** — checking against `None` is a check of identity, not equality, so `is` is the correct tool
 
     ```python-ref
@@ -318,119 +307,11 @@ A few of these a beginner tends to write out longhand before learning the built-
         print("unknown length")
     ```
 
-- **Avoid mutable default arguments** — a default list or dict is created once, when the function is defined, and reused across every call — so items appended in one call are still there the next time, unless the default is `None` instead
-
-    ```python-ref
-    def add_snake(species, tracked=[]):     # works, but tracked is shared across every call
-        tracked.append(species)
-        return tracked
-
-    def add_snake(species, tracked=None):   # Pythonic — a fresh list every call
-        if tracked is None:
-            tracked = []
-        tracked.append(species)
-        return tracked
-    ```
-
-- **Tuple unpacking instead of a temporary variable** — swap two variables directly, rather than juggling a spare variable to hold one during the swap
-
-    ```python-ref
-    a, b = "ball python", "boa"
-    temp = a                             # manual swap using a spare variable
-    a = b
-    b = temp
-
-    a, b = b, a                          # Pythonic — tuple unpacking swaps directly
-    ```
-
 </div>
 
 <div class="pfg-section" markdown="block">
 
 ## Additional best practices
-
-### Keep functions focused
-
-A function should do one thing. If you find yourself describing it with "and" — "parses the input *and* saves it *and* prints a summary" — it's probably three functions.
-
-```python-ref
-def parse_and_save(text):    # doing too much
-    ...
-
-def parse_entry(text):       # one job each
-    ...
-
-def save_entry(entry):
-    ...
-```
-
-Repeating the same few lines in multiple places is a sign to pull them into their own function instead — commonly called **DRY** ("don't repeat yourself"). It also means a fix only has to happen in one place, instead of every place the lines were copied to.
-
-??? tip "Guard clauses: return early instead of nesting"
-    Handle the exception case first and return, rather than wrapping the rest of the function in an `else`. It keeps the normal path at the lowest indentation level, instead of nested one level deeper for every added check.
-
-    ```python-ref
-    def describe(length_ft):
-        if length_ft > 0:
-            return f"{length_ft} ft"
-        else:
-            return "unknown length"
-    ```
-
-    ```python-ref
-    def describe(length_ft):
-        if length_ft <= 0:
-            return "unknown length"
-        return f"{length_ft} ft"
-    ```
-
-    Both versions do the same thing — the second reads top to bottom without having to track which `if` branch you're inside.
-
-### Catch specific exceptions
-
-Catch the exact exception you expect (`except ValueError:`) instead of a bare `except:` — a bare `except` also silently swallows errors you didn't anticipate, including a typo in your own code, and even catches things like a keyboard interrupt (++ctrl+c++) that usually shouldn't be caught at all. Full `try`/`except` mechanics are covered on the [Errors](errors.md#catch-with-tryexcept) page.
-
-```python-ref
-try:
-    length_ft = float(user_input)
-except:                    # catches everything, even mistakes you didn't expect
-    print("invalid input")
-
-try:
-    length_ft = float(user_input)
-except ValueError:         # only catches what you actually expect
-    print("invalid input")
-```
-
-### Type hints
-
-A **type hint** annotates a parameter or return value with the type it's expected to be — `species: str`, `length_ft: float`, `-> bool` — without Python enforcing it at runtime; it's documentation an editor or a separate type checker (like `mypy`) can check for you.
-
-```python-ref
-def is_unusually_long(species: str, length_ft: float) -> bool:
-    return length_ft > 5
-```
-
-A wrong type still runs — Python doesn't stop you from calling `is_unusually_long("ball python", "4.5")` with a string instead of a `float` — the hint only helps a tool catch the mismatch before you do, and helps a reader (or their editor) see what's expected without reading the function body.
-
-### Readable print output
-
-`\n` and `\t` are **escape sequences** — `\n` inserts a line break, `\t` a tab — so a single `print()` call can space out multi-line or columned output.
-
-```python
-print(f"species: burmese\nlength: 10 ft\n")
-print("species\t\tlength_ft")
-print("ball python\t4.5")
-```
-
-A row of repeated characters makes a quick visual separator between sections of console output, useful for breaking up a long script's output into readable chunks.
-
-```python
-print("survey results")
-print("=" * 40)
-```
-
-### Going further { data-card-link="skip" }
 
 ??? tip "Be creative with ASCII art"
     Write in the terminal with bubble letters or draw images through creative character use.
@@ -460,5 +341,6 @@ print("=" * 40)
     [ascii text resource](https://patorjk.com/software/taag/#p=display&f=Isometric1&t=Type+Something+&x=none&v=4&h=4&w=80&we=false)
 
     [ascii art resource](https://www.asciiart.eu/#google_vignette)
+
 </div>
 

@@ -1,7 +1,7 @@
 ---
 description: >-
   Python classes and object-oriented programming explained with runnable examples:
-  attributes, methods, and inheritance.
+  attributes, methods, property/staticmethod/classmethod, and inheritance.
 ---
 
 # :material-package-variant:{ .lg .middle } Classes & Object-oriented programming (OOP)
@@ -226,6 +226,78 @@ ball.describe()    # "a 5 ft ball python"
     s = Snake()
     print(s)
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
+## Method decorators
+
+Python provides three built-in [decorators](functions.md#decorators) for methods that change how the method is called and add functionality:
+
+```python-ref
+class Snake:
+    def __init__(self, species, length_ft):
+        self.species = species
+        self.length_ft = length_ft
+
+    @property                                   # a computed attribute
+    def length_cm(self):                        # will be called like an attribute, not a method
+        return self.length_ft * 30.48
+
+    @staticmethod                               # a class-level utility
+    def is_valid_length(length_ft):             # no self — doesn't need an object
+        return length_ft > 0
+
+    @classmethod                                # an alternate constructor to __init__
+    def from_cm(cls, species, length_cm):       # receives cls (the class) instead of self
+        return cls(species, length_cm / 30.48)
+
+ball = Snake("ball", 5)
+ball.length_cm                           # 152.4 — called like an attribute, no parentheses
+Snake.is_valid_length(5)                 # True — called on the class, no object needed
+Snake.from_cm("ball", 152.4).length_ft   # 5.0 — builds a new object instead of modifying one
+```
+
+### @property
+
+Call it like a plain attribute, no parentheses. Turns a method into a value computed fresh every time it's read, instead of stored and going stale — `length_cm` below always reflects the current `length_ft`, even if it changes later. 
+
+Use it for a value that's cheap to derive from existing attributes and should look like a plain attribute to the rest of the code; skip it if the computation is expensive to redo on every access, or needs its own arguments beyond `self`.
+
+??? tip "Property setters"
+    A property is read-only by default — assigning to it raises an error unless you also define a setter with `@x.setter`, named the same as the property.
+
+    ```python-ref
+    class Snake:
+        def __init__(self, species, length_ft):
+            self.species = species
+            self.length_ft = length_ft
+
+        @property
+        def length_cm(self):
+            return self.length_ft * 30.48
+
+        @length_cm.setter
+        def length_cm(self, value):
+            self.length_ft = value / 30.48
+
+    ball = Snake("ball", 5)
+    ball.length_cm = 304.8    # runs the setter, which updates length_ft
+    ball.length_ft            # 10.0
+    ```
+
+### @staticmethod
+
+Call it without needing an object at all, directly on the class. Removes the automatic `self`, so the method can't read or change any object's data — it's really just a plain function, grouped under the class because it's conceptually related. 
+
+Use it for logic tied to the class's purpose but not to any one object's state, like a validation check; if it needs `self`, it should be a regular method instead.
+
+### @classmethod
+
+Call it as an alternative way to build an object. Receives the class itself (conventionally named `cls`) instead of an object, so it can construct and return a new instance. 
+
+Use it when there's more than one sensible way to build an object — `Snake.from_cm(...)` alongside the usual `Snake(...)` — as a second, clearly-named constructor; skip it if there's only one way to build the object, since `__init__()` would be complete.
 
 </div>
 

@@ -898,6 +898,13 @@ The **negative index** starts counting down from the end instead, starting at `-
             print("invalid format")
     ```
 
+- **Swapping variables:** unpack two values into each other's variables in one line, instead of using a temporary variable to hold one during the swap.
+
+    ```python-ref
+    a, b = "ball python", "boa"    # a="ball python"  b="boa"
+    a, b = b, a    # swaps directly — no temporary variable needed — a="boa"  b="ball python"
+    ```
+
 ### Tuple operations { data-card-link="skip" }
 
 #### Inspect
