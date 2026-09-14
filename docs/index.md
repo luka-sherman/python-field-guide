@@ -20,15 +20,15 @@ hide:
 
     Write Python on your computer.
 
-    [**`install`**](workspace.md#step-0-install-python)
+    [**`install`**](workspace.md#step-0-install-python): [`version`](workspace.md#step-0-install-python) [`download`](workspace.md#step-0-install-python)
 
-    [**`write and run .py file`**](workspace.md#step-2-write-and-run-a-python-file)
+    [**`code editors`**](workspace.md#step-1-pick-an-application-to-write-code-in): [`IDLE`](workspace.md#step-1-pick-an-application-to-write-code-in) [`Pycharm`](workspace.md#step-1-pick-an-application-to-write-code-in) [`Thonny`](workspace.md#step-1-pick-an-application-to-write-code-in) [`VS Code`](workspace.md#step-1-pick-an-application-to-write-code-in)
 
-    [**`code editors`**](workspace.md#step-1-pick-an-application-to-write-code-in)
+    [**`how to write and run .py file`**](workspace.md#step-2-write-and-run-a-python-file): [`file naming`](workspace.md#step-2-write-and-run-a-python-file)
 
-    [**`Terminal application`**](workspace.md#using-the-terminal-optional)
+    [**`Terminal`**](workspace.md#using-the-terminal-optional): [`pwd`](workspace.md#using-the-terminal-optional) [`cd`](workspace.md#using-the-terminal-optional) [`ls`](workspace.md#using-the-terminal-optional) [`shortcuts`](workspace.md#using-the-terminal-optional)
 
-    [**`virtual environments`**](workspace.md#virtual-environments-optional)
+    [**`virtual environments`**](workspace.md#virtual-environments-optional): [`venv`](workspace.md#virtual-environments-optional) [`activate`](workspace.md#virtual-environments-optional) [`pip`](workspace.md#virtual-environments-optional) [`requirements.txt`](workspace.md#virtual-environments-optional)
 
 -   :material-cube-outline:{ .lg .middle } [__Foundations__](foundations.md)
 
