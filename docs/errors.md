@@ -148,7 +148,7 @@ NameError: name 'name' is not defined
 
 The **last line** and the **file and line** above it still matter most, same as before.
 
-**Longer tracebacks** show one `File` line per function call involved — your code calling a function, which calls another function, and so on. Keep reading bottom to top: the first `File` line naming *your own file* (not a library you imported) is almost always the one worth looking at — the frames above it are usually just the library code that was doing what your code asked, not the actual source of the bug.
+**Longer tracebacks** show one `File` line per function call involved — your code calling a function, which calls another function, and so on. Start at the bottom of the traceback to identify the exception. Then read upward through the stack to understand how your program got there, looking first at the lines in your own code.
 
 ```python-ref
 Traceback (most recent call last):
