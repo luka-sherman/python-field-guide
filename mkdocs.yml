@@ -23,7 +23,9 @@ nav:
       - Utilities:
           - collections: libraries/collections.md
           - datetime: libraries/datetime.md
+          - math: libraries/math.md
           - random: libraries/random.md
+          - re: libraries/re.md
       - Data analysis:
           - csv: libraries/csv.md
           - matplotlib: libraries/matplotlib.md

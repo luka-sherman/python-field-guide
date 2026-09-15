@@ -633,10 +633,13 @@ hide:
     [`creating a specific date`](libraries/datetime.md#creating-a-specific-date) 
     [`date`](libraries/datetime.md#creating-dates-and-times) 
     [`strftime`](libraries/datetime.md#formatting-with-strftime) 
+-   :material-square-root-box:{ .lg .middle } [__math__](libraries/math.md) 
+[:material-language-python:](libraries/math.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
     [`difference between two dates`](libraries/datetime.md#difference-between-two-dates) 
     [`strptime`](libraries/datetime.md#parsing-a-string-with-strptime) 
     [`timedelta`](libraries/datetime.md#date-arithmetic) 
+    Rounding, roots, constants, and logarithms.
 
 -   :material-dice-multiple:{ .lg .middle } [__random__](libraries/random.md) 
 [:material-language-python:](libraries/random.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
@@ -644,10 +647,13 @@ hide:
     Random numbers, random picks, shuffled order.
 
     [**`randint`**](libraries/random.md#random-numbers)
+-   :material-regex:{ .lg .middle } [__re__](libraries/re.md) 
+[:material-language-python:](libraries/re.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
     [**`choice`**](libraries/random.md#random-selections): 
     [`sample`](libraries/random.md#sampling-without-replacement) 
     [`shuffle`](libraries/random.md#shuffling-a-list) 
+    Regular expressions: searching, extracting, and replacing text by pattern.
 
 </div>
 </div>
