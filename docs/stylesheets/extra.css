@@ -24,12 +24,15 @@
   --pt-heading-h3: #33724C;
   --pt-ref-keyword: #825E25;
   --pt-danger: #933331;
-  --pt-code-bg: #23221E;
-  --pt-code-border: #35342E;
-  --pt-code-fg: #F2EDE0;
-  --pt-code-string: #C9E4D2;
-  --pt-code-keyword: #E8C9A8;
-  --pt-code-comment: #97917F;
+  /* Runnable python blocks share the same light panel look as
+     .pyodide-reference in light mode (not a dark terminal here — that's
+     dark-mode-only, see the slate scheme below). */
+  --pt-code-bg: var(--pt-panel);
+  --pt-code-border: var(--pt-hairline);
+  --pt-code-fg: var(--pt-ink);
+  --pt-code-string: var(--pt-accent);
+  --pt-code-keyword: var(--pt-ref-keyword);
+  --pt-code-comment: var(--pt-text-secondary);
 
   --pt-shimmer-gold: #D9C48C;
   --pt-shimmer-sage: #B9CDAE;
@@ -52,10 +55,11 @@
   --pt-ref-keyword: #C99B5A;
   --pt-danger: #CB7671;
 
-  /* Same dark terminal panel as the light scheme (not inverted) — the
-     runnable block should read as dark in dark mode too, matching the
-     .pyodide-reference block, which already stays dark here since it tracks
-     --pt-panel. */
+  /* Runnable python blocks keep a dedicated dark terminal panel here
+     (unlike the light scheme above, which now matches --pt-panel) — this
+     dark look was the original intent and .pyodide-reference already reads
+     dark in dark mode too since it tracks --pt-panel, so the two still
+     match visually. */
   --pt-code-bg: #23221E;
   --pt-code-border: #35342E;
   --pt-code-fg: #F2EDE0;
