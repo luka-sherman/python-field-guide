@@ -130,6 +130,8 @@ hide:
     [`reassigning`](foundations.md#reassigning-a-variable) 
     [`types`](foundations.md#variables-and-types) 
 
+    [**`expressions and statements`**](foundations.md#expressions-and-statements)
+
     [**`print`**](foundations.md#print-function): 
     [`escape sequences`](foundations.md#escape-sequences) 
 
