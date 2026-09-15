@@ -44,7 +44,7 @@ flowchart LR
     classDef terminal fill:none,stroke-width:2px
     class start,stop terminal
 
-    classDef blackbox fill:#000,color:#fff,stroke:#fff,stroke-width:1px
+    classDef blackbox stroke-width:1px
     class black blackbox
 ```
 
@@ -57,37 +57,18 @@ flowchart LR
 <div class="pfg-diagram-frame" markdown="block">
 
 ```mermaid
-flowchart TB
+flowchart LR
+    black@{ shape: procs, label: "your program\nprint(...)\nprint(...)\nprint(...)" }
+    stop@{ shape: dbl-circ, label: "end ■" }
+    start(("start ▶"))
+    start --> black --> stop
 
-subgraph top[" "]
-direction LR
-black@{ shape: procs, label: "your program" }
-stop@{ shape: dbl-circ, label: "end ■" }
-start(("start ▶"))
-start --> black --> stop
-end
+    classDef terminal fill:none,stroke-width:2px
+    class start,stop terminal
 
-p1["print(...)"]
-p2["print(...)"]
-p3["print(...)"]
-
-black -.-> p1
-black -.-> p2
-black -.-> p3
-
-style top fill:none,stroke:none
-
-classDef terminal fill:none,stroke-width:2px
-class start,stop terminal
-
-classDef blackbox fill:#000,color:#fff,stroke:#fff,stroke-width:1px
-class black blackbox
-
-classDef plain fill:none,stroke:none
-class p1,p2,p3 plain
+    classDef blackbox stroke-width:1px
+    class black blackbox
 ```
-
-<p class="pfg-diagram-caption">FIG: print() checkpoints along a running program</p>
 
 </div>
 
@@ -100,40 +81,12 @@ Code editors have an **output** window at the bottom that shows the print statem
 <div class="pfg-diagram-frame" markdown="block">
 
 ```mermaid
-flowchart TB
-
-subgraph code[" "]
-direction LR
-
-p("print")
-o("(")
-s("data")
-c(")")
-
-p -.- o -.- s -.- c
-
-end
-
-f("the function name `print`")
-pa("opening parenthesis")
-st("the data you want to see: a word, number, variable, etc")
-pc("closing parenthesis")
-
-f --> p
-pa --> o
-st --> s
-pc --> c
-
-classDef plain fill:none,stroke:none
-class f,pa,st,pc plain
+flowchart LR
+p("print") -.- o("(") -.- s("value you want to see") -.- c(")")
 
 classDef punct stroke:none
 class p,o,c punct
-
-style code fill:none,stroke:none
 ```
-
-<p class="pfg-diagram-caption">FIG: the parts of a print() statement</p>
 
 </div>
 
@@ -416,46 +369,12 @@ The text inside the parentheses — `"What's your first name? "` — is the **pr
 <div class="pfg-diagram-frame" markdown="block">
 
 ```mermaid
-flowchart TB
-
-subgraph code[" "]
-direction LR
-
-n("name")
-eq("=")
-i("input")
-o("(")
-s("&quot;What's your name? &quot;")
-c(")")
-
-n -.- eq -.- i -.- o -.- s -.- c
-
-end
-
-nl("the variable to save the answer in")
-eql("the assignment operator")
-il("the function name `input`")
-pa("opening parenthesis")
-sl("the prompt: a message shown before waiting")
-pc("closing parenthesis")
-
-nl --> n
-eql --> eq
-il --> i
-pa --> o
-sl --> s
-pc --> c
-
-classDef plain fill:none,stroke:none
-class nl,eql,il,pa,sl,pc plain
+flowchart LR
+n("variable_name") -.- eq("=") -.- i("input") -.- o("(") -.- q1("&quot;") -.- s("Prompt the user for the value you want") -.- q2("&quot;") -.- c(")")
 
 classDef punct stroke:none
-class eq,i,o,c punct
-
-style code fill:none,stroke:none
+class eq,i,o,c,q1,q2 punct
 ```
-
-<p class="pfg-diagram-caption">FIG: the parts of an input() statement</p>
 
 </div>
 
