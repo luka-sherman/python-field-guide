@@ -231,9 +231,9 @@ ball.describe()    # "a 5 ft ball python"
 
 <div class="pfg-section" markdown="block">
 
-## Method decorators
+## Method decorators { data-advanced="true" }
 
-Python provides three built-in [decorators](functions.md#decorators) for methods that change how the method is called and add functionality:
+Python provides 3 built-in [decorators](functions.md#decorators) for methods that change how the method is called and add functionality:
 
 ```python-ref
 class Snake:
@@ -458,7 +458,7 @@ boa.describe()      # "a heavy-bodied constrictor" — Boa's version replaces it
 
 <div class="pfg-section" markdown="block">
 
-## Polymorphism
+## Polymorphism { data-advanced="true" }
 
 **Polymorphism** ("many forms") means the same method or function name behaves differently depending on which object it's called on — so you can call `.describe()` on any snake-like object without needing to know exactly which one it is.
 

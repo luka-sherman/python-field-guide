@@ -6,11 +6,25 @@ description: Why Python Field Guide exists, who built it, and how to send feedba
 
 <div class="pfg-section" markdown="block">
 
+## What is Python?
+
+Python is a general-purpose language built for code that's easy to read back later, even by someone who didn't write it. There's no compiling: write a `.py` file, run it directly.
+
+It shows up everywhere — web backends, data analysis and machine learning, automating repetitive tasks, scientific computing, quick glue scripts. Several of these are covered on this site's [Libraries](index.md#utilities) pages.
+
+The fundamentals every language shares — variables, conditionals, loops, functions, classes — read closer to plain English in Python, so you spend your effort learning to think like a programmer instead of fighting a stricter syntax. Once those fundamentals are solid, they carry over to whatever language you pick up next.
+
+Python is often the fastest language to write *correct* code in, even though it's not the fastest to *run*, which is why it's such a common first choice for a new project.
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Why I built this
 
 My name's Luka, I'm a software engineer and Intro Python teacher. 
 
-I built this from scratch — it started as a few quick-reference explanations for students working on their first programs, and evolved into this site. 
+*Python Field Guide* is a free, in-browser reference — most code blocks are editable and runnable directly on the page. It started as a few quick-reference explanations for students working on their first programs, and evolved into this site. 
 
 I couldn't find a site my students would consistently use that had: 
 
@@ -20,6 +34,8 @@ I couldn't find a site my students would consistently use that had:
 - at-a-glance reminders for students who already knew a concept but needed a refresher on the specifics or syntax
 - quick intuitive navigation
 - clean, minimal UI
+
+It's built for learners — self-taught, students in an intro course, or anyone who wants one combined reference to work through start to finish, instead of a scattered pile of search results.
 
 I'm hoping this can be a helpful cheatsheet for others to quickly reference syntax and structures. 
 

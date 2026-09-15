@@ -11,7 +11,7 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
 <div class="pt-category-grid" markdown="block">
 
-<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-advanced="true">
 #### Testing { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
@@ -42,6 +42,7 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
 -   :material-format-list-group:{ .lg .middle } [__collections__](collections.md) 
 [:material-language-python:](collections.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
+    {: data-advanced="card" }
 
     Specialized containers: counting items, grouping with defaults, named tuples, fast queues.
 
@@ -159,6 +160,7 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
 -   :material-matrix:{ .lg .middle } [__NumPy__](numpy.md) 
 [:material-download-outline:](numpy.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
+    {: data-advanced="card" }
 
     Fast numeric arrays, with math applied to a whole array at once instead of item by item.
 
@@ -171,6 +173,7 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
 -   :material-table:{ .lg .middle } [__pandas__](pandas.md) 
 [:material-download-outline:](pandas.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
+    {: data-advanced="card" }
 
     Tabular data: rows and columns, like a spreadsheet, built on top of NumPy.
 
@@ -312,13 +315,14 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 </div>
 </div>
 
-<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-advanced="true">
 #### Computer vision { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
 -   :material-face-recognition:{ .lg .middle } [__OpenCV__](opencv.md) 
 [:material-download-outline:](opencv.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
+    {: data-advanced="card" }
 
     Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection.
 

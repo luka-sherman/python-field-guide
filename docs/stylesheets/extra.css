@@ -24,12 +24,19 @@
   --pt-heading-h3: #33724C;
   --pt-ref-keyword: #825E25;
   --pt-danger: #933331;
-  --pt-code-bg: #23221E;
-  --pt-code-border: #35342E;
-  --pt-code-fg: #F2EDE0;
-  --pt-code-string: #C9E4D2;
-  --pt-code-keyword: #E8C9A8;
-  --pt-code-comment: #97917F;
+  /* Runnable python blocks share the same light panel look as
+     .pyodide-reference in light mode (not a dark terminal here — that's
+     dark-mode-only, see the slate scheme below). */
+  --pt-code-bg: var(--pt-panel);
+  --pt-code-border: var(--pt-hairline);
+  --pt-code-fg: var(--pt-ink);
+  --pt-code-string: var(--pt-accent);
+  --pt-code-keyword: var(--pt-ref-keyword);
+  --pt-code-comment: var(--pt-text-secondary);
+
+  --pt-shimmer-gold: #D9C48C;
+  --pt-shimmer-sage: #B9CDAE;
+  --pt-shimmer-clay: #CBA989;
 }
 
 [data-md-color-scheme="slate"] {
@@ -48,10 +55,11 @@
   --pt-ref-keyword: #C99B5A;
   --pt-danger: #CB7671;
 
-  /* Same dark terminal panel as the light scheme (not inverted) — the
-     runnable block should read as dark in dark mode too, matching the
-     .pyodide-reference block, which already stays dark here since it tracks
-     --pt-panel. */
+  /* Runnable python blocks keep a dedicated dark terminal panel here
+     (unlike the light scheme above, which now matches --pt-panel) — this
+     dark look was the original intent and .pyodide-reference already reads
+     dark in dark mode too since it tracks --pt-panel, so the two still
+     match visually. */
   --pt-code-bg: #23221E;
   --pt-code-border: #35342E;
   --pt-code-fg: #F2EDE0;
@@ -181,8 +189,29 @@ html:focus-within::-webkit-scrollbar-thumb {
   background-position: 0 0, 14px 18px, 0% 50%;
 }
 
+/* Same decorative scale-ring + shimmer treatment, light (default) scheme.
+   Ring colors swap from dark mode's purple/indigo jewel tones to the site's
+   own gold/green palette (--pt-ref-keyword, --pt-accent), since purple reads
+   as an unrelated outlier against cream rather than a deliberate accent the
+   way it does against slate's near-black background. Shimmer hues likewise
+   swap to warm gold/sage/clay (--pt-shimmer-*) instead of indigo/purple/green
+   — colors close in value to --pt-bg so it stays a faint sheen, not a band. */
+[data-md-color-scheme="default"] .md-header {
+  background-image:
+    radial-gradient(circle at 100% 50%, transparent 14px, rgba(130, 94, 37, 0.07) 15px, rgba(8, 84, 42, 0.07) 16px, transparent 17px),
+    radial-gradient(circle at 100% 50%, transparent 14px, rgba(8, 84, 42, 0.07) 15px, rgba(130, 94, 37, 0.07) 16px, transparent 17px),
+    linear-gradient(120deg,
+      color-mix(in srgb, var(--pt-shimmer-gold) 18%, transparent),
+      color-mix(in srgb, var(--pt-shimmer-sage) 18%, transparent),
+      color-mix(in srgb, var(--pt-shimmer-clay) 18%, transparent),
+      color-mix(in srgb, var(--pt-shimmer-gold) 18%, transparent));
+  background-size: 28px 36px, 28px 36px, 320% 320%;
+  background-position: 0 0, 14px 18px, 0% 50%;
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  [data-md-color-scheme="slate"] .md-header {
+  [data-md-color-scheme="slate"] .md-header,
+  [data-md-color-scheme="default"] .md-header {
     animation: pt-header-shimmer 22s ease-in-out infinite;
   }
 }
@@ -232,6 +261,13 @@ html:focus-within::-webkit-scrollbar-thumb {
 }
 
 .md-typeset .grid.cards a {
+  text-decoration: none;
+}
+
+/* Tab labels aren't prose links — Material wraps each one in an <a> purely
+   for keyboard/anchor navigation between tabs, not as a clickable reference,
+   so the link-in-text-block underline doesn't apply here. */
+.md-typeset .tabbed-labels a {
   text-decoration: none;
 }
 
@@ -645,6 +681,118 @@ input:checked + .md-consent__settings {
   margin: 0.3rem 0 0.1rem;
 }
 
+/* "Essentials / Advanced" toggle (docs/javascripts/essentials_toggle.js)
+   — both options always visible, sliding highlight behind the active
+   one, next to the palette toggle. Shows on every page. */
+.pt-simplify-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 1.2rem;
+  margin: 0.4rem 0.2rem;
+  /* currentColor, not a fixed accent — border/highlight/text below track
+     the theme's own ink/bg shades. */
+  border: 0.05rem solid currentColor;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.pt-simplify-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  /* Square outer edge gets clipped to the track's own rounding via
+     overflow: hidden above; only the inner (middle) edge needs rounding. */
+  border-radius: 0 1rem 1rem 0;
+  background-color: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.pt-simplify-toggle[data-active="simplified"] .pt-simplify-highlight,
+.pt-simplify-toggle[data-active="light"] .pt-simplify-highlight {
+  border-radius: 1rem 0 0 1rem;
+  transform: translateX(100%);
+}
+
+.pt-simplify-option {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  padding: 0 0.5rem;
+  border: none;
+  background: none;
+  color: currentColor;
+  font-family: inherit;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* Active option's text sits on the currentColor highlight, so it flips
+   to the bg color for contrast; inactive stays plain currentColor. */
+.pt-simplify-toggle[data-active="simplified"] .pt-simplify-option[data-mode="simplified"],
+.pt-simplify-toggle[data-active="advanced"] .pt-simplify-option[data-mode="advanced"],
+.pt-simplify-toggle[data-active="light"] .pt-simplify-option[data-scheme="default"],
+.pt-simplify-toggle[data-active="dark"] .pt-simplify-option[data-scheme="slate"] {
+  color: var(--pt-bg);
+}
+
+/* Several of Material's own rules (.md-header__option, .md-typeset
+   details, .md-option:checked + label) beat the plain [hidden] { display:
+   none } UA rule on specificity, so an element we hide via JS (.hidden =
+   true) can silently stay visible — hit this three times now (the palette
+   form, admonitions under a hidden heading, the old knob). One global
+   override instead of chasing each element type. */
+[hidden] {
+  display: none !important;
+}
+
+/* Light/dark toggle — shares .pt-simplify-toggle/-highlight/-option, but
+   each option is a fixed choice (sun = light, moon = dark) rather than
+   one element showing whichever mode is current. Native Material markup
+   is hidden but stays in the DOM (its own JS still applies the scheme). */
+.pt-theme-option {
+  padding: 0 0.35rem;
+}
+
+.pt-theme-option::before {
+  content: "";
+  display: block;
+  width: 0.7rem;
+  height: 0.7rem;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.pt-theme-option[data-scheme="default"]::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z'/%3E%3C/svg%3E");
+}
+
+.pt-theme-option[data-scheme="slate"]::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31'/%3E%3C/svg%3E");
+}
+
+.simplify-active [data-advanced] {
+  display: none;
+}
+
+/* data-advanced="card" hides the entire card, not just the marked paragraph
+   — walk up from whichever paragraph carries it to the enclosing <li>. */
+.simplify-active .grid.cards > ul > li:has(> p[data-advanced="card"]) {
+  display: none;
+}
+
 .pt-category-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -683,6 +831,14 @@ input:checked + .md-consent__settings {
   .pt-category--wide.pt-lib--2 { grid-column: span 2; }
   .pt-category--wide.pt-lib--3 { grid-column: span 3; }
   .pt-category--wide.pt-lib--4 { grid-column: span 4; }
+
+  /* pt-lib--N above is sized for the full card count; Essentials mode
+     hides some, leaving boxes too wide. essentials_toggle.js recomputes the
+     visible count into --pt-lib-span, overriding pt-lib--N here (same
+     specificity, later in source) while active. */
+  .simplify-active .pt-category--wide {
+    grid-column: span var(--pt-lib-span, 4);
+  }
 }
 
 @media (max-width: 45em) {

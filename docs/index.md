@@ -9,6 +9,79 @@ hide:
 
 # Python Field Guide { .pt-visually-hidden }
 
+??? ai "Using AI while learning to code"
+
+    === "Why still learn to code yourself?"
+
+        <div class="pt-compare">
+
+        |  | Learn to do it yourself | Have AI do it for you |
+        |---|---|---|
+        | **Writing & struggling with code** | :material-check:{ .pt-icon-success } Productive struggle is what **builds understanding**<ul><li>You can solve the problem **again** on your own</li><li>**Adapt** the answer, and **catch** when it's wrong</li></ul> | :material-close:{ .pt-icon-fail } Being handed the answer skips [the friction that builds understanding](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf)<ul><li>If you skip that struggle, you **won't develop the knowledge** to solve the problem again, adapt the answer, or recognize when it's wrong.</li></ul> |
+        | **Reading & verifying code** | :material-check:{ .pt-icon-success } **Understanding programming fundamentals** makes AI more useful — you can read and evaluate code you didn't write<ul><li>Spot mistakes</li><li>Understand **why** a solution works</li><li>Communicate your problem to AI more effectively</li></ul> | :material-close:{ .pt-icon-fail } Inefficient communication with AI **if you don't fully understand **what's going on, and AI code can look correct while being wrong or insecure<ul><li>You can't tell **why** a solution works</li><li>Researchers are already documenting this skill gap in [students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before they've [built their own foundation](https://dl.acm.org/doi/10.1145/3624720)</li><li>One [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) found developers using AI wrote **less** secure code — but were **more** confident it was secure</li></ul> |
+        | **On the job** | :material-check:{ .pt-icon-success } Employers are still hiring for understanding, not prompting<ul><li>Code review, debugging, and interviews all test whether you can reason about code and judge whether it's correct</li><li>Learning to program on your own turns AI into a **tool you can direct and verify**, instead of one you're assuming got it right</li></ul> | :material-close:{ .pt-icon-fail } AI will likely be available at work too — but it isn't what will get you hired |
+
+        </div>
+
+    === "How to use AI to support your learning?"
+
+        ```mermaid
+        swimlane-beta TB
+            accTitle: Using AI to learn
+            accDescr: AI walks you through setup before you start. You attempt each problem yourself with autocomplete off, then check whether you can explain why it works and whether it actually holds up — if either check fails, you describe what you tried rather than handing over your code, so AI explains the concept instead of fixing it, and you try again. Passing both checks means you understand it well enough for a practice problem, or for the code review, debugging, and interviews that are what your job actually tests.
+
+            subgraph You
+                you_help_setup(Need help setting up your computer to start programming?)
+                you_have_project(Do you have a project to work on?)
+                you_attempt(Attempt it yourself, autocomplete off so you understand everything that's there, utilize debug strategies)
+                you_writeup(Stuck? Write out your problem: what you expect to happen, what you're observing, what you've tried already, see if this helps you process or rethink your strategy)
+                you_finish("Learning to program means making mistakes, getting stuck, and eventually figuring things out and forming a mental model. That's the process that builds skills you can rely on to continue solving problems and detecting issues — ready for code review, debugging, and interviews, where AI won't be tested, your reasoning will. ")
+            end
+
+            subgraph AI
+                ai_help_setup(AI can help guide you through setup on your exact device — which could make getting started more accessible for beginners)
+                ai_suggest_problem(Suggests a problem based on your skill level, interests, and what you're trying to improve)
+                explain(With that context AI can provide more targeted, efficient help. Don't just paste the code/error, ask AI to explain what a line does, or what an error means — an explanation to help you understand concepts, be clear you do NOT want it to write code, just explain)
+            end
+
+
+            ai_help_setup ~~~ you_help_setup
+            ai_suggest_problem ~~~ you_have_project
+            you_help_setup -->|Yes| ai_help_setup
+            you_help_setup -->|No| you_have_project
+            ai_help_setup --> you_have_project
+
+            you_have_project -->|No| ai_suggest_problem
+
+            you_have_project -->|Yes| you_attempt
+
+            ai_suggest_problem --> you_attempt
+            you_attempt <--> you_writeup
+            you_attempt -->|Done!| you_finish
+            you_writeup --> |still stuck?| explain
+            explain --> you_attempt
+            explain ~~~ you_finish
+
+            %% Edge label text colored red if it leads into the AI lane, green
+            %% if it leads into the You lane, matching the lane colors. This is
+            %% linkStyle's "color" property (not background) — the one styling
+            %% mechanism mermaid applies from inside its own closed shadow
+            %% root, so it's the only thing that actually reaches the label.
+            linkStyle 0 color:#a33f3f
+            linkStyle 1 color:#3f6b52
+            linkStyle 3 color:#3f6b52
+            linkStyle 4 color:#a33f3f
+            linkStyle 7 color:#3f6b52
+            linkStyle 8 color:#a33f3f
+
+            classDef you fill:#3f6b521f,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
+            classDef ai fill:#a33f3f1a,stroke:#a33f3f,stroke-width:2px,color:#a33f3f
+            class you_writeup,you_help_setup,you_have_project,you_attempt,you_finish you
+            class explain,ai_help_setup,ai_suggest_problem ai
+            style You fill:#3f6b521f,stroke:#3f6b52,color:#3f6b52
+            style AI fill:#a33f3f1a,stroke:#a33f3f,color:#a33f3f
+        ```
+
 <div class="pt-category-grid" markdown="block">
 
 <div class="pt-category" markdown="block">
@@ -33,17 +106,19 @@ hide:
     [**`how to write and run .py file`**](workspace.md#step-2-write-and-run-a-python-file): 
     [`file naming`](workspace.md#step-2-write-and-run-a-python-file) 
 
-    [**`Terminal`**](workspace.md#using-the-terminal-optional): 
-    [`cd`](workspace.md#using-the-terminal-optional) 
-    [`ls`](workspace.md#using-the-terminal-optional) 
-    [`pwd`](workspace.md#using-the-terminal-optional) 
-    [`shortcuts`](workspace.md#using-the-terminal-optional) 
+    [**`Terminal`**](workspace.md#using-the-terminal): 
+    [`cd`](workspace.md#using-the-terminal) 
+    [`ls`](workspace.md#using-the-terminal) 
+    [`pwd`](workspace.md#using-the-terminal) 
+    [`shortcuts`](workspace.md#using-the-terminal) 
+    {: data-advanced="true" }
 
-    [**`virtual environments`**](workspace.md#virtual-environments-optional): 
-    [`activate`](workspace.md#virtual-environments-optional) 
-    [`pip`](workspace.md#virtual-environments-optional) 
-    [`requirements.txt`](workspace.md#virtual-environments-optional) 
-    [`venv`](workspace.md#virtual-environments-optional) 
+    [**`virtual environments`**](workspace.md#virtual-environments): 
+    [`activate`](workspace.md#virtual-environments) 
+    [`pip`](workspace.md#virtual-environments) 
+    [`requirements.txt`](workspace.md#virtual-environments) 
+    [`venv`](workspace.md#virtual-environments) 
+    {: data-advanced="true" }
 
 -   :material-cube-outline:{ .lg .middle } [__Foundations__](foundations.md)
 
@@ -209,6 +284,7 @@ hide:
     [`sum`](collections.md#arithmetic_1) 
     [`tuple`](collections.md#create_2) 
     [`unpacking`](collections.md#packing-and-unpacking) 
+    {: data-advanced="true" }
 
     [**`sets`**](collections.md#sets): 
     [`add`](collections.md#update_1) 
@@ -229,6 +305,7 @@ hide:
     [`sum`](collections.md#arithmetic_2) 
     [`update`](collections.md#update_1) 
     [`| & - ^`](collections.md#combine) 
+    {: data-advanced="true" }
 
 </div>
 </div>
@@ -316,8 +393,10 @@ hide:
 
     [**`scope`**](functions.md#scope): 
     [`local vs global`](functions.md#local-vs-global-variables) 
+    {: data-advanced="true" }
 
     [**`recursion`**](functions.md#recursion)
+    {: data-advanced="true" }
 
     [**`decorators`**](functions.md#decorators): 
     [`arguments`](functions.md#accepting-arguments) 
@@ -325,6 +404,7 @@ hide:
     [`original function`](functions.md#returning-the-original-function) 
     [`stacking`](functions.md#advanced-uses) 
     [`wrapping`](functions.md#wrapping-the-call)
+    {: data-advanced="true" }
 
 -   :material-package-variant:{ .lg .middle } [__Classes__](oop.md)
 
@@ -339,6 +419,7 @@ hide:
     [`@classmethod`](oop.md#classmethod) 
     [`@property`](oop.md#property) 
     [`@staticmethod`](oop.md#staticmethod) 
+    {: data-advanced="true" }
 
     [**`inheritance`**](oop.md#inheritance): 
     [`adding attributes and methods`](oop.md#adding-attributes-and-methods) 
@@ -349,6 +430,7 @@ hide:
     [**`polymorphism`**](oop.md#polymorphism): 
     [`polymorphism via inheritance`](oop.md#polymorphism-via-inheritance) 
     [`same method name, unrelated classes`](oop.md#same-method-name-unrelated-classes) 
+    {: data-advanced="true" }
 
 </div>
 </div>
@@ -453,7 +535,7 @@ hide:
 
 # Add-On Libraries
 
-<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-advanced="true">
 #### Testing { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
@@ -484,6 +566,7 @@ hide:
 
 -   :material-format-list-group:{ .lg .middle } [__collections__](libraries/collections.md) 
 [:material-language-python:](libraries/collections.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
+    {: data-advanced="card" }
 
     Specialized containers with advanced functionality.
 
@@ -601,6 +684,7 @@ hide:
 
 -   :material-matrix:{ .lg .middle } [__NumPy__](libraries/numpy.md) 
 [:material-download-outline:](libraries/numpy.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
+    {: data-advanced="card" }
 
     Fast numeric arrays, with math applied to a whole array at once instead of item by item.
 
@@ -613,6 +697,7 @@ hide:
 
 -   :material-table:{ .lg .middle } [__pandas__](libraries/pandas.md) 
 [:material-download-outline:](libraries/pandas.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
+    {: data-advanced="card" }
 
     Tabular data: rows and columns, like a spreadsheet, built on top of NumPy.
 
@@ -754,13 +839,14 @@ hide:
 </div>
 </div>
 
-<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-advanced="true">
 #### Computer vision { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
 -   :material-face-recognition:{ .lg .middle } [__OpenCV__](libraries/opencv.md) 
 [:material-download-outline:](libraries/opencv.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
+    {: data-advanced="card" }
 
     Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection.
 
@@ -802,89 +888,3 @@ hide:
 
 </div>
 
-### FAQ
-
-??? ai "Why learn to code yourself, if AI can do it for you?"
-
-    <div class="pt-compare">
-
-    |  | Learn to do it yourself | Have AI do it for you |
-    |---|---|---|
-    | **Writing & struggling with code** | :material-check:{ .pt-icon-success } **Productive struggle** is what builds understanding<ul><li>You can solve the problem again on your own</li><li>Adapt the answer, and catch when it's wrong</li></ul> | :material-close:{ .pt-icon-fail } Being handed the answer skips [the friction that builds understanding](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf)<ul><li>If you skip that struggle, you *won't develop the knowledge* to solve the problem again, adapt the answer, or recognize when it's wrong.</li></ul> |
-    | **Reading & verifying code** | :material-check:{ .pt-icon-success } Understanding programming fundamentals makes AI more useful — you can read code you didn't write, and check it before you trust it<ul><li>Spot mistakes</li><li>Understand *why* a solution works</li><li>Communicate your problem to AI more effectively</li></ul> | :material-close:{ .pt-icon-fail } Inefficient communication with AI if you don't fully understand what's going on, and AI code can look correct while being **wrong and insecure**<ul><li>You can't tell *why* a solution works</li><li>Researchers are already documenting this skill gap in [students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before they've [built their own foundation](https://dl.acm.org/doi/10.1145/3624720)</li><li>One [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) found developers using AI wrote *less* secure code — but were *more* confident it was secure</li></ul> |
-    | **On the job** | :material-check:{ .pt-icon-success } Employers are still hiring for understanding, not prompting<ul><li>Code review, debugging, and interviews all test whether you can reason about code</li><li>And judge whether it's correct</li><li>Learning to program on your own turns AI into a tool you can direct and verify, instead of one you're assuming got it right</li></ul> | :material-close:{ .pt-icon-fail } AI will likely be available at work too — but it isn't what's being tested |
-
-    </div>
-
-??? ai "How to use AI to support your learning"
-
-    ```mermaid
-    swimlane-beta TB
-        accTitle: Using AI to learn
-        accDescr: AI walks you through setup before you start. You attempt each problem yourself with autocomplete off, then check whether you can explain why it works and whether it actually holds up — if either check fails, you describe what you tried rather than handing over your code, so AI explains the concept instead of fixing it, and you try again. Passing both checks means you understand it well enough for a practice problem, or for the code review, debugging, and interviews that are what your job actually tests.
-
-        subgraph You
-            you_help_setup(Need help setting up your computer to start programming?)
-            you_have_project(Do you have a project to work on?)
-            you_attempt(Attempt it yourself, autocomplete off so you understand everything that's there, utilize debug strategies)
-            you_writeup(Stuck? Write out your problem: what you expect to happen, what you're observing, what you've tried already, see if this helps you process or rethink your strategy)
-            you_finish("Learning to program means making mistakes, getting stuck, and eventually figuring things out and forming a mental model. That's the process that builds skills you can rely on to continue solving problems and detecting issues — ready for code review, debugging, and interviews, where AI won't be tested, your reasoning will. ")
-        end
-
-        subgraph AI
-            ai_help_setup(AI can help guide you through setup on your exact device — which could make getting started more accessible for beginners)
-            ai_suggest_problem(Suggests a problem based on your skill level, interests, and what you're trying to improve)
-            explain(With that context AI can provide more targeted, efficient help. Don't just paste the code/error, ask AI to explain what a line does, or what an error means — an explanation to help you understand concepts, be clear you do NOT want it to write code, just explain)
-        end
-
-       
-        ai_help_setup ~~~ you_help_setup
-        ai_suggest_problem ~~~ you_have_project
-        you_help_setup -->|Yes| ai_help_setup
-        you_help_setup -->|No| you_have_project
-        ai_help_setup --> you_have_project
-        
-        you_have_project -->|No| ai_suggest_problem
-        
-        you_have_project -->|Yes| you_attempt
-        
-        ai_suggest_problem --> you_attempt
-        you_attempt <--> you_writeup
-        you_attempt -->|Done!| you_finish
-        you_writeup --> |still stuck?| explain
-        explain --> you_attempt
-        explain ~~~ you_finish
-
-        %% Edge label text colored red if it leads into the AI lane, green
-        %% if it leads into the You lane, matching the lane colors. This is
-        %% linkStyle's "color" property (not background) — the one styling
-        %% mechanism mermaid applies from inside its own closed shadow
-        %% root, so it's the only thing that actually reaches the label.
-        linkStyle 0 color:#a33f3f
-        linkStyle 1 color:#3f6b52
-        linkStyle 3 color:#3f6b52
-        linkStyle 4 color:#a33f3f
-        linkStyle 7 color:#3f6b52
-        linkStyle 8 color:#a33f3f
-
-        classDef you fill:#3f6b521f,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
-        classDef ai fill:#a33f3f1a,stroke:#a33f3f,stroke-width:2px,color:#a33f3f
-        class you_writeup,you_help_setup,you_have_project,you_attempt,you_finish you
-        class explain,ai_help_setup,ai_suggest_problem ai
-        style You fill:#3f6b521f,stroke:#3f6b52,color:#3f6b52
-        style AI fill:#a33f3f1a,stroke:#a33f3f,color:#a33f3f
-    ```
-
-    <p class="pfg-diagram-caption">FIG: when to use AI while learning to program</p>
-
-??? info "What is Python, and what is this guide?"
-
-    **Readable, and quick to write.** *Python* is a general-purpose language built for code that's easy to read back later — even by someone who didn't write it. No compiling: write a `.py` file, run it directly.
-
-    - **Shows up everywhere** — web backends, data analysis and machine learning, automating repetitive tasks, scientific computing, quick glue scripts. Several of these are covered on this site's [Libraries](#utilities) pages.
-    - **The skills transfer.** Variables, conditionals, loops, functions, classes — the fundamentals every language shares — read closer to plain English here, so you spend your effort learning to *think* like a programmer instead of fighting a stricter syntax. Once solid, those fundamentals carry over to whatever language you pick up next.
-    - **Often the fastest language to write *correct* code in** — even though it's not the fastest to *run* — which is why it's such a common first choice for a new project.
-
-    **This guide.** *Python Field Guide* is a free, in-browser reference — most code blocks are editable and runnable directly on the page.
-
-    - **For learners** — self-taught, students in an intro course, or anyone who wants one combined reference to work through start to finish, instead of a scattered pile of search results.

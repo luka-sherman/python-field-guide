@@ -147,7 +147,7 @@ That's it! You've written and run your first Python program. From here, you can 
 
 <div class="pfg-section" markdown="block">
 
-## Using the terminal *(optional)*
+## Using the terminal { data-advanced="true" }
 
 The terminal is a text-based way to navigate your computer's files and run programs. 
 
@@ -232,7 +232,7 @@ It's good for running Python files that are already finished — either your own
 
 <div class="pfg-section" markdown="block">
 
-## Virtual environments *(optional)*
+## Virtual environments { data-advanced="true" }
 
 Sometimes you'll want to install [external libraries](./libraries/index.md) for your project. A **virtual environment** keeps each project's installed libraries in their own separate folder instead of installing them onto your computer.
 
@@ -245,7 +245,7 @@ Sometimes you'll want to install [external libraries](./libraries/index.md) for 
 
 **To setup and run a virtual environment:**
 
-0. [Open the terminal](#using-the-terminal-optional) and navigate to your project folder 
+0. [Open the terminal](#using-the-terminal) and navigate to your project folder 
 
 1. Create a `venv` folder holding a private copy of Python and its libraries. This only needs to happen the first time you run your project.
 
@@ -300,7 +300,7 @@ Sometimes you'll want to install [external libraries](./libraries/index.md) for 
     python script.py  # or python3
     ```
 
-    No different from [running a file from the terminal](#using-the-terminal-optional) — as
+    No different from [running a file from the terminal](#using-the-terminal) — as
     long as the virtual environment is active, `python`/`pip` automatically point at its copy of
     Python and its libraries instead of your system-wide one.
 

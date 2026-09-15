@@ -760,7 +760,7 @@ flowchart LR
 
 <div class="pfg-section" markdown="block">
 
-## Tuples
+## Tuples { data-advanced="true" }
 
 A tuple stores multiple items, in order, written in parentheses. They are **immutable** so the items can't be changed once its created. 
 
@@ -1033,7 +1033,7 @@ The **negative index** starts counting down from the end instead, starting at `-
 
 <div class="pfg-section" markdown="block">
 
-## Sets
+## Sets { data-advanced="true" }
 
 A set stores multiple items, in no particular order, inside a single variable — written with curly braces.
 

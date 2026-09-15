@@ -133,6 +133,7 @@ extra_javascript:
   - javascripts/copyright_year.js
   - javascripts/external_links.js
   - javascripts/homepage_header_title.js
+  - javascripts/essentials_toggle.js
   - javascripts/a11y_patches.js
   - https://unpkg.com/mermaid@11/dist/mermaid.min.js
   - javascripts/mermaid_config.js

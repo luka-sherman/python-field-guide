@@ -184,6 +184,35 @@ they're after instead of landing on the page and hunting.
   anchor/link it can't resolve; treat a clean build as the actual pass/fail check for this list,
   since hand-checked slugs are easy to get subtly wrong (trailing punctuation, duplicate-heading
   suffixes, etc).
+- **Marking content "advanced" for the Simplify toggle** — the header's "Essentials" / "Advanced"
+  segmented control (both labels always visible, on every page) hides content marked
+  `data-advanced="true"`, at one of two granularities. Each spot that should hide is marked
+  directly, in its own markdown source — there's no derived/shared list, so a new advanced entry
+  needs tagging in every place it should disappear from:
+  - **A homepage keyword-link row** — the bolded keyword plus its row of related links (e.g.
+    `functions.md#decorators` or `collections.md#sets`, in `index.md`) — append
+    `{: data-advanced="true" }` on its own line directly after the row, at the same indentation,
+    with no blank line before it (attr_list attaches it to that paragraph, which
+    `.simplify-active [data-advanced]` then hides).
+  - **The matching heading on the actual content page** — e.g. `functions.md`'s
+    `## Decorators { data-advanced="true" }` — append `{ data-advanced="true" }` directly on the
+    heading line (same attr_list convention as `data-card-link="skip"` above). This hides that
+    heading, everything up to the next heading of the same or higher level, and its
+    integrated-TOC sidebar entry, on that page specifically. Tag the homepage row and the
+    content-page heading independently — `docs/javascripts/essentials_toggle.js` doesn't infer one
+    from the other, by design (simpler and more robust than deriving a map at runtime).
+  - **A whole homepage card** (e.g. the OpenCV card) — append `{: data-advanced="card" }` the
+    same way, right after the card's first paragraph (the icon + title link, e.g.
+    `[__OpenCV__](...)`). `.simplify-active .grid.cards > ul > li:has(> p[data-advanced="card"])`
+    in `extra.css` walks up from that paragraph to hide the whole enclosing `<li>`. This one has
+    no content-page equivalent — it marks a whole linked page, not a section within one, so
+    there's nothing on that page itself to hide.
+  Which value to use, and what counts as advanced/niche vs. core, is a per-editor judgment call
+  — there's no test enforcing it either way. See `docs/javascripts/essentials_toggle.js` for the
+  toggle mechanism. A page can still show a *link* to a hidden section (e.g. `collections.md`'s
+  own cheat-sheet table links to `#tuples` even though the "Tuples" heading is hidden) —
+  following such a link automatically switches back to Complete and reveals the target, so this
+  doesn't need special-casing when adding new advanced content.
 
 ### Admonitions (`??? type "..."`)
 
