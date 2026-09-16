@@ -122,7 +122,7 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
     [`sample`](random.md#sampling-without-replacement) 
     [`shuffle`](random.md#shuffling-a-list) 
 
--   :material-regex:{ .lg .middle } [__re__](re.md) 
+-   :material-text-search:{ .lg .middle } [__re__](re.md) 
 [:material-language-python:](re.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
     Regular expressions: searching, extracting, and replacing text by pattern.

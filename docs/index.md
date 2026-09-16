@@ -563,7 +563,7 @@ hide:
 
     Random numbers, random picks, shuffled order.
 
--   :material-regex:{ .lg .middle } [__re__](libraries/re.md) 
+-   :material-text-search:{ .lg .middle } [__re__](libraries/re.md) 
 [:material-language-python:](libraries/re.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
     Regular expressions: searching, extracting, and replacing text by pattern.
