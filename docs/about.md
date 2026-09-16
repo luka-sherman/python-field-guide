@@ -8,7 +8,7 @@ description: Why Python Field Guide exists, who built it, and how to send feedba
 
 ## What is Python?
 
-Python is a general-purpose language built for code that's easy to read back later, even by someone who didn't write it. There's no compiling: write a `.py` file, run it directly.
+Python is a general-purpose language built for code that's easy to read back later, even by someone who didn't write it. No separate compilation step: write a .py file and run it with Python. Python handles the work of preparing and executing your code for you.
 
 It shows up everywhere — web backends, data analysis and machine learning, automating repetitive tasks, scientific computing, quick glue scripts. Several of these are covered on this site's [Libraries](index.md#utilities) pages.
 

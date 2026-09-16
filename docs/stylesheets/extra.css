@@ -808,11 +808,16 @@ input:checked + .md-consent__settings {
 /* On a wide screen the whole homepage grid is 4 columns wide. The upper
    category boxes each span 2 (so still 2-per-row, 2 cards each = 4 across); the
    library section boxes span their own card count (`pt-lib--N`), so the rows
-   pack to exactly 4 library cards — Utilities(3)+Desktop UIs(1),
-   Data analysis(4), APIs(2)+Image editing(1)+Computer vision(1) — every card
-   the same ~1/4 width as the ones above. The library grids keep the default
-   auto-fit/minmax, which lands on the right column count inside a box that's
-   already sized to its contents. */
+   pack to exactly 4 library cards — Utilities(5, alone — 5 doesn't divide
+   evenly into the 4-column grid, so it takes a full row on its own),
+   Data analysis(4), APIs(2)+Image editing(1)+Desktop UIs(1),
+   Testing(1)+Computer vision(1) trailing. Order matters here: grid
+   auto-placement is sparse (no `dense`), so a box that doesn't fit the
+   remaining space in its row leaves that space empty rather than letting a
+   later, smaller box backfill it — keep same-row groups adjacent in the
+   markdown, and put any leftover under-4 remainder last. The library grids
+   keep the default auto-fit/minmax, which lands on the right column count
+   inside a box that's already sized to its contents. */
 @media (min-width: 60em) {
   .pt-category-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -831,6 +836,7 @@ input:checked + .md-consent__settings {
   .pt-category--wide.pt-lib--2 { grid-column: span 2; }
   .pt-category--wide.pt-lib--3 { grid-column: span 3; }
   .pt-category--wide.pt-lib--4 { grid-column: span 4; }
+  .pt-category--wide.pt-lib--5 { grid-column: span 4; } /* caps at the grid's own width, same as 4 */
 
   /* pt-lib--N above is sized for the full card count; Essentials mode
      hides some, leaving boxes too wide. essentials_toggle.js recomputes the

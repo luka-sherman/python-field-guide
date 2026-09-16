@@ -11,31 +11,7 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
 <div class="pt-category-grid" markdown="block">
 
-<div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-advanced="true">
-#### Testing { .pt-homepage-heading }
-
-<div class="grid cards" markdown="block">
-
--   :material-test-tube:{ .lg .middle } [__pytest__](pytest.md) 
-[:material-download-outline:](pytest.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
-
-    Writing and running tests: assertions, fixtures, and parametrizing.
-
-    [**`writing and running a test`**](pytest.md#writing-and-running-a-test): 
-    [`from the command line`](pytest.md#from-the-command-line) 
-
-    [**`reading a failure`**](pytest.md#reading-a-failure)
-
-    [**`fixtures`**](pytest.md#fixtures)
-
-    [**`parametrizing tests`**](pytest.md#parametrizing-tests)
-
-    [**`testing for exceptions`**](pytest.md#testing-for-exceptions)
-
-</div>
-</div>
-
-<div class="pt-category pt-category--wide pt-lib--3" markdown="block">
+<div class="pt-category pt-category--wide pt-lib--5" markdown="block">
 #### Utilities { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
@@ -112,6 +88,29 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
     [`strptime`](datetime.md#parsing-a-string-with-strptime) 
     [`timedelta`](datetime.md#date-arithmetic) 
 
+-   :material-square-root-box:{ .lg .middle } [__math__](math.md) 
+[:material-language-python:](math.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
+
+    Rounding, roots, constants, and logarithms.
+
+    [**`floor`**](math.md#rounding): 
+    [`ceil`](math.md#rounding) 
+    [`trunc`](math.md#trunc) 
+
+    [**`sqrt`**](math.md#roots-and-powers): 
+    [`pow`](math.md#pow) 
+    [`isqrt`](math.md#pow) 
+
+    [**`pi`**](math.md#constants): 
+    [`inf`](math.md#constants) 
+    [`nan`](math.md#constants) 
+
+    [**`log2`**](math.md#logarithms): 
+    [`log10`](math.md#logarithms) 
+    [`exp`](math.md#logarithms) 
+
+    [**`isclose`**](math.md#comparing-floats)
+
 -   :material-dice-multiple:{ .lg .middle } [__random__](random.md) 
 [:material-language-python:](random.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
@@ -122,6 +121,23 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
     [**`choice`**](random.md#random-selections): 
     [`sample`](random.md#sampling-without-replacement) 
     [`shuffle`](random.md#shuffling-a-list) 
+
+-   :material-text-search:{ .lg .middle } [__re__](re.md) 
+[:material-language-python:](re.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
+
+    Regular expressions: searching, extracting, and replacing text by pattern.
+
+    [**`search`**](re.md#searching-for-a-pattern): 
+    [`compile`](re.md#searching-for-a-pattern) 
+
+    [**`findall`**](re.md#finding-all-matches) 
+
+    [**`groups`**](re.md#groups): 
+    [`named groups`](re.md#groups) 
+
+    [**`sub`**](re.md#replacing-text) 
+
+    [**`split`**](re.md#splitting-on-a-pattern)
 
 </div>
 </div>
@@ -311,6 +327,86 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
     [**`putting it together`**](tkinter.md#putting-it-together): 
     [`a simple form`](tkinter.md#a-simple-form) 
+
+</div>
+</div>
+
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+#### Games { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-turtle:{ .lg .middle } [__turtle__](turtle.md) 
+[:material-language-python:](turtle.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
+
+    Build small movement-based games with a pen cursor.
+
+    [**`Concepts`**](turtle.md#concepts) 
+
+    [**`Screen`**](turtle.md#the-screen): 
+    [`Background`](turtle.md#background) 
+    [`Clear`](turtle.md#clear-screen) 
+    [`Close`](turtle.md#closing-the-window) 
+    [`Colors`](turtle.md#colors) 
+    [`Setup`](turtle.md#screen-setup) 
+
+    [**`turtle cursor`**](turtle.md#the-turtle-cursor): 
+    [`Appearance`](turtle.md#shape) 
+    [`Circle`](turtle.md#circle) 
+    [`Color`](turtle.md#shape-color-size) 
+    [`Custom images`](turtle.md#custom-images) 
+    [`Dot`](turtle.md#dot) 
+    [`Drawing shapes`](turtle.md#drawing-shapes) 
+    [`Hide`](turtle.md#show-or-hide) 
+    [`Ink`](turtle.md#ink) 
+    [`Motion`](turtle.md#positions-and-motion) 
+    [`Positions`](turtle.md#positions-and-motion) 
+    [`Rectangle`](turtle.md#rectangle) 
+    [`Shape`](turtle.md#shape-color-size) 
+    [`Show`](turtle.md#show-or-hide) 
+    [`Size`](turtle.md#shape-color-size) 
+    [`Stamping`](turtle.md#stamping) 
+    [`Text`](turtle.md#text) 
+    [`Tracer`](turtle.md#trace-movement) 
+     
+    [**`Game loop`**](turtle.md#the-game-loop): 
+    [`done()`](turtle.md#done) 
+
+    [**`Input`**](turtle.md#input): 
+    [`Dialog prompts`](turtle.md#dialog-prompts) 
+    [`Keyboard`](turtle.md#keyboard) 
+    [`Mouse`](turtle.md#mouse) 
+
+    [**`inside`**](turtle.md#detecting-collisions): 
+    [`Distance`](turtle.md#distance) 
+    [`Membership`](turtle.md#membership) 
+    [`Overlap`](turtle.md#overlap) 
+
+    [**`Common patterns`**](turtle.md#common-patterns) 
+
+</div>
+</div>
+
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-advanced="true">
+#### Testing { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-test-tube:{ .lg .middle } [__pytest__](pytest.md) 
+[:material-download-outline:](pytest.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
+
+    Writing and running tests: assertions, fixtures, and parametrizing.
+
+    [**`writing and running a test`**](pytest.md#writing-and-running-a-test): 
+    [`from the command line`](pytest.md#from-the-command-line) 
+
+    [**`reading a failure`**](pytest.md#reading-a-failure)
+
+    [**`fixtures`**](pytest.md#fixtures)
+
+    [**`parametrizing tests`**](pytest.md#parametrizing-tests)
+
+    [**`testing for exceptions`**](pytest.md#testing-for-exceptions)
 
 </div>
 </div>

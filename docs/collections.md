@@ -10,12 +10,12 @@ A **collection** is a single object that groups multiple values (like [basic typ
 
 <div class="pt-jump-table" markdown="block">
 
-| Collection Type | Example | Access values by | Use it for |
-|------|---------|:-----------------:|------------|
-| <a href="#lists">**`list`**</a> | <pre><code class="language-python-ref">["ball", "burmese"]</code></pre> | position # | <ul><li>An ordered group of items you can freely add to, remove from, or reorder</li><li>Not sure? Start here — the default, general-purpose choice</li></ul> |
-| <a href="#dictionaries">**`dictionary "dict"`**</a> | <pre><code class="language-python-ref">{&#10;  "species": "ball",&#10;  "length_ft": 5&#10;}</code></pre> | Name of a key | <ul><li>Values stored under names ("keys") instead of position, like `species`, `length_ft`</li><li>Use it to look values up by name</li><li>Can't have duplicate keys</li></ul> |
-| <a href="#tuples">**`tuple`**</a> | <pre><code class="language-python-ref">("ball", "burmese")</code></pre> | position # | <ul><li>Like a list, but fixed — can't be changed once created</li><li>Values that should stay exactly as they are, like a coordinate pair</li></ul> |
-| <a href="#sets">**`set`**</a> | <pre><code class="language-python-ref">{"ball", "burmese"}</code></pre> | Membership (`in`) | <ul><li>An unordered group where duplicates are automatically dropped</li><li>Use it for fast "is this in here?" checks</li></ul> |
+| Collection Type | Example | Access values by | Mutable | Use it for |
+|------|---------|:-----------------:|:-------:|------------|
+| <a href="#lists">**`list`**</a> | <pre><code class="language-python-ref">["ball", "burmese"]</code></pre> | position # | :material-check:{ .pt-icon-success } | <ul><li>An ordered group of items you can freely add to, remove from, or reorder</li><li>Not sure? Start here — the default, general-purpose choice</li></ul> |
+| <a href="#dictionaries">**`dictionary "dict"`**</a> | <pre><code class="language-python-ref">{&#10;  "species": "ball",&#10;  "length_ft": 5&#10;}</code></pre> | Name of a key | :material-check:{ .pt-icon-success } | <ul><li>Values stored under names ("keys") instead of position, like `species`, `length_ft`</li><li>Use it to look values up by name</li><li>Can't have duplicate keys</li></ul> |
+| <a href="#tuples">**`tuple`**</a> | <pre><code class="language-python-ref">("ball", "burmese")</code></pre> | position # | :material-close:{ .pt-icon-fail } | <ul><li>Like a list, but fixed — can't be changed once created</li><li>Values that should stay exactly as they are, like a coordinate pair</li></ul> |
+| <a href="#sets">**`set`**</a> | <pre><code class="language-python-ref">{"ball", "burmese"}</code></pre> | Membership (`in`) | :material-check:{ .pt-icon-success } | <ul><li>An unordered group where duplicates are automatically dropped</li><li>Use it for fast "is this in here?" checks</li></ul> |
 
 </div>
 
@@ -77,7 +77,7 @@ class diagram panel
 
 - **Index with `list[index]`** to return the item at that index (position number) of the list. 
 
-    To **update** the item at that index, set it equal to something else **`list[index] = new_item`**. 
+    To **update** the item at that index, set it equal to something else **`list[index] = new_item`**. This works because a list is **mutable** — updating an item changes it in place instead of building a new one, the same way [an object's attributes](oop.md#classes-and-objects) can be changed after it's created.
 
     *Run the below example, and change the indexes to see how they work:* 
 

@@ -35,18 +35,11 @@ built-in [`str`](../types.md#strings) [`list`](../collections.md#lists) [`dict`]
 
 <div class="pfg-section" markdown="block">
 
-## Install { data-card-link="skip" }
+## Setup { data-card-link="skip" }
 
-`collections` ships with Python's standard library — nothing to install.
-
-</div>
-
-<div class="pfg-section" markdown="block">
-
-## Import { data-card-link="skip" }
-
-Each class is imported individually by name, rather than through a `collections.` prefix —
-so the import line differs per class, shown under its own "Import" heading below.
+`collections` ships with Python's standard library — nothing to install. Each class is
+imported individually by name, rather than through a `collections.` prefix — so the import
+line differs per class, shown under its own "Import" heading below.
 
 </div>
 

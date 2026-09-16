@@ -347,6 +347,46 @@ Other languages fix a variable to one type permanently at creation; Python doesn
 
 <div class="pfg-section" markdown="block">
 
+## Expressions and statements
+
+Every line of Python code is either an **expression** or a **statement**. An expression is anything that evaluates to a value — `2 + 3`, `species`, `species == "burmese"`. A statement is a complete instruction — an assignment, a `print()` call, an `if` statement's condition (covered on the [Conditionals](conditionals.md#if-elif-else) page) — and it's usually built out of one or more expressions.
+
+```python-ref
+2 + 3                   # an expression — evaluates to 5
+species                 # an expression — evaluates to whatever species currently holds
+species == "burmese"    # an expression — evaluates to True or False
+length_ft = 2 + 3       # a statement — the expression "2 + 3" evaluates first, then gets stored
+print(length_ft)        # a statement — print() evaluates the expression "length_ft" to display it
+```
+
+The distinction is about what's allowed where: an expression can go anywhere Python expects a value — inside a function call's parentheses, on the right side of `=`, as part of a longer expression — but a statement can't, since it doesn't evaluate to anything.
+
+??? warning "A statement can't be nested inside other code"
+    `y = (x = 2 + 3)` raises a `SyntaxError` — `=` only works as its own standalone statement, so tucking one inside another line, even in parentheses, fails immediately. This is different from some other languages, where assignment can be chained or nested like a value.
+
+    ```python-ref
+    x = 2 + 3          # fine — a standalone statement
+    y = (x = 2 + 3)    # SyntaxError — a statement can't sit inside an expression
+    ```
+
+??? run "Run an expressions vs. statements example"
+    All the examples above, combined into one script:
+
+    ```python
+    species = "burmese"
+
+    print(2 + 3)
+    print(species)
+    print(species == "burmese")
+
+    length_ft = 2 + 3
+    print(length_ft)
+    ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Input function
 
 `input()` allows the program to get typed input from the user

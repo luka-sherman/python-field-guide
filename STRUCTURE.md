@@ -135,11 +135,16 @@ staying inline.**
   library-page content (e.g. `libraries/pillow.md`'s per-method sections) — most content pages
   should never need to go past `###`.
 
-### Homepage keyword deep-links (`index.md`)
+### Homepage keyword deep-links (`index.md`, `libraries/index.md`)
 
 Each card in `index.md`'s "What's inside" grid ends with a row of `` [`keyword`](page.md#anchor) ``
 links — one per concept the page teaches, so a reader can jump straight to the specific thing
-they're after instead of landing on the page and hunting.
+they're after instead of landing on the page and hunting. Library pages (`libraries/*.md`) are
+the exception: their keyword links live only on their card in `libraries/index.md`'s own grid,
+not on the main `index.md` — the top-level cards link to `libraries/<page>.md` as a whole,
+without a per-heading keyword row. `tests/test_homepage_keyword_links_cover_all_headings` checks
+each library subpage's headings against `libraries/index.md` instead of `index.md` for exactly
+this reason.
 
 - **Coverage — every `##` and `###` heading needs an entry.** Not just "the topic is
   represented somewhere nearby" — each heading gets its own link, using its own anchor. A page

@@ -12,17 +12,9 @@ description: >-
 
 <div class="pfg-section" markdown="block">
 
-## Install { data-card-link="skip" }
+## Setup { data-card-link="skip" }
 
-Tkinter ships with the standard library — no extra install is needed on your own machine.
-
-</div>
-
-<div class="pfg-section" markdown="block">
-
-## Import { data-card-link="skip" }
-
-`tk` is the near-universal alias for the base module; the themed `ttk` widgets (used throughout this page) are imported separately.
+Tkinter ships with the standard library — no extra install is needed on your own machine. `tk` is the near-universal alias for the base module; the themed `ttk` widgets (used throughout this page) are imported separately.
 
 ```python-ref
 import tkinter as tk

@@ -10,17 +10,9 @@ The **`random`** module generates pseudo-random numbers and makes random selecti
 
 <div class="pfg-section" markdown="block">
 
-## Install { data-card-link="skip" }
+## Setup { data-card-link="skip" }
 
-`random` ships with Python's standard library — nothing to install.
-
-</div>
-
-<div class="pfg-section" markdown="block">
-
-## Import { data-card-link="skip" }
-
-The whole module is used through the `random.` prefix, so a plain import is all you need.
+`random` ships with Python's standard library — nothing to install. The whole module is used through the `random.` prefix, so a plain import is all you need.
 
 ```python-ref
 import random

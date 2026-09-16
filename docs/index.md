@@ -130,6 +130,8 @@ hide:
     [`reassigning`](foundations.md#reassigning-a-variable) 
     [`types`](foundations.md#variables-and-types) 
 
+    [**`expressions and statements`**](foundations.md#expressions-and-statements)
+
     [**`print`**](foundations.md#print-function): 
     [`escape sequences`](foundations.md#escape-sequences) 
 
@@ -535,31 +537,7 @@ hide:
 
 # Add-On Libraries
 
-<div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-advanced="true">
-#### Testing { .pt-homepage-heading }
-
-<div class="grid cards" markdown="block">
-
--   :material-test-tube:{ .lg .middle } [__pytest__](libraries/pytest.md) 
-[:material-download-outline:](libraries/pytest.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
-
-    Writing and running tests: assertions, fixtures, and parametrizing.
-
-    [**`writing and running a test`**](libraries/pytest.md#writing-and-running-a-test): 
-    [`from the command line`](libraries/pytest.md#from-the-command-line) 
-
-    [**`reading a failure`**](libraries/pytest.md#reading-a-failure)
-
-    [**`fixtures`**](libraries/pytest.md#fixtures)
-
-    [**`parametrizing tests`**](libraries/pytest.md#parametrizing-tests)
-
-    [**`testing for exceptions`**](libraries/pytest.md#testing-for-exceptions)
-
-</div>
-</div>
-
-<div class="pt-category pt-category--wide pt-lib--3" markdown="block">
+<div class="pt-category pt-category--wide pt-lib--5" markdown="block">
 #### Utilities { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
@@ -570,82 +548,25 @@ hide:
 
     Specialized containers with advanced functionality.
 
-    [**`Counter`**](libraries/collections.md#counter): 
-    [`+ - & |`](libraries/collections.md#combine) 
-    [`counts[item]`](libraries/collections.md#count) 
-    [`elements`](libraries/collections.md#inspect) 
-    [`most_common`](libraries/collections.md#count) 
-    [`subtract`](libraries/collections.md#update) 
-    [`total`](libraries/collections.md#count) 
-    [`update`](libraries/collections.md#update) 
-
-    [**`defaultdict`**](libraries/collections.md#defaultdict): 
-    [`default_factory`](libraries/collections.md#defaultdict) 
-    [`get`](libraries/collections.md#reading-vs-writing) 
-
-    [**`namedtuple`**](libraries/collections.md#namedtuple): 
-    [`_asdict`](libraries/collections.md#convert) 
-    [`_field_defaults`](libraries/collections.md#inspect_1) 
-    [`_fields`](libraries/collections.md#inspect_1) 
-    [`_make`](libraries/collections.md#create) 
-    [`_replace`](libraries/collections.md#convert) 
-    [`defaults=`](libraries/collections.md#create) 
-
-    [**`deque`**](libraries/collections.md#deque): 
-    [`append`](libraries/collections.md#add) 
-    [`appendleft`](libraries/collections.md#add) 
-    [`clear`](libraries/collections.md#remove) 
-    [`copy`](libraries/collections.md#inspect_2) 
-    [`count`](libraries/collections.md#inspect_2) 
-    [`extend`](libraries/collections.md#add) 
-    [`extendleft`](libraries/collections.md#add) 
-    [`index`](libraries/collections.md#inspect_2) 
-    [`insert`](libraries/collections.md#add) 
-    [`maxlen=`](libraries/collections.md#reorder) 
-    [`pop`](libraries/collections.md#remove) 
-    [`popleft`](libraries/collections.md#remove) 
-    [`remove`](libraries/collections.md#remove) 
-    [`reverse`](libraries/collections.md#reorder) 
-    [`rotate`](libraries/collections.md#reorder) 
-
-    [**`OrderedDict`**](libraries/collections.md#ordereddict): 
-    [`==`](libraries/collections.md#compare) 
-    [`move_to_end`](libraries/collections.md#reorder_1) 
-    [`popitem`](libraries/collections.md#reorder_1) 
-
-    [**`ChainMap`**](libraries/collections.md#chainmap): 
-    [`maps`](libraries/collections.md#inspect_3) 
-    [`new_child`](libraries/collections.md#extend) 
-    [`parents`](libraries/collections.md#inspect_3) 
-
-    [**`User* wrapper`**](libraries/collections.md#user-wrapper-classes): 
-    [`UserDict`](libraries/collections.md#user-wrapper-classes) 
-    [`UserList`](libraries/collections.md#user-wrapper-classes) 
-    [`UserString`](libraries/collections.md#user-wrapper-classes) 
-
 -   :material-calendar-clock:{ .lg .middle } [__datetime__](libraries/datetime.md) 
 [:material-language-python:](libraries/datetime.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
     Calculating and formatting dates and times.
 
-    [`creating a specific date`](libraries/datetime.md#creating-a-specific-date) 
-    [`date`](libraries/datetime.md#creating-dates-and-times) 
-    [`strftime`](libraries/datetime.md#formatting-with-strftime) 
+-   :material-square-root-box:{ .lg .middle } [__math__](libraries/math.md) 
+[:material-language-python:](libraries/math.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
-    [`difference between two dates`](libraries/datetime.md#difference-between-two-dates) 
-    [`strptime`](libraries/datetime.md#parsing-a-string-with-strptime) 
-    [`timedelta`](libraries/datetime.md#date-arithmetic) 
+    Rounding, roots, constants, and logarithms.
 
 -   :material-dice-multiple:{ .lg .middle } [__random__](libraries/random.md) 
 [:material-language-python:](libraries/random.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
     Random numbers, random picks, shuffled order.
 
-    [**`randint`**](libraries/random.md#random-numbers)
+-   :material-text-search:{ .lg .middle } [__re__](libraries/re.md) 
+[:material-language-python:](libraries/re.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
-    [**`choice`**](libraries/random.md#random-selections): 
-    [`sample`](libraries/random.md#sampling-without-replacement) 
-    [`shuffle`](libraries/random.md#shuffling-a-list) 
+    Regular expressions: searching, extracting, and replacing text by pattern.
 
 </div>
 </div>
@@ -660,27 +581,10 @@ hide:
 
     Reading and writing spreadsheets.
 
-    [`writer`](libraries/csv.md#writing-csv-files)
-
-    [`DictReader`](libraries/csv.md#reading-rows-as-dictionaries) 
-    [`reader`](libraries/csv.md#reading-csv-files) 
-
 -   :material-chart-line:{ .lg .middle } [__matplotlib__](libraries/matplotlib.md) 
 [:material-download-outline:](libraries/matplotlib.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
 
     Charts and plots: line, bar, and scatter, built directly from plain Python data.
-
-    [**`line plots`**](libraries/matplotlib.md#line-plots): 
-    [`labels and title`](libraries/matplotlib.md#labels-and-title) 
-    [`multiple lines and a legend`](libraries/matplotlib.md#multiple-lines-and-a-legend) 
-
-    [**`bar charts`**](libraries/matplotlib.md#bar-charts)
-
-    [**`scatter plots`**](libraries/matplotlib.md#scatter-plots)
-
-    [**`subplots`**](libraries/matplotlib.md#subplots)
-
-    [**`saving a figure`**](libraries/matplotlib.md#saving-a-figure)
 
 -   :material-matrix:{ .lg .middle } [__NumPy__](libraries/numpy.md) 
 [:material-download-outline:](libraries/numpy.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
@@ -688,24 +592,11 @@ hide:
 
     Fast numeric arrays, with math applied to a whole array at once instead of item by item.
 
-    [**`array operations`**](libraries/numpy.md#array-operations): 
-    [`boolean mask`](libraries/numpy.md#filtering-with-a-boolean-mask) 
-    [`mean`](libraries/numpy.md#aggregating-an-array) 
-
-    [`arange`](libraries/numpy.md#building-arrays-without-a-list) 
-    [`ndarray`](libraries/numpy.md#creating-arrays) 
-
 -   :material-table:{ .lg .middle } [__pandas__](libraries/pandas.md) 
 [:material-download-outline:](libraries/pandas.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
     {: data-advanced="card" }
 
     Tabular data: rows and columns, like a spreadsheet, built on top of NumPy.
-
-    [**`DataFrame`**](libraries/pandas.md#building-a-dataframe)
-
-    [**`working with a DataFrame`**](libraries/pandas.md#working-with-a-dataframe): 
-    [`mean`](libraries/pandas.md#summarizing-a-column) 
-    [`sort_values`](libraries/pandas.md#sorting-rows) 
 
 </div>
 </div>
@@ -720,24 +611,10 @@ hide:
 
     Reading and writing JSON data: nested dicts and lists, saved to a file or a string.
 
-    [`dump`](libraries/json.md#writing-json-files)
-
-    [`load`](libraries/json.md#reading-json-files) 
-    [`nested data`](libraries/json.md#nested-data) 
-
-    [`loads`](libraries/json.md#working-with-strings-instead-of-files)
-
 -   :material-webhook:{ .lg .middle } [__requests__](libraries/requests.md) 
 [:material-download-outline:](libraries/requests.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
 
     Fetching data over the internet, like asking a website or API for information.
-
-    [**`get`**](libraries/requests.md#making-a-request): 
-    [`json`](libraries/requests.md#parsing-json) 
-    [`params`](libraries/requests.md#query-parameters) 
-    [`status_code`](libraries/requests.md#checking-the-status-code) 
-
-    [**`error handling`**](libraries/requests.md#handling-request-errors)
 
 </div>
 </div>
@@ -752,46 +629,6 @@ hide:
 
     Opening, editing, and saving images, built around one Image object.
 
-    [**`why Pillow?`**](libraries/pillow.md#why-pillow)
-
-    [**`Image`**](libraries/pillow.md#the-image): 
-    [`basic operations`](libraries/pillow.md#basic-operations) 
-    [`crop`](libraries/pillow.md#crop) 
-    [`image modes`](libraries/pillow.md#image-modes) 
-    [`opening and saving images`](libraries/pillow.md#opening-and-saving-images) 
-    [`resize`](libraries/pillow.md#resize) 
-    [`rotate and flip`](libraries/pillow.md#rotate-and-flip) 
-
-    [**`ImageOps`**](libraries/pillow.md#imageops-module): 
-    [`common ImageOps functions`](libraries/pillow.md#common-imageops-functions) 
-
-    [**`ImageDraw`**](libraries/pillow.md#imagedraw-module): 
-    [`shapes and lines`](libraries/pillow.md#shapes-and-lines) 
-
-    [**`ImageFont`**](libraries/pillow.md#imagefont-module): 
-    [`loading a font`](libraries/pillow.md#loading-a-font) 
-
-    [**`ImageColor`**](libraries/pillow.md#imagecolor-module): 
-    [`converting color names`](libraries/pillow.md#converting-color-names) 
-
-    [**`ImageFilter`**](libraries/pillow.md#imagefilter-module): 
-    [`applying a filter`](libraries/pillow.md#applying-a-filter) 
-
-    [**`ImageEnhance`**](libraries/pillow.md#imageenhance-module): 
-    [`enhancing an image`](libraries/pillow.md#enhancing-an-image) 
-
-    [**`ImageChops`**](libraries/pillow.md#imagechops-module): 
-    [`comparing and combining images`](libraries/pillow.md#comparing-and-combining-images) 
-
-    [**`convert`**](libraries/pillow.md#format-conversion): 
-    [`converting between formats`](libraries/pillow.md#converting-between-formats) 
-
-    [**`ImageSequence`**](libraries/pillow.md#imagesequence-module): 
-    [`looping over GIF frames`](libraries/pillow.md#looping-over-gif-frames) 
-
-    [**`putting it together`**](libraries/pillow.md#putting-it-together): 
-    [`an interactive filter tool`](libraries/pillow.md#an-interactive-filter-tool) 
-
 </div>
 </div>
 
@@ -805,36 +642,31 @@ hide:
 
     Creating desktop applications: text, buttons, dropdowns, forms, output, etc.
 
-    [**`Tk`**](libraries/tkinter.md#creating-a-window)
+</div>
+</div>
 
-    [**`Button`**](libraries/tkinter.md#widgets): 
-    [`Button`](libraries/tkinter.md#button) 
-    [`Entry`](libraries/tkinter.md#entry) 
-    [`Label`](libraries/tkinter.md#label) 
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+#### Games { .pt-homepage-heading }
 
-    [**`pack`**](libraries/tkinter.md#layout-managers): 
-    [`grid`](libraries/tkinter.md#grid) 
-    [`pack`](libraries/tkinter.md#pack) 
+<div class="grid cards" markdown="block">
 
-    [**`configure`**](libraries/tkinter.md#configuring-widgets): 
-    [`reading and changing options`](libraries/tkinter.md#reading-and-changing-options) 
+-   :material-turtle:{ .lg .middle } [__turtle__](libraries/turtle.md) 
+[:material-language-python:](libraries/turtle.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
-    [**`command`**](libraries/tkinter.md#handling-events): 
-    [`binding events`](libraries/tkinter.md#binding-events) 
-    [`command callbacks`](libraries/tkinter.md#command-callbacks) 
+    Build small movement-based games with a pen cursor.
 
-    [**`Style`**](libraries/tkinter.md#styling-with-ttk): 
-    [`customizing a style`](libraries/tkinter.md#customizing-a-style) 
+</div>
+</div>
 
-    [**`messagebox`**](libraries/tkinter.md#dialogs): 
-    [`file dialogs`](libraries/tkinter.md#file-dialogs) 
-    [`message boxes`](libraries/tkinter.md#message-boxes) 
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-advanced="true">
+#### Testing { .pt-homepage-heading }
 
-    [**`winfo_width`**](libraries/tkinter.md#introspecting-widgets): 
-    [`winfo methods`](libraries/tkinter.md#winfo-methods) 
+<div class="grid cards" markdown="block">
 
-    [**`putting it together`**](libraries/tkinter.md#putting-it-together): 
-    [`a simple form`](libraries/tkinter.md#a-simple-form) 
+-   :material-test-tube:{ .lg .middle } [__pytest__](libraries/pytest.md) 
+[:material-download-outline:](libraries/pytest.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
+
+    Writing and running tests: assertions, fixtures, and parametrizing.
 
 </div>
 </div>
@@ -850,41 +682,7 @@ hide:
 
     Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection.
 
-    [**`reading, displaying, saving images`**](libraries/opencv.md#reading-displaying-and-saving-images): 
-    [`displaying a window`](libraries/opencv.md#displaying-a-window) 
-    [`imread`](libraries/opencv.md#reading-a-file) 
-    [`saving a file`](libraries/opencv.md#saving-a-file) 
-
-    [**`drawing`**](libraries/opencv.md#drawing-shapes-and-text): 
-    [`shapes and lines`](libraries/opencv.md#shapes-and-lines) 
-    [`text`](libraries/opencv.md#text) 
-
-    [**`color spaces`**](libraries/opencv.md#color-spaces): 
-    [`cvtColor`](libraries/opencv.md#converting-color-spaces) 
-
-    [**`CascadeClassifier`**](libraries/opencv.md#face-detection-with-cascade-classifiers): 
-    [`detecting and labeling faces`](libraries/opencv.md#detecting-and-labeling-faces) 
-
-    [**`VideoCapture`**](libraries/opencv.md#working-with-video): 
-    [`reading frames`](libraries/opencv.md#reading-frames) 
-
-    [**`basic operations`**](libraries/opencv.md#basic-operations): 
-    [`cropping`](libraries/opencv.md#cropping) 
-    [`resize`](libraries/opencv.md#resize) 
-    [`rotating`](libraries/opencv.md#rotating) 
-
-    [**`thresholding, edge detection`**](libraries/opencv.md#thresholding-and-edge-detection): 
-    [`Canny`](libraries/opencv.md#edge-detection) 
-    [`threshold`](libraries/opencv.md#threshold) 
-
-    [**`blurring`**](libraries/opencv.md#blurring): 
-    [`gaussian blur`](libraries/opencv.md#gaussian-blur) 
-
-    [**`contours`**](libraries/opencv.md#contours): 
-    [`finding and drawing contours`](libraries/opencv.md#finding-and-drawing-contours) 
-
 </div>
 </div>
 
 </div>
-

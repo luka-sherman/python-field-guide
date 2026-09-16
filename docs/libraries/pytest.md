@@ -14,17 +14,11 @@ pytest is an open-source project maintained by volunteer contributors.
 
 <div class="pfg-section" markdown="block">
 
-## Install { data-card-link="skip" }
+## Setup { data-card-link="skip" }
 
 ```bash
 pip install pytest
 ```
-
-</div>
-
-<div class="pfg-section" markdown="block">
-
-## Import { data-card-link="skip" }
 
 Most of what pytest does — discovering `test_*` functions and checking plain `assert` statements — needs no import at all. A plain `import pytest` is only needed for its extra tools: fixtures, marks, and `pytest.raises`.
 

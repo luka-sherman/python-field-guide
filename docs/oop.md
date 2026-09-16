@@ -133,12 +133,19 @@ ball.describe()    # "a 5 ft ball python"
     ```
 
 ??? tip "Modify & delete attributes"
-    Assign to `object.attribute` to change it after creation. `del object.attribute` removes a single attribute; `del object` removes the object itself.
+    Assign to `object.attribute` to change it after creation — an object is **mutable**, so this changes it in place, the same as [updating an item in a list](collections.md#access-and-update-items). That also means a second variable pointing at the same object sees the change too: `twin = ball` doesn't copy `ball`, it just gives the same object a second name.
+
+    `del object.attribute` removes a single attribute; `del object` removes the object itself.
 
     ```python-ref
-    ball.length_ft = 6      # change an attribute directly, like any variable
-    del ball.length_ft      # remove just that attribute
-    del ball                # remove the whole object
+    ball.length_ft = 6        # change an attribute directly, like any variable
+
+    twin = ball                # twin and ball are the same object, not a copy
+    twin.length_ft = 7         # mutates that shared object
+    print(ball.length_ft)      # 7 — the change shows up through ball too
+
+    del ball.length_ft         # remove just that attribute
+    del ball                   # remove the whole object
     ```
 
 ??? tip "pass placeholder"
