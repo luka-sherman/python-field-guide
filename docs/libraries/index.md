@@ -351,6 +351,7 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
     [`Setup`](turtle.md#screen-setup) 
 
     [**`turtle cursor`**](turtle.md#the-turtle-cursor): 
+    [`Appearance`](turtle.md#shape) 
     [`Circle`](turtle.md#circle) 
     [`Color`](turtle.md#shape-color-size) 
     [`Custom images`](turtle.md#custom-images) 
