@@ -653,7 +653,7 @@ hide:
 -   :material-turtle:{ .lg .middle } [__turtle__](libraries/turtle.md) 
 [:material-language-python:](libraries/turtle.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
-    Building small movement-based games with a virtual pen that moves around a window.
+    Build small movement-based games with a pen cursor.
 
 </div>
 </div>

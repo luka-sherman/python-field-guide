@@ -153,7 +153,7 @@ color('darkgreen', 'green')     # outline, fill
 register_shape('snake.gif')
 ```
 
-#### In a game
+#### In a game { data-card-link="skip" }
 
 Many games hide the turtle and draws its own shapes instead — the right call once there's a trail, or several independent pieces, that no single turtle could represent alone. A game with just one clearly visible player, though, doesn't need any of that: give the turtle a shape and a color, then move it directly with `goto()`.
 
@@ -181,7 +181,7 @@ onclick(on_hit)
 
 ### Trace movement
 
-#### With tracer
+#### With tracer { data-card-link="skip" }
 
 The Tracer is whether or not you can see the animation of the turtle moving. 
 
@@ -208,7 +208,7 @@ A related but separate setting — `speed(n)` controls how fast each individual 
         circle(50)   # drawn instantly, all at once
     ```
 
-#### Without tracer
+#### Without tracer { data-card-link="skip" }
 
 ```python-ref
 setup(420, 420, 370, 0)
@@ -390,7 +390,7 @@ x, y = ball            # unpack like any other tuple — 3, 5
         aim = Vec2D(x, y)
     ```
 
-#### The turtle's own position
+#### The turtle's own position  { data-card-link="skip" }
 
 The turtle itself always knows where it is — `pos()` returns its current location as a `Vec2D`, the same type used everywhere else on this page, so a separate variable isn't strictly needed if the pen itself is what's moving.
 
@@ -406,7 +406,7 @@ setheading(towards(ball))
 forward(5)
 ```
 
-#### Many positions at once
+#### Many positions at once  { data-card-link="skip" }
 
 A game's state is rarely just one lone position — a trail that grows over time, or several independent entities tracked at once. Both build on the same list/dict operations covered on [Collections](../collections.md).
 

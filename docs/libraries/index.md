@@ -339,41 +339,42 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 -   :material-turtle:{ .lg .middle } [__turtle__](turtle.md) 
 [:material-language-python:](turtle.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
 
-    Building small movement-based games with a virtual pen that moves around a window.
+    Build small movement-based games with a pen cursor.
 
     [**`Concepts`**](turtle.md#concepts) 
 
-    [**`The screen`**](turtle.md#the-screen): 
-    [`Screen setup`](turtle.md#screen-setup) 
-    [`Tracer and updates`](turtle.md#tracer-and-updates) 
+    [**`Screen`**](turtle.md#the-screen): 
     [`Background`](turtle.md#background) 
-    [`Closing the window`](turtle.md#closing-the-window) 
-
-    [**`The turtle`**](turtle.md#the-turtle): 
-    [`Shape`](turtle.md#shape) 
-    [`Show or hide the turtle`](turtle.md#show-or-hide-the-turtle) 
-    [`Custom images`](turtle.md#custom-images) 
-    [`The turtle as the game itself`](turtle.md#the-turtle-as-the-game-itself) 
-    [`Ink`](turtle.md#ink) 
+    [`Clear`](turtle.md#clear-screen) 
+    [`Close`](turtle.md#closing-the-window) 
     [`Colors`](turtle.md#colors) 
-    [`Pencolor vs fillcolor`](turtle.md#pencolor-vs-fillcolor) 
-    [`Ink as the game itself`](turtle.md#ink-as-the-game-itself) 
-    [`Drawing shapes`](turtle.md#drawing-shapes) 
-    [`Dot`](turtle.md#dot) 
+    [`Setup`](turtle.md#screen-setup) 
+
+    [**`turtle cursor`**](turtle.md#the-turtle-cursor): 
     [`Circle`](turtle.md#circle) 
+    [`Color`](turtle.md#shape-color-size) 
+    [`Custom images`](turtle.md#custom-images) 
+    [`Dot`](turtle.md#dot) 
+    [`Drawing shapes`](turtle.md#drawing-shapes) 
+    [`Hide`](turtle.md#show-or-hide) 
+    [`Ink`](turtle.md#ink) 
+    [`Motion`](turtle.md#positions-and-motion) 
+    [`Positions`](turtle.md#positions-and-motion) 
     [`Rectangle`](turtle.md#rectangle) 
+    [`Shape`](turtle.md#shape-color-size) 
+    [`Show`](turtle.md#show-or-hide) 
+    [`Size`](turtle.md#shape-color-size) 
     [`Stamping`](turtle.md#stamping) 
     [`Text`](turtle.md#text) 
-    [`Positions and motion`](turtle.md#positions-and-motion) 
-    [`The turtle's own position`](turtle.md#the-turtles-own-position) 
-    [`Many positions at once`](turtle.md#many-positions-at-once) 
-
-    [**`ontimer`**](turtle.md#the-game-loop) 
+    [`Tracer`](turtle.md#trace-movement) 
+     
+    [**`Game loop`**](turtle.md#the-game-loop): 
+    [`done()`](turtle.md#done) 
 
     [**`Input`**](turtle.md#input): 
+    [`Dialog prompts`](turtle.md#dialog-prompts) 
     [`Keyboard`](turtle.md#keyboard) 
     [`Mouse`](turtle.md#mouse) 
-    [`Dialogs`](turtle.md#dialogs) 
 
     [**`inside`**](turtle.md#detecting-collisions): 
     [`Distance`](turtle.md#distance) 
