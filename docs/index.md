@@ -645,6 +645,19 @@ hide:
 </div>
 </div>
 
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+#### Games { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-turtle:{ .lg .middle } [__turtle__](libraries/turtle.md) 
+[:material-language-python:](libraries/turtle.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
+
+    Building small movement-based games with a virtual pen that moves around a window.
+
+</div>
+</div>
+
 <div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-advanced="true">
 #### Testing { .pt-homepage-heading }
 

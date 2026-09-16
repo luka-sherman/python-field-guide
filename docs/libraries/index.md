@@ -344,7 +344,7 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
     [**`Concepts`**](turtle.md#concepts) 
 
     [**`The screen`**](turtle.md#the-screen): 
-    [`Setup`](turtle.md#setup) 
+    [`Screen setup`](turtle.md#screen-setup) 
     [`Tracer and updates`](turtle.md#tracer-and-updates) 
     [`Background`](turtle.md#background) 
     [`Closing the window`](turtle.md#closing-the-window) 
@@ -360,6 +360,7 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
     [`Ink as the game itself`](turtle.md#ink-as-the-game-itself) 
     [`Drawing shapes`](turtle.md#drawing-shapes) 
     [`Dot`](turtle.md#dot) 
+    [`Circle`](turtle.md#circle) 
     [`Rectangle`](turtle.md#rectangle) 
     [`Stamping`](turtle.md#stamping) 
     [`Text`](turtle.md#text) 
