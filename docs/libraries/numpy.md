@@ -14,17 +14,11 @@ NumPy is an open-source project, with fiscal sponsorship from the nonprofit [Num
 
 <div class="pfg-section" markdown="block">
 
-## Install { data-card-link="skip" }
+## Setup { data-card-link="skip" }
 
 ```bash
 pip install numpy
 ```
-
-</div>
-
-<div class="pfg-section" markdown="block">
-
-## Import { data-card-link="skip" }
 
 `np` is the near-universal alias for NumPy — used throughout this page and in virtually every codebase that imports it.
 

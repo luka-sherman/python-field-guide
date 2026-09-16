@@ -12,17 +12,9 @@ The **`math`** module extends Python's built-in arithmetic with functions it doe
 
 <div class="pfg-section" markdown="block">
 
-## Install { data-card-link="skip" }
+## Setup { data-card-link="skip" }
 
-`math` ships with Python's standard library — nothing to install.
-
-</div>
-
-<div class="pfg-section" markdown="block">
-
-## Import { data-card-link="skip" }
-
-The whole module is used through the `math.` prefix, so a plain import is all you need.
+`math` ships with Python's standard library — nothing to install. The whole module is used through the `math.` prefix, so a plain import is all you need.
 
 ```python-ref
 import math

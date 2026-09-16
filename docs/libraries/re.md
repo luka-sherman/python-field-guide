@@ -12,17 +12,9 @@ The **`re`** module works with regular expressions — patterns that describe te
 
 <div class="pfg-section" markdown="block">
 
-## Install { data-card-link="skip" }
+## Setup { data-card-link="skip" }
 
-`re` ships with Python's standard library — nothing to install.
-
-</div>
-
-<div class="pfg-section" markdown="block">
-
-## Import { data-card-link="skip" }
-
-The whole module is used through the `re.` prefix, so a plain import is all you need. Patterns are written as **raw strings** (`r"..."`), so a backslash like `\d` is passed straight to `re` instead of Python trying to interpret it as a string escape sequence first.
+`re` ships with Python's standard library — nothing to install. The whole module is used through the `re.` prefix, so a plain import is all you need. Patterns are written as **raw strings** (`r"..."`), so a backslash like `\d` is passed straight to `re` instead of Python trying to interpret it as a string escape sequence first.
 
 ```python-ref
 import re

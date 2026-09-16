@@ -331,6 +331,59 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 </div>
 </div>
 
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+#### Games { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-turtle:{ .lg .middle } [__turtle__](turtle.md) 
+[:material-language-python:](turtle.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
+
+    Building small movement-based games with a virtual pen that moves around a window.
+
+    [**`Concepts`**](turtle.md#concepts) 
+
+    [**`The screen`**](turtle.md#the-screen): 
+    [`Setup`](turtle.md#setup) 
+    [`Tracer and updates`](turtle.md#tracer-and-updates) 
+    [`Background`](turtle.md#background) 
+    [`Closing the window`](turtle.md#closing-the-window) 
+
+    [**`The turtle`**](turtle.md#the-turtle): 
+    [`Shape`](turtle.md#shape) 
+    [`Show or hide the turtle`](turtle.md#show-or-hide-the-turtle) 
+    [`Custom images`](turtle.md#custom-images) 
+    [`The turtle as the game itself`](turtle.md#the-turtle-as-the-game-itself) 
+    [`Ink`](turtle.md#ink) 
+    [`Colors`](turtle.md#colors) 
+    [`Pencolor vs fillcolor`](turtle.md#pencolor-vs-fillcolor) 
+    [`Ink as the game itself`](turtle.md#ink-as-the-game-itself) 
+    [`Drawing shapes`](turtle.md#drawing-shapes) 
+    [`Dot`](turtle.md#dot) 
+    [`Rectangle`](turtle.md#rectangle) 
+    [`Stamping`](turtle.md#stamping) 
+    [`Text`](turtle.md#text) 
+    [`Positions and motion`](turtle.md#positions-and-motion) 
+    [`The turtle's own position`](turtle.md#the-turtles-own-position) 
+    [`Many positions at once`](turtle.md#many-positions-at-once) 
+
+    [**`ontimer`**](turtle.md#the-game-loop) 
+
+    [**`Input`**](turtle.md#input): 
+    [`Keyboard`](turtle.md#keyboard) 
+    [`Mouse`](turtle.md#mouse) 
+    [`Dialogs`](turtle.md#dialogs) 
+
+    [**`inside`**](turtle.md#detecting-collisions): 
+    [`Distance`](turtle.md#distance) 
+    [`Membership`](turtle.md#membership) 
+    [`Overlap`](turtle.md#overlap) 
+
+    [**`Common patterns`**](turtle.md#common-patterns) 
+
+</div>
+</div>
+
 <div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-advanced="true">
 #### Testing { .pt-homepage-heading }
 
