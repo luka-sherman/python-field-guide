@@ -121,6 +121,12 @@ def test_link_to_hidden_section_recovers_to_advanced(page, site_url):
 
     tuples_link.first.click()
 
+    # hashchange (which drives the recovery) always fires as a separate queued
+    # task, never synchronously with the click — so the reveal can still be
+    # pending right after .click() returns. Wait for it instead of assuming it
+    # already happened (this was flaky in CI for exactly that reason).
+    page.wait_for_function("() => document.getElementById('tuples').hidden === false")
+
     after = page.evaluate(
         """() => ({
             tuplesHidden: document.getElementById('tuples').hidden,
