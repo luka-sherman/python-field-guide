@@ -271,9 +271,9 @@ ATTR_VALUE_RE = re.compile(r'(\w[\w-]*)="([^"]*)"')
 TAG_RE = re.compile(r"<[^>]+>")
 
 
-def _index_links():
-    """page.md -> set of anchors linked from index.md."""
-    index_text = (DOCS_DIR / "index.md").read_text()
+def _index_links(index_md_rel: str):
+    """page.md -> set of anchors linked from the given index page."""
+    index_text = (DOCS_DIR / index_md_rel).read_text()
     linked: dict[str, set[str]] = {}
     for page, anchor in LINK_RE.findall(index_text):
         if anchor:
@@ -297,7 +297,14 @@ def test_homepage_keyword_links_cover_all_headings(built_site, path):
     html_file = _html_path_for(built_site, md_rel)
     assert html_file.exists(), f"no build output for {md_rel} at {html_file}"
 
-    linked = _index_links().get(md_rel, set())
+    if md_rel.startswith("libraries/"):
+        index_md_rel = "libraries/index.md"
+        lookup_key = md_rel[len("libraries/") :]
+    else:
+        index_md_rel = "index.md"
+        lookup_key = md_rel
+
+    linked = _index_links(index_md_rel).get(lookup_key, set())
     failures = []
     for level, attrs_raw, text in BUILT_HEADING_RE.findall(html_file.read_text()):
         attrs = dict(ATTR_VALUE_RE.findall(attrs_raw))
@@ -306,9 +313,11 @@ def test_homepage_keyword_links_cover_all_headings(built_site, path):
             continue
         if anchor_id not in linked:
             clean_text = TAG_RE.sub("", text).strip()
-            failures.append(f"{md_rel}#{anchor_id} (h{level} {clean_text!r}) has no index.md keyword link")
+            failures.append(
+                f"{md_rel}#{anchor_id} (h{level} {clean_text!r}) has no {index_md_rel} keyword link"
+            )
     assert not failures, (
-        "Every ##/### heading needs its own index.md keyword deep-link (STRUCTURE.md "
+        f"Every ##/### heading needs its own {index_md_rel} keyword deep-link (STRUCTURE.md "
         "'Homepage keyword deep-links: Coverage'). Add the link, or mark the heading "
         '`{ data-card-link="skip" }` if it\'s intentionally not a reusable keyword:\n'
         + "\n".join(failures)
