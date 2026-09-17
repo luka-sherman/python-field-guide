@@ -869,6 +869,14 @@ input:checked + .md-consent__settings {
   margin-top: 0;
 }
 
+/* Category titles read as a muted label over the card grid rather than
+   full-contrast body ink: lightened toward white on the cream light scheme,
+   dimmed toward black on the dark scheme (which otherwise inherits full
+   --pt-ink from the rule below). */
+[data-md-color-scheme="default"] .md-typeset .pt-category > h4.pt-homepage-heading {
+  color: color-mix(in srgb, var(--pt-ink) 80%, white);
+}
+
 /* "Add-On Libraries" heading — swap the default h1 margins (0 top / 2.5rem
    bottom) so the space sits above it instead, separating it from the core
    grid and pulling it tight to the first library row. */
@@ -934,7 +942,7 @@ input:checked + .md-consent__settings {
    card title, description, and the bold lead keyword in each tag row — is the
    off-white --pt-ink. The light scheme keeps the original green title + tags. */
 [data-md-color-scheme="slate"] .md-typeset .pt-category .pt-homepage-heading {
-  color: var(--pt-ink);
+  color: color-mix(in srgb, var(--pt-ink) 80%, black);
 }
 
 [data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > .twemoji {
@@ -1229,6 +1237,10 @@ input:checked + .md-consent__settings {
 
 .md-typeset h3 {
   font-weight: 700;
+  color: var(--pt-heading-h3);
+}
+
+.md-typeset h4 {
   color: var(--pt-heading-h3);
 }
 
