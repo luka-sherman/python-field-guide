@@ -131,6 +131,13 @@ staying inline.**
 - **Keep subheading text short** — 1-2 words or a method/keyword name — since `toc.integrate`
   mirrors it verbatim into the sidebar. The fuller "why open this" context belongs in the first
   sentence under the heading, not the heading itself.
+- **No backticks in heading text** — even for a heading that's naming a piece of syntax (e.g.
+  `#### *args tuple`, not `` #### `*args` tuple ``). Backticks are fine, and expected, in the
+  body prose under the heading. **Exception:** an identifier containing a double underscore
+  (`__init__`, `__repr__`, any dunder) needs its backticks kept — Markdown reads bare `__` as
+  bold/emphasis markup, not literal underscores, so `### Overriding __init__()` renders (and
+  slugifies) as "Overriding **init**()" with the underscores silently eaten. Confirm any heading
+  change like this against the real built HTML, not just the source Markdown.
 - **`####` is reserved** for `index.md`'s homepage category boxes and genuinely deep
   library-page content (e.g. `libraries/pillow.md`'s per-method sections) — most content pages
   should never need to go past `###`.

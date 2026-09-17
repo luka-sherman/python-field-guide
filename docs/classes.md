@@ -109,7 +109,7 @@ ball = Snake("ball", 5)    # __init__ runs automatically, setting ball.species a
             self.tags = tags if tags is not None else []    # a new list every time
     ```
 
-### The `self` parameter
+### The self parameter
 
 Refers to the specific object a method was called on. One `Snake` class, but many `Snake` objects (`ball`, `burmese`, ...) sharing its method code — `self` is how a method written once still knows which object to act on.
 
@@ -369,7 +369,7 @@ class Boa(Snake):
         self.region = region
 ```
 
-### Using `super()`
+### Using super()
 
 Calls the parent's version of a method without naming the parent class directly. The usual, cleaner way to do what the previous example did by hand.
 

@@ -53,7 +53,7 @@ Pass the year, month, and day as plain integers to build a specific `date`. Usef
 observed = date(2026, 7, 23)    # 2026-07-23
 ```
 
-### Formatting with `strftime`
+### Formatting with strftime
 
 Turns a `date` or `datetime` into a custom-formatted string. `strftime` ("string format time") — `%B` is the full month name, `%d` the zero-padded day, `%Y` the four-digit year. It's the standard way to control exactly how a date is displayed.
 
@@ -114,7 +114,7 @@ last_seen = date(2026, 8, 6)
 last_seen - first_seen    # timedelta(days=14)
 ```
 
-### Parsing a string with `strptime`
+### Parsing a string with strptime
 
 The reverse of `strftime` — reads a date out of a string. `strptime` ("string parse time") takes the same format codes describing how that string is laid out. This is how a date typed by a user, or read from a CSV file, gets turned back into a real `datetime` you can do arithmetic on.
 
