@@ -386,10 +386,12 @@ hide:
     [`*args`](functions.md#args-tuple) 
     [`defaults`](functions.md#default-values) 
     [`docstrings`](functions.md#docstrings) 
-    [`keyword-only`](functions.md#keyword-only) 
     [`parameters`](functions.md#parameters) 
-    [`positional-only`](functions.md#positional-only) 
     [`return`](functions.md#return-values) 
+
+    [`combining *args and **kwargs`](functions.md#combining-regular-args-and-kwargs) 
+    [`keyword-only`](functions.md#keyword-only) 
+    [`positional-only`](functions.md#positional-only) 
     [`type hints`](functions.md#type-hints) 
     {: data-advanced="true" }
 
@@ -420,30 +422,30 @@ hide:
     [`yield`](functions.md#yield-vs-return) 
     {: data-advanced="true" }
 
--   :material-package-variant:{ .lg .middle } [__Classes__](oop.md)
+-   :material-package-variant:{ .lg .middle } [__Classes__](classes.md)
 
     Bundle related values and functions to a reusable blueprint for similar objects.
 
-    [**`class`**](oop.md#classes-and-objects): 
-    [`__init__()`](oop.md#the-__init__-method) 
-    [`object methods`](oop.md#object-methods) 
-    [`self`](oop.md#the-self-parameter) 
+    [**`class`**](classes.md#classes-and-objects): 
+    [`__init__()`](classes.md#the-__init__-method) 
+    [`object methods`](classes.md#object-methods) 
+    [`self`](classes.md#the-self-parameter) 
 
-    [**`method decorators`**](oop.md#method-decorators): 
-    [`@classmethod`](oop.md#classmethod) 
-    [`@property`](oop.md#property) 
-    [`@staticmethod`](oop.md#staticmethod) 
+    [**`method decorators`**](classes.md#method-decorators): 
+    [`@classmethod`](classes.md#classmethod) 
+    [`@property`](classes.md#property) 
+    [`@staticmethod`](classes.md#staticmethod) 
     {: data-advanced="true" }
 
-    [**`inheritance`**](oop.md#inheritance): 
-    [`adding attributes and methods`](oop.md#adding-attributes-and-methods) 
-    [`overriding __init__()`](oop.md#overriding-__init__) 
-    [`overriding methods`](oop.md#overriding-methods) 
-    [`super()`](oop.md#using-super) 
+    [**`inheritance`**](classes.md#inheritance): 
+    [`adding attributes and methods`](classes.md#adding-attributes-and-methods) 
+    [`overriding __init__()`](classes.md#overriding-__init__) 
+    [`overriding methods`](classes.md#overriding-methods) 
+    [`super()`](classes.md#using-super) 
 
-    [**`polymorphism`**](oop.md#polymorphism): 
-    [`polymorphism via inheritance`](oop.md#polymorphism-via-inheritance) 
-    [`same method name, unrelated classes`](oop.md#same-method-name-unrelated-classes) 
+    [**`polymorphism`**](classes.md#polymorphism): 
+    [`polymorphism via inheritance`](classes.md#polymorphism-via-inheritance) 
+    [`same method name, unrelated classes`](classes.md#same-method-name-unrelated-classes) 
     {: data-advanced="true" }
 
 </div>

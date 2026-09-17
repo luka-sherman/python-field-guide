@@ -46,6 +46,15 @@ classDiagram
 
 A class is a blueprint for creating objects — it defines what attributes and methods every object built from it will have. An object is one specific instance built from that blueprint, with its own copy of the attributes.
 
+A minimal class needs:
+
+- **`class`** — the keyword that starts it.
+- a **name**, capitalized in `PascalCase` (`Snake`, not `snake`) — the one place Python's own convention breaks from variables' `snake_case`.
+- a colon `:` ending the line.
+- an indented **body** — usually starting with `__init__`, the method that sets up a new object's starting attributes.
+
+Create an object by calling the class like a function: `Snake("ball", 5)`.
+
 ```python-ref
 class Snake:
     def __init__(self, species, length_ft):
@@ -58,9 +67,18 @@ print(ball.species)
 print(ball.length_ft)
 ```
 
+What `ball = Snake("ball", 5)` does:
+
+0. Creates a new, empty object.
+1. Calls `__init__` automatically, passing that object in as `self`, plus the arguments given — `"ball"` and `5`, matching `species` and `length_ft`.
+2. `self.species = species` and `self.length_ft = length_ft` store those as **attributes** — data belonging to this one object, not to the `Snake` class as a whole.
+3. Stores the finished object in `ball`.
+
+`burmese = Snake("burmese", 16)` builds a separate object the same way — `burmese.species` and `ball.species` don't share data, same as two function calls (previous page) don't share local variables.
+
 ### The `__init__()` method
 
-Runs automatically every time a new object is created. It's where you set up the object's starting attributes. Python calls this a **constructor**.
+Runs automatically every time a new object is created — step 1 above. It's where an object's starting attributes get set up. Python calls this a **constructor**. You never call `__init__()` directly — `Snake("ball", 5)` is what triggers Python to call it.
 
 ```python-ref
 ball = Snake("ball", 5)    # __init__ runs automatically, setting ball.species and ball.length_ft
@@ -93,15 +111,24 @@ ball = Snake("ball", 5)    # __init__ runs automatically, setting ball.species a
 
 ### The `self` parameter
 
-Refers to the specific object a method was called on. `self` is the first parameter of every method in a class — it's how `ball.species` and `burmese.species` hold different values while sharing the same class. Python passes it in automatically; you never supply it yourself when calling a method (`ball.describe()`, not `ball.describe(ball)`).
+Refers to the specific object a method was called on. One `Snake` class, but many `Snake` objects (`ball`, `burmese`, ...) sharing its method code — `self` is how a method written once still knows which object to act on.
+
+`self` is always a method's first parameter, filled in automatically by Python — you never supply it yourself (`ball.describe()`, not `ball.describe(ball)`). Writing `ball.describe()` is what passes `ball` in as `self`.
 
 ```python-ref
 self.species    # inside a method, refers to *this* object's own species — "ball" for ball, "burmese" for burmese
 ```
 
+Same method, different object, different `self`:
+
+```python-ref
+ball.describe()      # self is ball    → "a 5 ft ball python"
+burmese.describe()   # self is burmese → "a 16 ft burmese python"
+```
+
 ### Object methods
 
-A method is just a function defined inside a class. Since it always receives `self`, it can read (or change) that specific object's own attributes.
+A method is a function defined inside a class — parameters, `return`, and defaults all work the same as on the [Functions](functions.md) page. The one addition is `self`, which lets it read or change that specific object's own attributes.
 
 ```python-ref
 ball.describe()    # "a 5 ft ball python"

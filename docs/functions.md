@@ -753,7 +753,7 @@ print(total_length(5, 12, 8))    # prints "called with (5, 12, 8)", then 25 — 
     print(describe.__name__)    # "describe" — without @wraps(func), this would be "wrapper" instead
     ```
 
-[^callable]: Technically a decorator just needs to return something *callable* — every decorator on this page returns a function specifically, but not all decorators do. [Classes](oop.md#method-decorators)' built-in `@property`, `@staticmethod`, and `@classmethod` return other kinds of callable object instead.
+[^callable]: Technically a decorator just needs to return something *callable* — every decorator on this page returns a function specifically, but not all decorators do. [Classes](classes.md#method-decorators)' built-in `@property`, `@staticmethod`, and `@classmethod` return other kinds of callable object instead.
 
 </div>
 
