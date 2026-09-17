@@ -13,7 +13,7 @@ nav:
   - Conditionals: conditionals.md
   - Loops: loops.md
   - Functions: functions.md
-  - Classes: oop.md
+  - Classes: classes.md
   - Modules: modules.md
   - Files: files.md
   - Style: style.md

@@ -382,20 +382,29 @@ hide:
     Package a named block of code to run it at any time.
 
     [**`def`**](functions.md#defining-a-function): 
-    [`default parameter values`](functions.md#default-parameter-values) 
+    [`**kwargs`](functions.md#kwargs-dict) 
+    [`*args`](functions.md#args-tuple) 
+    [`defaults`](functions.md#default-values) 
     [`docstrings`](functions.md#docstrings) 
-    [`keep functions focused`](functions.md#keep-functions-focused) 
-    [`keyword arguments`](functions.md#keyword-arguments) 
+    [`parameters`](functions.md#parameters) 
+    [`pass`](functions.md#pass-placeholder) 
     [`return`](functions.md#return-values) 
-    [`type hints`](functions.md#type-hints) 
 
-    [**`flexible arguments`**](functions.md#flexible-arguments): 
-    [`**kwargs`](functions.md#kwargs) 
-    [`*args`](functions.md#args) 
+    [`combining *args and **kwargs`](functions.md#combining-regular-args-and-kwargs) 
+    [`keyword-only`](functions.md#keyword-only) 
+    [`positional-only`](functions.md#positional-only) 
+    [`type hints`](functions.md#type-hints) 
+    {: data-advanced="true" }
+
+    [**`calling a function`**](functions.md#calling-a-function): 
+    [`arguments`](functions.md#arguments) 
+    [`keyword`](functions.md#by-keyword) 
+    [`required`](functions.md#required) 
+    [`return value`](functions.md#saving-the-return-value) 
+    [`unpacking`](functions.md#unpacking) 
 
     [**`scope`**](functions.md#scope): 
     [`local vs global`](functions.md#local-vs-global-variables) 
-    {: data-advanced="true" }
 
     [**`recursion`**](functions.md#recursion)
     {: data-advanced="true" }
@@ -408,30 +417,58 @@ hide:
     [`wrapping`](functions.md#wrapping-the-call)
     {: data-advanced="true" }
 
--   :material-package-variant:{ .lg .middle } [__Classes__](oop.md)
+    [**`generators`**](functions.md#generators): 
+    [`generator expressions`](functions.md#generator-expressions)
+    [`memory`](functions.md#memory-efficiency) 
+    [`yield`](functions.md#yield-vs-return) 
+    {: data-advanced="true" }
+
+-   :material-package-variant:{ .lg .middle } [__Classes__](classes.md)
 
     Bundle related values and functions to a reusable blueprint for similar objects.
 
-    [**`class`**](oop.md#classes-and-objects): 
-    [`__init__()`](oop.md#the-__init__-method) 
-    [`object methods`](oop.md#object-methods) 
-    [`self`](oop.md#the-self-parameter) 
+    [**`class`**](classes.md#defining-a-class): 
+    [`__init__()`](classes.md#the-__init__-method) 
+    [`class attributes`](classes.md#class-attributes) 
+    [`instance attributes`](classes.md#instance-attributes) 
+    [`methods`](classes.md#object-methods) 
+    [`self`](classes.md#the-self-parameter) 
 
-    [**`method decorators`**](oop.md#method-decorators): 
-    [`@classmethod`](oop.md#classmethod) 
-    [`@property`](oop.md#property) 
-    [`@staticmethod`](oop.md#staticmethod) 
+    [**`method decorators`**](classes.md#method-decorators): 
+    [`@classmethod`](classes.md#classmethod) 
+    [`@property`](classes.md#property) 
+    [`@staticmethod`](classes.md#staticmethod) 
     {: data-advanced="true" }
 
-    [**`inheritance`**](oop.md#inheritance): 
-    [`adding attributes and methods`](oop.md#adding-attributes-and-methods) 
-    [`overriding __init__()`](oop.md#overriding-__init__) 
-    [`overriding methods`](oop.md#overriding-methods) 
-    [`super()`](oop.md#using-super) 
+    [**`inheritance`**](classes.md#inheritance): 
+    [`adding attributes and methods`](classes.md#adding-attributes-and-methods) 
+    [`__init__()`](classes.md#overriding-__init__) 
+    [`overriding`](classes.md#overriding-methods) 
+    [`super()`](classes.md#using-super) 
 
-    [**`polymorphism`**](oop.md#polymorphism): 
-    [`polymorphism via inheritance`](oop.md#polymorphism-via-inheritance) 
-    [`same method name, unrelated classes`](oop.md#same-method-name-unrelated-classes) 
+    [`multiple inheritance`](classes.md#multiple-inheritance) 
+    {: data-advanced="true" }
+
+    [**`polymorphism`**](classes.md#polymorphism): 
+    [`inheritance`](classes.md#polymorphism-via-inheritance) 
+    [`duplicate method names`](classes.md#duplicate-method-names) 
+    {: data-advanced="true" }
+
+    [**`encapsulation`**](classes.md#encapsulation): 
+    [`@property`](classes.md#controlled-access-with-property) 
+    [`double underscore`](classes.md#double-underscore) 
+    [`single underscore`](classes.md#single-underscore) 
+    {: data-advanced="true" }
+
+    [**`operator overloading`**](classes.md#operator-overloading): 
+    [`__add__`](classes.md#arithmetic-with-__add__) 
+    [`__eq__ and __lt__`](classes.md#comparing-with-__eq__-and-__lt__) 
+    {: data-advanced="true" }
+
+    [**`dataclasses`**](classes.md#dataclasses)
+    {: data-advanced="true" }
+
+    [**`abstract base classes`**](classes.md#abstract-base-classes)
     {: data-advanced="true" }
 
 </div>

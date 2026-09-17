@@ -77,7 +77,7 @@ class diagram panel
 
 - **Index with `list[index]`** to return the item at that index (position number) of the list. 
 
-    To **update** the item at that index, set it equal to something else **`list[index] = new_item`**. This works because a list is **mutable** — updating an item changes it in place instead of building a new one, the same way [an object's attributes](oop.md#classes-and-objects) can be changed after it's created.
+    To **update** the item at that index, set it equal to something else **`list[index] = new_item`**. This works because a list is **mutable** — updating an item changes it in place instead of building a new one, the same way [an object's attributes](classes.md#defining-a-class) can be changed after it's created.
 
     *Run the below example, and change the indexes to see how they work:* 
 
@@ -330,6 +330,8 @@ class diagram panel
 
     [s.title() for s in species]        # ["Burmese", "Rock", "Ball", "Blood"]
     ```
+
+    Swapping the brackets for parentheses turns this into a [generator expression](functions.md#generator-expressions) instead — same syntax, but it produces items one at a time rather than building the whole list up front. Use a list comprehension when the result needs indexing, `len()`, or looping over more than once; use a generator expression when it's only read once, or the full result would be too large to hold in memory as a list.
 
 ### Going further { data-card-link="skip" }
 
