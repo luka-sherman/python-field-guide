@@ -63,3 +63,7 @@
 *[Graceful]: Handling a failure without crashing or losing data — continuing on, showing a clear message, or falling back to a default instead of stopping abruptly
 *[gracefully]: In a way that handles a failure without crashing or losing data — continuing on, showing a clear message, or falling back to a default instead of stopping abruptly
 *[Gracefully]: In a way that handles a failure without crashing or losing data — continuing on, showing a clear message, or falling back to a default instead of stopping abruptly
+*[lazy]: Computing or producing a value only at the moment it's actually needed, instead of all at once ahead of time
+*[Lazy]: Computing or producing a value only at the moment it's actually needed, instead of all at once ahead of time
+*[lazily]: In a way that computes or produces a value only at the moment it's actually needed, instead of all at once ahead of time
+*[Lazily]: In a way that computes or produces a value only at the moment it's actually needed, instead of all at once ahead of time

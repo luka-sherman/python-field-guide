@@ -177,14 +177,13 @@ this reason.
   `tests/test_homepage_keyword_links_cover_all_headings` knows the omission is deliberate
   rather than flagging it as a gap. Any other heading just needs *a* link to its anchor — the
   test doesn't check the link's text, so renaming an entry (or the heading) is a manual concern.
-- **Order by heading level first, importance second — not top-to-bottom page order.** All `##`
-  entries come first, then all `###` entries, then any `####`/no-heading entries last; within
-  each of those tiers, sort most-to-least important rather than by page position. The two
-  orderings often coincide (pages are usually written in a sensible teaching order already), but
-  don't assume it — within the `##` tier, lead with the concept the card's own one-line
-  description is about; within the `###`/`####` tier, lead with the most commonly-needed related
-  syntax and put edge cases, advanced variants, or purely organizational headings (e.g. a page's
-  own "Common patterns" container heading) last in their tier.
+- **Bold `##` entries stay in page order; their plain children are alphabetized.** Each `##`
+  heading gets its own bold entry (e.g. `` [**`def`**](functions.md#defining-a-function) ``),
+  and those bold entries keep the page's own top-to-bottom heading order — don't reshuffle them.
+  The flat list of plain (non-bold) links under a bold entry — its `###`/`####` children, plus
+  any bare-syntax entries with no heading of their own — sorts alphabetically by link text
+  (case-insensitive), not by importance or page position. Symbols sort before letters (plain
+  ASCII order), so a line like `` [`+= -= *= /=`] `` lands ahead of `` [`abs`] ``.
 - **Verify with a real build, not by eye** — `mkdocs build` prints a `WARNING` for every
   anchor/link it can't resolve; treat a clean build as the actual pass/fail check for this list,
   since hand-checked slugs are easy to get subtly wrong (trailing punctuation, duplicate-heading

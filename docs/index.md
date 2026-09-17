@@ -382,20 +382,26 @@ hide:
     Package a named block of code to run it at any time.
 
     [**`def`**](functions.md#defining-a-function): 
-    [`default parameter values`](functions.md#default-parameter-values) 
+    [`**kwargs`](functions.md#kwargs-dict) 
+    [`*args`](functions.md#args-tuple) 
+    [`defaults`](functions.md#default-values) 
     [`docstrings`](functions.md#docstrings) 
-    [`keep functions focused`](functions.md#keep-functions-focused) 
-    [`keyword arguments`](functions.md#keyword-arguments) 
+    [`keyword-only`](functions.md#keyword-only) 
+    [`parameters`](functions.md#parameters) 
+    [`positional-only`](functions.md#positional-only) 
     [`return`](functions.md#return-values) 
     [`type hints`](functions.md#type-hints) 
+    {: data-advanced="true" }
 
-    [**`flexible arguments`**](functions.md#flexible-arguments): 
-    [`**kwargs`](functions.md#kwargs) 
-    [`*args`](functions.md#args) 
+    [**`calling a function`**](functions.md#calling-a-function): 
+    [`arguments`](functions.md#arguments) 
+    [`keyword`](functions.md#by-keyword) 
+    [`required`](functions.md#required) 
+    [`return value`](functions.md#saving-the-return-value) 
+    [`unpacking`](functions.md#unpacking) 
 
     [**`scope`**](functions.md#scope): 
     [`local vs global`](functions.md#local-vs-global-variables) 
-    {: data-advanced="true" }
 
     [**`recursion`**](functions.md#recursion)
     {: data-advanced="true" }
@@ -406,6 +412,12 @@ hide:
     [`original function`](functions.md#returning-the-original-function) 
     [`stacking`](functions.md#advanced-uses) 
     [`wrapping`](functions.md#wrapping-the-call)
+    {: data-advanced="true" }
+
+    [**`generators`**](functions.md#generators): 
+    [`generator expressions`](functions.md#generator-expressions)
+    [`memory`](functions.md#memory-efficiency) 
+    [`yield`](functions.md#yield-vs-return) 
     {: data-advanced="true" }
 
 -   :material-package-variant:{ .lg .middle } [__Classes__](oop.md)

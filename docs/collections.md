@@ -331,6 +331,8 @@ class diagram panel
     [s.title() for s in species]        # ["Burmese", "Rock", "Ball", "Blood"]
     ```
 
+    Swapping the brackets for parentheses turns this into a [generator expression](functions.md#generator-expressions) instead — same syntax, but it produces items one at a time rather than building the whole list up front. Use a list comprehension when the result needs indexing, `len()`, or looping over more than once; use a generator expression when it's only read once, or the full result would be too large to hold in memory as a list.
+
 ### Going further { data-card-link="skip" }
 
 ??? warning "In-place list methods return None"
