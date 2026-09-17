@@ -67,3 +67,4 @@
 *[Lazy]: Computing or producing a value only at the moment it's actually needed, instead of all at once ahead of time
 *[lazily]: In a way that computes or produces a value only at the moment it's actually needed, instead of all at once ahead of time
 *[Lazily]: In a way that computes or produces a value only at the moment it's actually needed, instead of all at once ahead of time
+*[PascalCase]: Capitalizing each word with no separators (e.g. Snake, BallPython) — the naming convention for classes, unlike variables' snake_case

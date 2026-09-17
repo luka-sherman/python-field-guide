@@ -77,7 +77,7 @@ class diagram panel
 
 - **Index with `list[index]`** to return the item at that index (position number) of the list. 
 
-    To **update** the item at that index, set it equal to something else **`list[index] = new_item`**. This works because a list is **mutable** — updating an item changes it in place instead of building a new one, the same way [an object's attributes](classes.md#classes-and-objects) can be changed after it's created.
+    To **update** the item at that index, set it equal to something else **`list[index] = new_item`**. This works because a list is **mutable** — updating an item changes it in place instead of building a new one, the same way [an object's attributes](classes.md#defining-a-class) can be changed after it's created.
 
     *Run the below example, and change the indexes to see how they work:* 
 

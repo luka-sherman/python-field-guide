@@ -4,33 +4,9 @@ description: >-
   attributes, methods, property/staticmethod/classmethod, and inheritance.
 ---
 
-# :material-package-variant:{ .lg .middle } Classes & Object-oriented programming (OOP)
+# :material-package-variant:{ .lg .middle } Classes
 
-**Object-oriented programming** groups related data and the functions that act on it into a single unit, instead of keeping them separate. A [dictionary](collections.md#dictionaries) can already hold a snake's data as key-value pairs — a **class** goes one step further, bundling that data together with the behavior (methods) that belongs to it.
-
-<div class="pfg-diagram-frame" markdown="block">
-
-```mermaid
-classDiagram
-    class Snake {
-        +species
-        +length_ft
-        +__init__(species, length_ft)
-        +describe()
-        +__str__()
-    }
-    class Boa {
-        +region
-        +__init__(species, length_ft, region)
-        +describe()
-        +habitat()
-    }
-    Snake <|-- Boa
-```
-
-<p class="pfg-diagram-caption">FIG: example of a class</p>
-
-</div>
+A **class** bundles related data together with the behavior (methods) that acts on it, instead of keeping them separate. A [dictionary](collections.md#dictionaries) can already hold a snake's data as key-value pairs — a class goes one step further, pairing that data with the functions that work on it. Structuring code this way is called **object-oriented programming (OOP)**.
 
 | Concept | Example | What it is |
 |---------|---------|------------|
@@ -42,18 +18,19 @@ classDiagram
 
 <div class="pfg-section" markdown="block">
 
-## Classes and objects
+## Defining a class
 
 A class is a blueprint for creating objects — it defines what attributes and methods every object built from it will have. An object is one specific instance built from that blueprint, with its own copy of the attributes.
 
-A minimal class needs:
+The class definition line contains **`class`**, a **class name** (capitalized in PascalCase, unlike variables' `snake_case`), and a **colon**. Under it is an indented **body** — usually starting with `__init__`, the method that sets up a new object's starting attributes.
 
-- **`class`** — the keyword that starts it.
-- a **name**, capitalized in `PascalCase` (`Snake`, not `snake`) — the one place Python's own convention breaks from variables' `snake_case`.
-- a colon `:` ending the line.
-- an indented **body** — usually starting with `__init__`, the method that sets up a new object's starting attributes.
+```python-ref
+class ClassName:
+    def __init__(self, parameter):
+        self.attribute = parameter
+```
 
-Create an object by calling the class like a function: `Snake("ball", 5)`.
+Create an object by calling the class like a function: `ClassName(argument)`.
 
 ```python-ref
 class Snake:
@@ -133,6 +110,55 @@ A method is a function defined inside a class — parameters, `return`, and defa
 ```python-ref
 ball.describe()    # "a 5 ft ball python"
 ```
+
+### Instance attributes
+
+An instance attribute is set with `self.x = value`, usually inside `__init__`. This is the default way a class stores data — each object gets its own independent copy, separate from every other object's.
+
+```python-ref
+class Snake:
+    def __init__(self, species, length_ft):
+        self.species = species      # instance attribute
+        self.length_ft = length_ft
+
+ball = Snake("ball", 5)
+burmese = Snake("burmese", 16)
+
+print(ball.species)       # "ball"
+print(burmese.species)    # "burmese" — a separate copy, not shared
+```
+
+For a value every object should share instead of holding its own copy, see [class attributes](#class-attributes) below.
+
+### Class attributes
+
+A class attribute is set directly in the class body, outside `__init__` — shared by every object built from that class, unlike an [instance attribute](#instance-attributes), which is a separate copy per object. Assigning to `object.attribute` always creates (or updates) an instance attribute, even if a class attribute of the same name exists — it doesn't change the shared value, just shadows it for that one object.
+
+```python-ref
+class Snake:
+    kingdom = "Animalia"    # class attribute — shared by every Snake object
+
+    def __init__(self, species, length_ft):
+        self.species = species        # instance attribute — its own copy per object
+        self.length_ft = length_ft
+
+ball = Snake("ball", 5)
+burmese = Snake("burmese", 16)
+
+print(ball.kingdom)       # "Animalia"
+print(burmese.kingdom)    # "Animalia" — same value, shared
+
+ball.kingdom = "Reptilia"    # creates an instance attribute — doesn't touch the class attribute
+print(ball.kingdom)          # "Reptilia" — this object's own copy now
+print(burmese.kingdom)       # "Animalia" — unaffected
+```
+
+| | Instance attribute | Class attribute |
+|---|---|---|
+| Set with | `self.x = value`, usually in `__init__` | `x = value` directly in the class body |
+| Copies | One per object | One, shared by every object |
+| Changing it on one object | Only that object sees the change | Reassigning through the class changes it for every object that hasn't shadowed it |
+| Use it for | Data that's different for each object — `species`, `length_ft` | A value every object of the class shares — a constant, a shared default, a running count |
 
 ### Going further { data-card-link="skip" }
 
@@ -395,6 +421,28 @@ snake.describe()    # "a 5 ft ball python"        — Snake's own version
 boa.describe()      # "a heavy-bodied constrictor" — Boa's version replaces it
 ```
 
+### Multiple inheritance { data-advanced="true" }
+
+A class can list more than one parent, comma-separated — it inherits the combined attributes and methods of all of them. When two parents define the same method, Python searches left to right through the parents listed and uses the first match — this search order is called the **MRO** (method resolution order).
+
+```python-ref
+class Venomous:
+    def warning(self):
+        return "handle with extreme caution"
+
+class Constrictor:
+    def warning(self):
+        return "handle with care, can constrict"
+
+class Cobra(Venomous, Constrictor):
+    pass
+
+cobra = Cobra()
+print(cobra.warning())    # "handle with extreme caution" — Venomous is listed first
+```
+
+`Cobra.__mro__` shows the actual search order Python used, in case more than two parents makes it unclear.
+
 ### Going further { data-card-link="skip" }
 
 ??? run "Run an inheritance example"
@@ -502,7 +550,7 @@ print(len(["ball", "burmese", "boa"]))
 print(len({"species": "ball", "length_ft": 5}))
 ```
 
-### Same method name, unrelated classes
+### Duplicate method names
 
 Classes don't need to be related by inheritance to share a method name. As long as each one defines its own `.move()`, calling it works the same way no matter which object it's called on.
 
@@ -567,6 +615,179 @@ for s in (snake, boa): print(s.describe())
     for s in (snake, boa):
         print(s.describe())
     ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
+## Encapsulation { data-advanced="true" }
+
+**Encapsulation** restricts direct access to an object's data, so it can only be read or changed through the class's own methods. Python doesn't enforce this the way some other languages do — it's a naming convention the caller is trusted to respect, not a hard restriction.
+
+### Single underscore
+
+A leading underscore (`_species`) signals "internal — not part of the class's public interface." Python doesn't actually stop outside code from reading or changing it; it's a convention, not a lock.
+
+```python-ref
+class Snake:
+    def __init__(self, species, length_ft):
+        self._species = species    # leading underscore — treat as internal
+
+ball = Snake("ball", 5)
+ball._species    # "ball" — still accessible, just a signal not to
+```
+
+### Double underscore
+
+A leading double underscore (`__species`) triggers **name mangling** — Python renames the attribute internally to `_ClassName__species`, making it awkward (though still not impossible) to reach from outside the class.
+
+```python-ref
+class Snake:
+    def __init__(self, species, length_ft):
+        self.__species = species    # name-mangled
+
+ball = Snake("ball", 5)
+ball.__species          # AttributeError — not found under this name
+ball._Snake__species    # "ball" — the actual mangled name
+```
+
+### Controlled access with @property
+
+Pair an underscore-prefixed attribute with [`@property`](#property) to actually enforce something — like validation — instead of only signaling intent.
+
+```python-ref
+class Snake:
+    def __init__(self, species, length_ft):
+        self._length_ft = length_ft
+
+    @property
+    def length_ft(self):
+        return self._length_ft
+
+    @length_ft.setter
+    def length_ft(self, value):
+        if value <= 0:
+            raise ValueError("length_ft must be positive")
+        self._length_ft = value
+
+ball = Snake("ball", 5)
+ball.length_ft = -1    # ValueError — blocked by the setter
+```
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
+## Operator overloading { data-advanced="true" }
+
+Defining a dunder method lets a built-in operator (`==`, `<`, `+`, ...) work on your own objects — the same mechanism as [`__str__()`](#defining-a-class) and [`__repr__()`](#defining-a-class), just for operators instead of printing.
+
+```python-ref
+ball = Snake("ball", 5)
+ball == Snake("ball", 5)    # False — without __eq__, Python compares by identity, not by data
+```
+
+### Comparing with `__eq__` and `__lt__`
+
+`__eq__` defines what `==` does; `__lt__` defines what `<` does. Without them, `==` falls back to comparing identity (is this the exact same object?) rather than the data inside.
+
+```python-ref
+class Snake:
+    def __init__(self, species, length_ft):
+        self.species = species
+        self.length_ft = length_ft
+
+    def __eq__(self, other):
+        return self.length_ft == other.length_ft
+
+    def __lt__(self, other):
+        return self.length_ft < other.length_ft
+
+ball = Snake("ball", 5)
+burmese = Snake("burmese", 16)
+
+print(ball == Snake("ball", 5))    # True — same length_ft
+print(ball < burmese)              # True — 5 < 16
+```
+
+### Arithmetic with `__add__`
+
+`__add__` defines what `+` does between two objects — whatever combining them should mean for this class.
+
+```python-ref
+class Snake:
+    def __init__(self, species, length_ft):
+        self.species = species
+        self.length_ft = length_ft
+
+    def __add__(self, other):
+        return self.length_ft + other.length_ft
+
+ball = Snake("ball", 5)
+burmese = Snake("burmese", 16)
+
+print(ball + burmese)    # 21 — combined length
+```
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
+## Dataclasses { data-advanced="true" }
+
+`@dataclass` generates `__init__()` and `__repr__()` automatically from a list of typed attributes, instead of writing them by hand.
+
+```python-ref
+from dataclasses import dataclass
+
+@dataclass
+class Snake:
+    species: str
+    length_ft: float
+
+ball = Snake("ball", 5)
+print(ball)    # Snake(species='ball', length_ft=5) — __repr__ generated automatically
+```
+
+Equivalent to writing the same class by hand:
+
+```python-ref
+class Snake:
+    def __init__(self, species, length_ft):
+        self.species = species
+        self.length_ft = length_ft
+
+    def __repr__(self):
+        return f"Snake(species={self.species!r}, length_ft={self.length_ft!r})"
+```
+
+Use it for a class that's mostly just holding data, with little or no custom behavior; skip it once a class needs real logic beyond storing and reporting its attributes.
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
+## Abstract base classes { data-advanced="true" }
+
+An **abstract base class** defines methods that every subclass must implement, using `abc.ABC` and `@abstractmethod`. Trying to create an object from a class that hasn't implemented all of them raises a `TypeError` immediately, instead of failing later when the missing method actually gets called.
+
+```python-ref
+from abc import ABC, abstractmethod
+
+class Snake(ABC):
+    @abstractmethod
+    def move(self):
+        ...
+
+class Boa(Snake):
+    def move(self):
+        return "slither"
+
+boa = Boa()      # works — Boa implements move()
+snake = Snake()  # TypeError — can't instantiate abstract class with abstract method 'move'
+```
+
+Use it when a base class should only ever be a template — never instantiated directly — and every subclass must supply certain methods; skip it for ordinary inheritance where the base class already works fine on its own, as with `Snake` and `Boa` [earlier on this page](#inheritance).
 
 </div>
 

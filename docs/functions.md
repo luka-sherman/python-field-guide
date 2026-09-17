@@ -200,9 +200,14 @@ def describe(species: str, length_ft: float):
     return f"a {length_ft} ft {species} python"
 ```
 
-#### Combining regular, \*args, and \*\*kwargs { data-advanced="true" }  { data-card-link="skip" }
+#### Combining categories { data-advanced="true" , data-card-link="skip" }
 
-A single signature can mix regular parameters, `*args`, keyword-only parameters, and `**kwargs`, but Python requires that fixed order: positional parameters first, then `*args`, then any keyword-only parameters, then `**kwargs` last.
+A single signature can mix kinds of parameters, but must be in this order: 
+
+1. positional parameters
+2. `*args`
+3. keyword-only parameters
+4. `**kwargs` 
 
 `venomous` sits after `*lengths`, which makes it keyword-only automatically — anything named after `*args` can only be passed by name, even without a separate bare `*`.
 

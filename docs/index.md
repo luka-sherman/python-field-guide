@@ -387,6 +387,7 @@ hide:
     [`defaults`](functions.md#default-values) 
     [`docstrings`](functions.md#docstrings) 
     [`parameters`](functions.md#parameters) 
+    [`pass`](functions.md#pass-placeholder) 
     [`return`](functions.md#return-values) 
 
     [`combining *args and **kwargs`](functions.md#combining-regular-args-and-kwargs) 
@@ -426,9 +427,11 @@ hide:
 
     Bundle related values and functions to a reusable blueprint for similar objects.
 
-    [**`class`**](classes.md#classes-and-objects): 
+    [**`class`**](classes.md#defining-a-class): 
     [`__init__()`](classes.md#the-__init__-method) 
-    [`object methods`](classes.md#object-methods) 
+    [`class attributes`](classes.md#class-attributes) 
+    [`instance attributes`](classes.md#instance-attributes) 
+    [`methods`](classes.md#object-methods) 
     [`self`](classes.md#the-self-parameter) 
 
     [**`method decorators`**](classes.md#method-decorators): 
@@ -439,13 +442,33 @@ hide:
 
     [**`inheritance`**](classes.md#inheritance): 
     [`adding attributes and methods`](classes.md#adding-attributes-and-methods) 
-    [`overriding __init__()`](classes.md#overriding-__init__) 
-    [`overriding methods`](classes.md#overriding-methods) 
+    [`__init__()`](classes.md#overriding-__init__) 
+    [`overriding`](classes.md#overriding-methods) 
     [`super()`](classes.md#using-super) 
 
+    [`multiple inheritance`](classes.md#multiple-inheritance) 
+    {: data-advanced="true" }
+
     [**`polymorphism`**](classes.md#polymorphism): 
-    [`polymorphism via inheritance`](classes.md#polymorphism-via-inheritance) 
-    [`same method name, unrelated classes`](classes.md#same-method-name-unrelated-classes) 
+    [`inheritance`](classes.md#polymorphism-via-inheritance) 
+    [`duplicate method names`](classes.md#duplicate-method-names) 
+    {: data-advanced="true" }
+
+    [**`encapsulation`**](classes.md#encapsulation): 
+    [`@property`](classes.md#controlled-access-with-property) 
+    [`double underscore`](classes.md#double-underscore) 
+    [`single underscore`](classes.md#single-underscore) 
+    {: data-advanced="true" }
+
+    [**`operator overloading`**](classes.md#operator-overloading): 
+    [`__add__`](classes.md#arithmetic-with-__add__) 
+    [`__eq__ and __lt__`](classes.md#comparing-with-__eq__-and-__lt__) 
+    {: data-advanced="true" }
+
+    [**`dataclasses`**](classes.md#dataclasses)
+    {: data-advanced="true" }
+
+    [**`abstract base classes`**](classes.md#abstract-base-classes)
     {: data-advanced="true" }
 
 </div>
