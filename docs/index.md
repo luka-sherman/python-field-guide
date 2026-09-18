@@ -519,26 +519,33 @@ hide:
 
 -   :material-palette-outline:{ .lg .middle } [__Style__](style.md)
 
-    Conventions for standardized and readable Python.
+    Readable Python code, and polished UI.
 
-    [**`checklist`**](style.md#checklist)
+    [**`checklist`**](style.md#script-checklist)
 
     [**`linter`**](style.md#linter-tool)
 
     [**`PEP 8`**](style.md#pep-8-style-guide): 
     [`blank lines`](style.md#blank-lines) 
-    [`comments`](style.md#comments) 
-    [`constants`](style.md#constants) 
     [`docstrings`](style.md#docstrings) 
-    [`indentation`](style.md#indentation) 
     [`naming`](style.md#naming) 
-    [`order`](style.md#file-order) 
-    [`quote style`](style.md#quote-style) 
     [`whitespace`](style.md#whitespace) 
 
-    [**`Pythonic patterns`**](style.md#pythonic-patterns)
+    [`comments`](style.md#comments) 
+    [`constants`](style.md#constants) 
+    [`indentation`](style.md#indentation) 
+    [`order`](style.md#file-order) 
+    [`quote style`](style.md#quote-style) 
+    {: data-advanced="true" }
 
-    [**`Polish`**](style.md#polish): 
+    [**`Pythonic patterns`**](style.md#pythonic-patterns): 
+    [`is None`](style.md#is-none-instead-of-none)
+
+    [`truthy checks`](style.md#truthy-checks) 
+    [`enumerate()`](style.md#enumerate-instead-of-range) 
+    {: data-advanced="true" }
+
+    [**`Polished UX`**](style.md#polished-ux): 
     [`banners`](style.md#banners) 
     [`input validation`](style.md#input-validation) 
     [`menus`](style.md#menus) 
