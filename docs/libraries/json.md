@@ -8,7 +8,7 @@ description: >-
 
 [json documentation :material-open-in-new:](https://docs.python.org/3/library/json.html){ .md-button target="_blank" }
 
-The **`json`** module reads and writes JSON ("JavaScript Object Notation") data — a plain-text format built on nested dicts and lists, which makes it the standard way structured data moves between programs, files, and web APIs. Every example below actually runs in your browser: Pyodide gives each page its own in-memory filesystem, so `open()` works exactly like it would on a real computer, just without anything being saved outside this page.
+The **`json`** module reads and writes JSON ("JavaScript Object Notation") data — a plain-text format for structured data, whose objects and arrays map naturally to Python dicts and lists, which makes it the standard way structured data moves between programs, files, and web APIs. Every example below actually runs in your browser: Pyodide gives each page its own in-memory filesystem, so `open()` works exactly like it would on a real computer, just without anything being saved outside this page.
 
 <div class="pfg-section" markdown="block">
 

@@ -10,7 +10,7 @@ description: >-
 
 OpenCV is stewarded by nonprofit [OpenCV.org](https://opencv.org/).
 
-**OpenCV** (imported as `cv2`) is Python's standard library for computer vision — real-time image and video analysis, rather than the straightforward photo editing [Pillow](pillow.md) is built for. It's a third-party package, originally written in C++ with a thin Python wrapper over it, which shows up in a couple of its API choices: images load as plain NumPy arrays instead of a dedicated `Image` class, and in **BGR** (blue-green-red) channel order rather than the RGB most other tools expect. Like Pillow and [Tkinter](tkinter.md), OpenCV produces visual, often interactive output — a window showing an image or a live camera feed — that can't run inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file alongside an image and run them with `python` to see the results.
+**OpenCV** (imported as `cv2`) is a popular library for computer vision — real-time image and video analysis, rather than the straightforward photo editing [Pillow](pillow.md) is built for. It's a third-party package, originally written in C++ with a thin Python wrapper over it, which shows up in a couple of its API choices: images load as plain NumPy arrays instead of a dedicated `Image` class, and in **BGR** (blue-green-red) channel order rather than the RGB most other tools expect. Like Pillow and [Tkinter](tkinter.md), OpenCV produces visual, often interactive output — a window showing an image or a live camera feed — that can't run inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file alongside an image and run them with `python` to see the results.
 
 <div class="pfg-section" markdown="block">
 
@@ -28,7 +28,7 @@ import cv2
 
 | Concept | What it is |
 |---------|------------|
-| `Mat` | OpenCV's name (from its C++ origins) for an image — in Python it's just a NumPy `ndarray`, so array indexing and slicing double as OpenCV's crop tool. |
+| `Mat` | OpenCV's matrix/image type in its C++ API. In Python, OpenCV images are represented as NumPy `ndarray`s instead, so array indexing and slicing double as OpenCV's crop tool. |
 | BGR | The channel order OpenCV loads color images in by default — blue, green, red — the reverse of the RGB order most other tools (and humans) expect. |
 | Grayscale | A single-channel image storing brightness only, no color — required by several operations (thresholding, edge detection, face detection) before they'll run. |
 | Kernel | A small matrix of numbers used to blur, sharpen, or otherwise transform an image by combining each pixel with its neighbors. |
@@ -180,7 +180,7 @@ cv2.imwrite("snake_gray.png", gray)
 
 ## Basic operations
 
-A `Mat` is really just a NumPy array under the hood, so some "operations" are plain NumPy indexing rather than an OpenCV-specific method — cropping in particular.
+In Python, OpenCV images are represented as NumPy `ndarray`s — `Mat` is the name of OpenCV's corresponding matrix/image type in its C++ API — so some "operations" are plain NumPy indexing rather than an OpenCV-specific method, cropping in particular.
 
 ```python-ref
 resized = cv2.resize(img, (400, 300))
@@ -207,7 +207,7 @@ print(resized.shape)
 
 ### Cropping
 
-Since a `Mat` is just a NumPy array, cropping is a plain slice: `img[y1:y2, x1:x2]` — rows (height) first, then columns (width), the reverse of the `(x, y)` order most drawing functions use. There's no dedicated `.crop()` method to reach for.
+Since an OpenCV image in Python is a NumPy array, cropping is a plain slice: `img[y1:y2, x1:x2]` — rows (height) first, then columns (width), the reverse of the `(x, y)` order most drawing functions use. There's no dedicated `.crop()` method to reach for.
 
 ```python-ref
 cropped = img[50:250, 0:200]   # rows 50-250, columns 0-200

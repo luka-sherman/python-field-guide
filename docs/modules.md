@@ -163,7 +163,7 @@ print(join("snakes", "ball_python.txt"))
 
 ### order of multiple imports
 
-Imports go at the very top of the file, grouped in order: Python's own standard library first, then third-party packages, then your own local files — with a blank line between each group.
+Imports conventionally go near the top of the file, grouped in order: Python's own standard library first, then third-party packages, then your own local files — with a blank line between each group.
 
 ```python-ref
 import random                    # standard library

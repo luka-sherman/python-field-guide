@@ -10,7 +10,7 @@ description: >-
 
 pandas is an open-source project, funded by nonprofit [NumFOCUS](https://numfocus.org/).
 
-**pandas** (imported as `pd`) is Python's standard library for tabular data — rows and columns, like a spreadsheet, with tools for filtering, sorting, and summarizing built in. It's a third-party package, not part of the standard library, and is built on top of [NumPy](numpy.md).
+**pandas** (imported as `pd`) is a widely used library for tabular data — rows and columns, like a spreadsheet, with tools for filtering, sorting, and summarizing built in. It's a third-party package, not part of the standard library, and is built on top of [NumPy](numpy.md).
 
 <div class="pfg-section" markdown="block">
 
@@ -20,7 +20,7 @@ pandas is an open-source project, funded by nonprofit [NumFOCUS](https://numfocu
 pip install pandas
 ```
 
-`pd` is the near-universal alias for pandas — used throughout this page and in virtually every codebase that imports it.
+`pd` is the conventional alias for pandas and is very commonly used — including throughout this page.
 
 ```python-ref
 import pandas as pd
