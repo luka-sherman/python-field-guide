@@ -501,13 +501,31 @@ hide:
 
     Read and write text files on your computer.
 
-    [**`open()`**](files.md#opening-a-file)
+    [**`open`**](files.md#opening-and-closing-files): 
+    [`modes`](files.md#modes-options) 
+    [`paths`](files.md#file-paths) 
+    [`with`](files.md#with)
 
-    [**`read()`**](files.md#reading-a-file)
+    [**`read()`**](files.md#read): 
+    [`existing`](files.md#r-read-existing) 
+    [`functions`](files.md#functions) 
+    [`modes`](files.md#modes) 
+    [`read()`](files.md#whole-file) 
+    [`readline()`](files.md#by-line) 
+    [`readlines()`](files.md#by-line) 
+    [`seek()`](files.md#seek-and-tell) 
+    [`tell()`](files.md#seek-and-tell)
 
-    [**`write()`**](files.md#writing-multiple-lines)
+    [**`write()`**](files.md#write): 
+    [`append`](files.md#a-append) 
+    [`create`](files.md#x-create) 
+    [`functions`](files.md#functions_1) 
+    [`modes`](files.md#modes_1) 
+    [`overwrite`](files.md#w-overwrite) 
+    [`write()`](files.md#single-string) 
+    [`writelines()`](files.md#multiple-strings)
 
-    [**`append`**](files.md#appending-vs-overwriting)
+    [**`related libraries`**](files.md#related-libraries)
 
 </div>
 </div>
