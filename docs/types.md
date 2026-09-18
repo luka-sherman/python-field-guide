@@ -8,7 +8,7 @@ description: >-
 
 Every value in Python has a **type**, which determines what operations it supports and how it behaves. 
 
-A basic ("scalar") data type holds a single value, as opposed to a [collection](collections.md) data type, which groups multiple values together.
+A basic data type holds a single value, as opposed to a [collection](collections.md) data type, which groups multiple values together. The basic types covered here — `int`, `float`, `str`, `bool`, and `None` — are immutable.
 
 <div class="pt-jump-table" markdown="block">
 
