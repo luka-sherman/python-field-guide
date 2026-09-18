@@ -539,7 +539,7 @@ hide:
 
     Readable Python code, and polished UI.
 
-    [**`checklist`**](style.md#script-checklist)
+    [**`checklist`**](style.md#script-style-checklist)
 
     [**`linter`**](style.md#linter-tool)
 
