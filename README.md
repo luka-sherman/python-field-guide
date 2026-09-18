@@ -26,7 +26,9 @@ Quick cheatsheet for basic Python.
 
 **This is a casual and unpolished personal project, started in Aug '26.**
 
-I wrote and built this from scratch — it started as a few quick-reference explanations on loops and lists for high-school intro-Python students working on their first projects, and evolved from there. I couldn't find a resource my students would consistently use that had:
+I wrote and built this from scratch, not as a complete Python language reference, but as a visualization of my mental model of how Python works.
+
+ It started as a few quick-reference explanations on loops and lists for high-school intro-Python students working on their first independent projects, and evolved from there. I couldn't find a resource my students would consistently use that had:
 
 - simple explanations for beginners without technical jargon
 - no advanced topics that intimidate or overwhelm beginners
@@ -52,12 +54,14 @@ On the homepage there is a compacted quick reference cheatsheet that includes mo
 
 **Add-on libraries** 
 
-- **Utilities** — collections, datetime, random
+- **Utilities** — collections, datetime, math, random, re, time
 - **Data analysis** — csv, matplotlib, NumPy, pandas
 - **APIs** — json, requests
 - **Image editing** — Pillow
 - **Computer vision** — OpenCV
 - **Desktop UIs** — Tkinter
+- **Games** — turtle
+- **Testing** — pytest
 
 ## Site generator
 
@@ -109,6 +113,15 @@ A syntax highlighter, which colors code in the browser. It handles both the stat
 ### [Mermaid](https://mermaid.js.org/)
 
 A diagram renderer, which draws flowcharts and diagrams from a plain-text description. Fenced `mermaid` blocks in the Markdown are rendered to SVG on page load.
+
+### Essentials / Advanced toggle
+
+A two-option [switch](docs/javascripts/essentials_toggle.js) that lets a reader hide everything beyond a first-pass beginner curriculum. Content is opted into hiding by marking it `data-advanced="true"`:
+
+- On a `##`/`###` heading inside a content page (e.g. functions.md's `## Decorators`), it hides that heading plus every sibling up to the next heading of the same or higher level, and removes the matching entry from the `toc.integrate` sidebar — so there's no dead nav link to something that's hidden.
+- On a homepage card-grid row, it hides just that row; `data-advanced="card"` hides an entire homepage card instead, for a whole linked page rather than one section.
+
+Each marking is independent — there's no shared list of "advanced" topics to keep in sync, just the attribute at each spot in the Markdown. State persists in `localStorage` and applies on every page (also settable via a `?simplified=true`/`false` URL param, for sharing a pre-set link). If a visible link points at a heading that's currently hidden (e.g. collections.md's cheat-sheet table linking to `#tuples`), following it flips the toggle back to Advanced and reveals the target instead of landing on nothing.
 
 ## Theme
 
@@ -171,6 +184,7 @@ The standard Python test runner, which discovers `test_*` functions across the r
   because it needs editorial judgment a text-only check can't make.
 - `tests/test_accessibility.py` is a static (no-browser) regression check for a specific
   accessibility bug pattern (an `outline: none` with no `:focus-visible` replacement).
+- `tests/test_typos.py` runs [codespell](#codespell) over the site's prose sources.
 - The browser-based accessibility tier (`test_accessibility_browser.py`,
   `test_accessibility_runnable.py`, `test_accessibility_keyboard.py`) renders real pages with
   Playwright and checks: axe-core over representative pages in light/dark mode and at
@@ -178,6 +192,10 @@ The standard Python test runner, which discovers `test_*` functions across the r
   focus order, the output live region); and keyboard navigation (skip link, a visible focus
   ring on every tab stop, no positive tabindex, palette toggle reachable). It's the heaviest
   part of the suite — needs `playwright install chromium` above and launches a real browser.
+- `tests/test_essentials_toggle.py` is a browser test (same Playwright setup) for the
+  Essentials/Advanced toggle described above: the default (Advanced) state, that
+  `?simplified=true` hides marked content and carries onto a page's own heading + TOC entry,
+  and the link-recovery behavior for a visible link into hidden content.
 
 ### [Playwright](https://playwright.dev/)
 
