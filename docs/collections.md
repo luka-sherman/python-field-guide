@@ -495,13 +495,13 @@ flowchart LR
 
 ### Access a value
 
-- **`dict[key]`** accesses a value by key, in square brackets. This *will* raise an error if the key is not present, so best practice is to use the below get() instead. 
+- **`dict[key]`** accesses a value by key, in square brackets. This raises `KeyError` if the key is missing — use it when a missing key means something's wrong and should surface as an error.
 
     ```python-ref
     snake["species"]  # "ball"
     ```
 
-- **`get()`** does the same thing, but returns `None` if the key is not in the dict. You can provide an optional default value to fall back on that will be returned if the key is not in the dict.
+- **`get()`** does the same thing, but returns `None` if the key is not in the dict, instead of raising an error. Use it when a missing key is an expected possibility. You can provide an optional default value to fall back on that will be returned if the key is not in the dict.
 
     ```python-ref
     snake.get("species")        # "ball"

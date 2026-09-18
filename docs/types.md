@@ -31,10 +31,10 @@ A basic ("scalar") data type holds a single value, as opposed to a [collection](
     ```python-ref
     weight = 5
 
-    type(weight)        # <class 'int'>
+    type(weight)             # <class 'int'>
 
-    isinstance(5, int)  # True
-    isinstance(5, str)  # False
+    isinstance(weight, int)  # True
+    isinstance(weight, str)  # False
     ```
 
 <div class="pfg-section" markdown="block">
