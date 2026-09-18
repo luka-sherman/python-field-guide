@@ -68,3 +68,4 @@
 *[lazily]: In a way that computes or produces a value only at the moment it's actually needed, instead of all at once ahead of time
 *[Lazily]: In a way that computes or produces a value only at the moment it's actually needed, instead of all at once ahead of time
 *[PascalCase]: Capitalizing each word with no separators (e.g. Snake, BallPython) — the naming convention for classes, unlike variables' snake_case
+*[UTF-8]: The encoding used to save a Python file by default — the scheme that turns each Unicode character into the actual bytes a computer stores and reads, and it can represent every character Unicode defines

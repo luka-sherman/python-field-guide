@@ -139,6 +139,20 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
     [**`split`**](re.md#splitting-on-a-pattern)
 
+-   :material-clock-outline:{ .lg .middle } [__time__](time.md) 
+[:material-language-python:](time.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
+
+    Reading the system clock, pausing execution, and measuring elapsed time.
+
+    [**`time`**](time.md#reading-the-clock) 
+
+    [**`sleep`**](time.md#pausing-execution) 
+
+    [**`perf_counter`**](time.md#measuring-elapsed-time) 
+
+    [**`localtime`**](time.md#formatting-the-current-time): 
+    [`strftime`](time.md#formatting-the-current-time) 
+
 </div>
 </div>
 

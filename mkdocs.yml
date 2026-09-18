@@ -26,6 +26,7 @@ nav:
           - math: libraries/math.md
           - random: libraries/random.md
           - re: libraries/re.md
+          - time: libraries/time.md
       - Data analysis:
           - csv: libraries/csv.md
           - matplotlib: libraries/matplotlib.md
