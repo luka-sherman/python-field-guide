@@ -564,13 +564,23 @@ hide:
     {: data-advanced="true" }
 
     [**`Polished UX`**](style.md#polished-ux): 
-    [`banners`](style.md#banners) 
     [`input validation`](style.md#input-validation) 
     [`menus`](style.md#menus) 
-    [`printing output`](style.md#printing-output) 
-    [`progress bars`](style.md#progress-bars) 
-    [`randomize`](style.md#randomize-messages) 
-    [`unicode symbols`](style.md#unicode-symbols)
+    [`randomize`](style.md#randomize-messages)
+
+    [**`Polished UI`**](style.md#polished-ui): 
+    [`background`](style.md#color-styling) 
+    [`bold`](style.md#color-styling) 
+    [`escape sequences`](style.md#escape-sequences) 
+    [`color`](style.md#color-styling) 
+    [`highlighting`](style.md#color-styling) 
+    [`multi-line strings`](style.md#multi-line-strings) 
+    [`formatting variables`](style.md#formatting-variables) 
+    [`underline`](style.md#color-styling) 
+    [`unicode symbols`](style.md#unicode-symbols) 
+    [`dividers`](style.md#dividers) 
+    [`boxes`](style.md#boxes) 
+    [`progress bars`](style.md#progress-bars)
 
 -   :material-bug-outline:{ .lg .middle } [__Errors__](errors.md)
 
