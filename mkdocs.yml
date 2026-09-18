@@ -35,6 +35,8 @@ nav:
       - APIs:
           - json: libraries/json.md
           - requests: libraries/requests.md
+      - Web scraping:
+          - BeautifulSoup: libraries/beautifulsoup.md
       - Image editing:
           - Pillow: libraries/pillow.md
       - Computer vision:

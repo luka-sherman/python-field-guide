@@ -704,6 +704,19 @@ hide:
 </div>
 
 <div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+#### Web scraping { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-pot-steam-outline:{ .lg .middle } [__BeautifulSoup__](libraries/beautifulsoup.md) 
+[:material-download-outline:](libraries/beautifulsoup.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
+
+    Parsing HTML: finding tags, reading attributes and text, and turning a page into structured data.
+
+</div>
+</div>
+
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
 #### Image editing { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">

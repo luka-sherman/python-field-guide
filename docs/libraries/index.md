@@ -254,6 +254,31 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 </div>
 
 <div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+#### Web scraping { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-pot-steam-outline:{ .lg .middle } [__BeautifulSoup__](beautifulsoup.md) 
+[:material-download-outline:](beautifulsoup.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
+
+    Parsing HTML: finding tags, reading attributes and text, and turning a page into structured data.
+
+    [**`HTML and web pages`**](beautifulsoup.md#html-and-web-pages)
+
+    [**`Parsing HTML`**](beautifulsoup.md#parsing-html): 
+    [`Finding tags`](beautifulsoup.md#finding-tags) 
+    [`Reading text and attributes`](beautifulsoup.md#reading-text-and-attributes) 
+
+    [**`Extracting structured data`**](beautifulsoup.md#extracting-structured-data)
+
+    [**`Putting it together`**](beautifulsoup.md#putting-it-together): 
+    [`Common tasks`](beautifulsoup.md#common-tasks) 
+    [`Scraping a real page`](beautifulsoup.md#scraping-a-real-page) 
+
+</div>
+</div>
+
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
 #### Image editing { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
