@@ -45,7 +45,7 @@ Code that works isn't automatically code that's easy to read and maintain.
 
 - [ ] **[Mutable default arguments](functions.md#defining-a-function)** — a default list/dict shared across every call
 - [ ] **[`is None` instead of `== None`](#is-none-instead-of-none)** — a real correctness risk, not just style
-- [ ] **[`with open(...)` instead of manual `open()`/`close()`](files.md#opening-a-file)** — avoids a file left open if something goes wrong
+- [ ] **[`with open(...)` instead of manual `open()`/`close()`](files.md#with)** — avoids a file left open if something goes wrong
 - [ ] **[Catch specific exceptions](errors.md#catch-specific-exceptions)** — no bare `except:` swallowing errors you didn't expect
 - [ ] **[Truthy checks instead of `len(x) > 0`](#truthy-checks)** — test a collection directly
   { data-advanced="true" }
@@ -344,7 +344,7 @@ if length_ft is None:                # Pythonic — `is` is the correct tool for
 
 ## Polished UX
 
-The terminal is a **user experience** with its own **interface**, and just like an app or website, it can be creatively designed within it's limitations to be more interactive, engaging, and readable. 
+The terminal is a **user experience** with its own **interface**, and just like an app or website, it can be creatively designed within its limitations to be more interactive, engaging, and readable. 
 
 ### Printing output
 
@@ -438,7 +438,7 @@ print(r"""
 
 #### Unicode expansion
 
-**Unicode** started in 1991 and replaced ASCII with a growing set: it started with the same 128 characters ASCII already had, and is now at 150,000 characters. Because it keeps growing, something built before a character existed may show a blank box or `?`. Python source files use UTF-8 which can represent every Unicode character — so any of these work in a Python file, although some editors and terminals may not *display* it correctly.
+**Unicode** started in 1991 and expanded on ASCII with a larger growing set: it started with the same 128 characters ASCII already had, and is now at 150,000 characters. Because it keeps growing, something built before a character existed may show a blank box or `?`. Python 3 uses UTF-8 to encode its characters, so you can include Unicode characters directly in your Python files. However, your editor or terminal may still lack a font that can display a particular character.
 
 Emoji are part of this too: the character itself (😀, 🐍) is a Unicode character, but the specific picture a device displays is drawn by each platform, which is why the same emoji looks different on iPhone vs. Android.
 
@@ -647,7 +647,7 @@ Loading...
 Loading... done!
 ```
 
-Print with [`end="\r"`](types.md#combine) instead, and each new line overwrites the last one instead of stacking below it — enough to build an animated progress bar out of characters.
+Print with [`end="\r"`](types.md#combine) instead, and each update returns the cursor to the beginning of the same line, allowing the next output to overwrite the previous one and build an animated progress bar out of characters.
 
 ```python-ref
 import time
@@ -681,17 +681,9 @@ print("done!")
 ```
 
 ```bash
-⠋
-⠙
-⠹
-⠸
-⠼
-⠴
-⠦
-⠧
-⠇
-⠏
+⠏ 
 ```
+The above character changes in place, so you see an animation cycling through the steps.
 
 ### Randomize messages
 

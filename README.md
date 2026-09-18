@@ -205,6 +205,10 @@ A browser-automation library, which drives a real browser from code to load page
 
 An accessibility rule engine, which scans a rendered page's DOM for WCAG violations. It runs inside the Playwright browser against every fully rendered page.
 
+### [codespell](https://github.com/codespell-project/codespell)
+
+A spell checker aimed at source code and prose, which flags known misspellings (e.g. "teh", "recieve") rather than words missing from a dictionary. `tests/test_typos.py` runs it over the site's page content and editorial docs.
+
 ### Continuous integration
 
 1. Work is done on the `development` branch.
