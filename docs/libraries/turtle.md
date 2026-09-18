@@ -201,7 +201,7 @@ A related but separate setting — `speed(n)` controls how fast each individual 
     `tracer()` also accepts two numbers, `tracer(n, delay)` — show only every `n`-th update, with `delay` milliseconds between them, instead of turning animation off completely. Useful for speeding up something slow and complex without losing the animation altogether.
 
 ??? tip "no_animation() block"
-    A context manager wrapping the same idea as `tracer(False)`/`tracer(True)` — animation is off for whatever runs inside the block, then back on (and shown) once it exits. The same `with` pattern as [opening a file](../files.md#opening-a-file), applied to animation instead of a file handle.
+    A context manager wrapping the same idea as `tracer(False)`/`tracer(True)` — animation is off for whatever runs inside the block, then back on (and shown) once it exits. The same `with` pattern as [opening a file](../files.md#with), applied to animation instead of a file handle.
 
     ```python-ref
     with no_animation():

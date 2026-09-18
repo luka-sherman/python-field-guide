@@ -19,7 +19,7 @@ hide:
         |---|---|---|
         | **Writing & struggling with code** | :material-check:{ .pt-icon-success } Productive struggle is what **builds understanding**<ul><li>You can solve the problem **again** on your own</li><li>**Adapt** the answer, and **catch** when it's wrong</li></ul> | :material-close:{ .pt-icon-fail } Being handed the answer skips [the friction that builds understanding](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf)<ul><li>If you skip that struggle, you **won't develop the knowledge** to solve the problem again, adapt the answer, or recognize when it's wrong.</li></ul> |
         | **Reading & verifying code** | :material-check:{ .pt-icon-success } **Understanding programming fundamentals** makes AI more useful — you can read and evaluate code you didn't write<ul><li>Spot mistakes</li><li>Understand **why** a solution works</li><li>Communicate your problem to AI more effectively</li></ul> | :material-close:{ .pt-icon-fail } Inefficient communication with AI **if you don't fully understand **what's going on, and AI code can look correct while being wrong or insecure<ul><li>You can't tell **why** a solution works</li><li>Researchers are already documenting this skill gap in [students who rely on AI code generation](https://dl.acm.org/doi/10.1145/3617367) before they've [built their own foundation](https://dl.acm.org/doi/10.1145/3624720)</li><li>One [Stanford study](https://dl.acm.org/doi/10.1145/3576915.3623157) found developers using AI wrote **less** secure code — but were **more** confident it was secure</li></ul> |
-        | **On the job** | :material-check:{ .pt-icon-success } Employers are still hiring for understanding, not prompting<ul><li>Code review, debugging, and interviews all test whether you can reason about code and judge whether it's correct</li><li>Learning to program on your own turns AI into a **tool you can direct and verify**, instead of one you're assuming got it right</li></ul> | :material-close:{ .pt-icon-fail } AI will likely be available at work too — but it isn't what will get you hired |
+        | **On the job** | :material-check:{ .pt-icon-success } Programming work still requires understanding:<ul><li>Code review, debugging, system design, and interviews all test whether you can reason about code and judge whether it's correct</li><li>Learning to program on your own turns AI into a **tool you can direct and verify**, instead of one you're assuming got it right</li></ul> | :material-close:{ .pt-icon-fail } AI will likely be available at work too — but it isn't what will get you hired |
 
         </div>
 
@@ -501,13 +501,31 @@ hide:
 
     Read and write text files on your computer.
 
-    [**`open()`**](files.md#opening-a-file)
+    [**`open`**](files.md#opening-and-closing-files): 
+    [`modes`](files.md#modes-options) 
+    [`paths`](files.md#file-paths) 
+    [`with`](files.md#with)
 
-    [**`read()`**](files.md#reading-a-file)
+    [**`read()`**](files.md#read): 
+    [`existing`](files.md#r-read-existing) 
+    [`functions`](files.md#functions) 
+    [`modes`](files.md#modes) 
+    [`read()`](files.md#whole-file) 
+    [`readline()`](files.md#by-line) 
+    [`readlines()`](files.md#by-line) 
+    [`seek()`](files.md#seek-and-tell) 
+    [`tell()`](files.md#seek-and-tell)
 
-    [**`write()`**](files.md#writing-multiple-lines)
+    [**`write()`**](files.md#write): 
+    [`append`](files.md#a-append) 
+    [`create`](files.md#x-create) 
+    [`functions`](files.md#functions_1) 
+    [`modes`](files.md#modes_1) 
+    [`overwrite`](files.md#w-overwrite) 
+    [`write()`](files.md#single-string) 
+    [`writelines()`](files.md#multiple-strings)
 
-    [**`append`**](files.md#appending-vs-overwriting)
+    [**`related libraries`**](files.md#related-libraries)
 
 </div>
 </div>
@@ -519,26 +537,33 @@ hide:
 
 -   :material-palette-outline:{ .lg .middle } [__Style__](style.md)
 
-    Conventions for standardized and readable Python.
+    Readable Python code, and polished UI.
 
-    [**`checklist`**](style.md#checklist)
+    [**`checklist`**](style.md#script-style-checklist)
 
     [**`linter`**](style.md#linter-tool)
 
     [**`PEP 8`**](style.md#pep-8-style-guide): 
     [`blank lines`](style.md#blank-lines) 
-    [`comments`](style.md#comments) 
-    [`constants`](style.md#constants) 
     [`docstrings`](style.md#docstrings) 
-    [`indentation`](style.md#indentation) 
     [`naming`](style.md#naming) 
-    [`order`](style.md#file-order) 
-    [`quote style`](style.md#quote-style) 
     [`whitespace`](style.md#whitespace) 
 
-    [**`Pythonic patterns`**](style.md#pythonic-patterns)
+    [`comments`](style.md#comments) 
+    [`constants`](style.md#constants) 
+    [`indentation`](style.md#indentation) 
+    [`order`](style.md#file-order) 
+    [`quote style`](style.md#quote-style) 
+    {: data-advanced="true" }
 
-    [**`Polish`**](style.md#polish): 
+    [**`Pythonic patterns`**](style.md#pythonic-patterns): 
+    [`is None`](style.md#is-none-instead-of-none)
+
+    [`truthy checks`](style.md#truthy-checks) 
+    [`enumerate()`](style.md#enumerate-instead-of-range) 
+    {: data-advanced="true" }
+
+    [**`Polished UX`**](style.md#polished-ux): 
     [`banners`](style.md#banners) 
     [`input validation`](style.md#input-validation) 
     [`menus`](style.md#menus) 

@@ -14,7 +14,7 @@ A **collection** is a single object that groups multiple values (like [basic typ
 |------|---------|:-----------------:|:-------:|------------|
 | <a href="#lists">**`list`**</a> | <pre><code class="language-python-ref">["ball", "burmese"]</code></pre> | position # | :material-check:{ .pt-icon-success } | <ul><li>An ordered group of items you can freely add to, remove from, or reorder</li><li>Not sure? Start here — the default, general-purpose choice</li></ul> |
 | <a href="#dictionaries">**`dictionary "dict"`**</a> | <pre><code class="language-python-ref">{&#10;  "species": "ball",&#10;  "length_ft": 5&#10;}</code></pre> | Name of a key | :material-check:{ .pt-icon-success } | <ul><li>Values stored under names ("keys") instead of position, like `species`, `length_ft`</li><li>Use it to look values up by name</li><li>Can't have duplicate keys</li></ul> |
-| <a href="#tuples">**`tuple`**</a> | <pre><code class="language-python-ref">("ball", "burmese")</code></pre> | position # | :material-close:{ .pt-icon-fail } | <ul><li>Like a list, but fixed — can't be changed once created</li><li>Values that should stay exactly as they are, like a coordinate pair</li></ul> |
+| <a href="#tuples">**`tuple`**</a> | <pre><code class="language-python-ref">("ball", "burmese")</code></pre> | position # | :material-close:{ .pt-icon-fail } | <ul><li>Like a list, but it's sequence of items can't be changed once created</li><li>Values that should stay exactly as they are, like a coordinate pair</li></ul> |
 | <a href="#sets">**`set`**</a> | <pre><code class="language-python-ref">{"ball", "burmese"}</code></pre> | Membership (`in`) | :material-check:{ .pt-icon-success } | <ul><li>An unordered group where duplicates are automatically dropped</li><li>Use it for fast "is this in here?" checks</li></ul> |
 
 </div>
@@ -28,10 +28,10 @@ A **collection** is a single object that groups multiple values (like [basic typ
     ```python-ref
     weights = [5, 3, 6]
 
-    type(weights)        # <class 'list'>
+    type(weights)              # <class 'list'>
 
-    isinstance(5, list)  # True
-    isinstance(5, dict)  # False
+    isinstance(weights, list)  # True
+    isinstance(weights, dict)  # False
     ```
     
 <div class="pfg-section" markdown="block">

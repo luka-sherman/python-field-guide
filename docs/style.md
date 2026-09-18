@@ -6,40 +6,68 @@ description: >-
 
 # :material-palette-outline:{ .lg .middle } Style
 
-Code that works isn't automatically code that's easy to live with — following a shared set of conventions is what keeps a Python file manageable as it grows past a few lines.
+Code that works isn't automatically code that's easy to read and maintain.
 
-- **Consistency** — code that follows the same conventions everywhere reads the same, no matter who wrote which part
-- **Faster to learn** — a new file feels familiar instead of like starting over, since the same patterns keep repeating
-- **Easier to debug** — a predictable layout means you already know where to look when something breaks
-- **Easier for others to work with** — working on a collaborative project means others **review** your code before approving it and **merge** it in with everyone else's changes; consistent style means they can focus on what you actually changed, instead of different formatting choices
+- **Consistent:** following the same conventions reads the same, no matter who wrote it
+- **Faster to learn:** a new file feels familiar, uses the same patterns 
+- **Easier to debug:** you know where to look when something breaks
+- **Effective collaboration:** when your code is **reviewed** so it can be **merged** in with everyone else's changes, consistent style means it's clearer what you actually changed, instead of needing to compare conflicting formatting choices
 
 <div class="pfg-section" markdown="block">
 
-## Checklist
+## Script style checklist
 
-A few things worth double-checking before calling a script finished — each links to the full rule further down this page. Run a [linter](#linter-tool) first, since it catches most of this automatically; what's left afterward has to be checked by eye.
+**PEP 8 Formatting**
 
-- [ ] **[Run a linter check](#linter-tool)** — catches many of the following automatically, but it can be good practice to check manually instead to get familiar with writing it correctly from the start:
-    - [ ] **[File Order](#file-order)** — standardized file layout
-    - [ ] **[Mutable default arguments](functions.md#defining-a-function)** — a default list/dict shared across every call
-    - [ ] **[`is None` instead of `== None`](#common-patterns)** — a real correctness risk, not just style
-    - [ ] **[`with open(...)` instead of manual `open()`/`close()`](files.md#opening-a-file)** — avoids a file left open if something goes wrong
-    - [ ] **[Catch specific exceptions](errors.md#catch-specific-exceptions)** — no bare `except:` swallowing errors you didn't expect
-    - [ ] **[Naming](#naming)** — does every variable and function name say what it holds?
-    - [ ] **[Docstrings](#docstrings)** — does every function and file explain what it does?
-    - [ ] **[Truthy checks instead of `len(x) > 0`](#common-patterns)** — test a collection directly
-    - [ ] **[`enumerate()` instead of `range(len(...))`](#common-patterns)** — loop with both index and item at once
+- [ ] **[Run a linter](#linter-tool) to fix PEP 8 issues** — catches most of the following automatically:
     - [ ] **[Indentation](#indentation)** — 4 spaces per level, never tabs
+      { data-advanced="true" }
     - [ ] **[Blank lines](#blank-lines)** — two around top-level functions/classes, one between methods
     - [ ] **[Whitespace](#whitespace)** — spaces around operators, but not around a keyword argument's `=`
     - [ ] **[Comments](#comments)** — two spaces before an inline `#`, one space after
-- [ ] **[Keep functions focused](functions.md#keep-functions-focused)** — does each function do just one job, with no repeated logic a [linter](#linter-tool) won't flag on its own?
-- [ ] **[Constants](#constants)** — are unchanging numbers pulled out into named `ALL_CAPS` values?
-- [ ] **[Quote style](#quote-style)** — one quote style used consistently throughout the file
-- [ ] **[Type hints](functions.md#type-hints)** — used on a function signature where the types aren't obvious?
-- [ ] **[Tuple unpacking instead of a temporary variable](collections.md#packing-and-unpacking)** — swapping two variables directly
+      { data-advanced="true" }
+    - [ ] **[Quote style](#quote-style)** — one quote style used consistently throughout the file
+      { data-advanced="true" }
+- [ ] **[File order](#file-order)** — standardized file layout; not something a linter checks by default
+  { data-advanced="true" }
+
+**Naming & documentation**
+
 - [ ] **[File names](workspace.md#step-2-write-and-run-a-python-file)** — `snake_case.py`, no hyphens or spaces
-- [ ] **[Escape sequences](foundations.md#escape-sequences)** — `\n`/`\t` and separator rows used to space out console output
+- [ ] **[Variable and function names](#naming)** — does each describe what it holds?
+- [ ] **[Docstrings](#docstrings)** — does every function and file explain what it does?
+- [ ] **[Type hints](functions.md#type-hints)** — used on a function signature where the types aren't obvious?
+  { data-advanced="true" }
+- [ ] **[Constants](#constants)** — are unchanging numbers pulled out into named `ALL_CAPS` values?
+  { data-advanced="true" }
+
+**Pythonic patterns**
+
+- [ ] **[Mutable default arguments](functions.md#defining-a-function)** — a default list/dict shared across every call
+- [ ] **[`is None` instead of `== None`](#is-none-instead-of-none)** — a real correctness risk, not just style
+- [ ] **[`with open(...)` instead of manual `open()`/`close()`](files.md#with)** — avoids a file left open if something goes wrong
+- [ ] **[Catch specific exceptions](errors.md#catch-specific-exceptions)** — no bare `except:` swallowing errors you didn't expect
+- [ ] **[Truthy checks instead of `len(x) > 0`](#truthy-checks)** — test a collection directly
+  { data-advanced="true" }
+- [ ] **[`enumerate()` instead of `range(len(...))`](#enumerate-instead-of-range)** — loop with both index and item at once
+  { data-advanced="true" }
+- [ ] **[Tuple unpacking instead of a temporary variable](collections.md#packing-and-unpacking)** — swapping two variables directly
+
+**Structure**
+
+- [ ] **[Keep functions focused](functions.md#keep-functions-focused)** — does each function do just one job?
+
+**Polished UX**
+
+- [ ] **For terminal input:**
+    - [ ] **[Input validation](#input-validation)** — re-asks instead of crashing on a bad or missing value
+    - [ ] **[Menus](#menus)** — a clear list of options instead of guessing what to type
+- [ ] **For terminal display:**
+    - [ ] **[Printing output](#printing-output)** — escape sequences, multi-line strings, and formatted variables read cleanly
+    - [ ] **[Banners](#banners)** — a decorative box or header instead of a bare print statement
+    - [ ] **[Progress bars](#progress-bars)** — visible feedback during a delay instead of a silent pause
+    - [ ] **[Unicode symbols](#unicode-symbols)** — box-drawing, arrows, and checkmarks instead of plain ASCII
+    - [ ] **[Randomize messages](#randomize-messages)** — varied responses instead of the same output every run
 
 </div>
 
@@ -80,7 +108,7 @@ A **formatter** tool (either separate, or a combined linter+formatter), actually
 
 Python runs styled and unstyled code identically, so following PEP 8 doesn't make a script more *correct* — it makes it more *predictable* to read. Anyone who's used Python before recognizes the shape of PEP 8-styled code, so sticking to it means less friction reading someone else's code, and less friction when someone else reads yours.
 
-### File order
+### File order { data-advanced="true" }
 
 A Python file conventionally follows the same layout, top to bottom.[^order-pep8]
 
@@ -133,7 +161,7 @@ length_ft = 4.5        # clear at a glance
 
 A short name is fine when its scope is short too — `for s in species:` is common, since `s` only exists for the one line inside the loop.
 
-### Constants
+### Constants { data-advanced="true" }
 
 A **constant** is a variable whose value isn't meant to change while the program runs — written in `ALL_CAPS` by convention, so it's easy to tell apart from a regular variable at a glance. Defining one instead of repeating a raw number (a "magic number") gives that number a name explaining what it means.
 
@@ -148,7 +176,7 @@ if length_ft > MAX_TYPICAL_LENGTH_FT:
 
 Constants are usually defined near the top of a file, so they're easy to find and adjust later — see [File Order](#file-order) above.
 
-### Quote style
+### Quote style { data-advanced="true" }
 
 Python treats `'single'` and `"double"` quotes identically for strings — PEP 8 doesn't prefer one over the other, just pick one as your default and stick with it throughout a file, rather than mixing both without reason. (This site uses double quotes.) The one except&zwnj;ion: switch to the other quote character for a string that itself contains a quote, rather than escaping it with a backslash.
 
@@ -202,7 +230,7 @@ species = "ball python"
 length_ft = 4.5
 ```
 
-### Indentation
+### Indentation { data-advanced="true" }
 
 Python uses indentation, not braces, to mark a block — PEP 8's rule is 4 spaces per level, never tabs (mixing the two causes real errors, not just style complaints).
 
@@ -248,7 +276,7 @@ def describe(species, length_ft=4.5):      # PEP 8
     ...
 ```
 
-### Comments
+### Comments { data-advanced="true" }
 
 An inline comment needs at least two spaces before the `#` and one space after it; a block comment on its own line follows the same one-space-after rule.
 
@@ -273,44 +301,50 @@ There's no single tool that reliably flags all "unpythonic" code the way PEP 8 h
 Other programming languages have different features and patterns, so if code is translated from another language into Python it might not be written very clearly. Pythonic code tends to be less buggy and faster.
 A few of these a beginner tends to write out longhand before learning the built-in shortcut, roughly most to least common:
 
-- **Truthy checks instead of `len(x) > 0`** — test a collection directly; a non-empty list is already truthy
+### Truthy checks instead of `len(x) > 0` { #truthy-checks data-advanced="true" }
 
-    ```python-ref
-    if len(species) > 0:    # works, but not Pythonic
-        print("found some")
+Test a collection directly — a non-empty list is already truthy.
 
-    if species:              # Pythonic — a non-empty list is already truthy
-        print("found some")
-    ```
+```python-ref
+if len(species) > 0:    # works, but not Pythonic
+    print("found some")
 
-- **`enumerate()` instead of `range(len(...))`** — loop with both the index and the item at once, instead of indexing into the list by hand
+if species:              # Pythonic — a non-empty list is already truthy
+    print("found some")
+```
 
-    ```python-ref
-    for i in range(len(species)):        # manual indexing
-        print(i, species[i])
+### `enumerate()` instead of `range(len(...))` { #enumerate-instead-of-range data-advanced="true" }
 
-    for i, s in enumerate(species):      # Pythonic — enumerate() hands back both
-        print(i, s)
-    ```
+Loop with both the index and the item at once, instead of indexing into the list by hand.
 
-- **`is None` instead of `== None`** — checking against `None` is a check of identity, not equality, so `is` is the correct tool
+```python-ref
+for i in range(len(species)):        # manual indexing
+    print(i, species[i])
 
-    ```python-ref
-    length_ft = None
-    if length_ft == None:                # works, but not Pythonic
-        print("unknown length")
+for i, s in enumerate(species):      # Pythonic — enumerate() hands back both
+    print(i, s)
+```
 
-    if length_ft is None:                # Pythonic — `is` is the correct tool for a None check
-        print("unknown length")
-    ```
+### `is None` instead of `== None` { #is-none-instead-of-none }
+
+Checking against `None` is a check of identity, not equality, so `is` is the correct tool.
+
+```python-ref
+length_ft = None
+if length_ft == None:                # works, but not Pythonic
+    print("unknown length")
+
+if length_ft is None:                # Pythonic — `is` is the correct tool for a None check
+    print("unknown length")
+```
 
 </div>
 
 <div class="pfg-section" markdown="block">
 
-## Polish
+## Polished UX
 
-The terminal is a **user interface**, and just like an app or website, it can be creatively designed within it's limitations to be more interactive, engaging, and readable. 
+The terminal is a **user experience** with its own **interface**, and just like an app or website, it can be creatively designed within its limitations to be more interactive, engaging, and readable. 
 
 ### Printing output
 
@@ -318,13 +352,13 @@ The terminal is a **user interface**, and just like an app or website, it can be
 
 An **escape sequence** is a backslash followed by a letter, standing in for a character that couldn't otherwise appear in the string. 
 
-| Escape | Does | Shows up below in |
-|---|---|---|
-| `\n` | starts a new line | the [banner](#banners)'s greeting, printed on the line after the box |
-| `\t` | inserts a tab | lining up columns of output (Foundations) |
-| `\r` | returns the cursor to the start of the line, without moving down | redrawing a [progress bar](#progress-bars) in place |
-| `\"`, `\'` | a literal quote character | a quote inside a string using the same quote mark |
-| `\\` | a literal backslash | a Windows-style file path (Foundations) — the [original ASCII](#original-ascii) below sidesteps needing it with a raw string instead |
+| Escape | Prints |
+|---|---|
+| `\n` | a new line |
+| `\t` | a tab, as in lining up columns of output |
+| `\"`, `\'` | a literal quote character |
+| `\\` | a literal backslash | 
+| `\r` | returns the cursor to the start of the line, as in a [progress bar](#progress-bars)|
 
 #### Multi-line strings
 
@@ -404,7 +438,7 @@ print(r"""
 
 #### Unicode expansion
 
-**Unicode** started in 1991 and replaced ASCII with a growing set: it started with the same 128 characters ASCII already had, and is now at 150,000 characters. Because it keeps growing, something built before a character existed may show a blank box or `?`. Python source files use UTF-8 which can represent every Unicode character — so any of these work in a Python file, although some editors and terminals may not *display* it correctly.
+**Unicode** started in 1991 and expanded on ASCII with a larger growing set: it started with the same 128 characters ASCII already had, and is now at 150,000 characters. Because it keeps growing, something built before a character existed may show a blank box or `?`. Python 3 uses UTF-8 to encode its characters, so you can include Unicode characters directly in your Python files. However, your editor or terminal may still lack a font that can display a particular character.
 
 Emoji are part of this too: the character itself (😀, 🐍) is a Unicode character, but the specific picture a device displays is drawn by each platform, which is why the same emoji looks different on iPhone vs. Android.
 
@@ -542,13 +576,13 @@ Wrap the same pattern in a `while` loop that reprints the menu and `break`s once
 ```python-ref
 while True:
     print("""
-╔══════════════════════╗
+╔═══════════════════════╗
 ║   FIELD GUIDE MENU    ║
-╠══════════════════════╣
+╟───────────────────────╢
 ║  1. Log a sighting    ║
 ║  2. Look up a species ║
 ║  3. Quit              ║
-╚══════════════════════╝
+╚═══════════════════════╝
 """)
     choice = input("> ")
     if choice == "1":
@@ -613,7 +647,7 @@ Loading...
 Loading... done!
 ```
 
-Print with [`end="\r"`](types.md#combine) instead, and each new line overwrites the last one instead of stacking below it — enough to build an animated progress bar out of characters.
+Print with [`end="\r"`](types.md#combine) instead, and each update returns the cursor to the beginning of the same line, allowing the next output to overwrite the previous one and build an animated progress bar out of characters.
 
 ```python-ref
 import time
@@ -647,17 +681,9 @@ print("done!")
 ```
 
 ```bash
-⠋
-⠙
-⠹
-⠸
-⠼
-⠴
-⠦
-⠧
-⠇
-⠏
+⠏ 
 ```
+The above character changes in place, so you see an animation cycling through the steps.
 
 ### Randomize messages
 

@@ -138,9 +138,10 @@ staying inline.**
   bold/emphasis markup, not literal underscores, so `### Overriding __init__()` renders (and
   slugifies) as "Overriding **init**()" with the underscores silently eaten. Confirm any heading
   change like this against the real built HTML, not just the source Markdown.
-- **`####` is reserved** for `index.md`'s homepage category boxes and genuinely deep
-  library-page content (e.g. `libraries/pillow.md`'s per-method sections) — most content pages
-  should never need to go past `###`.
+- **`####` is a normal fourth level**, used under the same three conditions as `###` above, for
+  when a `###` section itself needs breaking down further (e.g. `types.md`'s `### int`/`### float`
+  each splitting into `#### Arithmetic`, `#### Convert`, etc.). Used throughout content pages, not
+  just `index.md`'s homepage category boxes or library pages.
 
 ### Homepage keyword deep-links (`index.md`, `libraries/index.md`)
 

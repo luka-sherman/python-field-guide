@@ -53,6 +53,25 @@ More about me at [lukasherman.com](https://lukasherman.com).
 
 <div class="pfg-section" markdown="block">
 
+## Other resources
+
+This site isn't a comprehensive Python guide, so here's where to go for more.
+
+For beginners:
+
+- [W3Schools Python Tutorial](https://www.w3schools.com/python/) — syntax reference with a live editor for every example
+- [Real Python](https://realpython.com/) — longer tutorials and articles that go deeper on individual topics
+- [Python's own tutorial](https://docs.python.org/3/tutorial/) — official, terse, but authoritative
+
+For more advanced Python:
+
+- [Effective Python](https://effectivepython.com/) — specific, itemized advice on writing idiomatic, well-structured Python
+- [PEP 8](https://peps.python.org/pep-0008/) — the official style guide
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Helpful feedback
 
 Spotted a mistake, or want to see something added? Let me know! 
