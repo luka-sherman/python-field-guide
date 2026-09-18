@@ -310,7 +310,7 @@ You can also build one string yourself with `+` and print that instead of using 
 print(species + " " + str(length_ft) + " ft")    # ball python 4.5 ft — same output, more typing
 ```
 
-For building a full sentence out of text and variables, an [f-string](types.md#f-strings) is usually clearer than either approach.
+For building a full sentence out of text and variables, an [f-string](types.md#building-strings) is usually clearer than either approach.
 
 ??? run "Run a printing variables example"
     All the examples above, combined into one script:

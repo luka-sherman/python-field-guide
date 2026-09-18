@@ -428,7 +428,15 @@ Strings use the same index and slice syntax as lists. `0` is the first character
     "-".join(["burmese", "python"])  # "burmese-python"
     ```
 
-#### f-strings
+- **`print()`'s `sep` and `end` arguments** also take a string — `sep` replaces the space Python puts between multiple printed values (already covered on [Foundations](foundations.md#print-function)), and `end` replaces the newline `print()` adds after the last one, so the *next* `print()` call continues on the same line instead of starting a new one.
+
+    ```python-ref
+    print("a", "b", sep="-")   # "a-b"
+    print("a", end="")         # no newline after — nothing printed on its own line yet
+    print("b")                 # "ab" — same line, since end="" skipped the newline
+    ```
+
+#### Building strings
 
 - An **f-string** lets you embed variables directly inside `{}` and is a good choice once a string has multiple variables in it. Put a variable's name inside the `{}` and the variable's value will be inserted inside. 
 
@@ -439,58 +447,53 @@ Strings use the same index and slice syntax as lists. `0` is the first character
     print(f"{species} is {length} feet")  # "ball is 5 feet"
     ```
 
-- **`.format()`** is the older way to build a string with embedded values — `{}` placeholders in the string are filled in with the arguments passed to `.format()`, in order, instead of reading variable names directly.
+    - **`.format()`** is the older way to do the same thing — `{}` placeholders in the string are filled in with the arguments passed to `.format()`, in order, instead of reading variable names directly.
+
+        ```python-ref
+        "{} {}".format(species, length)  # "ball 5"
+        ```
+
+        ??? tip "Filling in a template loaded from outside the code"
+            An f-string is evaluated the moment Python reads that line — the `f"..."` has to be written directly in the source file. A string loaded at runtime instead (from a file, an environment variable, a database) can't be turned into an f-string after the fact, since it was never written with the `f` prefix. `.format()` works on any string value, including one loaded this way, so it's still the right tool for filling in a template that isn't hardcoded into the script.
+
+            ```python-ref
+            template = "Species: {}, length: {} ft"  # e.g. loaded from a config file
+            template.format(species, length)          # "Species: ball, length: 5 ft"
+            ```
+
+    - A **format spec** is an optional add-on *inside* one `{}` placeholder in an f-string or `.format()`. It goes after the `value:` and controls how that value is displayed. Built from **one or more optional** pieces, stacked together in this order:
+
+        `{ value : [fill][align] [sign] [0] [width] [thousand separator ,] [.precision] [type] }`
+
+        Each piece accepts one of several valid options — the table below lists what each piece means, then every option it accepts as its own format spec, with a runnable example:
+
+        | Piece | Meaning |
+        |---|---|
+        | fill | Defaults to a space — only means anything paired with an align right after it. <table><thead><tr><th>Format spec</th><th>Example</th><th>Output</th></tr></thead><tbody><tr><td>`[any character, like *]`</td><td>`f"{length:*<6}"`</td><td>`"5*****"`</td></tr></tbody></table> |
+        | align | Left, right, center, or — for a signed number — pad between the sign and the digits instead of outside them. Needs a width set too. <table><thead><tr><th>Format spec</th><th>Example</th><th>Output</th></tr></thead><tbody><tr><td>`<`</td><td>`f"{length:<6}"`</td><td>`"5     "`</td></tr><tr><td>`>`</td><td>`f"{length:>6}"`</td><td>`"     5"`</td></tr><tr><td>`^`</td><td>`f"{length:^6}"`</td><td>`"  5   "`</td></tr><tr><td>`=`</td><td>`f"{-5:=6}"`</td><td>`"-    5"`</td></tr></tbody></table> |
+        | sign | `-` (default) signs only negatives, `+` signs every number, a space adds a leading space to positive numbers instead of nothing. Numbers only. <table><thead><tr><th>Format spec</th><th>Example</th><th>Output</th></tr></thead><tbody><tr><td>`-`</td><td>`f"{-5:-}"`</td><td>`"-5"`</td></tr><tr><td>`+`</td><td>`f"{5:+}"`</td><td>`"+5"`</td></tr><tr><td>` ` (space)</td><td>`f"{5: }"`</td><td>`" 5"`</td></tr></tbody></table> |
+        | 0 | A `0` right before the width zero-pads a number, automatically placing the zeros the same way `=` align would — a shorthand for `0=` fill+align together. <table><thead><tr><th>Format spec</th><th>Example</th><th>Output</th></tr></thead><tbody><tr><td>`0`</td><td>`f"{5:06}"`</td><td>`"000005"`</td></tr></tbody></table> |
+        | width | Pads the result to at least that many characters. <table><thead><tr><th>Format spec</th><th>Example</th><th>Output</th></tr></thead><tbody><tr><td>a number</td><td>`f"{length:6}"`</td><td>`"     5"`</td></tr></tbody></table> |
+        | thousand separator | Groups every 3 digits with a comma. Numbers only. <table><thead><tr><th>Format spec</th><th>Example</th><th>Output</th></tr></thead><tbody><tr><td>`,`</td><td>`f"{1234567.5:,}"`</td><td>`"1,234,567.5"`</td></tr></tbody></table> |
+        | precision | Digits after the decimal for an `f`/`%` type; defaults to 6. Not valid with `d`. <table><thead><tr><th>Format spec</th><th>Example</th><th>Output</th></tr></thead><tbody><tr><td>`.digits`</td><td>`f"{length_ft:.2f}"`</td><td>`"4.50"`</td></tr></tbody></table> |
+        | type | `d` integer, `f` fixed-point, `%` percentage. <table><thead><tr><th>Format spec</th><th>Example</th><th>Output</th></tr></thead><tbody><tr><td>`d`</td><td>`f"{length:d}"`</td><td>`"5"`</td></tr><tr><td>`f`</td><td>`f"{length_ft:f}"`</td><td>`"4.500000"`</td></tr><tr><td>`%`</td><td>`f"{0.25:.1%}"`</td><td>`"25.0%"`</td></tr></tbody></table> |
+
+        One gotcha specific to booleans: `bool` is secretly a subtype of `int`, so a bare `False` run through a format spec is treated as the number `0` and prints `"0"` instead of the word. Wrapping it in [`str()`](#convert_2) first converts it to text before the format spec ever sees it.
+
+        ```python-ref
+        venomous = False
+
+        f"{venomous:<10}"           # "0         " — treated as the int 0
+        f"{str(venomous):<10}"      # "False     " — converted to text first
+        ```
+
+- A **raw string** — `r"..."` — turns off escape-sequence processing, so a backslash stays a literal backslash instead of starting an escape sequence like `\n`. Combine the two prefixes as `rf"..."` for an f-string that's also raw.
 
     ```python-ref
-    "{} {}".format(species, length)  # "ball 5"
+    print("C:\new_folder")     # \n is read as an escape sequence — starts a new line
+    print(r"C:\new_folder")    # r"..." keeps the backslash literal — no escape processing
+    print(rf"C:\{species}")    # raw and an f-string together
     ```
-
-- A **format spec** is an optional add-on *inside* one `{}` placeholder — it goes after the `value:` and controls how that value is displayed. It's built from **one or more optional** pieces, stacked together in this order: 
-
-    `{ value : [align] [sign] [width] [thousand separator ,] [.precision] [type] }`
-
-    - **align** — `<` left, `>` right, or `^` center, aligns *within* the width, so it requires a specified width too.
-
-        ```python-ref
-        f"{length:<6}"  # "5     " — left-aligned in 6 characters
-        f"{length:>6}"  # "     5" — right-aligned in 6 characters
-        f"{length:^6}"  # "  5   " — centered in 6 characters
-        ```
-
-    - **sign** — `-` is the default where only negative numbers get a sign, `+` forces a sign on every number, `=` forces the sign to the very front, before any zero-padding.
-
-        ```python-ref
-        f"{5:+}"     # "+5" — always shows a sign
-        f"{-5:+}"    # "-5"
-        f"{5:=+06}"  # "+00005" — sign forced to the front, before the zero-padding
-        ```
-
-    - **width** — a plain number `width` pads the result to at least that many characters.
-
-        ```python-ref
-        f"{length:6}"  # "     5" — padded to 6 characters wide
-        ```
-
-    - **thousands separator** - a `,` adds a comma to group every 3 digits.
-
-        ```python-ref
-        f"{1234567.5:,}"  # "1,234,567.5"
-        ```
-
-    - **precision** — a `.` followed by a number `.digits` sets how many digits appear after the decimal point in a `f` and `%` type (detailed below), without a precision they default to 6 decimal places.
-
-        ```python-ref
-        f"{length_ft:.2f}"  # "4.50" — 2 digits after the decimal
-        ```
-
-    - **type** — a letter at the very end — tells Python how to display the value: `d` for an integer, `f` for fixed-point notation (displayed with decimal places), `%` for a percentage.
-
-        ```python-ref
-        f"{length:d}"       # "5" — treated as an integer
-        f"{length_ft:.2f}"  # "4.50" — fixed-point notation, 2 decimal places
-        f"{length_ft:f}"    # "4.500000" — no precision given, defaults to 6 digits
-        f"{0.25:.1%}"       # "25.0%" — treated as a percentage
-        ```
 
 #### Modify
 

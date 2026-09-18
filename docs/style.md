@@ -271,9 +271,6 @@ length_ft = 4.5  # too short       # PEP 8 — two spaces before, one after
 There's no single tool that reliably flags all "unpythonic" code the way PEP 8 has a document to check against. The real habit is asking *"does Python already have a built-in way to do this?"* before writing a manual loop, counter, or flag — an instinct built over time to recognize the built-in pattern.
 
 Other programming languages have different features and patterns, so if code is translated from another language into Python it might not be written very clearly. Pythonic code tends to be less buggy and faster.
-
-### Common patterns
-
 A few of these a beginner tends to write out longhand before learning the built-in shortcut, roughly most to least common:
 
 - **Truthy checks instead of `len(x) > 0`** — test a collection directly; a non-empty list is already truthy
@@ -311,36 +308,389 @@ A few of these a beginner tends to write out longhand before learning the built-
 
 <div class="pfg-section" markdown="block">
 
-## Additional best practices
+## Polish
 
-??? tip "Be creative with ASCII art"
-    Write in the terminal with bubble letters or draw images through creative character use.
+The terminal is a **user interface**, and just like an app or website, it can be creatively designed within it's limitations to be more interactive, engaging, and readable. 
 
-    ```bash
-    ============================
-                                    ,----,                                       
-    ,-.----.                      ,/   .`|       ,--,    ,----..            ,--. 
-    \    /  \                   ,`   .'  :     ,--.'|   /   /   \         ,--.'| 
-    |   :    \         ,---,  ;    ;     /  ,--,  | :  /   .     :    ,--,:  : | 
-    |   |  .\ :       /_ ./|.'___,/    ,',---.'|  : ' .   /   ;.  \,`--.'`|  ' : 
-    .   :  |: | ,---, |  ' :|    :     | |   | : _' |.   ;   /  ` ;|   :  :  | | 
-    |   |   \ :/___/ \.  : |;    |.';  ; :   : |.'  |;   |  ; \ ; |:   |   \ | : 
-    |   : .   / .  \  \ ,' '`----'  |  | |   ' '  ; :|   :  | ; | '|   : '  '; | 
-    ;   | |`-'   \  ;  `  ,'    '   :  ; '   |  .'. |.   |  ' ' ' :'   ' ;.    ; 
-    |   | ;       \  \    '     |   |  ' |   | :  | ''   ;  \; /  ||   | | \   | 
-    :   ' |        '  \   |     '   :  | '   : |  : ; \   \  ',  / '   : |  ; .' 
-    :   : :         \  ;  ;     ;   |.'  |   | '  ,/   ;   :    /  |   | '`--'   
-    |   | :          :  \  \    '---'    ;   : ;--'     \   \ .'   '   : |       
-    `---'.|           \  ' ;             |   ,/          `---`     ;   |.'       
-    `---`            `--`              '---'                     '---'         
-    ============================
-    Welcome to the program!
-    Press Enter:
+### Printing output
+
+#### Escape sequences
+
+An **escape sequence** is a backslash followed by a letter, standing in for a character that couldn't otherwise appear in the string. 
+
+| Escape | Does | Shows up below in |
+|---|---|---|
+| `\n` | starts a new line | the [banner](#banners)'s greeting, printed on the line after the box |
+| `\t` | inserts a tab | lining up columns of output (Foundations) |
+| `\r` | returns the cursor to the start of the line, without moving down | redrawing a [progress bar](#progress-bars) in place |
+| `\"`, `\'` | a literal quote character | a quote inside a string using the same quote mark |
+| `\\` | a literal backslash | a Windows-style file path (Foundations) — the [original ASCII](#original-ascii) below sidesteps needing it with a raw string instead |
+
+#### Multi-line strings
+
+Here are three ways to print the same four-line string:
+
+- Multiple single quote `print("")` statements, they have an implicit `\n` at the end that puts each on a new line
+
+    ```python
+    print("")
+    print("empty line above!")
+    print("and below...")
+    print("")
     ```
 
-    [ascii text resource](https://patorjk.com/software/taag/#p=display&f=Isometric1&t=Type+Something+&x=none&v=4&h=4&w=80&we=false)
+- Escape character `\n` adds a new line
 
-    [ascii art resource](https://www.asciiart.eu/#google_vignette)
+    ```python
+    print("\nempty line above!\nand below...\n")
+    ```
 
+- A triple-quoted string `print("""...""")` prints with every line break inside the quotes as typed
+
+    ```python
+    print("""
+    empty line above!
+    and below...
+    """)
+    ```
+
+#### Formatting variables
+
+An [f-string](types.md#building-strings) — a variable's name dropped directly inside `{}` — is what turns the dashboard's bare `snake` dict into a filled-in box, and what plugs a typed-in name into the [banner](#banners)'s greeting. A [format spec](types.md#building-strings) inside that same `{}` controls how the value looks, built from these pieces in order:
+
+1. fill (padding character)
+2. align (left, right, center, or pad between a sign and its digits)
+3. sign (`-`, `+`, or space)
+4. `0` (zero-pad shorthand)
+5. width (minimum characters)
+6. thousand separator (comma grouping)
+7. precision (decimal digits)
+8. type (`d`, `f`, `%`)
+
+An f-string can turn plain variables into a **dashboard**:
+
+```python
+snake = {"species": "ball python", "length_ft": 4.5, "venomous": False}
+
+print(f"""
+┌─────────────────────────────┐
+│        SNAKE RECORD         │
+├─────────────────────────────┤
+│ Species    {snake["species"]:<17}│
+│ Length ft  {snake["length_ft"]:<17}│
+│ Venomous   {str(snake["venomous"]):<17}│
+└─────────────────────────────┘
+""")
+```
+
+### Unicode symbols
+
+#### Original ASCII
+
+**ASCII** was the original 128 character encoding for computers, standardized in the 1960s — covering English letters, digits, and punctuation on a standard keyboard. Early console styling was built around using these characters to make **ascii text and art**. 
+
+Building a [raw string](types.md#building-strings) with an `r` prefix (`r"""..."""`) makes this possible to print - so that Python doesn't mistake the backslashes `\` for meaningful escape characters.
+
+There are online tools to [convert text to ascii fonts](https://patorjk.com/software/taag/#p=display&f=Isometric1&t=Type+Something+&x=none&v=4&h=4&w=80&we=false) and [find ascii art](https://www.asciiart.eu/#google_vignette).
+
+```python
+print(r"""
+ ____  _  _  ____  _   _  _____  _  _ 
+(  _ \( \/ )(_  _)( )_( )(  _  )( \( )
+ )___/ \  /   )(   ) _ (  )(_)(  )  ( 
+(__)   (__)  (__) (_) (_)(_____)(_)\_)
+""")
+```
+
+#### Unicode expansion
+
+**Unicode** started in 1991 and replaced ASCII with a growing set: it started with the same 128 characters ASCII already had, and is now at 150,000 characters. Because it keeps growing, something built before a character existed may show a blank box or `?`. Python source files use UTF-8 which can represent every Unicode character — so any of these work in a Python file, although some editors and terminals may not *display* it correctly.
+
+Emoji are part of this too: the character itself (😀, 🐍) is a Unicode character, but the specific picture a device displays is drawn by each platform, which is why the same emoji looks different on iPhone vs. Android.
+
+Copy and paste these Unicode characters into your print statements, or [Browse the full set](https://unicode-table.com/en/):
+
+=== "Box-drawing"
+
+    `┌` `─` `┐` `│` `├` `┤` `└` `┘` `┬` `┴` `┼` `╵` `╶` `╷` `╴`
+
+    `╔` `═` `╗` `║` `╠` `╣` `╚` `╝` `╦` `╩` `╬` `╟` `╤` `╢` `╧`
+
+    `╭` `╮` `╰` `╯`
+
+    These were added to early character sets specifically so text terminals could draw frames and boxes:
+
+=== "Progress bars"
+
+    `█` `▓` `▒` `░`
+
+    `⠋` `⠙` `⠹` `⠸` `⠼` `⠴` `⠦` `⠧` `⠇` `⠏`
+
+    `↺` `↻` `⟲` `⟳`
+
+    Used for a timed spinner or loading bar for [progress bars](#progress-bars): 
+
+=== "Arrows"
+
+     `→` `➔` `➜` `←` `↑` `↓`
+
+    `▶` `◀` `➤` `»` `›` `❯` `❮` `❱` `❰` 
+    
+    `↳` `↲` `↰` `↱` `↵` `↴` `↪` `↩` 
+    
+    `⮕` `⬅` `⬆` `⬇`
+
+=== "Checks and crosses"
+
+    `✓` `✔` `☑` `✅` 
+    
+    `✖` `✗` `✘` `☒` `𐄂` `❌` `❎` 
+
+=== "Bullets"
+
+    `•` `∙` `◉` `○` `◌` `◎` `●` `◦` `。` `☉` `⦾` `⦿`  
+    
+    `◆` `◇` `◈` `♦` `⋄` `✦` `✧`
+    
+    `☸` `✱` `✲` `✳`
+    
+    `■` `□` `☐` `▪` 
+    
+    `🔵` `🟢` `🟠` `🔴` `⚫` `🟤` `🟣` `⛔`
+
+=== "Special"
+
+    `☺` `★` `☆` `©` `®` `™` `❤` `♡` `♥`
+
+### Input validation
+
+An `input()` is only as reliable as what it assumes the user will type. 
+
+#### Wrong choice
+
+The below `while` loop keeps re-asking until the input is one of the allowed options:
+
+```python-ref
+choice = input("> ")
+while choice not in ("1", "2"):
+    print("Please enter 1 or 2.")
+    choice = input("> ")
+```
+
+#### Wrong type
+
+`input()` always returns a string, so when working with numbers it must be converted with `int()` or `float()`. However, this raises a `ValueError` if the user didn't type a number. Wrapping the conversion in [`try`/`except`](errors.md#catch-specific-exceptions) and re-asking on failure guards against input that's the wrong type.
+
+```python-ref
+age = input("How old is this snake, in years? ")
+
+while True:
+    try:
+        age = int(age)
+        break
+    except ValueError:
+        age = input("Please enter a whole number: ")
+
+print(f"That's about {age * 7} in human years.")
+```
+
+Using a [string validate method](types.md#validate) is another other way to catch this — checking the string *before* converting it, instead of attempting the conversion and catching the failure after:
+
+```python-ref
+species = input("Enter a species name: ")
+
+while not species.isalpha():
+    species = input("Letters only, try again: ")
+
+print(f"Logged: {species}")
+```
+
+### Menus
+
+Let the user pick from a short list of options with `input()` and a conditional.
+
+#### Single choice
+
+The options are printed first, so the input prompt doesn't need to repeat them — a bare `"> "` on it's own line is sometimes easier to see.
+
+```python-ref
+print("You find a mysterious burmese python coiled in the grass.")
+print("1. Approach it")
+print("2. Back away slowly")
+
+choice = input("> ")
+if choice == "1":
+    print("It doesn't move. Burmese pythons are famously calm.")
+else:
+    print("You wisely continue on the trail.")
+```
+
+```bash
+You find a mysterious burmese python coiled in the grass.
+1. Approach it
+2. Back away slowly
+> 1
+It doesn't move. Burmese pythons are famously calm.
+```
+
+This choice isn't checked against anything — typing `3` still falls into `else`. Combine it with [input validation](#input-validation) above to re-ask until the user answers `1` or `2`.
+
+#### Repeating menu
+
+Wrap the same pattern in a `while` loop that reprints the menu and `break`s once the user's done, to keep offering choices instead of asking just once.
+
+```python-ref
+while True:
+    print("""
+╔══════════════════════╗
+║   FIELD GUIDE MENU    ║
+╠══════════════════════╣
+║  1. Log a sighting    ║
+║  2. Look up a species ║
+║  3. Quit              ║
+╚══════════════════════╝
+""")
+    choice = input("> ")
+    if choice == "1":
+        print("Sighting logged.")
+    elif choice == "2":
+        print("Which species?")
+    elif choice == "3":
+        confirm = input("Are you sure? (y/n) ")
+        if confirm.strip().lower() == "y":
+            print("Goodbye!")
+            break
+```
+
+A quick confirmation before actually quitting keeps one wrong keypress from ending the whole program — comparing with [`.strip()`](types.md#modify) and `.lower()` means `"Y"`, `" y"`, and `"y"` all count as the same answer, instead of only an exact match.
+
+### Banners
+
+Draw a decorative box at the start of a program instead of a plain print statement — it can lead right into a prompt instead of standing alone, and combined with an f-string, a typed-in value gets inserted directly into the printed greeting.
+
+```python-ref
+print("""
+╭────────────────────────╮
+│   THE SPECIES SCANNER™ │
+╰────────────────────────╯
+""")
+
+species = input("Enter a species: ")
+print(f"\nScanning... {species} detected.")
+print(f"Welcome to the field guide, {species}.")
+```
+
+#### Divider
+
+A row of repeated characters separates sections of output, without drawing a full box.
+
+```python
+print("survey results")
+print("=" * 40)
+```
+
+### Progress bars
+
+`time.sleep()` from the [time library](modules.md#import) pauses a program for a set number of seconds. Called in a loop between `print()` calls with [`end=""`](types.md#combine) to keep the cursor on the same line, it fakes a "loading" delay.
+
+```python-ref
+import time
+
+print("Loading", end="")
+for _ in range(3):
+    time.sleep(0.5)
+    print(".", end="")
+print(" done!")
+```
+
+`end=""` never starts a new line, so this grows one dot at a time on the same line, half a second apart:
+
+```bash
+Loading
+Loading.
+Loading..
+Loading...
+Loading... done!
+```
+
+Print with [`end="\r"`](types.md#combine) instead, and each new line overwrites the last one instead of stacking below it — enough to build an animated progress bar out of characters.
+
+```python-ref
+import time
+
+for i in range(10):
+    print("█" * i + "░" * (9 - i), end="\r")
+    time.sleep(0.1)
+print("█" * 10)
+```
+
+```bash
+░░░░░░░░░
+█░░░░░░░░
+██░░░░░░░
+███░░░░░░
+...
+█████████
+██████████
+```
+
+A fixed list of characters, indexed with `i % len(spinner)` so it wraps back to the start instead of running out, animates the same way — a spinner instead of a bar.
+
+```python-ref
+import time
+
+spinner = "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"
+for i in range(20):
+    print(spinner[i % len(spinner)], end="\r")
+    time.sleep(0.1)
+print("done!")
+```
+
+```bash
+⠋
+⠙
+⠹
+⠸
+⠼
+⠴
+⠦
+⠧
+⠇
+⠏
+```
+
+### Randomize messages
+
+[`random.choice()`](libraries/random.md) picks one item from a list at random, so it prints different messages every run.
+
+```python
+import random
+
+responses = [
+    "you got this!",
+    "excellent choice.",
+    "the python spirits approve.",
+    "interesting...",
+    "bold.",
+]
+print(random.choice(responses))
+```
+
+Combined with `input()` and a conditional, the same idea lets a program react differently depending on what it's told, rather than just calculating and printing a result.
+
+```python-ref
+import random
+
+name = input("What's your name? ")
+
+if name.strip().lower() == "python":
+    print("...you already know who I am.")
+else:
+    responses = [
+        "nice to meet you!",
+        "welcome to the field guide!",
+        "excellent name.",
+    ]
+    print(random.choice(responses))
+```
 </div>
-

@@ -184,9 +184,10 @@ hide:
     [`combine`](types.md#combine) 
     [`count`](types.md#search) 
     [`endswith`](types.md#validate) 
-    [`f-string`](types.md#f-strings) 
+    [`f-string`](types.md#building-strings) 
     [`find`](types.md#search) 
-    [`format`](types.md#f-strings) 
+    [`format`](types.md#building-strings) 
+    [`format spec`](types.md#building-strings) 
     [`in`](types.md#search) 
     [`index`](types.md#access-characters) 
     [`isalpha`](types.md#validate) 
@@ -520,6 +521,10 @@ hide:
 
     Conventions for standardized and readable Python.
 
+    [**`checklist`**](style.md#checklist)
+
+    [**`linter`**](style.md#linter-tool)
+
     [**`PEP 8`**](style.md#pep-8-style-guide): 
     [`blank lines`](style.md#blank-lines) 
     [`comments`](style.md#comments) 
@@ -531,14 +536,16 @@ hide:
     [`quote style`](style.md#quote-style) 
     [`whitespace`](style.md#whitespace) 
 
-    [**`Pythonic patterns`**](style.md#pythonic-patterns): 
-    [`common patterns`](style.md#common-patterns) 
+    [**`Pythonic patterns`**](style.md#pythonic-patterns)
 
-    [**`best practices`**](style.md#additional-best-practices)
-
-    [**`linter`**](style.md#linter-tool)
-
-    [**`checklist`**](style.md#checklist)
+    [**`Polish`**](style.md#polish): 
+    [`banners`](style.md#banners) 
+    [`input validation`](style.md#input-validation) 
+    [`menus`](style.md#menus) 
+    [`printing output`](style.md#printing-output) 
+    [`progress bars`](style.md#progress-bars) 
+    [`randomize`](style.md#randomize-messages) 
+    [`unicode symbols`](style.md#unicode-symbols)
 
 -   :material-bug-outline:{ .lg .middle } [__Errors__](errors.md)
 
