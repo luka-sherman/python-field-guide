@@ -125,7 +125,7 @@ A **parameter** is the placeholder name listed in a function's own definition �
 
 A function can list zero, one, or multiple parameters separated by commas. Arguments are matched to parameters by position — the first argument fills the first parameter, the second fills the second, and so on.
 
-Calling with too few or too many arguments raises a `TypeError` — Python doesn't know which value goes where. Arguments can also be matched by name instead of position — see [keyword arguments](#keyword-arguments) under calling a function.
+Calling with too few or too many arguments raises a `TypeError` — Python doesn't know which value goes where. Arguments can also be matched by name instead of position — see [keyword arguments](#by-keyword) under calling a function.
 
 ```python-ref
 def describe(species, length_ft):
