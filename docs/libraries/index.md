@@ -238,10 +238,15 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
     Fetching data over the internet, like asking a website or API for information.
 
+    [**`how requests work`**](requests.md#how-a-request-works)
+
     [**`get`**](requests.md#making-a-request): 
+    [`headers`](requests.md#custom-headers) 
     [`json`](requests.md#parsing-json) 
     [`params`](requests.md#query-parameters) 
     [`status_code`](requests.md#checking-the-status-code) 
+
+    [**`post`**](requests.md#sending-data)
 
     [**`error handling`**](requests.md#handling-request-errors)
 
