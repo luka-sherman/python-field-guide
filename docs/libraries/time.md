@@ -6,7 +6,7 @@ description: >-
 
 # :material-clock-outline:{ .lg .middle } time library
 
-[Official documentation :material-open-in-new:](https://docs.python.org/3/library/time.html){ target="_blank" }
+[time documentation :material-open-in-new:](https://docs.python.org/3/library/time.html){ .md-button target="_blank" }
 
 The **`time`** module reads the system clock, pauses a program for a set number of seconds, and measures how long a piece of code takes to run.
 

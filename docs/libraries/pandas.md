@@ -6,7 +6,7 @@ description: >-
 
 # :material-table:{ .lg .middle } pandas library
 
-[Official documentation :material-open-in-new:](https://pandas.pydata.org/docs/){ target="_blank" }
+[pandas documentation :material-open-in-new:](https://pandas.pydata.org/docs/){ .md-button target="_blank" }
 
 pandas is an open-source project, funded by nonprofit [NumFOCUS](https://numfocus.org/).
 

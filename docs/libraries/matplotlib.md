@@ -6,7 +6,7 @@ description: >-
 
 # :material-chart-line:{ .lg .middle } matplotlib library
 
-[Official documentation :material-open-in-new:](https://matplotlib.org/stable/){ target="_blank" }
+[matplotlib documentation :material-open-in-new:](https://matplotlib.org/stable/){ .md-button target="_blank" }
 
 matplotlib is an open-source project, funded by nonprofit [NumFOCUS](https://numfocus.org/).
 

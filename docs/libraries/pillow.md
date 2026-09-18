@@ -6,7 +6,7 @@ description: >-
 
 # :material-image-outline:{ .lg .middle } Pillow library
 
-[Official documentation :material-open-in-new:](https://pillow.readthedocs.io/en/stable/){ target="_blank" }
+[Pillow documentation :material-open-in-new:](https://pillow.readthedocs.io/en/stable/){ .md-button target="_blank" }
 
 Pillow is an open-source project maintained by volunteer contributors.
 

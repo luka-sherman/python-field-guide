@@ -6,7 +6,7 @@ description: >-
 
 # :material-face-recognition:{ .lg .middle } OpenCV library
 
-[Official documentation :material-open-in-new:](https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html){ target="_blank" }
+[OpenCV documentation :material-open-in-new:](https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html){ .md-button target="_blank" }
 
 OpenCV is stewarded by nonprofit [OpenCV.org](https://opencv.org/).
 

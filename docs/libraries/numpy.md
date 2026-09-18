@@ -6,7 +6,7 @@ description: >-
 
 # :material-matrix:{ .lg .middle } NumPy library
 
-[Official documentation :material-open-in-new:](https://numpy.org/doc/stable/){ target="_blank" }
+[NumPy documentation :material-open-in-new:](https://numpy.org/doc/stable/){ .md-button target="_blank" }
 
 NumPy is an open-source project, with fiscal sponsorship from the nonprofit [NumFOCUS](https://numfocus.org/).
 

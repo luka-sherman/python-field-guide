@@ -6,7 +6,7 @@ description: >-
 
 # :material-test-tube:{ .lg .middle } pytest library
 
-[Official documentation :material-open-in-new:](https://docs.pytest.org/en/stable/){ target="_blank" }
+[pytest documentation :material-open-in-new:](https://docs.pytest.org/en/stable/){ .md-button target="_blank" }
 
 pytest is an open-source project maintained by volunteer contributors.
 

@@ -7,7 +7,7 @@ description: >-
 
 # :material-format-list-group:{ .lg .middle } collections library
 
-[Official documentation :material-open-in-new:](https://docs.python.org/3/library/collections.html){ target="_blank" }
+[collections documentation :material-open-in-new:](https://docs.python.org/3/library/collections.html){ .md-button target="_blank" }
 
 !!! note "Not the same as the Collections page"
     This page covers the **`collections` module** — extra container types imported with

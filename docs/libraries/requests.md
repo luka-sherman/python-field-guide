@@ -6,7 +6,7 @@ description: >-
 
 # :material-webhook:{ .lg .middle } requests library
 
-[Official documentation :material-open-in-new:](https://requests.readthedocs.io/en/latest/){ target="_blank" }
+[requests documentation :material-open-in-new:](https://requests.readthedocs.io/en/latest/){ .md-button target="_blank" }
 
 requests is an open-source project maintained by volunteer contributors.
 

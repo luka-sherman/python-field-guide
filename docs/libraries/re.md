@@ -6,7 +6,7 @@ description: >-
 
 # :material-regex:{ .lg .middle } re library
 
-[Official documentation :material-open-in-new:](https://docs.python.org/3/library/re.html){ target="_blank" }
+[re documentation :material-open-in-new:](https://docs.python.org/3/library/re.html){ .md-button target="_blank" }
 
 The **`re`** module works with regular expressions — patterns that describe text to search for, extract, or replace, more flexible than plain string methods like `.find()` or `.replace()`.
 

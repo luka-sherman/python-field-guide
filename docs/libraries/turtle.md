@@ -7,7 +7,7 @@ description: >-
 
 # :material-turtle:{ .lg .middle } Turtle library
 
-[Official documentation :material-open-in-new:](https://docs.python.org/3/library/turtle.html){ target="_blank" }
+[Turtle documentation :material-open-in-new:](https://docs.python.org/3/library/turtle.html){ .md-button target="_blank" }
 
 <div class="pfg-section" markdown="block">
 
