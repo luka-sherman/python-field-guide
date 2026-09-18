@@ -207,7 +207,7 @@ An accessibility rule engine, which scans a rendered page's DOM for WCAG violati
 
 ### [codespell](https://github.com/codespell-project/codespell)
 
-A spell checker aimed at source code and prose, which flags known misspellings (e.g. "teh", "recieve") rather than words missing from a dictionary. `tests/test_typos.py` runs it over the site's page content and editorial docs.
+A spell checker aimed at source code and prose, which flags known misspellings against a fixed list rather than words simply missing from a dictionary. `tests/test_typos.py` runs it over the site's page content and editorial docs.
 
 ### Continuous integration
 
