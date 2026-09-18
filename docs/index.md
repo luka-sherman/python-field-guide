@@ -605,6 +605,11 @@ hide:
 
     Regular expressions: searching, extracting, and replacing text by pattern.
 
+-   :material-clock-outline:{ .lg .middle } [__time__](libraries/time.md) 
+[:material-language-python:](libraries/time.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
+
+    Reading the system clock, pausing execution, and measuring elapsed time.
+
 </div>
 </div>
 
