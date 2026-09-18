@@ -391,7 +391,7 @@ hide:
     [`pass`](functions.md#pass-placeholder) 
     [`return`](functions.md#return-values) 
 
-    [`combining *args and **kwargs`](functions.md#combining-regular-args-and-kwargs) 
+    [`combining argument types`](functions.md#combining-categories) 
     [`keyword-only`](functions.md#keyword-only) 
     [`positional-only`](functions.md#positional-only) 
     [`type hints`](functions.md#type-hints) 

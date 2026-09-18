@@ -62,7 +62,7 @@ Code that works isn't automatically code that's easy to read and maintain.
 - [ ] **For terminal input:**
     - [ ] **[Input validation](#input-validation)** — re-asks instead of crashing on a bad or missing value
     - [ ] **[Menus](#menus)** — a clear list of options instead of guessing what to type
-- [ ] **For terminal display:**
+- [ ] **For terminal output:**
     - [ ] **[Printing output](#printing-output)** — escape sequences, multi-line strings, and formatted variables read cleanly
     - [ ] **[Banners](#banners)** — a decorative box or header instead of a bare print statement
     - [ ] **[Progress bars](#progress-bars)** — visible feedback during a delay instead of a silent pause
