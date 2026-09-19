@@ -885,7 +885,7 @@ class a,b,d noborder
     print("\033[0m")
     ```
 
-#### Compatability
+#### Compatibility
 
 This requires a [terminal](workspace.md#using-the-terminal), either a stand-alone application or inside of an IDE, support varies by which one:
 
