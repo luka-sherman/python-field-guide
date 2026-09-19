@@ -6,7 +6,7 @@ description: >-
 
 # :material-application-outline:{ .lg .middle } Tkinter library
 
-[Official documentation :material-open-in-new:](https://docs.python.org/3/library/tkinter.html){ target="_blank" }
+[Tkinter documentation :material-open-in-new:](https://docs.python.org/3/library/tkinter.html){ .md-button target="_blank" }
 
 **Tkinter** is Python's built-in toolkit for building desktop GUI applications — windows, buttons, text fields, and the rest of a traditional app interface, all driven from your Python variables, functions, and objects. A GUI needs a real window and display to run in, though, so unlike the rest of this field guide, the examples below aren't runnable in the browser — copy them into a local `.py` file  to see them in action.
 

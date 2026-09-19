@@ -564,13 +564,23 @@ hide:
     {: data-advanced="true" }
 
     [**`Polished UX`**](style.md#polished-ux): 
-    [`banners`](style.md#banners) 
     [`input validation`](style.md#input-validation) 
     [`menus`](style.md#menus) 
-    [`printing output`](style.md#printing-output) 
-    [`progress bars`](style.md#progress-bars) 
-    [`randomize`](style.md#randomize-messages) 
-    [`unicode symbols`](style.md#unicode-symbols)
+    [`randomize`](style.md#randomize-messages)
+
+    [**`Polished UI`**](style.md#polished-ui): 
+    [`background`](style.md#color-styling) 
+    [`bold`](style.md#color-styling) 
+    [`escape sequences`](style.md#escape-sequences) 
+    [`color`](style.md#color-styling) 
+    [`highlighting`](style.md#color-styling) 
+    [`multi-line strings`](style.md#multi-line-strings) 
+    [`formatting variables`](style.md#formatting-variables) 
+    [`underline`](style.md#color-styling) 
+    [`unicode symbols`](style.md#unicode-symbols) 
+    [`dividers`](style.md#dividers) 
+    [`boxes`](style.md#boxes) 
+    [`progress bars`](style.md#progress-bars)
 
 -   :material-bug-outline:{ .lg .middle } [__Errors__](errors.md)
 
@@ -689,6 +699,19 @@ hide:
 [:material-download-outline:](libraries/requests.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
 
     Fetching data over the internet, like asking a website or API for information.
+
+</div>
+</div>
+
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+#### Web scraping { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-pot-steam-outline:{ .lg .middle } [__BeautifulSoup__](libraries/beautifulsoup.md) 
+[:material-download-outline:](libraries/beautifulsoup.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
+
+    Parsing HTML: finding tags, reading attributes and text, and turning a page into structured data.
 
 </div>
 </div>

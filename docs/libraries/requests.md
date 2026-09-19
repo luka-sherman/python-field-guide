@@ -6,7 +6,7 @@ description: >-
 
 # :material-webhook:{ .lg .middle } requests library
 
-[Official documentation :material-open-in-new:](https://requests.readthedocs.io/en/latest/){ target="_blank" }
+[requests documentation :material-open-in-new:](https://requests.readthedocs.io/en/latest/){ .md-button target="_blank" }
 
 requests is an open-source project maintained by volunteer contributors.
 
@@ -50,6 +50,16 @@ For everyday use, `requests` offers the best balance of simplicity and capabilit
 
 <div class="pfg-section" markdown="block">
 
+## How a request works
+
+Making a request from Python works the same way a browser does, minus the part where anything gets drawn on screen. Your program opens a connection to a server at a URL, sends a **request** — the URL itself, plus optional headers and query parameters — and waits. The server does whatever work that URL asks for, then sends back a **response**: a status code summarizing what happened, a few headers of its own, and usually a body of data. Nothing renders automatically the way a browser would — `.text`/`.json()` just hand that raw body to your code, as a plain string or a Python `dict`/`list`.
+
+Most APIs send that body back as [JSON](json.md) — data meant to be read by a program. A URL meant for people instead sends back HTML, the same raw markup [BeautifulSoup](beautifulsoup.md#html-and-web-pages) parses when scraping a page instead of calling an API.
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Making a request
 
 `requests.get(url)` sends a request and returns a `Response` object holding whatever came back.
@@ -64,7 +74,7 @@ print(response.text)          # '{"userId": 1, "id": 1, "title": "...", "body": 
 
 ### Checking the status code
 
-`.status_code` tells you whether the request actually succeeded before you try to use the data. The most common codes: `200` (success), `404` (that endpoint/resource doesn't exist), `401`/`403` (missing or invalid permission), `500` (the server itself failed). `.raise_for_status()` is a shortcut that raises an exception automatically for any failing code, instead of checking `.status_code` by hand every time.
+`.status_code` tells you whether the request actually succeeded before you try to use the data. The most common codes: `200` (success), `201` (a `POST` created something new), `404` (that endpoint/resource doesn't exist), `401`/`403` (missing or invalid permission), `500` (the server itself failed). `.raise_for_status()` is a shortcut that raises an exception automatically for any failing code, instead of checking `.status_code` by hand every time.
 
 ```python-ref
 response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
@@ -124,6 +134,58 @@ response = requests.get(
 )
 comments = response.json()
 print(len(comments))
+```
+
+### Custom headers
+
+Pass a `headers` dict to attach extra metadata to a request — an API key, a content type, or a `User-Agent` identifying what's making the request. `requests` sends a generic default `User-Agent` if none is given.
+
+```python-ref
+response = requests.get(
+    "https://jsonplaceholder.typicode.com/posts/1",
+    headers={"User-Agent": "Mozilla/5.0"},
+)
+```
+
+```python-ref
+import requests
+
+response = requests.get(
+    "https://jsonplaceholder.typicode.com/posts/1",
+    headers={"User-Agent": "Mozilla/5.0"},
+)
+print(response.status_code)
+```
+
+??? warning "Some sites block the default User-Agent"
+    Plenty of real websites (as opposed to test APIs like this page's own examples) return a `403 Forbidden` for any request that doesn't look like it came from an actual browser, since `requests`' own default `User-Agent` string identifies it as a script. Setting `headers={"User-Agent": "Mozilla/5.0"}` (or a similar browser-like string) is often enough to get past this — worth remembering the moment a real page's request stops working right after [BeautifulSoup](beautifulsoup.md) worked fine on a test one.
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
+## Sending data
+
+Not every request is asking for something back — `requests.post()` sends data *to* a URL instead, the same way submitting a form or creating a new resource through an API works. Pass a Python dict as `json=`, and `requests` handles converting it to a JSON string and setting the right header for you.
+
+```python-ref
+response = requests.post(
+    "https://jsonplaceholder.typicode.com/posts",
+    json={"title": "ball python", "body": "a good first snake"},
+)
+print(response.status_code)   # 201 — "created"
+print(response.json())        # the new resource, as sent back by the server
+```
+
+```python-ref
+import requests
+
+response = requests.post(
+    "https://jsonplaceholder.typicode.com/posts",
+    json={"title": "ball python", "body": "a good first snake"},
+)
+print(response.status_code)
+print(response.json())
 ```
 
 </div>

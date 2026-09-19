@@ -112,11 +112,21 @@
 
         // Pure-stdlib code runs as-is, but third-party packages (numpy,
         // pandas, pytest, ...) ship as separate Pyodide wheels that must be
-        // fetched before the `import` inside the snippet will succeed.
+        // fetched before the `import` inside the snippet will succeed. Keyed
+        // by the name Python code actually imports, which isn't always the
+        // Pyodide package name (bs4's package is "beautifulsoup4").
         const source = codeBlock.textContent;
-        const neededPackages = ["numpy", "pandas", "pytest"].filter((pkg) =>
-          new RegExp(`\\bimport\\s+${pkg}\\b|\\bfrom\\s+${pkg}\\b`).test(source)
-        );
+        const PYODIDE_PACKAGE_NAMES = {
+          numpy: "numpy",
+          pandas: "pandas",
+          pytest: "pytest",
+          bs4: "beautifulsoup4",
+        };
+        const neededPackages = Object.keys(PYODIDE_PACKAGE_NAMES)
+          .filter((mod) =>
+            new RegExp(`\\bimport\\s+${mod}\\b|\\bfrom\\s+${mod}\\b`).test(source)
+          )
+          .map((mod) => PYODIDE_PACKAGE_NAMES[mod]);
         if (neededPackages.length) {
           runLabel.textContent = "Loading packages…";
           await pyodide.loadPackage(neededPackages);

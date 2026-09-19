@@ -271,6 +271,12 @@ html:focus-within::-webkit-scrollbar-thumb {
   text-decoration: none;
 }
 
+/* Buttons already carry a border/background as their non-color cue, so the
+   link-in-text-block underline is redundant here too. */
+.md-typeset .md-button {
+  text-decoration: none;
+}
+
 .md-nav__link--active,
 .md-nav__item .md-nav__link--active,
 .md-nav__item--active > .md-nav__link {
@@ -552,16 +558,20 @@ input:checked + .md-consent__settings {
   }
 }
 
-.md-typeset .md-button {
-  color: var(--pt-ink);
-  border-color: var(--pt-border-soft);
+/* :visited alone (0,2,1) outranks .md-button's two plain classes (0,2,0),
+   so a visited link would otherwise fall through to the ".md-typeset
+   a:visited" accent-on-accent color above and vanish into the button's own
+   accent background — match that selector's specificity here too. */
+.md-typeset .md-button,
+.md-typeset .md-button:visited {
+  color: var(--pt-bg);
+  background-color: var(--pt-accent);
+  border-color: var(--pt-accent);
 }
 
 .md-typeset .md-button:hover,
 .md-typeset .md-button:focus-visible {
-  color: var(--pt-bg);
-  background-color: var(--pt-accent);
-  border-color: var(--pt-accent);
+  border-color: var(--pt-ink);
 }
 
 .md-typeset .md-button--primary {

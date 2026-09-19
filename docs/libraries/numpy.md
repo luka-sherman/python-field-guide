@@ -6,11 +6,11 @@ description: >-
 
 # :material-matrix:{ .lg .middle } NumPy library
 
-[Official documentation :material-open-in-new:](https://numpy.org/doc/stable/){ target="_blank" }
+[NumPy documentation :material-open-in-new:](https://numpy.org/doc/stable/){ .md-button target="_blank" }
 
 NumPy is an open-source project, with fiscal sponsorship from the nonprofit [NumFOCUS](https://numfocus.org/).
 
-**NumPy** (imported as `np`) is Python's standard library for fast numeric arrays — the foundation nearly every other data or scientific library in Python is built on. It's a third-party package, not part of the standard library. A NumPy `ndarray` looks similar to a `list`, but every element is the same type and math operations apply to the whole array at once, instead of one item at a time.
+**NumPy** (imported as `np`) is a widely used library for fast numeric arrays — the foundation nearly every other data or scientific library in Python is built on. It's a third-party package, not part of the standard library. A NumPy `ndarray` looks similar to a `list`, but every element is the same type and math operations apply to the whole array at once, instead of one item at a time.
 
 <div class="pfg-section" markdown="block">
 

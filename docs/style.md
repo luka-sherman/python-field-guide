@@ -59,15 +59,20 @@ Code that works isn't automatically code that's easy to read and maintain.
 
 **Polished UX**
 
-- [ ] **For terminal input:**
-    - [ ] **[Input validation](#input-validation)** — re-asks instead of crashing on a bad or missing value
-    - [ ] **[Menus](#menus)** — a clear list of options instead of guessing what to type
-- [ ] **For terminal output:**
-    - [ ] **[Printing output](#printing-output)** — escape sequences, multi-line strings, and formatted variables read cleanly
-    - [ ] **[Banners](#banners)** — a decorative box or header instead of a bare print statement
-    - [ ] **[Progress bars](#progress-bars)** — visible feedback during a delay instead of a silent pause
-    - [ ] **[Unicode symbols](#unicode-symbols)** — box-drawing, arrows, and checkmarks instead of plain ASCII
-    - [ ] **[Randomize messages](#randomize-messages)** — varied responses instead of the same output every run
+- [ ] **[Input validation](#input-validation)** — re-asks instead of crashing on a bad or missing value
+- [ ] **[Menus](#menus)** — a clear list of options instead of guessing what to type
+- [ ] **[Randomize messages](#randomize-messages)** — varied responses instead of the same output every run
+
+**Polished UI**
+
+- [ ] **[Escape sequences](#escape-sequences)** — `\n`, `\t`, and friends used instead of literal characters
+- [ ] **[Color styling](#color-styling)** — an ANSI code and a reset instead of plain, uncolored text
+- [ ] **[Multi-line strings](#multi-line-strings)** — a triple-quoted string instead of several chained `print()` calls
+- [ ] **[Formatting variables](#formatting-variables)** — f-strings and format specs instead of manual string building
+- [ ] **[Unicode symbols](#unicode-symbols)** — box-drawing, arrows, and checkmarks instead of plain ASCII
+- [ ] **[Dividers](#dividers)** — a row of repeated characters instead of a full box, to separate sections of output
+- [ ] **[Boxes](#boxes)** — a decorative box or bordered menu instead of a bare print statement
+- [ ] **[Progress bars](#progress-bars)** — visible feedback during a delay instead of a silent pause
 
 </div>
 
@@ -344,11 +349,212 @@ if length_ft is None:                # Pythonic — `is` is the correct tool for
 
 ## Polished UX
 
-The terminal is a **user experience** with its own **interface**, and just like an app or website, it can be creatively designed within its limitations to be more interactive, engaging, and readable. 
+**UX** (user experience) here means how the script behaves — how it responds to what someone types. A validated input, a working menu, and a varied response all make it feel considered instead of accidental.
 
-### Printing output
+### Input validation
 
-#### Escape sequences
+An `input()` is only as reliable as what it assumes the user will type. 
+
+#### Wrong choice
+
+The below `while` loop keeps re-asking until the input is one of the allowed options:
+
+```python-ref
+choice = input("> ")
+while choice not in ("1", "2"):
+    print("Please enter 1 or 2.")
+    choice = input("> ")
+```
+
+#### Wrong type
+
+`input()` always returns a string, so when working with numbers it must be converted with `int()` or `float()`. However, this raises a `ValueError` if the user didn't type a number. Wrapping the conversion in [`try`/`except`](errors.md#catch-specific-exceptions) and re-asking on failure guards against input that's the wrong type.
+
+```python-ref
+age = input("How old is this snake, in years? ")
+
+while True:
+    try:
+        age = int(age)
+        break
+    except ValueError:
+        age = input("Please enter a whole number: ")
+
+print(f"That's about {age * 7} in human years.")
+```
+
+Using a [string validate method](types.md#validate) is another other way to catch this — checking the string *before* converting it, instead of attempting the conversion and catching the failure after:
+
+```python-ref
+species = input("Enter a species name: ")
+
+while not species.isalpha():
+    species = input("Letters only, try again: ")
+
+print(f"Logged: {species}")
+```
+
+#### Confirm input
+
+Echoing the typed value back is a quick way to show it was read correctly, before doing anything else with it.
+
+```python-ref
+species = input("Enter a species: ")
+print(f"\nScanning... {species} detected.")
+```
+
+### Menus
+
+Let the user pick from a short list of options with `input()` and [`match`/`case`](conditionals.md#match-case).
+
+#### Simple input
+
+A menu is easiest to validate when each option is a single number or letter instead of free
+text — there's only a handful of possible answers to check against, as in every example below.
+Save the deeper validation for input that has to be open-ended, like a species name or a
+measurement — and even there, don't assume the user typed it in the exact case or format
+expected. Normalize the answer first with [`.strip()`](types.md#modify), `.lower()`, or
+`.title()`, instead of rejecting anything that doesn't match exactly.
+
+#### Single choice
+
+The options are printed first, so the input prompt doesn't need to repeat them — a bare `"> "` on it's own line is sometimes easier to see.
+
+```python-ref
+print("You find a mysterious burmese python coiled in the grass.")
+print("1. Approach it")
+print("2. Back away slowly")
+
+choice = input("> ")
+match choice:
+    case "1":
+        print("It doesn't move. Burmese pythons are famously calm.")
+    case _:
+        print("You wisely continue on the trail.")
+```
+
+```bash
+You find a mysterious burmese python coiled in the grass.
+1. Approach it
+2. Back away slowly
+> 1
+It doesn't move. Burmese pythons are famously calm.
+```
+
+This choice isn't checked against anything — typing `3` still falls into the `case _:` default. Combine it with [input validation](#input-validation) above to re-ask until the user answers `1` or `2`.
+
+#### Continuous menu
+
+Wrap the same pattern in a `while` loop that reprints the menu and `break`s once the user's done, to keep offering choices instead of asking just once.
+
+```python-ref
+while True:
+    print("1. Log a sighting")
+    print("2. Look up a species")
+    print("3. Quit")
+
+    choice = input("> ")
+    match choice:
+        case "1":
+            print("Sighting logged.")
+        case "2":
+            print("Which species?")
+        case "3":
+            print("Goodbye!")
+            break
+```
+
+#### Confirm quit
+
+A quick confirmation before actually quitting keeps one wrong keypress from ending the whole program — ask a follow-up question inside the quit case, and only `break` once the answer is yes.
+
+```python-ref
+print("C. Continue")
+print("Q. Quit")
+
+choice = input("> ")
+match choice:
+    case "C":
+        print("Continuing....")
+    case "Q":
+        confirm = input("Are you sure? (y/n) ") # add a second input as confirmation
+        if confirm.strip().lower() == "y":
+            print("Goodbye!")
+```
+
+Comparing with [`.strip()`](types.md#modify) and `.lower()` means `"Y"`, `" y"`, and `"y"` all count as the same answer, instead of only an exact match.
+
+#### Robust menu
+
+Combine all three: keep the menu [continuous](#continuous-menu), [confirm](#confirm-quit) before actually quitting, and [validate](#input-validation) the choice — since the whole thing already sits inside `while True:`, a `case _:` can print an error and let the loop reprint the menu and ask again, instead of needing a second retry loop.
+
+```python-ref
+while True:
+    print("1. Log a sighting")
+    print("2. Look up a species")
+    print("3. Quit")
+
+    choice = input("> ")
+    match choice:
+        case "1":
+            print("Sighting logged.")
+        case "2":
+            print("Which species?")
+        case "3":
+            confirm = input("Are you sure? (y/n) ")
+            if confirm.strip().lower() == "y":
+                print("Goodbye!")
+                break
+        case _:
+            print("Please enter 1, 2, or 3.")
+```
+
+See [Boxes](#boxes) below to wrap the same three options in a decorative border instead of a plain list.
+
+### Randomize messages
+
+[`random.choice()`](libraries/random.md) picks one item from a list at random, so it prints different messages every run.
+
+```python
+import random
+
+responses = [
+    "you got this!",
+    "excellent choice.",
+    "the python spirits approve.",
+    "interesting...",
+    "bold.",
+]
+print(random.choice(responses))
+```
+
+Combined with `input()` and a conditional, the same idea lets a program react differently depending on what it's told, rather than just calculating and printing a result.
+
+```python-ref
+import random
+
+name = input("What's your name? ")
+
+if name.strip().lower() == "python":
+    print("...you already know who I am.")
+else:
+    responses = [
+        "nice to meet you!",
+        "welcome to the field guide!",
+        "excellent name.",
+    ]
+    print(random.choice(responses))
+```
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
+## Polished UI
+
+**UI** (user interface) here means how the script's output looks — the terminal text itself, creatively styled within its limitations: formatted output, Unicode framing, and animated progress.
+
+### Escape sequences
 
 An **escape sequence** is a backslash followed by a letter, standing in for a character that couldn't otherwise appear in the string. 
 
@@ -360,7 +566,14 @@ An **escape sequence** is a backslash followed by a letter, standing in for a ch
 | `\\` | a literal backslash | 
 | `\r` | returns the cursor to the start of the line, as in a [progress bar](#progress-bars)|
 
-#### Multi-line strings
+```python
+species = "ball python"
+length_ft = 4.5
+
+print(f"Species:\t{species}\nLength ft:\t{length_ft}")
+```
+
+### Multi-line strings
 
 Here are three ways to print the same four-line string:
 
@@ -388,9 +601,9 @@ Here are three ways to print the same four-line string:
     """)
     ```
 
-#### Formatting variables
+### Formatting variables
 
-An [f-string](types.md#building-strings) — a variable's name dropped directly inside `{}` — is what turns the dashboard's bare `snake` dict into a filled-in box, and what plugs a typed-in name into the [banner](#banners)'s greeting. A [format spec](types.md#building-strings) inside that same `{}` controls how the value looks, built from these pieces in order:
+An [f-string](types.md#building-strings) — a variable's name dropped directly inside `{}` — is what turns the dashboard's bare `snake` dict into a filled-in box, and what plugs a typed-in name into the [banner](#banner)'s greeting. A [format spec](types.md#building-strings) inside that same `{}` controls how the value looks, built from these pieces in order:
 
 1. fill (padding character)
 2. align (left, right, center, or pad between a sign and its digits)
@@ -440,7 +653,7 @@ print(r"""
 
 **Unicode** started in 1991 and expanded on ASCII with a larger growing set: it started with the same 128 characters ASCII already had, and is now at 150,000 characters. Because it keeps growing, something built before a character existed may show a blank box or `?`. Python 3 uses UTF-8 to encode its characters, so you can include Unicode characters directly in your Python files. However, your editor or terminal may still lack a font that can display a particular character.
 
-Emoji are part of this too: the character itself (😀, 🐍) is a Unicode character, but the specific picture a device displays is drawn by each platform, which is why the same emoji looks different on iPhone vs. Android.
+Emoji are part of this too: the character itself (🦖) is a Unicode character, but the specific picture a device displays is drawn by each platform, which is why the same emoji looks different on iPhone vs. Android.
 
 Copy and paste these Unicode characters into your print statements, or [Browse the full set](https://unicode-table.com/en/):
 
@@ -452,8 +665,6 @@ Copy and paste these Unicode characters into your print statements, or [Browse t
 
     `╭` `╮` `╰` `╯`
 
-    These were added to early character sets specifically so text terminals could draw frames and boxes:
-
 === "Progress bars"
 
     `█` `▓` `▒` `░`
@@ -461,8 +672,6 @@ Copy and paste these Unicode characters into your print statements, or [Browse t
     `⠋` `⠙` `⠹` `⠸` `⠼` `⠴` `⠦` `⠧` `⠇` `⠏`
 
     `↺` `↻` `⟲` `⟳`
-
-    Used for a timed spinner or loading bar for [progress bars](#progress-bars): 
 
 === "Arrows"
 
@@ -496,131 +705,35 @@ Copy and paste these Unicode characters into your print statements, or [Browse t
 
     `☺` `★` `☆` `©` `®` `™` `❤` `♡` `♥`
 
-### Input validation
+### Dividers
 
-An `input()` is only as reliable as what it assumes the user will type. 
-
-#### Wrong choice
-
-The below `while` loop keeps re-asking until the input is one of the allowed options:
-
-```python-ref
-choice = input("> ")
-while choice not in ("1", "2"):
-    print("Please enter 1 or 2.")
-    choice = input("> ")
-```
-
-#### Wrong type
-
-`input()` always returns a string, so when working with numbers it must be converted with `int()` or `float()`. However, this raises a `ValueError` if the user didn't type a number. Wrapping the conversion in [`try`/`except`](errors.md#catch-specific-exceptions) and re-asking on failure guards against input that's the wrong type.
-
-```python-ref
-age = input("How old is this snake, in years? ")
-
-while True:
-    try:
-        age = int(age)
-        break
-    except ValueError:
-        age = input("Please enter a whole number: ")
-
-print(f"That's about {age * 7} in human years.")
-```
-
-Using a [string validate method](types.md#validate) is another other way to catch this — checking the string *before* converting it, instead of attempting the conversion and catching the failure after:
-
-```python-ref
-species = input("Enter a species name: ")
-
-while not species.isalpha():
-    species = input("Letters only, try again: ")
-
-print(f"Logged: {species}")
-```
-
-### Menus
-
-Let the user pick from a short list of options with `input()` and a conditional.
-
-#### Single choice
-
-The options are printed first, so the input prompt doesn't need to repeat them — a bare `"> "` on it's own line is sometimes easier to see.
-
-```python-ref
-print("You find a mysterious burmese python coiled in the grass.")
-print("1. Approach it")
-print("2. Back away slowly")
-
-choice = input("> ")
-if choice == "1":
-    print("It doesn't move. Burmese pythons are famously calm.")
-else:
-    print("You wisely continue on the trail.")
-```
-
-```bash
-You find a mysterious burmese python coiled in the grass.
-1. Approach it
-2. Back away slowly
-> 1
-It doesn't move. Burmese pythons are famously calm.
-```
-
-This choice isn't checked against anything — typing `3` still falls into `else`. Combine it with [input validation](#input-validation) above to re-ask until the user answers `1` or `2`.
-
-#### Repeating menu
-
-Wrap the same pattern in a `while` loop that reprints the menu and `break`s once the user's done, to keep offering choices instead of asking just once.
-
-```python-ref
-while True:
-    print("""
-╔═══════════════════════╗
-║   FIELD GUIDE MENU    ║
-╟───────────────────────╢
-║  1. Log a sighting    ║
-║  2. Look up a species ║
-║  3. Quit              ║
-╚═══════════════════════╝
-""")
-    choice = input("> ")
-    if choice == "1":
-        print("Sighting logged.")
-    elif choice == "2":
-        print("Which species?")
-    elif choice == "3":
-        confirm = input("Are you sure? (y/n) ")
-        if confirm.strip().lower() == "y":
-            print("Goodbye!")
-            break
-```
-
-A quick confirmation before actually quitting keeps one wrong keypress from ending the whole program — comparing with [`.strip()`](types.md#modify) and `.lower()` means `"Y"`, `" y"`, and `"y"` all count as the same answer, instead of only an exact match.
-
-### Banners
-
-Draw a decorative box at the start of a program instead of a plain print statement — it can lead right into a prompt instead of standing alone, and combined with an f-string, a typed-in value gets inserted directly into the printed greeting.
-
-```python-ref
-print("""
-╭────────────────────────╮
-│   THE SPECIES SCANNER™ │
-╰────────────────────────╯
-""")
-
-species = input("Enter a species: ")
-print(f"\nScanning... {species} detected.")
-print(f"Welcome to the field guide, {species}.")
-```
-
-#### Divider
-
-A row of repeated characters separates sections of output, without drawing a full box.
+A row of repeated characters separates sections of output — simpler than drawing a full box.
 
 ```python
 print("survey results")
 print("=" * 40)
+```
+
+### Boxes
+
+Combine the [box-drawing unicode symbols](#unicode-symbols) to emphasize output — a full frame instead of just a [divider](#dividers) line.
+
+```python
+print("""
+╭──────────────────────────────────────────╮
+│       WELCOME TO THE THE FIELD GUIDE™    │
+╰──────────────────────────────────────────╯
+
+╔═══════════════════════╗
+║  MENU                 ║
+╟───────────────────────╢
+║  1. Log a sighting    ║
+║  2. Look up a species ║
+║  3. ✖ Quit            ║
+╚═══════════════════════╝
+
+❱ _
+""")  
 ```
 
 ### Progress bars
@@ -685,38 +798,123 @@ print("done!")
 ```
 The above character changes in place, so you see an animation cycling through the steps.
 
-### Randomize messages
+### Color styling
 
-[`random.choice()`](libraries/random.md) picks one item from a list at random, so it prints different messages every run.
+Terminal text that has **color**, **bold**, **underlines**, and a **background color** can be styled by printing escape sequences around the string you would like to style. 
 
-```python
-import random
+#### Escape sequence structure
 
-responses = [
-    "you got this!",
-    "excellent choice.",
-    "the python spirits approve.",
-    "interesting...",
-    "bold.",
-]
-print(random.choice(responses))
+<div class="pfg-diagram-frame" markdown="block">
+
+```mermaid
+flowchart LR
+a("\033") -.- b("[") -.- c("31") -.- d("m")
+
+classDef noborder stroke:none
+class a,b,d noborder
 ```
 
-Combined with `input()` and a conditional, the same idea lets a program react differently depending on what it's told, rather than just calculating and printing a result.
+<p class="pfg-diagram-caption">FIG: ANSI color escape sequence, with code 31 for styling red text</p>
 
-```python-ref
-import random
+</div>
 
-name = input("What's your name? ")
+`\033` is the ESC character, `[` opens the code, then the code(s), and `m` closes it. 
 
-if name.strip().lower() == "python":
-    print("...you already know who I am.")
-else:
-    responses = [
-        "nice to meet you!",
-        "welcome to the field guide!",
-        "excellent name.",
-    ]
-    print(random.choice(responses))
-```
+#### Styling codes
+
+**Color**, **background color**, **bold**, and **underlines**, are styled with these codes *(terminal's theme palette controls how each color will appear)*:
+
+| Style Description | Code for text | Code for background |
+|---|---|---|
+| <span style="display:inline-block;width:1em;height:1em;background:#000000;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> Black color | `30` | `40` |
+| <span style="display:inline-block;width:1em;height:1em;background:#808080;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> Bright black color | `90` | `100` |
+| <span style="display:inline-block;width:1em;height:1em;background:#C91B00;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> Red color | `31` | `41` |
+| <span style="display:inline-block;width:1em;height:1em;background:#FF0000;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> Bright red color | `91` | `101` |
+| <span style="display:inline-block;width:1em;height:1em;background:#00C200;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> Green color | `32` | `42` |
+| <span style="display:inline-block;width:1em;height:1em;background:#00FF00;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> Bright green color | `92` | `102` |
+| <span style="display:inline-block;width:1em;height:1em;background:#C7C400;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> Yellow color | `33` | `43` |
+| <span style="display:inline-block;width:1em;height:1em;background:#FFFF00;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> Bright yellow color | `93` | `103` |
+| <span style="display:inline-block;width:1em;height:1em;background:#0225C7;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> Blue color | `34` | `44` |
+| <span style="display:inline-block;width:1em;height:1em;background:#0000FF;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> Bright blue color | `94` | `104` |
+| <span style="display:inline-block;width:1em;height:1em;background:#C930C7;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> Magenta color | `35` | `45` |
+| <span style="display:inline-block;width:1em;height:1em;background:#FF00FF;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> Bright magenta color | `95` | `105` |
+| <span style="display:inline-block;width:1em;height:1em;background:#00C5C7;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> Cyan color | `36` | `46` |
+| <span style="display:inline-block;width:1em;height:1em;background:#00FFFF;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> Bright cyan color | `96` | `106` |
+| <span style="display:inline-block;width:1em;height:1em;background:#C7C7C7;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> White color | `37` | `47` |
+| <span style="display:inline-block;width:1em;height:1em;background:#FFFFFF;border:1px solid #888;border-radius:2px;vertical-align:middle;margin-right:0.4em;"></span> Bright white color | `97` | `107` |
+| **Bold text** | `1` | |
+| <u>Underlined text</u> | `4` | |
+
+**To end formatted string:** use reset code `0`(so full escape sequence is`\033[0m`).
+
+| Reset all styles | Code |
+|---|--|
+| **Reset** | `0` |
+
+#### Examples
+
+- One escape code:
+
+    *(see it between "[" and "m")*
+
+    ```python-ref
+    print("\033[31mThis is red text\033[0m")
+    print("\033[32mThis is green text\033[0m")
+    print("\033[1mThis is bold\033[0m")
+    print("\033[4mThis is underlined\033[0m")
+    print("\033[43mThis has a yellow background\033[0m")
+    print("\033[91mThis is bright red\033[0m")
+    ```
+
+- Multiple codes separated with `;` : 
+
+    *Combine codes inside the same escape sequence. Can't have two of the same category - e.g. no two text colors or two background colors.*
+
+    ```python-ref
+    print("\033[31;43mThis is red text with a yellow background\033[0m")
+    print("\033[1;32mThis is green text that is bold\033[0m")
+    ```
+
+- Across multiple lines: 
+
+    *The styling stays active across multiple `print()` calls, until the reset code occurs.*
+
+    ```python-ref
+    print("\033[31mFirst red line")
+    print("Second red line")
+    print("\033[0m")
+    ```
+
+#### Compatibility
+
+This requires a [terminal](workspace.md#using-the-terminal), either a stand-alone application or inside of an IDE, support varies by which one:
+
+=== "macOS Terminal"
+
+    Yes — Terminal.app, the default on macOS, supports ANSI color natively, as does iTerm2 and other third-party Mac terminals.
+
+=== "Windows Terminal"
+
+    Yes — Windows Terminal, the default on Windows 11, supports ANSI color natively. The older `cmd.exe` needs `colorama`, or Windows 10's Virtual Terminal Processing turned on first.
+
+=== "Linux Terminal"
+
+    Yes — virtually every Linux terminal emulator (GNOME Terminal, Konsole, xterm, and others) supports ANSI color natively.
+
+=== "Visual Studio Code"
+
+    Yes — runs through the Integrated Terminal, a real terminal emulator.
+
+=== "PyCharm Community"
+
+    Yes — both the Run console and the Terminal tool window support it.
+
+=== "IDLE"
+
+    No — its Shell window isn't a terminal emulator, so escape codes print as raw text instead of color.
+
+=== "Thonny"
+
+    No — same limitation as IDLE, its Shell window isn't a terminal emulator either.
+
 </div>

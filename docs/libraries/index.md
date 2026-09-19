@@ -238,12 +238,42 @@ Libraries allow us to apply Python to real tasks. These are a few popular ones, 
 
     Fetching data over the internet, like asking a website or API for information.
 
+    [**`how requests work`**](requests.md#how-a-request-works)
+
     [**`get`**](requests.md#making-a-request): 
+    [`headers`](requests.md#custom-headers) 
     [`json`](requests.md#parsing-json) 
     [`params`](requests.md#query-parameters) 
     [`status_code`](requests.md#checking-the-status-code) 
 
+    [**`post`**](requests.md#sending-data)
+
     [**`error handling`**](requests.md#handling-request-errors)
+
+</div>
+</div>
+
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block">
+#### Web scraping { .pt-homepage-heading }
+
+<div class="grid cards" markdown="block">
+
+-   :material-pot-steam-outline:{ .lg .middle } [__BeautifulSoup__](beautifulsoup.md) 
+[:material-download-outline:](beautifulsoup.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
+
+    Parsing HTML: finding tags, reading attributes and text, and turning a page into structured data.
+
+    [**`HTML and web pages`**](beautifulsoup.md#html-and-web-pages)
+
+    [**`Parsing HTML`**](beautifulsoup.md#parsing-html): 
+    [`Finding tags`](beautifulsoup.md#finding-tags) 
+    [`Reading text and attributes`](beautifulsoup.md#reading-text-and-attributes) 
+
+    [**`Extracting structured data`**](beautifulsoup.md#extracting-structured-data)
+
+    [**`Putting it together`**](beautifulsoup.md#putting-it-together): 
+    [`Common tasks`](beautifulsoup.md#common-tasks) 
+    [`Scraping a real page`](beautifulsoup.md#scraping-a-real-page) 
 
 </div>
 </div>

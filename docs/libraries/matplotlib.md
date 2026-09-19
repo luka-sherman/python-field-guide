@@ -6,11 +6,11 @@ description: >-
 
 # :material-chart-line:{ .lg .middle } matplotlib library
 
-[Official documentation :material-open-in-new:](https://matplotlib.org/stable/){ target="_blank" }
+[matplotlib documentation :material-open-in-new:](https://matplotlib.org/stable/){ .md-button target="_blank" }
 
 matplotlib is an open-source project, funded by nonprofit [NumFOCUS](https://numfocus.org/).
 
-**matplotlib** (its plotting interface imported as `plt`) is Python's foundational library for creating charts — line plots, bar charts, scatter plots — directly from plain Python data. It's a third-party package, not part of the standard library, but it's the base most other Python plotting tools are built on top of. Like [Pillow](pillow.md) and [OpenCV](opencv.md), matplotlib produces visual output — a chart shown in a window or saved to a file — which can't be shown inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file and run them with `python` to see the results.
+**matplotlib** (its plotting interface imported as `plt`) is Python's foundational library for creating charts — line plots, bar charts, scatter plots — directly from plain Python data. It's a third-party package, not part of the standard library, but it's a foundational Python plotting library that many other Python tools integrate with or build upon. Like [Pillow](pillow.md) and [OpenCV](opencv.md), matplotlib produces visual output — a chart shown in a window or saved to a file — which can't be shown inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file and run them with `python` to see the results.
 
 <div class="pfg-section" markdown="block">
 

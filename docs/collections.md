@@ -14,7 +14,7 @@ A **collection** is a single object that groups multiple values (like [basic typ
 |------|---------|:-----------------:|:-------:|------------|
 | <a href="#lists">**`list`**</a> | <pre><code class="language-python-ref">["ball", "burmese"]</code></pre> | position # | :material-check:{ .pt-icon-success } | <ul><li>An ordered group of items you can freely add to, remove from, or reorder</li><li>Not sure? Start here — the default, general-purpose choice</li></ul> |
 | <a href="#dictionaries">**`dictionary "dict"`**</a> | <pre><code class="language-python-ref">{&#10;  "species": "ball",&#10;  "length_ft": 5&#10;}</code></pre> | Name of a key | :material-check:{ .pt-icon-success } | <ul><li>Values stored under names ("keys") instead of position, like `species`, `length_ft`</li><li>Use it to look values up by name</li><li>Can't have duplicate keys</li></ul> |
-| <a href="#tuples">**`tuple`**</a> | <pre><code class="language-python-ref">("ball", "burmese")</code></pre> | position # | :material-close:{ .pt-icon-fail } | <ul><li>Like a list, but it's sequence of items can't be changed once created</li><li>Values that should stay exactly as they are, like a coordinate pair</li></ul> |
+| <a href="#tuples">**`tuple`**</a> | <pre><code class="language-python-ref">("ball", "burmese")</code></pre> | position # | :material-close:{ .pt-icon-fail } | <ul><li>Like a list, but its sequence of items can't be changed once created</li><li>Values that should stay exactly as they are, like a coordinate pair</li></ul> |
 | <a href="#sets">**`set`**</a> | <pre><code class="language-python-ref">{"ball", "burmese"}</code></pre> | Membership (`in`) | :material-check:{ .pt-icon-success } | <ul><li>An unordered group where duplicates are automatically dropped</li><li>Use it for fast "is this in here?" checks</li></ul> |
 
 </div>
@@ -495,13 +495,13 @@ flowchart LR
 
 ### Access a value
 
-- **`dict[key]`** accesses a value by key, in square brackets. This *will* raise an error if the key is not present, so best practice is to use the below get() instead. 
+- **`dict[key]`** accesses a value by key, in square brackets. This raises `KeyError` if the key is missing — use it when a missing key means something's wrong and should surface as an error.
 
     ```python-ref
     snake["species"]  # "ball"
     ```
 
-- **`get()`** does the same thing, but returns `None` if the key is not in the dict. You can provide an optional default value to fall back on that will be returned if the key is not in the dict.
+- **`get()`** does the same thing, but returns `None` if the key is not in the dict, instead of raising an error. Use it when a missing key is an expected possibility. You can provide an optional default value to fall back on that will be returned if the key is not in the dict.
 
     ```python-ref
     snake.get("species")        # "ball"
