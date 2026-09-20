@@ -539,8 +539,6 @@ hide:
 
     Readable Python code, and polished UI.
 
-    [**`linter`**](style.md#linter-tool)
-
     [**`PEP 8`**](style.md#pep-8-style-guide): 
     [`blank lines`](style.md#blank-lines) 
     [`docstrings`](style.md#docstrings) 
@@ -553,6 +551,8 @@ hide:
     [`order`](style.md#file-order) 
     [`quote style`](style.md#quote-style) 
     {: data-advanced="true" }
+
+    [**`Linters and formatters`**](style.md#linters-and-formatters)
 
     [**`Pythonic patterns`**](style.md#pythonic-patterns): 
     [`mutable defaults`](style.md#mutable-default-arguments)

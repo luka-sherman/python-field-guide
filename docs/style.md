@@ -15,35 +15,6 @@ Code that works isn't automatically code that's easy to read and maintain.
 
 <div class="pfg-section" markdown="block">
 
-## Linter tool
-
-A **linter** is a tool that scans your code and flags issues like [PEP 8](#pep-8-style-guide), Python's official style guide, and [Pythonic](#pythonic-patterns) idioms automatically. It reads your file, checks it against its rule set, and prints a report: one line per violation, giving the file, line number, a rule code, and a short message. 
-
-It can't catch a bug that only shows up when the code actually runs, since it never runs it. 
-
-A **formatter** tool (either separate, or a combined linter+formatter), actually rewrites your file on its own fixing the errors. However, it can be helpful to manually fix the issues on your own, so you learn to write them correctly for next time.  
-
-**Comparing different tools**
-
-| Tool | Type | Best for |
-|------|------|----------|
-| PyCharm's built-in inspections | Linter | No setup needed — catches most PEP 8 violations and several Pythonic issues automatically |
-| Pylint | Linter | Comprehensive checks — catches complex logical errors, not just formatting |
-| Ruff | Linter & Formatter | Speed — large projects or CI pipelines where Pylint's speed becomes noticeable |
-| Black | Formatter | Eliminating style debates entirely — rewrites the file to a consistent style automatically, instead of just flagging issues |
-
-**Get started in your environment**
-
-| Environment | Installing third party tools | Using a linter | Using a formatter |
-|-------------|-----------------------------------|-----------------|--------------------|
-| PyCharm | `Settings > Plugins >` tool name, then restart | Built-in inspections run automatically, no setup needed; plugins do too, once installed. Underlines issues, hover for full message. Full issue list in `View > Tool Windows > Problems`. | `Code > Format Code` |
-| VS Code | `View > Extensions >` tool name | Underlines issues, hover for full message. Full issue list in `View > Problems`. | Trigger via `Format Document`, or set it as the default formatter in `settings.json` |
-| Outside of an IDE | Send in terminal: `pip install` [tool name] | print report in the terminal:<ul><li>`pylint your_file.py`</li><li>`ruff check your_file.py`</li></ul> | rewrite the file directly:<ul><li>`black your_file.py`</li><li>`ruff format your_file.py`</li></ul>|
-
-</div>
-
-<div class="pfg-section" markdown="block">
-
 ## PEP 8 style guide
 
 [**PEP 8** is Python's official style guide](https://peps.python.org/pep-0008/) — a document written by Python's own core developers covering formatting, naming, and organizing code. "PEP" stands for Python Enhancement Proposal.
@@ -229,6 +200,35 @@ length_ft = 4.5  # too short       # PEP 8 — two spaces before, one after
 #check length                      # not PEP 8
 # check length                     # PEP 8
 ```
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
+## Linters and formatters
+
+A **linter** is a tool that scans your code and flags issues like [PEP 8](#pep-8-style-guide), Python's official style guide, and [Pythonic](#pythonic-patterns) idioms automatically. It reads your file, checks it against its rule set, and prints a report: one line per violation, giving the file, line number, a rule code, and a short message. 
+
+It can't catch a bug that only shows up when the code actually runs, since it never runs it. 
+
+A **formatter** tool (either separate, or a combined linter+formatter), actually rewrites your file on its own fixing the errors. However, it can be helpful to manually fix the issues on your own, so you learn to write them correctly for next time.  
+
+**Comparing different tools**
+
+| Tool | Type | Best for |
+|------|------|----------|
+| PyCharm's built-in inspections | Linter | No setup needed — catches most PEP 8 violations and several Pythonic issues automatically |
+| Pylint | Linter | Comprehensive checks — catches complex logical errors, not just formatting |
+| Ruff | Linter & Formatter | Speed — large projects or CI pipelines where Pylint's speed becomes noticeable |
+| Black | Formatter | Eliminating style debates entirely — rewrites the file to a consistent style automatically, instead of just flagging issues |
+
+**Get started in your environment**
+
+| Environment | Installing third party tools | Using a linter | Using a formatter |
+|-------------|-----------------------------------|-----------------|--------------------|
+| PyCharm | `Settings > Plugins >` tool name, then restart | Built-in inspections run automatically, no setup needed; plugins do too, once installed. Underlines issues, hover for full message. Full issue list in `View > Tool Windows > Problems`. | `Code > Format Code` |
+| VS Code | `View > Extensions >` tool name | Underlines issues, hover for full message. Full issue list in `View > Problems`. | Trigger via `Format Document`, or set it as the default formatter in `settings.json` |
+| Outside of an IDE | Send in terminal: `pip install` [tool name] | print report in the terminal:<ul><li>`pylint your_file.py`</li><li>`ruff check your_file.py`</li></ul> | rewrite the file directly:<ul><li>`black your_file.py`</li><li>`ruff format your_file.py`</li></ul>|
 
 </div>
 
