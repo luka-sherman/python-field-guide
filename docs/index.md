@@ -539,10 +539,6 @@ hide:
 
     Readable Python code, and polished UI.
 
-    [**`checklist`**](style.md#script-style-checklist)
-
-    [**`linter`**](style.md#linter-tool)
-
     [**`PEP 8`**](style.md#pep-8-style-guide): 
     [`blank lines`](style.md#blank-lines) 
     [`docstrings`](style.md#docstrings) 
@@ -556,11 +552,21 @@ hide:
     [`quote style`](style.md#quote-style) 
     {: data-advanced="true" }
 
+    [**`Linters, formatters`**](style.md#linters-and-formatters)
+
     [**`Pythonic patterns`**](style.md#pythonic-patterns): 
+    [`mutable defaults`](style.md#mutable-default-arguments)
     [`is None`](style.md#is-none-instead-of-none)
 
     [`truthy checks`](style.md#truthy-checks) 
     [`enumerate()`](style.md#enumerate-instead-of-range) 
+    {: data-advanced="true" }
+
+    [**`Efficiency`**](style.md#efficiency)
+    [`big O`](style.md#big-o-notation)
+    [`common optimizations`](style.md#common-optimizations)
+    [`time`](style.md#time-and-space) 
+    [`space`](style.md#time-and-space)
     {: data-advanced="true" }
 
     [**`Polished UX`**](style.md#polished-ux): 

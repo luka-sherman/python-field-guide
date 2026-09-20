@@ -41,6 +41,7 @@ DOC_IDS = [rel(p) for p in ALL_DOC_FILES]
 # a look.
 DOCUMENTED_ADMONITION_TYPES = {
     "run", "tip", "warning", "note", "info", "failure", "example", "success", "danger", "ai",
+    "efficiency",
 }
 
 ADMONITION_RE = re.compile(r"^\s*(\?\?\?|!!!)\s+(\w+)\s")

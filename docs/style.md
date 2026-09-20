@@ -15,98 +15,6 @@ Code that works isn't automatically code that's easy to read and maintain.
 
 <div class="pfg-section" markdown="block">
 
-## Script style checklist
-
-**PEP 8 Formatting**
-
-- [ ] **[Run a linter](#linter-tool) to fix PEP 8 issues** — catches most of the following automatically:
-    - [ ] **[Indentation](#indentation)** — 4 spaces per level, never tabs
-      { data-advanced="true" }
-    - [ ] **[Blank lines](#blank-lines)** — two around top-level functions/classes, one between methods
-    - [ ] **[Whitespace](#whitespace)** — spaces around operators, but not around a keyword argument's `=`
-    - [ ] **[Comments](#comments)** — two spaces before an inline `#`, one space after
-      { data-advanced="true" }
-    - [ ] **[Quote style](#quote-style)** — one quote style used consistently throughout the file
-      { data-advanced="true" }
-- [ ] **[File order](#file-order)** — standardized file layout; not something a linter checks by default
-  { data-advanced="true" }
-
-**Naming & documentation**
-
-- [ ] **[File names](workspace.md#step-2-write-and-run-a-python-file)** — `snake_case.py`, no hyphens or spaces
-- [ ] **[Variable and function names](#naming)** — does each describe what it holds?
-- [ ] **[Docstrings](#docstrings)** — does every function and file explain what it does?
-- [ ] **[Type hints](functions.md#type-hints)** — used on a function signature where the types aren't obvious?
-  { data-advanced="true" }
-- [ ] **[Constants](#constants)** — are unchanging numbers pulled out into named `ALL_CAPS` values?
-  { data-advanced="true" }
-
-**Pythonic patterns**
-
-- [ ] **[Mutable default arguments](functions.md#defining-a-function)** — a default list/dict shared across every call
-- [ ] **[`is None` instead of `== None`](#is-none-instead-of-none)** — a real correctness risk, not just style
-- [ ] **[`with open(...)` instead of manual `open()`/`close()`](files.md#with)** — avoids a file left open if something goes wrong
-- [ ] **[Catch specific exceptions](errors.md#catch-specific-exceptions)** — no bare `except:` swallowing errors you didn't expect
-- [ ] **[Truthy checks instead of `len(x) > 0`](#truthy-checks)** — test a collection directly
-  { data-advanced="true" }
-- [ ] **[`enumerate()` instead of `range(len(...))`](#enumerate-instead-of-range)** — loop with both index and item at once
-  { data-advanced="true" }
-- [ ] **[Tuple unpacking instead of a temporary variable](collections.md#packing-and-unpacking)** — swapping two variables directly
-
-**Structure**
-
-- [ ] **[Keep functions focused](functions.md#keep-functions-focused)** — does each function do just one job?
-
-**Polished UX**
-
-- [ ] **[Input validation](#input-validation)** — re-asks instead of crashing on a bad or missing value
-- [ ] **[Menus](#menus)** — a clear list of options instead of guessing what to type
-- [ ] **[Randomize messages](#randomize-messages)** — varied responses instead of the same output every run
-
-**Polished UI**
-
-- [ ] **[Escape sequences](#escape-sequences)** — `\n`, `\t`, and friends used instead of literal characters
-- [ ] **[Color styling](#color-styling)** — an ANSI code and a reset instead of plain, uncolored text
-- [ ] **[Multi-line strings](#multi-line-strings)** — a triple-quoted string instead of several chained `print()` calls
-- [ ] **[Formatting variables](#formatting-variables)** — f-strings and format specs instead of manual string building
-- [ ] **[Unicode symbols](#unicode-symbols)** — box-drawing, arrows, and checkmarks instead of plain ASCII
-- [ ] **[Dividers](#dividers)** — a row of repeated characters instead of a full box, to separate sections of output
-- [ ] **[Boxes](#boxes)** — a decorative box or bordered menu instead of a bare print statement
-- [ ] **[Progress bars](#progress-bars)** — visible feedback during a delay instead of a silent pause
-
-</div>
-
-<div class="pfg-section" markdown="block">
-
-## Linter tool
-
-A **linter** is a tool that scans your code and flags issues like [PEP 8](#pep-8-style-guide), Python's official style guide, and [Pythonic](#pythonic-patterns) idioms automatically. It reads your file, checks it against its rule set, and prints a report: one line per violation, giving the file, line number, a rule code, and a short message. 
-
-It can't catch a bug that only shows up when the code actually runs, since it never runs it. 
-
-A **formatter** tool (either separate, or a combined linter+formatter), actually rewrites your file on its own fixing the errors. However, it can be helpful to manually fix the issues on your own, so you learn to write them correctly for next time.  
-
-**Comparing different tools**
-
-| Tool | Type | Best for |
-|------|------|----------|
-| PyCharm's built-in inspections | Linter | No setup needed — catches most PEP 8 violations and several Pythonic issues automatically |
-| Pylint | Linter | Comprehensive checks — catches complex logical errors, not just formatting |
-| Ruff | Linter & Formatter | Speed — large projects or CI pipelines where Pylint's speed becomes noticeable |
-| Black | Formatter | Eliminating style debates entirely — rewrites the file to a consistent style automatically, instead of just flagging issues |
-
-**Get started in your environment**
-
-| Environment | Installing third party tools | Using a linter | Using a formatter |
-|-------------|-----------------------------------|-----------------|--------------------|
-| PyCharm | `Settings > Plugins >` tool name, then restart | Built-in inspections run automatically, no setup needed; plugins do too, once installed. Underlines issues, hover for full message. Full issue list in `View > Tool Windows > Problems`. | `Code > Format Code` |
-| VS Code | `View > Extensions >` tool name | Underlines issues, hover for full message. Full issue list in `View > Problems`. | Trigger via `Format Document`, or set it as the default formatter in `settings.json` |
-| Outside of an IDE | Send in terminal: `pip install` [tool name] | print report in the terminal:<ul><li>`pylint your_file.py`</li><li>`ruff check your_file.py`</li></ul> | rewrite the file directly:<ul><li>`black your_file.py`</li><li>`ruff format your_file.py`</li></ul>|
-
-</div>
-
-<div class="pfg-section" markdown="block">
-
 ## PEP 8 style guide
 
 [**PEP 8** is Python's official style guide](https://peps.python.org/pep-0008/) — a document written by Python's own core developers covering formatting, naming, and organizing code. "PEP" stands for Python Enhancement Proposal.
@@ -115,7 +23,7 @@ Python runs styled and unstyled code identically, so following PEP 8 doesn't mak
 
 ### File order { data-advanced="true" }
 
-A Python file conventionally follows the same layout, top to bottom.[^order-pep8]
+A Python file conventionally follows the same layout, top to bottom — a linter won't flag this on its own the way it does most of PEP 8, since it's a convention about where things go rather than a formatting rule.[^order-pep8]
 
 1. **Module docstring** — what the file does
 2. **[Imports](modules.md#importing-modules)** — standard library, then third-party, then local
@@ -297,16 +205,60 @@ length_ft = 4.5  # too short       # PEP 8 — two spaces before, one after
 
 <div class="pfg-section" markdown="block">
 
+## Linters and formatters
+
+A **linter** is a tool that scans your code and flags issues like [PEP 8](#pep-8-style-guide), Python's official style guide, and [Pythonic](#pythonic-patterns) idioms automatically. It reads your file, checks it against its rule set, and prints a report: one line per violation, giving the file, line number, a rule code, and a short message. 
+
+It can't catch a bug that only shows up when the code actually runs, since it never runs it. 
+
+A **formatter** tool (either separate, or a combined linter+formatter), actually rewrites your file on its own fixing the errors. However, it can be helpful to manually fix the issues on your own, so you learn to write them correctly for next time.  
+
+**Comparing different tools**
+
+| Tool | Type | Best for |
+|------|------|----------|
+| PyCharm's built-in inspections | Linter | No setup needed — catches most PEP 8 violations and several Pythonic issues automatically |
+| Pylint | Linter | Comprehensive checks — catches complex logical errors, not just formatting |
+| Ruff | Linter & Formatter | Speed — large projects or CI pipelines where Pylint's speed becomes noticeable |
+| Black | Formatter | Eliminating style debates entirely — rewrites the file to a consistent style automatically, instead of just flagging issues |
+
+**Get started in your environment**
+
+| Environment | Installing third party tools | Using a linter | Using a formatter |
+|-------------|-----------------------------------|-----------------|--------------------|
+| PyCharm | `Settings > Plugins >` tool name, then restart | Built-in inspections run automatically, no setup needed; plugins do too, once installed. Underlines issues, hover for full message. Full issue list in `View > Tool Windows > Problems`. | `Code > Format Code` |
+| VS Code | `View > Extensions >` tool name | Underlines issues, hover for full message. Full issue list in `View > Problems`. | Trigger via `Format Document`, or set it as the default formatter in `settings.json` |
+| Outside of an IDE | Send in terminal: `pip install` [tool name] | print report in the terminal:<ul><li>`pylint your_file.py`</li><li>`ruff check your_file.py`</li></ul> | rewrite the file directly:<ul><li>`black your_file.py`</li><li>`ruff format your_file.py`</li></ul>|
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Pythonic patterns
 
 **Pythonic** code uses Python's own built-in features and standard patterns, instead of verbose work arounds. 
 
 There's no single tool that reliably flags all "unpythonic" code the way PEP 8 has a document to check against. The real habit is asking *"does Python already have a built-in way to do this?"* before writing a manual loop, counter, or flag — an instinct built over time to recognize the built-in pattern.
 
-Other programming languages have different features and patterns, so if code is translated from another language into Python it might not be written very clearly. Pythonic code tends to be less buggy and faster.
+Other programming languages have different features and patterns, so if code is translated from another language into Python it might not be written very clearly. Pythonic code tends to be less buggy.
 A few of these a beginner tends to write out longhand before learning the built-in shortcut, roughly most to least common:
 
-### Truthy checks instead of `len(x) > 0` { #truthy-checks data-advanced="true" }
+### Mutable default arguments
+
+A default argument's value is created once, when the function is defined — not fresh on every call. A mutable default like a list or dict is quietly reused and built up across every call that doesn't pass its own, instead of starting empty each time.
+
+```python-ref
+def add_sighting(species, log=[]):     # the same list, reused on every call
+    log.append(species)
+    return log
+
+def add_sighting(species, log=None):   # Pythonic — a fresh list every call
+    log = [] if log is None else log
+    log.append(species)
+    return log
+```
+
+### Truthy checks instead of len(x) > 0 { #truthy-checks data-advanced="true" }
 
 Test a collection directly — a non-empty list is already truthy.
 
@@ -318,7 +270,7 @@ if species:              # Pythonic — a non-empty list is already truthy
     print("found some")
 ```
 
-### `enumerate()` instead of `range(len(...))` { #enumerate-instead-of-range data-advanced="true" }
+### enumerate() instead of range(len(...)) { #enumerate-instead-of-range data-advanced="true" }
 
 Loop with both the index and the item at once, instead of indexing into the list by hand.
 
@@ -330,9 +282,9 @@ for i, s in enumerate(species):      # Pythonic — enumerate() hands back both
     print(i, s)
 ```
 
-### `is None` instead of `== None` { #is-none-instead-of-none }
+### is None instead of == None { #is-none-instead-of-none }
 
-Checking against `None` is a check of identity, not equality, so `is` is the correct tool.
+Checking against `None` is a check of identity, not equality, so `is` is the correct tool — `==` usually happens to work too, but a class can override what `==` means, which makes this a real correctness risk and not just a style nit.
 
 ```python-ref
 length_ft = None
@@ -347,13 +299,69 @@ if length_ft is None:                # Pythonic — `is` is the correct tool for
 
 <div class="pfg-section" markdown="block">
 
+## Efficiency { data-advanced="true" }
+
+Correct code produces the right output. 
+
+Efficient code does it **without spending more resources than the problem needs**, which becomes a significant issue once your number of variables or calculations start increasing to the thousands and beyond.
+
+### Time and space { data-card-link="skip" }
+
+These are two **computational resources** to weigh while designing a program — not the only ones that exist, but the two that show up most in everyday Python code.
+
+| | Time | Space |
+|---|---|---|
+| **Definition** | Steps an operation takes. A faster computer still runs the same code quicker. | Extra memory an operation needs, beyond the input itself. |
+| **You might not notice this on a small script because...** | Modern hardware can still run it fast enough not to notice. | The items can still easily fit in memory. |
+| **Starts becoming an issue at scale because...** | A test list of 10 behaves nothing like a real dataset of 100,000, if the operation grows quadratically instead of linearly. | Holding several full copies of a 100,000-record dataset can exceed available memory. |
+| **Risk if ignored** | Slows down or stops responding — and can cost $, since servers bill for processing time used. | Runs out of memory and crashes — and can cost $, since servers bill for memory used. |
+
+#### Big O notation 
+
+Representing **O**rder of growth, the standard way to describe *how time and space grow*:
+
+- <span class="pt-bigo pt-bigo--good">O(1)</span> constant -> doesn't grow with n — the same extra space or steps no matter the input size
+- <span class="pt-bigo pt-bigo--ok">O(n)</span> or <span class="pt-bigo pt-bigo--ok">O(log n)</span> or <span class="pt-bigo pt-bigo--ok">O(n log n)</span> -> grows but stays manageable — double the input, and an O(n) operation takes about twice as long
+- <span class="pt-bigo pt-bigo--bad">O(n²)</span> or worse -> grows fast enough to become a bottleneck once n is large — double the input, and it takes four times as long
+
+#### Other considerations
+
+- **Constant factor** — has the same growth rate, but each individual step actually costs less time or memory to run — like two people crossing a room in the same number of steps, just one takes bigger, faster steps than the other.
+- **Redundant work** — doing something twice that once would cover.
+- **Amortized cost** — a single call is occasionally expensive (list `append()` resizing its underlying storage, say), but averaged across every call it makes over time, the cost still comes out cheap.
+
+
+### Common optimizations { data-card-link="skip" }
+
+| While using | Instead of | **do this** | Because of |
+|---|---|---|---|
+| [Strings](types.md#combine) | `+=` in a loop<br /><span class="pt-bigo pt-bigo--bad">O(n²)</span> | `.join()`<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Big O |
+| [Lists](collections.md#create) | `result = result + [item]` in a loop<br /><span class="pt-bigo pt-bigo--bad">O(n²)</span> | `result.append(item)`<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Big O |
+| [Lists](collections.md#inspect) | Counting items in a loop<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `len()`<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Big O |
+| [Dictionaries](collections.md#dictionaries) | Checking `in` then indexing (two lookups)<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | `.get()` (one lookup)<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Redundant work |
+| [Sets](collections.md#sets) | `in` on a list or tuple<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `in` on a set or dict<br /><span class="pt-bigo pt-bigo--good">O(1)</span> average | Big O |
+| [Lists](collections.md#lists) | `sorted()`, when the original doesn't need to survive<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> space | `sort()`<br /><span class="pt-bigo pt-bigo--good">O(1)</span> space | Big O |
+| [Sets](collections.md#sets) | Checking every item against every other item for a duplicate, a loop nested inside another loop<br /><span class="pt-bigo pt-bigo--bad">O(n²)</span> | Converting to a set to check for duplicates<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Big O |
+| [Dictionaries](collections.md#dictionaries) | A list of `(key, value)` tuples, searched by hand<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | A dict<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Big O |
+| [Lists](collections.md#lists) | `insert(0, x)` / `pop(0)`<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `append()` / `pop()` (or `deque` for the front)<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Amortized |
+| [By line](files.md#by-line) | `.read()` / `.readlines()` on a large file<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> space | A loop, line by line<br /><span class="pt-bigo pt-bigo--good">O(1)</span> space | Big O |
+| [Recursion](functions.md#recursion) | Deep recursion<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> space | A loop<br /><span class="pt-bigo pt-bigo--good">O(1)</span> space | Big O |
+| [Array operations](libraries/numpy.md#array-operations) | A Python loop over an array<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | A vectorized NumPy operation, smaller constant<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Constant factor |
+| [Searching for a pattern](libraries/re.md#searching-for-a-pattern) | Recompiling a regex pattern every pass<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `re.compile()` once, reused<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Redundant work |
+| [try/except](errors.md#catch-with-tryexcept) | Checking first, when failure is rare<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | `try`/`except`, cheaper when it succeeds<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Constant factor |
+| [Instance attributes](classes.md#instance-attributes) | Many plain instances<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> memory | `__slots__`, smaller constant<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> memory | Constant factor |
+
+</div>
+
+<div class="pfg-section" markdown="block">
+
 ## Polished UX
 
-**UX** (user experience) here means how the script behaves — how it responds to what someone types. A validated input, a working menu, and a varied response all make it feel considered instead of accidental.
+**UX** (user experience) is how a program interacts with the person running it and engages with them — including what it asks, how it reacts to their answer, and how it recovers when they get something wrong.
 
 ### Input validation
 
-An `input()` is only as reliable as what it assumes the user will type. 
+An `input()` is only as reliable as what it assumes the user will type. Validating means re-asking on a bad or missing answer, instead of letting the program crash or continue on with garbage input.
 
 #### Wrong choice
 
@@ -405,7 +413,7 @@ print(f"\nScanning... {species} detected.")
 
 ### Menus
 
-Let the user pick from a short list of options with `input()` and [`match`/`case`](conditionals.md#match-case).
+Let the user pick from a short list of options with `input()` and [`match`/`case`](conditionals.md#match-case) — a clear list of options to choose from, instead of leaving them to guess what to type.
 
 #### Simple input
 
@@ -552,11 +560,11 @@ else:
 
 ## Polished UI
 
-**UI** (user interface) here means how the script's output looks — the terminal text itself, creatively styled within its limitations: formatted output, Unicode framing, and animated progress.
+**UI** (user interface) is how a program presents itself to the person running it. Just like an app or website, the terminal is an interface that can be designed within its limitations to create a more engaging and intuitive user experience.  
 
 ### Escape sequences
 
-An **escape sequence** is a backslash followed by a letter, standing in for a character that couldn't otherwise appear in the string. 
+An **escape sequence** is a backslash followed by a letter, standing in for a character that couldn't otherwise appear in the string — used instead of typing the literal character (an actual tab, an actual line break) directly into the source.
 
 | Escape | Prints |
 |---|---|
@@ -601,9 +609,11 @@ Here are three ways to print the same four-line string:
     """)
     ```
 
+For anything longer than a line or two, the triple-quoted string is easiest to read and change later — it holds the whole layout in one block, instead of assembling it across several separate `print()` calls.
+
 ### Formatting variables
 
-An [f-string](types.md#building-strings) — a variable's name dropped directly inside `{}` — is what turns the dashboard's bare `snake` dict into a filled-in box, and what plugs a typed-in name into the [banner](#banner)'s greeting. A [format spec](types.md#building-strings) inside that same `{}` controls how the value looks, built from these pieces in order:
+F-strings and format specs assemble a formatted string directly, instead of building it up by hand with `+` and manual padding. An [f-string](types.md#building-strings) — a variable's name dropped directly inside `{}` — is what turns the dashboard's bare `snake` dict into a filled-in box. A [format spec](types.md#building-strings) inside that same `{}` controls how the value looks, built from these pieces in order:
 
 1. fill (padding character)
 2. align (left, right, center, or pad between a sign and its digits)
@@ -631,6 +641,8 @@ print(f"""
 ```
 
 ### Unicode symbols
+
+Box-drawing characters, arrows, and checkmarks give output visual structure that plain ASCII can't — swapped in wherever a border, pointer, or status icon would otherwise just be a `-`, `>`, or `x`.
 
 #### Original ASCII
 
@@ -707,7 +719,7 @@ Copy and paste these Unicode characters into your print statements, or [Browse t
 
 ### Dividers
 
-A row of repeated characters separates sections of output — simpler than drawing a full box.
+A row of repeated characters separates sections of output.
 
 ```python
 print("survey results")
@@ -716,7 +728,7 @@ print("=" * 40)
 
 ### Boxes
 
-Combine the [box-drawing unicode symbols](#unicode-symbols) to emphasize output — a full frame instead of just a [divider](#dividers) line.
+Combine the [box-drawing unicode symbols](#unicode-symbols) to emphasize output, these were designed for early programs.
 
 ```python
 print("""
@@ -738,7 +750,7 @@ print("""
 
 ### Progress bars
 
-`time.sleep()` from the [time library](modules.md#import) pauses a program for a set number of seconds. Called in a loop between `print()` calls with [`end=""`](types.md#combine) to keep the cursor on the same line, it fakes a "loading" delay.
+A pause with no output looks like the program has frozen — printing something that visibly changes during the wait shows it's still working, instead of leaving the screen silent. `time.sleep()` from the [time library](modules.md#import) pauses a program for a set number of seconds. Called in a loop between `print()` calls with [`end=""`](types.md#combine) to keep the cursor on the same line, it fakes a "loading" delay.
 
 ```python-ref
 import time
@@ -776,9 +788,12 @@ print("█" * 10)
 █░░░░░░░░
 ██░░░░░░░
 ███░░░░░░
-...
+████░░░░░
+█████░░░░
+██████░░░
+███████░░
+████████░
 █████████
-██████████
 ```
 
 A fixed list of characters, indexed with `i % len(spinner)` so it wraps back to the start instead of running out, animates the same way — a spinner instead of a bar.
@@ -800,7 +815,7 @@ The above character changes in place, so you see an animation cycling through th
 
 ### Color styling
 
-Terminal text that has **color**, **bold**, **underlines**, and a **background color** can be styled by printing escape sequences around the string you would like to style. 
+Terminal text that has **color**, **bold**, **underlines**, and a **background color** can be styled by printing escape sequences around the string you would like to style, instead of leaving it plain — an ANSI code before it, and a reset code after so the styling doesn't leak into whatever prints next.
 
 #### Escape sequence structure
 

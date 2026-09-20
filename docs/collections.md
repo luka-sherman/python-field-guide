@@ -443,6 +443,32 @@ class diagram panel
     See the [collections library page](libraries/collections.md) for the rest of `deque`'s
     methods (`rotate()`, `maxlen=`, and more) and for the other list-adjacent tools it adds.
 
+<div data-advanced="true" markdown="block">
+
+??? efficiency "For efficiency, use append()/pop() instead of insert(0, x)/pop(0)"
+    | | Time | Space |
+    |---|---|---|
+    | `append()` / `pop()` | <span class="pt-bigo pt-bigo--good">O(1)</span> | <span class="pt-bigo pt-bigo--good">O(1)</span> |
+    | `insert(0, x)` / `pop(0)` | <span class="pt-bigo pt-bigo--ok">O(n)</span> | <span class="pt-bigo pt-bigo--good">O(1)</span> |
+
+    `append()` and `pop()` (from the end) run in constant [time](style.md#time-and-space) — one step no matter how long the list already is. `insert(0, item)` and `pop(0)` run in linear time, since Python has to shift every remaining item over.
+
+    See [Efficiency](style.md#efficiency) for why this distinction matters.
+
+??? efficiency "For efficiency, sorted() copies the list; sort() doesn't"
+    | | Time | Space |
+    |---|---|---|
+    | `sort()` | <span class="pt-bigo pt-bigo--ok">O(n log n)</span> | <span class="pt-bigo pt-bigo--good">O(1)</span> |
+    | `sorted()` | <span class="pt-bigo pt-bigo--ok">O(n log n)</span> | <span class="pt-bigo pt-bigo--ok">O(n)</span> |
+
+    `sort()` rearranges the list **in place**, while `sorted()` builds and returns an entirely new one, so both copies sit in memory at once until the original is no longer needed. 
+    
+    Reach for `sort()` when the original order doesn't need to survive; `sorted()` when it does.
+
+    See [Efficiency](style.md#efficiency) for why this distinction matters.
+
+</div>
+
 </div>
 
 <div class="pfg-section" markdown="block">
@@ -507,6 +533,20 @@ flowchart LR
     snake.get("species")        # "ball"
     snake.get("weight_lbs", 0)  # 0 — key is missing, so the default is returned instead of None
     ```
+
+<div data-advanced="true" markdown="block">
+
+??? efficiency "For efficiency, use .get() instead of checking in first"
+    | | Time | Space |
+    |---|---|---|
+    | `if key in snake: snake[key]` | <span class="pt-bigo pt-bigo--good">O(1)</span> (two lookups) | — |
+    | `snake.get(key)` | <span class="pt-bigo pt-bigo--good">O(1)</span> (one lookup) | — |
+
+    `if key in snake: value = snake[key]` does two hash lookups — one to check membership, one to fetch the value. `snake.get(key)` does the same job in one. Both are O(1), so this isn't a [Big O](style.md#big-o-notation) difference, just avoided repeated work — worth reaching for out of habit once it's familiar, not worth restructuring existing code to chase.
+
+    See [Efficiency](style.md#efficiency) for why this distinction matters.
+
+</div>
 
 ### Loop through a dictionary
 
@@ -658,6 +698,20 @@ flowchart LR
         }
     snakes["burmese"]["length_ft"]  # 16
     ```
+
+<div data-advanced="true" markdown="block">
+
+??? efficiency "For efficiency, use a dict instead of a list to look up by key"
+    | | Time | Space |
+    |---|---|---|
+    | Dict `dict[key]` / `.get()` | <span class="pt-bigo pt-bigo--good">O(1)</span> | — |
+    | List of `(key, value)` tuples, searched by hand | <span class="pt-bigo pt-bigo--ok">O(n)</span> | — |
+
+    Looking up a key with `dict[key]` or `.get()` is O(1) — Python computes where to look directly, the same cost regardless of how many keys the dict holds. Storing the same data as a list of `(key, value)` tuples instead and searching for a match by hand is O(n) — worst case, checking every pair before finding it or coming up empty. That's the main reason to reach for a dict instead of a list when data needs to be looked up by a key.
+
+    See [Efficiency](style.md#efficiency) for why this distinction matters.
+
+</div>
 
 ### Going further { data-card-link="skip" }
 
@@ -1270,6 +1324,20 @@ These check a relationship between two sets and hand back a `bool`, rather than 
     species = ["ball", "burmese", "ball", "boa", "burmese"]
     list(set(species))  # ["burmese", "ball", "boa"] — order not guaranteed
     ```
+
+<div data-advanced="true" markdown="block">
+
+??? efficiency "For efficiency, use a set instead of a list for membership checks"
+    | | Time | Space |
+    |---|---|---|
+    | List/tuple `in` | <span class="pt-bigo pt-bigo--ok">O(n)</span> | — |
+    | Set/dict `in` | <span class="pt-bigo pt-bigo--good">O(1)</span> average | — |
+
+    Checking `in` on a list or tuple is O(n) — worst case, Python has to look at every item before it can say no. A set (and a dict, checking its keys) looks a value up directly instead of scanning, so `in` on either is O(1) on average, regardless of size. That's the "far faster" mentioned above, named precisely — it's also the reason converting a list to a set is a common move before doing a lot of membership checks against it.
+
+    See [Efficiency](style.md#efficiency) for why this distinction matters.
+
+</div>
 
 ### Going further { data-card-link="skip" }
 

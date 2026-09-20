@@ -376,6 +376,20 @@ finally:
         print(f"found it: {length} ft")   # runs only if try succeeded
     ```
 
+<div data-advanced="true" markdown="block">
+
+??? efficiency "For efficiency, use try/except when success is the common case"
+    | | Time | Space |
+    |---|---|---|
+    | `try` succeeds | <span class="pt-bigo pt-bigo--good">O(1)</span> | — |
+    | `try` fails | <span class="pt-bigo pt-bigo--good">O(1)</span> (larger constant, same class) | — |
+
+    A `try` block that succeeds costs almost nothing — Python doesn't pay for exception handling until an exception is actually raised. When one is raised, unwinding to the matching `except` has real overhead, more than an `if` check would. That makes `try`/`except` (checking after — sometimes called EAFP, "easier to ask forgiveness than permission") cheap for something expected to usually succeed, like the `float()` conversion above, and comparatively expensive as a substitute for an `if` check on something that fails often — checking first (LBYL, "look before you leap") avoids paying for exceptions that are more the rule than the exception.
+
+    See [Efficiency](style.md#efficiency) for why this distinction matters.
+
+</div>
+
 ??? run "Run a try/except example"
     A case where try/except is the right tool — converting a value that might not be a valid number:
 

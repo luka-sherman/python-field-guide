@@ -130,6 +130,31 @@ print(burmese.species)    # "burmese" — a separate copy, not shared
 
 For a value every object should share instead of holding its own copy, see [class attributes](#class-attributes) below.
 
+<div data-advanced="true" markdown="block">
+
+??? efficiency "For efficiency, use __slots__ when creating many instances"
+    | | Time | Space (n instances) |
+    |---|---|---|
+    | Plain instance | — | <span class="pt-bigo pt-bigo--ok">O(n)</span> |
+    | `__slots__` | — | <span class="pt-bigo pt-bigo--ok">O(n)</span> (same class, smaller constant) |
+
+    Each instance normally keeps its attributes in a per-object `__dict__`, which costs some [memory](style.md#time-and-space) on top of the attribute values themselves — usually not worth worrying about, but it adds up when a program holds thousands or millions of instances at once. `__slots__` trades that flexibility for a fixed, lighter attribute layout:
+
+    ```python-ref
+    class Snake:
+        __slots__ = ("species", "length_ft")   # only these attributes are allowed, no __dict__
+
+        def __init__(self, species, length_ft):
+            self.species = species
+            self.length_ft = length_ft
+    ```
+
+    An instance built from this class can no longer get a new attribute added after creation — `ball.venomous = False` raises `AttributeError`, since there's no `__dict__` left for it to go into.
+
+    See [Efficiency](style.md#efficiency) for why this distinction matters.
+
+</div>
+
 ### Class attributes
 
 A class attribute is set directly in the class body, outside `__init__` — shared by every object built from that class, unlike an [instance attribute](#instance-attributes), which is a separate copy per object. Assigning to `object.attribute` always creates (or updates) an instance attribute, even if a class attribute of the same name exists — it doesn't change the shared value, just shadows it for that one object.

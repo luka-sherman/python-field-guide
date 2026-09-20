@@ -24,6 +24,9 @@
   --pt-heading-h3: #33724C;
   --pt-ref-keyword: #825E25;
   --pt-danger: #933331;
+  /* Big O severity badges in style.md's "Efficient code" reference table —
+     amber middle ground between --pt-accent (cheap) and --pt-danger (expensive). */
+  --pt-warn: #8A5A00;
   /* Runnable python blocks share the same light panel look as
      .pyodide-reference in light mode (not a dark terminal here — that's
      dark-mode-only, see the slate scheme below). */
@@ -54,6 +57,7 @@
   --pt-heading-h3: #6FA783;
   --pt-ref-keyword: #C99B5A;
   --pt-danger: #CB7671;
+  --pt-warn: #D9A441;
 
   /* Runnable python blocks keep a dedicated dark terminal panel here
      (unlike the light scheme above, which now matches --pt-panel) — this
@@ -377,16 +381,70 @@ input:checked + .md-consent__settings {
   mask-image: var(--md-admonition-icon--python);
 }
 
+/* ---- Custom "efficiency" admonition for runtime/space asides (data-advanced only) ---- */
+
+:root {
+  --md-admonition-icon--efficiency: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11,15H6L13,1V9H18L11,23V15Z"/></svg>');
+}
+
+.md-typeset .admonition.efficiency,
+.md-typeset details.efficiency {
+  border-color: #8a5a00;
+}
+
+.md-typeset .efficiency > .admonition-title,
+.md-typeset .efficiency > summary {
+  background-color: rgba(138, 90, 0, 0.1);
+}
+
+.md-typeset .efficiency > .admonition-title::before,
+.md-typeset .efficiency > summary::before {
+  background-color: #8a5a00;
+  -webkit-mask-image: var(--md-admonition-icon--efficiency);
+  mask-image: var(--md-admonition-icon--efficiency);
+}
+
+/* Big O severity badges — style.md's "Efficient code" reference table colors
+   each Time/Space cell by how expensive that growth rate actually is, so the
+   table reads at a glance instead of requiring the reader to parse notation
+   row by row. Three tiers only: cheap/moderate/expensive, not one color per
+   notation, since that's the actual decision a reader needs from the table. */
+.pt-bigo {
+  display: inline-block;
+  padding: 0.05em 0.5em;
+  border-radius: 0.25em;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pt-bigo--good {
+  background-color: color-mix(in srgb, var(--pt-accent) 15%, transparent);
+  color: var(--pt-accent);
+}
+
+.pt-bigo--ok {
+  background-color: color-mix(in srgb, var(--pt-warn) 15%, transparent);
+  color: var(--pt-warn);
+}
+
+.pt-bigo--bad {
+  background-color: color-mix(in srgb, var(--pt-danger) 15%, transparent);
+  color: var(--pt-danger);
+}
+
 /* Material's own summary focus ring is gated behind a JS-added `.focus-visible`
    class (an old keydown-tracking polyfill it ships), not the native
    `:focus-visible` pseudo-class — `.md-typeset summary:not(.focus-visible)`
    unconditionally zeroes the outline until that class shows up. Restore a
    visible indicator via the native pseudo-class directly, same pattern used
    for the run button and card links elsewhere in this file, so keyboard focus
-   on our custom run/ai/python collapsible admonitions is never silently blank. */
+   on our custom run/ai/python/efficiency collapsible admonitions is never silently blank. */
 .md-typeset .run > summary:focus-visible,
 .md-typeset .ai > summary:focus-visible,
-.md-typeset .python > summary:focus-visible {
+.md-typeset .python > summary:focus-visible,
+.md-typeset .efficiency > summary:focus-visible {
   outline: 0.15rem solid var(--pt-accent);
   outline-offset: 0.15rem;
 }

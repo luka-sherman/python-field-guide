@@ -26,9 +26,9 @@ Quick cheatsheet for basic Python.
 
 **This is a casual and unpolished personal project, started in Aug '26.**
 
-I wrote and built this from scratch, not as a complete Python language reference, but as a visualization of my mental model of how Python works.
+I wrote and built this from scratch, not as a complete Python language reference, but as a **visualization of my mental model** of how Python works.
 
- It started as a few quick-reference explanations on loops and lists for high-school intro-Python students working on their first independent projects, and evolved from there. I couldn't find a resource my students would consistently use that had:
+It started as a few quick-reference explanations on loops and lists for high-school intro-Python students working on their first independent projects, and evolved from there. I couldn't find a resource my students would consistently use that had:
 
 - simple explanations for beginners without technical jargon
 - no advanced topics that intimidate or overwhelm beginners
@@ -122,6 +122,16 @@ A two-option [switch](docs/javascripts/essentials_toggle.js) that lets a reader 
 - On a homepage card-grid row, it hides just that row; `data-advanced="card"` hides an entire homepage card instead, for a whole linked page rather than one section.
 
 Each marking is independent — there's no shared list of "advanced" topics to keep in sync, just the attribute at each spot in the Markdown. State persists in `localStorage` and applies on every page (also settable via a `?simplified=true`/`false` URL param, for sharing a pre-set link). If a visible link points at a heading that's currently hidden (e.g. collections.md's cheat-sheet table linking to `#tuples`), following it flips the toggle back to Advanced and reveals the target instead of landing on nothing.
+
+Some examples of content that is hidden while in "Essentials" mode, while a student is first learning to program:
+
+- Collection types a beginner can often get by without (tuples, sets)
+- OOP features past a basic class (method decorators, multiple inheritance, polymorphism, encapsulation, operator overloading, dataclasses, abstract base classes). OOP can already be a challenging topic, and they should first have a strong understanding of it before adding these features.
+- Function features (type hints, positional-only/keyword-only parameters, recursion, decorators, generators)
+- File-handling edge cases (seek and tell, the `"x"` create mode)
+- Styling suggestions that aren't critical (file order, constants, quote style, indentation, comments, the truthy-check and `enumerate()` idioms)
+- Workspace/tooling topics as most students are using an IDE (using the terminal, virtual environments)
+- Efficiency, awareness of space and time resources, Big O notation
 
 ## Theme
 

@@ -62,6 +62,16 @@ print(match.group())
     length_pattern.search(note).group()    # "12ft"
     ```
 
+??? efficiency "For efficiency, compile the pattern once with re.compile()"
+    | | Compilation cost (over a loop of n calls) |
+    |---|---|
+    | Recompiled every pass | <span class="pt-bigo pt-bigo--ok">O(n)</span> |
+    | Compiled once, reused | <span class="pt-bigo pt-bigo--good">O(1)</span> |
+
+    Calling `re.search()` (or `.findall()`, `.sub()`, etc.) with a raw pattern string repeats the same compilation work internally on every call, even when the pattern never changes — across a loop of n calls, that's n compilations of the same pattern. Compiling it once with `re.compile()` above the loop and calling `.search()` on the result instead does that work exactly once, however many times the loop runs.
+
+    See [Efficiency](../style.md#efficiency) for why this distinction matters.
+
 ??? run "Run a searching example"
     All the examples above, combined into one script:
 

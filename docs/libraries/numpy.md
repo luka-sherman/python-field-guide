@@ -91,6 +91,18 @@ lengths_m = lengths_ft * 0.3048
 print(lengths_m)
 ```
 
+??? efficiency "For efficiency, use vectorized operations instead of a Python loop"
+    | | Time | Space |
+    |---|---|---|
+    | Python `for` loop | <span class="pt-bigo pt-bigo--ok">O(n)</span> | — |
+    | Vectorized | <span class="pt-bigo pt-bigo--ok">O(n)</span> (same class, smaller constant) | — |
+
+    A Python `for` loop over a list and a vectorized NumPy operation both touch every element once — O(n) either way, the same [Big O](../style.md#big-o-notation) class. 
+    
+    The speed difference is a constant factor, not the order of growth: each pass of a Python loop pays the interpreter's per-iteration overhead, while a vectorized operation runs its loop once, in compiled C, underneath a single Python call. That overhead is small per element but adds up — the larger the array, the bigger the gap, even though neither approach's growth rate has changed.
+
+    See [Efficiency](../style.md#efficiency) for why this distinction matters.
+
 ### Aggregating an array
 
 Collapses an entire array down to a single summary number. `.mean()`, `.max()`, `.min()`, and `.sum()` — the same idea as Python's built-in `sum()` and `max()`, but computed directly on the array without converting it back to a list first.
