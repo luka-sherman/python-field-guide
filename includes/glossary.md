@@ -51,6 +51,8 @@
 *[Truthiness]: Whether a value counts as True or False when used somewhere a bool is expected, even if it isn't a bool itself
 *[hashable]: Can be used as a dict key or set member because it never changes after creation — most immutable types qualify, like int, float, str, bool, None, and tuple
 *[Hashable]: Can be used as a dict key or set member because it never changes after creation — most immutable types qualify, like int, float, str, bool, None, and tuple
+*[hash]: A number computed from a value, used to find where it's stored in a dict or set almost instantly, instead of scanning for it
+*[Hash]: A number computed from a value, used to find where it's stored in a dict or set almost instantly, instead of scanning for it
 *[queue]: A line of items processed in the order they arrive — the first one added is the first one handled
 *[Queue]: A line of items processed in the order they arrive — the first one added is the first one handled
 *[bug]: A mistake in your code that makes it do the wrong thing, whether or not Python actually notices and raises an error
@@ -69,3 +71,4 @@
 *[Lazily]: In a way that computes or produces a value only at the moment it's actually needed, instead of all at once ahead of time
 *[PascalCase]: Capitalizing each word with no separators (e.g. Snake, BallPython) — the naming convention for classes, unlike variables' snake_case
 *[UTF-8]: The encoding used to save a Python file by default — the scheme that turns each Unicode character into the actual bytes a computer stores and reads, and it can represent every character Unicode defines
+*[Big O]: Notation describing how a cost grows as the input size grows, not the exact number of seconds or bytes

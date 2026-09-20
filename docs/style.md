@@ -299,7 +299,7 @@ if length_ft is None:                # Pythonic — `is` is the correct tool for
 
 <div class="pfg-section" markdown="block">
 
-## Efficient code { data-advanced="true" }
+## Efficiency { data-advanced="true" }
 
 Correct code produces the right output. 
 

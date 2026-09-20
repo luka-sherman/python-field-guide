@@ -552,7 +552,7 @@ hide:
     [`quote style`](style.md#quote-style) 
     {: data-advanced="true" }
 
-    [**`Linters and formatters`**](style.md#linters-and-formatters)
+    [**`Linters, formatters`**](style.md#linters-and-formatters)
 
     [**`Pythonic patterns`**](style.md#pythonic-patterns): 
     [`mutable defaults`](style.md#mutable-default-arguments)
@@ -562,7 +562,7 @@ hide:
     [`enumerate()`](style.md#enumerate-instead-of-range) 
     {: data-advanced="true" }
 
-    [**`Efficient code`**](style.md#efficient-code)
+    [**`Efficiency`**](style.md#efficiency)
     [`big O`](style.md#big-o-notation)
     [`common optimizations`](style.md#common-optimizations)
     [`time`](style.md#time-and-space) 

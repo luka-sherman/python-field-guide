@@ -556,6 +556,22 @@ Every recursive function needs two parts:
     print("liftoff")
     ```
 
+<div data-advanced="true" markdown="block">
+
+??? efficiency "For efficiency, use a loop instead of recursion to save memory"
+    | | Time | Space |
+    |---|---|---|
+    | Loop | <span class="pt-bigo pt-bigo--ok">O(n)</span> | <span class="pt-bigo pt-bigo--good">O(1)</span> |
+    | Recursion, n levels deep | <span class="pt-bigo pt-bigo--ok">O(n)</span> calls | <span class="pt-bigo pt-bigo--ok">O(n)</span> stack |
+
+    Every call a function makes — recursive or not — adds a frame to the call stack and holds that call's local variables until it returns. A recursive function keeps every call's frame alive until the base case is reached, so its space cost is O(n) for n levels of recursion. That's why the `RecursionError` exists — Python caps how deep the stack can grow before it runs out of room.
+    
+    A loop reuses the same frame each pass, O(1) [space](style.md#time-and-space).
+
+    See [Efficiency](style.md#efficiency) for why this distinction matters.
+
+</div>
+
 ??? run "Run a recursion example"
     All the examples above, combined into one script:
 

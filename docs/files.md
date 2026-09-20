@@ -212,6 +212,22 @@ with open("notes.txt", "r") as file:
             print(line.strip())
     ```
 
+<div data-advanced="true" markdown="block">
+
+??? efficiency "For efficiency, loop over a file instead of reading it all at once"
+    | | Time | Space |
+    |---|---|---|
+    | `.read()` / `.readlines()` | <span class="pt-bigo pt-bigo--ok">O(n)</span> | <span class="pt-bigo pt-bigo--ok">O(n)</span> |
+    | Loop over the file, line by line | <span class="pt-bigo pt-bigo--ok">O(n)</span> | <span class="pt-bigo pt-bigo--good">O(1)</span> |
+
+    `.read()`/`.readlines()` holds the entire file's contents in memory at once (O(n) [space](style.md#time-and-space)). Looping over the file object or calling `.readline()` repeatedly needs only enough memory for the current line, O(1) space regardless of file size. 
+    
+    For a small file it doesn't matter; for a file too large to comfortably fit in memory, it's the difference between the program running and it not.
+
+    See [Efficiency](style.md#efficiency) for why this distinction matters.
+
+</div>
+
 #### Seek and tell { data-advanced="true" }
 
 `.tell()` returns the current position in the file, as a character count from the start. `.seek(position)` moves back to a given position, letting you re-read part of a file without closing and reopening it.

@@ -428,6 +428,22 @@ Strings use the same index and slice syntax as lists. `0` is the first character
     "-".join(["burmese", "python"])  # "burmese-python"
     ```
 
+<div data-advanced="true" markdown="block">
+
+??? efficiency "For efficiency, use .join() instead of += in a loop"
+    | | Time | Space |
+    |---|---|---|
+    | `+=` in a loop, n times | <span class="pt-bigo pt-bigo--bad">O(n²)</span> total | <span class="pt-bigo pt-bigo--ok">O(n)</span> |
+    | `.join()` | <span class="pt-bigo pt-bigo--ok">O(n)</span> | <span class="pt-bigo pt-bigo--ok">O(n)</span> |
+
+    A string is immutable, so `name += "python"` doesn't grow the existing string — it builds an entirely new one and throws the old one away. Doing that once is nothing, but doing it on every pass of a loop means each pass copies everything accumulated so far, making the total cost O(n²) for n pieces. 
+    
+    `.join()` on a list of the same pieces builds the result once, at O(n) — collect the pieces in a list through the loop, then join them after.
+
+    See [Efficiency](style.md#efficiency) for why this distinction matters.
+
+</div>
+
 - **`print()`'s `sep` and `end` arguments** also take a string — `sep` replaces the space Python puts between multiple printed values (already covered on [Foundations](foundations.md#print-function)), and `end` replaces the newline `print()` adds after the last one, so the *next* `print()` call continues on the same line instead of starting a new one.
 
     ```python-ref
