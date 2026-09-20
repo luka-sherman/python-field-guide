@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {% set og_description = page.meta.description if page and page.meta and page.meta.description else config.site_description %}
+  {% set page_title = page.meta.title if page and page.meta and page.meta.title else page.title %}
+  {% set og_title = page_title ~ " - " ~ config.site_name if page_title and not page.is_homepage else config.site_name %}
+  {% set og_image = config.site_url ~ "img/favicon-large.png" %}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ config.site_name }}">
+  <meta property="og:title" content="{{ og_title }}">
+  <meta property="og:description" content="{{ og_description }}">
+  <meta property="og:url" content="{{ page.canonical_url }}">
+  <meta property="og:image" content="{{ og_image }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ og_title }}">
+  <meta name="twitter:description" content="{{ og_description }}">
+  <meta name="twitter:image" content="{{ og_image }}">
+  {% set jsonld_name = page_title if page_title and not page.is_homepage else config.site_name %}
+  {% set page_url = page.canonical_url | default(config.site_url, true) %}
+  {% set jsonld = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": config.site_url ~ "#website",
+        "url": config.site_url,
+        "name": config.site_name,
+        "description": config.site_description
+      },
+      {
+        "@type": "WebPage",
+        "@id": page_url,
+        "url": page_url,
+        "name": jsonld_name,
+        "description": og_description | default(config.site_description, true),
+        "isPartOf": { "@id": config.site_url ~ "#website" },
+        "inLanguage": config.theme.language | default("en", true)
+      }
+    ]
+  } %}
+  <script type="application/ld+json">{{ jsonld | tojson }}</script>
+{% endblock %}

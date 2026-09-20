@@ -1,8 +1,7 @@
 ---
 description: >-
-  Specialized container types beyond list/dict/tuple/set in Python's collections module:
-  Counter, defaultdict, namedtuple, deque, OrderedDict, ChainMap, and the User* wrapper
-  classes, with runnable examples.
+  Specialized container types in Python's collections module: Counter, defaultdict,
+  namedtuple, deque, OrderedDict, and ChainMap, with runnable examples.
 ---
 
 # :material-format-list-group:{ .lg .middle } collections library

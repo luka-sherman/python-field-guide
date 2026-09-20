@@ -1,8 +1,7 @@
 ---
 description: >-
   Building small movement-based games in Python with the turtle module: window setup,
-  positions and motion, drawing shapes, the animation loop, keyboard and mouse input, and
-  collision detection.
+  motion, drawing shapes, the animation loop, and collision detection.
 ---
 
 # :material-turtle:{ .lg .middle } Turtle library

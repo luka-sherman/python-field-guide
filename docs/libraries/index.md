@@ -1,4 +1,5 @@
 ---
+title: Libraries
 description: An overview of popular Python libraries covered on this site, both built-in and third-party.
 hide:
   - navigation
