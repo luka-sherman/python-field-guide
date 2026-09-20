@@ -240,7 +240,7 @@ length_ft = 4.5  # too short       # PEP 8 — two spaces before, one after
 
 There's no single tool that reliably flags all "unpythonic" code the way PEP 8 has a document to check against. The real habit is asking *"does Python already have a built-in way to do this?"* before writing a manual loop, counter, or flag — an instinct built over time to recognize the built-in pattern.
 
-Other programming languages have different features and patterns, so if code is translated from another language into Python it might not be written very clearly. Pythonic code tends to be less buggy and faster.
+Other programming languages have different features and patterns, so if code is translated from another language into Python it might not be written very clearly. Pythonic code tends to be less buggy.
 A few of these a beginner tends to write out longhand before learning the built-in shortcut, roughly most to least common:
 
 ### Mutable default arguments
@@ -258,7 +258,7 @@ def add_sighting(species, log=None):   # Pythonic — a fresh list every call
     return log
 ```
 
-### Truthy checks instead of `len(x) > 0` { #truthy-checks data-advanced="true" }
+### Truthy checks instead of len(x) > 0 { #truthy-checks data-advanced="true" }
 
 Test a collection directly — a non-empty list is already truthy.
 
@@ -270,7 +270,7 @@ if species:              # Pythonic — a non-empty list is already truthy
     print("found some")
 ```
 
-### `enumerate()` instead of `range(len(...))` { #enumerate-instead-of-range data-advanced="true" }
+### enumerate() instead of range(len(...)) { #enumerate-instead-of-range data-advanced="true" }
 
 Loop with both the index and the item at once, instead of indexing into the list by hand.
 
@@ -282,7 +282,7 @@ for i, s in enumerate(species):      # Pythonic — enumerate() hands back both
     print(i, s)
 ```
 
-### `is None` instead of `== None` { #is-none-instead-of-none }
+### is None instead of == None { #is-none-instead-of-none }
 
 Checking against `None` is a check of identity, not equality, so `is` is the correct tool — `==` usually happens to work too, but a class can override what `==` means, which makes this a real correctness risk and not just a style nit.
 
@@ -301,14 +301,55 @@ if length_ft is None:                # Pythonic — `is` is the correct tool for
 
 ## Efficient code { data-advanced="true" }
 
-Correct code produces the right output. Efficient code does it without spending more time or memory than the problem needs. Two properties matter here, worth naming separately:
+Correct code produces the right output. 
 
-- **Runtime** — how the amount of work grows as the input grows.
-- **Space** — how much memory a program holds onto while it runs, independent of how long it takes.
+Efficient code does it **without spending more resources than the problem needs**, which becomes a significant issue once your number of variables or calculations start increasing to the thousands and beyond.
 
-For a script working through a handful of snakes, the difference rarely shows up — a computer runs almost any approach fast enough to not notice. It shows up at scale: a full species inventory, thousands of logged sightings, a program that keeps running instead of finishing in a second. A list scanned item by item and a set looked up directly do the same job, but one keeps taking longer as the data grows and the other doesn't.
+### Time and space { data-card-link="skip" }
 
-The standard way to describe this is **Big O notation** — O(1) for constant time (the cost stays the same regardless of input size), O(n) for linear time (the cost grows in proportion to it), and so on for anything in between or beyond. The `perf` admonitions placed throughout this guide use that notation to flag the spots where Python offers more than one way to do something and one option holds up better as the input grows — a set instead of a list for membership checks, `.join()` instead of repeated string concatenation, an iterative rewrite instead of deep recursion. The pattern behind each one is worth recognizing on its own; the notation is just a precise, compact way to name it.
+These are two **computational resources** to weigh while designing a program — not the only ones that exist, but the two that show up most in everyday Python code.
+
+| | Time | Space |
+|---|---|---|
+| **Definition** | Steps an operation takes. A faster computer still runs the same code quicker. | Extra memory an operation needs, beyond the input itself. |
+| **You might not notice this on a small script because...** | Modern hardware can still run it fast enough not to notice. | The items can still easily fit in memory. |
+| **Starts becoming an issue at scale because...** | A test list of 10 behaves nothing like a real dataset of 100,000, if the operation grows quadratically instead of linearly. | Holding several full copies of a 100,000-record dataset can exceed available memory. |
+| **Risk if ignored** | Slows down or stops responding — and can cost $, since servers bill for processing time used. | Runs out of memory and crashes — and can cost $, since servers bill for memory used. |
+
+#### Big O notation 
+
+Representing **O**rder of growth, the standard way to describe *how time and space grow*:
+
+- <span class="pt-bigo pt-bigo--good">O(1)</span> constant -> doesn't grow with n — the same extra space or steps no matter the input size
+- <span class="pt-bigo pt-bigo--ok">O(n)</span> or <span class="pt-bigo pt-bigo--ok">O(log n)</span> or <span class="pt-bigo pt-bigo--ok">O(n log n)</span> -> grows but stays manageable — double the input, and an O(n) operation takes about twice as long
+- <span class="pt-bigo pt-bigo--bad">O(n²)</span> or worse -> grows fast enough to become a bottleneck once n is large — double the input, and it takes four times as long
+
+#### Other considerations
+
+- **Constant factor** — has the same growth rate, but each individual step actually costs less time or memory to run — like two people crossing a room in the same number of steps, just one takes bigger, faster steps than the other.
+- **Redundant work** — doing something twice that once would cover.
+- **Amortized cost** — a single call is occasionally expensive (list `append()` resizing its underlying storage, say), but averaged across every call it makes over time, the cost still comes out cheap.
+
+
+### Common optimizations { data-card-link="skip" }
+
+| While using | Instead of | **do this** | Because of |
+|---|---|---|---|
+| [Strings](types.md#combine) | `+=` in a loop<br /><span class="pt-bigo pt-bigo--bad">O(n²)</span> | `.join()`<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Big O |
+| [Lists](collections.md#create) | `result = result + [item]` in a loop<br /><span class="pt-bigo pt-bigo--bad">O(n²)</span> | `result.append(item)`<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Big O |
+| [Lists](collections.md#inspect) | Counting items in a loop<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `len()`<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Big O |
+| [Dictionaries](collections.md#dictionaries) | Checking `in` then indexing (two lookups)<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | `.get()` (one lookup)<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Redundant work |
+| [Sets](collections.md#sets) | `in` on a list or tuple<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `in` on a set or dict<br /><span class="pt-bigo pt-bigo--good">O(1)</span> average | Big O |
+| [Lists](collections.md#lists) | `sorted()`, when the original doesn't need to survive<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> space | `sort()`<br /><span class="pt-bigo pt-bigo--good">O(1)</span> space | Big O |
+| [Sets](collections.md#sets) | Checking every item against every other item for a duplicate, a loop nested inside another loop<br /><span class="pt-bigo pt-bigo--bad">O(n²)</span> | Converting to a set to check for duplicates<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Big O |
+| [Dictionaries](collections.md#dictionaries) | A list of `(key, value)` tuples, searched by hand<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | A dict<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Big O |
+| [Lists](collections.md#lists) | `insert(0, x)` / `pop(0)`<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `append()` / `pop()` (or `deque` for the front)<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Amortized |
+| [By line](files.md#by-line) | `.read()` / `.readlines()` on a large file<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> space | A loop, line by line<br /><span class="pt-bigo pt-bigo--good">O(1)</span> space | Big O |
+| [Recursion](functions.md#recursion) | Deep recursion<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> space | A loop<br /><span class="pt-bigo pt-bigo--good">O(1)</span> space | Big O |
+| [Array operations](libraries/numpy.md#array-operations) | A Python loop over an array<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | A vectorized NumPy operation, smaller constant<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Constant factor |
+| [Searching for a pattern](libraries/re.md#searching-for-a-pattern) | Recompiling a regex pattern every pass<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `re.compile()` once, reused<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Redundant work |
+| [try/except](errors.md#catch-with-tryexcept) | Checking first, when failure is rare<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | `try`/`except`, cheaper when it succeeds<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Constant factor |
+| [Instance attributes](classes.md#instance-attributes) | Many plain instances<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> memory | `__slots__`, smaller constant<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> memory | Constant factor |
 
 </div>
 
@@ -678,7 +719,7 @@ Copy and paste these Unicode characters into your print statements, or [Browse t
 
 ### Dividers
 
-A row of repeated characters separates sections of output — simpler than drawing a full box.
+A row of repeated characters separates sections of output.
 
 ```python
 print("survey results")
@@ -687,7 +728,7 @@ print("=" * 40)
 
 ### Boxes
 
-Combine the [box-drawing unicode symbols](#unicode-symbols) to emphasize output — a full frame instead of just a [divider](#dividers) line.
+Combine the [box-drawing unicode symbols](#unicode-symbols) to emphasize output, these were designed for early programs.
 
 ```python
 print("""
@@ -747,9 +788,12 @@ print("█" * 10)
 █░░░░░░░░
 ██░░░░░░░
 ███░░░░░░
-...
+████░░░░░
+█████░░░░
+██████░░░
+███████░░
+████████░
 █████████
-██████████
 ```
 
 A fixed list of characters, indexed with `i % len(spinner)` so it wraps back to the start instead of running out, animates the same way — a spinner instead of a bar.

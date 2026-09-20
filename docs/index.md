@@ -562,6 +562,13 @@ hide:
     [`enumerate()`](style.md#enumerate-instead-of-range) 
     {: data-advanced="true" }
 
+    [**`Efficient code`**](style.md#efficient-code)
+    [`big O`](style.md#big-o-notation)
+    [`common optimizations`](style.md#common-optimizations)
+    [`time`](style.md#time-and-space) 
+    [`space`](style.md#time-and-space)
+    {: data-advanced="true" }
+
     [**`Polished UX`**](style.md#polished-ux): 
     [`input validation`](style.md#input-validation) 
     [`menus`](style.md#menus) 
