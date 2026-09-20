@@ -539,8 +539,6 @@ hide:
 
     Readable Python code, and polished UI.
 
-    [**`checklist`**](style.md#script-style-checklist)
-
     [**`linter`**](style.md#linter-tool)
 
     [**`PEP 8`**](style.md#pep-8-style-guide): 
@@ -557,6 +555,7 @@ hide:
     {: data-advanced="true" }
 
     [**`Pythonic patterns`**](style.md#pythonic-patterns): 
+    [`mutable defaults`](style.md#mutable-default-arguments)
     [`is None`](style.md#is-none-instead-of-none)
 
     [`truthy checks`](style.md#truthy-checks) 

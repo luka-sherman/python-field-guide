@@ -1058,11 +1058,12 @@ venomous = False
 ### Going further { data-card-link="skip" }
 
 ??? note "Bool is a subclass of int"
-    `True` behaves like `1` and `False` behaves like `0` in arithmetic.
+    `True` behaves like `1` and `False` behaves like `0` in arithmetic — and since a `bool` is a valid index too, it can pick directly between two items in a tuple instead of writing an `if`/`else`.
 
     ```python-ref
-    isinstance(True, int)  # True
-    True + True            # 2
+    isinstance(True, int)   # True
+    True + True             # 2
+    ("no", "yes")[True]     # "yes"
     ```
 
 ??? run "Practice with booleans"
