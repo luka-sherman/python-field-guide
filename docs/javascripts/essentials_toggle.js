@@ -222,6 +222,126 @@
     window.addEventListener("hashchange", revealHashTargetIfHidden);
   }
 
+  // First-visit prompt: a modal dialog offering the same Essentials/Advanced
+  // choice as the header toggle, shown once before any preference has been
+  // saved. Picking an option (or dismissing) persists to STORAGE_KEY so it
+  // never reappears — same default (Advanced) as an untouched header toggle.
+  function closeLevelModal(overlay, active, restoreFocus) {
+    localStorage.setItem(STORAGE_KEY, String(active));
+    const headerToggle = document.getElementById("pt-simplify-toggle");
+    if (headerToggle) applyState(headerToggle, active);
+    overlay.remove();
+    document.body.classList.remove("pt-level-modal-open");
+    if (restoreFocus && document.body.contains(restoreFocus)) restoreFocus.focus();
+  }
+
+  function showLevelModal() {
+    const previouslyFocused = document.activeElement;
+
+    const overlay = document.createElement("div");
+    overlay.id = "pt-level-modal";
+    overlay.className = "pt-level-modal";
+
+    const dialog = document.createElement("div");
+    dialog.className = "pt-level-modal__dialog";
+    dialog.setAttribute("role", "dialog");
+    dialog.setAttribute("aria-modal", "true");
+    dialog.setAttribute("aria-labelledby", "pt-level-modal-title");
+    dialog.setAttribute("aria-describedby", "pt-level-modal-desc");
+
+    const title = document.createElement("h2");
+    title.id = "pt-level-modal-title";
+    title.textContent = "How much detail do you want?";
+
+    const desc = document.createElement("p");
+    desc.id = "pt-level-modal-desc";
+    desc.textContent =
+      "Essentials shows just what you need to write your first programs. Advanced shows " +
+      "everything on the site. Switch anytime from the toggle in the header.";
+
+    const toggle = document.createElement("div");
+    toggle.className = "pt-simplify-toggle pt-level-modal__toggle";
+    toggle.dataset.active = "advanced";
+    toggle.setAttribute("role", "group");
+    toggle.setAttribute("aria-label", "Content level");
+
+    const highlight = document.createElement("span");
+    highlight.className = "pt-simplify-highlight";
+    highlight.setAttribute("aria-hidden", "true");
+
+    const essentials = document.createElement("button");
+    essentials.type = "button";
+    essentials.className = "pt-simplify-option";
+    essentials.dataset.mode = "simplified";
+    essentials.textContent = "Essentials";
+    essentials.setAttribute("aria-pressed", "false");
+
+    const advanced = document.createElement("button");
+    advanced.type = "button";
+    advanced.className = "pt-simplify-option";
+    advanced.dataset.mode = "advanced";
+    advanced.textContent = "Advanced";
+    advanced.setAttribute("aria-pressed", "true");
+
+    toggle.append(highlight, advanced, essentials);
+    toggle.addEventListener("click", function (event) {
+      const option = event.target.closest(".pt-simplify-option");
+      if (!option) return;
+      closeLevelModal(overlay, option.dataset.mode === "simplified", previouslyFocused);
+    });
+
+    const closeButton = document.createElement("button");
+    closeButton.type = "button";
+    closeButton.className = "pt-level-modal__close";
+    closeButton.setAttribute("aria-label", "Close, keep showing all content");
+    closeButton.innerHTML = "&times;";
+    closeButton.addEventListener("click", function () {
+      closeLevelModal(overlay, false, previouslyFocused);
+    });
+
+    dialog.append(closeButton, title, desc, toggle);
+    overlay.appendChild(dialog);
+    document.body.appendChild(overlay);
+    document.body.classList.add("pt-level-modal-open");
+
+    // Escape and a backdrop click both dismiss without a chosen level —
+    // same as leaving the header toggle untouched, so keep the Advanced
+    // default rather than silently applying Essentials.
+    overlay.addEventListener("mousedown", function (event) {
+      if (event.target === overlay) closeLevelModal(overlay, false, previouslyFocused);
+    });
+
+    const focusable = [closeButton, advanced, essentials];
+    dialog.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeLevelModal(overlay, false, previouslyFocused);
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    closeButton.focus();
+  }
+
+  function setUpFirstVisitModal() {
+    if (window.__ptLevelModalChecked) return;
+    window.__ptLevelModalChecked = true;
+
+    if (localStorage.getItem(STORAGE_KEY) !== null) return;
+    if (new URLSearchParams(window.location.search).get("simplified") !== null) return;
+
+    showLevelModal();
+  }
+
   function setUpSimplifyToggle() {
     const container = getOrCreateToggle();
     if (!container) return;
@@ -241,6 +361,8 @@
     // Also covers loading a URL whose hash already points at a hidden
     // section, not just navigating there via a same-page click.
     revealHashTargetIfHidden();
+
+    setUpFirstVisitModal();
   }
 
   // navigation.instant swaps page content via JS without a full reload, so

@@ -123,6 +123,8 @@ A two-option [switch](docs/javascripts/essentials_toggle.js) that lets a reader 
 
 Each marking is independent — there's no shared list of "advanced" topics to keep in sync, just the attribute at each spot in the Markdown. State persists in `localStorage` and applies on every page (also settable via a `?simplified=true`/`false` URL param, for sharing a pre-set link). If a visible link points at a heading that's currently hidden (e.g. collections.md's cheat-sheet table linking to `#tuples`), following it flips the toggle back to Advanced and reveals the target instead of landing on nothing.
 
+Before any preference is saved, a first-visit modal offers the same Essentials/Advanced choice up front (same slider, larger). Choosing an option, closing it, pressing Escape, or clicking the backdrop all persist a choice to `localStorage` so it never reappears — dismissing without picking keeps the Advanced default, same as leaving the header toggle untouched. A `?simplified=` URL param skips it, since that already carries an explicit choice.
+
 Some examples of content that is hidden while in "Essentials" mode, while a student is first learning to program:
 
 - Collection types a beginner can often get by without (tuples, sets)

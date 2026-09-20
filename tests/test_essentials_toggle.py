@@ -155,3 +155,60 @@ def test_link_recovery_ignores_toc_links_to_visible_sections(page, site_url):
         "() => document.body.classList.contains('simplify-active')"
     )
     assert still_simplified, "a link to an already-visible section should not flip the toggle"
+
+
+def test_first_visit_modal_appears_before_any_preference_is_saved(page, site_url):
+    page.goto(site_url)
+    modal = page.locator("#pt-level-modal")
+    assert modal.count() == 1, "the level modal should appear on a first visit"
+    assert page.evaluate("() => localStorage.getItem('pt-simplify-active')") is None
+
+
+def test_choosing_essentials_in_modal_activates_simplify_and_persists(page, site_url):
+    page.goto(site_url)
+    page.locator('#pt-level-modal .pt-simplify-option[data-mode="simplified"]').click()
+
+    result = page.evaluate(
+        """() => ({
+            modalGone: !document.getElementById('pt-level-modal'),
+            simplifyActive: document.body.classList.contains('simplify-active'),
+            headerToggleActive: document.getElementById('pt-simplify-toggle')?.dataset.active,
+            stored: localStorage.getItem('pt-simplify-active'),
+        })"""
+    )
+    assert result["modalGone"], "choosing a level should close the modal"
+    assert result["simplifyActive"] is True
+    assert result["headerToggleActive"] == "simplified"
+    assert result["stored"] == "true"
+
+
+def test_modal_does_not_reappear_after_a_preference_is_saved(page, site_url):
+    page.goto(site_url)
+    page.locator('#pt-level-modal .pt-simplify-option[data-mode="advanced"]').click()
+    page.goto(site_url)
+    assert page.locator("#pt-level-modal").count() == 0, (
+        "the modal shouldn't reappear once a preference is stored"
+    )
+
+
+def test_modal_skipped_when_simplified_param_present(page, site_url):
+    page.goto(f"{site_url}/?simplified=false")
+    assert page.locator("#pt-level-modal").count() == 0, (
+        "?simplified= already carries an explicit choice, so the modal is redundant"
+    )
+
+
+def test_dismissing_modal_with_escape_keeps_advanced_default(page, site_url):
+    page.goto(site_url)
+    page.keyboard.press("Escape")
+
+    result = page.evaluate(
+        """() => ({
+            modalGone: !document.getElementById('pt-level-modal'),
+            simplifyActive: document.body.classList.contains('simplify-active'),
+            stored: localStorage.getItem('pt-simplify-active'),
+        })"""
+    )
+    assert result["modalGone"]
+    assert result["simplifyActive"] is False
+    assert result["stored"] == "false"

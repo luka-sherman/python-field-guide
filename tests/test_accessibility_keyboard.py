@@ -15,7 +15,10 @@ CHECK_PAGES = ["/", "/types/", "/workspace/"]
 
 @pytest.mark.parametrize("path", CHECK_PAGES)
 def test_first_tab_reaches_the_skip_link(page, site_url, path):
-    page.goto(f"{site_url}{path}")
+    # ?simplified=false carries an explicit level choice, same as a returning visitor,
+    # so essentials_toggle.js's first-visit modal doesn't appear and steal focus — this
+    # test is about steady-state tab order, not the modal's own focus handling.
+    page.goto(f"{site_url}{path}?simplified=false")
     page.keyboard.press("Tab")
     info = page.evaluate(
         """() => {
@@ -32,7 +35,7 @@ def test_first_tab_reaches_the_skip_link(page, site_url, path):
 
 
 def test_skip_link_moves_past_the_navigation(page, site_url):
-    page.goto(f"{site_url}/types/")
+    page.goto(f"{site_url}/types/?simplified=false")
     page.keyboard.press("Tab")  # focus skip link
     page.keyboard.press("Enter")  # activate it
     moved = page.evaluate(
@@ -65,7 +68,7 @@ def test_palette_toggle_is_keyboard_reachable(page, site_url):
     Essentials/Complete toggle) and hides the native form — so this checks the
     *replacement* buttons are real, labeled, visible controls and that Tab reaches
     one, rather than the native radios (which are now deliberately hidden)."""
-    page.goto(site_url)
+    page.goto(f"{site_url}/?simplified=false")
     buttons = page.evaluate(
         """() => [...document.querySelectorAll('.pt-theme-option')].map((b) => ({
             hidden: b.hasAttribute('hidden'),

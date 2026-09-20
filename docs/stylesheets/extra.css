@@ -861,6 +861,82 @@ input:checked + .md-consent__settings {
   display: none;
 }
 
+/* First-visit "how much detail do you want?" modal
+   (docs/javascripts/essentials_toggle.js) — offers the same choice as the
+   header's pt-simplify-toggle, once, before any preference is saved.
+   `.pt-level-modal-open` on <body> only blocks scroll while it's up; it
+   doesn't touch layout otherwise. */
+.pt-level-modal-open {
+  overflow: hidden;
+}
+
+.pt-level-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: color-mix(in srgb, var(--pt-ink) 55%, transparent);
+}
+
+.pt-level-modal__dialog {
+  position: relative;
+  max-width: 24rem;
+  width: 100%;
+  padding: 1.4rem 1.6rem 1.6rem;
+  border: 0.05rem solid var(--pt-hairline);
+  border-radius: 0.3rem;
+  background-color: var(--pt-panel);
+  color: var(--pt-ink);
+  box-shadow: 0 0.6rem 1.6rem color-mix(in srgb, var(--pt-ink) 30%, transparent);
+}
+
+.pt-level-modal__dialog h2 {
+  margin: 0 0.4rem 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.pt-level-modal__dialog p {
+  margin: 0 0 1rem;
+  color: var(--pt-text-secondary);
+  font-size: 0.72rem;
+}
+
+.pt-level-modal__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--pt-text-secondary);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.pt-level-modal__close:hover,
+.pt-level-modal__close:focus-visible {
+  background-color: var(--pt-hairline);
+  color: var(--pt-ink);
+}
+
+/* Same track/highlight/option look as the header toggle, just bigger — the
+   header version is sized to sit inline next to the palette icon. */
+.pt-level-modal__toggle {
+  height: 2rem;
+  color: var(--pt-ink);
+}
+
+.pt-level-modal__toggle .pt-simplify-option {
+  font-size: 0.75rem;
+  padding: 0 0.9rem;
+}
+
 .pt-category-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
