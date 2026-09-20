@@ -1005,6 +1005,50 @@ input:checked + .md-consent__settings {
   color: var(--pt-desc-blue);
 }
 
+/* Expedition cards: a dashed trail line across the top edge (a route on a
+   map) instead of the library cards' torn-paper wedge, with a small round
+   waymarker straddling the line instead of sitting on it — there's no
+   built-in/third-party axis here, just one consistent compass icon marking
+   "this is an expedition." content: none removes the wedge ::before
+   entirely rather than reshaping it, since a diagonal-gradient triangle and
+   a circle share no geometry worth inheriting. */
+.pt-category--trail .grid.cards > ul > li {
+  border: 1px solid var(--pt-section-bg);
+  border-top: 0.15rem dashed var(--pt-accent);
+}
+
+.pt-category--trail .grid.cards > ul > li::before {
+  content: none;
+}
+
+.md-typeset .grid.cards .pt-trail-badge {
+  position: absolute;
+  top: -0.6rem;
+  right: 0.5rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  background-color: var(--pt-accent);
+  color: var(--pt-panel);
+  border: 0.12rem solid var(--pt-panel);
+}
+
+.pt-trail-badge svg {
+  width: 0.72rem;
+  height: 0.72rem;
+}
+
+/* The keyword-tag rows' auto-comma (",") between links doesn't fit an
+   arrow-chain row ("turtle → random → classes") — the arrows are typed
+   literally in the markdown as separators, so suppress the comma here. */
+.pt-category--trail .grid.cards > ul > li > p:nth-of-type(n+3) a::after {
+  content: none;
+}
+
 /* Homepage cards, dark mode only: green is reserved for the smaller non-bold
    sub-keyword tags. Everything else — the `####` category headings, card icon,
    card title, description, and the bold lead keyword in each tag row — is the

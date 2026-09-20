@@ -50,6 +50,9 @@ nav:
           - turtle: libraries/turtle.md
       - Testing:
           - pytest: libraries/pytest.md
+  - Expeditions:
+      - All: expeditions/index.md
+      - Make games: expeditions/games.md
 
 theme:
   name: material

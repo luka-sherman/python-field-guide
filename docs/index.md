@@ -788,4 +788,20 @@ hide:
 </div>
 </div>
 
+# Expeditions
+
+<div class="pt-category pt-category--wide pt-category--trail pt-lib--4" markdown="block">
+
+<div class="grid cards" markdown="block">
+
+-   :material-gamepad-variant-outline:{ .lg .middle } [__Make games__](expeditions/games.md) 
+[:material-compass-outline:](expeditions/games.md){ .pt-trail-badge title="Expedition" } 
+
+    Combine turtle, random, and classes to build a small game from scratch.
+
+    [`turtle`](expeditions/games.md#turtle) → [`random`](expeditions/games.md#random) → [`classes`](expeditions/games.md#classes)
+
+</div>
+</div>
+
 </div>
