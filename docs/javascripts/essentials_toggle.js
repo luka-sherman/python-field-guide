@@ -96,15 +96,21 @@
     essentials.type = "button";
     essentials.className = "pt-simplify-option";
     essentials.dataset.mode = "simplified";
-    essentials.textContent = "Essentials";
     essentials.title = "Show only what you need to write your first programs";
+    const essentialsLabel = document.createElement("span");
+    essentialsLabel.className = "pt-simplify-label";
+    essentialsLabel.textContent = "Essentials";
+    essentials.append(essentialsLabel);
 
     const advanced = document.createElement("button");
     advanced.type = "button";
     advanced.className = "pt-simplify-option";
     advanced.dataset.mode = "advanced";
-    advanced.textContent = "Advanced";
     advanced.title = "Show all site content";
+    const advancedLabel = document.createElement("span");
+    advancedLabel.className = "pt-simplify-label";
+    advancedLabel.textContent = "Advanced";
+    advanced.append(advancedLabel);
 
     container.append(highlight, advanced, essentials);
     paletteForm.insertAdjacentElement("beforebegin", container);
