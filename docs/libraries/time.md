@@ -6,6 +6,8 @@ description: >-
 
 # :material-clock-outline:{ .lg .middle } time library
 
+<div class="pfg-section" markdown="block">
+
 [time documentation :material-open-in-new:](https://docs.python.org/3/library/time.html){ .md-button target="_blank" }
 
 The **`time`** module reads the system clock, pauses a program for a set number of seconds, and measures how long a piece of code takes to run.
@@ -16,6 +18,8 @@ The **`time`** module reads the system clock, pauses a program for a set number 
 | Time format | A Unix timestamp — a plain float counting seconds since the epoch. | High-level objects — `date`, `time`, `datetime`, `timedelta`. |
 | Timezone support | Limited — relies on the system's local time. | Full — handles timezone-aware dates and conversions. |
 | Common uses | <ul><li>Benchmarking how long code takes to run</li><li>Pausing a program with `sleep()`</li></ul> | <ul><li>Logging when something happened</li><li>Calculating an age or a deadline</li><li>Date arithmetic</li></ul> |
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

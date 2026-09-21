@@ -6,11 +6,15 @@ description: >-
 
 # :material-table:{ .lg .middle } pandas library
 
+<div class="pfg-section" markdown="block">
+
 [pandas documentation :material-open-in-new:](https://pandas.pydata.org/docs/){ .md-button target="_blank" }
 
 pandas is an open-source project, funded by nonprofit [NumFOCUS](https://numfocus.org/).
 
 **pandas** (imported as `pd`) is a widely used library for tabular data — rows and columns, like a spreadsheet, with tools for filtering, sorting, and summarizing built in. It's a third-party package, not part of the standard library, and is built on top of [NumPy](numpy.md).
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

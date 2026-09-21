@@ -4,9 +4,13 @@ description: Generating random numbers and making random selections in Python wi
 
 # :material-dice-multiple:{ .lg .middle } random library
 
+<div class="pfg-section" markdown="block">
+
 [random documentation :material-open-in-new:](https://docs.python.org/3/library/random.html){ .md-button target="_blank" }
 
 The **`random`** module generates pseudo-random numbers and makes random selections — rolling a dice, shuffling a deck, or picking a specimen to feature at random.
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

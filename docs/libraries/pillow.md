@@ -6,11 +6,15 @@ description: >-
 
 # :material-image-outline:{ .lg .middle } Pillow library
 
+<div class="pfg-section" markdown="block">
+
 [Pillow documentation :material-open-in-new:](https://pillow.readthedocs.io/en/stable/){ .md-button target="_blank" }
 
 Pillow is an open-source project maintained by volunteer contributors.
 
 **Pillow** (imported as `PIL`) is a popular library for opening, editing, and saving image files — photos, screenshots, thumbnails, anything in a common format like JPEG or PNG. It's a third-party package, not part of the standard library, but it's the de facto standard for image work in Python. Like [Tkinter](tkinter.md), Pillow ultimately produces visual output — a saved or displayed image — which can't be shown inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file alongside an image and run them with `python` to see the results.
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

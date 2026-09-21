@@ -6,6 +6,8 @@ description: >-
 
 # :material-bug-outline:{ .lg .middle } Errors
 
+<div class="pfg-section" markdown="block">
+
 **"Errors"** occur when a line of code is impossible to run, so the program stops and displays a message with information on what went wrong and where. 
 
 **"Bugs"** are the general term for errors or *any mistake* in your code, like logic errors. 
@@ -25,6 +27,8 @@ They are part of programming, and happen constantly. Based on the kind of error,
 </div>
 
 ## Kinds of errors:
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

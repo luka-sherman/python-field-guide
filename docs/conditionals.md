@@ -6,6 +6,8 @@ description: >-
 
 # :material-source-branch:{ .lg .middle } Conditionals
 
+<div class="pfg-section" markdown="block">
+
 A **conditional** lets a program make decisions by running a **block** of code only when a [condition](#boolean-expressions) is `True`. 
 
 The condition ends with a colon `:`, and the block is the lines indented underneath it, treated as a single unit. 
@@ -18,6 +20,8 @@ The condition ends with a colon `:`, and the block is the lines indented underne
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
 | <a href="#if-elif-else">**`if` / `elif` / `else`**</a> | <pre><code class="language-python-ref">if length &gt; 15:&#10;    print("giant")&#10;elif length &gt; 8:&#10;    print("large")&#10;else:&#10;    print("small")</code></pre> | The general-purpose default — ranges, comparisons, or checking unrelated things, so use this unless `match` is clearly a better fit |
 | <a href="#match-case">**`match` / `case`**</a>       | <pre><code class="language-python-ref">species = "ball"&#10;match species:&#10;    case "ball":&#10;        print("ball python")&#10    case "burmese":&#10;        print("burmese python")&#10;    case _:&#10;        print("other")</code></pre> | Comparing one value against exact, known possibilities — or splitting a tuple into named pieces while checking its values |
+
+</div>
 
 </div>
 

@@ -6,6 +6,8 @@ description: >-
 
 # :material-format-list-group:{ .lg .middle } collections library
 
+<div class="pfg-section" markdown="block">
+
 [collections documentation :material-open-in-new:](https://docs.python.org/3/library/collections.html){ .md-button target="_blank" }
 
 !!! note "Not the same as the Collections page"
@@ -29,6 +31,8 @@ built-in [`str`](../types.md#strings) [`list`](../collections.md#lists) [`dict`]
 | <a href="#user-wrapper-classes">**`UserDict`**</a> | `dict` | <pre><code class="language-python-ref">class C(UserDict): ...</code></pre> | Subclassing dict when overriding a method directly doesn't work |
 | <a href="#user-wrapper-classes">**`UserList`**</a> | `list` | <pre><code class="language-python-ref">class C(UserList): ...</code></pre> | Subclassing list when overriding a method directly doesn't work |
 | <a href="#user-wrapper-classes">**`UserString`**</a> | `str` | <pre><code class="language-python-ref">class C(UserString): ...</code></pre> | Subclassing str when overriding a method directly doesn't work |
+
+</div>
 
 </div>
 

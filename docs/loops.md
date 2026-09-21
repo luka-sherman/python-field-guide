@@ -6,6 +6,8 @@ description: >-
 
 # :material-repeat:{ .lg .middle } Loops
 
+<div class="pfg-section" markdown="block">
+
 A **loop** repeats a block of code multiple times. 
 
 <div class="pt-jump-table" markdown="block">
@@ -43,6 +45,8 @@ A **loop** repeats a block of code multiple times.
     ```
 
     <p class="pfg-diagram-caption">FIG: choosing between a for loop and a while loop</p>
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

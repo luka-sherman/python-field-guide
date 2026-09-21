@@ -6,11 +6,15 @@ description: >-
 
 # :material-pot-steam-outline:{ .lg .middle } BeautifulSoup library
 
+<div class="pfg-section" markdown="block">
+
 [BeautifulSoup documentation :material-open-in-new:](https://www.crummy.com/software/BeautifulSoup/bs4/doc/){ .md-button target="_blank" }
 
 BeautifulSoup is an open-source project maintained by volunteer contributors.
 
 **BeautifulSoup** (imported from `bs4`) is a popular library for parsing HTML — turning a page's raw markup into something you can search by tag, class, or attribute instead of scanning raw text by hand. It's a third-party package, not part of the standard library, but it's the de facto standard for this in Python.
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

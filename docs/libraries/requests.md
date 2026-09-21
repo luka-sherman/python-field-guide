@@ -6,11 +6,15 @@ description: >-
 
 # :material-webhook:{ .lg .middle } requests library
 
+<div class="pfg-section" markdown="block">
+
 [requests documentation :material-open-in-new:](https://requests.readthedocs.io/en/latest/){ .md-button target="_blank" }
 
 requests is an open-source project maintained by volunteer contributors.
 
 **`requests`** is a library for fetching data over the internet — asking a website or API for information, the same way a browser does, but from inside a Python program. It's not part of the standard library, but it's the de facto standard for this in Python, favored over the built-in `urllib` for its much simpler syntax. Every example on this page makes a real network call, which this site's in-browser sandbox can't do — copy them into a local `.py` file and run them with `python` to see the results.
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

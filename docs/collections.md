@@ -6,6 +6,8 @@ description: >-
 
 # :material-basket-outline:{ .lg .middle } Collection Data Types
 
+<div class="pfg-section" markdown="block">
+
 A **collection** is a single object that groups multiple values (like [basic types](types.md)) together and so they can be stored in one variable together and worked with as a unit. 
 
 <div class="pt-jump-table" markdown="block">
@@ -33,7 +35,9 @@ A **collection** is a single object that groups multiple values (like [basic typ
     isinstance(weights, list)  # True
     isinstance(weights, dict)  # False
     ```
-    
+
+</div>
+
 <div class="pfg-section" markdown="block">
 
 ## Lists
