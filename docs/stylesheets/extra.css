@@ -834,6 +834,9 @@ input:checked + .md-consent__settings {
 .pt-simplify-option {
   position: relative;
   z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex: 1;
   padding: 0 0.5rem;
   border: none;
@@ -856,18 +859,26 @@ input:checked + .md-consent__settings {
   color: var(--pt-bg);
 }
 
-/* Below ~45em (matches this file's other mobile breakpoints) the
-   "Essentials"/"Advanced" words get tight — swap each option's text for an
-   icon, same mask-image technique as .pt-theme-option's sun/moon. Icon
-   paths are Google's Material Symbols "psychiatry" and "park" (tree)
-   glyphs (viewBox 0 -960 960 960, their native coordinate space). The
-   label text stays in the DOM (not aria-hidden) so the button's accessible
-   name is unchanged for screen readers; only the visual text is clipped. */
-.pt-simplify-option[data-mode]::before {
+/* Icon for each option (Material Symbols "psychiatry" / "park", viewBox
+   0 -960 960 960), same mask-image technique as .pt-theme-option's
+   sun/moon. On desktop it trails the "Essentials"/"Advanced" word — an
+   ::after, not ::before, so it renders after the label text in normal
+   document order without any extra markup or flex re-ordering; the
+   option button itself is a flex row (see .pt-simplify-option above), so
+   the icon centers vertically against the text the same way .pt-theme-
+   option's icon-only button centers its own icon — no vertical-align
+   fudging needed, and it can't drift out of sync between the two variants.
+   Below ~45em (matches this file's other mobile breakpoints) the words
+   get tight, so the label is visually clipped and the icon alone
+   represents the option — it stays in the DOM (not aria-hidden) so the
+   button's accessible name is unchanged for screen readers either way. */
+.pt-simplify-option[data-mode]::after,
+.pt-mode-icon {
   content: "";
-  display: none;
+  display: inline-block;
   width: 0.7rem;
   height: 0.7rem;
+  flex: none;
   background-color: currentColor;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
@@ -877,25 +888,28 @@ input:checked + .md-consent__settings {
   mask-position: center;
 }
 
-.pt-simplify-option[data-mode="simplified"]::before {
+.pt-simplify-option[data-mode]::after {
+  margin-left: 0.3rem;
+}
+
+.pt-simplify-option[data-mode="simplified"]::after,
+.pt-mode-icon[data-mode="simplified"] {
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M450-130v-309h-20q-64 0-120.5-24.5T209-533q-44-45-66.5-104T120-760v-80h78.32Q260-840 317-815.5 374-791 419-746q33 34 54.5 76t30.5 89q7.65-11.9 16.82-22.95Q530-615 540-626q45-45 102-69.5T761.67-720H840v80q0 64-23.98 123T748-413q-45 45-101.56 69T528-320h-18v190h-60Zm1-370q0-61-20-113.5t-55-89q-35-36.5-86-57T180-780q0 63 18.5 115.5T252-575q42 45 90.5 60T451-500Zm59 120q60 0 111-19.5t86-56q35-36.5 54-89T780-660q-60 0-111 20.5T583-583q-43 45-58 94t-15 109Zm0 0Zm-59-120Z'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M450-130v-309h-20q-64 0-120.5-24.5T209-533q-44-45-66.5-104T120-760v-80h78.32Q260-840 317-815.5 374-791 419-746q33 34 54.5 76t30.5 89q7.65-11.9 16.82-22.95Q530-615 540-626q45-45 102-69.5T761.67-720H840v80q0 64-23.98 123T748-413q-45 45-101.56 69T528-320h-18v190h-60Zm1-370q0-61-20-113.5t-55-89q-35-36.5-86-57T180-780q0 63 18.5 115.5T252-575q42 45 90.5 60T451-500Zm59 120q60 0 111-19.5t86-56q35-36.5 54-89T780-660q-60 0-111 20.5T583-583q-43 45-58 94t-15 109Zm0 0Zm-59-120Z'/%3E%3C/svg%3E");
 }
 
-.pt-simplify-option[data-mode="advanced"]::before {
+.pt-simplify-option[data-mode="advanced"]::after,
+.pt-mode-icon[data-mode="advanced"] {
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M538-80H423v-149H120l189-274h-95l266-377 266 377h-94l188 274H538v149ZM236-289h189-90 290-89 189-489Zm0 0h489L536-563h89L480-769 335-563h90L236-289Z'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M538-80H423v-149H120l189-274h-95l266-377 266 377h-94l188 274H538v149ZM236-289h189-90 290-89 189-489Zm0 0h489L536-563h89L480-769 335-563h90L236-289Z'/%3E%3C/svg%3E");
 }
 
 @media (max-width: 45em) {
-  .pt-simplify-option[data-mode]::before {
-    display: block;
+  .pt-simplify-option[data-mode]::after {
+    margin-left: 0;
   }
 
   .pt-simplify-toggle:has(.pt-simplify-option[data-mode]) .pt-simplify-option {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 0 0.4rem;
   }
 
@@ -957,6 +971,60 @@ input:checked + .md-consent__settings {
 .pt-theme-option[data-scheme="slate"]::before {
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
+}
+
+/* Disappearing confirmation toast for the Essentials/Advanced toggle
+   (docs/javascripts/essentials_toggle.js's showToast). Sits just below the
+   header — right where the toggle that triggered it lives — rather than
+   at the bottom of the screen, so it's immediately next to the control the
+   reader just clicked. `top` itself is set inline by showToast() (the
+   header's own height varies: ~48px on mobile, taller on desktop/tablet
+   with the tab bar, and Material can also hide/reveal it on scroll), only
+   the offset-from-header gap lives here. Centered horizontally on both
+   desktop and mobile. Colors are inverted (ink background, bg-colored
+   text) same as the toggle's own active-option highlight, so it reads as
+   "this site's accent chip," not a generic OS notification. */
+.pt-toast {
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  transform: translate(-50%, 0);
+  max-width: min(90vw, 22rem);
+  padding: 0.6rem 1rem;
+  border-radius: 0.4rem;
+  background-color: var(--pt-ink);
+  color: var(--pt-bg);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-align: center;
+  box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  /* Fade only — no slide/transform. The fade-out itself is slow and
+     gentle; showToast() in essentials_toggle.js keeps the fully-visible
+     hold time short instead, so the toast still clears the screen quickly
+     overall. */
+  transition: opacity 0.7s ease;
+}
+
+.pt-toast--visible {
+  opacity: 1;
+  /* Fading in can be quick; only the fade-out (the base .pt-toast rule
+     above, used once this class is removed again) is slow. */
+  transition: opacity 0.15s ease;
+}
+
+.pt-toast__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.pt-toast__body {
+  font-weight: 400;
 }
 
 .simplify-active [data-advanced] {
