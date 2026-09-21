@@ -1204,9 +1204,17 @@ input:checked + .md-consent__settings {
   height: 1.05rem;
 }
 
-.md-typeset .grid.cards a.pt-lib-badge--builtin,
-.md-typeset .grid.cards a.pt-lib-badge--third-party {
-  color: var(--pt-desc-blue);
+/* Built-in/third-party corner badge: halfway between the card's own
+   background color and the muted category-label color, in both light and
+   dark mode. */
+[data-md-color-scheme="default"] .md-typeset .grid.cards a.pt-lib-badge--builtin,
+[data-md-color-scheme="default"] .md-typeset .grid.cards a.pt-lib-badge--third-party {
+  color: color-mix(in srgb, var(--pt-panel), color-mix(in srgb, var(--pt-ink) 80%, white));
+}
+
+[data-md-color-scheme="slate"] .md-typeset .grid.cards a.pt-lib-badge--builtin,
+[data-md-color-scheme="slate"] .md-typeset .grid.cards a.pt-lib-badge--third-party {
+  color: color-mix(in srgb, color-mix(in srgb, var(--pt-panel) 92%, var(--pt-ink)), color-mix(in srgb, var(--pt-ink) 80%, black));
 }
 
 /* Homepage cards, dark mode only: green is reserved for the smaller non-bold
