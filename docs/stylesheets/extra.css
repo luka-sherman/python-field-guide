@@ -5,6 +5,19 @@
   font-family: "Cormorant Garamond", serif;
 }
 
+/* Every h1 on the site leads with an attr_list icon (e.g. `:material-cube-
+   outline:{ .lg .middle }`). Material's own `.lg` class sizes it to a
+   fixed 48px regardless of the heading's own font-size, and `.middle`
+   vertical-centers it — both wrong once the heading text isn't also 48px
+   tall (it never is: h1 is 32px by default, 24px on mobile below). Size
+   the icon to `1em` so it tracks the heading's own font-size at any
+   breakpoint, and bottom-align it to the text instead of centering it. */
+.md-typeset h1 .twemoji {
+  width: 1em;
+  height: 1em;
+  vertical-align: text-bottom;
+}
+
 :root,
 [data-md-color-scheme="default"] {
   --pt-bg: #F0ECE4;
@@ -162,6 +175,40 @@ html:focus-within::-webkit-scrollbar-thumb {
 .md-header__title,
 .md-header__topic {
   font-weight: 800;
+}
+
+/* Below ~45em the header's own title font-size (Material's default) plus
+   the Essentials/Advanced + light/dark icon toggles leave too little room
+   for the full "Python Field Guide" site name — Material ellipsis-
+   truncates it to "Python Field...". Shrink the text instead of cutting
+   the name down to one word, so the full brand name stays intact. */
+@media (max-width: 45em) {
+  .md-header__title .md-header__topic {
+    font-size: 0.7rem;
+  }
+
+  /* The title text and the Essentials/Advanced + light/dark toggles are
+     both vertically centered in the same header row, but the toggles'
+     box-bottom sits 4px below the text's glyph-bottom (line-height
+     centering isn't the same as optical/visual centering) — nudge the
+     text down so the two lines up. */
+  .md-header__title .md-header__ellipsis {
+    position: relative;
+    top: 4px;
+  }
+
+  /* Material's own header title margin (20px left / 8px right, from its
+     `[dir="ltr"] .md-header__title` rule — matched here to beat that
+     selector's specificity) doesn't match the 4px margins the
+     hamburger/toggles/search icon all already share, so the five header
+     items — hamburger, title, Essentials/Advanced toggle, light/dark
+     toggle, search — read with uneven gaps between them (24 / 12 / 8 /
+     8px). Match the title's margins to the other items' 4px so every gap
+     comes out to the same 8px. */
+  [dir="ltr"] .md-header__title {
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+  }
 }
 
 /* Decorative snake-scale header, slate (dark) scheme only. Layered on top of
@@ -787,6 +834,9 @@ input:checked + .md-consent__settings {
 .pt-simplify-option {
   position: relative;
   z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex: 1;
   padding: 0 0.5rem;
   border: none;
@@ -809,13 +859,85 @@ input:checked + .md-consent__settings {
   color: var(--pt-bg);
 }
 
+/* Icon for each option (Material Symbols "psychiatry" / "park", viewBox
+   0 -960 960 960), same mask-image technique as .pt-theme-option's
+   sun/moon. On desktop it trails the "Essentials"/"Advanced" word — an
+   ::after, not ::before, so it renders after the label text in normal
+   document order without any extra markup or flex re-ordering; the
+   option button itself is a flex row (see .pt-simplify-option above), so
+   the icon centers vertically against the text the same way .pt-theme-
+   option's icon-only button centers its own icon — no vertical-align
+   fudging needed, and it can't drift out of sync between the two variants.
+   Below ~45em (matches this file's other mobile breakpoints) the words
+   get tight, so the label is visually clipped and the icon alone
+   represents the option — it stays in the DOM (not aria-hidden) so the
+   button's accessible name is unchanged for screen readers either way. */
+.pt-simplify-option[data-mode]::after,
+.pt-mode-icon {
+  content: "";
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  flex: none;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.pt-simplify-option[data-mode]::after {
+  margin-left: 0.3rem;
+}
+
+.pt-simplify-option[data-mode="simplified"]::after,
+.pt-mode-icon[data-mode="simplified"] {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M450-130v-309h-20q-64 0-120.5-24.5T209-533q-44-45-66.5-104T120-760v-80h78.32Q260-840 317-815.5 374-791 419-746q33 34 54.5 76t30.5 89q7.65-11.9 16.82-22.95Q530-615 540-626q45-45 102-69.5T761.67-720H840v80q0 64-23.98 123T748-413q-45 45-101.56 69T528-320h-18v190h-60Zm1-370q0-61-20-113.5t-55-89q-35-36.5-86-57T180-780q0 63 18.5 115.5T252-575q42 45 90.5 60T451-500Zm59 120q60 0 111-19.5t86-56q35-36.5 54-89T780-660q-60 0-111 20.5T583-583q-43 45-58 94t-15 109Zm0 0Zm-59-120Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M450-130v-309h-20q-64 0-120.5-24.5T209-533q-44-45-66.5-104T120-760v-80h78.32Q260-840 317-815.5 374-791 419-746q33 34 54.5 76t30.5 89q7.65-11.9 16.82-22.95Q530-615 540-626q45-45 102-69.5T761.67-720H840v80q0 64-23.98 123T748-413q-45 45-101.56 69T528-320h-18v190h-60Zm1-370q0-61-20-113.5t-55-89q-35-36.5-86-57T180-780q0 63 18.5 115.5T252-575q42 45 90.5 60T451-500Zm59 120q60 0 111-19.5t86-56q35-36.5 54-89T780-660q-60 0-111 20.5T583-583q-43 45-58 94t-15 109Zm0 0Zm-59-120Z'/%3E%3C/svg%3E");
+}
+
+.pt-simplify-option[data-mode="advanced"]::after,
+.pt-mode-icon[data-mode="advanced"] {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M538-80H423v-149H120l189-274h-95l266-377 266 377h-94l188 274H538v149ZM236-289h189-90 290-89 189-489Zm0 0h489L536-563h89L480-769 335-563h90L236-289Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M538-80H423v-149H120l189-274h-95l266-377 266 377h-94l188 274H538v149ZM236-289h189-90 290-89 189-489Zm0 0h489L536-563h89L480-769 335-563h90L236-289Z'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 45em) {
+  .pt-simplify-option[data-mode]::after {
+    margin-left: 0;
+  }
+
+  .pt-simplify-toggle:has(.pt-simplify-option[data-mode]) .pt-simplify-option {
+    padding: 0 0.4rem;
+  }
+
+  .pt-simplify-option[data-mode] .pt-simplify-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+}
+
 /* Several of Material's own rules (.md-header__option, .md-typeset
    details, .md-option:checked + label) beat the plain [hidden] { display:
    none } UA rule on specificity, so an element we hide via JS (.hidden =
    true) can silently stay visible — hit this three times now (the palette
    form, admonitions under a hidden heading, the old knob). One global
-   override instead of chasing each element type. */
-[hidden] {
+   override instead of chasing each element type.
+   Excludes Material's own [data-md-component="sidebar"] (the mobile nav
+   drawer, reused as .md-sidebar--primary): Material toggles its `hidden`
+   attribute itself and reveals it via its own more-specific (but
+   non-!important) CSS when the drawer checkbox is checked — our
+   !important here silently beat that and left the hamburger menu
+   permanently empty on mobile, with no console error. Same class of bug
+   as the .md-sidebar--primary gotcha in CLAUDE.md's Navigation section,
+   different cause. */
+[hidden]:not([data-md-component="sidebar"]) {
   display: none !important;
 }
 
@@ -842,13 +964,67 @@ input:checked + .md-consent__settings {
 }
 
 .pt-theme-option[data-scheme="default"]::before {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z'/%3E%3C/svg%3E");
 }
 
 .pt-theme-option[data-scheme="slate"]::before {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
+}
+
+/* Disappearing confirmation toast for the Essentials/Advanced toggle
+   (docs/javascripts/essentials_toggle.js's showToast). Sits just below the
+   header — right where the toggle that triggered it lives — rather than
+   at the bottom of the screen, so it's immediately next to the control the
+   reader just clicked. `top` itself is set inline by showToast() (the
+   header's own height varies: ~48px on mobile, taller on desktop/tablet
+   with the tab bar, and Material can also hide/reveal it on scroll), only
+   the offset-from-header gap lives here. Centered horizontally on both
+   desktop and mobile. Colors are inverted (ink background, bg-colored
+   text) same as the toggle's own active-option highlight, so it reads as
+   "this site's accent chip," not a generic OS notification. */
+.pt-toast {
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  transform: translate(-50%, 0);
+  max-width: min(90vw, 22rem);
+  padding: 0.6rem 1rem;
+  border-radius: 0.4rem;
+  background-color: var(--pt-ink);
+  color: var(--pt-bg);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-align: center;
+  box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  /* Fade only — no slide/transform. The fade-out itself is slow and
+     gentle; showToast() in essentials_toggle.js keeps the fully-visible
+     hold time short instead, so the toast still clears the screen quickly
+     overall. */
+  transition: opacity 0.7s ease;
+}
+
+.pt-toast--visible {
+  opacity: 1;
+  /* Fading in can be quick; only the fade-out (the base .pt-toast rule
+     above, used once this class is removed again) is slow. */
+  transition: opacity 0.15s ease;
+}
+
+.pt-toast__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.pt-toast__body {
+  font-weight: 400;
 }
 
 .simplify-active [data-advanced] {
@@ -1290,12 +1466,93 @@ input:checked + .md-consent__settings {
   color: var(--pt-heading-h2);
 }
 
+/* Material's default h1 (2em = 32px) and this site's own h2 override just
+   above (2.375em = 38px) both read oversized on a narrow phone viewport
+   relative to the body text around them — shrink both below the site's
+   usual ~45em mobile breakpoint. Placed after the h2 rule above (same
+   specificity, `.md-typeset h2`) so it wins by source order regardless of
+   viewport — a copy of this placed earlier in the file loses that fight
+   even inside a matching media query. */
+@media (max-width: 45em) {
+  .md-typeset h1 {
+    font-size: 1.5em;
+    /* Not equal CSS values: h1's line-height already carries ~8px of
+       intrinsic leading above the glyph that margin-top doesn't need to
+       add to, but there's nothing similar below — so margin-top is
+       shorted by that amount to make the two *visually* equal (both
+       ~0.8rem, matching the page's side gutter, measured edge-to-edge in
+       the browser rather than by their CSS values). */
+    margin-top: 0.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .md-typeset h2 {
+    font-size: 1.75em;
+  }
+
+  /* The visible gap below h1 actually comes from the *next* element's own
+     top margin — most often .pfg-section's `margin: 4em 0` — not from h1
+     itself. Zero that out so the space below h1 is controlled by h1's own
+     margin-bottom alone (adjacent margins collapse to the larger one, so
+     this doesn't add on top of it). `.md-typeset .pfg-section` is two
+     classes (0,2,0); the generic `* ` fallback below is only (0,1,1) and
+     loses to it, so .pfg-section needs its own higher-specificity
+     override alongside. */
+  .md-typeset h1 + * {
+    margin-top: 0;
+  }
+
+  .md-typeset h1 + .pfg-section {
+    margin-top: 0;
+  }
+
+  /* The gap *above* h1 wasn't from h1 at all — it's Material's own
+     `.md-main__inner { margin-top: 1.5rem }` and `.md-content__inner
+     { padding-top: 0.6rem }`, i.e. the page's fixed top offset under the
+     header, unrelated to h1's own (already-zero) margin-top. Remove that
+     built-in offset so h1's own 0.8rem margin-top above is the only thing
+     producing the gap, matching the 0.8rem (same as the .pfg-section/page
+     side gutter) margin-bottom below. */
+  .md-main__inner {
+    margin-top: 0;
+  }
+
+  .md-content__inner {
+    padding-top: 0;
+  }
+
+  /* Material's own `.md-copyright { width: 100% }` deliberately stacks the
+     footer's copyright line above the social icon row below its 45em
+     breakpoint (only overridden to `width: auto` at 45em+, letting them
+     share a row) — there's plenty of horizontal room for both on a phone
+     regardless, so force the same side-by-side layout down here too. */
+  .md-copyright {
+    width: auto;
+  }
+}
+
 .md-typeset .pfg-section {
   background: var(--pt-panel);
   border: 1px solid var(--pt-hairline);
   border-radius: 8px;
   padding: 0.5em 2em 2em;
-  margin: 4em 0;
+  /* No margin-bottom: whatever follows already supplies its own leading
+     space (another .pfg-section's margin-top, an h2's own top margin,
+     or the page footer), so a margin here would just double it up. */
+  margin: 4em 0 0;
+}
+
+/* Halved from the padding above (0.5em 2em 2em) — sized for desktop's
+   wider content column, it eats too much of a narrow phone viewport.
+   Placed after the base rule above (same specificity, `.md-typeset
+   .pfg-section`) so it wins by source order regardless of viewport. */
+@media (max-width: 45em) {
+  .md-typeset .pfg-section {
+    padding: 0.25em 1em 1em;
+    /* Halved from the margin-top above (4em) for the same reason as the
+       padding above it. */
+    margin-top: 2em;
+  }
 }
 
 .md-typeset .pfg-section > h2:first-child,

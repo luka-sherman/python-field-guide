@@ -63,6 +63,63 @@
     });
   }
 
+  // Disappearing confirmation toast for the Essentials/Advanced toggle —
+  // the toggle itself only shows the current state, not what just changed,
+  // so a click gives no feedback about its actual effect otherwise.
+  let toastTimer = null;
+  function showToast(active) {
+    let toast = document.getElementById("pt-toast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "pt-toast";
+      toast.className = "pt-toast";
+      // status + polite: announced to screen readers without interrupting
+      // whatever they're already reading, same as a visual toast doesn't
+      // steal focus.
+      toast.setAttribute("role", "status");
+      toast.setAttribute("aria-live", "polite");
+      document.body.appendChild(toast);
+    }
+
+    toast.innerHTML = "";
+
+    const title = document.createElement("div");
+    title.className = "pt-toast__title";
+    const icon = document.createElement("span");
+    icon.className = "pt-mode-icon";
+    icon.dataset.mode = active ? "simplified" : "advanced";
+    icon.setAttribute("aria-hidden", "true");
+    title.append(active ? "Essentials " : "Advanced ", icon);
+
+    const body = document.createElement("div");
+    body.className = "pt-toast__body";
+    body.textContent = active
+      ? "Just the basics, start here!"
+      : "Viewing all content.";
+
+    toast.append(title, body);
+
+    // The header's own height isn't fixed across breakpoints (taller with
+    // the tab bar on tablet/desktop) or over time (Material can hide/reveal
+    // it on scroll), so position below it fresh on every call rather than
+    // hardcoding an offset in CSS.
+    const header = document.querySelector(".md-header");
+    const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+    toast.style.top = Math.max(headerBottom, 0) + 12 + "px";
+
+    // Retrigger the transition even if a toast is already showing (rapid
+    // clicks between the two options): drop the class, force layout, then
+    // re-add it, instead of just extending the existing timer.
+    toast.classList.remove("pt-toast--visible");
+    void toast.offsetWidth;
+    toast.classList.add("pt-toast--visible");
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      toast.classList.remove("pt-toast--visible");
+    }, 1400);
+  }
+
   function applyState(container, active) {
     document.body.classList.toggle("simplify-active", active);
     updateLibrarySpans();
@@ -96,15 +153,21 @@
     essentials.type = "button";
     essentials.className = "pt-simplify-option";
     essentials.dataset.mode = "simplified";
-    essentials.textContent = "Essentials";
     essentials.title = "Show only what you need to write your first programs";
+    const essentialsLabel = document.createElement("span");
+    essentialsLabel.className = "pt-simplify-label";
+    essentialsLabel.textContent = "Essentials";
+    essentials.append(essentialsLabel);
 
     const advanced = document.createElement("button");
     advanced.type = "button";
     advanced.className = "pt-simplify-option";
     advanced.dataset.mode = "advanced";
-    advanced.textContent = "Advanced";
     advanced.title = "Show all site content";
+    const advancedLabel = document.createElement("span");
+    advancedLabel.className = "pt-simplify-label";
+    advancedLabel.textContent = "Advanced";
+    advanced.append(advancedLabel);
 
     container.append(highlight, advanced, essentials);
     paletteForm.insertAdjacentElement("beforebegin", container);
@@ -113,8 +176,11 @@
       const option = event.target.closest(".pt-simplify-option");
       if (!option) return;
       const next = option.dataset.mode === "simplified";
+      const wasActive = container.dataset.active === "simplified";
+      if (next === wasActive) return;
       localStorage.setItem(STORAGE_KEY, String(next));
       applyState(container, next);
+      showToast(next);
     });
 
     return container;

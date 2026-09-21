@@ -1,5 +1,8 @@
 site_name: Python Field Guide
 site_url: https://pythonfieldguide.com
+site_description: >-
+  A free Python reference with runnable code examples covering data types, collections,
+  loops, functions, classes, error handling, and popular libraries.
 
 hooks:
   - hooks/thanks_url.py

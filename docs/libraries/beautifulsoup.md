@@ -1,7 +1,7 @@
 ---
 description: >-
   Parsing HTML in Python with BeautifulSoup: finding tags, reading attributes and text, and
-  turning a page into structured data — the piece that pairs with requests to scrape a page.
+  turning a page into structured data for web scraping.
 ---
 
 # :material-pot-steam-outline:{ .lg .middle } BeautifulSoup library
