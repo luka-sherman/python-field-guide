@@ -1398,12 +1398,93 @@ input:checked + .md-consent__settings {
   color: var(--pt-heading-h2);
 }
 
+/* Material's default h1 (2em = 32px) and this site's own h2 override just
+   above (2.375em = 38px) both read oversized on a narrow phone viewport
+   relative to the body text around them — shrink both below the site's
+   usual ~45em mobile breakpoint. Placed after the h2 rule above (same
+   specificity, `.md-typeset h2`) so it wins by source order regardless of
+   viewport — a copy of this placed earlier in the file loses that fight
+   even inside a matching media query. */
+@media (max-width: 45em) {
+  .md-typeset h1 {
+    font-size: 1.5em;
+    /* Not equal CSS values: h1's line-height already carries ~8px of
+       intrinsic leading above the glyph that margin-top doesn't need to
+       add to, but there's nothing similar below — so margin-top is
+       shorted by that amount to make the two *visually* equal (both
+       ~0.8rem, matching the page's side gutter, measured edge-to-edge in
+       the browser rather than by their CSS values). */
+    margin-top: 0.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .md-typeset h2 {
+    font-size: 1.75em;
+  }
+
+  /* The visible gap below h1 actually comes from the *next* element's own
+     top margin — most often .pfg-section's `margin: 4em 0` — not from h1
+     itself. Zero that out so the space below h1 is controlled by h1's own
+     margin-bottom alone (adjacent margins collapse to the larger one, so
+     this doesn't add on top of it). `.md-typeset .pfg-section` is two
+     classes (0,2,0); the generic `* ` fallback below is only (0,1,1) and
+     loses to it, so .pfg-section needs its own higher-specificity
+     override alongside. */
+  .md-typeset h1 + * {
+    margin-top: 0;
+  }
+
+  .md-typeset h1 + .pfg-section {
+    margin-top: 0;
+  }
+
+  /* The gap *above* h1 wasn't from h1 at all — it's Material's own
+     `.md-main__inner { margin-top: 1.5rem }` and `.md-content__inner
+     { padding-top: 0.6rem }`, i.e. the page's fixed top offset under the
+     header, unrelated to h1's own (already-zero) margin-top. Remove that
+     built-in offset so h1's own 0.8rem margin-top above is the only thing
+     producing the gap, matching the 0.8rem (same as the .pfg-section/page
+     side gutter) margin-bottom below. */
+  .md-main__inner {
+    margin-top: 0;
+  }
+
+  .md-content__inner {
+    padding-top: 0;
+  }
+
+  /* Material's own `.md-copyright { width: 100% }` deliberately stacks the
+     footer's copyright line above the social icon row below its 45em
+     breakpoint (only overridden to `width: auto` at 45em+, letting them
+     share a row) — there's plenty of horizontal room for both on a phone
+     regardless, so force the same side-by-side layout down here too. */
+  .md-copyright {
+    width: auto;
+  }
+}
+
 .md-typeset .pfg-section {
   background: var(--pt-panel);
   border: 1px solid var(--pt-hairline);
   border-radius: 8px;
   padding: 0.5em 2em 2em;
-  margin: 4em 0;
+  /* No margin-bottom: whatever follows already supplies its own leading
+     space (another .pfg-section's margin-top, an h2's own top margin,
+     or the page footer), so a margin here would just double it up. */
+  margin: 4em 0 0;
+}
+
+/* Halved from the padding above (0.5em 2em 2em) — sized for desktop's
+   wider content column, it eats too much of a narrow phone viewport.
+   Placed after the base rule above (same specificity, `.md-typeset
+   .pfg-section`) so it wins by source order regardless of viewport. */
+@media (max-width: 45em) {
+  .md-typeset .pfg-section {
+    padding: 0.25em 1em 1em;
+    /* Halved from the margin-top above (4em) for the same reason as the
+       padding above it. */
+    margin-top: 2em;
+  }
 }
 
 .md-typeset .pfg-section > h2:first-child,
