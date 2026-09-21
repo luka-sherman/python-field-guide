@@ -5,6 +5,19 @@
   font-family: "Cormorant Garamond", serif;
 }
 
+/* Every h1 on the site leads with an attr_list icon (e.g. `:material-cube-
+   outline:{ .lg .middle }`). Material's own `.lg` class sizes it to a
+   fixed 48px regardless of the heading's own font-size, and `.middle`
+   vertical-centers it — both wrong once the heading text isn't also 48px
+   tall (it never is: h1 is 32px by default, 24px on mobile below). Size
+   the icon to `1em` so it tracks the heading's own font-size at any
+   breakpoint, and bottom-align it to the text instead of centering it. */
+.md-typeset h1 .twemoji {
+  width: 1em;
+  height: 1em;
+  vertical-align: text-bottom;
+}
+
 :root,
 [data-md-color-scheme="default"] {
   --pt-bg: #F0ECE4;
