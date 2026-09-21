@@ -164,6 +164,40 @@ html:focus-within::-webkit-scrollbar-thumb {
   font-weight: 800;
 }
 
+/* Below ~45em the header's own title font-size (Material's default) plus
+   the Essentials/Advanced + light/dark icon toggles leave too little room
+   for the full "Python Field Guide" site name — Material ellipsis-
+   truncates it to "Python Field...". Shrink the text instead of cutting
+   the name down to one word, so the full brand name stays intact. */
+@media (max-width: 45em) {
+  .md-header__title .md-header__topic {
+    font-size: 0.7rem;
+  }
+
+  /* The title text and the Essentials/Advanced + light/dark toggles are
+     both vertically centered in the same header row, but the toggles'
+     box-bottom sits 4px below the text's glyph-bottom (line-height
+     centering isn't the same as optical/visual centering) — nudge the
+     text down so the two lines up. */
+  .md-header__title .md-header__ellipsis {
+    position: relative;
+    top: 4px;
+  }
+
+  /* Material's own header title margin (20px left / 8px right, from its
+     `[dir="ltr"] .md-header__title` rule — matched here to beat that
+     selector's specificity) doesn't match the 4px margins the
+     hamburger/toggles/search icon all already share, so the five header
+     items — hamburger, title, Essentials/Advanced toggle, light/dark
+     toggle, search — read with uneven gaps between them (24 / 12 / 8 /
+     8px). Match the title's margins to the other items' 4px so every gap
+     comes out to the same 8px. */
+  [dir="ltr"] .md-header__title {
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+  }
+}
+
 /* Decorative snake-scale header, slate (dark) scheme only. Layered on top of
    .md-header's own background-color (the translucent --md-primary-fg-color
    set above), so the blur/hairline border above still apply underneath.
