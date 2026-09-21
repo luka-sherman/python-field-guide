@@ -6,12 +6,16 @@ description: >-
 
 # :material-palette-outline:{ .lg .middle } Style
 
+<div class="pfg-section" markdown="block">
+
 Code that works isn't automatically code that's easy to read and maintain.
 
 - **Consistent:** following the same conventions reads the same, no matter who wrote it
 - **Faster to learn:** a new file feels familiar, uses the same patterns 
 - **Easier to debug:** you know where to look when something breaks
 - **Effective collaboration:** when your code is **reviewed** so it can be **merged** in with everyone else's changes, consistent style means it's clearer what you actually changed, instead of needing to compare conflicting formatting choices
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

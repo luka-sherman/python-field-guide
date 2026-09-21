@@ -63,11 +63,19 @@
     });
   }
 
-  // Disappearing confirmation toast for the Essentials/Advanced toggle —
-  // the toggle itself only shows the current state, not what just changed,
-  // so a click gives no feedback about its actual effect otherwise.
+  // Disappearing confirmation toast, shared by the Essentials/Advanced
+  // toggle and the light/dark toggle — neither toggle's own button shows
+  // what just changed, only the current state, so a click otherwise gives
+  // no feedback about its actual effect.
+  //
+  // `iconAttrs` is the dataset to put on the icon span, e.g. {mode:
+  // "simplified"} or {scheme: "slate"} — matched in extra.css by
+  // .pt-mode-icon[data-mode] / [data-scheme] to the same icons the
+  // triggering toggle itself uses. `body` is optional; pass "" to show a
+  // one-line toast (the light/dark toggle's own message is self-
+  // explanatory, unlike the Essentials/Advanced one).
   let toastTimer = null;
-  function showToast(active) {
+  function showToast(label, iconAttrs, body) {
     let toast = document.getElementById("pt-toast");
     if (!toast) {
       toast = document.createElement("div");
@@ -87,17 +95,19 @@
     title.className = "pt-toast__title";
     const icon = document.createElement("span");
     icon.className = "pt-mode-icon";
-    icon.dataset.mode = active ? "simplified" : "advanced";
+    Object.keys(iconAttrs).forEach(function (key) {
+      icon.dataset[key] = iconAttrs[key];
+    });
     icon.setAttribute("aria-hidden", "true");
-    title.append(active ? "Essentials " : "Advanced ", icon);
+    title.append(label + " ", icon);
+    toast.append(title);
 
-    const body = document.createElement("div");
-    body.className = "pt-toast__body";
-    body.textContent = active
-      ? "Just the basics, start here!"
-      : "Viewing all content.";
-
-    toast.append(title, body);
+    if (body) {
+      const bodyEl = document.createElement("div");
+      bodyEl.className = "pt-toast__body";
+      bodyEl.textContent = body;
+      toast.append(bodyEl);
+    }
 
     // The header's own height isn't fixed across breakpoints (taller with
     // the tab bar on tablet/desktop) or over time (Material can hide/reveal
@@ -108,8 +118,9 @@
     toast.style.top = Math.max(headerBottom, 0) + 12 + "px";
 
     // Retrigger the transition even if a toast is already showing (rapid
-    // clicks between the two options): drop the class, force layout, then
-    // re-add it, instead of just extending the existing timer.
+    // clicks between the two options, or switching from one toggle to the
+    // other): drop the class, force layout, then re-add it, instead of
+    // just extending the existing timer.
     toast.classList.remove("pt-toast--visible");
     void toast.offsetWidth;
     toast.classList.add("pt-toast--visible");
@@ -180,7 +191,11 @@
       if (next === wasActive) return;
       localStorage.setItem(STORAGE_KEY, String(next));
       applyState(container, next);
-      showToast(next);
+      showToast(
+        next ? "Essentials" : "Advanced",
+        { mode: next ? "simplified" : "advanced" },
+        next ? "Just the basics, start here!" : "Viewing all content."
+      );
     });
 
     return container;
@@ -233,12 +248,13 @@
     container.addEventListener("click", function (event) {
       const option = event.target.closest(".pt-theme-option");
       if (!option) return;
-      const radio = option.dataset.scheme === "slate" ? darkRadio : lightRadio;
-      if (!radio.checked) {
-        radio.checked = true;
-        radio.dispatchEvent(new Event("change", { bubbles: true }));
-      }
+      const scheme = option.dataset.scheme;
+      const radio = scheme === "slate" ? darkRadio : lightRadio;
+      if (radio.checked) return;
+      radio.checked = true;
+      radio.dispatchEvent(new Event("change", { bubbles: true }));
       applyThemeState(container);
+      showToast(scheme === "slate" ? "Lights off" : "Lights on", { scheme: scheme }, "");
     });
 
     // Sync to whatever scheme Material's own JS actually lands on, not

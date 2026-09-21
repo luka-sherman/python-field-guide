@@ -6,11 +6,15 @@ description: >-
 
 # :material-test-tube:{ .lg .middle } pytest library
 
+<div class="pfg-section" markdown="block">
+
 [pytest documentation :material-open-in-new:](https://docs.pytest.org/en/stable/){ .md-button target="_blank" }
 
 pytest is an open-source project maintained by volunteer contributors.
 
 **pytest** is Python's most widely used testing framework — it finds test functions in a project, runs each one, and reports which passed or failed. It's a third-party package, not part of the standard library, but it's largely replaced the built-in `unittest` module for new projects because a test is just a function with a plain `assert` statement, instead of a class built on a special base and assert methods like `.assertEqual()`. Every example below actually runs in your browser: Pyodide gives each page its own in-memory filesystem, so writing a test file and pointing pytest at it works the same way it would on a real computer.
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

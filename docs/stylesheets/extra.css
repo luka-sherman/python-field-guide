@@ -211,66 +211,104 @@ html:focus-within::-webkit-scrollbar-thumb {
   }
 }
 
-/* Decorative snake-scale header, slate (dark) scheme only. Layered on top of
-   .md-header's own background-color (the translucent --md-primary-fg-color
-   set above), so the blur/hairline border above still apply underneath.
+/* Decorative header art, slate (dark) scheme. Layered on top of .md-header's
+   own background-color (the translucent --md-primary-fg-color set above), so
+   the blur/hairline border above still apply underneath.
 
-   The first two radial-gradient layers are the scale rings: each is a
-   column of left-opening ring outlines (only the left-hand crescent of the
-   ring shows within each tile), and the second layer repeats the same rings
-   offset by half a tile in both axes — nesting a column of scales into the
-   gaps of the column to its right, the classic staggered fish-scale/shingle
-   arrangement, oriented to flow horizontally to match the header's shape.
+   header_dark.svg has no background rect of its own (transparent outside the
+   artwork), so .md-header's flat background-color shows through untouched
+   wherever the art doesn't cover — it reads as the exact same page
+   background, not a tinted or shimmered one.
 
-   The third layer is a very slow, very low-contrast shimmer sitting behind
-   the scales — a linear-gradient through three near-black hues (indigo,
-   purple, green), animated via background-position so it drifts rather than
-   sitting static. Kept subtle deliberately: low opacity, and colors close in
-   value to --pt-bg, so it reads as a faint sheen rather than a visible band. */
+   The shimmer — a slow, low-contrast linear-gradient through three
+   near-black hues (indigo, purple, green), animated via background-position
+   so it drifts rather than sitting static — lives on a ::before layered
+   above the art, clipped with `mask-image: url(header_dark.svg)` so it only
+   paints over the SVG's own opaque pixels. Because the mask and the artwork
+   share one file and the same size/position/repeat values, they can't drift
+   out of alignment the way two independently-authored layers could. The
+   pseudo-element sits at z-index: -1 within .md-header's own stacking
+   context (already established by its backdrop-filter above), so it paints
+   above .md-header's background but below the title/toggles/search. */
 [data-md-color-scheme="slate"] .md-header {
-  background-image:
-    radial-gradient(circle at 100% 50%, transparent 14px, rgba(103, 58, 183, 0.2) 15px, rgba(63, 81, 181, 0.2) 16px, transparent 17px),
-    radial-gradient(circle at 100% 50%, transparent 14px, rgba(63, 81, 181, 0.2) 15px, rgba(103, 58, 183, 0.2) 16px, transparent 17px),
-    linear-gradient(120deg,
-      color-mix(in srgb, var(--pt-shimmer-indigo) 55%, transparent),
-      color-mix(in srgb, var(--pt-shimmer-purple) 55%, transparent),
-      color-mix(in srgb, var(--pt-shimmer-green) 55%, transparent),
-      color-mix(in srgb, var(--pt-shimmer-indigo) 55%, transparent));
-  background-size: 28px 36px, 28px 36px, 320% 320%;
-  background-position: 0 0, 14px 18px, 0% 50%;
+  background-image: url("../img/header_dark.svg");
+  background-size: auto 100%;
+  background-position: left center;
+  background-repeat: repeat-x;
 }
 
-/* Same decorative scale-ring + shimmer treatment, light (default) scheme.
-   Ring colors swap from dark mode's purple/indigo jewel tones to the site's
-   own gold/green palette (--pt-ref-keyword, --pt-accent), since purple reads
-   as an unrelated outlier against cream rather than a deliberate accent the
-   way it does against slate's near-black background. Shimmer hues likewise
-   swap to warm gold/sage/clay (--pt-shimmer-*) instead of indigo/purple/green
-   — colors close in value to --pt-bg so it stays a faint sheen, not a band. */
+[data-md-color-scheme="slate"] .md-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(120deg,
+    color-mix(in srgb, var(--pt-shimmer-indigo) 55%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-purple) 55%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-green) 55%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-indigo) 55%, transparent));
+  background-size: 320% 320%;
+  background-position: 0% 50%;
+  -webkit-mask-image: url("../img/header_dark.svg");
+  mask-image: url("../img/header_dark.svg");
+  mask-mode: alpha;
+  -webkit-mask-size: auto 100%;
+  mask-size: auto 100%;
+  -webkit-mask-position: left center;
+  mask-position: left center;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+}
+
+/* Same treatment, light (default) scheme, over header_light.svg — a
+   separately pre-colored, background-stripped export rather than one shared
+   SVG recolored via CSS, so the artwork's two accent colors can't drift out
+   of alignment with each other. Shimmer hues swap to warm gold/sage/clay
+   (--pt-shimmer-*) instead of indigo/purple/green so the moving sheen reads
+   as this site's own palette rather than dark mode's jewel tones. */
 [data-md-color-scheme="default"] .md-header {
-  background-image:
-    radial-gradient(circle at 100% 50%, transparent 14px, rgba(130, 94, 37, 0.07) 15px, rgba(8, 84, 42, 0.07) 16px, transparent 17px),
-    radial-gradient(circle at 100% 50%, transparent 14px, rgba(8, 84, 42, 0.07) 15px, rgba(130, 94, 37, 0.07) 16px, transparent 17px),
-    linear-gradient(120deg,
-      color-mix(in srgb, var(--pt-shimmer-gold) 18%, transparent),
-      color-mix(in srgb, var(--pt-shimmer-sage) 18%, transparent),
-      color-mix(in srgb, var(--pt-shimmer-clay) 18%, transparent),
-      color-mix(in srgb, var(--pt-shimmer-gold) 18%, transparent));
-  background-size: 28px 36px, 28px 36px, 320% 320%;
-  background-position: 0 0, 14px 18px, 0% 50%;
+  background-image: url("../img/header_light.svg");
+  background-size: auto 100%;
+  background-position: left center;
+  background-repeat: repeat-x;
+}
+
+[data-md-color-scheme="default"] .md-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(120deg,
+    color-mix(in srgb, var(--pt-shimmer-gold) 18%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-sage) 18%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-clay) 18%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-gold) 18%, transparent));
+  background-size: 320% 320%;
+  background-position: 0% 50%;
+  -webkit-mask-image: url("../img/header_light.svg");
+  mask-image: url("../img/header_light.svg");
+  mask-mode: alpha;
+  -webkit-mask-size: auto 100%;
+  mask-size: auto 100%;
+  -webkit-mask-position: left center;
+  mask-position: left center;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  [data-md-color-scheme="slate"] .md-header,
-  [data-md-color-scheme="default"] .md-header {
+  [data-md-color-scheme="slate"] .md-header::before,
+  [data-md-color-scheme="default"] .md-header::before {
     animation: pt-header-shimmer 22s ease-in-out infinite;
   }
 }
 
 @keyframes pt-header-shimmer {
-  0% { background-position: 0 0, 14px 18px, 0% 50%; }
-  50% { background-position: 0 0, 14px 18px, 100% 50%; }
-  100% { background-position: 0 0, 14px 18px, 0% 50%; }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .md-header__button.md-logo img {
@@ -810,6 +848,14 @@ input:checked + .md-consent__settings {
   border: 0.05rem solid currentColor;
   border-radius: 1rem;
   overflow: hidden;
+  /* The site's own background, not transparent — otherwise the inactive
+     option just shows whatever's behind the header (the translucent
+     --md-primary-fg-color, plus the header's own scale/shimmer pattern on
+     top), so the track read inconsistently depending on scroll position
+     and theme. A flat --pt-bg fill keeps the inactive side legible and
+     matches the highlight pill's own solid currentColor fill instead of
+     looking like a hole cut into the header. */
+  background-color: var(--pt-bg);
 }
 
 .pt-simplify-highlight {
@@ -973,6 +1019,20 @@ input:checked + .md-consent__settings {
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
 }
 
+/* Same sun/moon icons, reusable on a real element (not a pseudo-element) —
+   used by the toast (docs/javascripts/essentials_toggle.js's showToast)
+   for the light/dark toggle's own "Lights on"/"Lights off" message,
+   keeping it visually consistent with .pt-theme-option's icon. */
+.pt-mode-icon[data-scheme="default"] {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z'/%3E%3C/svg%3E");
+}
+
+.pt-mode-icon[data-scheme="slate"] {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
+}
+
 /* Disappearing confirmation toast for the Essentials/Advanced toggle
    (docs/javascripts/essentials_toggle.js's showToast). Sits just below the
    header — right where the toggle that triggered it lives — rather than
@@ -999,6 +1059,11 @@ input:checked + .md-consent__settings {
   text-align: center;
   box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.25);
   opacity: 0;
+  /* none while hidden, so an invisible toast (opacity alone doesn't take
+     it out of hit-testing) doesn't block clicks on whatever's under where
+     it will appear; .pt-toast--visible switches it back to auto so a
+     click on the visible toast is absorbed instead of passing through to
+     the page content behind it. */
   pointer-events: none;
   /* Fade only — no slide/transform. The fade-out itself is slow and
      gentle; showToast() in essentials_toggle.js keeps the fully-visible
@@ -1009,6 +1074,7 @@ input:checked + .md-consent__settings {
 
 .pt-toast--visible {
   opacity: 1;
+  pointer-events: auto;
   /* Fading in can be quick; only the fade-out (the base .pt-toast rule
      above, used once this class is removed again) is slow. */
   transition: opacity 0.15s ease;
@@ -1020,6 +1086,14 @@ input:checked + .md-consent__settings {
   justify-content: center;
   gap: 0.25rem;
   font-weight: 700;
+}
+
+/* Only add space below the title when there's actually a body line under
+   it (the Essentials/Advanced toast has one; the light/dark toast's title
+   is self-explanatory and passes no body — see showToast() in
+   essentials_toggle.js) — otherwise this margin just reads as extra
+   padding at the bottom of a one-line toast. */
+.pt-toast__title:not(:last-child) {
   margin-bottom: 0.2rem;
 }
 
@@ -1176,9 +1250,17 @@ input:checked + .md-consent__settings {
   height: 1.05rem;
 }
 
-.md-typeset .grid.cards a.pt-lib-badge--builtin,
-.md-typeset .grid.cards a.pt-lib-badge--third-party {
-  color: var(--pt-desc-blue);
+/* Built-in/third-party corner badge: halfway between the card's own
+   background color and the muted category-label color, in both light and
+   dark mode. */
+[data-md-color-scheme="default"] .md-typeset .grid.cards a.pt-lib-badge--builtin,
+[data-md-color-scheme="default"] .md-typeset .grid.cards a.pt-lib-badge--third-party {
+  color: color-mix(in srgb, var(--pt-panel), color-mix(in srgb, var(--pt-ink) 80%, white));
+}
+
+[data-md-color-scheme="slate"] .md-typeset .grid.cards a.pt-lib-badge--builtin,
+[data-md-color-scheme="slate"] .md-typeset .grid.cards a.pt-lib-badge--third-party {
+  color: color-mix(in srgb, color-mix(in srgb, var(--pt-panel) 92%, var(--pt-ink)), color-mix(in srgb, var(--pt-ink) 80%, black));
 }
 
 /* Homepage cards, dark mode only: green is reserved for the smaller non-bold

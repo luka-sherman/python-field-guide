@@ -4,9 +4,13 @@ description: How Python Field Guide uses Google Analytics and what data it colle
 
 # Privacy policy
 
+<div class="pfg-section" markdown="block">
+
 This site uses Google Analytics to understand how visitors use it — which pages are read,
 how people navigate between them, and roughly what devices/browsers they arrive on. That
 data helps decide what to improve or expand next.
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

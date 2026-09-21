@@ -6,6 +6,8 @@ description: >-
 
 # :material-package-variant:{ .lg .middle } Classes
 
+<div class="pfg-section" markdown="block">
+
 A **class** bundles related data together with the behavior (methods) that acts on it, instead of keeping them separate. A [dictionary](collections.md#dictionaries) can already hold a snake's data as key-value pairs — a class goes one step further, pairing that data with the functions that work on it. Structuring code this way is called **object-oriented programming (OOP)**.
 
 | Concept | Example | What it is |
@@ -15,6 +17,8 @@ A **class** bundles related data together with the behavior (methods) that acts 
 | Attribute | `self.species` | A piece of data that belongs to an object |
 | Method | `def describe(self):` | A function that belongs to a class and acts on a specific object |
 | Inheritance | `class Boa(Snake):` | A new class that reuses — and can extend or override — another class's attributes and methods |
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

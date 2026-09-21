@@ -6,6 +6,8 @@ description: >-
 
 # :material-file-document-outline:{ .lg .middle } File Read/Write
 
+<div class="pfg-section" markdown="block">
+
 Instead of only printing output to the terminal, you can have the program save data to a file on your computer so data stays after the program ends, or read data from a file.
 
 For how to pull code **from another `.py` file** into your program, that's in [Modules & Imports](modules.md#importing-modules).
@@ -22,6 +24,8 @@ flowchart LR
 ```
 
 <p class="pfg-diagram-caption">FIG: a program reading from and writing to a file</p>
+
+</div>
 
 </div>
 

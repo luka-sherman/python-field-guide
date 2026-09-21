@@ -6,6 +6,8 @@ description: >-
 
 # :material-function-variant:{ .lg .middle } Functions
 
+<div class="pfg-section" markdown="block">
+
 A **function** packages a block of code under a name, so it can be run again — with different inputs — instead of copying and pasting the same lines every time you need them. 
 
 Python already has some built in (`print()`, `len()`, `input()`), but `def` lets you write your own.
@@ -94,6 +96,8 @@ message = describe("ball")        # "a ball python" is the return value, so now 
 
     print(is_unusually_long("ball python", 6))
     ```
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

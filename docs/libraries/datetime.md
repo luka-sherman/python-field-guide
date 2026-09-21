@@ -6,6 +6,8 @@ description: >-
 
 # :material-calendar-clock:{ .lg .middle } datetime library
 
+<div class="pfg-section" markdown="block">
+
 [datetime documentation :material-open-in-new:](https://docs.python.org/3/library/datetime.html){ .md-button target="_blank" }
 
 The **`datetime`** module is Python's standard library for working with dates and times — logging when an observation happened, measuring how long ago it was, or formatting a date for display.
@@ -16,6 +18,8 @@ The **`datetime`** module is Python's standard library for working with dates an
 | Time format | High-level objects — `date`, `time`, `datetime`, `timedelta`. | A Unix timestamp — a plain float counting seconds since the epoch. |
 | Timezone support | Full — handles timezone-aware dates and conversions. | Limited — relies on the system's local time. |
 | Common uses | <ul><li>Logging when something happened</li><li>Calculating an age or a deadline</li><li>Date arithmetic</li></ul> | <ul><li>Benchmarking how long code takes to run</li><li>Pausing a program with `sleep()`</li></ul> |
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

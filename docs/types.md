@@ -6,6 +6,8 @@ description: >-
 
 # :material-shape-outline:{ .lg .middle } Basic data types
 
+<div class="pfg-section" markdown="block">
+
 Every value in Python has a **type**, which determines what operations it supports and how it behaves. 
 
 A basic data type holds a single value, as opposed to a [collection](collections.md) data type, which groups multiple values together. The basic types covered here — `int`, `float`, `str`, `bool`, and `None` — are immutable.
@@ -36,6 +38,8 @@ A basic data type holds a single value, as opposed to a [collection](collections
     isinstance(weight, int)  # True
     isinstance(weight, str)  # False
     ```
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

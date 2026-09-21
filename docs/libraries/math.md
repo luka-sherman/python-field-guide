@@ -6,9 +6,13 @@ description: >-
 
 # :material-square-root-box:{ .lg .middle } math library
 
+<div class="pfg-section" markdown="block">
+
 [math documentation :material-open-in-new:](https://docs.python.org/3/library/math.html){ .md-button target="_blank" }
 
 The **`math`** module extends Python's built-in arithmetic with functions it doesn't provide directly — square roots, rounding modes, constants like pi, and logarithms.
+
+</div>
 
 <div class="pfg-section" markdown="block">
 

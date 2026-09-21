@@ -6,7 +6,11 @@ description: >-
 
 # :material-turtle:{ .lg .middle } Turtle library
 
+<div class="pfg-section" markdown="block">
+
 [Turtle documentation :material-open-in-new:](https://docs.python.org/3/library/turtle.html){ .md-button target="_blank" }
+
+</div>
 
 <div class="pfg-section" markdown="block">
 
