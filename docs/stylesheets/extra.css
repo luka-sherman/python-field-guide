@@ -211,66 +211,104 @@ html:focus-within::-webkit-scrollbar-thumb {
   }
 }
 
-/* Decorative snake-scale header, slate (dark) scheme only. Layered on top of
-   .md-header's own background-color (the translucent --md-primary-fg-color
-   set above), so the blur/hairline border above still apply underneath.
+/* Decorative header art, slate (dark) scheme. Layered on top of .md-header's
+   own background-color (the translucent --md-primary-fg-color set above), so
+   the blur/hairline border above still apply underneath.
 
-   The first two radial-gradient layers are the scale rings: each is a
-   column of left-opening ring outlines (only the left-hand crescent of the
-   ring shows within each tile), and the second layer repeats the same rings
-   offset by half a tile in both axes — nesting a column of scales into the
-   gaps of the column to its right, the classic staggered fish-scale/shingle
-   arrangement, oriented to flow horizontally to match the header's shape.
+   header_dark.svg has no background rect of its own (transparent outside the
+   artwork), so .md-header's flat background-color shows through untouched
+   wherever the art doesn't cover — it reads as the exact same page
+   background, not a tinted or shimmered one.
 
-   The third layer is a very slow, very low-contrast shimmer sitting behind
-   the scales — a linear-gradient through three near-black hues (indigo,
-   purple, green), animated via background-position so it drifts rather than
-   sitting static. Kept subtle deliberately: low opacity, and colors close in
-   value to --pt-bg, so it reads as a faint sheen rather than a visible band. */
+   The shimmer — a slow, low-contrast linear-gradient through three
+   near-black hues (indigo, purple, green), animated via background-position
+   so it drifts rather than sitting static — lives on a ::before layered
+   above the art, clipped with `mask-image: url(header_dark.svg)` so it only
+   paints over the SVG's own opaque pixels. Because the mask and the artwork
+   share one file and the same size/position/repeat values, they can't drift
+   out of alignment the way two independently-authored layers could. The
+   pseudo-element sits at z-index: -1 within .md-header's own stacking
+   context (already established by its backdrop-filter above), so it paints
+   above .md-header's background but below the title/toggles/search. */
 [data-md-color-scheme="slate"] .md-header {
-  background-image:
-    radial-gradient(circle at 100% 50%, transparent 14px, rgba(103, 58, 183, 0.2) 15px, rgba(63, 81, 181, 0.2) 16px, transparent 17px),
-    radial-gradient(circle at 100% 50%, transparent 14px, rgba(63, 81, 181, 0.2) 15px, rgba(103, 58, 183, 0.2) 16px, transparent 17px),
-    linear-gradient(120deg,
-      color-mix(in srgb, var(--pt-shimmer-indigo) 55%, transparent),
-      color-mix(in srgb, var(--pt-shimmer-purple) 55%, transparent),
-      color-mix(in srgb, var(--pt-shimmer-green) 55%, transparent),
-      color-mix(in srgb, var(--pt-shimmer-indigo) 55%, transparent));
-  background-size: 28px 36px, 28px 36px, 320% 320%;
-  background-position: 0 0, 14px 18px, 0% 50%;
+  background-image: url("../img/header_dark.svg");
+  background-size: auto 100%;
+  background-position: left center;
+  background-repeat: repeat-x;
 }
 
-/* Same decorative scale-ring + shimmer treatment, light (default) scheme.
-   Ring colors swap from dark mode's purple/indigo jewel tones to the site's
-   own gold/green palette (--pt-ref-keyword, --pt-accent), since purple reads
-   as an unrelated outlier against cream rather than a deliberate accent the
-   way it does against slate's near-black background. Shimmer hues likewise
-   swap to warm gold/sage/clay (--pt-shimmer-*) instead of indigo/purple/green
-   — colors close in value to --pt-bg so it stays a faint sheen, not a band. */
+[data-md-color-scheme="slate"] .md-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(120deg,
+    color-mix(in srgb, var(--pt-shimmer-indigo) 55%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-purple) 55%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-green) 55%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-indigo) 55%, transparent));
+  background-size: 320% 320%;
+  background-position: 0% 50%;
+  -webkit-mask-image: url("../img/header_dark.svg");
+  mask-image: url("../img/header_dark.svg");
+  mask-mode: alpha;
+  -webkit-mask-size: auto 100%;
+  mask-size: auto 100%;
+  -webkit-mask-position: left center;
+  mask-position: left center;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+}
+
+/* Same treatment, light (default) scheme, over header_light.svg — a
+   separately pre-colored, background-stripped export rather than one shared
+   SVG recolored via CSS, so the artwork's two accent colors can't drift out
+   of alignment with each other. Shimmer hues swap to warm gold/sage/clay
+   (--pt-shimmer-*) instead of indigo/purple/green so the moving sheen reads
+   as this site's own palette rather than dark mode's jewel tones. */
 [data-md-color-scheme="default"] .md-header {
-  background-image:
-    radial-gradient(circle at 100% 50%, transparent 14px, rgba(130, 94, 37, 0.07) 15px, rgba(8, 84, 42, 0.07) 16px, transparent 17px),
-    radial-gradient(circle at 100% 50%, transparent 14px, rgba(8, 84, 42, 0.07) 15px, rgba(130, 94, 37, 0.07) 16px, transparent 17px),
-    linear-gradient(120deg,
-      color-mix(in srgb, var(--pt-shimmer-gold) 18%, transparent),
-      color-mix(in srgb, var(--pt-shimmer-sage) 18%, transparent),
-      color-mix(in srgb, var(--pt-shimmer-clay) 18%, transparent),
-      color-mix(in srgb, var(--pt-shimmer-gold) 18%, transparent));
-  background-size: 28px 36px, 28px 36px, 320% 320%;
-  background-position: 0 0, 14px 18px, 0% 50%;
+  background-image: url("../img/header_light.svg");
+  background-size: auto 100%;
+  background-position: left center;
+  background-repeat: repeat-x;
+}
+
+[data-md-color-scheme="default"] .md-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(120deg,
+    color-mix(in srgb, var(--pt-shimmer-gold) 18%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-sage) 18%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-clay) 18%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-gold) 18%, transparent));
+  background-size: 320% 320%;
+  background-position: 0% 50%;
+  -webkit-mask-image: url("../img/header_light.svg");
+  mask-image: url("../img/header_light.svg");
+  mask-mode: alpha;
+  -webkit-mask-size: auto 100%;
+  mask-size: auto 100%;
+  -webkit-mask-position: left center;
+  mask-position: left center;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  [data-md-color-scheme="slate"] .md-header,
-  [data-md-color-scheme="default"] .md-header {
+  [data-md-color-scheme="slate"] .md-header::before,
+  [data-md-color-scheme="default"] .md-header::before {
     animation: pt-header-shimmer 22s ease-in-out infinite;
   }
 }
 
 @keyframes pt-header-shimmer {
-  0% { background-position: 0 0, 14px 18px, 0% 50%; }
-  50% { background-position: 0 0, 14px 18px, 100% 50%; }
-  100% { background-position: 0 0, 14px 18px, 0% 50%; }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .md-header__button.md-logo img {
@@ -810,6 +848,14 @@ input:checked + .md-consent__settings {
   border: 0.05rem solid currentColor;
   border-radius: 1rem;
   overflow: hidden;
+  /* The site's own background, not transparent — otherwise the inactive
+     option just shows whatever's behind the header (the translucent
+     --md-primary-fg-color, plus the header's own scale/shimmer pattern on
+     top), so the track read inconsistently depending on scroll position
+     and theme. A flat --pt-bg fill keeps the inactive side legible and
+     matches the highlight pill's own solid currentColor fill instead of
+     looking like a hole cut into the header. */
+  background-color: var(--pt-bg);
 }
 
 .pt-simplify-highlight {
