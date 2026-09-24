@@ -8,7 +8,7 @@ description: >-
 
 <div class="pfg-section" markdown="block">
 
-A **collection** is a single object that groups multiple values (like [basic types](types.md)) together and so they can be stored in one variable together and worked with as a unit. 
+A **collection** is a single object that groups multiple values (like [basic types](basics.md)) together and so they can be stored in one variable together and worked with as a unit. 
 
 <div class="pt-jump-table" markdown="block">
 
@@ -81,7 +81,7 @@ class diagram panel
 
 - **Index with `list[index]`** to return the item at that index (position number) of the list. 
 
-    To **update** the item at that index, set it equal to something else **`list[index] = new_item`**. This works because a list is **mutable** — updating an item changes it in place instead of building a new one, the same way [an object's attributes](classes.md#defining-a-class) can be changed after it's created.
+    To **update** the item at that index, set it equal to something else **`list[index] = new_item`**. This works because a list is **mutable** — updating an item changes it in place instead of building a new one, the same way [an object's attributes](../organization/classes.md#defining-a-class) can be changed after it's created.
 
     *Run the below example, and change the indexes to see how they work:* 
 
@@ -126,7 +126,7 @@ class diagram panel
         species[::2] = ["carpet", "anaconda"]  # ["carpet", "rock", "anaconda", "blood"]
         ```
 
-### [Loop](loops.md#loop-through-a-collection) through a list
+### [Loop](../flow/loops.md#loop-through-a-collection) through a list
 
 - Lists make it simple to loop directly over the items. The loop runs once for every item in the list, and on each pass the new loop variable, *(i.e. `specie`)* is set to the next item in the list. 
 
@@ -335,7 +335,7 @@ class diagram panel
     [s.title() for s in species]        # ["Burmese", "Rock", "Ball", "Blood"]
     ```
 
-    Swapping the brackets for parentheses turns this into a [generator expression](functions.md#generator-expressions) instead — same syntax, but it produces items one at a time rather than building the whole list up front. Use a list comprehension when the result needs indexing, `len()`, or looping over more than once; use a generator expression when it's only read once, or the full result would be too large to hold in memory as a list.
+    Swapping the brackets for parentheses turns this into a [generator expression](../organization/functions.md#generator-expressions) instead — same syntax, but it produces items one at a time rather than building the whole list up front. Use a list comprehension when the result needs indexing, `len()`, or looping over more than once; use a generator expression when it's only read once, or the full result would be too large to hold in memory as a list.
 
 ### Going further { data-card-link="skip" }
 
@@ -439,12 +439,12 @@ class diagram panel
 ??? tip "Extending lists with `collections.deque`"
     A list can already add or remove items from the end cheaply, but doing the same at the
     *front* — `species.insert(0, item)` or `species.pop(0)` — means Python has to shift every
-    other item over. The [`collections`](libraries/collections.md) library's
-    [`deque`](libraries/collections.md#deque) adds fast `appendleft()`/`popleft()` methods for
+    other item over. The [`collections`](../libraries/collections.md) library's
+    [`deque`](../libraries/collections.md#deque) adds fast `appendleft()`/`popleft()` methods for
     exactly that case. Switch to it when items are being added or removed from both ends
     often, like a queue of items processed in the order they arrive — not for a list that's
     mostly read or only changed at the end, where a plain list is simpler and already fast.
-    See the [collections library page](libraries/collections.md) for the rest of `deque`'s
+    See the [collections library page](../libraries/collections.md) for the rest of `deque`'s
     methods (`rotate()`, `maxlen=`, and more) and for the other list-adjacent tools it adds.
 
 <div data-advanced="true" markdown="block">
@@ -455,9 +455,9 @@ class diagram panel
     | `append()` / `pop()` | <span class="pt-bigo pt-bigo--good">O(1)</span> | <span class="pt-bigo pt-bigo--good">O(1)</span> |
     | `insert(0, x)` / `pop(0)` | <span class="pt-bigo pt-bigo--ok">O(n)</span> | <span class="pt-bigo pt-bigo--good">O(1)</span> |
 
-    `append()` and `pop()` (from the end) run in constant [time](style.md#time-and-space) — one step no matter how long the list already is. `insert(0, item)` and `pop(0)` run in linear time, since Python has to shift every remaining item over.
+    `append()` and `pop()` (from the end) run in constant [time](../practices/style.md#time-and-space) — one step no matter how long the list already is. `insert(0, item)` and `pop(0)` run in linear time, since Python has to shift every remaining item over.
 
-    See [Efficiency](style.md#efficiency) for why this distinction matters.
+    See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
 
 ??? efficiency "For efficiency, sorted() copies the list; sort() doesn't"
     | | Time | Space |
@@ -469,7 +469,7 @@ class diagram panel
     
     Reach for `sort()` when the original order doesn't need to survive; `sorted()` when it does.
 
-    See [Efficiency](style.md#efficiency) for why this distinction matters.
+    See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
 
 </div>
 
@@ -546,9 +546,9 @@ flowchart LR
     | `if key in snake: snake[key]` | <span class="pt-bigo pt-bigo--good">O(1)</span> (two lookups) | — |
     | `snake.get(key)` | <span class="pt-bigo pt-bigo--good">O(1)</span> (one lookup) | — |
 
-    `if key in snake: value = snake[key]` does two hash lookups — one to check membership, one to fetch the value. `snake.get(key)` does the same job in one. Both are O(1), so this isn't a [Big O](style.md#big-o-notation) difference, just avoided repeated work — worth reaching for out of habit once it's familiar, not worth restructuring existing code to chase.
+    `if key in snake: value = snake[key]` does two hash lookups — one to check membership, one to fetch the value. `snake.get(key)` does the same job in one. Both are O(1), so this isn't a [Big O](../practices/style.md#big-o-notation) difference, just avoided repeated work — worth reaching for out of habit once it's familiar, not worth restructuring existing code to chase.
 
-    See [Efficiency](style.md#efficiency) for why this distinction matters.
+    See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
 
 </div>
 
@@ -713,7 +713,7 @@ flowchart LR
 
     Looking up a key with `dict[key]` or `.get()` is O(1) — Python computes where to look directly, the same cost regardless of how many keys the dict holds. Storing the same data as a list of `(key, value)` tuples instead and searching for a match by hand is O(n) — worst case, checking every pair before finding it or coming up empty. That's the main reason to reach for a dict instead of a list when data needs to be looked up by a key.
 
-    See [Efficiency](style.md#efficiency) for why this distinction matters.
+    See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
 
 </div>
 
@@ -798,22 +798,22 @@ flowchart LR
 ??? tip "Extending dicts with `collections`"
     A plain dict can tally counts or group items, but both take extra setup code: checking
     whether a key exists before incrementing it, or before appending to a list under it. The
-    [`collections`](libraries/collections.md) library adds several dicts that handle cases
+    [`collections`](../libraries/collections.md) library adds several dicts that handle cases
     like these automatically.
 
-    - [`Counter`](libraries/collections.md#counter) counts items in a sequence directly —
+    - [`Counter`](../libraries/collections.md#counter) counts items in a sequence directly —
       reach for it as soon as a dict's job is "how many times does each item show up."
-    - [`defaultdict`](libraries/collections.md#defaultdict) supplies an empty value (a list,
+    - [`defaultdict`](../libraries/collections.md#defaultdict) supplies an empty value (a list,
       a set, `0`) the first time a new key is used, so grouping items under keys that aren't
       known ahead of time doesn't need an `if key not in dict` check before every write.
-    - [`OrderedDict`](libraries/collections.md#ordereddict) is worth reaching for only when
+    - [`OrderedDict`](../libraries/collections.md#ordereddict) is worth reaching for only when
       order itself needs to be compared or reordered — a plain dict already remembers
       insertion order, but its `==` ignores that order, and it has no `move_to_end()`.
-    - [`ChainMap`](libraries/collections.md#chainmap) layers several dicts together — like a
+    - [`ChainMap`](../libraries/collections.md#chainmap) layers several dicts together — like a
       set of overrides checked before a set of defaults — without copying or merging them
       into a new dict.
 
-    See the [collections library page](libraries/collections.md) for the full method list on
+    See the [collections library page](../libraries/collections.md) for the full method list on
     each of these.
 
 </div>
@@ -870,7 +870,7 @@ The **negative index** starts counting down from the end instead, starting at `-
 
 ### Loop through a tuple
 
-- The [loop](loops.md#loop-through-a-collection) runs once for every item in the tuple, and on each pass the loop variable, *(i.e. `specie`)* is set to the next item in the tuple.
+- The [loop](../flow/loops.md#loop-through-a-collection) runs once for every item in the tuple, and on each pass the loop variable, *(i.e. `specie`)* is set to the next item in the tuple.
 
     ```python-ref
     for specie in species: 
@@ -943,7 +943,7 @@ The **negative index** starts counting down from the end instead, starting at `-
     a, b, c, d = species  # a="burmese"  b="rock"  c="ball"  d="blood"
     ```
 
-    A [`match` statement](conditionals.md#unpacking-a-tuple) can do this same unpacking while also branching on the tuple's shape or specific values.
+    A [`match` statement](../flow/conditionals.md#unpacking-a-tuple) can do this same unpacking while also branching on the tuple's shape or specific values.
 
     ```python-ref
     snake = (12, "ball")
@@ -1080,13 +1080,13 @@ The **negative index** starts counting down from the end instead, starting at `-
 ??? tip "Extending tuples with `collections.namedtuple`"
     A plain tuple's items can only be accessed by position — `snake[1]` doesn't say what
     that value actually means without checking back how the tuple was built. The
-    [`collections`](libraries/collections.md) library's
-    [`namedtuple`](libraries/collections.md#namedtuple) builds a tuple type with named fields,
+    [`collections`](../libraries/collections.md) library's
+    [`namedtuple`](../libraries/collections.md#namedtuple) builds a tuple type with named fields,
     so the same value reads as `snake.length_ft`. Switch to it once a tuple's positions start
     needing a mental lookup table to remember, or once several tuples share the same shape
     throughout a program — a single `namedtuple` definition documents that shape once instead
     of repeating a comment at every literal.
-    See the [collections library page](libraries/collections.md) for `namedtuple`'s other
+    See the [collections library page](../libraries/collections.md) for `namedtuple`'s other
     methods (`_asdict()`, `_replace()`, default field values) and the rest of the module.
 
 </div>
@@ -1124,7 +1124,7 @@ block-beta
 
 ### Loop through a set
 
-The [loop](loops.md#loop-through-a-collection) runs once for every item in the set, in no guaranteed order, and on each pass the loop variable, *(i.e. `specie`)* is set to the next item.
+The [loop](../flow/loops.md#loop-through-a-collection) runs once for every item in the set, in no guaranteed order, and on each pass the loop variable, *(i.e. `specie`)* is set to the next item.
 
 ```python-ref
 for specie in species: 
@@ -1339,7 +1339,7 @@ These check a relationship between two sets and hand back a `bool`, rather than 
 
     Checking `in` on a list or tuple is O(n) — worst case, Python has to look at every item before it can say no. A set (and a dict, checking its keys) looks a value up directly instead of scanning, so `in` on either is O(1) on average, regardless of size. That's the "far faster" mentioned above, named precisely — it's also the reason converting a list to a set is a common move before doing a lot of membership checks against it.
 
-    See [Efficiency](style.md#efficiency) for why this distinction matters.
+    See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
 
 </div>
 

@@ -13,12 +13,12 @@ description: >-
 - **[Setup](workspace.md) your workspace first** so you can run Python on your computer and edit Python files. 
 - **Work through the pages in order.** 
 - **Type the examples yourself**, and actually click **Run** on the runnable blocks and edit them — change a value, rerun, see what changes. That's where a concept actually sticks, not from reading it.
-- **Errors are a normal, constant part of writing code, not a sign you did something wrong.** Once you hit your first one, the [Errors](errors.md) page contains [strategies for resolving them](errors.md#debugging-strategies).
-    - [Read it out loud](errors.md#read-it-out-loud)
-    - [Print debugging](errors.md#print-debugging)
-    - [Isolate the problem](errors.md#isolate-the-problem)
-- **Try building something small.** Once you've read through [Conditionals](conditionals.md) and [Loops](loops.md) you already have enough to write a program. 
-- The homepage has more on [using AI to help you learn](index.md).
+- **Errors are a normal, constant part of writing code, not a sign you did something wrong.** Once you hit your first one, the [Errors](../practices/errors.md) page contains [strategies for resolving them](../practices/errors.md#debugging-strategies).
+    - [Read it out loud](../practices/errors.md#read-it-out-loud)
+    - [Print debugging](../practices/errors.md#print-debugging)
+    - [Isolate the problem](../practices/errors.md#isolate-the-problem)
+- **Try building something small.** Once you've read through [Conditionals](../flow/conditionals.md) and [Loops](../flow/loops.md) you already have enough to write a program. 
+- The homepage has more on [using AI to help you learn](../index.md).
 
 </div>
 
@@ -76,7 +76,7 @@ Code editors have an **output** window at the bottom that shows the print statem
 
 ### Structure of a print() statement { data-card-link="skip" }
 
-`print` is a [function](functions.md) — a named, reusable piece of code that does something when you "call" it by name. These building blocks are all you need to use `print()`:
+`print` is a [function](../organization/functions.md) — a named, reusable piece of code that does something when you "call" it by name. These building blocks are all you need to use `print()`:
 
 <div class="pfg-diagram-frame" markdown="block">
 
@@ -233,7 +233,7 @@ species = "burmese python"    # replaces the old value entirely
     a = b = 0
     ```
 
-    `species, length_ft = "ball python", 4.5` assigns each value to the matching name in order — the same unpacking mechanism covered on the [Collections](collections.md#packing-and-unpacking) page. `a = b = 0` instead points every name at the *same* value, useful for initializing a few counters at once.
+    `species, length_ft = "ball python", 4.5` assigns each value to the matching name in order — the same unpacking mechanism covered on the [Collections](../types/collections.md#packing-and-unpacking) page. `a = b = 0` instead points every name at the *same* value, useful for initializing a few counters at once.
 
 ??? run "Run a variables example"
     All the examples above, combined into one script:
@@ -298,11 +298,11 @@ print(species, length_ft, "ft")
 
 Commas are usually the easier choice for a quick print. Pass `sep="..."` to change the default single-space separator, like `print(species, length_ft, sep=", ")`.
 
-Once you're comfortable with the basics here, the [Collections](collections.md#list-operations) page covers printing the contents of a list or dict.
+Once you're comfortable with the basics here, the [Collections](../types/collections.md#list-operations) page covers printing the contents of a list or dict.
 
 ### Building a string manually { data-card-link="skip" }
 
-Come back to this once you've read the [Types](types.md) page.
+Come back to this once you've read the [Types](../types/basics.md) page.
 
 You can also build one string yourself with `+` and print that instead of using commas — but every piece has to already be a string, so a number like `length_ft` needs `str()` first, and you have to add the spaces yourself.
 
@@ -310,7 +310,7 @@ You can also build one string yourself with `+` and print that instead of using 
 print(species + " " + str(length_ft) + " ft")    # ball python 4.5 ft — same output, more typing
 ```
 
-For building a full sentence out of text and variables, an [f-string](types.md#building-strings) is usually clearer than either approach.
+For building a full sentence out of text and variables, an [f-string](../types/basics.md#building-strings) is usually clearer than either approach.
 
 ??? run "Run a printing variables example"
     All the examples above, combined into one script:
@@ -332,7 +332,7 @@ For building a full sentence out of text and variables, an [f-string](types.md#b
 
 ### Variables and types { data-card-link="skip" }
 
-Come back to this once you've read the [Types](types.md) page.
+Come back to this once you've read the [Types](../types/basics.md) page.
 
 A variable isn't locked to the type of value it first held — `species` can hold a string, then later be reassigned to an `int` or `float`, with no error.
 
@@ -341,7 +341,7 @@ species = "burmese python"    # str
 species = 12                  # now an int — Python allows this
 ```
 
-Other languages fix a variable to one type permanently at creation; Python doesn't. Every value still has its own type — [covered in full here](types.md) — a variable is just a name that can point at any of them, one at a time.
+Other languages fix a variable to one type permanently at creation; Python doesn't. Every value still has its own type — [covered in full here](../types/basics.md) — a variable is just a name that can point at any of them, one at a time.
 
 </div>
 
@@ -349,7 +349,7 @@ Other languages fix a variable to one type permanently at creation; Python doesn
 
 ## Expressions and statements
 
-Every line of Python code is either an **expression** or a **statement**. An expression is anything that evaluates to a value — `2 + 3`, `species`, `species == "burmese"`. A statement is a complete instruction — an assignment, a `print()` call, an `if` statement's condition (covered on the [Conditionals](conditionals.md#if-elif-else) page) — and it's usually built out of one or more expressions.
+Every line of Python code is either an **expression** or a **statement**. An expression is anything that evaluates to a value — `2 + 3`, `species`, `species == "burmese"`. A statement is a complete instruction — an assignment, a `print()` call, an `if` statement's condition (covered on the [Conditionals](../flow/conditionals.md#if-elif-else) page) — and it's usually built out of one or more expressions.
 
 ```python-ref
 2 + 3                   # an expression — evaluates to 5
@@ -443,11 +443,11 @@ print("Hello,", name)                  # now a usable variable
 
 ### Converting input to a number { data-card-link="skip" }
 
-Come back to this once you've read the [Types](types.md) page.
+Come back to this once you've read the [Types](../types/basics.md) page.
 
 Whatever the person types, `input()` always hands it back as a **string** — even a typed number comes back as text, not a real number.
 
-To use what the user has entered as a real number, you must convert it with `int()` or `float()`, covered on the [Types](types.md#convert) page. Skipping this step causes an error the moment you try to do math with it — Python won't add a number to a string.
+To use what the user has entered as a real number, you must convert it with `int()` or `float()`, covered on the [Types](../types/basics.md#convert) page. Skipping this step causes an error the moment you try to do math with it — Python won't add a number to a string.
 
 ```python-ref
 age = input("How old are you? ")          # "8" — a string, not the number 8
@@ -539,7 +539,7 @@ Python doesn't have a true multi-line comment symbol — a triple-quoted string 
 
 [^triple-quote-string]: It isn't technically a comment — it's a string that Python creates and then immediately discards since nothing uses it. Python just never complains about a statement that does nothing, so the effect is the same as a real comment.
 
-Placed as the very first line inside a function or a file specifically, this same trick is called a **docstring** and documents what that function or file does. Function docstrings are covered on the [Functions](functions.md#docstrings) page.
+Placed as the very first line inside a function or a file specifically, this same trick is called a **docstring** and documents what that function or file does. Function docstrings are covered on the [Functions](../organization/functions.md#docstrings) page.
 
 Placed as the very first line of a file instead, it becomes a **module docstring** — documenting the file as a whole rather than a single function, and a common place to note who wrote it and when.
 
@@ -557,7 +557,7 @@ species = "ball python"
 length_ft = 4.5
 ```
 
-More on docstring conventions on the [Style](style.md#docstrings) page.
+More on docstring conventions on the [Style](../practices/style.md#docstrings) page.
 
 </div>
 

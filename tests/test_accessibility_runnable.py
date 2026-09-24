@@ -13,7 +13,7 @@ the output live region — plus axe-core over the output panel forced into its v
 from conftest import format_violations, run_axe
 
 # A core content page that carries several ```python runnable blocks.
-RUNNABLE_PAGE = "/foundations/"
+RUNNABLE_PAGE = "/start/foundations/"
 
 
 def _open(page, site_url):

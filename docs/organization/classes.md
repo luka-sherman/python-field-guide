@@ -8,7 +8,7 @@ description: >-
 
 <div class="pfg-section" markdown="block">
 
-A **class** bundles related data together with the behavior (methods) that acts on it, instead of keeping them separate. A [dictionary](collections.md#dictionaries) can already hold a snake's data as key-value pairs — a class goes one step further, pairing that data with the functions that work on it. Structuring code this way is called **object-oriented programming (OOP)**.
+A **class** bundles related data together with the behavior (methods) that acts on it, instead of keeping them separate. A [dictionary](../types/collections.md#dictionaries) can already hold a snake's data as key-value pairs — a class goes one step further, pairing that data with the functions that work on it. Structuring code this way is called **object-oriented programming (OOP)**.
 
 | Concept | Example | What it is |
 |---------|---------|------------|
@@ -142,7 +142,7 @@ For a value every object should share instead of holding its own copy, see [clas
     | Plain instance | — | <span class="pt-bigo pt-bigo--ok">O(n)</span> |
     | `__slots__` | — | <span class="pt-bigo pt-bigo--ok">O(n)</span> (same class, smaller constant) |
 
-    Each instance normally keeps its attributes in a per-object `__dict__`, which costs some [memory](style.md#time-and-space) on top of the attribute values themselves — usually not worth worrying about, but it adds up when a program holds thousands or millions of instances at once. `__slots__` trades that flexibility for a fixed, lighter attribute layout:
+    Each instance normally keeps its attributes in a per-object `__dict__`, which costs some [memory](../practices/style.md#time-and-space) on top of the attribute values themselves — usually not worth worrying about, but it adds up when a program holds thousands or millions of instances at once. `__slots__` trades that flexibility for a fixed, lighter attribute layout:
 
     ```python-ref
     class Snake:
@@ -155,7 +155,7 @@ For a value every object should share instead of holding its own copy, see [clas
 
     An instance built from this class can no longer get a new attribute added after creation — `ball.venomous = False` raises `AttributeError`, since there's no `__dict__` left for it to go into.
 
-    See [Efficiency](style.md#efficiency) for why this distinction matters.
+    See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
 
 </div>
 
@@ -215,7 +215,7 @@ print(burmese.kingdom)       # "Animalia" — unaffected
     ```
 
 ??? tip "Modify & delete attributes"
-    Assign to `object.attribute` to change it after creation — an object is **mutable**, so this changes it in place, the same as [updating an item in a list](collections.md#access-and-update-items). That also means a second variable pointing at the same object sees the change too: `twin = ball` doesn't copy `ball`, it just gives the same object a second name.
+    Assign to `object.attribute` to change it after creation — an object is **mutable**, so this changes it in place, the same as [updating an item in a list](../types/collections.md#access-and-update-items). That also means a second variable pointing at the same object sees the change too: `twin = ball` doesn't copy `ball`, it just gives the same object a second name.
 
     `del object.attribute` removes a single attribute; `del object` removes the object itself.
 

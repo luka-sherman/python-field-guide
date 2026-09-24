@@ -98,7 +98,7 @@ print("request succeeded")
 
 ### Parsing JSON
 
-`.json()` converts a JSON response body directly into a Python `dict` or `list`. Most web APIs send their data back as JSON — text formatted so it maps directly onto Python's own `dict`/`list` structures, which is why `.json()` needs no extra parsing step. Once converted, the result works exactly like any other [dict](../collections.md#dictionaries) or [list](../collections.md#lists) you'd build by hand.
+`.json()` converts a JSON response body directly into a Python `dict` or `list`. Most web APIs send their data back as JSON — text formatted so it maps directly onto Python's own `dict`/`list` structures, which is why `.json()` needs no extra parsing step. Once converted, the result works exactly like any other [dict](../types/collections.md#dictionaries) or [list](../types/collections.md#lists) you'd build by hand.
 
 ```python-ref
 response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
@@ -198,7 +198,7 @@ print(response.json())
 
 ## Handling request errors
 
-A network call can fail in ways that have nothing to do with your code — the [Errors](../errors.md#catch-with-tryexcept) page covers `try`/`except` in general; a couple of exceptions are specific to `requests`.
+A network call can fail in ways that have nothing to do with your code — the [Errors](../practices/errors.md#catch-with-tryexcept) page covers `try`/`except` in general; a couple of exceptions are specific to `requests`.
 
 | Exception | Happens when |
 |-----------|---------------|

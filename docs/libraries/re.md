@@ -74,7 +74,7 @@ print(match.group())
 
     Calling `re.search()` (or `.findall()`, `.sub()`, etc.) with a raw pattern string repeats the same compilation work internally on every call, even when the pattern never changes — across a loop of n calls, that's n compilations of the same pattern. Compiling it once with `re.compile()` above the loop and calling `.search()` on the result instead does that work exactly once, however many times the loop runs.
 
-    See [Efficiency](../style.md#efficiency) for why this distinction matters.
+    See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
 
 ??? run "Run a searching example"
     All the examples above, combined into one script:

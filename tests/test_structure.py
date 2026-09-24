@@ -196,7 +196,7 @@ def test_python_is_capitalized_in_prose(path):
 # pages that are the clearest, most literal examples of the documented convention. Extending it
 # to more pages would need either a markup convention to mark "this block follows the cheat
 # sheet rule" or a per-page editorial pass — worth doing, but a separate task from this suite.
-CHECKED_PAGES_FOR_PYTHON_REF_COMMENTS = {"types.md", "collections.md"}
+CHECKED_PAGES_FOR_PYTHON_REF_COMMENTS = {"types/basics.md", "types/collections.md"}
 
 _CONTROL_FLOW_RE = re.compile(
     r"^(if |elif |else|while |for |def |class |try|except|finally|with |return|import |from |@|match |case )"

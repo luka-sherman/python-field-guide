@@ -10,7 +10,7 @@ Browser tier — same setup as test_accessibility_browser.py (`playwright instal
 
 import pytest
 
-CHECK_PAGES = ["/", "/types/", "/workspace/"]
+CHECK_PAGES = ["/", "/types/basics/", "/start/workspace/"]
 
 
 @pytest.mark.parametrize("path", CHECK_PAGES)
@@ -32,7 +32,7 @@ def test_first_tab_reaches_the_skip_link(page, site_url, path):
 
 
 def test_skip_link_moves_past_the_navigation(page, site_url):
-    page.goto(f"{site_url}/types/")
+    page.goto(f"{site_url}/types/basics/")
     page.keyboard.press("Tab")  # focus skip link
     page.keyboard.press("Enter")  # activate it
     moved = page.evaluate(
@@ -95,9 +95,9 @@ def test_palette_toggle_is_keyboard_reachable(page, site_url):
 # (`.md-button` is only used on 404.md and is already covered statically by
 # test_accessibility.py's `.md-button:focus-visible` check, so it's not repeated here.)
 REPO_STYLED_CONTROLS = [
-    ("/foundations/", ".md-content a[href]"),
-    ("/foundations/", ".pyodide-runner__run-btn"),
-    ("/foundations/", "details.run > summary"),
+    ("/start/foundations/", ".md-content a[href]"),
+    ("/start/foundations/", ".pyodide-runner__run-btn"),
+    ("/start/foundations/", "details.run > summary"),
     ("/", ".grid.cards a[href]"),
 ]
 

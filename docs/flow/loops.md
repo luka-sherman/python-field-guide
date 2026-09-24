@@ -204,7 +204,7 @@ Naming the variable in a `range()` loop comes down to one of three choices:
 
 - **A descriptive name, when the count means something**
 
-    If what you're counting through actually represents something, a descriptive name reads better than `i` — says what the number *means* at a glance, instead of leaving the reader to infer it from how it's used. Same [naming](style.md#naming) rule as any other variable: `i` is fine for a short, throwaway loop, but a meaningful name is worth it once the number stands for something specific.
+    If what you're counting through actually represents something, a descriptive name reads better than `i` — says what the number *means* at a glance, instead of leaving the reader to infer it from how it's used. Same [naming](../practices/style.md#naming) rule as any other variable: `i` is fine for a short, throwaway loop, but a meaningful name is worth it once the number stands for something specific.
 
     ```python
     for year in range(2020, 2026):
@@ -229,7 +229,7 @@ Naming the variable in a `range()` loop comes down to one of three choices:
 
 A `for` loop steps through any type of collection[^str-collection] the same way — the difference is what each pass hands you to work with.
 
-[^str-collection]: A string isn't technically one of Python's collection types — see the [Types](types.md#strings) page — but it's structurally iterable and indexable the same way a list is, so it loops the same way too.
+[^str-collection]: A string isn't technically one of Python's collection types — see the [Types](../types/basics.md#strings) page — but it's structurally iterable and indexable the same way a list is, so it loops the same way too.
 
 !!! example "How to loop each type"
 

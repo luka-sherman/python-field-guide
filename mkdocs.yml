@@ -9,18 +9,24 @@ hooks:
 
 nav:
   - All: index.md
-  - Workspace: workspace.md
-  - Foundations: foundations.md
-  - Types: types.md
-  - Collections: collections.md
-  - Conditionals: conditionals.md
-  - Loops: loops.md
-  - Functions: functions.md
-  - Classes: classes.md
-  - Modules: modules.md
-  - Files: files.md
-  - Style: style.md
-  - Errors: errors.md
+  - Start:
+      - Workspace: start/workspace.md
+      - Foundations: start/foundations.md
+  - Types:
+      - Basics: types/basics.md
+      - Collections: types/collections.md
+  - Flow:
+      - Conditionals: flow/conditionals.md
+      - Loops: flow/loops.md
+  - Organization:
+      - Functions: organization/functions.md
+      - Classes: organization/classes.md
+  - Resources:
+      - Modules: resources/modules.md
+      - Files: resources/files.md
+  - Practices:
+      - Style: practices/style.md
+      - Errors: practices/errors.md
   - Libraries:
       - All: libraries/index.md
       - Utilities:

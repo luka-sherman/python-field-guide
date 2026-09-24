@@ -89,61 +89,61 @@ hide:
 
 <div class="grid cards" markdown="block">
 
--   :material-monitor:{ .lg .middle } [__Workspace Setup__](workspace.md)
+-   :material-monitor:{ .lg .middle } [__Workspace Setup__](start/workspace.md)
 
     Write Python on your computer.
 
-    [**`install`**](workspace.md#step-0-install-python): 
-    [`download`](workspace.md#step-0-install-python) 
-    [`version`](workspace.md#step-0-install-python) 
+    [**`install`**](start/workspace.md#step-0-install-python): 
+    [`download`](start/workspace.md#step-0-install-python) 
+    [`version`](start/workspace.md#step-0-install-python) 
 
-    [**`code editors`**](workspace.md#step-1-pick-an-application-to-write-code-in): 
-    [`IDLE`](workspace.md#step-1-pick-an-application-to-write-code-in) 
-    [`Pycharm`](workspace.md#step-1-pick-an-application-to-write-code-in) 
-    [`Thonny`](workspace.md#step-1-pick-an-application-to-write-code-in) 
-    [`VS Code`](workspace.md#step-1-pick-an-application-to-write-code-in) 
+    [**`code editors`**](start/workspace.md#step-1-pick-an-application-to-write-code-in): 
+    [`IDLE`](start/workspace.md#step-1-pick-an-application-to-write-code-in) 
+    [`Pycharm`](start/workspace.md#step-1-pick-an-application-to-write-code-in) 
+    [`Thonny`](start/workspace.md#step-1-pick-an-application-to-write-code-in) 
+    [`VS Code`](start/workspace.md#step-1-pick-an-application-to-write-code-in) 
 
-    [**`how to write and run .py file`**](workspace.md#step-2-write-and-run-a-python-file): 
-    [`file naming`](workspace.md#step-2-write-and-run-a-python-file) 
+    [**`how to write and run .py file`**](start/workspace.md#step-2-write-and-run-a-python-file): 
+    [`file naming`](start/workspace.md#step-2-write-and-run-a-python-file) 
 
-    [**`Terminal`**](workspace.md#using-the-terminal): 
-    [`cd`](workspace.md#using-the-terminal) 
-    [`ls`](workspace.md#using-the-terminal) 
-    [`pwd`](workspace.md#using-the-terminal) 
-    [`shortcuts`](workspace.md#using-the-terminal) 
+    [**`Terminal`**](start/workspace.md#using-the-terminal): 
+    [`cd`](start/workspace.md#using-the-terminal) 
+    [`ls`](start/workspace.md#using-the-terminal) 
+    [`pwd`](start/workspace.md#using-the-terminal) 
+    [`shortcuts`](start/workspace.md#using-the-terminal) 
     {: data-advanced="true" }
 
-    [**`virtual environments`**](workspace.md#virtual-environments): 
-    [`activate`](workspace.md#virtual-environments) 
-    [`pip`](workspace.md#virtual-environments) 
-    [`requirements.txt`](workspace.md#virtual-environments) 
-    [`venv`](workspace.md#virtual-environments) 
+    [**`virtual environments`**](start/workspace.md#virtual-environments): 
+    [`activate`](start/workspace.md#virtual-environments) 
+    [`pip`](start/workspace.md#virtual-environments) 
+    [`requirements.txt`](start/workspace.md#virtual-environments) 
+    [`venv`](start/workspace.md#virtual-environments) 
     {: data-advanced="true" }
 
--   :material-cube-outline:{ .lg .middle } [__Foundations__](foundations.md)
+-   :material-cube-outline:{ .lg .middle } [__Foundations__](start/foundations.md)
 
     Storing, displaying, and inputting values.
 
-    [**`variables`**](foundations.md#variables): 
-    [`naming`](foundations.md#naming-variables) 
-    [`printing`](foundations.md#printing-variables) 
-    [`reassigning`](foundations.md#reassigning-a-variable) 
-    [`types`](foundations.md#variables-and-types) 
+    [**`variables`**](start/foundations.md#variables): 
+    [`naming`](start/foundations.md#naming-variables) 
+    [`printing`](start/foundations.md#printing-variables) 
+    [`reassigning`](start/foundations.md#reassigning-a-variable) 
+    [`types`](start/foundations.md#variables-and-types) 
 
-    [**`expressions and statements`**](foundations.md#expressions-and-statements)
+    [**`expressions and statements`**](start/foundations.md#expressions-and-statements)
 
-    [**`print`**](foundations.md#print-function): 
-    [`escape sequences`](foundations.md#escape-sequences) 
+    [**`print`**](start/foundations.md#print-function): 
+    [`escape sequences`](start/foundations.md#escape-sequences) 
 
-    [**`input`**](foundations.md#input-function)
+    [**`input`**](start/foundations.md#input-function)
 
-    [**`comments`**](foundations.md#comments): 
-    [`"""`](foundations.md#multi-line-comments-with) 
-    [`#`](foundations.md#single-line-comments-with) 
-    [`FIXME`](foundations.md#single-line-comments-with) 
-    [`TODO`](foundations.md#single-line-comments-with) 
+    [**`comments`**](start/foundations.md#comments): 
+    [`"""`](start/foundations.md#multi-line-comments-with) 
+    [`#`](start/foundations.md#single-line-comments-with) 
+    [`FIXME`](start/foundations.md#single-line-comments-with) 
+    [`TODO`](start/foundations.md#single-line-comments-with) 
 
-    [**`tips for getting started`**](foundations.md#tips-for-getting-started)
+    [**`tips for getting started`**](start/foundations.md#tips-for-getting-started)
 
 </div>
 </div>
@@ -153,161 +153,161 @@ hide:
 
 <div class="grid cards" markdown="block">
 
--   :material-shape-outline:{ .lg .middle } [__Basics__](types.md)
+-   :material-shape-outline:{ .lg .middle } [__Basics__](types/basics.md)
 
     Kinds of values, and what you can do with them.
 
-    [`isinstance`](types.md) 
-    [`type`](types.md) 
+    [`isinstance`](types/basics.md) 
+    [`type`](types/basics.md) 
 
-    [**`integers`**](types.md#integers): 
-    [`+ - * / **`](types.md#arithmetic) 
-    [`+= -= *= /= //= %= **=`](types.md#apply-arithmetic-to-a-variable) 
-    [`// % divmod`](types.md#floor-division-modulo) 
-    [`abs`](types.md#absolute-value) 
-    [`boolean expressions`](types.md#boolean-expressions) 
-    [`int`](types.md#convert) 
+    [**`integers`**](types/basics.md#integers): 
+    [`+ - * / **`](types/basics.md#arithmetic) 
+    [`+= -= *= /= //= %= **=`](types/basics.md#apply-arithmetic-to-a-variable) 
+    [`// % divmod`](types/basics.md#floor-division-modulo) 
+    [`abs`](types/basics.md#absolute-value) 
+    [`boolean expressions`](types/basics.md#boolean-expressions) 
+    [`int`](types/basics.md#convert) 
 
-    [**`floats`**](types.md#floats): 
-    [`+ - * / **`](types.md#arithmetic_1) 
-    [`+= -= *= /= //= %= **=`](types.md#apply-arithmetic-to-a-variable_1) 
-    [`// % divmod`](types.md#floor-division-modulo_1) 
-    [`abs`](types.md#adjust) 
-    [`boolean expressions`](types.md#boolean-expressions_1) 
-    [`float`](types.md#convert_1) 
-    [`round`](types.md#adjust) 
+    [**`floats`**](types/basics.md#floats): 
+    [`+ - * / **`](types/basics.md#arithmetic_1) 
+    [`+= -= *= /= //= %= **=`](types/basics.md#apply-arithmetic-to-a-variable_1) 
+    [`// % divmod`](types/basics.md#floor-division-modulo_1) 
+    [`abs`](types/basics.md#adjust) 
+    [`boolean expressions`](types/basics.md#boolean-expressions_1) 
+    [`float`](types/basics.md#convert_1) 
+    [`round`](types/basics.md#adjust) 
 
-    [**`strings`**](types.md#strings): 
-    [`+ * += *=`](types.md#combine) 
-    [`boolean expressions`](types.md#boolean-expressions_2) 
-    [`capitalize`](types.md#modify) 
-    [`combine`](types.md#combine) 
-    [`count`](types.md#search) 
-    [`endswith`](types.md#validate) 
-    [`f-string`](types.md#building-strings) 
-    [`find`](types.md#search) 
-    [`format`](types.md#building-strings) 
-    [`format spec`](types.md#building-strings) 
-    [`in`](types.md#search) 
-    [`index`](types.md#access-characters) 
-    [`isalpha`](types.md#validate) 
-    [`isdigit`](types.md#validate) 
-    [`join`](types.md#combine) 
-    [`len`](types.md#inspect) 
-    [`lower`](types.md#modify) 
-    [`replace`](types.md#modify) 
-    [`slice`](types.md#access-characters) 
-    [`split`](types.md#convert_2) 
-    [`startswith`](types.md#validate) 
-    [`step`](types.md#access-characters) 
-    [`str`](types.md#convert_2) 
-    [`strip`](types.md#modify) 
-    [`title`](types.md#modify) 
-    [`upper`](types.md#modify) 
+    [**`strings`**](types/basics.md#strings): 
+    [`+ * += *=`](types/basics.md#combine) 
+    [`boolean expressions`](types/basics.md#boolean-expressions_2) 
+    [`capitalize`](types/basics.md#modify) 
+    [`combine`](types/basics.md#combine) 
+    [`count`](types/basics.md#search) 
+    [`endswith`](types/basics.md#validate) 
+    [`f-string`](types/basics.md#building-strings) 
+    [`find`](types/basics.md#search) 
+    [`format`](types/basics.md#building-strings) 
+    [`format spec`](types/basics.md#building-strings) 
+    [`in`](types/basics.md#search) 
+    [`index`](types/basics.md#access-characters) 
+    [`isalpha`](types/basics.md#validate) 
+    [`isdigit`](types/basics.md#validate) 
+    [`join`](types/basics.md#combine) 
+    [`len`](types/basics.md#inspect) 
+    [`lower`](types/basics.md#modify) 
+    [`replace`](types/basics.md#modify) 
+    [`slice`](types/basics.md#access-characters) 
+    [`split`](types/basics.md#convert_2) 
+    [`startswith`](types/basics.md#validate) 
+    [`step`](types/basics.md#access-characters) 
+    [`str`](types/basics.md#convert_2) 
+    [`strip`](types/basics.md#modify) 
+    [`title`](types/basics.md#modify) 
+    [`upper`](types/basics.md#modify) 
 
-    [**`booleans`**](types.md#booleans): 
-    [`== != > < >= <=`](types.md#boolean-expressions_3) 
-    [`and`](types.md#logical-operators) 
-    [`in`](types.md#boolean-expressions_3) 
-    [`is`](types.md#boolean-expressions_3) 
-    [`not`](types.md#logical-operators) 
-    [`or`](types.md#logical-operators) 
+    [**`booleans`**](types/basics.md#booleans): 
+    [`== != > < >= <=`](types/basics.md#boolean-expressions_3) 
+    [`and`](types/basics.md#logical-operators) 
+    [`in`](types/basics.md#boolean-expressions_3) 
+    [`is`](types/basics.md#boolean-expressions_3) 
+    [`not`](types/basics.md#logical-operators) 
+    [`or`](types/basics.md#logical-operators) 
 
-    [**`None`**](types.md#none): 
-    [`boolean expressions`](types.md#boolean-expressions_4) 
-    [`is`](types.md#check-for-none) 
-    [`is not`](types.md#check-for-none) 
+    [**`None`**](types/basics.md#none): 
+    [`boolean expressions`](types/basics.md#boolean-expressions_4) 
+    [`is`](types/basics.md#check-for-none) 
+    [`is not`](types/basics.md#check-for-none) 
 
--   :material-basket-outline:{ .lg .middle } [__Collections__](collections.md)
+-   :material-basket-outline:{ .lg .middle } [__Collections__](types/collections.md)
 
     Multiple related values grouped into one container.
 
-    [`isinstance`](collections.md) 
-    [`type`](collections.md) 
+    [`isinstance`](types/collections.md) 
+    [`type`](types/collections.md) 
 
-    [**`lists`**](collections.md#lists): 
-    [`+`](collections.md#create) 
-    [`append`](collections.md#add-item) 
-    [`boolean expressions`](collections.md#boolean-expressions) 
-    [`clear`](collections.md#remove-item) 
-    [`comprehension`](collections.md#list-comprehension) 
-    [`copy`](collections.md#create) 
-    [`count`](collections.md#inspect) 
-    [`create`](collections.md#create-a-list) 
-    [`del`](collections.md#remove-item) 
-    [`extend`](collections.md#add-item) 
-    [`in`](collections.md#boolean-expressions) 
-    [`index`](collections.md#create-a-list) 
-    [`insert`](collections.md#add-item) 
-    [`item`](collections.md#lists) 
-    [`len`](collections.md#inspect) 
-    [`list`](collections.md#create) 
-    [`loop`](collections.md#loop-through-a-list) 
-    [`max`](collections.md#arithmetic) 
-    [`min`](collections.md#arithmetic) 
-    [`pop`](collections.md#remove-item) 
-    [`remove`](collections.md#remove-item) 
-    [`reverse`](collections.md#sort) 
-    [`slice`](collections.md#access-and-update-items) 
-    [`sort`](collections.md#sort) 
-    [`sorted`](collections.md#sort) 
-    [`step`](collections.md#access-and-update-items) 
-    [`sum`](collections.md#arithmetic) 
+    [**`lists`**](types/collections.md#lists): 
+    [`+`](types/collections.md#create) 
+    [`append`](types/collections.md#add-item) 
+    [`boolean expressions`](types/collections.md#boolean-expressions) 
+    [`clear`](types/collections.md#remove-item) 
+    [`comprehension`](types/collections.md#list-comprehension) 
+    [`copy`](types/collections.md#create) 
+    [`count`](types/collections.md#inspect) 
+    [`create`](types/collections.md#create-a-list) 
+    [`del`](types/collections.md#remove-item) 
+    [`extend`](types/collections.md#add-item) 
+    [`in`](types/collections.md#boolean-expressions) 
+    [`index`](types/collections.md#create-a-list) 
+    [`insert`](types/collections.md#add-item) 
+    [`item`](types/collections.md#lists) 
+    [`len`](types/collections.md#inspect) 
+    [`list`](types/collections.md#create) 
+    [`loop`](types/collections.md#loop-through-a-list) 
+    [`max`](types/collections.md#arithmetic) 
+    [`min`](types/collections.md#arithmetic) 
+    [`pop`](types/collections.md#remove-item) 
+    [`remove`](types/collections.md#remove-item) 
+    [`reverse`](types/collections.md#sort) 
+    [`slice`](types/collections.md#access-and-update-items) 
+    [`sort`](types/collections.md#sort) 
+    [`sorted`](types/collections.md#sort) 
+    [`step`](types/collections.md#access-and-update-items) 
+    [`sum`](types/collections.md#arithmetic) 
 
-    [**`dictionaries`**](collections.md#dictionaries): 
-    [`access a value`](collections.md#access-a-value) 
-    [`boolean expressions`](collections.md#boolean-expressions_1) 
-    [`clear`](collections.md#remove_1) 
-    [`copy`](collections.md#create_1) 
-    [`del`](collections.md#remove_1) 
-    [`dict`](collections.md#create_1) 
-    [`get`](collections.md#dictionary-operations) 
-    [`items`](collections.md#loop-through-a-dictionary) 
-    [`key`](collections.md#dictionaries) 
-    [`len`](collections.md#inspect_1) 
-    [`loop`](collections.md#loop-through-a-dictionary) 
-    [`pop`](collections.md#remove_1) 
-    [`popitem`](collections.md#remove_1) 
-    [`update`](collections.md#update_1) 
-    [`value`](collections.md#dictionaries) 
-    [`values`](collections.md#loop-through-a-dictionary) 
+    [**`dictionaries`**](types/collections.md#dictionaries): 
+    [`access a value`](types/collections.md#access-a-value) 
+    [`boolean expressions`](types/collections.md#boolean-expressions_1) 
+    [`clear`](types/collections.md#remove_1) 
+    [`copy`](types/collections.md#create_1) 
+    [`del`](types/collections.md#remove_1) 
+    [`dict`](types/collections.md#create_1) 
+    [`get`](types/collections.md#dictionary-operations) 
+    [`items`](types/collections.md#loop-through-a-dictionary) 
+    [`key`](types/collections.md#dictionaries) 
+    [`len`](types/collections.md#inspect_1) 
+    [`loop`](types/collections.md#loop-through-a-dictionary) 
+    [`pop`](types/collections.md#remove_1) 
+    [`popitem`](types/collections.md#remove_1) 
+    [`update`](types/collections.md#update_1) 
+    [`value`](types/collections.md#dictionaries) 
+    [`values`](types/collections.md#loop-through-a-dictionary) 
 
-    [**`tuples`**](collections.md#tuples): 
-    [`access items`](collections.md#access-items) 
-    [`boolean expressions`](collections.md#boolean-expressions_2) 
-    [`count`](collections.md#inspect_2) 
-    [`immmutable`](collections.md#tuples) 
-    [`index`](collections.md#tuples) 
-    [`index`](collections.md#inspect_2) 
-    [`len`](collections.md#inspect_2) 
-    [`loop`](collections.md#loop-through-a-tuple) 
-    [`max`](collections.md#arithmetic_1) 
-    [`min`](collections.md#arithmetic_1) 
-    [`packing`](collections.md#packing-and-unpacking) 
-    [`sum`](collections.md#arithmetic_1) 
-    [`tuple`](collections.md#create_2) 
-    [`unpacking`](collections.md#packing-and-unpacking) 
+    [**`tuples`**](types/collections.md#tuples): 
+    [`access items`](types/collections.md#access-items) 
+    [`boolean expressions`](types/collections.md#boolean-expressions_2) 
+    [`count`](types/collections.md#inspect_2) 
+    [`immmutable`](types/collections.md#tuples) 
+    [`index`](types/collections.md#tuples) 
+    [`index`](types/collections.md#inspect_2) 
+    [`len`](types/collections.md#inspect_2) 
+    [`loop`](types/collections.md#loop-through-a-tuple) 
+    [`max`](types/collections.md#arithmetic_1) 
+    [`min`](types/collections.md#arithmetic_1) 
+    [`packing`](types/collections.md#packing-and-unpacking) 
+    [`sum`](types/collections.md#arithmetic_1) 
+    [`tuple`](types/collections.md#create_2) 
+    [`unpacking`](types/collections.md#packing-and-unpacking) 
     {: data-advanced="true" }
 
-    [**`sets`**](collections.md#sets): 
-    [`add`](collections.md#update_1) 
-    [`boolean expressions`](collections.md#boolean-expressions_3) 
-    [`clear`](collections.md#remove_1) 
-    [`copy`](collections.md#create_3) 
-    [`discard`](collections.md#remove_1) 
-    [`isdisjoint`](collections.md#compare) 
-    [`issubset`](collections.md#compare) 
-    [`issuperset`](collections.md#compare) 
-    [`len`](collections.md#inspect_3) 
-    [`loop`](collections.md#loop-through-a-set) 
-    [`max`](collections.md#arithmetic_2) 
-    [`min`](collections.md#arithmetic_2) 
-    [`pop`](collections.md#remove_1) 
-    [`remove`](collections.md#remove_1) 
-    [`set`](collections.md#create_3) 
-    [`sum`](collections.md#arithmetic_2) 
-    [`update`](collections.md#update_1) 
-    [`| & - ^`](collections.md#combine) 
+    [**`sets`**](types/collections.md#sets): 
+    [`add`](types/collections.md#update_1) 
+    [`boolean expressions`](types/collections.md#boolean-expressions_3) 
+    [`clear`](types/collections.md#remove_1) 
+    [`copy`](types/collections.md#create_3) 
+    [`discard`](types/collections.md#remove_1) 
+    [`isdisjoint`](types/collections.md#compare) 
+    [`issubset`](types/collections.md#compare) 
+    [`issuperset`](types/collections.md#compare) 
+    [`len`](types/collections.md#inspect_3) 
+    [`loop`](types/collections.md#loop-through-a-set) 
+    [`max`](types/collections.md#arithmetic_2) 
+    [`min`](types/collections.md#arithmetic_2) 
+    [`pop`](types/collections.md#remove_1) 
+    [`remove`](types/collections.md#remove_1) 
+    [`set`](types/collections.md#create_3) 
+    [`sum`](types/collections.md#arithmetic_2) 
+    [`update`](types/collections.md#update_1) 
+    [`| & - ^`](types/collections.md#combine) 
     {: data-advanced="true" }
 
 </div>
@@ -318,158 +318,158 @@ hide:
 
 <div class="grid cards" markdown="block">
 
--   :material-source-branch:{ .lg .middle } [__Conditionals__](conditionals.md)
+-   :material-source-branch:{ .lg .middle } [__Conditionals__](flow/conditionals.md)
 
     Decision points that run code only if a condition is met.
 
-    [**`if, elif, else`**](conditionals.md#if-elif-else): 
-    [`and, or, not`](conditionals.md#logical-operators) 
-    [`boolean expressions`](conditionals.md#boolean-expressions) 
+    [**`if, elif, else`**](flow/conditionals.md#if-elif-else): 
+    [`and, or, not`](flow/conditionals.md#logical-operators) 
+    [`boolean expressions`](flow/conditionals.md#boolean-expressions) 
 
-    [**`match, case`**](conditionals.md#match-case): 
-    [`_ wildcard`](conditionals.md#default-value-_) 
-    [`case + if`](conditionals.md#case-if) 
-    [`match with |`](conditionals.md#match-multiple-values-with) 
-    [`unpacking`](conditionals.md#unpacking-a-tuple) 
+    [**`match, case`**](flow/conditionals.md#match-case): 
+    [`_ wildcard`](flow/conditionals.md#default-value-_) 
+    [`case + if`](flow/conditionals.md#case-if) 
+    [`match with |`](flow/conditionals.md#match-multiple-values-with) 
+    [`unpacking`](flow/conditionals.md#unpacking-a-tuple) 
 
-    [**`control flow`**](conditionals.md#control-flow-statements): 
-    [`break`](conditionals.md#break) 
-    [`continue`](conditionals.md#continue) 
-    [`pass`](conditionals.md#going-further_2) 
+    [**`control flow`**](flow/conditionals.md#control-flow-statements): 
+    [`break`](flow/conditionals.md#break) 
+    [`continue`](flow/conditionals.md#continue) 
+    [`pass`](flow/conditionals.md#going-further_2) 
 
--   :material-repeat:{ .lg .middle } [__Loops__](loops.md)
+-   :material-repeat:{ .lg .middle } [__Loops__](flow/loops.md)
 
     Repeat a block of code multiple times.
 
-    [**`for`**](loops.md#for-loops): 
-    [`enumerate`](loops.md#loop-with-index-and-value) 
-    [`loop a set number of times`](loops.md#loop-a-certain-number-of-times) 
-    [`loop through a collection`](loops.md#loop-through-a-collection) 
-    [`range`](loops.md#iterable-range) 
-    [`reversed`](loops.md#loop-in-reverse) 
-    [`zip`](loops.md#loop-with-index-and-value) 
+    [**`for`**](flow/loops.md#for-loops): 
+    [`enumerate`](flow/loops.md#loop-with-index-and-value) 
+    [`loop a set number of times`](flow/loops.md#loop-a-certain-number-of-times) 
+    [`loop through a collection`](flow/loops.md#loop-through-a-collection) 
+    [`range`](flow/loops.md#iterable-range) 
+    [`reversed`](flow/loops.md#loop-in-reverse) 
+    [`zip`](flow/loops.md#loop-with-index-and-value) 
 
-    [**`while`**](loops.md#while-loops): 
-    [`and`](loops.md#logical-operators) 
-    [`boolean expressions`](loops.md#boolean-expressions) 
-    [`counter and flag names`](loops.md#counter-and-flag-names) 
-    [`flag`](loops.md#using-a-flag) 
-    [`not`](loops.md#logical-operators) 
-    [`or`](loops.md#logical-operators) 
-    [`sentinel`](loops.md#sentinel) 
+    [**`while`**](flow/loops.md#while-loops): 
+    [`and`](flow/loops.md#logical-operators) 
+    [`boolean expressions`](flow/loops.md#boolean-expressions) 
+    [`counter and flag names`](flow/loops.md#counter-and-flag-names) 
+    [`flag`](flow/loops.md#using-a-flag) 
+    [`not`](flow/loops.md#logical-operators) 
+    [`or`](flow/loops.md#logical-operators) 
+    [`sentinel`](flow/loops.md#sentinel) 
 
-    [**`common patterns`**](loops.md#common-patterns): 
-    [`accumulator`](loops.md#accumulator) 
-    [`counter`](loops.md#counter) 
-    [`nested loops`](loops.md#nested-loops) 
+    [**`common patterns`**](flow/loops.md#common-patterns): 
+    [`accumulator`](flow/loops.md#accumulator) 
+    [`counter`](flow/loops.md#counter) 
+    [`nested loops`](flow/loops.md#nested-loops) 
 
-    [**`control flow`**](loops.md#control-flow-statements): 
-    [`break`](loops.md#break) 
-    [`continue`](loops.md#continue) 
-    [`else`](loops.md#else) 
-    [`pass`](loops.md#going-further_2) 
+    [**`control flow`**](flow/loops.md#control-flow-statements): 
+    [`break`](flow/loops.md#break) 
+    [`continue`](flow/loops.md#continue) 
+    [`else`](flow/loops.md#else) 
+    [`pass`](flow/loops.md#going-further_2) 
 
 
 </div>
 </div>
 
 <div class="pt-category" markdown="block">
-#### Code organization { .pt-homepage-heading }
+#### Organization { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
--   :material-function-variant:{ .lg .middle } [__Functions__](functions.md)
+-   :material-function-variant:{ .lg .middle } [__Functions__](organization/functions.md)
 
     Package a named block of code to run it at any time.
 
-    [**`def`**](functions.md#defining-a-function): 
-    [`**kwargs`](functions.md#kwargs-dict) 
-    [`*args`](functions.md#args-tuple) 
-    [`defaults`](functions.md#default-values) 
-    [`docstrings`](functions.md#docstrings) 
-    [`parameters`](functions.md#parameters) 
-    [`pass`](functions.md#pass-placeholder) 
-    [`return`](functions.md#return-values) 
+    [**`def`**](organization/functions.md#defining-a-function): 
+    [`**kwargs`](organization/functions.md#kwargs-dict) 
+    [`*args`](organization/functions.md#args-tuple) 
+    [`defaults`](organization/functions.md#default-values) 
+    [`docstrings`](organization/functions.md#docstrings) 
+    [`parameters`](organization/functions.md#parameters) 
+    [`pass`](organization/functions.md#pass-placeholder) 
+    [`return`](organization/functions.md#return-values) 
 
-    [`combining argument types`](functions.md#combining-categories) 
-    [`keyword-only`](functions.md#keyword-only) 
-    [`positional-only`](functions.md#positional-only) 
-    [`type hints`](functions.md#type-hints) 
+    [`combining argument types`](organization/functions.md#combining-categories) 
+    [`keyword-only`](organization/functions.md#keyword-only) 
+    [`positional-only`](organization/functions.md#positional-only) 
+    [`type hints`](organization/functions.md#type-hints) 
     {: data-advanced="true" }
 
-    [**`calling a function`**](functions.md#calling-a-function): 
-    [`arguments`](functions.md#arguments) 
-    [`keyword`](functions.md#by-keyword) 
-    [`required`](functions.md#required) 
-    [`return value`](functions.md#saving-the-return-value) 
-    [`unpacking`](functions.md#unpacking) 
+    [**`calling a function`**](organization/functions.md#calling-a-function): 
+    [`arguments`](organization/functions.md#arguments) 
+    [`keyword`](organization/functions.md#by-keyword) 
+    [`required`](organization/functions.md#required) 
+    [`return value`](organization/functions.md#saving-the-return-value) 
+    [`unpacking`](organization/functions.md#unpacking) 
 
-    [**`scope`**](functions.md#scope): 
-    [`local vs global`](functions.md#local-vs-global-variables) 
+    [**`scope`**](organization/functions.md#scope): 
+    [`local vs global`](organization/functions.md#local-vs-global-variables) 
 
-    [**`recursion`**](functions.md#recursion)
+    [**`recursion`**](organization/functions.md#recursion)
     {: data-advanced="true" }
 
-    [**`decorators`**](functions.md#decorators): 
-    [`arguments`](functions.md#accepting-arguments) 
-    [`identity`](functions.md#advanced-uses) 
-    [`original function`](functions.md#returning-the-original-function) 
-    [`stacking`](functions.md#advanced-uses) 
-    [`wrapping`](functions.md#wrapping-the-call)
+    [**`decorators`**](organization/functions.md#decorators): 
+    [`arguments`](organization/functions.md#accepting-arguments) 
+    [`identity`](organization/functions.md#advanced-uses) 
+    [`original function`](organization/functions.md#returning-the-original-function) 
+    [`stacking`](organization/functions.md#advanced-uses) 
+    [`wrapping`](organization/functions.md#wrapping-the-call)
     {: data-advanced="true" }
 
-    [**`generators`**](functions.md#generators): 
-    [`generator expressions`](functions.md#generator-expressions)
-    [`memory`](functions.md#memory-efficiency) 
-    [`yield`](functions.md#yield-vs-return) 
+    [**`generators`**](organization/functions.md#generators): 
+    [`generator expressions`](organization/functions.md#generator-expressions)
+    [`memory`](organization/functions.md#memory-efficiency) 
+    [`yield`](organization/functions.md#yield-vs-return) 
     {: data-advanced="true" }
 
--   :material-package-variant:{ .lg .middle } [__Classes__](classes.md)
+-   :material-package-variant:{ .lg .middle } [__Classes__](organization/classes.md)
 
     Bundle related values and functions to a reusable blueprint for similar objects.
 
-    [**`class`**](classes.md#defining-a-class): 
-    [`__init__()`](classes.md#the-__init__-method) 
-    [`class attributes`](classes.md#class-attributes) 
-    [`instance attributes`](classes.md#instance-attributes) 
-    [`methods`](classes.md#object-methods) 
-    [`self`](classes.md#the-self-parameter) 
+    [**`class`**](organization/classes.md#defining-a-class): 
+    [`__init__()`](organization/classes.md#the-__init__-method) 
+    [`class attributes`](organization/classes.md#class-attributes) 
+    [`instance attributes`](organization/classes.md#instance-attributes) 
+    [`methods`](organization/classes.md#object-methods) 
+    [`self`](organization/classes.md#the-self-parameter) 
 
-    [**`method decorators`**](classes.md#method-decorators): 
-    [`@classmethod`](classes.md#classmethod) 
-    [`@property`](classes.md#property) 
-    [`@staticmethod`](classes.md#staticmethod) 
+    [**`method decorators`**](organization/classes.md#method-decorators): 
+    [`@classmethod`](organization/classes.md#classmethod) 
+    [`@property`](organization/classes.md#property) 
+    [`@staticmethod`](organization/classes.md#staticmethod) 
     {: data-advanced="true" }
 
-    [**`inheritance`**](classes.md#inheritance): 
-    [`adding attributes and methods`](classes.md#adding-attributes-and-methods) 
-    [`__init__()`](classes.md#overriding-__init__) 
-    [`overriding`](classes.md#overriding-methods) 
-    [`super()`](classes.md#using-super) 
+    [**`inheritance`**](organization/classes.md#inheritance): 
+    [`adding attributes and methods`](organization/classes.md#adding-attributes-and-methods) 
+    [`__init__()`](organization/classes.md#overriding-__init__) 
+    [`overriding`](organization/classes.md#overriding-methods) 
+    [`super()`](organization/classes.md#using-super) 
 
-    [`multiple inheritance`](classes.md#multiple-inheritance) 
+    [`multiple inheritance`](organization/classes.md#multiple-inheritance) 
     {: data-advanced="true" }
 
-    [**`polymorphism`**](classes.md#polymorphism): 
-    [`inheritance`](classes.md#polymorphism-via-inheritance) 
-    [`duplicate method names`](classes.md#duplicate-method-names) 
+    [**`polymorphism`**](organization/classes.md#polymorphism): 
+    [`inheritance`](organization/classes.md#polymorphism-via-inheritance) 
+    [`duplicate method names`](organization/classes.md#duplicate-method-names) 
     {: data-advanced="true" }
 
-    [**`encapsulation`**](classes.md#encapsulation): 
-    [`@property`](classes.md#controlled-access-with-property) 
-    [`double underscore`](classes.md#double-underscore) 
-    [`single underscore`](classes.md#single-underscore) 
+    [**`encapsulation`**](organization/classes.md#encapsulation): 
+    [`@property`](organization/classes.md#controlled-access-with-property) 
+    [`double underscore`](organization/classes.md#double-underscore) 
+    [`single underscore`](organization/classes.md#single-underscore) 
     {: data-advanced="true" }
 
-    [**`operator overloading`**](classes.md#operator-overloading): 
-    [`__add__`](classes.md#arithmetic-with-__add__) 
-    [`__eq__ and __lt__`](classes.md#comparing-with-__eq__-and-__lt__) 
+    [**`operator overloading`**](organization/classes.md#operator-overloading): 
+    [`__add__`](organization/classes.md#arithmetic-with-__add__) 
+    [`__eq__ and __lt__`](organization/classes.md#comparing-with-__eq__-and-__lt__) 
     {: data-advanced="true" }
 
-    [**`dataclasses`**](classes.md#dataclasses)
+    [**`dataclasses`**](organization/classes.md#dataclasses)
     {: data-advanced="true" }
 
-    [**`abstract base classes`**](classes.md#abstract-base-classes)
+    [**`abstract base classes`**](organization/classes.md#abstract-base-classes)
     {: data-advanced="true" }
 
 </div>
@@ -480,52 +480,52 @@ hide:
 
 <div class="grid cards" markdown="block">
 
--   :material-import:{ .lg .middle } [__Modules & Imports__](modules.md)
+-   :material-import:{ .lg .middle } [__Modules & Imports__](resources/modules.md)
 
     Splitting code across files, and using someone else's code.
 
-    [**`import`**](modules.md#importing-modules): 
-    [`as`](modules.md#as) 
-    [`from`](modules.md#from) 
-    [`import`](modules.md#import) 
-    [`import order`](modules.md#order-of-multiple-imports) 
-    [`nested paths`](modules.md#nested-paths) 
-    [`packages`](modules.md#packages) 
+    [**`import`**](resources/modules.md#importing-modules): 
+    [`as`](resources/modules.md#as) 
+    [`from`](resources/modules.md#from) 
+    [`import`](resources/modules.md#import) 
+    [`import order`](resources/modules.md#order-of-multiple-imports) 
+    [`nested paths`](resources/modules.md#nested-paths) 
+    [`packages`](resources/modules.md#packages) 
 
-    [**`your own module`**](modules.md#creating-your-own-module): 
-    [`main guard`](modules.md#the-main-guard) 
+    [**`your own module`**](resources/modules.md#creating-your-own-module): 
+    [`main guard`](resources/modules.md#the-main-guard) 
 
-    [**`module, package, library`**](modules.md#modules-vs-packages-vs-libraries)
+    [**`module, package, library`**](resources/modules.md#modules-vs-packages-vs-libraries)
 
--   :material-file-document-outline:{ .lg .middle } [__Reading & Writing Files__](files.md)
+-   :material-file-document-outline:{ .lg .middle } [__Reading & Writing Files__](resources/files.md)
 
     Read and write text files on your computer.
 
-    [**`open`**](files.md#opening-and-closing-files): 
-    [`modes`](files.md#modes-options) 
-    [`paths`](files.md#file-paths) 
-    [`with`](files.md#with)
+    [**`open`**](resources/files.md#opening-and-closing-files): 
+    [`modes`](resources/files.md#modes-options) 
+    [`paths`](resources/files.md#file-paths) 
+    [`with`](resources/files.md#with)
 
-    [**`read()`**](files.md#read): 
-    [`existing`](files.md#r-read-existing) 
-    [`functions`](files.md#functions) 
-    [`modes`](files.md#modes) 
-    [`read()`](files.md#whole-file) 
-    [`readline()`](files.md#by-line) 
-    [`readlines()`](files.md#by-line) 
-    [`seek()`](files.md#seek-and-tell) 
-    [`tell()`](files.md#seek-and-tell)
+    [**`read()`**](resources/files.md#read): 
+    [`existing`](resources/files.md#r-read-existing) 
+    [`functions`](resources/files.md#functions) 
+    [`modes`](resources/files.md#modes) 
+    [`read()`](resources/files.md#whole-file) 
+    [`readline()`](resources/files.md#by-line) 
+    [`readlines()`](resources/files.md#by-line) 
+    [`seek()`](resources/files.md#seek-and-tell) 
+    [`tell()`](resources/files.md#seek-and-tell)
 
-    [**`write()`**](files.md#write): 
-    [`append`](files.md#a-append) 
-    [`create`](files.md#x-create) 
-    [`functions`](files.md#functions_1) 
-    [`modes`](files.md#modes_1) 
-    [`overwrite`](files.md#w-overwrite) 
-    [`write()`](files.md#single-string) 
-    [`writelines()`](files.md#multiple-strings)
+    [**`write()`**](resources/files.md#write): 
+    [`append`](resources/files.md#a-append) 
+    [`create`](resources/files.md#x-create) 
+    [`functions`](resources/files.md#functions_1) 
+    [`modes`](resources/files.md#modes_1) 
+    [`overwrite`](resources/files.md#w-overwrite) 
+    [`write()`](resources/files.md#single-string) 
+    [`writelines()`](resources/files.md#multiple-strings)
 
-    [**`related libraries`**](files.md#related-libraries)
+    [**`related libraries`**](resources/files.md#related-libraries)
 
 </div>
 </div>
@@ -535,87 +535,87 @@ hide:
 
 <div class="grid cards" markdown="block">
 
--   :material-palette-outline:{ .lg .middle } [__Style__](style.md)
+-   :material-palette-outline:{ .lg .middle } [__Style__](practices/style.md)
 
     Readable Python code, and polished UI.
 
-    [**`PEP 8`**](style.md#pep-8-style-guide): 
-    [`blank lines`](style.md#blank-lines) 
-    [`docstrings`](style.md#docstrings) 
-    [`naming`](style.md#naming) 
-    [`whitespace`](style.md#whitespace) 
+    [**`PEP 8`**](practices/style.md#pep-8-style-guide): 
+    [`blank lines`](practices/style.md#blank-lines) 
+    [`docstrings`](practices/style.md#docstrings) 
+    [`naming`](practices/style.md#naming) 
+    [`whitespace`](practices/style.md#whitespace) 
 
-    [`comments`](style.md#comments) 
-    [`constants`](style.md#constants) 
-    [`indentation`](style.md#indentation) 
-    [`order`](style.md#file-order) 
-    [`quote style`](style.md#quote-style) 
+    [`comments`](practices/style.md#comments) 
+    [`constants`](practices/style.md#constants) 
+    [`indentation`](practices/style.md#indentation) 
+    [`order`](practices/style.md#file-order) 
+    [`quote style`](practices/style.md#quote-style) 
     {: data-advanced="true" }
 
-    [**`Linters, formatters`**](style.md#linters-and-formatters)
+    [**`Linters, formatters`**](practices/style.md#linters-and-formatters)
 
-    [**`Pythonic patterns`**](style.md#pythonic-patterns): 
-    [`mutable defaults`](style.md#mutable-default-arguments)
-    [`is None`](style.md#is-none-instead-of-none)
+    [**`Pythonic patterns`**](practices/style.md#pythonic-patterns): 
+    [`mutable defaults`](practices/style.md#mutable-default-arguments)
+    [`is None`](practices/style.md#is-none-instead-of-none)
 
-    [`truthy checks`](style.md#truthy-checks) 
-    [`enumerate()`](style.md#enumerate-instead-of-range) 
+    [`truthy checks`](practices/style.md#truthy-checks) 
+    [`enumerate()`](practices/style.md#enumerate-instead-of-range) 
     {: data-advanced="true" }
 
-    [**`Efficiency`**](style.md#efficiency)
-    [`big O`](style.md#big-o-notation)
-    [`common optimizations`](style.md#common-optimizations)
-    [`time`](style.md#time-and-space) 
-    [`space`](style.md#time-and-space)
+    [**`Efficiency`**](practices/style.md#efficiency)
+    [`big O`](practices/style.md#big-o-notation)
+    [`common optimizations`](practices/style.md#common-optimizations)
+    [`time`](practices/style.md#time-and-space) 
+    [`space`](practices/style.md#time-and-space)
     {: data-advanced="true" }
 
-    [**`Polished UX`**](style.md#polished-ux): 
-    [`input validation`](style.md#input-validation) 
-    [`menus`](style.md#menus) 
-    [`randomize`](style.md#randomize-messages)
+    [**`Polished UX`**](practices/style.md#polished-ux): 
+    [`input validation`](practices/style.md#input-validation) 
+    [`menus`](practices/style.md#menus) 
+    [`randomize`](practices/style.md#randomize-messages)
 
-    [**`Polished UI`**](style.md#polished-ui): 
-    [`background`](style.md#color-styling) 
-    [`bold`](style.md#color-styling) 
-    [`escape sequences`](style.md#escape-sequences) 
-    [`color`](style.md#color-styling) 
-    [`highlighting`](style.md#color-styling) 
-    [`multi-line strings`](style.md#multi-line-strings) 
-    [`formatting variables`](style.md#formatting-variables) 
-    [`underline`](style.md#color-styling) 
-    [`unicode symbols`](style.md#unicode-symbols) 
-    [`dividers`](style.md#dividers) 
-    [`boxes`](style.md#boxes) 
-    [`progress bars`](style.md#progress-bars)
+    [**`Polished UI`**](practices/style.md#polished-ui): 
+    [`background`](practices/style.md#color-styling) 
+    [`bold`](practices/style.md#color-styling) 
+    [`escape sequences`](practices/style.md#escape-sequences) 
+    [`color`](practices/style.md#color-styling) 
+    [`highlighting`](practices/style.md#color-styling) 
+    [`multi-line strings`](practices/style.md#multi-line-strings) 
+    [`formatting variables`](practices/style.md#formatting-variables) 
+    [`underline`](practices/style.md#color-styling) 
+    [`unicode symbols`](practices/style.md#unicode-symbols) 
+    [`dividers`](practices/style.md#dividers) 
+    [`boxes`](practices/style.md#boxes) 
+    [`progress bars`](practices/style.md#progress-bars)
 
--   :material-bug-outline:{ .lg .middle } [__Errors__](errors.md)
+-   :material-bug-outline:{ .lg .middle } [__Errors__](practices/errors.md)
 
     Resolve bugs, read and utilize exceptions.
 
-    [**`kinds`**](errors.md#kinds-of-errors): 
-    [`bugs`](errors.md) 
-    [`exceptions`](errors.md) 
-    [`logic errors`](errors.md#logic-errors) 
-    [`runtime errors`](errors.md#runtime-errors) 
-    [`syntax errors`](errors.md#syntax-errors) 
+    [**`kinds`**](practices/errors.md#kinds-of-errors): 
+    [`bugs`](practices/errors.md) 
+    [`exceptions`](practices/errors.md) 
+    [`logic errors`](practices/errors.md#logic-errors) 
+    [`runtime errors`](practices/errors.md#runtime-errors) 
+    [`syntax errors`](practices/errors.md#syntax-errors) 
 
-    [**`fixing`**](errors.md#fixing-errors): 
-    [`debugger tool`](errors.md#debugger-tool) 
-    [`debugging strategies`](errors.md#debugging-strategies) 
-    [`isolate problems`](errors.md#isolate-the-problem) 
-    [`print debugging`](errors.md#print-debugging) 
-    [`rubber duck debugging`](errors.md#read-it-out-loud) 
-    [`syntax error message`](errors.md#reading-a-syntax-error-message) 
-    [`testing`](errors.md#detect-errors-with-testing) 
-    [`TODO / FIXME`](errors.md#flag-as-todofixme) 
-    [`tracebacks`](errors.md#reading-a-traceback) 
+    [**`fixing`**](practices/errors.md#fixing-errors): 
+    [`debugger tool`](practices/errors.md#debugger-tool) 
+    [`debugging strategies`](practices/errors.md#debugging-strategies) 
+    [`isolate problems`](practices/errors.md#isolate-the-problem) 
+    [`print debugging`](practices/errors.md#print-debugging) 
+    [`rubber duck debugging`](practices/errors.md#read-it-out-loud) 
+    [`syntax error message`](practices/errors.md#reading-a-syntax-error-message) 
+    [`testing`](practices/errors.md#detect-errors-with-testing) 
+    [`TODO / FIXME`](practices/errors.md#flag-as-todofixme) 
+    [`tracebacks`](practices/errors.md#reading-a-traceback) 
 
-    [**`handling`**](errors.md#handling-errors): 
-    [`assert`](errors.md#assert-a-condition) 
-    [`else`](errors.md#finally) 
-    [`finally`](errors.md#finally) 
-    [`raise`](errors.md#raise-an-exception) 
-    [`try/except`](errors.md#catch-with-tryexcept) 
+    [**`handling`**](practices/errors.md#handling-errors): 
+    [`assert`](practices/errors.md#assert-a-condition) 
+    [`else`](practices/errors.md#finally) 
+    [`finally`](practices/errors.md#finally) 
+    [`raise`](practices/errors.md#raise-an-exception) 
+    [`try/except`](practices/errors.md#catch-with-tryexcept) 
 
 </div>
 </div>

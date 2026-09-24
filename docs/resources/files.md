@@ -224,11 +224,11 @@ with open("notes.txt", "r") as file:
     | `.read()` / `.readlines()` | <span class="pt-bigo pt-bigo--ok">O(n)</span> | <span class="pt-bigo pt-bigo--ok">O(n)</span> |
     | Loop over the file, line by line | <span class="pt-bigo pt-bigo--ok">O(n)</span> | <span class="pt-bigo pt-bigo--good">O(1)</span> |
 
-    `.read()`/`.readlines()` holds the entire file's contents in memory at once (O(n) [space](style.md#time-and-space)). Looping over the file object or calling `.readline()` repeatedly needs only enough memory for the current line, O(1) space regardless of file size. 
+    `.read()`/`.readlines()` holds the entire file's contents in memory at once (O(n) [space](../practices/style.md#time-and-space)). Looping over the file object or calling `.readline()` repeatedly needs only enough memory for the current line, O(1) space regardless of file size. 
     
     For a small file it doesn't matter; for a file too large to comfortably fit in memory, it's the difference between the program running and it not.
 
-    See [Efficiency](style.md#efficiency) for why this distinction matters.
+    See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
 
 </div>
 
@@ -435,11 +435,11 @@ Everything above is plain text. For other file formats, these Libraries pages bu
 
 | Library | Use for |
 |---|---|
-| :material-file-delimited-outline: [csv](libraries/csv.md) | Reading and writing spreadsheets. |
-| :material-code-json: [json](libraries/json.md) | Reading and writing JSON data: nested dicts and lists, saved to a file or a string. |
-| :material-image-outline: [Pillow](libraries/pillow.md#opening-and-saving-images) | Opening, editing, and saving images, built around one Image object. |
-| :material-face-recognition: [OpenCV](libraries/opencv.md#reading-displaying-and-saving-images) | Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection. |
-| :material-chart-line: [Matplotlib](libraries/matplotlib.md#saving-a-figure) | Charts and plots: line, bar, and scatter, built directly from plain Python data. |
-| :material-application-outline: [tkinter](libraries/tkinter.md#file-dialogs) | Creating desktop applications: text, buttons, dropdowns, forms, output, etc. |
+| :material-file-delimited-outline: [csv](../libraries/csv.md) | Reading and writing spreadsheets. |
+| :material-code-json: [json](../libraries/json.md) | Reading and writing JSON data: nested dicts and lists, saved to a file or a string. |
+| :material-image-outline: [Pillow](../libraries/pillow.md#opening-and-saving-images) | Opening, editing, and saving images, built around one Image object. |
+| :material-face-recognition: [OpenCV](../libraries/opencv.md#reading-displaying-and-saving-images) | Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection. |
+| :material-chart-line: [Matplotlib](../libraries/matplotlib.md#saving-a-figure) | Charts and plots: line, bar, and scatter, built directly from plain Python data. |
+| :material-application-outline: [tkinter](../libraries/tkinter.md#file-dialogs) | Creating desktop applications: text, buttons, dropdowns, forms, output, etc. |
 
 </div>
