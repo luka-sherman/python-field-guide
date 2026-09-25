@@ -463,6 +463,9 @@ html:focus-within::-webkit-scrollbar-thumb {
 
 .md-tabs {
   background-color: transparent;
+  /* Extra breathing room above the tab row itself, beyond Material's
+     default (the header title sits right above it otherwise). */
+  padding-top: 0.5rem;
 }
 
 /* Make the current page's top-nav tab visually heavier than the rest, so
@@ -855,6 +858,18 @@ input:checked + .md-consent__settings {
 @media screen and (min-width: 45em) and (max-width: 76.234375em) {
   .md-tabs {
     display: block;
+  }
+}
+
+/* Same extra top breathing room as .md-tabs above, applied to the
+   mkdocs-nested-tabs plugin's own row (nested-tabs.css sets
+   .nested-tabs__list's padding to 0.5rem 0 — override padding-top only, so
+   the bottom padding it sets stays as-is). extra.css loads after
+   nested-tabs.css (see mkdocs.yml's extra_css / plugin injection order),
+   so this wins without needing extra specificity. */
+@media screen and (min-width: 76.234375em) {
+  .nested-tabs__list {
+    padding-top: 1.3rem;
   }
 }
 
