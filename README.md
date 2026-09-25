@@ -12,6 +12,7 @@
 - [Content](#content)
 - [Site generator](#site-generator)
 - [Client-side rendering](#client-side-rendering)
+- [New open source](#new-open-source)
 - [Theme](#theme)
 - [Content conventions](#content-conventions)
 - [Running locally](#running-locally)
@@ -132,6 +133,29 @@ Some examples of content that is hidden while in "Essentials" mode, while a stud
 - Styling suggestions that aren't critical (file order, constants, quote style, indentation, comments, the truthy-check and `enumerate()` idioms)
 - Workspace/tooling topics as most students are using an IDE (using the terminal, virtual environments)
 - Efficiency, awareness of space and time resources, Big O notation
+
+## New open source
+
+### [mkdocs-nested-tabs](https://pypi.org/project/mkdocs-nested-tabs/)
+
+I published a new mkdocs plugin to add functionality I wanted for this site. 
+
+A multi-level two row header — every top-level category shown with all of its child pages
+listed underneath. An enhancement to Material's native tabs (which only reveal a category's children via a hover dropdown, one at a time) — started as site-specific JavaScript here, then got extracted into its own published PyPi plugin.
+
+```bash
+pip install mkdocs-nested-tabs
+```
+
+```yaml
+theme:
+  features:
+    - navigation.tabs
+plugins:
+  - nested-tabs
+```
+
+I extracted it because it fills a real, previously-requested gap — someone asked for exactly this in a [Material for MkDocs discussion](https://github.com/squidfunk/mkdocs-material/discussions/4765) and the maintainer's answer was horizontal scroll, not an expanded layout — and nothing on PyPI already does it (checked against the existing nav/dropdown/sidebar plugins first). It reads a site's `nav:` tree directly at runtime, so it needs no plugin-specific configuration for the common case, and falls back to Material's own theme variables for styling so it looks reasonable on any palette out of the box. This site is its first real consumer — see `mkdocs.yml`'s `plugins:` list and `extra.css`'s `--md-nested-tabs-*` overrides for how it's wired in here.
 
 ## Theme
 

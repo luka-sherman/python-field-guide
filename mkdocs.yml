@@ -7,6 +7,13 @@ site_description: >-
 hooks:
   - hooks/thanks_url.py
 
+plugins:
+  # Setting `plugins:` at all replaces MkDocs' implicit default list, which
+  # otherwise includes `search` automatically — has to be listed explicitly
+  # here or the site silently loses its search feature.
+  - search
+  - nested-tabs
+
 nav:
   - All: index.md
   - Start:
@@ -79,15 +86,14 @@ theme:
         icon: material/weather-night
         name: Switch to dark mode
   features:
-    - navigation.expand
     - navigation.footer
     - navigation.instant
     - navigation.instant.prefetch
+    - navigation.sections
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
-    - toc.integrate
     - toc.follow
     - content.code.copy
     - content.tooltips

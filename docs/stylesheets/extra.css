@@ -53,6 +53,11 @@
   --pt-shimmer-gold: #D9C48C;
   --pt-shimmer-sage: #B9CDAE;
   --pt-shimmer-clay: #CBA989;
+
+  /* Placeholder light green for the active top-nav tab (e.g. "Flow" when
+     conditionals.md is open), just to give it a distinct color from the
+     default text color and the visited-link accent. Pick a deliberate
+     final value later. */
 }
 
 [data-md-color-scheme="slate"] {
@@ -87,6 +92,8 @@
   --pt-shimmer-indigo: #201f3d;
   --pt-shimmer-purple: #2a1c3d;
   --pt-shimmer-green: #17281f;
+
+  --pt-nav-active: #8FCB93;
 }
 
 /* Material re-sets --md-* variables on [data-md-color-scheme] (applied to
@@ -114,6 +121,27 @@
   --md-accent-bg-color: var(--pt-bg);
 
   --md-typeset-a-color: var(--pt-accent);
+
+  /* mkdocs-nested-tabs override hooks (see CLAUDE.md's "Planned extraction"
+     section). The page-link row keeps the standard --pt-ink default (dark
+     ink in light mode, off-white in dark mode) used everywhere else for
+     default header/tab text. The all-caps category-label row above it uses
+     --pt-text-secondary instead — a lower-contrast grey, lighter than full
+     ink in light mode and darker than full white in dark mode — so the two
+     rows read as visually distinct tiers rather than identical text.
+
+     --md-nested-tabs-label-active-color (added in mkdocs-nested-tabs 0.2.0)
+     colors the category label itself when one of its own pages is active —
+     e.g. "Flow" going --pt-nav-active while "Conditionals" is open. The
+     active page link keeps the plugin's default (--md-accent-fg-color, i.e.
+     --pt-accent) rather than a --md-nested-tabs-link-active-color override,
+     so parent and child read as two distinct active tones, not one. Before
+     0.2.0 added this hook, achieving the same thing needed a :has() rule
+     reaching into the plugin's markup from outside — see git history if
+     that's ever relevant again. */
+  --md-nested-tabs-label-color: var(--pt-text-secondary);
+  --md-nested-tabs-link-color: var(--pt-ink);
+  --md-nested-tabs-label-active-color: var(--pt-nav-active);
 
   --md-code-bg-color: var(--pt-panel);
   --md-code-fg-color: var(--pt-ink);
@@ -172,9 +200,15 @@ html:focus-within::-webkit-scrollbar-thumb {
   color: var(--pt-ink);
 }
 
+/* Soft halo in --pt-panel (a lighter, in-palette tint of --pt-bg rather than
+   an arbitrary white) so the title reads clearly over the busier parts of
+   the header's illustrated background, without needing a solid pill/box
+   behind the text. Two stacked passes build up more coverage than a single
+   blur radius gives on its own. */
 .md-header__title,
 .md-header__topic {
   font-weight: 800;
+  text-shadow: 0 0 3px var(--pt-panel), 0 0 6px var(--pt-panel);
 }
 
 /* Below ~45em the header's own title font-size (Material's default) plus
@@ -701,6 +735,24 @@ input:checked + .md-consent__settings {
   }
 }
 
+/* The header nav row (now the mkdocs-nested-tabs plugin's own .nested-tabs
+   — see CLAUDE.md's "Planned extraction" section) covers category/page
+   navigation on desktop, so the left nav sidebar (site tree: categories +
+   sibling pages) is redundant there — hide it above the same breakpoint the
+   plugin uses. mkdocs.yml no longer sets toc.integrate, so this sidebar only
+   ever held the site tree, never the current page's own heading TOC — that
+   renders separately as the standard right-hand .md-sidebar--secondary
+   column (unaffected by this rule), same as it did before the site's earlier
+   migration to toc.integrate (see the nav history notes in CLAUDE.md).
+   Desktop-only and guarded by min-width on purpose: .md-sidebar--primary is
+   the exact same DOM element Material reuses as the off-canvas mobile
+   hamburger drawer, so an unscoped display:none here would silently break
+   mobile nav entirely (this happened once already). */
+@media screen and (min-width: 76.234375em) {
+  .md-sidebar--primary {
+    display: none;
+  }
+}
 /* :visited alone (0,2,1) outranks .md-button's two plain classes (0,2,0),
    so a visited link would otherwise fall through to the ".md-typeset
    a:visited" accent-on-accent color above and vanish into the button's own

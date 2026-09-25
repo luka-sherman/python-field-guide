@@ -45,8 +45,11 @@
     }
   }
 
-  // toc.integrate puts headings in the same nav as site links — hide the
-  // matching <li> too, so there's no dead link to hidden content.
+  // Hide the matching TOC <li> too, so there's no dead link to hidden
+  // content. Material renders a heading's link twice — once (inert,
+  // visibility:collapse) inside the primary nav's copy of the current
+  // page's TOC, and once for real in the secondary sidebar — querySelectorAll
+  // + forEach covers both without needing to know which is which.
   function setTocEntryHidden(id, hidden) {
     // href gets rewritten to a full URL after hydration; match by suffix.
     document.querySelectorAll('a.md-nav__link[href$="#' + id + '"]').forEach(function (link) {
