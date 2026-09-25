@@ -58,6 +58,7 @@
      conditionals.md is open), just to give it a distinct color from the
      default text color and the visited-link accent. Pick a deliberate
      final value later. */
+  --pt-nav-active: #6FA36B;
 }
 
 [data-md-color-scheme="slate"] {
@@ -345,8 +346,89 @@ html:focus-within::-webkit-scrollbar-thumb {
   100% { background-position: 0% 50%; }
 }
 
-.md-header__button.md-logo img {
-  border: 1px solid rgba(103, 58, 183, 0.6);
+/* The logo only ever linked home with no other purpose, so
+   cheatsheet_button.js's "Cheatsheet" pill replaces it in the header's
+   top-left slot instead of sitting alongside it — hidden here, not
+   removed from the DOM, since Material still generates it normally. */
+.md-header__button.md-logo {
+  display: none;
+}
+
+/* "Cheatsheet" link injected by cheatsheet_button.js, in the logo's old
+   spot (leading the site title) — an explicit text shortcut to the
+   homepage (already this site's compact quick-reference dashboard) rather
+   than relying on the logo image alone reading as clickable. Deliberately
+   reuses the Essentials/Advanced toggle's own technique (a currentColor
+   pill fill + --pt-bg text flip when active) rather than hardcoded colors,
+   so it adapts across light/dark mode exactly the way that toggle does —
+   currentColor here is .md-header's own `color: var(--pt-ink)`, inherited,
+   not set locally. */
+.pt-cheatsheet-link {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.6rem;
+  padding: 0.15rem 0.6rem;
+  /* Matches .pt-simplify-toggle's own resting track (border + background)
+     below, so the inactive pill reads as the same kind of control rather
+     than plain text — var(--pt-ink) directly instead of currentColor,
+     sidestepping the self-reference risk noted below for the active state. */
+  border: 0.05rem solid var(--pt-ink);
+  border-radius: 1rem;
+  background-color: var(--pt-bg);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: currentColor;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Material Symbols "dashboard" (viewBox 0 -960 960 960), same mask-image
+   technique as .pt-simplify-option's icons above — an asymmetric mixed-size
+   panel shape, matching the homepage's own grid (its library boxes are
+   genuinely different widths, not a uniform grid — see the "External
+   files and resources" grid-math notes in CLAUDE.md) rather than a plain
+   symmetric grid icon. Fetched from Google's material-design-icons source
+   directly (not hand-drawn) to keep the path data exact. */
+.pt-cheatsheet-link::after {
+  content: "";
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  flex: none;
+  margin-left: 0.3rem;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z'/%3E%3C/svg%3E");
+}
+
+.pt-cheatsheet-link:hover,
+.pt-cheatsheet-link:focus-visible {
+  text-decoration: underline;
+}
+
+/* Not background-color: currentColor here — the toggle's pill and its text
+   are two separate elements, so its highlight span can safely use
+   currentColor (the *inherited* color) while a different element's text
+   flips to --pt-bg. Collapsed into one element like this, currentColor
+   would resolve against this same rule's own `color: var(--pt-bg)` below
+   it (CSS uses the final computed color, not declaration order) — pill and
+   text would end up identical, text invisible. --pt-ink directly sidesteps
+   that self-reference entirely. */
+.pt-cheatsheet-link--active {
+  background-color: var(--pt-ink);
+  color: var(--pt-bg);
+}
+
+.pt-cheatsheet-link--active:hover,
+.pt-cheatsheet-link--active:focus-visible {
+  text-decoration: none;
 }
 
 .md-tabs {
@@ -360,7 +442,18 @@ html:focus-within::-webkit-scrollbar-thumb {
    is no .md-tabs__link--active class. */
 .md-tabs__item--active .md-tabs__link {
   font-weight: 700;
+  color: var(--pt-nav-active);
 }
+
+/* The desktop version of this same active-parent color (above the
+   mkdocs-nested-tabs plugin's 76.234375em breakpoint, where .md-tabs is
+   hidden and replaced by that plugin's own .nested-tabs row — a separate
+   DOM tree the rule above never reaches) doesn't need a rule here at all:
+   --md-nested-tabs-label-active-color, set above, is a first-class hook the
+   plugin's own CSS applies via .nested-tabs__label--active as of 0.2.0.
+   Before that version, the plugin never marked a flat category's own label
+   active (only the child page link), so this used to need a :has() selector
+   reaching into the plugin's markup from outside — see git history. */
 
 /* Material redefines --md-typeset-a-color to --md-primary-fg-color somewhere
    deeper in its own cascade (our light-cream header color), which makes body
