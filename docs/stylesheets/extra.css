@@ -333,6 +333,34 @@ html:focus-within::-webkit-scrollbar-thumb {
   mask-repeat: repeat-x;
 }
 
+/* Mobile gets its own header art (same background-strip + mask setup, just
+   a different source file per scheme) rather than scaling the desktop
+   artwork down — a wide illustration loses detail and can read as visual
+   noise at the header's much shorter mobile height. Same 45em breakpoint as
+   the title-sizing rule above, so the art and the title layout switch at the
+   same width. Swapping just the url() here (not duplicating the whole rule
+   block) keeps the background-size/position/repeat and the mask wiring
+   defined once. */
+@media (max-width: 45em) {
+  [data-md-color-scheme="slate"] .md-header {
+    background-image: url("../img/header_dark_mobile.svg");
+  }
+
+  [data-md-color-scheme="slate"] .md-header::before {
+    -webkit-mask-image: url("../img/header_dark_mobile.svg");
+    mask-image: url("../img/header_dark_mobile.svg");
+  }
+
+  [data-md-color-scheme="default"] .md-header {
+    background-image: url("../img/header_light_mobile.svg");
+  }
+
+  [data-md-color-scheme="default"] .md-header::before {
+    -webkit-mask-image: url("../img/header_light_mobile.svg");
+    mask-image: url("../img/header_light_mobile.svg");
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   [data-md-color-scheme="slate"] .md-header::before,
   [data-md-color-scheme="default"] .md-header::before {
