@@ -102,7 +102,7 @@
       icon.dataset[key] = iconAttrs[key];
     });
     icon.setAttribute("aria-hidden", "true");
-    title.append(label + " ", icon);
+    title.append(icon, " " + label);
     toast.append(title);
 
     if (body) {
