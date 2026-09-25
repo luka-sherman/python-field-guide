@@ -204,7 +204,7 @@ A related but separate setting — `speed(n)` controls how fast each individual 
     `tracer()` also accepts two numbers, `tracer(n, delay)` — show only every `n`-th update, with `delay` milliseconds between them, instead of turning animation off completely. Useful for speeding up something slow and complex without losing the animation altogether.
 
 ??? tip "no_animation() block"
-    A context manager wrapping the same idea as `tracer(False)`/`tracer(True)` — animation is off for whatever runs inside the block, then back on (and shown) once it exits. The same `with` pattern as [opening a file](../files.md#with), applied to animation instead of a file handle.
+    A context manager wrapping the same idea as `tracer(False)`/`tracer(True)` — animation is off for whatever runs inside the block, then back on (and shown) once it exits. The same `with` pattern as [opening a file](../resources/files.md#with), applied to animation instead of a file handle.
 
     ```python-ref
     with no_animation():
@@ -383,7 +383,7 @@ x, y = ball            # unpack like any other tuple — 3, 5
     ```
 
 ??? tip "Reassigning from inside a function"
-    Reassigning a global variable's name from inside a function needs `global`, covered on [Functions](../functions.md#local-vs-global-variables) — a game typically has at least one small function whose only job is reassigning a position or direction this way. *Mutating* something in place instead (`trail.append(...)`, `paddles[1] = paddles[1] + Vec2D(0, 20)`, both from "Many positions at once" below) doesn't need `global`, since the name itself is never reassigned — only reassignment does.
+    Reassigning a global variable's name from inside a function needs `global`, covered on [Functions](../organization/functions.md#local-vs-global-variables) — a game typically has at least one small function whose only job is reassigning a position or direction this way. *Mutating* something in place instead (`trail.append(...)`, `paddles[1] = paddles[1] + Vec2D(0, 20)`, both from "Many positions at once" below) doesn't need `global`, since the name itself is never reassigned — only reassignment does.
 
     ```python-ref
     aim = Vec2D(0, -10)
@@ -411,7 +411,7 @@ forward(5)
 
 #### Many positions at once  { data-card-link="skip" }
 
-A game's state is rarely just one lone position — a trail that grows over time, or several independent entities tracked at once. Both build on the same list/dict operations covered on [Collections](../collections.md).
+A game's state is rarely just one lone position — a trail that grows over time, or several independent entities tracked at once. Both build on the same list/dict operations covered on [Collections](../types/collections.md).
 
 ```python-ref
 trail = [Vec2D(10, 0)]

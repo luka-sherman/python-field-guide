@@ -105,7 +105,7 @@ message = describe("ball")        # "a ball python" is the return value, so now 
 
 A function is first defined. After it's defined, you can [call the function](#calling-a-function) whenever you need to run it. 
 
-The function definition line contains **`def`**, a **function name** (follows the same [naming rules as variables](foundations.md#naming-variables)), **parentheses** holding zero or more **parameters**, and a **colon**. 
+The function definition line contains **`def`**, a **function name** (follows the same [naming rules as variables](../start/foundations.md#naming-variables)), **parentheses** holding zero or more **parameters**, and a **colon**. 
 
 Under it is an indented **body**: the block of code that runs when the function is [called](#calling-a-function).
 
@@ -175,7 +175,7 @@ describe("ball")          # second parameter is not given, so length_ft is the d
 
 #### *args tuple
 
-`*args` collects any number of positional arguments into a single [tuple](collections.md#tuples), so a function can accept as many as the caller passes instead of a fixed list of parameters. `*args` is the conventional name, but any name after `*` works.
+`*args` collects any number of positional arguments into a single [tuple](../types/collections.md#tuples), so a function can accept as many as the caller passes instead of a fixed list of parameters. `*args` is the conventional name, but any name after `*` works.
 
 ```python-ref
 def total_length(*args):
@@ -186,7 +186,7 @@ total_length(5, 12, 8)    # 25
 
 #### **kwargs dict
 
-`**kwargs` collects any number of keyword arguments into a single [dict](collections.md#dictionaries), so a function can accept as many `name=value` pairs as the caller passes instead of a fixed list of parameters. `**kwargs` is the conventional name, but any name after `**` works.
+`**kwargs` collects any number of keyword arguments into a single [dict](../types/collections.md#dictionaries), so a function can accept as many `name=value` pairs as the caller passes instead of a fixed list of parameters. `**kwargs` is the conventional name, but any name after `**` works.
 
 ```python-ref
 def describe(**details):
@@ -275,7 +275,7 @@ result = find_species("cobra")    # None — the function fell through without a
 
 #### Multiple values  { data-card-link="skip" } 
 
-`return` followed by several values separated by commas [packs](collections.md#packing-and-unpacking) them into a tuple as a single return value. The caller unpacks that tuple to use the values separately — see [multiple values](#multiple-values_1) under calling a function.
+`return` followed by several values separated by commas [packs](../types/collections.md#packing-and-unpacking) them into a tuple as a single return value. The caller unpacks that tuple to use the values separately — see [multiple values](#multiple-values_1) under calling a function.
 
 ```python-ref
 def describe(species, length_ft):
@@ -333,7 +333,7 @@ def describe(species):
 
 ### Docstrings
 
-A triple-quoted string as a function's first line documents what it does — most editors show it automatically when you use the function elsewhere. A **docstring** is the same triple-quoted-string trick covered on the [Foundations](foundations.md#multi-line-comments-with) page, but placed as the very first line inside a function specifically to document it. Unlike a regular comment, Python actually stores a docstring (as the function's `__doc__` attribute) rather than discarding it — which is how editors are able to show it in a tooltip when you call the function elsewhere, without you needing to go find the definition.
+A triple-quoted string as a function's first line documents what it does — most editors show it automatically when you use the function elsewhere. A **docstring** is the same triple-quoted-string trick covered on the [Foundations](../start/foundations.md#multi-line-comments-with) page, but placed as the very first line inside a function specifically to document it. Unlike a regular comment, Python actually stores a docstring (as the function's `__doc__` attribute) rather than discarding it — which is how editors are able to show it in a tooltip when you call the function elsewhere, without you needing to go find the definition.
 
 Short, single-line docstrings are common for simple functions:
 
@@ -436,7 +436,7 @@ message = describe("ball")    # "a ball python" — stored, not printed
 
 #### Multiple values { data-card-link="skip" }
 
-A function that [returns multiple values packed into a tuple](#multiple-values) can have them unpacked straight into multiple variables in one line at the call site. `name, length = describe(...)` unpacks the returned tuple, matching each variable to the tuple's items by position — the same as [unpacking any other tuple](collections.md#packing-and-unpacking). The number of variables on the left has to match the number of values returned.
+A function that [returns multiple values packed into a tuple](#multiple-values) can have them unpacked straight into multiple variables in one line at the call site. `name, length = describe(...)` unpacks the returned tuple, matching each variable to the tuple's items by position — the same as [unpacking any other tuple](../types/collections.md#packing-and-unpacking). The number of variables on the left has to match the number of values returned.
 
 ```python-ref
 def describe(species, length_ft):
@@ -550,7 +550,7 @@ Every recursive function needs two parts:
     ```
 
 ??? tip "Recursion vs. a loop"
-    Anything recursion can do, a loop can do too — recursion is rarely the only option, just sometimes the more natural fit. It reads most naturally for problems already defined in terms of themselves, like a [nested dictionary](collections.md#dictionaries) of arbitrary depth, where the number of levels isn't known ahead of time. For a simple countdown like the one above, a `while` loop is just as clear and doesn't risk a `RecursionError`.
+    Anything recursion can do, a loop can do too — recursion is rarely the only option, just sometimes the more natural fit. It reads most naturally for problems already defined in terms of themselves, like a [nested dictionary](../types/collections.md#dictionaries) of arbitrary depth, where the number of levels isn't known ahead of time. For a simple countdown like the one above, a `while` loop is just as clear and doesn't risk a `RecursionError`.
 
     ```python-ref
     n = 3
@@ -570,9 +570,9 @@ Every recursive function needs two parts:
 
     Every call a function makes — recursive or not — adds a frame to the call stack and holds that call's local variables until it returns. A recursive function keeps every call's frame alive until the base case is reached, so its space cost is O(n) for n levels of recursion. That's why the `RecursionError` exists — Python caps how deep the stack can grow before it runs out of room.
     
-    A loop reuses the same frame each pass, O(1) [space](style.md#time-and-space).
+    A loop reuses the same frame each pass, O(1) [space](../practices/style.md#time-and-space).
 
-    See [Efficiency](style.md#efficiency) for why this distinction matters.
+    See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
 
 </div>
 
@@ -865,7 +865,7 @@ next(counter)    # 2
 
 ### Generator expressions
 
-Parentheses instead of brackets turn a [list comprehension](collections.md#list-comprehension) into a generator expression — same filtering and transforming syntax, but values are produced lazily instead of built into a list all at once.
+Parentheses instead of brackets turn a [list comprehension](../types/collections.md#list-comprehension) into a generator expression — same filtering and transforming syntax, but values are produced lazily instead of built into a list all at once.
 
 `doubled_list` below is an actual `list` — `[10, 24, 16]`, every value already computed — so it supports indexing, `len()`, and looping over more than once. `doubled_gen` is a `generator` — nothing has been computed yet, and it only supports stepping forward once with `next()` or a `for` loop, the same [list vs. generator](#generator-vs-a-regular-function) tradeoff covered above.
 

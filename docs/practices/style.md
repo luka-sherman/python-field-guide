@@ -30,10 +30,10 @@ Python runs styled and unstyled code identically, so following PEP 8 doesn't mak
 A Python file conventionally follows the same layout, top to bottom — a linter won't flag this on its own the way it does most of PEP 8, since it's a convention about where things go rather than a formatting rule.[^order-pep8]
 
 1. **Module docstring** — what the file does
-2. **[Imports](modules.md#importing-modules)** — standard library, then third-party, then local
+2. **[Imports](../resources/modules.md#importing-modules)** — standard library, then third-party, then local
 3. **Constants** — `ALL_CAPS` values used throughout the file
 4. **Functions and classes** — the file's actual logic
-5. **[The `if __name__ == "__main__":` guard](modules.md#the-main-guard)** — the code that runs when the file is executed
+5. **[The `if __name__ == "__main__":` guard](../resources/modules.md#the-main-guard)** — the code that runs when the file is executed
 
 [^order-pep8]: The first three steps are PEP 8. Where functions/classes and the main guard fall isn't PEP 8 — but it is the convention the rest of the Python community has settled on.
 
@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
 ### Naming
 
-A variable name should say what it holds — `length_ft` over `l`, `species_list` over `data`. `snake_case` and the other naming rules are covered on the [Foundations](foundations.md#naming-variables) page; this is about picking a *meaningful* name within those rules, not just a valid one.
+A variable name should say what it holds — `length_ft` over `l`, `species_list` over `data`. `snake_case` and the other naming rules are covered on the [Foundations](../start/foundations.md#naming-variables) page; this is about picking a *meaningful* name within those rules, not just a valid one.
 
 ```python-ref
 l = 4.5                # what is l?
@@ -104,7 +104,7 @@ print('it\'s a ball python')   # works, but harder to read
 
 ### Docstrings
 
-A triple-quoted string as the first line of a function or a file documents what it does — the underlying trick is the same [multi-line comment](foundations.md#multi-line-comments-with) covered on Foundations, just placed specifically as the first line.
+A triple-quoted string as the first line of a function or a file documents what it does — the underlying trick is the same [multi-line comment](../start/foundations.md#multi-line-comments-with) covered on Foundations, just placed specifically as the first line.
 
 ```python-ref
 def is_unusually_long(length_ft):
@@ -129,7 +129,7 @@ def is_unusually_long(species, length_ft):
     return length_ft > 5
 ```
 
-Full rules on the [Functions](functions.md#docstrings) page.
+Full rules on the [Functions](../organization/functions.md#docstrings) page.
 
 Placed as the very first line of a file instead, the same trick becomes a **module docstring** — documenting the file as a whole rather than a single function, and a common place to note who wrote it and when.
 
@@ -339,21 +339,21 @@ Representing **O**rder of growth, the standard way to describe *how time and spa
 
 | While using | Instead of | **do this** | Because of |
 |---|---|---|---|
-| [Strings](types.md#combine) | `+=` in a loop<br /><span class="pt-bigo pt-bigo--bad">O(n²)</span> | `.join()`<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Big O |
-| [Lists](collections.md#create) | `result = result + [item]` in a loop<br /><span class="pt-bigo pt-bigo--bad">O(n²)</span> | `result.append(item)`<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Big O |
-| [Lists](collections.md#inspect) | Counting items in a loop<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `len()`<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Big O |
-| [Dictionaries](collections.md#dictionaries) | Checking `in` then indexing (two lookups)<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | `.get()` (one lookup)<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Redundant work |
-| [Sets](collections.md#sets) | `in` on a list or tuple<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `in` on a set or dict<br /><span class="pt-bigo pt-bigo--good">O(1)</span> average | Big O |
-| [Lists](collections.md#lists) | `sorted()`, when the original doesn't need to survive<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> space | `sort()`<br /><span class="pt-bigo pt-bigo--good">O(1)</span> space | Big O |
-| [Sets](collections.md#sets) | Checking every item against every other item for a duplicate, a loop nested inside another loop<br /><span class="pt-bigo pt-bigo--bad">O(n²)</span> | Converting to a set to check for duplicates<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Big O |
-| [Dictionaries](collections.md#dictionaries) | A list of `(key, value)` tuples, searched by hand<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | A dict<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Big O |
-| [Lists](collections.md#lists) | `insert(0, x)` / `pop(0)`<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `append()` / `pop()` (or `deque` for the front)<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Amortized |
-| [By line](files.md#by-line) | `.read()` / `.readlines()` on a large file<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> space | A loop, line by line<br /><span class="pt-bigo pt-bigo--good">O(1)</span> space | Big O |
-| [Recursion](functions.md#recursion) | Deep recursion<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> space | A loop<br /><span class="pt-bigo pt-bigo--good">O(1)</span> space | Big O |
-| [Array operations](libraries/numpy.md#array-operations) | A Python loop over an array<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | A vectorized NumPy operation, smaller constant<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Constant factor |
-| [Searching for a pattern](libraries/re.md#searching-for-a-pattern) | Recompiling a regex pattern every pass<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `re.compile()` once, reused<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Redundant work |
+| [Strings](../types/basics.md#combine) | `+=` in a loop<br /><span class="pt-bigo pt-bigo--bad">O(n²)</span> | `.join()`<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Big O |
+| [Lists](../types/collections.md#create) | `result = result + [item]` in a loop<br /><span class="pt-bigo pt-bigo--bad">O(n²)</span> | `result.append(item)`<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Big O |
+| [Lists](../types/collections.md#inspect) | Counting items in a loop<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `len()`<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Big O |
+| [Dictionaries](../types/collections.md#dictionaries) | Checking `in` then indexing (two lookups)<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | `.get()` (one lookup)<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Redundant work |
+| [Sets](../types/collections.md#sets) | `in` on a list or tuple<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `in` on a set or dict<br /><span class="pt-bigo pt-bigo--good">O(1)</span> average | Big O |
+| [Lists](../types/collections.md#lists) | `sorted()`, when the original doesn't need to survive<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> space | `sort()`<br /><span class="pt-bigo pt-bigo--good">O(1)</span> space | Big O |
+| [Sets](../types/collections.md#sets) | Checking every item against every other item for a duplicate, a loop nested inside another loop<br /><span class="pt-bigo pt-bigo--bad">O(n²)</span> | Converting to a set to check for duplicates<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Big O |
+| [Dictionaries](../types/collections.md#dictionaries) | A list of `(key, value)` tuples, searched by hand<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | A dict<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Big O |
+| [Lists](../types/collections.md#lists) | `insert(0, x)` / `pop(0)`<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `append()` / `pop()` (or `deque` for the front)<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Amortized |
+| [By line](../resources/files.md#by-line) | `.read()` / `.readlines()` on a large file<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> space | A loop, line by line<br /><span class="pt-bigo pt-bigo--good">O(1)</span> space | Big O |
+| [Recursion](../organization/functions.md#recursion) | Deep recursion<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> space | A loop<br /><span class="pt-bigo pt-bigo--good">O(1)</span> space | Big O |
+| [Array operations](../libraries/numpy.md#array-operations) | A Python loop over an array<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | A vectorized NumPy operation, smaller constant<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Constant factor |
+| [Searching for a pattern](../libraries/re.md#searching-for-a-pattern) | Recompiling a regex pattern every pass<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `re.compile()` once, reused<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Redundant work |
 | [try/except](errors.md#catch-with-tryexcept) | Checking first, when failure is rare<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | `try`/`except`, cheaper when it succeeds<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Constant factor |
-| [Instance attributes](classes.md#instance-attributes) | Many plain instances<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> memory | `__slots__`, smaller constant<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> memory | Constant factor |
+| [Instance attributes](../organization/classes.md#instance-attributes) | Many plain instances<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> memory | `__slots__`, smaller constant<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> memory | Constant factor |
 
 </div>
 
@@ -395,7 +395,7 @@ while True:
 print(f"That's about {age * 7} in human years.")
 ```
 
-Using a [string validate method](types.md#validate) is another other way to catch this — checking the string *before* converting it, instead of attempting the conversion and catching the failure after:
+Using a [string validate method](../types/basics.md#validate) is another other way to catch this — checking the string *before* converting it, instead of attempting the conversion and catching the failure after:
 
 ```python-ref
 species = input("Enter a species name: ")
@@ -417,7 +417,7 @@ print(f"\nScanning... {species} detected.")
 
 ### Menus
 
-Let the user pick from a short list of options with `input()` and [`match`/`case`](conditionals.md#match-case) — a clear list of options to choose from, instead of leaving them to guess what to type.
+Let the user pick from a short list of options with `input()` and [`match`/`case`](../flow/conditionals.md#match-case) — a clear list of options to choose from, instead of leaving them to guess what to type.
 
 #### Simple input
 
@@ -425,7 +425,7 @@ A menu is easiest to validate when each option is a single number or letter inst
 text — there's only a handful of possible answers to check against, as in every example below.
 Save the deeper validation for input that has to be open-ended, like a species name or a
 measurement — and even there, don't assume the user typed it in the exact case or format
-expected. Normalize the answer first with [`.strip()`](types.md#modify), `.lower()`, or
+expected. Normalize the answer first with [`.strip()`](../types/basics.md#modify), `.lower()`, or
 `.title()`, instead of rejecting anything that doesn't match exactly.
 
 #### Single choice
@@ -494,7 +494,7 @@ match choice:
             print("Goodbye!")
 ```
 
-Comparing with [`.strip()`](types.md#modify) and `.lower()` means `"Y"`, `" y"`, and `"y"` all count as the same answer, instead of only an exact match.
+Comparing with [`.strip()`](../types/basics.md#modify) and `.lower()` means `"Y"`, `" y"`, and `"y"` all count as the same answer, instead of only an exact match.
 
 #### Robust menu
 
@@ -525,7 +525,7 @@ See [Boxes](#boxes) below to wrap the same three options in a decorative border 
 
 ### Randomize messages
 
-[`random.choice()`](libraries/random.md) picks one item from a list at random, so it prints different messages every run.
+[`random.choice()`](../libraries/random.md) picks one item from a list at random, so it prints different messages every run.
 
 ```python
 import random
@@ -617,7 +617,7 @@ For anything longer than a line or two, the triple-quoted string is easiest to r
 
 ### Formatting variables
 
-F-strings and format specs assemble a formatted string directly, instead of building it up by hand with `+` and manual padding. An [f-string](types.md#building-strings) — a variable's name dropped directly inside `{}` — is what turns the dashboard's bare `snake` dict into a filled-in box. A [format spec](types.md#building-strings) inside that same `{}` controls how the value looks, built from these pieces in order:
+F-strings and format specs assemble a formatted string directly, instead of building it up by hand with `+` and manual padding. An [f-string](../types/basics.md#building-strings) — a variable's name dropped directly inside `{}` — is what turns the dashboard's bare `snake` dict into a filled-in box. A [format spec](../types/basics.md#building-strings) inside that same `{}` controls how the value looks, built from these pieces in order:
 
 1. fill (padding character)
 2. align (left, right, center, or pad between a sign and its digits)
@@ -652,7 +652,7 @@ Box-drawing characters, arrows, and checkmarks give output visual structure that
 
 **ASCII** was the original 128 character encoding for computers, standardized in the 1960s — covering English letters, digits, and punctuation on a standard keyboard. Early console styling was built around using these characters to make **ascii text and art**. 
 
-Building a [raw string](types.md#building-strings) with an `r` prefix (`r"""..."""`) makes this possible to print - so that Python doesn't mistake the backslashes `\` for meaningful escape characters.
+Building a [raw string](../types/basics.md#building-strings) with an `r` prefix (`r"""..."""`) makes this possible to print - so that Python doesn't mistake the backslashes `\` for meaningful escape characters.
 
 There are online tools to [convert text to ascii fonts](https://patorjk.com/software/taag/#p=display&f=Isometric1&t=Type+Something+&x=none&v=4&h=4&w=80&we=false) and [find ascii art](https://www.asciiart.eu/#google_vignette).
 
@@ -754,7 +754,7 @@ print("""
 
 ### Progress bars
 
-A pause with no output looks like the program has frozen — printing something that visibly changes during the wait shows it's still working, instead of leaving the screen silent. `time.sleep()` from the [time library](modules.md#import) pauses a program for a set number of seconds. Called in a loop between `print()` calls with [`end=""`](types.md#combine) to keep the cursor on the same line, it fakes a "loading" delay.
+A pause with no output looks like the program has frozen — printing something that visibly changes during the wait shows it's still working, instead of leaving the screen silent. `time.sleep()` from the [time library](../resources/modules.md#import) pauses a program for a set number of seconds. Called in a loop between `print()` calls with [`end=""`](../types/basics.md#combine) to keep the cursor on the same line, it fakes a "loading" delay.
 
 ```python-ref
 import time
@@ -776,7 +776,7 @@ Loading...
 Loading... done!
 ```
 
-Print with [`end="\r"`](types.md#combine) instead, and each update returns the cursor to the beginning of the same line, allowing the next output to overwrite the previous one and build an animated progress bar out of characters.
+Print with [`end="\r"`](../types/basics.md#combine) instead, and each update returns the cursor to the beginning of the same line, allowing the next output to overwrite the previous one and build an animated progress bar out of characters.
 
 ```python-ref
 import time
@@ -906,7 +906,7 @@ class a,b,d noborder
 
 #### Compatibility
 
-This requires a [terminal](workspace.md#using-the-terminal), either a stand-alone application or inside of an IDE, support varies by which one:
+This requires a [terminal](../start/workspace.md#using-the-terminal), either a stand-alone application or inside of an IDE, support varies by which one:
 
 === "macOS Terminal"
 

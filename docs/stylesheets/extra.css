@@ -53,6 +53,12 @@
   --pt-shimmer-gold: #D9C48C;
   --pt-shimmer-sage: #B9CDAE;
   --pt-shimmer-clay: #CBA989;
+
+  /* Active top-nav tab (e.g. "Flow" when conditionals.md is open) — the
+     site's own accent green, deliberately darker than the inactive tabs'
+     --pt-text-secondary below it, so the current page reads as the
+     "heavier," more deliberate mark rather than a lighter highlight. */
+  --pt-nav-active: var(--pt-accent);
 }
 
 [data-md-color-scheme="slate"] {
@@ -87,6 +93,8 @@
   --pt-shimmer-indigo: #201f3d;
   --pt-shimmer-purple: #2a1c3d;
   --pt-shimmer-green: #17281f;
+
+  --pt-nav-active: #8FCB93;
 }
 
 /* Material re-sets --md-* variables on [data-md-color-scheme] (applied to
@@ -114,6 +122,27 @@
   --md-accent-bg-color: var(--pt-bg);
 
   --md-typeset-a-color: var(--pt-accent);
+
+  /* mkdocs-nested-tabs override hooks (see CLAUDE.md's "Planned extraction"
+     section). The page-link row keeps the standard --pt-ink default (dark
+     ink in light mode, off-white in dark mode) used everywhere else for
+     default header/tab text. The all-caps category-label row above it uses
+     --pt-text-secondary instead — a lower-contrast grey, lighter than full
+     ink in light mode and darker than full white in dark mode — so the two
+     rows read as visually distinct tiers rather than identical text.
+
+     --md-nested-tabs-label-active-color (added in mkdocs-nested-tabs 0.2.0)
+     colors the category label itself when one of its own pages is active —
+     e.g. "Flow" going --pt-nav-active while "Conditionals" is open. The
+     active page link keeps the plugin's default (--md-accent-fg-color, i.e.
+     --pt-accent) rather than a --md-nested-tabs-link-active-color override,
+     so parent and child read as two distinct active tones, not one. Before
+     0.2.0 added this hook, achieving the same thing needed a :has() rule
+     reaching into the plugin's markup from outside — see git history if
+     that's ever relevant again. */
+  --md-nested-tabs-label-color: var(--pt-text-secondary);
+  --md-nested-tabs-link-color: var(--pt-ink);
+  --md-nested-tabs-label-active-color: var(--pt-nav-active);
 
   --md-code-bg-color: var(--pt-panel);
   --md-code-fg-color: var(--pt-ink);
@@ -172,9 +201,15 @@ html:focus-within::-webkit-scrollbar-thumb {
   color: var(--pt-ink);
 }
 
+/* Soft halo in --pt-panel (a lighter, in-palette tint of --pt-bg rather than
+   an arbitrary white) so the title reads clearly over the busier parts of
+   the header's illustrated background, without needing a solid pill/box
+   behind the text. Two stacked passes build up more coverage than a single
+   blur radius gives on its own. */
 .md-header__title,
 .md-header__topic {
   font-weight: 800;
+  text-shadow: 0 0 3px var(--pt-panel), 0 0 6px var(--pt-panel);
 }
 
 /* Below ~45em the header's own title font-size (Material's default) plus
@@ -235,6 +270,25 @@ html:focus-within::-webkit-scrollbar-thumb {
   background-size: auto 100%;
   background-position: left center;
   background-repeat: repeat-x;
+}
+
+/* Material's own collapsed/idle search box (shown ≥60em before it's
+   clicked into) defaults to a mostly-transparent black fill
+   (`background-color: #00000042`, ~26% opaque, meant to sit on Material's
+   flat primary-color header). Against this site's much darker slate
+   header — plus the shimmer artwork underneath it — that low opacity
+   barely reads as a distinct control. Raise the opacity so the search box
+   is actually visible as its own element; once expanded/active it already
+   switches to a solid `var(--md-default-bg-color)` fill via Material's own
+   `[data-md-toggle=search]:checked` rule, untouched here. */
+@media screen and (min-width: 60em) {
+  [data-md-color-scheme="slate"] .md-search__form {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  [data-md-color-scheme="slate"] .md-search__form:hover {
+    background-color: rgba(0, 0, 0, 0.72);
+  }
 }
 
 [data-md-color-scheme="slate"] .md-header::before {
@@ -298,6 +352,34 @@ html:focus-within::-webkit-scrollbar-thumb {
   mask-repeat: repeat-x;
 }
 
+/* Mobile gets its own header art (same background-strip + mask setup, just
+   a different source file per scheme) rather than scaling the desktop
+   artwork down — a wide illustration loses detail and can read as visual
+   noise at the header's much shorter mobile height. Same 45em breakpoint as
+   the title-sizing rule above, so the art and the title layout switch at the
+   same width. Swapping just the url() here (not duplicating the whole rule
+   block) keeps the background-size/position/repeat and the mask wiring
+   defined once. */
+@media (max-width: 45em) {
+  [data-md-color-scheme="slate"] .md-header {
+    background-image: url("../img/header_dark_mobile.svg");
+  }
+
+  [data-md-color-scheme="slate"] .md-header::before {
+    -webkit-mask-image: url("../img/header_dark_mobile.svg");
+    mask-image: url("../img/header_dark_mobile.svg");
+  }
+
+  [data-md-color-scheme="default"] .md-header {
+    background-image: url("../img/header_light_mobile.svg");
+  }
+
+  [data-md-color-scheme="default"] .md-header::before {
+    -webkit-mask-image: url("../img/header_light_mobile.svg");
+    mask-image: url("../img/header_light_mobile.svg");
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   [data-md-color-scheme="slate"] .md-header::before,
   [data-md-color-scheme="default"] .md-header::before {
@@ -311,12 +393,98 @@ html:focus-within::-webkit-scrollbar-thumb {
   100% { background-position: 0% 50%; }
 }
 
-.md-header__button.md-logo img {
-  border: 1px solid rgba(103, 58, 183, 0.6);
+/* The logo only ever linked home with no other purpose, so
+   cheatsheet_button.js's "Cheatsheet" pill replaces it in the header's
+   top-left slot instead of sitting alongside it — hidden here, not
+   removed from the DOM, since Material still generates it normally. */
+.md-header__button.md-logo {
+  display: none;
+}
+
+/* "Cheatsheet" link injected by cheatsheet_button.js, in the logo's old
+   spot (leading the site title) — an explicit text shortcut to the
+   homepage (already this site's compact quick-reference dashboard) rather
+   than relying on the logo image alone reading as clickable. Deliberately
+   reuses the Essentials/Advanced toggle's own technique (a currentColor
+   pill fill + --pt-bg text flip when active) rather than hardcoded colors,
+   so it adapts across light/dark mode exactly the way that toggle does —
+   currentColor here is .md-header's own `color: var(--pt-ink)`, inherited,
+   not set locally. */
+.pt-cheatsheet-link {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.6rem;
+  padding: 0.15rem 0.6rem;
+  /* Matches .pt-simplify-toggle's own resting track (border + background)
+     below, so the inactive pill reads as the same kind of control rather
+     than plain text — var(--pt-ink) directly instead of currentColor,
+     sidestepping the self-reference risk noted below for the active state. */
+  border: 0.05rem solid var(--pt-ink);
+  border-radius: 1rem;
+  background-color: var(--pt-bg);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: currentColor;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Material Symbols "dashboard" (viewBox 0 -960 960 960), same mask-image
+   technique as .pt-simplify-option's icons above — an asymmetric mixed-size
+   panel shape, matching the homepage's own grid (its library boxes are
+   genuinely different widths, not a uniform grid — see the "External
+   files and resources" grid-math notes in CLAUDE.md) rather than a plain
+   symmetric grid icon. Fetched from Google's material-design-icons source
+   directly (not hand-drawn) to keep the path data exact. Leads the word
+   (::before, not ::after), matching the icon-then-text order used by the
+   Essentials/Advanced toggle, the theme toggle, and the toast. */
+.pt-cheatsheet-link::before {
+  content: "";
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  flex: none;
+  margin-right: 0.3rem;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z'/%3E%3C/svg%3E");
+}
+
+.pt-cheatsheet-link:hover,
+.pt-cheatsheet-link:focus-visible {
+  text-decoration: underline;
+}
+
+/* Not background-color: currentColor here — the toggle's pill and its text
+   are two separate elements, so its highlight span can safely use
+   currentColor (the *inherited* color) while a different element's text
+   flips to --pt-bg. Collapsed into one element like this, currentColor
+   would resolve against this same rule's own `color: var(--pt-bg)` below
+   it (CSS uses the final computed color, not declaration order) — pill and
+   text would end up identical, text invisible. --pt-ink directly sidesteps
+   that self-reference entirely. */
+.pt-cheatsheet-link--active {
+  background-color: var(--pt-ink);
+  color: var(--pt-bg);
+}
+
+.pt-cheatsheet-link--active:hover,
+.pt-cheatsheet-link--active:focus-visible {
+  text-decoration: none;
 }
 
 .md-tabs {
   background-color: transparent;
+  /* Extra breathing room above the tab row itself, beyond Material's
+     default (the header title sits right above it otherwise). */
+  padding-top: 0.5rem;
 }
 
 /* Make the current page's top-nav tab visually heavier than the rest, so
@@ -326,7 +494,32 @@ html:focus-within::-webkit-scrollbar-thumb {
    is no .md-tabs__link--active class. */
 .md-tabs__item--active .md-tabs__link {
   font-weight: 700;
+  color: var(--pt-nav-active);
 }
+
+/* Inactive tabs: --pt-text-secondary instead of the plain ink they'd
+   otherwise inherit from .md-header — slightly lighter, and matching what
+   .nested-tabs__label already gets by default at desktop width (see
+   --md-nested-tabs-label-color above), so both breakpoints read the same
+   way. Light mode only (dark mode's own ink/secondary pairing is
+   unaffected). :not(.md-tabs__item--active) is required here because the
+   attribute selector makes this MORE specific than the active-tab rule
+   above (.md-tabs__item--active .md-tabs__link, two classes with no
+   attribute) — without it this would always win and overwrite the active
+   tab's color too. */
+[data-md-color-scheme="default"] .md-tabs__item:not(.md-tabs__item--active) .md-tabs__link {
+  color: var(--pt-text-secondary);
+}
+
+/* The desktop version of this same active-parent color (above the
+   mkdocs-nested-tabs plugin's 76.234375em breakpoint, where .md-tabs is
+   hidden and replaced by that plugin's own .nested-tabs row — a separate
+   DOM tree the rule above never reaches) doesn't need a rule here at all:
+   --md-nested-tabs-label-active-color, set above, is a first-class hook the
+   plugin's own CSS applies via .nested-tabs__label--active as of 0.2.0.
+   Before that version, the plugin never marked a flat category's own label
+   active (only the child page link), so this used to need a :has() selector
+   reaching into the plugin's markup from outside — see git history. */
 
 /* Material redefines --md-typeset-a-color to --md-primary-fg-color somewhere
    deeper in its own cascade (our light-cream header color), which makes body
@@ -701,6 +894,36 @@ input:checked + .md-consent__settings {
   }
 }
 
+/* Same extra top breathing room as .md-tabs above, applied to the
+   mkdocs-nested-tabs plugin's own row (nested-tabs.css sets
+   .nested-tabs__list's padding to 0.5rem 0 — override padding-top only, so
+   the bottom padding it sets stays as-is). extra.css loads after
+   nested-tabs.css (see mkdocs.yml's extra_css / plugin injection order),
+   so this wins without needing extra specificity. */
+@media screen and (min-width: 76.234375em) {
+  .nested-tabs__list {
+    padding-top: 1.3rem;
+  }
+}
+
+/* The header nav row (now the mkdocs-nested-tabs plugin's own .nested-tabs
+   — see CLAUDE.md's "Planned extraction" section) covers category/page
+   navigation on desktop, so the left nav sidebar (site tree: categories +
+   sibling pages) is redundant there — hide it above the same breakpoint the
+   plugin uses. mkdocs.yml no longer sets toc.integrate, so this sidebar only
+   ever held the site tree, never the current page's own heading TOC — that
+   renders separately as the standard right-hand .md-sidebar--secondary
+   column (unaffected by this rule), same as it did before the site's earlier
+   migration to toc.integrate (see the nav history notes in CLAUDE.md).
+   Desktop-only and guarded by min-width on purpose: .md-sidebar--primary is
+   the exact same DOM element Material reuses as the off-canvas mobile
+   hamburger drawer, so an unscoped display:none here would silently break
+   mobile nav entirely (this happened once already). */
+@media screen and (min-width: 76.234375em) {
+  .md-sidebar--primary {
+    display: none;
+  }
+}
 /* :visited alone (0,2,1) outranks .md-button's two plain classes (0,2,0),
    so a visited link would otherwise fall through to the ".md-typeset
    a:visited" accent-on-accent color above and vanish into the button's own
@@ -907,18 +1130,24 @@ input:checked + .md-consent__settings {
 
 /* Icon for each option (Material Symbols "psychiatry" / "park", viewBox
    0 -960 960 960), same mask-image technique as .pt-theme-option's
-   sun/moon. On desktop it trails the "Essentials"/"Advanced" word — an
-   ::after, not ::before, so it renders after the label text in normal
-   document order without any extra markup or flex re-ordering; the
-   option button itself is a flex row (see .pt-simplify-option above), so
+   sun/moon. On desktop it leads the "Essentials"/"Advanced" word — a
+   ::before, same as .pt-theme-option's own icon and the toast's
+   .pt-mode-icon (see below), so all three read consistently as
+   "icon, then text" — matching Material's own "back to top" button
+   (`.md-top`: icon SVG, then the "Back to top" label). The option
+   button itself is a flex row (see .pt-simplify-option above), so
    the icon centers vertically against the text the same way .pt-theme-
    option's icon-only button centers its own icon — no vertical-align
    fudging needed, and it can't drift out of sync between the two variants.
    Below ~45em (matches this file's other mobile breakpoints) the words
    get tight, so the label is visually clipped and the icon alone
    represents the option — it stays in the DOM (not aria-hidden) so the
-   button's accessible name is unchanged for screen readers either way. */
-.pt-simplify-option[data-mode]::after,
+   button's accessible name is unchanged for screen readers either way.
+   Sized smaller (0.7rem) than the toast's own .pt-mode-icon (1.2rem,
+   matching Material's "back to top" icon) — this icon sits inside the
+   1.2rem-tall toggle track itself, so it stays the toggle's own icon
+   size rather than the toast's. */
+.pt-simplify-option[data-mode]::before,
 .pt-mode-icon {
   content: "";
   display: inline-block;
@@ -934,25 +1163,32 @@ input:checked + .md-consent__settings {
   mask-position: center;
 }
 
-.pt-simplify-option[data-mode]::after {
-  margin-left: 0.3rem;
+.pt-simplify-option[data-mode]::before {
+  margin-right: 0.3rem;
 }
 
-.pt-simplify-option[data-mode="simplified"]::after,
+/* Toast-only override: matches the size of Material's own "back to top"
+   icon (`.md-icon svg`, 1.2rem), per the shared rule's comment above. */
+.pt-mode-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.pt-simplify-option[data-mode="simplified"]::before,
 .pt-mode-icon[data-mode="simplified"] {
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M450-130v-309h-20q-64 0-120.5-24.5T209-533q-44-45-66.5-104T120-760v-80h78.32Q260-840 317-815.5 374-791 419-746q33 34 54.5 76t30.5 89q7.65-11.9 16.82-22.95Q530-615 540-626q45-45 102-69.5T761.67-720H840v80q0 64-23.98 123T748-413q-45 45-101.56 69T528-320h-18v190h-60Zm1-370q0-61-20-113.5t-55-89q-35-36.5-86-57T180-780q0 63 18.5 115.5T252-575q42 45 90.5 60T451-500Zm59 120q60 0 111-19.5t86-56q35-36.5 54-89T780-660q-60 0-111 20.5T583-583q-43 45-58 94t-15 109Zm0 0Zm-59-120Z'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M450-130v-309h-20q-64 0-120.5-24.5T209-533q-44-45-66.5-104T120-760v-80h78.32Q260-840 317-815.5 374-791 419-746q33 34 54.5 76t30.5 89q7.65-11.9 16.82-22.95Q530-615 540-626q45-45 102-69.5T761.67-720H840v80q0 64-23.98 123T748-413q-45 45-101.56 69T528-320h-18v190h-60Zm1-370q0-61-20-113.5t-55-89q-35-36.5-86-57T180-780q0 63 18.5 115.5T252-575q42 45 90.5 60T451-500Zm59 120q60 0 111-19.5t86-56q35-36.5 54-89T780-660q-60 0-111 20.5T583-583q-43 45-58 94t-15 109Zm0 0Zm-59-120Z'/%3E%3C/svg%3E");
 }
 
-.pt-simplify-option[data-mode="advanced"]::after,
+.pt-simplify-option[data-mode="advanced"]::before,
 .pt-mode-icon[data-mode="advanced"] {
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M538-80H423v-149H120l189-274h-95l266-377 266 377h-94l188 274H538v149ZM236-289h189-90 290-89 189-489Zm0 0h489L536-563h89L480-769 335-563h90L236-289Z'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M538-80H423v-149H120l189-274h-95l266-377 266 377h-94l188 274H538v149ZM236-289h189-90 290-89 189-489Zm0 0h489L536-563h89L480-769 335-563h90L236-289Z'/%3E%3C/svg%3E");
 }
 
 @media (max-width: 45em) {
-  .pt-simplify-option[data-mode]::after {
-    margin-left: 0;
+  .pt-simplify-option[data-mode]::before {
+    margin-right: 0;
   }
 
   .pt-simplify-toggle:has(.pt-simplify-option[data-mode]) .pt-simplify-option {
@@ -1033,31 +1269,32 @@ input:checked + .md-consent__settings {
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
 }
 
-/* Disappearing confirmation toast for the Essentials/Advanced toggle
-   (docs/javascripts/essentials_toggle.js's showToast). Sits just below the
-   header — right where the toggle that triggered it lives — rather than
-   at the bottom of the screen, so it's immediately next to the control the
-   reader just clicked. `top` itself is set inline by showToast() (the
-   header's own height varies: ~48px on mobile, taller on desktop/tablet
-   with the tab bar, and Material can also hide/reveal it on scroll), only
-   the offset-from-header gap lives here. Centered horizontally on both
-   desktop and mobile. Colors are inverted (ink background, bg-colored
-   text) same as the toggle's own active-option highlight, so it reads as
-   "this site's accent chip," not a generic OS notification. */
+/* Disappearing confirmation toast for the Essentials/Advanced and
+   light/dark toggles (docs/javascripts/essentials_toggle.js's showToast).
+   Sits just below the header — right where the toggle that triggered it
+   lives — rather than at the bottom of the screen, so it's immediately
+   next to the control the reader just clicked. `top` itself is set inline
+   by showToast() (the header's own height varies: ~48px on mobile, taller
+   on desktop/tablet with the tab bar, and Material can also hide/reveal it
+   on scroll), only the offset-from-header gap lives here. Centered
+   horizontally on both desktop and mobile. Shape/colors match Material's
+   own "back to top" pill (`.md-top`) — same rounded-pill radius, shadow,
+   bg/fg pairing, font size, and padding — so it reads as a native site
+   chrome element rather than a one-off custom popup. */
 .pt-toast {
   position: fixed;
   z-index: 1000;
   left: 50%;
   transform: translate(-50%, 0);
   max-width: min(90vw, 22rem);
-  padding: 0.6rem 1rem;
-  border-radius: 0.4rem;
-  background-color: var(--pt-ink);
-  color: var(--pt-bg);
-  font-size: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 1.6rem;
+  background-color: var(--md-default-bg-color);
+  color: var(--md-default-fg-color--light);
+  font-size: 0.7rem;
   line-height: 1.4;
   text-align: center;
-  box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.25);
+  box-shadow: var(--md-shadow-z2);
   opacity: 0;
   /* none while hidden, so an invisible toast (opacity alone doesn't take
      it out of hit-testing) doesn't block clicks on whatever's under where

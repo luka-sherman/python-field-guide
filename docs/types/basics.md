@@ -444,11 +444,11 @@ Strings use the same index and slice syntax as lists. `0` is the first character
     
     `.join()` on a list of the same pieces builds the result once, at O(n) — collect the pieces in a list through the loop, then join them after.
 
-    See [Efficiency](style.md#efficiency) for why this distinction matters.
+    See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
 
 </div>
 
-- **`print()`'s `sep` and `end` arguments** also take a string — `sep` replaces the space Python puts between multiple printed values (already covered on [Foundations](foundations.md#print-function)), and `end` replaces the newline `print()` adds after the last one, so the *next* `print()` call continues on the same line instead of starting a new one.
+- **`print()`'s `sep` and `end` arguments** also take a string — `sep` replaces the space Python puts between multiple printed values (already covered on [Foundations](../start/foundations.md#print-function)), and `end` replaces the newline `print()` adds after the last one, so the *next* `print()` call continues on the same line instead of starting a new one.
 
     ```python-ref
     print("a", "b", sep="-")   # "a-b"
@@ -736,7 +736,7 @@ if name:                 # runs — name isn't empty
 
 ## Booleans
 
-A boolean (`bool`) holds one of exactly two values, **`True`** or **`False`** — often used to represent yes/no, on/off, or the result of a comparison. They are used in [if statements](conditionals.md#if-elif-else) and [while loops](loops.md#while-loops).
+A boolean (`bool`) holds one of exactly two values, **`True`** or **`False`** — often used to represent yes/no, on/off, or the result of a comparison. They are used in [if statements](../flow/conditionals.md#if-elif-else) and [while loops](../flow/loops.md#while-loops).
 
 ```python-ref
 venomous = False

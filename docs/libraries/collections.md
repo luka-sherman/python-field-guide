@@ -13,10 +13,10 @@ description: >-
 !!! note "Not the same as the Collections page"
     This page covers the **`collections` module** — extra container types imported with
     `from collections import ...`. For the built-in `list`, `dict`, `tuple`, and `set` types
-    themselves, see [Collections](../collections.md).
+    themselves, see [Collections](../types/collections.md).
 
 The **`collections`** module adds specialized containers with added functionality on top of the
-built-in [`str`](../types.md#strings) [`list`](../collections.md#lists) [`dict`](../collections.md#dictionaries) [`tuple`](../collections.md#tuples) and [`set`](../collections.md#sets).
+built-in [`str`](../types/basics.md#strings) [`list`](../types/collections.md#lists) [`dict`](../types/collections.md#dictionaries) [`tuple`](../types/collections.md#tuples) and [`set`](../types/collections.md#sets).
 
 <div class="pt-jump-table" markdown="block">
 

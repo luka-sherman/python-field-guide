@@ -20,12 +20,12 @@ from conftest import format_violations, run_axe
 # FAQ tabs), a content page with a wide comparison table, a page built from numbered
 # walkthroughs and tabbed OS instructions, one dense with admonitions, and a library page
 # full of images.
-PAGES = ["/", "/types/", "/workspace/", "/collections/", "/libraries/pillow/"]
+PAGES = ["/", "/types/basics/", "/start/workspace/", "/types/collections/", "/libraries/pillow/"]
 
 # The pages whose palette does the most work — card grid, wide truth tables — re-checked
 # with the dark scheme active. (Material lists `slate` first, so dark is already the
 # default the PAGES run above scans; this forces the *other* direction explicitly too.)
-LIGHT_MODE_PAGES = ["/", "/collections/"]
+LIGHT_MODE_PAGES = ["/", "/types/collections/"]
 
 MOBILE_VIEWPORT = {"width": 375, "height": 812}
 # Between Material's own tab-bar breakpoint (~1220px) and extra.css's override that pulls
@@ -75,7 +75,7 @@ def test_homepage_has_no_axe_violations_in_dark_mode(page, site_url):
     )
 
 
-@pytest.mark.parametrize("path", ["/", "/collections/"])
+@pytest.mark.parametrize("path", ["/", "/types/collections/"])
 def test_page_has_no_axe_violations_on_mobile(page, site_url, path):
     page.set_viewport_size(MOBILE_VIEWPORT)
     page.goto(f"{site_url}{path}")
@@ -89,7 +89,7 @@ def test_page_has_no_axe_violations_on_mobile(page, site_url, path):
 def test_mobile_nav_drawer_has_no_axe_violations(page, site_url):
     """The hamburger drawer is a different DOM subtree than the desktop tab nav."""
     page.set_viewport_size(MOBILE_VIEWPORT)
-    page.goto(f"{site_url}/collections/")
+    page.goto(f"{site_url}/types/collections/")
     page.evaluate(
         """() => {
             const drawer = document.getElementById('__drawer');
@@ -106,7 +106,7 @@ def test_mobile_nav_drawer_has_no_axe_violations(page, site_url):
 
 def test_tablet_width_has_no_axe_violations(page, site_url):
     page.set_viewport_size(TABLET_VIEWPORT)
-    page.goto(f"{site_url}/types/")
+    page.goto(f"{site_url}/types/basics/")
     violations = run_axe(page)
     assert not violations, (
         f"axe-core violations at {TABLET_VIEWPORT['width']}px (custom tab-bar breakpoint):\n"

@@ -7,20 +7,33 @@ site_description: >-
 hooks:
   - hooks/thanks_url.py
 
+plugins:
+  # Setting `plugins:` at all replaces MkDocs' implicit default list, which
+  # otherwise includes `search` automatically — has to be listed explicitly
+  # here or the site silently loses its search feature.
+  - search
+  - nested-tabs
+
 nav:
   - All: index.md
-  - Workspace: workspace.md
-  - Foundations: foundations.md
-  - Types: types.md
-  - Collections: collections.md
-  - Conditionals: conditionals.md
-  - Loops: loops.md
-  - Functions: functions.md
-  - Classes: classes.md
-  - Modules: modules.md
-  - Files: files.md
-  - Style: style.md
-  - Errors: errors.md
+  - Start:
+      - Workspace: start/workspace.md
+      - Foundations: start/foundations.md
+  - Types:
+      - Basics: types/basics.md
+      - Collections: types/collections.md
+  - Flow:
+      - Conditionals: flow/conditionals.md
+      - Loops: flow/loops.md
+  - Organization:
+      - Functions: organization/functions.md
+      - Classes: organization/classes.md
+  - Resources:
+      - Modules: resources/modules.md
+      - Files: resources/files.md
+  - Practices:
+      - Style: practices/style.md
+      - Errors: practices/errors.md
   - Libraries:
       - All: libraries/index.md
       - Utilities:
@@ -73,15 +86,14 @@ theme:
         icon: material/weather-night
         name: Switch to dark mode
   features:
-    - navigation.expand
     - navigation.footer
     - navigation.instant
     - navigation.instant.prefetch
+    - navigation.sections
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
-    - toc.integrate
     - toc.follow
     - content.code.copy
     - content.tooltips
@@ -143,6 +155,7 @@ extra_javascript:
   - javascripts/copyright_year.js
   - javascripts/external_links.js
   - javascripts/homepage_header_title.js
+  - javascripts/cheatsheet_button.js
   - javascripts/essentials_toggle.js
   - javascripts/a11y_patches.js
   - https://unpkg.com/mermaid@11/dist/mermaid.min.js

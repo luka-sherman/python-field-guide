@@ -45,7 +45,7 @@ def test_simplified_state_carries_to_content_page_heading_and_toc(page, site_url
     """functions.md's own '## Decorators { data-advanced="true" }' heading (and its
     integrated-TOC entry) should hide too — carried over from the homepage's marker via
     localStorage, with no need to visit the homepage first in this same test."""
-    page.goto(f"{site_url}/functions/?simplified=true")
+    page.goto(f"{site_url}/organization/functions/?simplified=true")
 
     result = page.evaluate(
         """() => {
@@ -68,7 +68,7 @@ def test_admonition_inside_a_hidden_section_is_actually_hidden(page, site_url):
     on an admonition inside a hidden section didn't actually hide it — it stayed on
     screen as a bordered box even though its heading was gone. Fixed with a blanket
     `[hidden] { display: none !important }` in extra.css."""
-    page.goto(f"{site_url}/collections/?simplified=true")
+    page.goto(f"{site_url}/types/collections/?simplified=true")
 
     hidden_and_shown = page.evaluate(
         """() => [...document.querySelectorAll('.md-typeset details')]
@@ -88,7 +88,7 @@ def test_pfg_section_wrapper_is_hidden_with_its_heading(page, site_url):
     heading and its flow siblings, which sit *inside* that wrapper — the wrapper
     itself was never touched, so it stayed on screen as an empty bordered card
     once everything inside it was hidden."""
-    page.goto(f"{site_url}/collections/?simplified=true")
+    page.goto(f"{site_url}/types/collections/?simplified=true")
 
     result = page.evaluate(
         """() => {
@@ -111,7 +111,7 @@ def test_link_to_hidden_section_recovers_to_advanced(page, site_url):
     while the "Tuples" heading itself is hidden by data-advanced — clicking that visible
     link should flip the toggle back to Advanced and reveal the section, rather than
     landing on a hidden target and doing nothing."""
-    page.goto(f"{site_url}/collections/?simplified=true")
+    page.goto(f"{site_url}/types/collections/?simplified=true")
 
     tuples_link = page.locator('table a[href$="#tuples"]')
     assert tuples_link.count() > 0, "expected the cheat-sheet table's #tuples link to exist"
@@ -144,9 +144,13 @@ def test_link_to_hidden_section_recovers_to_advanced(page, site_url):
 def test_link_recovery_ignores_toc_links_to_visible_sections(page, site_url):
     """Sanity check the recovery handler isn't overly broad: clicking an ordinary link to
     a section that's already visible shouldn't touch Simplify state at all."""
-    page.goto(f"{site_url}/collections/?simplified=true")
+    page.goto(f"{site_url}/types/collections/?simplified=true")
 
-    lists_link = page.locator('a.md-nav__link[href$="#lists"]')
+    # Material renders a page's TOC twice: once for real in the secondary
+    # (right-hand) sidebar, and once inert (visibility:collapse) inside the
+    # primary nav's copy of the current page's entry — scope to the visible
+    # one so .first doesn't land on the inert copy and time out.
+    lists_link = page.locator('.md-sidebar--secondary a.md-nav__link[href$="#lists"]')
     assert lists_link.count() > 0
 
     lists_link.first.click()

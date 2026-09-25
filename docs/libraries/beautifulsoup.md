@@ -219,7 +219,7 @@ print(tag.attrs)
 
 ## Extracting structured data
 
-A page is rarely useful one tag at a time — the real value of `find_all()` is looping over its results to build a plain Python list, the same list-of-dicts shape as [Collections](../collections.md#dictionaries)' own snake catalog, ready to filter, sort, or save to a [CSV](csv.md) or [JSON](json.md) file.
+A page is rarely useful one tag at a time — the real value of `find_all()` is looping over its results to build a plain Python list, the same list-of-dicts shape as [Collections](../types/collections.md#dictionaries)' own snake catalog, ready to filter, sort, or save to a [CSV](csv.md) or [JSON](json.md) file.
 
 ```python-ref
 snakes = []
@@ -273,7 +273,7 @@ BeautifulSoup only parses HTML that's already in hand — pairing it with [reque
 
 ### Common tasks
 
-Each function below wraps a single `find`/`find_all` call in a [function](../functions.md), returning a plain [list](../collections.md#lists) built with a [list comprehension](../collections.md#list-comprehension) — store the result in a variable and use it like any other value.
+Each function below wraps a single `find`/`find_all` call in a [function](../organization/functions.md), returning a plain [list](../types/collections.md#lists) built with a [list comprehension](../types/collections.md#list-comprehension) — store the result in a variable and use it like any other value.
 
 ```python-ref
 get_title(soup)            # "Ball python"

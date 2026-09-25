@@ -30,7 +30,7 @@ flowchart LR
 
 </div>
 
-**Library** is the informal umbrella term for either: a single module or a whole package — that's organized to be reused across projects. The [Libraries page](libraries/index.md) highlights a few common published libraries. 
+**Library** is the informal umbrella term for either: a single module or a whole package — that's organized to be reused across projects. The [Libraries page](../libraries/index.md) highlights a few common published libraries. 
 
 </div>
 
@@ -196,7 +196,7 @@ import snake_helpers
 print(snake_helpers.describe("ball"))
 ```
 
-Avoid naming your own file after a library you use — your file named `random.py` shadows Python's own `random` module for anything else in that project. See the [file naming rules](workspace.md#step-2-write-and-run-a-python-file) for more.
+Avoid naming your own file after a library you use — your file named `random.py` shadows Python's own `random` module for anything else in that project. See the [file naming rules](../start/workspace.md#step-2-write-and-run-a-python-file) for more.
 
 ### The main guard
 

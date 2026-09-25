@@ -189,7 +189,7 @@ def test_length_is_positive(species, length_ft):
 
 ## Testing for exceptions
 
-`pytest.raises()` is a context manager that asserts the code inside its `with` block raises a specific exception — a way to test the [`try`/`except`](../errors.md#catch-with-tryexcept) paths in your own code, not just the successful ones.
+`pytest.raises()` is a context manager that asserts the code inside its `with` block raises a specific exception — a way to test the [`try`/`except`](../practices/errors.md#catch-with-tryexcept) paths in your own code, not just the successful ones.
 
 ```python-ref
 def test_invalid_length_raises():

@@ -62,7 +62,7 @@ A **code editor** or an **IDE** ("Integrated Development Environment") is a text
 - **Running code is easier** — click a Run button from your IDE instead of typing Terminal commands every time
 - **Code completion** — the editor suggests function names and variables as you type, saving time and reducing typos
 - **Error detection** — it warns you about common mistakes before you run the code
-- **[Debugging](errors.md#debugger-tool)** — pause your code mid-run and inspect variables to track down bugs, instead of only reading output after the fact
+- **[Debugging](../practices/errors.md#debugger-tool)** — pause your code mid-run and inspect variables to track down bugs, instead of only reading output after the fact
 
 Download one of the **free** code editors below. You can always switch later.
 
@@ -141,7 +141,7 @@ That's it! You've written and run your first Python program. From here, you can 
         
 ??? tip "Reading error messages"
 
-    When you see red error text, the [Errors](errors.md#reading-a-traceback) page covers how to read it.
+    When you see red error text, the [Errors](../practices/errors.md#reading-a-traceback) page covers how to read it.
 
 </div>
 
@@ -234,7 +234,7 @@ It's good for running Python files that are already finished — either your own
 
 ## Virtual environments { data-advanced="true" }
 
-Sometimes you'll want to install [external libraries](./libraries/index.md) for your project. A **virtual environment** keeps each project's installed libraries in their own separate folder instead of installing them onto your computer.
+Sometimes you'll want to install [external libraries](../libraries/index.md) for your project. A **virtual environment** keeps each project's installed libraries in their own separate folder instead of installing them onto your computer.
 
 **Benefits:**
 
