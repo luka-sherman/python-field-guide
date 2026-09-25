@@ -1,0 +1,1982 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap');
+
+.md-typeset h1,
+.md-typeset h2 {
+  font-family: "Cormorant Garamond", serif;
+}
+
+/* Every h1 on the site leads with an attr_list icon (e.g. `:material-cube-
+   outline:{ .lg .middle }`). Material's own `.lg` class sizes it to a
+   fixed 48px regardless of the heading's own font-size, and `.middle`
+   vertical-centers it — both wrong once the heading text isn't also 48px
+   tall (it never is: h1 is 32px by default, 24px on mobile below). Size
+   the icon to `1em` so it tracks the heading's own font-size at any
+   breakpoint, and bottom-align it to the text instead of centering it. */
+.md-typeset h1 .twemoji {
+  width: 1em;
+  height: 1em;
+  vertical-align: text-bottom;
+}
+
+:root,
+[data-md-color-scheme="default"] {
+  --pt-bg: #F0ECE4;
+  --pt-panel: #FAF6EE;
+  --pt-ink: #211910;
+  --pt-text-secondary: #5D5449;
+  --pt-text-muted: #6A6556;
+  --pt-hairline: #D8D0C2;
+  --pt-border-soft: #B8AC99;
+  /* background of the homepage category container ("outer grid" boxes); the
+     library-card corner wedge + border track this. */
+  --pt-section-bg: color-mix(in srgb, var(--pt-bg), color-mix(in srgb, var(--pt-panel) 84%, var(--pt-ink)));
+  --pt-accent: #08542A;
+  /* card description text + the library-card badge icon */
+  --pt-desc-blue: #255C6E;
+  --pt-heading-h2: #004C24;
+  --pt-heading-h3: #33724C;
+  --pt-ref-keyword: #825E25;
+  --pt-danger: #933331;
+  /* Big O severity badges in style.md's "Efficient code" reference table —
+     amber middle ground between --pt-accent (cheap) and --pt-danger (expensive). */
+  --pt-warn: #8A5A00;
+  /* Runnable python blocks share the same light panel look as
+     .pyodide-reference in light mode (not a dark terminal here — that's
+     dark-mode-only, see the slate scheme below). */
+  --pt-code-bg: var(--pt-panel);
+  --pt-code-border: var(--pt-hairline);
+  --pt-code-fg: var(--pt-ink);
+  --pt-code-string: var(--pt-accent);
+  --pt-code-keyword: var(--pt-ref-keyword);
+  --pt-code-comment: var(--pt-text-secondary);
+
+  --pt-shimmer-gold: #D9C48C;
+  --pt-shimmer-sage: #B9CDAE;
+  --pt-shimmer-clay: #CBA989;
+
+  /* Active top-nav tab (e.g. "Flow" when conditionals.md is open) — the
+     site's own accent green, deliberately darker than the inactive tabs'
+     --pt-text-secondary below it, so the current page reads as the
+     "heavier," more deliberate mark rather than a lighter highlight. */
+  --pt-nav-active: var(--pt-accent);
+}
+
+[data-md-color-scheme="slate"] {
+  --pt-bg: #121417;
+  --pt-panel: #1a1d21;
+  --pt-ink: #E8E4DD;
+  --pt-text-secondary: #9D978E;
+  --pt-text-muted: #8F8B7C;
+  --pt-hairline: #28231A;
+  --pt-border-soft: #3E372D;
+  --pt-section-bg: color-mix(in srgb, var(--pt-bg) 10%, var(--pt-panel));
+  --pt-accent: #68A87F;
+  --pt-desc-blue: #6E9BC0;
+  --pt-heading-h2: #3A8357;
+  --pt-heading-h3: #6FA783;
+  --pt-ref-keyword: #C99B5A;
+  --pt-danger: #CB7671;
+  --pt-warn: #D9A441;
+
+  /* Runnable python blocks keep a dedicated dark terminal panel here
+     (unlike the light scheme above, which now matches --pt-panel) — this
+     dark look was the original intent and .pyodide-reference already reads
+     dark in dark mode too since it tracks --pt-panel, so the two still
+     match visually. */
+  --pt-code-bg: #23221E;
+  --pt-code-border: #35342E;
+  --pt-code-fg: #F2EDE0;
+  --pt-code-string: #C9E4D2;
+  --pt-code-keyword: #E8C9A8;
+  --pt-code-comment: #97917F;
+
+  --pt-shimmer-indigo: #201f3d;
+  --pt-shimmer-purple: #2a1c3d;
+  --pt-shimmer-green: #17281f;
+
+  --pt-nav-active: #8FCB93;
+}
+
+/* Material re-sets --md-* variables on [data-md-color-scheme] (applied to
+   <body>, not <html>), which otherwise wins over a plain :root override
+   since body never actually inherits from a losing :root declaration —
+   it just matches Material's own attribute-selector rule directly. */
+:root,
+[data-md-color-scheme] {
+  /* Map our palette onto Material's theme variables. */
+  --md-default-bg-color: var(--pt-bg);
+  --md-default-fg-color: var(--pt-ink);
+  --md-default-fg-color--light: var(--pt-text-secondary);
+  --md-default-fg-color--lighter: var(--pt-text-muted);
+  --md-default-fg-color--lightest: var(--pt-hairline);
+
+  /* A translucent tint of the page background, not a literal light color —
+     tracks --pt-bg so the frosted header reads as "this page's bg, blurred"
+     in both the cream and slate schemes rather than staying cream always. */
+  --md-primary-fg-color: color-mix(in srgb, var(--pt-bg) 92%, transparent);
+  --md-primary-bg-color: var(--pt-ink);
+  --md-primary-bg-color--light: var(--pt-text-secondary);
+
+  --md-accent-fg-color: var(--pt-accent);
+  --md-accent-fg-color--transparent: color-mix(in srgb, var(--pt-accent) 10%, transparent);
+  --md-accent-bg-color: var(--pt-bg);
+
+  --md-typeset-a-color: var(--pt-accent);
+
+  /* mkdocs-nested-tabs override hooks (see CLAUDE.md's "Planned extraction"
+     section). The page-link row keeps the standard --pt-ink default (dark
+     ink in light mode, off-white in dark mode) used everywhere else for
+     default header/tab text. The all-caps category-label row above it uses
+     --pt-text-secondary instead — a lower-contrast grey, lighter than full
+     ink in light mode and darker than full white in dark mode — so the two
+     rows read as visually distinct tiers rather than identical text.
+
+     --md-nested-tabs-label-active-color (added in mkdocs-nested-tabs 0.2.0)
+     colors the category label itself when one of its own pages is active —
+     e.g. "Flow" going --pt-nav-active while "Conditionals" is open. The
+     active page link keeps the plugin's default (--md-accent-fg-color, i.e.
+     --pt-accent) rather than a --md-nested-tabs-link-active-color override,
+     so parent and child read as two distinct active tones, not one. Before
+     0.2.0 added this hook, achieving the same thing needed a :has() rule
+     reaching into the plugin's markup from outside — see git history if
+     that's ever relevant again. */
+  --md-nested-tabs-label-color: var(--pt-text-secondary);
+  --md-nested-tabs-link-color: var(--pt-ink);
+  --md-nested-tabs-label-active-color: var(--pt-nav-active);
+
+  --md-code-bg-color: var(--pt-panel);
+  --md-code-fg-color: var(--pt-ink);
+
+  --md-footer-bg-color: var(--pt-bg);
+  --md-footer-bg-color--dark: var(--pt-bg);
+  --md-footer-fg-color: var(--pt-ink);
+  --md-footer-fg-color--light: var(--pt-text-secondary);
+  --md-footer-fg-color--lighter: var(--pt-text-muted);
+}
+
+html {
+  scrollbar-color: var(--md-default-fg-color--lighter) transparent;
+  scrollbar-width: thin;
+}
+
+/* Fixed on purpose, not --md-accent-fg-color/--pt-accent: those swap to a
+   brighter, more saturated green in dark mode (needed for contrast against
+   the dark background elsewhere), but here a single muted green is wanted
+   on both this page scrollbar and the sidebar's below, in every theme. */
+html:hover,
+html:focus-within {
+  scrollbar-color: #185B37 transparent;
+}
+
+html::-webkit-scrollbar {
+  width: 0.2rem;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: var(--md-default-fg-color--lighter);
+}
+
+html:hover::-webkit-scrollbar-thumb,
+html:focus-within::-webkit-scrollbar-thumb {
+  background-color: #185B37;
+}
+
+/* Override Material's own .md-sidebar__scrollwrap hover color (which uses
+   --md-accent-fg-color, i.e. the theme-adaptive green) to the same fixed
+   muted green as the page scrollbar above, so both match in every theme. */
+.md-sidebar__scrollwrap:hover,
+.md-sidebar__scrollwrap:focus-within {
+  scrollbar-color: #185B37 transparent;
+}
+
+.md-sidebar__scrollwrap:hover::-webkit-scrollbar-thumb,
+.md-sidebar__scrollwrap:focus-within::-webkit-scrollbar-thumb {
+  background-color: #185B37;
+}
+
+.md-header {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: none;
+  color: var(--pt-ink);
+}
+
+/* Soft halo in --pt-panel (a lighter, in-palette tint of --pt-bg rather than
+   an arbitrary white) so the title reads clearly over the busier parts of
+   the header's illustrated background, without needing a solid pill/box
+   behind the text. Two stacked passes build up more coverage than a single
+   blur radius gives on its own. */
+.md-header__title,
+.md-header__topic {
+  font-weight: 800;
+  text-shadow: 0 0 3px var(--pt-panel), 0 0 6px var(--pt-panel);
+}
+
+/* Below ~45em the header's own title font-size (Material's default) plus
+   the Essentials/Advanced + light/dark icon toggles leave too little room
+   for the full "Python Field Guide" site name — Material ellipsis-
+   truncates it to "Python Field...". Shrink the text instead of cutting
+   the name down to one word, so the full brand name stays intact. */
+@media (max-width: 45em) {
+  .md-header__title .md-header__topic {
+    font-size: 0.7rem;
+  }
+
+  /* The title text and the Essentials/Advanced + light/dark toggles are
+     both vertically centered in the same header row, but the toggles'
+     box-bottom sits 4px below the text's glyph-bottom (line-height
+     centering isn't the same as optical/visual centering) — nudge the
+     text down so the two lines up. */
+  .md-header__title .md-header__ellipsis {
+    position: relative;
+    top: 4px;
+  }
+
+  /* Material's own header title margin (20px left / 8px right, from its
+     `[dir="ltr"] .md-header__title` rule — matched here to beat that
+     selector's specificity) doesn't match the 4px margins the
+     hamburger/toggles/search icon all already share, so the five header
+     items — hamburger, title, Essentials/Advanced toggle, light/dark
+     toggle, search — read with uneven gaps between them (24 / 12 / 8 /
+     8px). Match the title's margins to the other items' 4px so every gap
+     comes out to the same 8px. */
+  [dir="ltr"] .md-header__title {
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+  }
+}
+
+/* Decorative header art, slate (dark) scheme. Layered on top of .md-header's
+   own background-color (the translucent --md-primary-fg-color set above), so
+   the blur/hairline border above still apply underneath.
+
+   header_dark.svg has no background rect of its own (transparent outside the
+   artwork), so .md-header's flat background-color shows through untouched
+   wherever the art doesn't cover — it reads as the exact same page
+   background, not a tinted or shimmered one.
+
+   The shimmer — a slow, low-contrast linear-gradient through three
+   near-black hues (indigo, purple, green), animated via background-position
+   so it drifts rather than sitting static — lives on a ::before layered
+   above the art, clipped with `mask-image: url(header_dark.svg)` so it only
+   paints over the SVG's own opaque pixels. Because the mask and the artwork
+   share one file and the same size/position/repeat values, they can't drift
+   out of alignment the way two independently-authored layers could. The
+   pseudo-element sits at z-index: -1 within .md-header's own stacking
+   context (already established by its backdrop-filter above), so it paints
+   above .md-header's background but below the title/toggles/search. */
+[data-md-color-scheme="slate"] .md-header {
+  background-image: url("../img/header_dark.svg");
+  background-size: auto 100%;
+  background-position: left center;
+  background-repeat: repeat-x;
+}
+
+/* Material's own collapsed/idle search box (shown ≥60em before it's
+   clicked into) defaults to a mostly-transparent black fill
+   (`background-color: #00000042`, ~26% opaque, meant to sit on Material's
+   flat primary-color header). Against this site's much darker slate
+   header — plus the shimmer artwork underneath it — that low opacity
+   barely reads as a distinct control. Raise the opacity so the search box
+   is actually visible as its own element; once expanded/active it already
+   switches to a solid `var(--md-default-bg-color)` fill via Material's own
+   `[data-md-toggle=search]:checked` rule, untouched here. */
+@media screen and (min-width: 60em) {
+  [data-md-color-scheme="slate"] .md-search__form {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  [data-md-color-scheme="slate"] .md-search__form:hover {
+    background-color: rgba(0, 0, 0, 0.72);
+  }
+}
+
+[data-md-color-scheme="slate"] .md-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(120deg,
+    color-mix(in srgb, var(--pt-shimmer-indigo) 55%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-purple) 55%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-green) 55%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-indigo) 55%, transparent));
+  background-size: 320% 320%;
+  background-position: 0% 50%;
+  -webkit-mask-image: url("../img/header_dark.svg");
+  mask-image: url("../img/header_dark.svg");
+  mask-mode: alpha;
+  -webkit-mask-size: auto 100%;
+  mask-size: auto 100%;
+  -webkit-mask-position: left center;
+  mask-position: left center;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+}
+
+/* Same treatment, light (default) scheme, over header_light.svg — a
+   separately pre-colored, background-stripped export rather than one shared
+   SVG recolored via CSS, so the artwork's two accent colors can't drift out
+   of alignment with each other. Shimmer hues swap to warm gold/sage/clay
+   (--pt-shimmer-*) instead of indigo/purple/green so the moving sheen reads
+   as this site's own palette rather than dark mode's jewel tones. */
+[data-md-color-scheme="default"] .md-header {
+  background-image: url("../img/header_light.svg");
+  background-size: auto 100%;
+  background-position: left center;
+  background-repeat: repeat-x;
+}
+
+[data-md-color-scheme="default"] .md-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(120deg,
+    color-mix(in srgb, var(--pt-shimmer-gold) 18%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-sage) 18%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-clay) 18%, transparent),
+    color-mix(in srgb, var(--pt-shimmer-gold) 18%, transparent));
+  background-size: 320% 320%;
+  background-position: 0% 50%;
+  -webkit-mask-image: url("../img/header_light.svg");
+  mask-image: url("../img/header_light.svg");
+  mask-mode: alpha;
+  -webkit-mask-size: auto 100%;
+  mask-size: auto 100%;
+  -webkit-mask-position: left center;
+  mask-position: left center;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+}
+
+/* Mobile gets its own header art (same background-strip + mask setup, just
+   a different source file per scheme) rather than scaling the desktop
+   artwork down — a wide illustration loses detail and can read as visual
+   noise at the header's much shorter mobile height. Same 45em breakpoint as
+   the title-sizing rule above, so the art and the title layout switch at the
+   same width. Swapping just the url() here (not duplicating the whole rule
+   block) keeps the background-size/position/repeat and the mask wiring
+   defined once. */
+@media (max-width: 45em) {
+  [data-md-color-scheme="slate"] .md-header {
+    background-image: url("../img/header_dark_mobile.svg");
+  }
+
+  [data-md-color-scheme="slate"] .md-header::before {
+    -webkit-mask-image: url("../img/header_dark_mobile.svg");
+    mask-image: url("../img/header_dark_mobile.svg");
+  }
+
+  [data-md-color-scheme="default"] .md-header {
+    background-image: url("../img/header_light_mobile.svg");
+  }
+
+  [data-md-color-scheme="default"] .md-header::before {
+    -webkit-mask-image: url("../img/header_light_mobile.svg");
+    mask-image: url("../img/header_light_mobile.svg");
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-md-color-scheme="slate"] .md-header::before,
+  [data-md-color-scheme="default"] .md-header::before {
+    animation: pt-header-shimmer 22s ease-in-out infinite;
+  }
+}
+
+@keyframes pt-header-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* The logo only ever linked home with no other purpose, so
+   cheatsheet_button.js's "Cheatsheet" pill replaces it in the header's
+   top-left slot instead of sitting alongside it — hidden here, not
+   removed from the DOM, since Material still generates it normally. */
+.md-header__button.md-logo {
+  display: none;
+}
+
+/* "Cheatsheet" link injected by cheatsheet_button.js, in the logo's old
+   spot (leading the site title) — an explicit text shortcut to the
+   homepage (already this site's compact quick-reference dashboard) rather
+   than relying on the logo image alone reading as clickable. Deliberately
+   reuses the Essentials/Advanced toggle's own technique (a currentColor
+   pill fill + --pt-bg text flip when active) rather than hardcoded colors,
+   so it adapts across light/dark mode exactly the way that toggle does —
+   currentColor here is .md-header's own `color: var(--pt-ink)`, inherited,
+   not set locally. */
+.pt-cheatsheet-link {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.6rem;
+  padding: 0.15rem 0.6rem;
+  /* Matches .pt-simplify-toggle's own resting track (border + background)
+     below, so the inactive pill reads as the same kind of control rather
+     than plain text — var(--pt-ink) directly instead of currentColor,
+     sidestepping the self-reference risk noted below for the active state. */
+  border: 0.05rem solid var(--pt-ink);
+  border-radius: 1rem;
+  background-color: var(--pt-bg);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: currentColor;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Material Symbols "dashboard" (viewBox 0 -960 960 960), same mask-image
+   technique as .pt-simplify-option's icons above — an asymmetric mixed-size
+   panel shape, matching the homepage's own grid (its library boxes are
+   genuinely different widths, not a uniform grid — see the "External
+   files and resources" grid-math notes in CLAUDE.md) rather than a plain
+   symmetric grid icon. Fetched from Google's material-design-icons source
+   directly (not hand-drawn) to keep the path data exact. Leads the word
+   (::before, not ::after), matching the icon-then-text order used by the
+   Essentials/Advanced toggle, the theme toggle, and the toast. */
+.pt-cheatsheet-link::before {
+  content: "";
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  flex: none;
+  margin-right: 0.3rem;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z'/%3E%3C/svg%3E");
+}
+
+.pt-cheatsheet-link:hover,
+.pt-cheatsheet-link:focus-visible {
+  text-decoration: underline;
+}
+
+/* Not background-color: currentColor here — the toggle's pill and its text
+   are two separate elements, so its highlight span can safely use
+   currentColor (the *inherited* color) while a different element's text
+   flips to --pt-bg. Collapsed into one element like this, currentColor
+   would resolve against this same rule's own `color: var(--pt-bg)` below
+   it (CSS uses the final computed color, not declaration order) — pill and
+   text would end up identical, text invisible. --pt-ink directly sidesteps
+   that self-reference entirely. */
+.pt-cheatsheet-link--active {
+  background-color: var(--pt-ink);
+  color: var(--pt-bg);
+}
+
+.pt-cheatsheet-link--active:hover,
+.pt-cheatsheet-link--active:focus-visible {
+  text-decoration: none;
+}
+
+.md-tabs {
+  background-color: transparent;
+  /* Extra breathing room above the tab row itself, beyond Material's
+     default (the header title sits right above it otherwise). */
+  padding-top: 0.5rem;
+}
+
+/* Make the current page's top-nav tab visually heavier than the rest, so
+   which page you're on is clear at a glance instead of relying solely on
+   the underline Material draws by default. Material marks the active tab
+   on the parent <li> (.md-tabs__item--active), not the <a> itself — there
+   is no .md-tabs__link--active class. */
+.md-tabs__item--active .md-tabs__link {
+  font-weight: 700;
+  color: var(--pt-nav-active);
+}
+
+/* Inactive tabs: --pt-text-secondary instead of the plain ink they'd
+   otherwise inherit from .md-header — slightly lighter, and matching what
+   .nested-tabs__label already gets by default at desktop width (see
+   --md-nested-tabs-label-color above), so both breakpoints read the same
+   way. Light mode only (dark mode's own ink/secondary pairing is
+   unaffected). :not(.md-tabs__item--active) is required here because the
+   attribute selector makes this MORE specific than the active-tab rule
+   above (.md-tabs__item--active .md-tabs__link, two classes with no
+   attribute) — without it this would always win and overwrite the active
+   tab's color too. */
+[data-md-color-scheme="default"] .md-tabs__item:not(.md-tabs__item--active) .md-tabs__link {
+  color: var(--pt-text-secondary);
+}
+
+/* The desktop version of this same active-parent color (above the
+   mkdocs-nested-tabs plugin's 76.234375em breakpoint, where .md-tabs is
+   hidden and replaced by that plugin's own .nested-tabs row — a separate
+   DOM tree the rule above never reaches) doesn't need a rule here at all:
+   --md-nested-tabs-label-active-color, set above, is a first-class hook the
+   plugin's own CSS applies via .nested-tabs__label--active as of 0.2.0.
+   Before that version, the plugin never marked a flat category's own label
+   active (only the child page link), so this used to need a :has() selector
+   reaching into the plugin's markup from outside — see git history. */
+
+/* Material redefines --md-typeset-a-color to --md-primary-fg-color somewhere
+   deeper in its own cascade (our light-cream header color), which makes body
+   links and the active-page nav label unreadable. Override color directly
+   rather than chase the variable indirection. */
+.md-typeset a,
+.md-typeset a:visited {
+  color: var(--pt-accent);
+}
+
+/* Body links sit in flowing prose with no non-color cue distinguishing them
+   from surrounding text at rest — flagged by axe's link-in-text-block rule.
+   Scoped narrower first (just .tabbed-content, where the original manual
+   audit happened to look), but a full axe sweep found the same issue on
+   plain inline cross-reference links throughout the content pages too, so
+   this covers .md-typeset generally. The homepage card grid opts back out
+   below — its title links are already bold + icon-prefixed, and the
+   keyword-link rows read as a reference list rather than prose. */
+.md-typeset a {
+  text-decoration: underline;
+}
+
+.md-typeset .grid.cards a {
+  text-decoration: none;
+}
+
+/* Tab labels aren't prose links — Material wraps each one in an <a> purely
+   for keyboard/anchor navigation between tabs, not as a clickable reference,
+   so the link-in-text-block underline doesn't apply here. */
+.md-typeset .tabbed-labels a {
+  text-decoration: none;
+}
+
+/* Buttons already carry a border/background as their non-color cue, so the
+   link-in-text-block underline is redundant here too. */
+.md-typeset .md-button {
+  text-decoration: none;
+}
+
+.md-nav__link--active,
+.md-nav__item .md-nav__link--active,
+.md-nav__item--active > .md-nav__link {
+  color: var(--pt-ink) !important;
+  font-weight: 700;
+}
+
+.md-typeset a abbr,
+.md-typeset .grid.cards abbr {
+  border-bottom: none;
+  cursor: inherit;
+}
+
+.md-consent .md-button:not(.md-button--primary) {
+  color: var(--pt-ink);
+  border-color: var(--pt-ink);
+}
+
+/* Material always renders the per-cookie-group checklist (e.g. the "Google
+   Analytics" entry with its checkmark) regardless of which `consent.actions`
+   are configured. We only offer a single accept/reject choice, so hide the
+   group list rather than exposing a checkbox nothing reads. */
+.md-consent__settings,
+input:checked + .md-consent__settings {
+  display: none;
+}
+
+/* ---- Custom "run" admonition wrapping every runnable python block ----
+   Material ships with a fixed set of named admonition types/icons/colors;
+   this adds one more so a reader recognizes "this box contains code I can
+   execute" everywhere it appears, using the same green as the Run button
+   injected into it (.pyodide-runner__run-btn below). */
+
+:root {
+  --md-admonition-icon--run: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8,5.14V19.14L19,12.14L8,5.14Z"/></svg>');
+}
+
+.md-typeset .admonition.run,
+.md-typeset details.run {
+  border-color: #2e7d32;
+}
+
+.md-typeset .run > .admonition-title,
+.md-typeset .run > summary {
+  background-color: rgba(46, 125, 50, 0.1);
+}
+
+.md-typeset .run > .admonition-title::before,
+.md-typeset .run > summary::before {
+  background-color: #2e7d32;
+  -webkit-mask-image: var(--md-admonition-icon--run);
+  mask-image: var(--md-admonition-icon--run);
+}
+
+/* ---- Custom "ai" admonition for the homepage's AI-related callouts ---- */
+
+:root {
+  --md-admonition-icon--ai: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z"/></svg>');
+}
+
+.md-typeset .admonition.ai,
+.md-typeset details.ai {
+  border-color: #4a2c73;
+}
+
+.md-typeset .ai > .admonition-title,
+.md-typeset .ai > summary {
+  background-color: rgba(74, 44, 115, 0.1);
+}
+
+.md-typeset .ai > .admonition-title::before,
+.md-typeset .ai > summary::before {
+  background-color: #4a2c73;
+  -webkit-mask-image: var(--md-admonition-icon--ai);
+  mask-image: var(--md-admonition-icon--ai);
+}
+
+/* ---- Custom "python" admonition for callouts explaining Python itself ---- */
+
+:root {
+  --md-admonition-icon--python: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5zm-4.28 11.79c-.4 0-.72.3-.72.89s.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68zM9.14 5.71c.4 0 .72-.3.72-.89s-.32-.71-.72-.71c-.39 0-.71.12-.71.71s.32.89.71.89"/></svg>');
+}
+
+.md-typeset .admonition.python,
+.md-typeset details.python {
+  border-color: #306998;
+}
+
+.md-typeset .python > .admonition-title,
+.md-typeset .python > summary {
+  background-color: rgba(48, 105, 152, 0.1);
+}
+
+.md-typeset .python > .admonition-title::before,
+.md-typeset .python > summary::before {
+  background-color: #306998;
+  -webkit-mask-image: var(--md-admonition-icon--python);
+  mask-image: var(--md-admonition-icon--python);
+}
+
+/* ---- Custom "efficiency" admonition for runtime/space asides (data-advanced only) ---- */
+
+:root {
+  --md-admonition-icon--efficiency: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11,15H6L13,1V9H18L11,23V15Z"/></svg>');
+}
+
+.md-typeset .admonition.efficiency,
+.md-typeset details.efficiency {
+  border-color: #8a5a00;
+}
+
+.md-typeset .efficiency > .admonition-title,
+.md-typeset .efficiency > summary {
+  background-color: rgba(138, 90, 0, 0.1);
+}
+
+.md-typeset .efficiency > .admonition-title::before,
+.md-typeset .efficiency > summary::before {
+  background-color: #8a5a00;
+  -webkit-mask-image: var(--md-admonition-icon--efficiency);
+  mask-image: var(--md-admonition-icon--efficiency);
+}
+
+/* Big O severity badges — style.md's "Efficient code" reference table colors
+   each Time/Space cell by how expensive that growth rate actually is, so the
+   table reads at a glance instead of requiring the reader to parse notation
+   row by row. Three tiers only: cheap/moderate/expensive, not one color per
+   notation, since that's the actual decision a reader needs from the table. */
+.pt-bigo {
+  display: inline-block;
+  padding: 0.05em 0.5em;
+  border-radius: 0.25em;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pt-bigo--good {
+  background-color: color-mix(in srgb, var(--pt-accent) 15%, transparent);
+  color: var(--pt-accent);
+}
+
+.pt-bigo--ok {
+  background-color: color-mix(in srgb, var(--pt-warn) 15%, transparent);
+  color: var(--pt-warn);
+}
+
+.pt-bigo--bad {
+  background-color: color-mix(in srgb, var(--pt-danger) 15%, transparent);
+  color: var(--pt-danger);
+}
+
+/* Material's own summary focus ring is gated behind a JS-added `.focus-visible`
+   class (an old keydown-tracking polyfill it ships), not the native
+   `:focus-visible` pseudo-class — `.md-typeset summary:not(.focus-visible)`
+   unconditionally zeroes the outline until that class shows up. Restore a
+   visible indicator via the native pseudo-class directly, same pattern used
+   for the run button and card links elsewhere in this file, so keyboard focus
+   on our custom run/ai/python/efficiency collapsible admonitions is never silently blank. */
+.md-typeset .run > summary:focus-visible,
+.md-typeset .ai > summary:focus-visible,
+.md-typeset .python > summary:focus-visible,
+.md-typeset .efficiency > summary:focus-visible {
+  outline: 0.15rem solid var(--pt-accent);
+  outline-offset: 0.15rem;
+}
+
+/* ---- Built-in "tip" admonition, darkened ----
+   Material's default tip color (#00bfa5) is a bright neon teal that clashes
+   with this site's muted cream/ink/green palette — darkened the same way the
+   custom run/ai/python admonitions above are colored (border + 10%-opacity
+   title background + icon mask, all keyed off one hex). */
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  border-color: #00695c;
+}
+
+.md-typeset .tip > .admonition-title,
+.md-typeset .tip > summary {
+  background-color: rgba(0, 105, 92, 0.1);
+}
+
+.md-typeset .tip > .admonition-title::before,
+.md-typeset .tip > summary::before {
+  background-color: #00695c;
+}
+
+/* ---- Pyodide runnable / reference code blocks (theme-independent) ---- */
+
+.pyodide-runner {
+  margin: 1em 0;
+}
+
+.pyodide-runner__toolbar {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.25em;
+}
+
+.pyodide-runner__run-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  background-color: transparent;
+  color: var(--pt-ink);
+  border: 0.1rem solid var(--pt-border-soft);
+  border-radius: 0.1rem;
+  padding: 0.5em 1.2em;
+  font-size: 0.85em;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pyodide-runner__run-btn:hover,
+.pyodide-runner__run-btn:focus-visible {
+  color: var(--pt-bg);
+  background-color: var(--pt-accent);
+  border-color: var(--pt-accent);
+}
+
+.pyodide-runner__run-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.pyodide-runner__run-icon {
+  width: 0.9em;
+  height: 0.9em;
+  fill: currentColor;
+  flex: none;
+}
+
+.md-typeset .pyodide-runner__output {
+  margin-top: 0.5em;
+  padding: 0.75em 1em;
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  font-family: SFMono-Regular, Consolas, monospace;
+  font-size: 0.85em;
+}
+
+.pyodide-runner__output[hidden] {
+  display: none !important;
+}
+
+.pyodide-runner__output--error {
+  color: #ff8a80;
+}
+
+.pyodide-runner pre,
+.pyodide-reference pre {
+  border-radius: 6px;
+  margin: 0 !important;
+}
+
+.pyodide-runner pre {
+  background-color: var(--pt-code-bg) !important;
+  border: 1px solid var(--pt-code-border);
+}
+
+.pyodide-reference pre {
+  background-color: var(--pt-panel) !important;
+  border: 1px solid var(--pt-hairline);
+}
+
+.pyodide-runner pre code {
+  background: transparent;
+  color: var(--pt-code-fg);
+}
+
+.pyodide-reference pre code {
+  background: transparent;
+  color: var(--pt-ink);
+  border-radius: 0;
+}
+
+.pyodide-reference {
+  margin: 1em 0;
+}
+
+.pyodide-reference .md-code__nav {
+  display: none;
+}
+
+.pyodide-editor {
+  display: block;
+  outline: none;
+  cursor: text;
+}
+
+.pyodide-editor:focus {
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--pt-accent) 45%, transparent);
+}
+
+.pyodide-editor .hljs-string,
+.pyodide-editor .hljs-subst {
+  color: var(--pt-code-string);
+}
+
+.pyodide-editor .hljs-built_in,
+.pyodide-editor .hljs-keyword,
+.pyodide-editor .hljs-title,
+.pyodide-editor .hljs-number {
+  color: var(--pt-code-keyword);
+}
+
+.pyodide-editor .hljs-comment {
+  color: var(--pt-code-comment);
+}
+
+.pyodide-reference .hljs-string,
+.pyodide-reference .hljs-subst {
+  color: var(--pt-accent);
+}
+
+.pyodide-reference .hljs-built_in,
+.pyodide-reference .hljs-keyword,
+.pyodide-reference .hljs-title,
+.pyodide-reference .hljs-number {
+  color: var(--pt-ref-keyword);
+}
+
+.pyodide-reference .hljs-comment {
+  color: var(--pt-text-secondary);
+}
+
+@media screen and (min-width: 45em) and (max-width: 76.234375em) {
+  .md-tabs {
+    display: block;
+  }
+}
+
+/* Same extra top breathing room as .md-tabs above, applied to the
+   mkdocs-nested-tabs plugin's own row (nested-tabs.css sets
+   .nested-tabs__list's padding to 0.5rem 0 — override padding-top only, so
+   the bottom padding it sets stays as-is). extra.css loads after
+   nested-tabs.css (see mkdocs.yml's extra_css / plugin injection order),
+   so this wins without needing extra specificity. */
+@media screen and (min-width: 76.234375em) {
+  .nested-tabs__list {
+    padding-top: 1.3rem;
+  }
+}
+
+/* The header nav row (now the mkdocs-nested-tabs plugin's own .nested-tabs
+   — see CLAUDE.md's "Planned extraction" section) covers category/page
+   navigation on desktop, so the left nav sidebar (site tree: categories +
+   sibling pages) is redundant there — hide it above the same breakpoint the
+   plugin uses. mkdocs.yml no longer sets toc.integrate, so this sidebar only
+   ever held the site tree, never the current page's own heading TOC — that
+   renders separately as the standard right-hand .md-sidebar--secondary
+   column (unaffected by this rule), same as it did before the site's earlier
+   migration to toc.integrate (see the nav history notes in CLAUDE.md).
+   Desktop-only and guarded by min-width on purpose: .md-sidebar--primary is
+   the exact same DOM element Material reuses as the off-canvas mobile
+   hamburger drawer, so an unscoped display:none here would silently break
+   mobile nav entirely (this happened once already). */
+@media screen and (min-width: 76.234375em) {
+  .md-sidebar--primary {
+    display: none;
+  }
+}
+/* :visited alone (0,2,1) outranks .md-button's two plain classes (0,2,0),
+   so a visited link would otherwise fall through to the ".md-typeset
+   a:visited" accent-on-accent color above and vanish into the button's own
+   accent background — match that selector's specificity here too. */
+.md-typeset .md-button,
+.md-typeset .md-button:visited {
+  color: var(--pt-bg);
+  background-color: var(--pt-accent);
+  border-color: var(--pt-accent);
+}
+
+.md-typeset .md-button:hover,
+.md-typeset .md-button:focus-visible {
+  border-color: var(--pt-ink);
+}
+
+.md-typeset .md-button--primary {
+  color: var(--pt-bg);
+  background-color: var(--pt-accent);
+  border-color: var(--pt-accent);
+}
+
+.md-typeset .md-button--primary:hover,
+.md-typeset .md-button--primary:focus-visible {
+  background-color: var(--pt-ink);
+  border-color: var(--pt-ink);
+}
+
+.md-typeset .grid.cards {
+  margin-top: 0.8rem;
+  margin-bottom: 0;
+}
+
+.md-typeset .grid.cards > ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.8rem;
+  margin: 0rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.md-typeset .grid.cards > ul > li {
+  position: relative;
+  background-color: color-mix(in srgb, var(--pt-panel) 92%, var(--pt-ink));
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.5rem 0.7rem;
+  margin: 0;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+/* Library cards: same base background as the core cards, plus a 1px border in
+   the corner-wedge colour (the section-container background). In dark mode a
+   translucent black overlay also nudges them a shade darker. */
+.pt-category--wide .grid.cards > ul > li {
+  border: 1px solid var(--pt-section-bg);
+}
+
+[data-md-color-scheme="slate"] .pt-category--wide .grid.cards > ul > li {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.22));
+}
+
+/* ...and a filled diagonal corner ("dog-ear") in the old fill color at the
+   top-right, sitting behind the built-in / third-party badge (z-index 2). */
+.pt-category--wide .grid.cards > ul > li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* A shallow, wide corner banner. width vs height set the diagonal's angle;
+     the badge (repositioned below) is placed on this triangle's centroid so it
+     reads as centred on the wedge. */
+  width: 3rem;
+  height: 2.5rem;
+  background: linear-gradient(
+    to bottom left,
+    var(--pt-section-bg) 0 49.5%,
+    transparent 50%
+  );
+  border-top-right-radius: 0.2rem;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.md-typeset .grid.cards > ul > li > p {
+  margin: 0 0 0.4em;
+}
+
+.md-typeset .grid.cards > ul > li code {
+  background-color: transparent;
+  padding: 0;
+  transition: background-color 0.15s;
+}
+
+.md-typeset .grid.cards > ul > li a:hover code {
+  background-color: color-mix(in srgb, var(--pt-accent) 12%, transparent);
+  border-radius: 0.15rem;
+}
+
+.md-typeset .grid.cards > ul > li > p:not(:first-child) a > code {
+  font-size: 0.62em;
+}
+
+.md-typeset .grid.cards > ul > li > p:nth-of-type(2) {
+  line-height: 1.4;
+}
+
+.md-typeset .grid.cards > ul > li > p:nth-of-type(n+3) {
+  line-height: 1.15;
+  margin-bottom: 0.2em;
+}
+
+/* Comma-separate the keyword tags in each card row so the row reads as a list.
+   The gap between links comes from the existing whitespace, so no trailing
+   space in the content. The bold lead keyword is followed by a hardcoded ": "
+   in index.md instead (e.g. "integers: + - * / **"), so it's exempt. */
+.md-typeset .grid.cards > ul > li > p:nth-of-type(n+3) a:not(:last-child)::after {
+  content: ",";
+  color: var(--pt-text-muted);
+}
+
+.md-typeset .grid.cards > ul > li > p:nth-of-type(n+3) a:first-child:has(strong)::after {
+  content: none;
+}
+
+.md-typeset .grid.cards > ul > li > hr {
+  margin: 0.4em 0;
+}
+.md-typeset h4.pt-homepage-heading {
+  margin: 0.3rem 0 0.1rem;
+}
+
+/* "Essentials / Advanced" toggle (docs/javascripts/essentials_toggle.js)
+   — both options always visible, sliding highlight behind the active
+   one, next to the palette toggle. Shows on every page. */
+.pt-simplify-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 1.2rem;
+  margin: 0.4rem 0.2rem;
+  /* currentColor, not a fixed accent — border/highlight/text below track
+     the theme's own ink/bg shades. */
+  border: 0.05rem solid currentColor;
+  border-radius: 1rem;
+  overflow: hidden;
+  /* The site's own background, not transparent — otherwise the inactive
+     option just shows whatever's behind the header (the translucent
+     --md-primary-fg-color, plus the header's own scale/shimmer pattern on
+     top), so the track read inconsistently depending on scroll position
+     and theme. A flat --pt-bg fill keeps the inactive side legible and
+     matches the highlight pill's own solid currentColor fill instead of
+     looking like a hole cut into the header. */
+  background-color: var(--pt-bg);
+}
+
+.pt-simplify-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  /* Square outer edge gets clipped to the track's own rounding via
+     overflow: hidden above; only the inner (middle) edge needs rounding. */
+  border-radius: 0 1rem 1rem 0;
+  background-color: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.pt-simplify-toggle[data-active="simplified"] .pt-simplify-highlight,
+.pt-simplify-toggle[data-active="light"] .pt-simplify-highlight {
+  border-radius: 1rem 0 0 1rem;
+  transform: translateX(100%);
+}
+
+.pt-simplify-option {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 0 0.5rem;
+  border: none;
+  background: none;
+  color: currentColor;
+  font-family: inherit;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* Active option's text sits on the currentColor highlight, so it flips
+   to the bg color for contrast; inactive stays plain currentColor. */
+.pt-simplify-toggle[data-active="simplified"] .pt-simplify-option[data-mode="simplified"],
+.pt-simplify-toggle[data-active="advanced"] .pt-simplify-option[data-mode="advanced"],
+.pt-simplify-toggle[data-active="light"] .pt-simplify-option[data-scheme="default"],
+.pt-simplify-toggle[data-active="dark"] .pt-simplify-option[data-scheme="slate"] {
+  color: var(--pt-bg);
+}
+
+/* Icon for each option (Material Symbols "psychiatry" / "park", viewBox
+   0 -960 960 960), same mask-image technique as .pt-theme-option's
+   sun/moon. On desktop it leads the "Essentials"/"Advanced" word — a
+   ::before, same as .pt-theme-option's own icon and the toast's
+   .pt-mode-icon (see below), so all three read consistently as
+   "icon, then text" — matching Material's own "back to top" button
+   (`.md-top`: icon SVG, then the "Back to top" label). The option
+   button itself is a flex row (see .pt-simplify-option above), so
+   the icon centers vertically against the text the same way .pt-theme-
+   option's icon-only button centers its own icon — no vertical-align
+   fudging needed, and it can't drift out of sync between the two variants.
+   Below ~45em (matches this file's other mobile breakpoints) the words
+   get tight, so the label is visually clipped and the icon alone
+   represents the option — it stays in the DOM (not aria-hidden) so the
+   button's accessible name is unchanged for screen readers either way.
+   Sized smaller (0.7rem) than the toast's own .pt-mode-icon (1.2rem,
+   matching Material's "back to top" icon) — this icon sits inside the
+   1.2rem-tall toggle track itself, so it stays the toggle's own icon
+   size rather than the toast's. */
+.pt-simplify-option[data-mode]::before,
+.pt-mode-icon {
+  content: "";
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  flex: none;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.pt-simplify-option[data-mode]::before {
+  margin-right: 0.3rem;
+}
+
+/* Toast-only override: matches the size of Material's own "back to top"
+   icon (`.md-icon svg`, 1.2rem), per the shared rule's comment above. */
+.pt-mode-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.pt-simplify-option[data-mode="simplified"]::before,
+.pt-mode-icon[data-mode="simplified"] {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M450-130v-309h-20q-64 0-120.5-24.5T209-533q-44-45-66.5-104T120-760v-80h78.32Q260-840 317-815.5 374-791 419-746q33 34 54.5 76t30.5 89q7.65-11.9 16.82-22.95Q530-615 540-626q45-45 102-69.5T761.67-720H840v80q0 64-23.98 123T748-413q-45 45-101.56 69T528-320h-18v190h-60Zm1-370q0-61-20-113.5t-55-89q-35-36.5-86-57T180-780q0 63 18.5 115.5T252-575q42 45 90.5 60T451-500Zm59 120q60 0 111-19.5t86-56q35-36.5 54-89T780-660q-60 0-111 20.5T583-583q-43 45-58 94t-15 109Zm0 0Zm-59-120Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M450-130v-309h-20q-64 0-120.5-24.5T209-533q-44-45-66.5-104T120-760v-80h78.32Q260-840 317-815.5 374-791 419-746q33 34 54.5 76t30.5 89q7.65-11.9 16.82-22.95Q530-615 540-626q45-45 102-69.5T761.67-720H840v80q0 64-23.98 123T748-413q-45 45-101.56 69T528-320h-18v190h-60Zm1-370q0-61-20-113.5t-55-89q-35-36.5-86-57T180-780q0 63 18.5 115.5T252-575q42 45 90.5 60T451-500Zm59 120q60 0 111-19.5t86-56q35-36.5 54-89T780-660q-60 0-111 20.5T583-583q-43 45-58 94t-15 109Zm0 0Zm-59-120Z'/%3E%3C/svg%3E");
+}
+
+.pt-simplify-option[data-mode="advanced"]::before,
+.pt-mode-icon[data-mode="advanced"] {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M538-80H423v-149H120l189-274h-95l266-377 266 377h-94l188 274H538v149ZM236-289h189-90 290-89 189-489Zm0 0h489L536-563h89L480-769 335-563h90L236-289Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M538-80H423v-149H120l189-274h-95l266-377 266 377h-94l188 274H538v149ZM236-289h189-90 290-89 189-489Zm0 0h489L536-563h89L480-769 335-563h90L236-289Z'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 45em) {
+  .pt-simplify-option[data-mode]::before {
+    margin-right: 0;
+  }
+
+  .pt-simplify-toggle:has(.pt-simplify-option[data-mode]) .pt-simplify-option {
+    padding: 0 0.4rem;
+  }
+
+  .pt-simplify-option[data-mode] .pt-simplify-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+}
+
+/* Several of Material's own rules (.md-header__option, .md-typeset
+   details, .md-option:checked + label) beat the plain [hidden] { display:
+   none } UA rule on specificity, so an element we hide via JS (.hidden =
+   true) can silently stay visible — hit this three times now (the palette
+   form, admonitions under a hidden heading, the old knob). One global
+   override instead of chasing each element type.
+   Excludes Material's own [data-md-component="sidebar"] (the mobile nav
+   drawer, reused as .md-sidebar--primary): Material toggles its `hidden`
+   attribute itself and reveals it via its own more-specific (but
+   non-!important) CSS when the drawer checkbox is checked — our
+   !important here silently beat that and left the hamburger menu
+   permanently empty on mobile, with no console error. Same class of bug
+   as the .md-sidebar--primary gotcha in CLAUDE.md's Navigation section,
+   different cause. */
+[hidden]:not([data-md-component="sidebar"]) {
+  display: none !important;
+}
+
+/* Light/dark toggle — shares .pt-simplify-toggle/-highlight/-option, but
+   each option is a fixed choice (sun = light, moon = dark) rather than
+   one element showing whichever mode is current. Native Material markup
+   is hidden but stays in the DOM (its own JS still applies the scheme). */
+.pt-theme-option {
+  padding: 0 0.35rem;
+}
+
+.pt-theme-option::before {
+  content: "";
+  display: block;
+  width: 0.7rem;
+  height: 0.7rem;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.pt-theme-option[data-scheme="default"]::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z'/%3E%3C/svg%3E");
+}
+
+.pt-theme-option[data-scheme="slate"]::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
+}
+
+/* Same sun/moon icons, reusable on a real element (not a pseudo-element) —
+   used by the toast (docs/javascripts/essentials_toggle.js's showToast)
+   for the light/dark toggle's own "Lights on"/"Lights off" message,
+   keeping it visually consistent with .pt-theme-option's icon. */
+.pt-mode-icon[data-scheme="default"] {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z'/%3E%3C/svg%3E");
+}
+
+.pt-mode-icon[data-scheme="slate"] {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
+}
+
+/* Disappearing confirmation toast for the Essentials/Advanced and
+   light/dark toggles (docs/javascripts/essentials_toggle.js's showToast).
+   Sits just below the header — right where the toggle that triggered it
+   lives — rather than at the bottom of the screen, so it's immediately
+   next to the control the reader just clicked. `top` itself is set inline
+   by showToast() (the header's own height varies: ~48px on mobile, taller
+   on desktop/tablet with the tab bar, and Material can also hide/reveal it
+   on scroll), only the offset-from-header gap lives here. Centered
+   horizontally on both desktop and mobile. Shape/colors match Material's
+   own "back to top" pill (`.md-top`) — same rounded-pill radius, shadow,
+   bg/fg pairing, font size, and padding — so it reads as a native site
+   chrome element rather than a one-off custom popup. */
+.pt-toast {
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  transform: translate(-50%, 0);
+  max-width: min(90vw, 22rem);
+  padding: 0.4rem 0.8rem;
+  border-radius: 1.6rem;
+  background-color: var(--md-default-bg-color);
+  color: var(--md-default-fg-color--light);
+  font-size: 0.7rem;
+  line-height: 1.4;
+  text-align: center;
+  box-shadow: var(--md-shadow-z2);
+  opacity: 0;
+  /* none while hidden, so an invisible toast (opacity alone doesn't take
+     it out of hit-testing) doesn't block clicks on whatever's under where
+     it will appear; .pt-toast--visible switches it back to auto so a
+     click on the visible toast is absorbed instead of passing through to
+     the page content behind it. */
+  pointer-events: none;
+  /* Fade only — no slide/transform. The fade-out itself is slow and
+     gentle; showToast() in essentials_toggle.js keeps the fully-visible
+     hold time short instead, so the toast still clears the screen quickly
+     overall. */
+  transition: opacity 0.7s ease;
+}
+
+.pt-toast--visible {
+  opacity: 1;
+  pointer-events: auto;
+  /* Fading in can be quick; only the fade-out (the base .pt-toast rule
+     above, used once this class is removed again) is slow. */
+  transition: opacity 0.15s ease;
+}
+
+.pt-toast__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  font-weight: 700;
+}
+
+/* Only add space below the title when there's actually a body line under
+   it (the Essentials/Advanced toast has one; the light/dark toast's title
+   is self-explanatory and passes no body — see showToast() in
+   essentials_toggle.js) — otherwise this margin just reads as extra
+   padding at the bottom of a one-line toast. */
+.pt-toast__title:not(:last-child) {
+  margin-bottom: 0.2rem;
+}
+
+.pt-toast__body {
+  font-weight: 400;
+}
+
+.simplify-active [data-advanced] {
+  display: none;
+}
+
+/* data-advanced="card" hides the entire card, not just the marked paragraph
+   — walk up from whichever paragraph carries it to the enclosing <li>. */
+.simplify-active .grid.cards > ul > li:has(> p[data-advanced="card"]) {
+  display: none;
+}
+
+.pt-category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+@media (min-width: 45em) {
+  .pt-category:not(.pt-category--wide) .grid.cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* On a wide screen the whole homepage grid is 4 columns wide. The upper
+   category boxes each span 2 (so still 2-per-row, 2 cards each = 4 across); the
+   library section boxes span their own card count (`pt-lib--N`), so the rows
+   pack to exactly 4 library cards — Utilities(5, alone — 5 doesn't divide
+   evenly into the 4-column grid, so it takes a full row on its own),
+   Data analysis(4), APIs(2)+Image editing(1)+Desktop UIs(1),
+   Testing(1)+Computer vision(1) trailing. Order matters here: grid
+   auto-placement is sparse (no `dense`), so a box that doesn't fit the
+   remaining space in its row leaves that space empty rather than letting a
+   later, smaller box backfill it — keep same-row groups adjacent in the
+   markdown, and put any leftover under-4 remainder last. The library grids
+   keep the default auto-fit/minmax, which lands on the right column count
+   inside a box that's already sized to its contents. */
+@media (min-width: 60em) {
+  .pt-category-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .pt-category-grid > h1 {
+    grid-column: 1 / -1;
+  }
+
+  .pt-category-grid > .pt-category:not(.pt-category--wide) {
+    grid-column: span 2;
+  }
+
+  /* compound selector so these beat `.pt-category--wide { grid-column: 1 / -1 }` */
+  .pt-category--wide.pt-lib--1 { grid-column: span 1; }
+  .pt-category--wide.pt-lib--2 { grid-column: span 2; }
+  .pt-category--wide.pt-lib--3 { grid-column: span 3; }
+  .pt-category--wide.pt-lib--4 { grid-column: span 4; }
+  .pt-category--wide.pt-lib--5 { grid-column: span 4; } /* caps at the grid's own width, same as 4 */
+
+  /* pt-lib--N above is sized for the full card count; Essentials mode
+     hides some, leaving boxes too wide. essentials_toggle.js recomputes the
+     visible count into --pt-lib-span, overriding pt-lib--N here (same
+     specificity, later in source) while active. */
+  .simplify-active .pt-category--wide {
+    grid-column: span var(--pt-lib-span, 4);
+  }
+}
+
+@media (max-width: 45em) {
+  .pt-category-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pt-category {
+  padding: 0.8rem;
+  background-color: var(--pt-section-bg);
+  border-radius: 0.3rem;
+}
+
+/* Light mode: near-white cards (the greener --pt-accent needs the extra
+   contrast for the small keyword tags), on the mid-tone category container. */
+[data-md-color-scheme="default"] .md-typeset .grid.cards > ul > li {
+  background-color: var(--pt-panel);
+}
+
+.pt-category > h4.pt-homepage-heading {
+  margin-top: 0;
+}
+
+/* Category titles read as a muted label over the card grid rather than
+   full-contrast body ink: lightened toward white on the cream light scheme,
+   dimmed toward black on the dark scheme (which otherwise inherits full
+   --pt-ink from the rule below). */
+[data-md-color-scheme="default"] .md-typeset .pt-category > h4.pt-homepage-heading {
+  color: color-mix(in srgb, var(--pt-ink) 80%, white);
+}
+
+/* "Add-On Libraries" heading — swap the default h1 margins (0 top / 2.5rem
+   bottom) so the space sits above it instead, separating it from the core
+   grid and pulling it tight to the first library row. */
+.md-typeset .pt-category-grid > h1 {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+}
+
+.pt-category--wide {
+  grid-column: 1 / -1;
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  box-shadow: 0 0 0 0.05rem var(--pt-accent);
+  transform: translateY(-0.1rem);
+}
+
+.md-typeset .grid.cards > ul > li > p:first-child > .twemoji {
+  color: var(--pt-accent);
+}
+
+.md-typeset .grid.cards > ul > li > p:first-child > a {
+  outline: none;
+}
+
+.md-typeset .grid.cards > ul > li > p:first-child > a:focus-visible {
+  outline: 0.15rem solid var(--pt-accent);
+  outline-offset: 0.15rem;
+  border-radius: 0.1rem;
+}
+
+.md-typeset .grid.cards > ul > li > p:first-child > a:not(.pt-lib-badge)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.md-typeset .grid.cards > ul > li > p:not(:first-child) a {
+  position: relative;
+  z-index: 2;
+}
+
+.md-typeset .grid.cards > ul > li .pt-lib-badge {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  z-index: 2;
+}
+
+.pt-lib-badge svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+/* Built-in/third-party corner badge: halfway between the card's own
+   background color and the muted category-label color, in both light and
+   dark mode. */
+[data-md-color-scheme="default"] .md-typeset .grid.cards a.pt-lib-badge--builtin,
+[data-md-color-scheme="default"] .md-typeset .grid.cards a.pt-lib-badge--third-party {
+  color: color-mix(in srgb, var(--pt-panel), color-mix(in srgb, var(--pt-ink) 80%, white));
+}
+
+[data-md-color-scheme="slate"] .md-typeset .grid.cards a.pt-lib-badge--builtin,
+[data-md-color-scheme="slate"] .md-typeset .grid.cards a.pt-lib-badge--third-party {
+  color: color-mix(in srgb, color-mix(in srgb, var(--pt-panel) 92%, var(--pt-ink)), color-mix(in srgb, var(--pt-ink) 80%, black));
+}
+
+/* Homepage cards, dark mode only: green is reserved for the smaller non-bold
+   sub-keyword tags. Everything else — the `####` category headings, card icon,
+   card title, description, and the bold lead keyword in each tag row — is the
+   off-white --pt-ink. The light scheme keeps the original green title + tags. */
+[data-md-color-scheme="slate"] .md-typeset .pt-category .pt-homepage-heading {
+  color: color-mix(in srgb, var(--pt-ink) 80%, black);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > .twemoji {
+  color: var(--pt-ink);
+}
+
+/* card description — a muted slate-teal blue, matched to the green tag color
+   (#68A87F) in saturation/lightness so the two read as a pair. ~4.8:1 on the
+   card, passes AA. */
+[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:nth-of-type(2) {
+  color: var(--pt-desc-blue);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > a:not(.pt-lib-badge),
+[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > a strong {
+  color: var(--pt-ink);
+}
+
+/* keyword tag rows: the bold lead keyword (links to a ## section) stays white… */
+[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:not(:first-child) a,
+[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:not(:first-child) a strong,
+[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:not(:first-child) a strong > code {
+  color: var(--pt-ink);
+}
+
+/* …the smaller non-bold sub-keywords (### anchors) are green */
+[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:not(:first-child) a > code {
+  color: var(--pt-accent);
+}
+
+/* Light mode: black card titles and bold keyword leads (e.g. "integers"), a
+   deep teal-blue for the descriptions (pairs with the green sub-tags). */
+[data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > a:not(.pt-lib-badge),
+[data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > a strong,
+[data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:not(:first-child) a strong,
+[data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:not(:first-child) a strong > code {
+  color: #000;
+}
+
+[data-md-color-scheme="default"] .md-typeset .pt-category-grid > h1 {
+  color: var(--pt-ink);
+}
+
+[data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:nth-of-type(2) {
+  color: var(--pt-desc-blue);
+}
+
+.pt-jump-table td a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.pt-jump-table td a:hover {
+  text-decoration: underline;
+}
+
+.pt-jump-table td a > ul {
+  margin: 0;
+}
+
+.pt-jump-table td:first-child {
+  white-space: nowrap;
+}
+
+.pt-jump-table code {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.pt-checklist-table th:first-child,
+.pt-checklist-table td:first-child {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.pt-checklist-table code {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.pt-bool-true,
+.pt-bool-false {
+  display: inline-block;
+  font-family: var(--md-code-font);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.1rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.pt-bool-true {
+  color: var(--pt-accent);
+  background-color: color-mix(in srgb, var(--pt-accent) 15%, transparent);
+}
+
+.pt-bool-false {
+  color: var(--pt-danger);
+  background-color: color-mix(in srgb, var(--pt-danger) 12%, transparent);
+}
+
+.md-typeset .mermaid svg {
+  max-width: 100% !important;
+}
+
+.md-typeset .mermaid {
+  border: 6px double var(--pt-border-soft);
+  padding: 22px;
+  display: block;
+}
+
+.md-typeset .pt-compare table {
+  width: 100%;
+  display: table;
+}
+
+.md-typeset .pt-compare th:nth-child(2),
+.md-typeset .pt-compare td:nth-child(2) {
+  background-color: color-mix(in srgb, var(--pt-accent) 12%, transparent);
+}
+
+.md-typeset .pt-compare th:nth-child(3),
+.md-typeset .pt-compare td:nth-child(3) {
+  background-color: color-mix(in srgb, var(--pt-danger) 10%, transparent);
+}
+
+.md-typeset .pt-compare th:nth-child(2) {
+  color: var(--pt-accent);
+}
+
+.md-typeset .pt-compare th:nth-child(3) {
+  color: var(--pt-danger);
+}
+
+.md-typeset .pt-compare td {
+  vertical-align: top;
+}
+
+.md-typeset .pt-compare td ul {
+  margin: 0.2rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.md-typeset .pt-compare td ul li {
+  margin-bottom: 0.1rem;
+}
+
+.pt-icon-success,
+.pt-icon-fail {
+  vertical-align: -0.15em;
+}
+
+.pt-icon-success {
+  color: var(--pt-accent);
+}
+
+.pt-icon-fail {
+  color: var(--pt-danger);
+}
+
+/* .twemoji is display:inline-flex in Material's own CSS, an atomic inline
+   box that a wrapping <a>'s text-decoration underline can't draw through —
+   so the hover underline on .pt-jump-table td a (see below) never showed for
+   icon-only cells. A bottom box-shadow fakes the same underline without
+   taking up layout space, colored to match the icon via currentColor.
+   Only :material-check: is ever linked — :material-close: cells aren't
+   clickable, since "not applicable" has nowhere useful to jump to. */
+.pt-jump-table td a:hover .pt-icon-success {
+  box-shadow: 0 0.125em 0 0 currentColor;
+}
+
+/* Feedback form on about.md, posting to Formspree */
+.pt-feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: 32rem;
+  margin-top: 1rem;
+}
+
+.pt-feedback-form label {
+  font-weight: 600;
+  color: var(--pt-ink);
+  margin-top: 0.6rem;
+}
+
+.pt-feedback-form label span {
+  font-weight: 400;
+  color: var(--pt-text-muted);
+}
+
+.pt-feedback-form input,
+.pt-feedback-form textarea {
+  font-family: inherit;
+  font-size: 0.75rem;
+  color: var(--pt-ink);
+  background-color: var(--pt-panel);
+  border: 1px solid var(--pt-border-soft);
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.6rem;
+  resize: vertical;
+}
+
+.pt-feedback-form input:focus,
+.pt-feedback-form textarea:focus {
+  outline: none;
+  border-color: var(--pt-accent);
+}
+
+.pt-feedback-form button {
+  align-self: flex-start;
+  margin-top: 0.8rem;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--pt-bg);
+  background-color: var(--pt-accent);
+  border: 1px solid var(--pt-accent);
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+}
+
+.pt-feedback-form button:hover,
+.pt-feedback-form button:focus-visible {
+  background-color: var(--pt-ink);
+  border-color: var(--pt-ink);
+}
+
+.pt-field-extra {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* Generic visually-hidden utility: content stays in the accessibility tree
+   (screen readers, page outline) but isn't shown on screen. Used on the
+   homepage's H1 — Material auto-injects a "Home" heading (from the nav
+   label) whenever a page's rendered content has no <h1> at all, so a real
+   but hidden one heads it off while keeping the page visually heading-free. */
+.pt-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.md-content__inner > .pt-visually-hidden + * {
+  margin-top: 0;
+}
+
+.md-nav[data-md-level="2"]:has(> .md-nav__list > .md-nav__item--active)
+  > .md-nav__list
+  > .md-nav__item:not(.md-nav__item--active) {
+  display: none;
+}
+
+.md-nav[data-md-level="1"]:has(> .md-nav__list > .md-nav__item--nested.md-nav__item--active)
+  > .md-nav__list
+  > .md-nav__item--nested:not(.md-nav__item--active) {
+  display: none;
+}
+
+.md-nav[data-md-level="1"] > .md-nav__list > .md-nav__item--nested.md-nav__item--active > .md-nav__link {
+  display: none;
+}
+
+.md-typeset h2 {
+  font-weight: 700;
+  font-size: 2.375em;
+  line-height: 1.25;
+  margin: 2.2em 0 0.8em;
+  color: var(--pt-heading-h2);
+}
+
+/* Material's default h1 (2em = 32px) and this site's own h2 override just
+   above (2.375em = 38px) both read oversized on a narrow phone viewport
+   relative to the body text around them — shrink both below the site's
+   usual ~45em mobile breakpoint. Placed after the h2 rule above (same
+   specificity, `.md-typeset h2`) so it wins by source order regardless of
+   viewport — a copy of this placed earlier in the file loses that fight
+   even inside a matching media query. */
+@media (max-width: 45em) {
+  .md-typeset h1 {
+    font-size: 1.5em;
+    /* Not equal CSS values: h1's line-height already carries ~8px of
+       intrinsic leading above the glyph that margin-top doesn't need to
+       add to, but there's nothing similar below — so margin-top is
+       shorted by that amount to make the two *visually* equal (both
+       ~0.8rem, matching the page's side gutter, measured edge-to-edge in
+       the browser rather than by their CSS values). */
+    margin-top: 0.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .md-typeset h2 {
+    font-size: 1.75em;
+  }
+
+  /* The visible gap below h1 actually comes from the *next* element's own
+     top margin — most often .pfg-section's `margin: 4em 0` — not from h1
+     itself. Zero that out so the space below h1 is controlled by h1's own
+     margin-bottom alone (adjacent margins collapse to the larger one, so
+     this doesn't add on top of it). `.md-typeset .pfg-section` is two
+     classes (0,2,0); the generic `* ` fallback below is only (0,1,1) and
+     loses to it, so .pfg-section needs its own higher-specificity
+     override alongside. */
+  .md-typeset h1 + * {
+    margin-top: 0;
+  }
+
+  .md-typeset h1 + .pfg-section {
+    margin-top: 0;
+  }
+
+  /* The gap *above* h1 wasn't from h1 at all — it's Material's own
+     `.md-main__inner { margin-top: 1.5rem }` and `.md-content__inner
+     { padding-top: 0.6rem }`, i.e. the page's fixed top offset under the
+     header, unrelated to h1's own (already-zero) margin-top. Remove that
+     built-in offset so h1's own 0.8rem margin-top above is the only thing
+     producing the gap, matching the 0.8rem (same as the .pfg-section/page
+     side gutter) margin-bottom below. */
+  .md-main__inner {
+    margin-top: 0;
+  }
+
+  .md-content__inner {
+    padding-top: 0;
+  }
+
+  /* Material's own `.md-copyright { width: 100% }` deliberately stacks the
+     footer's copyright line above the social icon row below its 45em
+     breakpoint (only overridden to `width: auto` at 45em+, letting them
+     share a row) — there's plenty of horizontal room for both on a phone
+     regardless, so force the same side-by-side layout down here too. */
+  .md-copyright {
+    width: auto;
+  }
+}
+
+.md-typeset .pfg-section {
+  background: var(--pt-panel);
+  border: 1px solid var(--pt-hairline);
+  border-radius: 8px;
+  padding: 0.5em 2em 2em;
+  /* No margin-bottom: whatever follows already supplies its own leading
+     space (another .pfg-section's margin-top, an h2's own top margin,
+     or the page footer), so a margin here would just double it up. */
+  margin: 4em 0 0;
+}
+
+/* Halved from the padding above (0.5em 2em 2em) — sized for desktop's
+   wider content column, it eats too much of a narrow phone viewport.
+   Placed after the base rule above (same specificity, `.md-typeset
+   .pfg-section`) so it wins by source order regardless of viewport. */
+@media (max-width: 45em) {
+  .md-typeset .pfg-section {
+    padding: 0.25em 1em 1em;
+    /* Halved from the margin-top above (4em) for the same reason as the
+       padding above it. */
+    margin-top: 2em;
+  }
+}
+
+.md-typeset .pfg-section > h2:first-child,
+.md-typeset .pfg-section > h3:first-child {
+  margin-top: 0.7em;
+}
+
+.md-typeset h3 {
+  font-weight: 700;
+  color: var(--pt-heading-h3);
+}
+
+.md-typeset h4 {
+  color: var(--pt-heading-h3);
+}
+
+.md-typeset .pt-fake-h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: 2.375em;
+  line-height: 1.25;
+  margin: 2.2em 0 0.8em;
+  color: var(--pt-heading-h2);
+}
+
+.md-typeset .pt-fake-h3 {
+  font-weight: 700;
+  letter-spacing: -0.0125em;
+  font-size: 1.25em;
+  line-height: 1.5;
+  margin: 0.875em 0 1em;
+  color: var(--pt-heading-h3);
+}
+
+.pfg-diagram-frame,
+.pfg-diagram__plate {
+  border: 6px double var(--pt-border-soft);
+  padding: 22px;
+}
+
+.pfg-diagram-frame .mermaid {
+  border: none;
+  padding: 0 0 0 6px;
+}
+
+.pfg-diagram-caption {
+  font-family: var(--md-code-font);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pt-text-muted);
+  margin-top: 1.5em;
+  margin-bottom: 0;
+}
+
+.pfg-diagram__legend > .pfg-diagram-caption {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+/* ---- Diagram illustration convention ---- */
+.pfg-diagram {
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 1.5em 0;
+}
+
+.pfg-diagram__plate {
+  position: relative;
+  flex: 1 1 320px;
+  min-height: 240px;
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--pt-panel) 0 10px,
+    var(--pt-bg) 10px 20px
+  );
+}
+
+.pfg-diagram__pin {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--pt-danger);
+  color: #fff;
+  font-family: var(--md-code-font);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.pfg-diagram__legend {
+  flex: 1 1 240px;
+}
+
+.pfg-diagram__legend ol {
+  line-height: 2;
+  padding-left: 1.2em;
+}
+
+.pfg-diagram__legend ol strong {
+  color: var(--pt-accent);
+}

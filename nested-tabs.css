@@ -1,0 +1,93 @@
+/* Matches Material's own navigation.tabs breakpoint. Below this width,
+   Material's native tabs (or the hamburger drawer) apply unmodified. */
+@media screen and (min-width: 76.234375em) {
+  .md-tabs {
+    display: none;
+  }
+}
+
+/* Transparent so .md-header's own background shows through, same as .md-tabs. */
+.nested-tabs {
+  display: none;
+}
+
+@media screen and (min-width: 76.234375em) {
+  .nested-tabs {
+    display: block;
+    background-color: transparent;
+  }
+
+  .nested-tabs__list {
+    display: flex;
+    list-style: none;
+    margin: 0 0.2rem;
+    padding: 0.5rem 0;
+    gap: 1.4rem;
+  }
+
+  .nested-tabs__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .nested-tabs__label {
+    font-size: 0.64rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--md-nested-tabs-label-color, var(--md-default-fg-color--light));
+  }
+
+  /* Set on a flat group's label when one of its own pages is the active
+     page (see nested-tabs.js) — lets a consumer color the category name
+     itself, not just the active page link beneath it. Falls back to the
+     same accent color .nested-tabs__link--active uses below, but exposed as
+     its own variable since a consumer may want the label's active color to
+     differ from the link's (e.g. a distinct "active parent" tone). */
+  .nested-tabs__label--active {
+    color: var(--md-nested-tabs-label-active-color, var(--md-accent-fg-color));
+    font-weight: 700;
+  }
+
+  /* Fallback-link groups need hover/active states; the normal <span> labels don't. */
+  .nested-tabs__label--link {
+    text-decoration: none;
+  }
+
+  .nested-tabs__label--link:hover,
+  .nested-tabs__label--link:focus-visible {
+    color: var(--md-nested-tabs-label-hover-color, var(--md-accent-fg-color));
+    text-decoration: underline;
+  }
+
+  .nested-tabs__pages {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0.7rem;
+  }
+
+  .nested-tabs__link {
+    font-size: 0.7rem;
+    color: var(--md-nested-tabs-link-color, var(--md-default-fg-color));
+    text-decoration: none;
+  }
+
+  .nested-tabs__link:hover,
+  .nested-tabs__link:focus-visible {
+    color: var(--md-nested-tabs-link-hover-color, var(--md-accent-fg-color));
+    text-decoration: underline;
+  }
+
+  /* Also reused on a fallback-link label (.nested-tabs__label--link) when its
+     own overview page is active — see nested-tabs.js. Named to match
+     --md-nested-tabs-label-active-color above rather than hardcoding
+     --md-accent-fg-color directly, so a consumer can override the two
+     independently if their active-page and active-label colors differ. */
+  .nested-tabs__link--active {
+    color: var(--md-nested-tabs-link-active-color, var(--md-accent-fg-color));
+    font-weight: 700;
+  }
+}

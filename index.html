@@ -1,0 +1,3335 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A free Python reference with runnable code examples covering data types, collections, loops, functions, classes, error handling, and popular libraries.">
+      
+      
+      
+        <link rel="canonical" href="https://pythonfieldguide.com/">
+      
+      
+      
+        <link rel="next" href="start/workspace/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="img/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Python Field Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+4:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Serif 4";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="nested-tabs.css">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-E5B3P6NCP0"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-E5B3P6NCP0",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-E5B3P6NCP0",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-field-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Python Field Guide" class="md-header__button md-logo" aria-label="Python Field Guide" data-md-component="logo">
+      
+  <img src="img/favicon-large.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python Field Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              All
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  All
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="start/workspace/" class="md-tabs__link">
+          
+  
+  
+  Start
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="types/basics/" class="md-tabs__link">
+          
+  
+  
+  Types
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="flow/conditionals/" class="md-tabs__link">
+          
+  
+  
+  Flow
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="organization/functions/" class="md-tabs__link">
+          
+  
+  
+  Organization
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="resources/modules/" class="md-tabs__link">
+          
+  
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="practices/style/" class="md-tabs__link">
+          
+  
+  
+  Practices
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="libraries/" class="md-tabs__link">
+          
+  
+  
+  Libraries
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Python Field Guide" class="md-nav__button md-logo" aria-label="Python Field Guide" data-md-component="logo">
+      
+  <img src="img/favicon-large.png" alt="logo">
+
+    </a>
+    Python Field Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get started
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Organization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#external-files-and-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External files and resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#robust-programming-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Robust programming practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Start
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="start/workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="start/foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Types
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="types/basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="types/collections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flow
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flow
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="flow/conditionals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="flow/loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Organization
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Organization
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="organization/functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="organization/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="resources/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="resources/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Practices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practices/style/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Style
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practices/errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Libraries
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Libraries
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Utilities
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Utilities
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/collections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    collections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/datetime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    datetime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    math
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/random/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    random
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/re/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    re
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/time/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    time
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    csv
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/matplotlib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    matplotlib
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/numpy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NumPy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_4" id="__nav_8_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    APIs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    APIs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/json/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    json
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_5" id="__nav_8_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web scraping
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Web scraping
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/beautifulsoup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BeautifulSoup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_6" id="__nav_8_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Image editing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Image editing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/pillow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pillow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_7" id="__nav_8_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer vision
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Computer vision
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/opencv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_8" id="__nav_8_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desktop UIs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Desktop UIs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/tkinter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tkinter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_9" id="__nav_8_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Games
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Games
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/turtle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    turtle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_10" id="__nav_8_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="libraries/pytest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pytest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get started
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Organization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#external-files-and-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External files and resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#robust-programming-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Robust programming practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<h1 class="pt-visually-hidden" id="python-field-guide">Python Field Guide</h1>
+<details class="ai">
+<summary>Using AI while learning to code</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Why still learn to code yourself?</label><label for="__tabbed_1_2">How to use AI to support your learning?</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="pt-compare">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Learn to do it yourself</th>
+<th>Have AI do it for you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Writing &amp; struggling with code</strong></td>
+<td><span class="twemoji pt-icon-success"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> Productive struggle is what <strong>builds understanding</strong><ul><li>You can solve the problem <strong>again</strong> on your own</li><li><strong>Adapt</strong> the answer, and <strong>catch</strong> when it's wrong</li></ul></td>
+<td><span class="twemoji pt-icon-fail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span> Being handed the answer skips <a href="https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf">the friction that builds understanding</a><ul><li>If you skip that struggle, you <strong>won't develop the knowledge</strong> to solve the problem again, adapt the answer, or recognize when it's wrong.</li></ul></td>
+</tr>
+<tr>
+<td><strong>Reading &amp; verifying code</strong></td>
+<td><span class="twemoji pt-icon-success"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> <strong>Understanding programming fundamentals</strong> makes AI more useful — you can read and evaluate code you didn't write<ul><li>Spot mistakes</li><li>Understand <strong>why</strong> a solution works</li><li>Communicate your problem to AI more effectively</li></ul></td>
+<td><span class="twemoji pt-icon-fail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span> Inefficient communication with AI <strong>if you don't fully understand </strong>what's going on, and AI code can look correct while being wrong or insecure<ul><li>You can't tell <strong>why</strong> a solution works</li><li>Researchers are already documenting this skill gap in <a href="https://dl.acm.org/doi/10.1145/3617367">students who rely on AI code generation</a> before they've <a href="https://dl.acm.org/doi/10.1145/3624720">built their own foundation</a></li><li>One <a href="https://dl.acm.org/doi/10.1145/3576915.3623157">Stanford study</a> found developers using AI wrote <strong>less</strong> secure code — but were <strong>more</strong> confident it was secure</li></ul></td>
+</tr>
+<tr>
+<td><strong>On the job</strong></td>
+<td><span class="twemoji pt-icon-success"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span> Programming work still requires understanding:<ul><li>Code review, debugging, system design, and interviews all test whether you can reason about code and judge whether it's correct</li><li>Learning to program on your own turns AI into a <strong>tool you can direct and verify</strong>, instead of one you're assuming got it right</li></ul></td>
+<td><span class="twemoji pt-icon-fail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span> AI will likely be available at work too — but it isn't what will get you hired</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>swimlane-beta TB
+    accTitle: Using AI to learn
+    accDescr: AI walks you through setup before you start. You attempt each problem yourself with autocomplete off, then check whether you can explain why it works and whether it actually holds up — if either check fails, you describe what you tried rather than handing over your code, so AI explains the concept instead of fixing it, and you try again. Passing both checks means you understand it well enough for a practice problem, or for the code review, debugging, and interviews that are what your job actually tests.
+
+    subgraph You
+        you_help_setup(Need help setting up your computer to start programming?)
+        you_have_project(Do you have a project to work on?)
+        you_attempt(Attempt it yourself, autocomplete off so you understand everything that's there, utilize debug strategies)
+        you_writeup(Stuck? Write out your problem: what you expect to happen, what you're observing, what you've tried already, see if this helps you process or rethink your strategy)
+        you_finish("Learning to program means making mistakes, getting stuck, and eventually figuring things out and forming a mental model. That's the process that builds skills you can rely on to continue solving problems and detecting issues — ready for code review, debugging, and interviews, where AI won't be tested, your reasoning will. ")
+    end
+
+    subgraph AI
+        ai_help_setup(AI can help guide you through setup on your exact device — which could make getting started more accessible for beginners)
+        ai_suggest_problem(Suggests a problem based on your skill level, interests, and what you're trying to improve)
+        explain(With that context AI can provide more targeted, efficient help. Don't just paste the code/error, ask AI to explain what a line does, or what an error means — an explanation to help you understand concepts, be clear you do NOT want it to write code, just explain)
+    end
+
+
+    ai_help_setup ~~~ you_help_setup
+    ai_suggest_problem ~~~ you_have_project
+    you_help_setup --&gt;|Yes| ai_help_setup
+    you_help_setup --&gt;|No| you_have_project
+    ai_help_setup --&gt; you_have_project
+
+    you_have_project --&gt;|No| ai_suggest_problem
+
+    you_have_project --&gt;|Yes| you_attempt
+
+    ai_suggest_problem --&gt; you_attempt
+    you_attempt &lt;--&gt; you_writeup
+    you_attempt --&gt;|Done!| you_finish
+    you_writeup --&gt; |still stuck?| explain
+    explain --&gt; you_attempt
+    explain ~~~ you_finish
+
+    %% Edge label text colored red if it leads into the AI lane, green
+    %% if it leads into the You lane, matching the lane colors. This is
+    %% linkStyle's "color" property (not background) — the one styling
+    %% mechanism mermaid applies from inside its own closed shadow
+    %% root, so it's the only thing that actually reaches the label.
+    linkStyle 0 color:#a33f3f
+    linkStyle 1 color:#3f6b52
+    linkStyle 3 color:#3f6b52
+    linkStyle 4 color:#a33f3f
+    linkStyle 7 color:#3f6b52
+    linkStyle 8 color:#a33f3f
+
+    classDef you fill:#3f6b521f,stroke:#3f6b52,stroke-width:2px,color:#3f6b52
+    classDef ai fill:#a33f3f1a,stroke:#a33f3f,stroke-width:2px,color:#a33f3f
+    class you_writeup,you_help_setup,you_have_project,you_attempt,you_finish you
+    class explain,ai_help_setup,ai_suggest_problem ai
+    style You fill:#3f6b521f,stroke:#3f6b52,color:#3f6b52
+    style AI fill:#a33f3f1a,stroke:#a33f3f,color:#a33f3f</code></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="pt-category-grid">
+<div class="pt-category">
+<h4 class="pt-homepage-heading" id="get-started">Get started</h4>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16H3V4h18m0-2H3c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h7v2H8v2h8v-2h-2v-2h7a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2"/></svg></span> <a href="start/workspace/"><strong>Workspace Setup</strong></a></p>
+<p>Write Python on your computer.</p>
+<p><a href="start/workspace/#step-0-install-python"><strong><code>install</code></strong></a>: 
+<a href="start/workspace/#step-0-install-python"><code>download</code></a> 
+<a href="start/workspace/#step-0-install-python"><code>version</code></a> </p>
+<p><a href="start/workspace/#step-1-pick-an-application-to-write-code-in"><strong><code>code editors</code></strong></a>: 
+<a href="start/workspace/#step-1-pick-an-application-to-write-code-in"><code>IDLE</code></a> 
+<a href="start/workspace/#step-1-pick-an-application-to-write-code-in"><code>Pycharm</code></a> 
+<a href="start/workspace/#step-1-pick-an-application-to-write-code-in"><code>Thonny</code></a> 
+<a href="start/workspace/#step-1-pick-an-application-to-write-code-in"><code>VS Code</code></a> </p>
+<p><a href="start/workspace/#step-2-write-and-run-a-python-file"><strong><code>how to write and run .py file</code></strong></a>: 
+<a href="start/workspace/#step-2-write-and-run-a-python-file"><code>file naming</code></a> </p>
+<p data-advanced="true"><a href="start/workspace/#using-the-terminal"><strong><code>Terminal</code></strong></a>: 
+<a href="start/workspace/#using-the-terminal"><code>cd</code></a> 
+<a href="start/workspace/#using-the-terminal"><code>ls</code></a> 
+<a href="start/workspace/#using-the-terminal"><code>pwd</code></a> 
+<a href="start/workspace/#using-the-terminal"><code>shortcuts</code></a> </p>
+<p data-advanced="true"><a href="start/workspace/#virtual-environments"><strong><code>virtual environments</code></strong></a>: 
+<a href="start/workspace/#virtual-environments"><code>activate</code></a> 
+<a href="start/workspace/#virtual-environments"><code>pip</code></a> 
+<a href="start/workspace/#virtual-environments"><code>requirements.txt</code></a> 
+<a href="start/workspace/#virtual-environments"><code>venv</code></a> </p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.99.99 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88zM12 4.15 6.04 7.5 12 10.85l5.96-3.35zM5 15.91l6 3.38v-6.71L5 9.21zm14 0v-6.7l-6 3.37v6.71z"/></svg></span> <a href="start/foundations/"><strong>Foundations</strong></a></p>
+<p>Storing, displaying, and inputting values.</p>
+<p><a href="start/foundations/#variables"><strong><code>variables</code></strong></a>: 
+<a href="start/foundations/#naming-variables"><code>naming</code></a> 
+<a href="start/foundations/#printing-variables"><code>printing</code></a> 
+<a href="start/foundations/#reassigning-a-variable"><code>reassigning</code></a> 
+<a href="start/foundations/#variables-and-types"><code>types</code></a> </p>
+<p><a href="start/foundations/#expressions-and-statements"><strong><code>expressions and statements</code></strong></a></p>
+<p><a href="start/foundations/#print-function"><strong><code>print</code></strong></a>: 
+<a href="start/foundations/#escape-sequences"><code>escape sequences</code></a> </p>
+<p><a href="start/foundations/#input-function"><strong><code>input</code></strong></a></p>
+<p><a href="start/foundations/#comments"><strong><code>comments</code></strong></a>: 
+<a href="start/foundations/#multi-line-comments-with"><code>"""</code></a> 
+<a href="start/foundations/#single-line-comments-with"><code>#</code></a> 
+<a href="start/foundations/#single-line-comments-with"><code>FIXME</code></a> 
+<a href="start/foundations/#single-line-comments-with"><code>TODO</code></a> </p>
+<p><a href="start/foundations/#tips-for-getting-started"><strong><code>tips for getting started</code></strong></a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-category">
+<h4 class="pt-homepage-heading" id="data-types">Data types</h4>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 13.5v8H3v-8zm-2 2H5v4h4zM12 2l5.5 9h-11zm0 3.86L10.08 9h3.84zM17.5 13c2.5 0 4.5 2 4.5 4.5S20 22 17.5 22 13 20 13 17.5s2-4.5 4.5-4.5m0 2a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5"/></svg></span> <a href="types/basics/"><strong>Basics</strong></a></p>
+<p>Kinds of values, and what you can do with them.</p>
+<p><a href="types/basics/"><code>isinstance</code></a> 
+<a href="types/basics/"><code>type</code></a> </p>
+<p><a href="types/basics/#integers"><strong><code>integers</code></strong></a>: 
+<a href="types/basics/#arithmetic"><code>+ - * / **</code></a> 
+<a href="types/basics/#apply-arithmetic-to-a-variable"><code>+= -= *= /= //= %= **=</code></a> 
+<a href="types/basics/#floor-division-modulo"><code>// % divmod</code></a> 
+<a href="types/basics/#absolute-value"><code>abs</code></a> 
+<a href="types/basics/#boolean-expressions"><code>boolean expressions</code></a> 
+<a href="types/basics/#convert"><code>int</code></a> </p>
+<p><a href="types/basics/#floats"><strong><code>floats</code></strong></a>: 
+<a href="types/basics/#arithmetic_1"><code>+ - * / **</code></a> 
+<a href="types/basics/#apply-arithmetic-to-a-variable_1"><code>+= -= *= /= //= %= **=</code></a> 
+<a href="types/basics/#floor-division-modulo_1"><code>// % divmod</code></a> 
+<a href="types/basics/#adjust"><code>abs</code></a> 
+<a href="types/basics/#boolean-expressions_1"><code>boolean expressions</code></a> 
+<a href="types/basics/#convert_1"><code>float</code></a> 
+<a href="types/basics/#adjust"><code>round</code></a> </p>
+<p><a href="types/basics/#strings"><strong><code>strings</code></strong></a>: 
+<a href="types/basics/#combine"><code>+ * += *=</code></a> 
+<a href="types/basics/#boolean-expressions_2"><code>boolean expressions</code></a> 
+<a href="types/basics/#modify"><code>capitalize</code></a> 
+<a href="types/basics/#combine"><code>combine</code></a> 
+<a href="types/basics/#search"><code>count</code></a> 
+<a href="types/basics/#validate"><code>endswith</code></a> 
+<a href="types/basics/#building-strings"><code>f-string</code></a> 
+<a href="types/basics/#search"><code>find</code></a> 
+<a href="types/basics/#building-strings"><code>format</code></a> 
+<a href="types/basics/#building-strings"><code>format spec</code></a> 
+<a href="types/basics/#search"><code>in</code></a> 
+<a href="types/basics/#access-characters"><code>index</code></a> 
+<a href="types/basics/#validate"><code>isalpha</code></a> 
+<a href="types/basics/#validate"><code>isdigit</code></a> 
+<a href="types/basics/#combine"><code>join</code></a> 
+<a href="types/basics/#inspect"><code>len</code></a> 
+<a href="types/basics/#modify"><code>lower</code></a> 
+<a href="types/basics/#modify"><code>replace</code></a> 
+<a href="types/basics/#access-characters"><code>slice</code></a> 
+<a href="types/basics/#convert_2"><code>split</code></a> 
+<a href="types/basics/#validate"><code>startswith</code></a> 
+<a href="types/basics/#access-characters"><code>step</code></a> 
+<a href="types/basics/#convert_2"><code>str</code></a> 
+<a href="types/basics/#modify"><code>strip</code></a> 
+<a href="types/basics/#modify"><code>title</code></a> 
+<a href="types/basics/#modify"><code>upper</code></a> </p>
+<p><a href="types/basics/#booleans"><strong><code>booleans</code></strong></a>: 
+<a href="types/basics/#boolean-expressions_3"><code>== != &gt; &lt; &gt;= &lt;=</code></a> 
+<a href="types/basics/#logical-operators"><code>and</code></a> 
+<a href="types/basics/#boolean-expressions_3"><code>in</code></a> 
+<a href="types/basics/#boolean-expressions_3"><code>is</code></a> 
+<a href="types/basics/#logical-operators"><code>not</code></a> 
+<a href="types/basics/#logical-operators"><code>or</code></a> </p>
+<p><a href="types/basics/#none"><strong><code>None</code></strong></a>: 
+<a href="types/basics/#boolean-expressions_4"><code>boolean expressions</code></a> 
+<a href="types/basics/#check-for-none"><code>is</code></a> 
+<a href="types/basics/#check-for-none"><code>is not</code></a> </p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 9h-4.79l-4.38-6.56a.997.997 0 0 0-1.66.01L6.79 9H2c-.55 0-1 .45-1 1 0 .09 0 .18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1M12 4.8 14.8 9H9.2zM18.5 19h-13l-2.19-8H20.7zM12 13c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2"/></svg></span> <a href="types/collections/"><strong>Collections</strong></a></p>
+<p>Multiple related values grouped into one container.</p>
+<p><a href="types/collections/"><code>isinstance</code></a> 
+<a href="types/collections/"><code>type</code></a> </p>
+<p><a href="types/collections/#lists"><strong><code>lists</code></strong></a>: 
+<a href="types/collections/#create"><code>+</code></a> 
+<a href="types/collections/#add-item"><code>append</code></a> 
+<a href="types/collections/#boolean-expressions"><code>boolean expressions</code></a> 
+<a href="types/collections/#remove-item"><code>clear</code></a> 
+<a href="types/collections/#list-comprehension"><code>comprehension</code></a> 
+<a href="types/collections/#create"><code>copy</code></a> 
+<a href="types/collections/#inspect"><code>count</code></a> 
+<a href="types/collections/#create-a-list"><code>create</code></a> 
+<a href="types/collections/#remove-item"><code>del</code></a> 
+<a href="types/collections/#add-item"><code>extend</code></a> 
+<a href="types/collections/#boolean-expressions"><code>in</code></a> 
+<a href="types/collections/#create-a-list"><code>index</code></a> 
+<a href="types/collections/#add-item"><code>insert</code></a> 
+<a href="types/collections/#lists"><code>item</code></a> 
+<a href="types/collections/#inspect"><code>len</code></a> 
+<a href="types/collections/#create"><code>list</code></a> 
+<a href="types/collections/#loop-through-a-list"><code>loop</code></a> 
+<a href="types/collections/#arithmetic"><code>max</code></a> 
+<a href="types/collections/#arithmetic"><code>min</code></a> 
+<a href="types/collections/#remove-item"><code>pop</code></a> 
+<a href="types/collections/#remove-item"><code>remove</code></a> 
+<a href="types/collections/#sort"><code>reverse</code></a> 
+<a href="types/collections/#access-and-update-items"><code>slice</code></a> 
+<a href="types/collections/#sort"><code>sort</code></a> 
+<a href="types/collections/#sort"><code>sorted</code></a> 
+<a href="types/collections/#access-and-update-items"><code>step</code></a> 
+<a href="types/collections/#arithmetic"><code>sum</code></a> </p>
+<p><a href="types/collections/#dictionaries"><strong><code>dictionaries</code></strong></a>: 
+<a href="types/collections/#access-a-value"><code>access a value</code></a> 
+<a href="types/collections/#boolean-expressions_1"><code>boolean expressions</code></a> 
+<a href="types/collections/#remove_1"><code>clear</code></a> 
+<a href="types/collections/#create_1"><code>copy</code></a> 
+<a href="types/collections/#remove_1"><code>del</code></a> 
+<a href="types/collections/#create_1"><code>dict</code></a> 
+<a href="types/collections/#dictionary-operations"><code>get</code></a> 
+<a href="types/collections/#loop-through-a-dictionary"><code>items</code></a> 
+<a href="types/collections/#dictionaries"><code>key</code></a> 
+<a href="types/collections/#inspect_1"><code>len</code></a> 
+<a href="types/collections/#loop-through-a-dictionary"><code>loop</code></a> 
+<a href="types/collections/#remove_1"><code>pop</code></a> 
+<a href="types/collections/#remove_1"><code>popitem</code></a> 
+<a href="types/collections/#update_1"><code>update</code></a> 
+<a href="types/collections/#dictionaries"><code>value</code></a> 
+<a href="types/collections/#loop-through-a-dictionary"><code>values</code></a> </p>
+<p data-advanced="true"><a href="types/collections/#tuples"><strong><code>tuples</code></strong></a>: 
+<a href="types/collections/#access-items"><code>access items</code></a> 
+<a href="types/collections/#boolean-expressions_2"><code>boolean expressions</code></a> 
+<a href="types/collections/#inspect_2"><code>count</code></a> 
+<a href="types/collections/#tuples"><code>immmutable</code></a> 
+<a href="types/collections/#tuples"><code>index</code></a> 
+<a href="types/collections/#inspect_2"><code>index</code></a> 
+<a href="types/collections/#inspect_2"><code>len</code></a> 
+<a href="types/collections/#loop-through-a-tuple"><code>loop</code></a> 
+<a href="types/collections/#arithmetic_1"><code>max</code></a> 
+<a href="types/collections/#arithmetic_1"><code>min</code></a> 
+<a href="types/collections/#packing-and-unpacking"><code>packing</code></a> 
+<a href="types/collections/#arithmetic_1"><code>sum</code></a> 
+<a href="types/collections/#create_2"><code>tuple</code></a> 
+<a href="types/collections/#packing-and-unpacking"><code>unpacking</code></a> </p>
+<p data-advanced="true"><a href="types/collections/#sets"><strong><code>sets</code></strong></a>: 
+<a href="types/collections/#update_1"><code>add</code></a> 
+<a href="types/collections/#boolean-expressions_3"><code>boolean expressions</code></a> 
+<a href="types/collections/#remove_1"><code>clear</code></a> 
+<a href="types/collections/#create_3"><code>copy</code></a> 
+<a href="types/collections/#remove_1"><code>discard</code></a> 
+<a href="types/collections/#compare"><code>isdisjoint</code></a> 
+<a href="types/collections/#compare"><code>issubset</code></a> 
+<a href="types/collections/#compare"><code>issuperset</code></a> 
+<a href="types/collections/#inspect_3"><code>len</code></a> 
+<a href="types/collections/#loop-through-a-set"><code>loop</code></a> 
+<a href="types/collections/#arithmetic_2"><code>max</code></a> 
+<a href="types/collections/#arithmetic_2"><code>min</code></a> 
+<a href="types/collections/#remove_1"><code>pop</code></a> 
+<a href="types/collections/#remove_1"><code>remove</code></a> 
+<a href="types/collections/#create_3"><code>set</code></a> 
+<a href="types/collections/#arithmetic_2"><code>sum</code></a> 
+<a href="types/collections/#update_1"><code>update</code></a> 
+<a href="types/collections/#combine"><code>| &amp; - ^</code></a> </p>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-category">
+<h4 class="pt-homepage-heading" id="control-flow">Control flow</h4>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14c-3.36 0-4.46 1.35-4.82 2.24C9.25 16.7 10 17.76 10 19a3 3 0 0 1-3 3 3 3 0 0 1-3-3c0-1.31.83-2.42 2-2.83V7.83A2.99 2.99 0 0 1 4 5a3 3 0 0 1 3-3 3 3 0 0 1 3 3c0 1.31-.83 2.42-2 2.83v5.29c.88-.65 2.16-1.12 4-1.12 2.67 0 3.56-1.34 3.85-2.23A3.01 3.01 0 0 1 14 7a3 3 0 0 1 3-3 3 3 0 0 1 3 3c0 1.34-.88 2.5-2.09 2.86C17.65 11.29 16.68 14 13 14m-6 4a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 4a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 2a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <a href="flow/conditionals/"><strong>Conditionals</strong></a></p>
+<p>Decision points that run code only if a condition is met.</p>
+<p><a href="flow/conditionals/#if-elif-else"><strong><code>if, elif, else</code></strong></a>: 
+<a href="flow/conditionals/#logical-operators"><code>and, or, not</code></a> 
+<a href="flow/conditionals/#boolean-expressions"><code>boolean expressions</code></a> </p>
+<p><a href="flow/conditionals/#match-case"><strong><code>match, case</code></strong></a>: 
+<a href="flow/conditionals/#default-value-_"><code>_ wildcard</code></a> 
+<a href="flow/conditionals/#case-if"><code>case + if</code></a> 
+<a href="flow/conditionals/#match-multiple-values-with"><code>match with |</code></a> 
+<a href="flow/conditionals/#unpacking-a-tuple"><code>unpacking</code></a> </p>
+<p><a href="flow/conditionals/#control-flow-statements"><strong><code>control flow</code></strong></a>: 
+<a href="flow/conditionals/#break"><code>break</code></a> 
+<a href="flow/conditionals/#continue"><code>continue</code></a> 
+<a href="flow/conditionals/#going-further_2"><code>pass</code></a> </p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 17H7v-3l-4 4 4 4v-3h12v-6h-2M7 7h10v3l4-4-4-4v3H5v6h2z"/></svg></span> <a href="flow/loops/"><strong>Loops</strong></a></p>
+<p>Repeat a <abbr title="A group of indented lines under a colon that Python runs together as one unit — the body of an if, loop, function, or class">block</abbr> of code multiple times.</p>
+<p><a href="flow/loops/#for-loops"><strong><code>for</code></strong></a>: 
+<a href="flow/loops/#loop-with-index-and-value"><code>enumerate</code></a> 
+<a href="flow/loops/#loop-a-certain-number-of-times"><code>loop a set number of times</code></a> 
+<a href="flow/loops/#loop-through-a-collection"><code>loop through a collection</code></a> 
+<a href="flow/loops/#iterable-range"><code>range</code></a> 
+<a href="flow/loops/#loop-in-reverse"><code>reversed</code></a> 
+<a href="flow/loops/#loop-with-index-and-value"><code>zip</code></a> </p>
+<p><a href="flow/loops/#while-loops"><strong><code>while</code></strong></a>: 
+<a href="flow/loops/#logical-operators"><code>and</code></a> 
+<a href="flow/loops/#boolean-expressions"><code>boolean expressions</code></a> 
+<a href="flow/loops/#counter-and-flag-names"><code>counter and flag names</code></a> 
+<a href="flow/loops/#using-a-flag"><code>flag</code></a> 
+<a href="flow/loops/#logical-operators"><code>not</code></a> 
+<a href="flow/loops/#logical-operators"><code>or</code></a> 
+<a href="flow/loops/#sentinel"><code>sentinel</code></a> </p>
+<p><a href="flow/loops/#common-patterns"><strong><code>common patterns</code></strong></a>: 
+<a href="flow/loops/#accumulator"><code>accumulator</code></a> 
+<a href="flow/loops/#counter"><code>counter</code></a> 
+<a href="flow/loops/#nested-loops"><code>nested loops</code></a> </p>
+<p><a href="flow/loops/#control-flow-statements"><strong><code>control flow</code></strong></a>: 
+<a href="flow/loops/#break"><code>break</code></a> 
+<a href="flow/loops/#continue"><code>continue</code></a> 
+<a href="flow/loops/#else"><code>else</code></a> 
+<a href="flow/loops/#going-further_2"><code>pass</code></a> </p>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-category">
+<h4 class="pt-homepage-heading" id="organization">Organization</h4>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.42 5.29c-1.1-.1-2.07.71-2.17 1.82L10 10h2.82v2h-3l-.44 5.07A4.001 4.001 0 0 1 2 18.83l1.5-1.5c.33 1.05 1.46 1.64 2.5 1.3.78-.24 1.33-.93 1.4-1.74L7.82 12h-3v-2H8l.27-3.07a4.01 4.01 0 0 1 4.33-3.65c1.26.11 2.4.81 3.06 1.89l-1.5 1.5c-.25-.77-.93-1.31-1.74-1.38M22 13.65l-1.41-1.41-2.83 2.83-2.83-2.83-1.43 1.41 2.85 2.85-2.85 2.81 1.43 1.41 2.83-2.83 2.83 2.83L22 19.31l-2.83-2.81z"/></svg></span> <a href="organization/functions/"><strong>Functions</strong></a></p>
+<p>Package a named <abbr title="A group of indented lines under a colon that Python runs together as one unit — the body of an if, loop, function, or class">block</abbr> of code to run it at any time.</p>
+<p><a href="organization/functions/#defining-a-function"><strong><code>def</code></strong></a>: 
+<a href="organization/functions/#kwargs-dict"><code>**kwargs</code></a> 
+<a href="organization/functions/#args-tuple"><code>*args</code></a> 
+<a href="organization/functions/#default-values"><code>defaults</code></a> 
+<a href="organization/functions/#docstrings"><code>docstrings</code></a> 
+<a href="organization/functions/#parameters"><code>parameters</code></a> 
+<a href="organization/functions/#pass-placeholder"><code>pass</code></a> 
+<a href="organization/functions/#return-values"><code>return</code></a> </p>
+<p data-advanced="true"><a href="organization/functions/#combining-categories"><code>combining argument types</code></a> 
+<a href="organization/functions/#keyword-only"><code>keyword-only</code></a> 
+<a href="organization/functions/#positional-only"><code>positional-only</code></a> 
+<a href="organization/functions/#type-hints"><code>type hints</code></a> </p>
+<p><a href="organization/functions/#calling-a-function"><strong><code>calling a function</code></strong></a>: 
+<a href="organization/functions/#arguments"><code>arguments</code></a> 
+<a href="organization/functions/#by-keyword"><code>keyword</code></a> 
+<a href="organization/functions/#required"><code>required</code></a> 
+<a href="organization/functions/#saving-the-return-value"><code>return value</code></a> 
+<a href="organization/functions/#unpacking"><code>unpacking</code></a> </p>
+<p><a href="organization/functions/#scope"><strong><code>scope</code></strong></a>: 
+<a href="organization/functions/#local-vs-global-variables"><code>local vs global</code></a> </p>
+<p data-advanced="true"><a href="organization/functions/#recursion"><strong><code>recursion</code></strong></a></p>
+<p data-advanced="true"><a href="organization/functions/#decorators"><strong><code>decorators</code></strong></a>: 
+<a href="organization/functions/#accepting-arguments"><code>arguments</code></a> 
+<a href="organization/functions/#advanced-uses"><code>identity</code></a> 
+<a href="organization/functions/#returning-the-original-function"><code>original function</code></a> 
+<a href="organization/functions/#advanced-uses"><code>stacking</code></a> 
+<a href="organization/functions/#wrapping-the-call"><code>wrapping</code></a></p>
+<p data-advanced="true"><a href="organization/functions/#generators"><strong><code>generators</code></strong></a>: 
+<a href="organization/functions/#generator-expressions"><code>generator expressions</code></a>
+<a href="organization/functions/#memory-efficiency"><code>memory</code></a> 
+<a href="organization/functions/#yield-vs-return"><code>yield</code></a> </p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 10.96a.985.985 0 0 1-.37-1.37L3.13 7c.11-.2.28-.34.47-.42l7.83-4.4c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.19.1.35.26.44.46l1.45 2.52c.28.48.11 1.09-.36 1.36l-1 .58v4.96c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.99.99 0 0 1 3 16.5v-5.54c-.3.17-.68.18-1 0m10-6.81v6.7l5.96-3.35zM5 15.91l6 3.38v-6.71L5 9.21zm14 0v-3.22l-5 2.9c-.33.18-.7.17-1 .01v3.69zm-5.15-2.55 6.28-3.63-.58-1.01-6.28 3.63z"/></svg></span> <a href="organization/classes/"><strong>Classes</strong></a></p>
+<p>Bundle related values and functions to a reusable blueprint for similar objects.</p>
+<p><a href="organization/classes/#defining-a-class"><strong><code>class</code></strong></a>: 
+<a href="organization/classes/#the-__init__-method"><code>__init__()</code></a> 
+<a href="organization/classes/#class-attributes"><code>class attributes</code></a> 
+<a href="organization/classes/#instance-attributes"><code>instance attributes</code></a> 
+<a href="organization/classes/#object-methods"><code>methods</code></a> 
+<a href="organization/classes/#the-self-parameter"><code>self</code></a> </p>
+<p data-advanced="true"><a href="organization/classes/#method-decorators"><strong><code>method decorators</code></strong></a>: 
+<a href="organization/classes/#classmethod"><code>@classmethod</code></a> 
+<a href="organization/classes/#property"><code>@property</code></a> 
+<a href="organization/classes/#staticmethod"><code>@staticmethod</code></a> </p>
+<p><a href="organization/classes/#inheritance"><strong><code>inheritance</code></strong></a>: 
+<a href="organization/classes/#adding-attributes-and-methods"><code>adding attributes and methods</code></a> 
+<a href="organization/classes/#overriding-__init__"><code>__init__()</code></a> 
+<a href="organization/classes/#overriding-methods"><code>overriding</code></a> 
+<a href="organization/classes/#using-super"><code>super()</code></a> </p>
+<p data-advanced="true"><a href="organization/classes/#multiple-inheritance"><code>multiple inheritance</code></a> </p>
+<p data-advanced="true"><a href="organization/classes/#polymorphism"><strong><code>polymorphism</code></strong></a>: 
+<a href="organization/classes/#polymorphism-via-inheritance"><code>inheritance</code></a> 
+<a href="organization/classes/#duplicate-method-names"><code>duplicate method names</code></a> </p>
+<p data-advanced="true"><a href="organization/classes/#encapsulation"><strong><code>encapsulation</code></strong></a>: 
+<a href="organization/classes/#controlled-access-with-property"><code>@property</code></a> 
+<a href="organization/classes/#double-underscore"><code>double underscore</code></a> 
+<a href="organization/classes/#single-underscore"><code>single underscore</code></a> </p>
+<p data-advanced="true"><a href="organization/classes/#operator-overloading"><strong><code>operator overloading</code></strong></a>: 
+<a href="organization/classes/#arithmetic-with-__add__"><code>__add__</code></a> 
+<a href="organization/classes/#comparing-with-__eq__-and-__lt__"><code>__eq__ and __lt__</code></a> </p>
+<p data-advanced="true"><a href="organization/classes/#dataclasses"><strong><code>dataclasses</code></strong></a></p>
+<p data-advanced="true"><a href="organization/classes/#abstract-base-classes"><strong><code>abstract base classes</code></strong></a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-category">
+<h4 class="pt-homepage-heading" id="external-files-and-resources">External files and resources</h4>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14 12-4-4v3H2v2h8v3m10 2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3h2V6h12v12H6v-3H4v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2"/></svg></span> <a href="resources/modules/"><strong>Modules &amp; Imports</strong></a></p>
+<p>Splitting code across files, and using someone else's code.</p>
+<p><a href="resources/modules/#importing-modules"><strong><code>import</code></strong></a>: 
+<a href="resources/modules/#as"><code>as</code></a> 
+<a href="resources/modules/#from"><code>from</code></a> 
+<a href="resources/modules/#import"><code>import</code></a> 
+<a href="resources/modules/#order-of-multiple-imports"><code>import order</code></a> 
+<a href="resources/modules/#nested-paths"><code>nested paths</code></a> 
+<a href="resources/modules/#packages"><code>packages</code></a> </p>
+<p><a href="resources/modules/#creating-your-own-module"><strong><code>your own module</code></strong></a>: 
+<a href="resources/modules/#the-main-guard"><code>main guard</code></a> </p>
+<p><a href="resources/modules/#modules-vs-packages-vs-libraries"><strong><code>module, package, library</code></strong></a></p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2h7v5h5v11H6zm2 8v2h8v-2zm0 4v2h5v-2z"/></svg></span> <a href="resources/files/"><strong>Reading &amp; Writing Files</strong></a></p>
+<p>Read and write text files on your computer.</p>
+<p><a href="resources/files/#opening-and-closing-files"><strong><code>open</code></strong></a>: 
+<a href="resources/files/#modes-options"><code>modes</code></a> 
+<a href="resources/files/#file-paths"><code>paths</code></a> 
+<a href="resources/files/#with"><code>with</code></a></p>
+<p><a href="resources/files/#read"><strong><code>read()</code></strong></a>: 
+<a href="resources/files/#r-read-existing"><code>existing</code></a> 
+<a href="resources/files/#functions"><code>functions</code></a> 
+<a href="resources/files/#modes"><code>modes</code></a> 
+<a href="resources/files/#whole-file"><code>read()</code></a> 
+<a href="resources/files/#by-line"><code>readline()</code></a> 
+<a href="resources/files/#by-line"><code>readlines()</code></a> 
+<a href="resources/files/#seek-and-tell"><code>seek()</code></a> 
+<a href="resources/files/#seek-and-tell"><code>tell()</code></a></p>
+<p><a href="resources/files/#write"><strong><code>write()</code></strong></a>: 
+<a href="resources/files/#a-append"><code>append</code></a> 
+<a href="resources/files/#x-create"><code>create</code></a> 
+<a href="resources/files/#functions_1"><code>functions</code></a> 
+<a href="resources/files/#modes_1"><code>modes</code></a> 
+<a href="resources/files/#w-overwrite"><code>overwrite</code></a> 
+<a href="resources/files/#single-string"><code>write()</code></a> 
+<a href="resources/files/#multiple-strings"><code>writelines()</code></a></p>
+<p><a href="resources/files/#related-libraries"><strong><code>related libraries</code></strong></a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-category">
+<h4 class="pt-homepage-heading" id="robust-programming-practices">Robust programming practices</h4>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22A10 10 0 0 1 2 12 10 10 0 0 1 12 2c5.5 0 10 4 10 9a6 6 0 0 1-6 6h-1.8c-.3 0-.5.2-.5.5 0 .1.1.2.1.3.4.5.6 1.1.6 1.7.1 1.4-1 2.5-2.4 2.5m0-18a8 8 0 0 0-8 8 8 8 0 0 0 8 8c.3 0 .5-.2.5-.5 0-.2-.1-.3-.1-.4-.4-.5-.6-1-.6-1.6 0-1.4 1.1-2.5 2.5-2.5H16a4 4 0 0 0 4-4c0-3.9-3.6-7-8-7m-5.5 6c.8 0 1.5.7 1.5 1.5S7.3 13 6.5 13 5 12.3 5 11.5 5.7 10 6.5 10m3-4c.8 0 1.5.7 1.5 1.5S10.3 9 9.5 9 8 8.3 8 7.5 8.7 6 9.5 6m5 0c.8 0 1.5.7 1.5 1.5S15.3 9 14.5 9 13 8.3 13 7.5 13.7 6 14.5 6m3 4c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5.7-1.5 1.5-1.5"/></svg></span> <a href="practices/style/"><strong>Style</strong></a></p>
+<p>Readable Python code, and polished UI.</p>
+<p><a href="practices/style/#pep-8-style-guide"><strong><code>PEP 8</code></strong></a>: 
+<a href="practices/style/#blank-lines"><code>blank lines</code></a> 
+<a href="practices/style/#docstrings"><code>docstrings</code></a> 
+<a href="practices/style/#naming"><code>naming</code></a> 
+<a href="practices/style/#whitespace"><code>whitespace</code></a> </p>
+<p data-advanced="true"><a href="practices/style/#comments"><code>comments</code></a> 
+<a href="practices/style/#constants"><code>constants</code></a> 
+<a href="practices/style/#indentation"><code>indentation</code></a> 
+<a href="practices/style/#file-order"><code>order</code></a> 
+<a href="practices/style/#quote-style"><code>quote style</code></a> </p>
+<p><a href="practices/style/#linters-and-formatters"><strong><code>Linters, formatters</code></strong></a></p>
+<p><a href="practices/style/#pythonic-patterns"><strong><code>Pythonic patterns</code></strong></a>: 
+<a href="practices/style/#mutable-default-arguments"><code>mutable defaults</code></a>
+<a href="practices/style/#is-none-instead-of-none"><code>is None</code></a></p>
+<p data-advanced="true"><a href="practices/style/#truthy-checks"><code>truthy checks</code></a> 
+<a href="practices/style/#enumerate-instead-of-range"><code>enumerate()</code></a> </p>
+<p data-advanced="true"><a href="practices/style/#efficiency"><strong><code>Efficiency</code></strong></a>
+<a href="practices/style/#big-o-notation"><code>big O</code></a>
+<a href="practices/style/#common-optimizations"><code>common optimizations</code></a>
+<a href="practices/style/#time-and-space"><code>time</code></a> 
+<a href="practices/style/#time-and-space"><code>space</code></a></p>
+<p><a href="practices/style/#polished-ux"><strong><code>Polished UX</code></strong></a>: 
+<a href="practices/style/#input-validation"><code>input validation</code></a> 
+<a href="practices/style/#menus"><code>menus</code></a> 
+<a href="practices/style/#randomize-messages"><code>randomize</code></a></p>
+<p><a href="practices/style/#polished-ui"><strong><code>Polished UI</code></strong></a>: 
+<a href="practices/style/#color-styling"><code>background</code></a> 
+<a href="practices/style/#color-styling"><code>bold</code></a> 
+<a href="practices/style/#escape-sequences"><code>escape sequences</code></a> 
+<a href="practices/style/#color-styling"><code>color</code></a> 
+<a href="practices/style/#color-styling"><code>highlighting</code></a> 
+<a href="practices/style/#multi-line-strings"><code>multi-line strings</code></a> 
+<a href="practices/style/#formatting-variables"><code>formatting variables</code></a> 
+<a href="practices/style/#color-styling"><code>underline</code></a> 
+<a href="practices/style/#unicode-symbols"><code>unicode symbols</code></a> 
+<a href="practices/style/#dividers"><code>dividers</code></a> 
+<a href="practices/style/#boxes"><code>boxes</code></a> 
+<a href="practices/style/#progress-bars"><code>progress bars</code></a></p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 8h-2.81c-.45-.8-1.07-1.5-1.82-2L17 4.41 15.59 3l-2.17 2.17a6 6 0 0 0-2.83 0L8.41 3 7 4.41 8.62 6c-.75.5-1.36 1.21-1.81 2H4v2h2.09c-.06.33-.09.66-.09 1v1H4v2h2v1c0 .34.03.67.09 1H4v2h2.81A5.99 5.99 0 0 0 15 20.18c.91-.52 1.67-1.28 2.19-2.18H20v-2h-2.09c.06-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.03-.67-.09-1H20zm-4 7a4 4 0 0 1-4 4 4 4 0 0 1-4-4v-4a4 4 0 0 1 4-4 4 4 0 0 1 4 4zm-2-5v2h-4v-2zm-4 4h4v2h-4z"/></svg></span> <a href="practices/errors/"><strong>Errors</strong></a></p>
+<p>Resolve bugs, read and utilize exceptions.</p>
+<p><a href="practices/errors/#kinds-of-errors"><strong><code>kinds</code></strong></a>: 
+<a href="practices/errors/"><code>bugs</code></a> 
+<a href="practices/errors/"><code>exceptions</code></a> 
+<a href="practices/errors/#logic-errors"><code>logic errors</code></a> 
+<a href="practices/errors/#runtime-errors"><code>runtime errors</code></a> 
+<a href="practices/errors/#syntax-errors"><code>syntax errors</code></a> </p>
+<p><a href="practices/errors/#fixing-errors"><strong><code>fixing</code></strong></a>: 
+<a href="practices/errors/#debugger-tool"><code>debugger tool</code></a> 
+<a href="practices/errors/#debugging-strategies"><code>debugging strategies</code></a> 
+<a href="practices/errors/#isolate-the-problem"><code>isolate problems</code></a> 
+<a href="practices/errors/#print-debugging"><code>print debugging</code></a> 
+<a href="practices/errors/#read-it-out-loud"><code>rubber duck debugging</code></a> 
+<a href="practices/errors/#reading-a-syntax-error-message"><code>syntax error message</code></a> 
+<a href="practices/errors/#detect-errors-with-testing"><code>testing</code></a> 
+<a href="practices/errors/#flag-as-todofixme"><code>TODO / FIXME</code></a> 
+<a href="practices/errors/#reading-a-traceback"><code>tracebacks</code></a> </p>
+<p><a href="practices/errors/#handling-errors"><strong><code>handling</code></strong></a>: 
+<a href="practices/errors/#assert-a-condition"><code>assert</code></a> 
+<a href="practices/errors/#finally"><code>else</code></a> 
+<a href="practices/errors/#finally"><code>finally</code></a> 
+<a href="practices/errors/#raise-an-exception"><code>raise</code></a> 
+<a href="practices/errors/#catch-with-tryexcept"><code>try/except</code></a> </p>
+</li>
+</ul>
+</div>
+</div>
+<h1 id="add-on-libraries">Add-On Libraries</h1>
+<div class="pt-category pt-category--wide pt-lib--5">
+<h4 class="pt-homepage-heading" id="utilities">Utilities</h4>
+<div class="grid cards">
+<ul>
+<li>
+<p data-advanced="card"><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 5v14h2v2H3V3h4v2zm15 2H7v2h13zm0 4H7v2h13zm0 4H7v2h13z"/></svg></span> <a href="libraries/collections/"><strong>collections</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--builtin" href="libraries/collections/" title="Built-in — included with Python"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5zm-4.28 11.79c-.4 0-.72.3-.72.89s.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68zM9.14 5.71c.4 0 .72-.3.72-.89s-.32-.71-.72-.71c-.39 0-.71.12-.71.71s.32.89.71.89"/></svg></span></a> </p>
+<p>Specialized containers with advanced functionality.</p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 13h1.5v2.82l2.44 1.41-.75 1.3L15 16.69zm4-5H5v11h4.67c-.43-.91-.67-1.93-.67-3a7 7 0 0 1 7-7c1.07 0 2.09.24 3 .67zM5 21a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8V1h2v2h1a2 2 0 0 1 2 2v6.1c1.24 1.26 2 2.99 2 4.9a7 7 0 0 1-7 7c-1.91 0-3.64-.76-4.9-2zm11-9.85A4.85 4.85 0 0 0 11.15 16c0 2.68 2.17 4.85 4.85 4.85A4.85 4.85 0 0 0 20.85 16c0-2.68-2.17-4.85-4.85-4.85"/></svg></span> <a href="libraries/datetime/"><strong>datetime</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--builtin" href="libraries/datetime/" title="Built-in — included with Python"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5zm-4.28 11.79c-.4 0-.72.3-.72.89s.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68zM9.14 5.71c.4 0 .72-.3.72-.89s-.32-.71-.72-.71c-.39 0-.71.12-.71.71s.32.89.71.89"/></svg></span></a> </p>
+<p>Calculating and formatting dates and times.</p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 3c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm6.24 3H19v2h-6.24L10 18H8l-1.75-6H5v-2h2.75L9 14.28zM14 10.59l1.79 1.79 1.8-1.79L19 12l-1.79 1.79 1.79 1.8L17.59 17l-1.8-1.79L14 17l-1.41-1.41 1.79-1.8L12.59 12z"/></svg></span> <a href="libraries/math/"><strong>math</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--builtin" href="libraries/math/" title="Built-in — included with Python"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5zm-4.28 11.79c-.4 0-.72.3-.72.89s.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68zM9.14 5.71c.4 0 .72-.3.72-.89s-.32-.71-.72-.71c-.39 0-.71.12-.71.71s.32.89.71.89"/></svg></span></a> </p>
+<p>Rounding, roots, constants, and logarithms.</p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.78 3h-8.56C10.55 3 10 3.55 10 4.22V8h6v6h3.78c.67 0 1.22-.55 1.22-1.22V4.22C21 3.55 20.45 3 19.78 3m-7.34 3.67a1.23 1.23 0 1 1 0-2.46 1.23 1.23 0 0 1 1.23 1.23c0 .68-.55 1.23-1.23 1.23m6.12 6.11a1.23 1.23 0 1 1-.02-2.46c.68-.01 1.23.54 1.24 1.24-.01.67-.55 1.21-1.22 1.22m0-6.11a1.23 1.23 0 1 1-.02-2.46 1.231 1.231 0 0 1 .02 2.46M4.22 10h8.56A1.22 1.22 0 0 1 14 11.22v8.56c0 .67-.55 1.22-1.22 1.22H4.22C3.55 21 3 20.45 3 19.78v-8.56c0-.67.55-1.22 1.22-1.22m4.28 4.28c-.67 0-1.22.55-1.22 1.22s.55 1.22 1.22 1.22 1.22-.55 1.22-1.22a1.22 1.22 0 0 0-1.22-1.22m-3.06-3.06c-.67 0-1.22.55-1.22 1.22a1.22 1.22 0 0 0 1.22 1.22c.67 0 1.22-.55 1.22-1.22s-.55-1.22-1.22-1.22m6.11 6.11c-.67 0-1.22.55-1.22 1.22s.55 1.22 1.22 1.22a1.22 1.22 0 0 0 1.22-1.22c0-.67-.54-1.21-1.21-1.22z"/></svg></span> <a href="libraries/random/"><strong>random</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--builtin" href="libraries/random/" title="Built-in — included with Python"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5zm-4.28 11.79c-.4 0-.72.3-.72.89s.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68zM9.14 5.71c.4 0 .72-.3.72-.89s-.32-.71-.72-.71c-.39 0-.71.12-.71.71s.32.89.71.89"/></svg></span></a> </p>
+<p>Random numbers, random picks, shuffled order.</p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19.31 18.9 3.08 3.1L21 23.39l-3.12-3.07c-.69.43-1.51.68-2.38.68-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5 4.5 2 4.5 4.5c0 .88-.25 1.71-.69 2.4m-3.81.1a2.5 2.5 0 0 0 0-5 2.5 2.5 0 0 0 0 5M21 4v2H3V4zM3 16v-2h6v2zm0-5V9h18v2h-2.03c-1.01-.63-2.2-1-3.47-1s-2.46.37-3.47 1z"/></svg></span> <a href="libraries/re/"><strong>re</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--builtin" href="libraries/re/" title="Built-in — included with Python"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5zm-4.28 11.79c-.4 0-.72.3-.72.89s.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68zM9.14 5.71c.4 0 .72-.3.72-.89s-.32-.71-.72-.71c-.39 0-.71.12-.71.71s.32.89.71.89"/></svg></span></a> </p>
+<p>Regular expressions: searching, extracting, and replacing text by pattern.</p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg></span> <a href="libraries/time/"><strong>time</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--builtin" href="libraries/time/" title="Built-in — included with Python"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5zm-4.28 11.79c-.4 0-.72.3-.72.89s.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68zM9.14 5.71c.4 0 .72-.3.72-.89s-.32-.71-.72-.71c-.39 0-.71.12-.71.71s.32.89.71.89"/></svg></span></a> </p>
+<p>Reading the system clock, pausing execution, and measuring elapsed time.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-category pt-category--wide pt-lib--4">
+<h4 class="pt-homepage-heading" id="data-analysis">Data analysis</h4>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8zm4 18H6V4h7v5h5zm-8-1 2-4H9v-5h6v5l-2 4z"/></svg></span> <a href="libraries/csv/"><strong>csv</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--builtin" href="libraries/csv/" title="Built-in — included with Python"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5zm-4.28 11.79c-.4 0-.72.3-.72.89s.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68zM9.14 5.71c.4 0 .72-.3.72-.89s-.32-.71-.72-.71c-.39 0-.71.12-.71.71s.32.89.71.89"/></svg></span></a> </p>
+<p>Reading and writing spreadsheets.</p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m16 11.78 4.24-7.33 1.73 1-5.23 9.05-6.51-3.75L5.46 19H22v2H2V3h2v14.54L9.5 8z"/></svg></span> <a href="libraries/matplotlib/"><strong>matplotlib</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--third-party" href="libraries/matplotlib/" title="Third-party — install separately with pip"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 5v6h1.17L12 13.17 9.83 11H11V5zm2-2H9v6H5l7 7 7-7h-4zm4 15H5v2h14z"/></svg></span></a> </p>
+<p>Charts and plots: line, bar, and scatter, built directly from plain Python data.</p>
+</li>
+<li>
+<p data-advanced="card"><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 2h4v2H4v16h2v2H2zm18 2h-2V2h4v20h-4v-2h2zM9 5h1v5h1v1H8v-1h1V6l-1 .5v-1zm6 8h1v5h1v1h-3v-1h1v-4l-1 .5v-1zm-6 0c1.1 0 2 1.34 2 3s-.9 3-2 3-2-1.34-2-3 .9-3 2-3m0 1c-.55 0-1 .9-1 2s.45 2 1 2 1-.9 1-2-.45-2-1-2m6-9c1.1 0 2 1.34 2 3s-.9 3-2 3-2-1.34-2-3 .9-3 2-3m0 1c-.55 0-1 .9-1 2s.45 2 1 2 1-.9 1-2-.45-2-1-2"/></svg></span> <a href="libraries/numpy/"><strong>NumPy</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--third-party" href="libraries/numpy/" title="Third-party — install separately with pip"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 5v6h1.17L12 13.17 9.83 11H11V5zm2-2H9v6H5l7 7 7-7h-4zm4 15H5v2h14z"/></svg></span></a> </p>
+<p>Fast numeric arrays, with math applied to a whole array at once instead of item by item.</p>
+</li>
+<li>
+<p data-advanced="card"><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m0 4v4h6V8zm8 0v4h6V8zm-8 6v4h6v-4zm8 0v4h6v-4z"/></svg></span> <a href="libraries/pandas/"><strong>pandas</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--third-party" href="libraries/pandas/" title="Third-party — install separately with pip"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 5v6h1.17L12 13.17 9.83 11H11V5zm2-2H9v6H5l7 7 7-7h-4zm4 15H5v2h14z"/></svg></span></a> </p>
+<p>Tabular data: rows and columns, like a spreadsheet, built on top of NumPy.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-category pt-category--wide pt-lib--2">
+<h4 class="pt-homepage-heading" id="apis">APIs</h4>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 3h2v2H5v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5h2v2H5c-1.07-.27-2-.9-2-2v-4a2 2 0 0 0-2-2H0v-2h1a2 2 0 0 0 2-2V5a2 2 0 0 1 2-2m14 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3zm-7 12a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m8 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1"/></svg></span> <a href="libraries/json/"><strong>json</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--builtin" href="libraries/json/" title="Built-in — included with Python"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5zm-4.28 11.79c-.4 0-.72.3-.72.89s.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68zM9.14 5.71c.4 0 .72-.3.72-.89s-.32-.71-.72-.71c-.39 0-.71.12-.71.71s.32.89.71.89"/></svg></span></a> </p>
+<p>Reading and writing JSON data: nested dicts and lists, saved to a file or a string.</p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.46 19C9 21.07 6.15 21.59 4.09 20.15c-2.05-1.44-2.53-4.31-1.09-6.4a4.59 4.59 0 0 1 3.58-1.98l.05 1.43c-.91.07-1.79.54-2.36 1.36-1 1.44-.69 3.38.68 4.35 1.38.96 3.31.59 4.31-.84.31-.45.49-.94.56-1.44v-1.01l5.58-.04.07-.11c.53-.92 1.68-1.24 2.58-.72a1.9 1.9 0 0 1 .68 2.6c-.53.91-1.69 1.23-2.59.71-.41-.23-.7-.6-.83-1.02l-4.07.02a5 5 0 0 1-.78 1.94m7.28-7.14c2.53.31 4.33 2.58 4.02 5.07-.31 2.5-2.61 4.27-5.14 3.96a4.63 4.63 0 0 1-3.43-2.21l1.24-.72a3.22 3.22 0 0 0 2.32 1.45c1.75.21 3.3-.98 3.51-2.65s-1.03-3.2-2.76-3.41c-.54-.06-1.06.01-1.53.18l-.85.44-2.58-4.77h-.22a1.906 1.906 0 0 1-1.85-1.95c.03-1.04.93-1.85 1.98-1.81 1.05.06 1.88.91 1.85 1.95-.02.44-.19.84-.46 1.15l1.9 3.51c.62-.2 1.3-.27 2-.19M8.25 9.14c-1-2.35.06-5.04 2.37-6.02 2.32-.98 5 .13 6 2.48.59 1.37.47 2.87-.2 4.07l-1.24-.72c.42-.81.49-1.8.09-2.73-.68-1.6-2.49-2.37-4.04-1.72-1.56.66-2.26 2.5-1.58 4.1.28.66.75 1.17 1.32 1.51l.39.21-3.07 4.99c.03.05.07.11.1.19.49.91.15 2.06-.77 2.55-.91.49-2.06.13-2.56-.81-.49-.93-.15-2.08.77-2.57.39-.21.82-.26 1.23-.17l2.31-3.77c-.47-.43-.87-.97-1.12-1.59"/></svg></span> <a href="libraries/requests/"><strong>requests</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--third-party" href="libraries/requests/" title="Third-party — install separately with pip"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 5v6h1.17L12 13.17 9.83 11H11V5zm2-2H9v6H5l7 7 7-7h-4zm4 15H5v2h14z"/></svg></span></a> </p>
+<p>Fetching data over the internet, like asking a website or API for information.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-category pt-category--wide pt-lib--1">
+<h4 class="pt-homepage-heading" id="web-scraping">Web scraping</h4>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 1.5a3.35 3.35 0 0 0 0 6.7h1.53c.39 0 .76.1 1.08.3h2.02c-.58-1.05-1.77-1.75-3.1-1.75H8c-1 0-1.85-.98-1.85-2S7 3 8 3zm4.85.5c0 1-.85 1.85-1.85 1.85v1.5c1.92 0 3.5 1.35 3.89 3.15h1.53a5.54 5.54 0 0 0-3.07-4.12c.62-.61 1-1.45 1-2.38zM3 10v2h2v7a2 2 0 0 0 2 2h10c1.11 0 2-.89 2-2v-7h2v-2zm4 2h10v7H7z"/></svg></span> <a href="libraries/beautifulsoup/"><strong>BeautifulSoup</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--third-party" href="libraries/beautifulsoup/" title="Third-party — install separately with pip"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 5v6h1.17L12 13.17 9.83 11H11V5zm2-2H9v6H5l7 7 7-7h-4zm4 15H5v2h14z"/></svg></span></a> </p>
+<p>Parsing HTML: finding tags, reading attributes and text, and turning a page into structured data.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-category pt-category--wide pt-lib--1">
+<h4 class="pt-homepage-heading" id="image-editing">Image editing</h4>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-5.04 9.29-2.75 3.54-1.96-2.36L6.5 17h11z"/></svg></span> <a href="libraries/pillow/"><strong>Pillow</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--third-party" href="libraries/pillow/" title="Third-party — install separately with pip"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 5v6h1.17L12 13.17 9.83 11H11V5zm2-2H9v6H5l7 7 7-7h-4zm4 15H5v2h14z"/></svg></span></a> </p>
+<p>Opening, editing, and saving images, built around one Image <abbr title="A specific thing built from a class, with its own independent copy of that class's data">object</abbr>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-category pt-category--wide pt-lib--1">
+<h4 class="pt-homepage-heading" id="desktop-uis">Desktop UIs</h4>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2m0 18H3V6h18z"/></svg></span> <a href="libraries/tkinter/"><strong>Tkinter</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--builtin" href="libraries/tkinter/" title="Built-in — included with Python"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5zm-4.28 11.79c-.4 0-.72.3-.72.89s.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68zM9.14 5.71c.4 0 .72-.3.72-.89s-.32-.71-.72-.71c-.39 0-.71.12-.71.71s.32.89.71.89"/></svg></span></a> </p>
+<p>Creating desktop applications: text, buttons, dropdowns, forms, output, etc.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-category pt-category--wide pt-lib--1">
+<h4 class="pt-homepage-heading" id="games">Games</h4>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.47 5.95c.48-.28 1-.51 1.53-.67V4c0-1.1.87-2 1.97-2.03C13.13 2 14 2.9 14 4v1.28c.53.17 1.05.39 1.53.67l-1.6 2.12h-3.86zM19 12c0 .5-.05.95-.14 1.4l-2.53-.78-1.19-3.66 1.6-2.11q.645.6 1.14 1.35c.79-.07 1.55.05 2.23.39 1.03.53 1.73 1.54 1.89 2.69l-3 .36zM5 12v-.35l-3-.37c.16-1.15.86-2.16 1.89-2.69a3.54 3.54 0 0 1 2.19-.33c.33-.51.71-.98 1.16-1.39l1.62 2.08-1.19 3.67-2.53.78C5.05 12.95 5 12.5 5 12m5.24-2.43h3.52l1.09 3.36L12 15l-2.85-2.07zm-2.11 4.48 3.12 2.26v2.65c-.57-.06-1.12-.19-1.63-.38l-1.23 2.76a3.49 3.49 0 0 1-2.02-2.58c-.14-.76-.02-1.52.32-2.2-.45-.52-.82-1.1-1.1-1.74zm7.74 0 2.54.77c-.28.64-.65 1.22-1.1 1.74.34.68.46 1.44.33 2.2a3.52 3.52 0 0 1-2.03 2.58l-1.22-2.76c-.53.19-1.06.36-1.64.42v-2.69z"/></svg></span> <a href="libraries/turtle/"><strong>turtle</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--builtin" href="libraries/turtle/" title="Built-in — included with Python"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5zm-4.28 11.79c-.4 0-.72.3-.72.89s.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68zM9.14 5.71c.4 0 .72-.3.72-.89s-.32-.71-.72-.71c-.39 0-.71.12-.71.71s.32.89.71.89"/></svg></span></a> </p>
+<p>Build small movement-based games with a pen cursor.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-category pt-category--wide pt-lib--1" data-advanced="true">
+<h4 class="pt-homepage-heading" id="testing">Testing</h4>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 2v2h1v14a4 4 0 0 0 4 4 4 4 0 0 0 4-4V4h1V2zm4 14c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1m2-4c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1m1-5h-4V4h4z"/></svg></span> <a href="libraries/pytest/"><strong>pytest</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--third-party" href="libraries/pytest/" title="Third-party — install separately with pip"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 5v6h1.17L12 13.17 9.83 11H11V5zm2-2H9v6H5l7 7 7-7h-4zm4 15H5v2h14z"/></svg></span></a> </p>
+<p>Writing and running tests: assertions, fixtures, and parametrizing.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-category pt-category--wide pt-lib--1" data-advanced="true">
+<h4 class="pt-homepage-heading" id="computer-vision">Computer vision</h4>
+<div class="grid cards">
+<ul>
+<li>
+<p data-advanced="card"><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 11.75A1.25 1.25 0 0 0 7.75 13 1.25 1.25 0 0 0 9 14.25 1.25 1.25 0 0 0 10.25 13 1.25 1.25 0 0 0 9 11.75m6 0A1.25 1.25 0 0 0 13.75 13 1.25 1.25 0 0 0 15 14.25 1.25 1.25 0 0 0 16.25 13 1.25 1.25 0 0 0 15 11.75M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18a8 8 0 0 1-8-8 4 4 0 0 1 0-.86 10.05 10.05 0 0 0 5.26-5.37A9.99 9.99 0 0 0 17.42 10c.76 0 1.51-.09 2.25-.26 1.25 4.26-1.17 8.69-5.41 9.93-.76.22-1.5.33-2.26.33M0 2a2 2 0 0 1 2-2h4v2H2v4H0zm24 20a2 2 0 0 1-2 2h-4v-2h4v-4h2zM2 24a2 2 0 0 1-2-2v-4h2v4h4v2zM22 0a2 2 0 0 1 2 2v4h-2V2h-4V0z"/></svg></span> <a href="libraries/opencv/"><strong>OpenCV</strong></a> 
+<a class="pt-lib-badge pt-lib-badge--third-party" href="libraries/opencv/" title="Third-party — install separately with pip"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 5v6h1.17L12 13.17 9.83 11H11V5zm2-2H9v6H5l7 7 7-7h-4zm4 15H5v2h14z"/></svg></span></a> </p>
+<p>Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+        
+          
+          <a href="start/workspace/" class="md-footer__link md-footer__link--next" aria-label="Next: Workspace">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Workspace
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; <span id="copyright-year">2026</span> Luka
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="/about/" target="_blank" rel="noopener" title="About" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/privacy/" target="_blank" rel="noopener" title="Privacy policy" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5zm0 6c1.4 0 2.8 1.1 2.8 2.5V11c.6 0 1.2.6 1.2 1.3v3.5c0 .6-.6 1.2-1.3 1.2H9.2c-.6 0-1.2-.6-1.2-1.3v-3.5c0-.6.6-1.2 1.2-1.2V9.5C9.2 8.1 10.6 7 12 7m0 1.2c-.8 0-1.5.5-1.5 1.3V11h3V9.5c0-.8-.7-1.3-1.5-1.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/luka-sherman/python-field-guide" target="_blank" rel="noopener" title="Source on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.footer", "navigation.instant", "navigation.instant.prefetch", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "content.tooltips", "search.suggest"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="nested-tabs.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      
+        <script src="javascripts/pyodide_runner.js"></script>
+      
+        <script src="javascripts/copyright_year.js"></script>
+      
+        <script src="javascripts/external_links.js"></script>
+      
+        <script src="javascripts/homepage_header_title.js"></script>
+      
+        <script src="javascripts/cheatsheet_button.js"></script>
+      
+        <script src="javascripts/essentials_toggle.js"></script>
+      
+        <script src="javascripts/a11y_patches.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+        <script src="javascripts/mermaid_config.js"></script>
+      
+    
+  </body>
+</html>
