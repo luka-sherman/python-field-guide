@@ -196,35 +196,38 @@ this reason.
   anchor/link it can't resolve; treat a clean build as the actual pass/fail check for this list,
   since hand-checked slugs are easy to get subtly wrong (trailing punctuation, duplicate-heading
   suffixes, etc).
-- **Marking content "advanced" for the Simplify toggle** — the header's "Essentials" / "Advanced"
-  segmented control (both labels always visible, on every page) hides content marked
-  `data-advanced="true"`, at one of two granularities. Each spot that should hide is marked
-  directly, in its own markdown source — there's no derived/shared list, so a new advanced entry
-  needs tagging in every place it should disappear from:
+- **Marking content "advanced" for the Essentials/Advanced toggle** — the header's segmented
+  control (both labels always visible, on every page) is provided by the
+  `mkdocs-audience-toggle` plugin (configured under `plugins:` in `mkdocs.yml`; see
+  CLAUDE.md's "Planned extraction" section) and hides content marked `data-fcm-hide="essentials"`, at
+  one of two granularities. Each spot that should hide is marked directly, in its own markdown
+  source — there's no derived/shared list, so a new advanced entry needs tagging in every place
+  it should disappear from:
   - **A homepage keyword-link row** — the bolded keyword plus its row of related links (e.g.
     `functions.md#decorators` or `collections.md#sets`, in `index.md`) — append
-    `{: data-advanced="true" }` on its own line directly after the row, at the same indentation,
-    with no blank line before it (attr_list attaches it to that paragraph, which
-    `.simplify-active [data-advanced]` then hides).
+    `{: data-fcm-hide="essentials" }` on its own line directly after the row, at the same indentation,
+    with no blank line before it (attr_list attaches it to that paragraph, which the plugin then
+    hides directly).
   - **The matching heading on the actual content page** — e.g. `functions.md`'s
-    `## Decorators { data-advanced="true" }` — append `{ data-advanced="true" }` directly on the
-    heading line (same attr_list convention as `data-card-link="skip"` above). This hides that
+    `## Decorators { data-fcm-hide="essentials" }` — append `{ data-fcm-hide="essentials" }` directly on
+    the heading line (same attr_list convention as `data-card-link="skip"` above). This hides that
     heading, everything up to the next heading of the same or higher level, and its
     integrated-TOC sidebar entry, on that page specifically. Tag the homepage row and the
-    content-page heading independently — `docs/javascripts/essentials_toggle.js` doesn't infer one
-    from the other, by design (simpler and more robust than deriving a map at runtime).
-  - **A whole homepage card** (e.g. the OpenCV card) — append `{: data-advanced="card" }` the
+    content-page heading independently — the plugin doesn't infer one from the other, by design
+    (simpler and more robust than deriving a map at runtime).
+  - **A whole homepage card** (e.g. the OpenCV card) — append `{: data-fcm-hide="essentials" }` the
     same way, right after the card's first paragraph (the icon + title link, e.g.
-    `[__OpenCV__](...)`). `.simplify-active .grid.cards > ul > li:has(> p[data-advanced="card"])`
-    in `extra.css` walks up from that paragraph to hide the whole enclosing `<li>`. This one has
-    no content-page equivalent — it marks a whole linked page, not a section within one, so
-    there's nothing on that page itself to hide.
-  Which value to use, and what counts as advanced/niche vs. core, is a per-editor judgment call
-  — there's no test enforcing it either way. See `docs/javascripts/essentials_toggle.js` for the
-  toggle mechanism. A page can still show a *link* to a hidden section (e.g. `collections.md`'s
-  own cheat-sheet table links to `#tuples` even though the "Tuples" heading is hidden) —
-  following such a link automatically switches back to Complete and reveals the target, so this
-  doesn't need special-casing when adding new advanced content.
+    `[__OpenCV__](...)`) — attr_list can only attach it there, not to the enclosing `<li>`, so the
+    plugin alone would only hide that one line. `html[data-fcm-mode="essentials"] .grid.cards > ul
+    > li:has(> p[data-fcm-hide~="essentials"])` in `extra.css` walks up from that paragraph to hide
+    the whole enclosing `<li>` too. This one has no content-page equivalent — it marks a whole
+    linked page, not a section within one, so there's nothing on that page itself to hide.
+  Which spots to mark, and what counts as advanced/niche vs. core, is a per-editor judgment call
+  — there's no test enforcing it either way. See the `mkdocs-audience-toggle` plugin's own
+  README for the toggle mechanism itself. A page can still show a *link* to a hidden section (e.g.
+  `collections.md`'s own cheat-sheet table links to `#tuples` even though the "Tuples" heading is
+  hidden) — following such a link automatically switches back to Advanced and reveals the target,
+  so this doesn't need special-casing when adding new advanced content.
 
 ### Admonitions (`??? type "..."`)
 
@@ -249,7 +252,7 @@ Pick the existing type that matches the branch, don't invent new ones without a 
 | `??? info` | Defining a term/concept adjacent to the page but not the topic itself. |
 | `??? failure` | The negative counterpart to a `success` branch — "this didn't work, here's what to do about it" (e.g. workspace.md's "download Python here" branch when `python --version` doesn't show 3.x.x). |
 | `??? ai` | Opinion/meta content specifically about learning with or around AI (e.g. index.md's FAQ tabs on whether/how to use AI while learning) — not used for teaching content about Python itself. |
-| `??? efficiency` | A runtime/space aside naming the cost behind a choice already shown in prose (e.g. list vs. set membership, `sort()` vs. `sorted()`) — usually a Big O difference, occasionally a constant-factor one (`.get()` vs. two hash lookups, vectorized NumPy vs. a Python loop) where it's still worth flagging but doesn't change the O(...) class. Wrap it in `<div data-advanced="true" markdown="block">` on a page that participates in the Essentials/Advanced toggle (skip it on a page that doesn't, like the library reference pages), and close with a link to [style.md's "Efficiency"](docs/practices/style.md#efficiency) section. Formalizes a tradeoff the surrounding prose already states in plain language; doesn't introduce the tradeoff for the first time. |
+| `??? efficiency` | A runtime/space aside naming the cost behind a choice already shown in prose (e.g. list vs. set membership, `sort()` vs. `sorted()`) — usually a Big O difference, occasionally a constant-factor one (`.get()` vs. two hash lookups, vectorized NumPy vs. a Python loop) where it's still worth flagging but doesn't change the O(...) class. Wrap it in `<div data-fcm-hide="essentials" markdown="block">` on a page that participates in the Essentials/Advanced toggle (skip it on a page that doesn't, like the library reference pages), and close with a link to [style.md's "Efficiency"](docs/practices/style.md#efficiency) section. Formalizes a tradeoff the surrounding prose already states in plain language; doesn't introduce the tradeoff for the first time. |
 | `!!! example` | An always-open side-by-side comparison the reader is meant to see without a click, not a branch — e.g. "how to loop each type," showing every collection type's loop pattern in one visible table. |
 
 Default to collapsed (`???`), not always-open (`!!!`) — an always-open admonition competes with

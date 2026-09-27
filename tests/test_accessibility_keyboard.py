@@ -60,9 +60,9 @@ def test_no_positive_tabindex(page, site_url, path):
 
 def test_palette_toggle_is_keyboard_reachable(page, site_url):
     """The dark/light toggle must be operable without a mouse. docs/javascripts/
-    essentials_toggle.js replaces Material's native radios+labels with its own
+    theme_toggle.js replaces Material's native radios+labels with its own
     `.pt-theme-option` buttons (a two-segment sun/moon control, matching the
-    Essentials/Complete toggle) and hides the native form — so this checks the
+    Essentials/Advanced content-mode toggle) and hides the native form — so this checks the
     *replacement* buttons are real, labeled, visible controls and that Tab reaches
     one, rather than the native radios (which are now deliberately hidden)."""
     page.goto(site_url)

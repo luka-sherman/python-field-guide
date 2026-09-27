@@ -659,7 +659,7 @@ input:checked + .md-consent__settings {
   mask-image: var(--md-admonition-icon--python);
 }
 
-/* ---- Custom "efficiency" admonition for runtime/space asides (data-advanced only) ---- */
+/* ---- Custom "efficiency" admonition for runtime/space asides (data-fcm-hide="essentials" only) ---- */
 
 :root {
   --md-admonition-icon--efficiency: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11,15H6L13,1V9H18L11,23V15Z"/></svg>');
@@ -1057,9 +1057,15 @@ input:checked + .md-consent__settings {
   margin: 0.3rem 0 0.1rem;
 }
 
-/* "Essentials / Advanced" toggle (docs/javascripts/essentials_toggle.js)
-   — both options always visible, sliding highlight behind the active
-   one, next to the palette toggle. Shows on every page. */
+/* Light/dark toggle track (docs/javascripts/theme_toggle.js) — both
+   options always visible, sliding highlight behind the active one, next
+   to the palette toggle. Shows on every page.
+
+   The Essentials/Advanced content toggle used to share this same
+   .pt-simplify-* markup/CSS (two named options, one active at a time). It's
+   now the mkdocs-audience-toggle plugin's own #fcm-toggle, styled
+   below via that plugin's --fcm-* variables instead — see "Content mode
+   toggle" further down. */
 .pt-simplify-toggle {
   position: relative;
   display: inline-flex;
@@ -1094,7 +1100,6 @@ input:checked + .md-consent__settings {
   transition: transform 0.2s ease;
 }
 
-.pt-simplify-toggle[data-active="simplified"] .pt-simplify-highlight,
 .pt-simplify-toggle[data-active="light"] .pt-simplify-highlight {
   border-radius: 1rem 0 0 1rem;
   transform: translateX(100%);
@@ -1121,33 +1126,18 @@ input:checked + .md-consent__settings {
 
 /* Active option's text sits on the currentColor highlight, so it flips
    to the bg color for contrast; inactive stays plain currentColor. */
-.pt-simplify-toggle[data-active="simplified"] .pt-simplify-option[data-mode="simplified"],
-.pt-simplify-toggle[data-active="advanced"] .pt-simplify-option[data-mode="advanced"],
 .pt-simplify-toggle[data-active="light"] .pt-simplify-option[data-scheme="default"],
 .pt-simplify-toggle[data-active="dark"] .pt-simplify-option[data-scheme="slate"] {
   color: var(--pt-bg);
 }
 
-/* Icon for each option (Material Symbols "psychiatry" / "park", viewBox
-   0 -960 960 960), same mask-image technique as .pt-theme-option's
-   sun/moon. On desktop it leads the "Essentials"/"Advanced" word — a
-   ::before, same as .pt-theme-option's own icon and the toast's
-   .pt-mode-icon (see below), so all three read consistently as
-   "icon, then text" — matching Material's own "back to top" button
-   (`.md-top`: icon SVG, then the "Back to top" label). The option
-   button itself is a flex row (see .pt-simplify-option above), so
-   the icon centers vertically against the text the same way .pt-theme-
-   option's icon-only button centers its own icon — no vertical-align
-   fudging needed, and it can't drift out of sync between the two variants.
-   Below ~45em (matches this file's other mobile breakpoints) the words
-   get tight, so the label is visually clipped and the icon alone
-   represents the option — it stays in the DOM (not aria-hidden) so the
-   button's accessible name is unchanged for screen readers either way.
-   Sized smaller (0.7rem) than the toast's own .pt-mode-icon (1.2rem,
-   matching Material's "back to top" icon) — this icon sits inside the
-   1.2rem-tall toggle track itself, so it stays the toggle's own icon
-   size rather than the toast's. */
-.pt-simplify-option[data-mode]::before,
+/* Reusable sun/moon icon sizing, shared between .pt-theme-option's own
+   ::before (see below) and the toast's real .pt-mode-icon element
+   (docs/javascripts/theme_toggle.js's showToast) — same mask-image
+   technique, so both read as the exact same icon. Sized smaller (0.7rem)
+   than the toast's own override (1.2rem, matching Material's "back to
+   top" icon) since this one sits inside the 1.2rem-tall toggle track
+   itself. */
 .pt-mode-icon {
   content: "";
   display: inline-block;
@@ -1163,10 +1153,6 @@ input:checked + .md-consent__settings {
   mask-position: center;
 }
 
-.pt-simplify-option[data-mode]::before {
-  margin-right: 0.3rem;
-}
-
 /* Toast-only override: matches the size of Material's own "back to top"
    icon (`.md-icon svg`, 1.2rem), per the shared rule's comment above. */
 .pt-mode-icon {
@@ -1174,43 +1160,12 @@ input:checked + .md-consent__settings {
   height: 1.2rem;
 }
 
-.pt-simplify-option[data-mode="simplified"]::before,
-.pt-mode-icon[data-mode="simplified"] {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M450-130v-309h-20q-64 0-120.5-24.5T209-533q-44-45-66.5-104T120-760v-80h78.32Q260-840 317-815.5 374-791 419-746q33 34 54.5 76t30.5 89q7.65-11.9 16.82-22.95Q530-615 540-626q45-45 102-69.5T761.67-720H840v80q0 64-23.98 123T748-413q-45 45-101.56 69T528-320h-18v190h-60Zm1-370q0-61-20-113.5t-55-89q-35-36.5-86-57T180-780q0 63 18.5 115.5T252-575q42 45 90.5 60T451-500Zm59 120q60 0 111-19.5t86-56q35-36.5 54-89T780-660q-60 0-111 20.5T583-583q-43 45-58 94t-15 109Zm0 0Zm-59-120Z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M450-130v-309h-20q-64 0-120.5-24.5T209-533q-44-45-66.5-104T120-760v-80h78.32Q260-840 317-815.5 374-791 419-746q33 34 54.5 76t30.5 89q7.65-11.9 16.82-22.95Q530-615 540-626q45-45 102-69.5T761.67-720H840v80q0 64-23.98 123T748-413q-45 45-101.56 69T528-320h-18v190h-60Zm1-370q0-61-20-113.5t-55-89q-35-36.5-86-57T180-780q0 63 18.5 115.5T252-575q42 45 90.5 60T451-500Zm59 120q60 0 111-19.5t86-56q35-36.5 54-89T780-660q-60 0-111 20.5T583-583q-43 45-58 94t-15 109Zm0 0Zm-59-120Z'/%3E%3C/svg%3E");
-}
-
-.pt-simplify-option[data-mode="advanced"]::before,
-.pt-mode-icon[data-mode="advanced"] {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M538-80H423v-149H120l189-274h-95l266-377 266 377h-94l188 274H538v149ZM236-289h189-90 290-89 189-489Zm0 0h489L536-563h89L480-769 335-563h90L236-289Z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M538-80H423v-149H120l189-274h-95l266-377 266 377h-94l188 274H538v149ZM236-289h189-90 290-89 189-489Zm0 0h489L536-563h89L480-769 335-563h90L236-289Z'/%3E%3C/svg%3E");
-}
-
-@media (max-width: 45em) {
-  .pt-simplify-option[data-mode]::before {
-    margin-right: 0;
-  }
-
-  .pt-simplify-toggle:has(.pt-simplify-option[data-mode]) .pt-simplify-option {
-    padding: 0 0.4rem;
-  }
-
-  .pt-simplify-option[data-mode] .pt-simplify-label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-  }
-}
-
-/* Several of Material's own rules (.md-header__option, .md-typeset
-   details, .md-option:checked + label) beat the plain [hidden] { display:
-   none } UA rule on specificity, so an element we hide via JS (.hidden =
-   true) can silently stay visible — hit this three times now (the palette
-   form, admonitions under a hidden heading, the old knob). One global
-   override instead of chasing each element type.
+/* Several of Material's own rules (.md-header__option, .md-option:checked
+   + label) beat the plain [hidden] { display: none } UA rule on
+   specificity, so an element we hide via JS (.hidden = true) can silently
+   stay visible — hit this before (the palette form, hidden here via
+   theme_toggle.js). One global override instead of chasing each element
+   type.
    Excludes Material's own [data-md-component="sidebar"] (the mobile nav
    drawer, reused as .md-sidebar--primary): Material toggles its `hidden`
    attribute itself and reveals it via its own more-specific (but
@@ -1221,6 +1176,37 @@ input:checked + .md-consent__settings {
    different cause. */
 [hidden]:not([data-md-component="sidebar"]) {
   display: none !important;
+}
+
+/* Content mode toggle (Essentials/Advanced), from the
+   mkdocs-audience-toggle plugin configured in mkdocs.yml — see
+   CLAUDE.md's "Planned extraction" section. The plugin's own CSS
+   (audience_toggle.css) provides the track/highlight/option/icon
+   layout and mobile label-collapse; this site only overrides its --fcm-*
+   styling hooks to match the .pt-simplify-toggle look above, plus the
+   header spacing the plugin doesn't set for itself. */
+#fcm-toggle {
+  margin: 0.4rem 0.2rem;
+  --fcm-track-bg: var(--pt-bg);
+  --fcm-active-fg: var(--pt-bg);
+}
+
+/* The plugin's own confirmation toast (shown on switching content mode) —
+   matched to .pt-toast's look above (the light/dark toggle's own toast)
+   instead of the plugin's plain default, so both read as the same site
+   chrome element. */
+#fcm-toast {
+  border-radius: 1.6rem;
+  background-color: var(--md-default-bg-color);
+  color: var(--md-default-fg-color--light);
+  font-weight: 400;
+  line-height: 1.4;
+  box-shadow: var(--md-shadow-z2);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+#fcm-toast.fcm-toast--visible {
+  transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
 /* Light/dark toggle — shares .pt-simplify-toggle/-highlight/-option, but
@@ -1256,7 +1242,7 @@ input:checked + .md-consent__settings {
 }
 
 /* Same sun/moon icons, reusable on a real element (not a pseudo-element) —
-   used by the toast (docs/javascripts/essentials_toggle.js's showToast)
+   used by the toast (docs/javascripts/theme_toggle.js's showToast)
    for the light/dark toggle's own "Lights on"/"Lights off" message,
    keeping it visually consistent with .pt-theme-option's icon. */
 .pt-mode-icon[data-scheme="default"] {
@@ -1269,9 +1255,8 @@ input:checked + .md-consent__settings {
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
 }
 
-/* Disappearing confirmation toast for the Essentials/Advanced and
-   light/dark toggles (docs/javascripts/essentials_toggle.js's showToast).
-   Sits just below the header — right where the toggle that triggered it
+/* Disappearing confirmation toast for the light/dark toggle
+   (docs/javascripts/theme_toggle.js's showToast). Sits just below the header — right where the toggle that triggered it
    lives — rather than at the bottom of the screen, so it's immediately
    next to the control the reader just clicked. `top` itself is set inline
    by showToast() (the header's own height varies: ~48px on mobile, taller
@@ -1303,7 +1288,7 @@ input:checked + .md-consent__settings {
      the page content behind it. */
   pointer-events: none;
   /* Fade only — no slide/transform. The fade-out itself is slow and
-     gentle; showToast() in essentials_toggle.js keeps the fully-visible
+     gentle; showToast() in theme_toggle.js keeps the fully-visible
      hold time short instead, so the toast still clears the screen quickly
      overall. */
   transition: opacity 0.7s ease;
@@ -1326,10 +1311,9 @@ input:checked + .md-consent__settings {
 }
 
 /* Only add space below the title when there's actually a body line under
-   it (the Essentials/Advanced toast has one; the light/dark toast's title
-   is self-explanatory and passes no body — see showToast() in
-   essentials_toggle.js) — otherwise this margin just reads as extra
-   padding at the bottom of a one-line toast. */
+   it — the light/dark toast's own title is self-explanatory and always
+   passes no body (see showToast() in theme_toggle.js), so this only
+   matters if a future caller adds one. */
 .pt-toast__title:not(:last-child) {
   margin-bottom: 0.2rem;
 }
@@ -1338,13 +1322,15 @@ input:checked + .md-consent__settings {
   font-weight: 400;
 }
 
-.simplify-active [data-advanced] {
-  display: none;
-}
-
-/* data-advanced="card" hides the entire card, not just the marked paragraph
-   — walk up from whichever paragraph carries it to the enclosing <li>. */
-.simplify-active .grid.cards > ul > li:has(> p[data-advanced="card"]) {
+/* The mkdocs-audience-toggle plugin hides a marked element directly
+   (see mkdocs.yml) — but a homepage card's data-fcm-hide="essentials" marker
+   sits on its first paragraph (the icon/title line attr_list attaches to,
+   not the <li> — python-markdown's attr_list can't target a list item that
+   has more than one paragraph), so the plugin only hides that one line,
+   leaving the rest of the card behind as an empty box. Hide the whole
+   card here instead, keyed off the same marker + the mode the plugin
+   itself sets on <html>. */
+html[data-fcm-mode="essentials"] .grid.cards > ul > li:has(> p[data-fcm-hide~="essentials"]) {
   display: none;
 }
 
@@ -1394,10 +1380,10 @@ input:checked + .md-consent__settings {
   .pt-category--wide.pt-lib--5 { grid-column: span 4; } /* caps at the grid's own width, same as 4 */
 
   /* pt-lib--N above is sized for the full card count; Essentials mode
-     hides some, leaving boxes too wide. essentials_toggle.js recomputes the
+     hides some, leaving boxes too wide. theme_toggle.js recomputes the
      visible count into --pt-lib-span, overriding pt-lib--N here (same
      specificity, later in source) while active. */
-  .simplify-active .pt-category--wide {
+  html[data-fcm-mode="essentials"] .pt-category--wide {
     grid-column: span var(--pt-lib-span, 4);
   }
 }

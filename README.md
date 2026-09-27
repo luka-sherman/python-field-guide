@@ -117,12 +117,12 @@ A diagram renderer, which draws flowcharts and diagrams from a plain-text descri
 
 ### Essentials / Advanced toggle
 
-A two-option [switch](docs/javascripts/essentials_toggle.js) that lets a reader hide everything beyond a first-pass beginner curriculum. Content is opted into hiding by marking it `data-advanced="true"`:
+A two-option switch, provided by the [mkdocs-audience-toggle](https://github.com/lukasherman/mkdocs-audience-toggle) plugin (configured under `plugins:` in `mkdocs.yml`), that lets a reader hide everything beyond a first-pass beginner curriculum. Content is opted into hiding by marking it `data-fcm-hide="essentials"`:
 
 - On a `##`/`###` heading inside a content page (e.g. functions.md's `## Decorators`), it hides that heading plus every sibling up to the next heading of the same or higher level, and removes the matching entry from the `toc.integrate` sidebar — so there's no dead nav link to something that's hidden.
-- On a homepage card-grid row, it hides just that row; `data-advanced="card"` hides an entire homepage card instead, for a whole linked page rather than one section.
+- On a homepage card-grid row, it hides just that row. A whole homepage card hides too, once its first paragraph (the only one attr_list can attach the marker to) carries the marker — extra.css has a small `:has()` rule that extends that into hiding the entire `<li>`, since the plugin itself only hides the exact element marked.
 
-Each marking is independent — there's no shared list of "advanced" topics to keep in sync, just the attribute at each spot in the Markdown. State persists in `localStorage` and applies on every page (also settable via a `?simplified=true`/`false` URL param, for sharing a pre-set link). If a visible link points at a heading that's currently hidden (e.g. collections.md's cheat-sheet table linking to `#tuples`), following it flips the toggle back to Advanced and reveals the target instead of landing on nothing.
+Each marking is independent — there's no shared list of "advanced" topics to keep in sync, just the attribute at each spot in the Markdown. State persists in `localStorage` and applies on every page (also settable via a `?mode=essentials`/`advanced` URL param, for sharing a pre-set link). If a visible link points at a heading that's currently hidden (e.g. collections.md's cheat-sheet table linking to `#tuples`), following it flips the toggle back to Advanced and reveals the target instead of landing on nothing.
 
 Some examples of content that is hidden while in "Essentials" mode, while a student is first learning to program:
 
@@ -226,9 +226,9 @@ The standard Python test runner, which discovers `test_*` functions across the r
   focus order, the output live region); and keyboard navigation (skip link, a visible focus
   ring on every tab stop, no positive tabindex, palette toggle reachable). It's the heaviest
   part of the suite — needs `playwright install chromium` above and launches a real browser.
-- `tests/test_essentials_toggle.py` is a browser test (same Playwright setup) for the
+- `tests/test_content_mode_toggle.py` is a browser test (same Playwright setup) for the
   Essentials/Advanced toggle described above: the default (Advanced) state, that
-  `?simplified=true` hides marked content and carries onto a page's own heading + TOC entry,
+  `?mode=essentials` hides marked content and carries onto a page's own heading + TOC entry,
   and the link-recovery behavior for a visible link into hidden content.
 
 ### [Playwright](https://playwright.dev/)
