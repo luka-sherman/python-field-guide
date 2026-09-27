@@ -21,6 +21,8 @@ plugins:
   # prior behavior.
   - audience_toggle:
       aria_label: Content level
+      # theme_toggle.js creates #pt-theme-toggle before this plugin's script runs.
+      insert_selector: "#pt-theme-toggle"
       collapse_labels: true
       query_param: mode
       wrapper_class:
