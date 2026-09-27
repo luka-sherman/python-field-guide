@@ -111,14 +111,14 @@ hide:
     [`ls`](start/workspace.md#using-the-terminal) 
     [`pwd`](start/workspace.md#using-the-terminal) 
     [`shortcuts`](start/workspace.md#using-the-terminal) 
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
     [**`virtual environments`**](start/workspace.md#virtual-environments): 
     [`activate`](start/workspace.md#virtual-environments) 
     [`pip`](start/workspace.md#virtual-environments) 
     [`requirements.txt`](start/workspace.md#virtual-environments) 
     [`venv`](start/workspace.md#virtual-environments) 
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
 -   :material-cube-outline:{ .lg .middle } [__Foundations__](start/foundations.md)
 
@@ -287,7 +287,7 @@ hide:
     [`sum`](types/collections.md#arithmetic_1) 
     [`tuple`](types/collections.md#create_2) 
     [`unpacking`](types/collections.md#packing-and-unpacking) 
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
     [**`sets`**](types/collections.md#sets): 
     [`add`](types/collections.md#update_1) 
@@ -308,7 +308,7 @@ hide:
     [`sum`](types/collections.md#arithmetic_2) 
     [`update`](types/collections.md#update_1) 
     [`| & - ^`](types/collections.md#combine) 
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
 </div>
 </div>
@@ -395,7 +395,7 @@ hide:
     [`keyword-only`](organization/functions.md#keyword-only) 
     [`positional-only`](organization/functions.md#positional-only) 
     [`type hints`](organization/functions.md#type-hints) 
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
     [**`calling a function`**](organization/functions.md#calling-a-function): 
     [`arguments`](organization/functions.md#arguments) 
@@ -408,7 +408,7 @@ hide:
     [`local vs global`](organization/functions.md#local-vs-global-variables) 
 
     [**`recursion`**](organization/functions.md#recursion)
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
     [**`decorators`**](organization/functions.md#decorators): 
     [`arguments`](organization/functions.md#accepting-arguments) 
@@ -416,13 +416,13 @@ hide:
     [`original function`](organization/functions.md#returning-the-original-function) 
     [`stacking`](organization/functions.md#advanced-uses) 
     [`wrapping`](organization/functions.md#wrapping-the-call)
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
     [**`generators`**](organization/functions.md#generators): 
     [`generator expressions`](organization/functions.md#generator-expressions)
     [`memory`](organization/functions.md#memory-efficiency) 
     [`yield`](organization/functions.md#yield-vs-return) 
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
 -   :material-package-variant:{ .lg .middle } [__Classes__](organization/classes.md)
 
@@ -439,7 +439,7 @@ hide:
     [`@classmethod`](organization/classes.md#classmethod) 
     [`@property`](organization/classes.md#property) 
     [`@staticmethod`](organization/classes.md#staticmethod) 
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
     [**`inheritance`**](organization/classes.md#inheritance): 
     [`adding attributes and methods`](organization/classes.md#adding-attributes-and-methods) 
@@ -448,29 +448,29 @@ hide:
     [`super()`](organization/classes.md#using-super) 
 
     [`multiple inheritance`](organization/classes.md#multiple-inheritance) 
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
     [**`polymorphism`**](organization/classes.md#polymorphism): 
     [`inheritance`](organization/classes.md#polymorphism-via-inheritance) 
     [`duplicate method names`](organization/classes.md#duplicate-method-names) 
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
     [**`encapsulation`**](organization/classes.md#encapsulation): 
     [`@property`](organization/classes.md#controlled-access-with-property) 
     [`double underscore`](organization/classes.md#double-underscore) 
     [`single underscore`](organization/classes.md#single-underscore) 
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
     [**`operator overloading`**](organization/classes.md#operator-overloading): 
     [`__add__`](organization/classes.md#arithmetic-with-__add__) 
     [`__eq__ and __lt__`](organization/classes.md#comparing-with-__eq__-and-__lt__) 
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
     [**`dataclasses`**](organization/classes.md#dataclasses)
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
     [**`abstract base classes`**](organization/classes.md#abstract-base-classes)
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
 </div>
 </div>
@@ -550,7 +550,7 @@ hide:
     [`indentation`](practices/style.md#indentation) 
     [`order`](practices/style.md#file-order) 
     [`quote style`](practices/style.md#quote-style) 
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
     [**`Linters, formatters`**](practices/style.md#linters-and-formatters)
 
@@ -560,14 +560,14 @@ hide:
 
     [`truthy checks`](practices/style.md#truthy-checks) 
     [`enumerate()`](practices/style.md#enumerate-instead-of-range) 
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
     [**`Efficiency`**](practices/style.md#efficiency)
     [`big O`](practices/style.md#big-o-notation)
     [`common optimizations`](practices/style.md#common-optimizations)
     [`time`](practices/style.md#time-and-space) 
     [`space`](practices/style.md#time-and-space)
-    {: data-advanced="true" }
+    {: data-fcm-hide="essentials" }
 
     [**`Polished UX`**](practices/style.md#polished-ux): 
     [`input validation`](practices/style.md#input-validation) 
@@ -629,7 +629,7 @@ hide:
 
 -   :material-format-list-group:{ .lg .middle } [__collections__](libraries/collections.md) 
 [:material-language-python:](libraries/collections.md){ .pt-lib-badge .pt-lib-badge--builtin title="Built-in — included with Python" } 
-    {: data-advanced="card" }
+    {: data-fcm-hide="essentials" }
 
     Specialized containers with advanced functionality.
 
@@ -678,13 +678,13 @@ hide:
 
 -   :material-matrix:{ .lg .middle } [__NumPy__](libraries/numpy.md) 
 [:material-download-outline:](libraries/numpy.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
-    {: data-advanced="card" }
+    {: data-fcm-hide="essentials" }
 
     Fast numeric arrays, with math applied to a whole array at once instead of item by item.
 
 -   :material-table:{ .lg .middle } [__pandas__](libraries/pandas.md) 
 [:material-download-outline:](libraries/pandas.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
-    {: data-advanced="card" }
+    {: data-fcm-hide="essentials" }
 
     Tabular data: rows and columns, like a spreadsheet, built on top of NumPy.
 
@@ -761,7 +761,7 @@ hide:
 </div>
 </div>
 
-<div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-advanced="true">
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-fcm-hide="essentials">
 #### Testing { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
@@ -774,14 +774,14 @@ hide:
 </div>
 </div>
 
-<div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-advanced="true">
+<div class="pt-category pt-category--wide pt-lib--1" markdown="block" data-fcm-hide="essentials">
 #### Computer vision { .pt-homepage-heading }
 
 <div class="grid cards" markdown="block">
 
 -   :material-face-recognition:{ .lg .middle } [__OpenCV__](libraries/opencv.md) 
 [:material-download-outline:](libraries/opencv.md){ .pt-lib-badge .pt-lib-badge--third-party title="Third-party — install separately with pip" } 
-    {: data-advanced="card" }
+    {: data-fcm-hide="essentials" }
 
     Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection.
 

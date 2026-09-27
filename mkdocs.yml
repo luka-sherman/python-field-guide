@@ -13,6 +13,41 @@ plugins:
   # here or the site silently loses its search feature.
   - search
   - nested-tabs
+  # Essentials/Advanced content toggle — see extra.css's "Essentials/Advanced
+  # toggle" section for the --fcm-* variable overrides that give it this
+  # site's look, and STRUCTURE.md / CLAUDE.md for the data-fcm-hide="essentials"
+  # marking convention. "Advanced" is listed first and marked default: true
+  # so it keeps showing everything on first visit, matching this site's
+  # prior behavior.
+  - audience_toggle:
+      aria_label: Content level
+      # theme_toggle.js creates #pt-theme-toggle before this plugin's script runs.
+      insert_selector: "#pt-theme-toggle"
+      collapse_labels: true
+      query_param: mode
+      wrapper_class:
+        - pfg-section
+      modes:
+        - name: advanced
+          label: Advanced
+          default: true
+          description: Show all site content
+          announcement: Viewing all content.
+          icon: >-
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960
+            960'%3E%3Cpath d='M538-80H423v-149H120l189-274h-95l266-377 266 377h-94l188 274H538v149ZM236-289h189-90
+            290-89 189-489Zm0 0h489L536-563h89L480-769 335-563h90L236-289Z'/%3E%3C/svg%3E")
+        - name: essentials
+          label: Essentials
+          description: Show only what you need to write your first programs
+          announcement: Just the basics, start here!
+          icon: >-
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960
+            960'%3E%3Cpath d='M450-130v-309h-20q-64 0-120.5-24.5T209-533q-44-45-66.5-104T120-760v-80h78.32Q260-840
+            317-815.5 374-791 419-746q33 34 54.5 76t30.5 89q7.65-11.9 16.82-22.95Q530-615 540-626q45-45
+            102-69.5T761.67-720H840v80q0 64-23.98 123T748-413q-45 45-101.56 69T528-320h-18v190h-60Zm1-370q0-61-20-113.5t-55-89q-35-36.5-86-57T180-780q0
+            63 18.5 115.5T252-575q42 45 90.5 60T451-500Zm59 120q60 0 111-19.5t86-56q35-36.5 54-89T780-660q-60
+            0-111 20.5T583-583q-43 45-58 94t-15 109Zm0 0Zm-59-120Z'/%3E%3C/svg%3E")
 
 nav:
   - All: index.md
@@ -156,7 +191,7 @@ extra_javascript:
   - javascripts/external_links.js
   - javascripts/homepage_header_title.js
   - javascripts/cheatsheet_button.js
-  - javascripts/essentials_toggle.js
+  - javascripts/theme_toggle.js
   - javascripts/a11y_patches.js
   - https://unpkg.com/mermaid@11/dist/mermaid.min.js
   - javascripts/mermaid_config.js

@@ -134,7 +134,7 @@ print(burmese.species)    # "burmese" — a separate copy, not shared
 
 For a value every object should share instead of holding its own copy, see [class attributes](#class-attributes) below.
 
-<div data-advanced="true" markdown="block">
+<div data-fcm-hide="essentials" markdown="block">
 
 ??? efficiency "For efficiency, use __slots__ when creating many instances"
     | | Time | Space (n instances) |
@@ -320,7 +320,7 @@ print(burmese.kingdom)       # "Animalia" — unaffected
 
 <div class="pfg-section" markdown="block">
 
-## Method decorators { data-advanced="true" }
+## Method decorators { data-fcm-hide="essentials" }
 
 Python provides 3 built-in [decorators](functions.md#decorators) for methods that change how the method is called and add functionality:
 
@@ -450,7 +450,7 @@ snake.describe()    # "a 5 ft ball python"        — Snake's own version
 boa.describe()      # "a heavy-bodied constrictor" — Boa's version replaces it
 ```
 
-### Multiple inheritance { data-advanced="true" }
+### Multiple inheritance { data-fcm-hide="essentials" }
 
 A class can list more than one parent, comma-separated — it inherits the combined attributes and methods of all of them. When two parents define the same method, Python searches left to right through the parents listed and uses the first match — this search order is called the **MRO** (method resolution order).
 
@@ -569,7 +569,7 @@ print(cobra.warning())    # "handle with extreme caution" — Venomous is listed
 
 <div class="pfg-section" markdown="block">
 
-## Polymorphism { data-advanced="true" }
+## Polymorphism { data-fcm-hide="essentials" }
 
 **Polymorphism** ("many forms") means the same method or function name behaves differently depending on which object it's called on — so you can call `.describe()` on any snake-like object without needing to know exactly which one it is.
 
@@ -649,7 +649,7 @@ for s in (snake, boa): print(s.describe())
 
 <div class="pfg-section" markdown="block">
 
-## Encapsulation { data-advanced="true" }
+## Encapsulation { data-fcm-hide="essentials" }
 
 **Encapsulation** restricts direct access to an object's data, so it can only be read or changed through the class's own methods. Python doesn't enforce this the way some other languages do — it's a naming convention the caller is trusted to respect, not a hard restriction.
 
@@ -707,7 +707,7 @@ ball.length_ft = -1    # ValueError — blocked by the setter
 
 <div class="pfg-section" markdown="block">
 
-## Operator overloading { data-advanced="true" }
+## Operator overloading { data-fcm-hide="essentials" }
 
 Defining a dunder method lets a built-in operator (`==`, `<`, `+`, ...) work on your own objects — the same mechanism as [`__str__()`](#defining-a-class) and [`__repr__()`](#defining-a-class), just for operators instead of printing.
 
@@ -762,7 +762,7 @@ print(ball + burmese)    # 21 — combined length
 
 <div class="pfg-section" markdown="block">
 
-## Dataclasses { data-advanced="true" }
+## Dataclasses { data-fcm-hide="essentials" }
 
 `@dataclass` generates `__init__()` and `__repr__()` automatically from a list of typed attributes, instead of writing them by hand.
 
@@ -796,7 +796,7 @@ Use it for a class that's mostly just holding data, with little or no custom beh
 
 <div class="pfg-section" markdown="block">
 
-## Abstract base classes { data-advanced="true" }
+## Abstract base classes { data-fcm-hide="essentials" }
 
 An **abstract base class** defines methods that every subclass must implement, using `abc.ABC` and `@abstractmethod`. Trying to create an object from a class that hasn't implemented all of them raises a `TypeError` immediately, instead of failing later when the missing method actually gets called.
 

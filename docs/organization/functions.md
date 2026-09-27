@@ -195,7 +195,7 @@ def describe(**details):
 describe(species="ball", length_ft=5)
 ```
 
-#### Type hints { data-advanced="true" }
+#### Type hints { data-fcm-hide="essentials" }
 
 A type hint on a parameter like `species: str` annotates the type of value it's expected to receive. Python doesn't enforce it, but it can be helpful for you to keep track of it and a separate type checker (like `mypy`) can check for you.
 
@@ -204,7 +204,7 @@ def describe(species: str, length_ft: float):
     return f"a {length_ft} ft {species} python"
 ```
 
-#### Combining categories { data-advanced="true" , data-card-link="skip" }
+#### Combining categories { data-fcm-hide="essentials" , data-card-link="skip" }
 
 A single signature can mix kinds of parameters, but must be in this order: 
 
@@ -223,7 +223,7 @@ describe("ball", 5, 6, venomous=True, habitat="captive")
 # species = "ball", lengths = (5, 6), venomous = True, details = {"habitat": "captive"}
 ```
 
-#### Positional-only { data-advanced="true" }
+#### Positional-only { data-fcm-hide="essentials" }
 
 A `/` in the parameter list marks every parameter before it **positional-only** — it can only be passed by position, never by name. Most parameters don't need this restriction. It mainly shows up in library code, where locking a parameter to positional-only lets the author rename it later without breaking callers who passed it by keyword.
 
@@ -235,7 +235,7 @@ describe("ball", 5)                     # by position — works
 describe(species="ball", length_ft=5)   # TypeError — species is positional-only
 ```
 
-#### Keyword-only { data-advanced="true" }
+#### Keyword-only { data-fcm-hide="essentials" }
 
 A `*` in the parameter list marks every parameter after it **keyword-only** — it can only be passed by name, never by position. Keyword-only parameters suit options that would be unclear as a bare positional value — `venomous=True` reads clearly at the call site, `True` alone wouldn't.
 
@@ -518,7 +518,7 @@ def show_species():
 
 <div class="pfg-section" markdown="block">
 
-## Recursion { data-advanced="true" }
+## Recursion { data-fcm-hide="essentials" }
 
 A function can call itself — this is called **recursion**, an alternative to a loop for problems that break down into smaller versions of themselves.
 
@@ -560,7 +560,7 @@ Every recursive function needs two parts:
     print("liftoff")
     ```
 
-<div data-advanced="true" markdown="block">
+<div data-fcm-hide="essentials" markdown="block">
 
 ??? efficiency "For efficiency, use a loop instead of recursion to save memory"
     | | Time | Space |
@@ -600,7 +600,7 @@ Every recursive function needs two parts:
 
 <div class="pfg-section" markdown="block">
 
-## Decorators { data-advanced="true" }
+## Decorators { data-fcm-hide="essentials" }
 
 **`@decorator`** lets you add behavior to a function without editing the function's own code — write the behavior once, then apply it to as many functions as you want. It's written as `@decorator_name`, placed directly above a `def`, and takes one function in, returning a function out[^callable].
 
@@ -784,7 +784,7 @@ print(total_length(5, 12, 8))    # prints "called with (5, 12, 8)", then 25 — 
 
 <div class="pfg-section" markdown="block">
 
-## Generators { data-advanced="true" }
+## Generators { data-fcm-hide="essentials" }
 
 A **generator** is a function that pauses and resumes instead of running start to finish and returning once. Calling it doesn't run the body — it returns a **generator object** that produces values one at a time, only as they're asked for.
 

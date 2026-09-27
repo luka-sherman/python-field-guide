@@ -117,12 +117,12 @@ A diagram renderer, which draws flowcharts and diagrams from a plain-text descri
 
 ### Essentials / Advanced toggle
 
-A two-option [switch](docs/javascripts/essentials_toggle.js) that lets a reader hide everything beyond a first-pass beginner curriculum. Content is opted into hiding by marking it `data-advanced="true"`:
+A two-option switch, provided by the [mkdocs-audience-toggle](#mkdocs-audience-toggle) plugin (configured under `plugins:` in `mkdocs.yml`), that lets a reader hide everything beyond a first-pass beginner curriculum. Content is opted into hiding by marking it `data-fcm-hide="essentials"`:
 
 - On a `##`/`###` heading inside a content page (e.g. functions.md's `## Decorators`), it hides that heading plus every sibling up to the next heading of the same or higher level, and removes the matching entry from the `toc.integrate` sidebar — so there's no dead nav link to something that's hidden.
-- On a homepage card-grid row, it hides just that row; `data-advanced="card"` hides an entire homepage card instead, for a whole linked page rather than one section.
+- On a homepage card-grid row, it hides just that row. A whole homepage card hides too, once its first paragraph (the only one attr_list can attach the marker to) carries the marker — extra.css has a small `:has()` rule that extends that into hiding the entire `<li>`, since the plugin itself only hides the exact element marked.
 
-Each marking is independent — there's no shared list of "advanced" topics to keep in sync, just the attribute at each spot in the Markdown. State persists in `localStorage` and applies on every page (also settable via a `?simplified=true`/`false` URL param, for sharing a pre-set link). If a visible link points at a heading that's currently hidden (e.g. collections.md's cheat-sheet table linking to `#tuples`), following it flips the toggle back to Advanced and reveals the target instead of landing on nothing.
+Each marking is independent — there's no shared list of "advanced" topics to keep in sync, just the attribute at each spot in the Markdown. State persists in `localStorage` and applies on every page (also settable via a `?mode=essentials`/`advanced` URL param, for sharing a pre-set link). If a visible link points at a heading that's currently hidden (e.g. collections.md's cheat-sheet table linking to `#tuples`), following it flips the toggle back to Advanced and reveals the target instead of landing on nothing.
 
 Some examples of content that is hidden while in "Essentials" mode, while a student is first learning to program:
 
@@ -156,6 +156,31 @@ plugins:
 ```
 
 I extracted it because it fills a real, previously-requested gap — someone asked for exactly this in a [Material for MkDocs discussion](https://github.com/squidfunk/mkdocs-material/discussions/4765) and the maintainer's answer was horizontal scroll, not an expanded layout — and nothing on PyPI already does it (checked against the existing nav/dropdown/sidebar plugins first). It reads a site's `nav:` tree directly at runtime, so it needs no plugin-specific configuration for the common case, and falls back to Material's own theme variables for styling so it looks reasonable on any palette out of the box. This site is its first real consumer — see `mkdocs.yml`'s `plugins:` list and `extra.css`'s `--md-nested-tabs-*` overrides for how it's wired in here.
+
+### [mkdocs-audience-toggle](https://pypi.org/project/mkdocs-audience-toggle/)
+
+A header toggle that switches between content modes, such as Essentials and Advanced, and hides any content marked for the modes it shouldn't appear in. It started as this site's own Essentials/Advanced JavaScript, and I rewrote it as a published plugin that supports any number of modes, each with its own label and optional icon.
+
+```bash
+pip install mkdocs-audience-toggle
+```
+
+```yaml
+plugins:
+  - audience_toggle:
+      modes:
+        - name: essentials
+          label: Essentials
+        - name: advanced
+          label: Advanced
+          default: true
+```
+
+```markdown
+## Decorators {: data-fcm-hide="essentials" }
+```
+
+Material has no built-in way to tailor a page to different readers. The plugin hides a marked heading together with its whole section and its table of contents entry. It switches to the nearest mode that shows the content when a link points to something hidden. It also collapses to icons or moves to its own row on narrow screens. It includes its own Playwright and axe-core tests. See the [plugin's README](https://github.com/luka-sherman/mkdocs-audience-toggle) for all options. This site's setup is under `audience_toggle` in `mkdocs.yml`, with color overrides in `extra.css`'s `#fcm-toggle` rule.
 
 ## Theme
 
@@ -226,9 +251,9 @@ The standard Python test runner, which discovers `test_*` functions across the r
   focus order, the output live region); and keyboard navigation (skip link, a visible focus
   ring on every tab stop, no positive tabindex, palette toggle reachable). It's the heaviest
   part of the suite — needs `playwright install chromium` above and launches a real browser.
-- `tests/test_essentials_toggle.py` is a browser test (same Playwright setup) for the
+- `tests/test_content_mode_toggle.py` is a browser test (same Playwright setup) for the
   Essentials/Advanced toggle described above: the default (Advanced) state, that
-  `?simplified=true` hides marked content and carries onto a page's own heading + TOC entry,
+  `?mode=essentials` hides marked content and carries onto a page's own heading + TOC entry,
   and the link-recovery behavior for a visible link into hidden content.
 
 ### [Playwright](https://playwright.dev/)

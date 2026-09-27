@@ -447,7 +447,7 @@ class diagram panel
     See the [collections library page](../libraries/collections.md) for the rest of `deque`'s
     methods (`rotate()`, `maxlen=`, and more) and for the other list-adjacent tools it adds.
 
-<div data-advanced="true" markdown="block">
+<div data-fcm-hide="essentials" markdown="block">
 
 ??? efficiency "For efficiency, use append()/pop() instead of insert(0, x)/pop(0)"
     | | Time | Space |
@@ -538,7 +538,7 @@ flowchart LR
     snake.get("weight_lbs", 0)  # 0 — key is missing, so the default is returned instead of None
     ```
 
-<div data-advanced="true" markdown="block">
+<div data-fcm-hide="essentials" markdown="block">
 
 ??? efficiency "For efficiency, use .get() instead of checking in first"
     | | Time | Space |
@@ -703,7 +703,7 @@ flowchart LR
     snakes["burmese"]["length_ft"]  # 16
     ```
 
-<div data-advanced="true" markdown="block">
+<div data-fcm-hide="essentials" markdown="block">
 
 ??? efficiency "For efficiency, use a dict instead of a list to look up by key"
     | | Time | Space |
@@ -820,7 +820,7 @@ flowchart LR
 
 <div class="pfg-section" markdown="block">
 
-## Tuples { data-advanced="true" }
+## Tuples { data-fcm-hide="essentials" }
 
 A tuple stores multiple items, in order, written in parentheses. They are **immutable** so the items can't be changed once its created. 
 
@@ -1093,7 +1093,7 @@ The **negative index** starts counting down from the end instead, starting at `-
 
 <div class="pfg-section" markdown="block">
 
-## Sets { data-advanced="true" }
+## Sets { data-fcm-hide="essentials" }
 
 A set stores multiple items, in no particular order, inside a single variable — written with curly braces.
 
@@ -1329,7 +1329,7 @@ These check a relationship between two sets and hand back a `bool`, rather than 
     list(set(species))  # ["burmese", "ball", "boa"] — order not guaranteed
     ```
 
-<div data-advanced="true" markdown="block">
+<div data-fcm-hide="essentials" markdown="block">
 
 ??? efficiency "For efficiency, use a set instead of a list for membership checks"
     | | Time | Space |
