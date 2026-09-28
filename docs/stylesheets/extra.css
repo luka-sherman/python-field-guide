@@ -393,91 +393,19 @@ html:focus-within::-webkit-scrollbar-thumb {
   100% { background-position: 0% 50%; }
 }
 
-/* The logo only ever linked home with no other purpose, so
-   cheatsheet_button.js's "Cheatsheet" pill replaces it in the header's
-   top-left slot instead of sitting alongside it — hidden here, not
-   removed from the DOM, since Material still generates it normally. */
-.md-header__button.md-logo {
-  display: none;
-}
-
-/* "Cheatsheet" link injected by cheatsheet_button.js, in the logo's old
-   spot (leading the site title) — an explicit text shortcut to the
-   homepage (already this site's compact quick-reference dashboard) rather
-   than relying on the logo image alone reading as clickable. Deliberately
-   reuses the Essentials/Advanced toggle's own technique (a currentColor
-   pill fill + --pt-bg text flip when active) rather than hardcoded colors,
-   so it adapts across light/dark mode exactly the way that toggle does —
-   currentColor here is .md-header's own `color: var(--pt-ink)`, inherited,
-   not set locally. */
-.pt-cheatsheet-link {
-  display: inline-flex;
-  align-items: center;
-  margin-right: 0.6rem;
-  padding: 0.15rem 0.6rem;
-  /* Matches .pt-simplify-toggle's own resting track (border + background)
-     below, so the inactive pill reads as the same kind of control rather
-     than plain text — var(--pt-ink) directly instead of currentColor,
-     sidestepping the self-reference risk noted below for the active state. */
-  border: 0.05rem solid var(--pt-ink);
-  border-radius: 1rem;
-  background-color: var(--pt-bg);
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: currentColor;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-/* Material Symbols "dashboard" (viewBox 0 -960 960 960), same mask-image
-   technique as .pt-simplify-option's icons above — an asymmetric mixed-size
-   panel shape, matching the homepage's own grid (its library boxes are
-   genuinely different widths, not a uniform grid — see the "External
-   files and resources" grid-math notes in CLAUDE.md) rather than a plain
-   symmetric grid icon. Fetched from Google's material-design-icons source
-   directly (not hand-drawn) to keep the path data exact. Leads the word
-   (::before, not ::after), matching the icon-then-text order used by the
-   Essentials/Advanced toggle, the theme toggle, and the toast. */
-.pt-cheatsheet-link::before {
-  content: "";
-  display: inline-block;
-  width: 0.7rem;
-  height: 0.7rem;
-  flex: none;
-  margin-right: 0.3rem;
-  background-color: currentColor;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-position: center;
-  mask-position: center;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z'/%3E%3C/svg%3E");
-}
-
-.pt-cheatsheet-link:hover,
-.pt-cheatsheet-link:focus-visible {
-  text-decoration: underline;
-}
-
-/* Not background-color: currentColor here — the toggle's pill and its text
-   are two separate elements, so its highlight span can safely use
-   currentColor (the *inherited* color) while a different element's text
-   flips to --pt-bg. Collapsed into one element like this, currentColor
-   would resolve against this same rule's own `color: var(--pt-bg)` below
-   it (CSS uses the final computed color, not declaration order) — pill and
-   text would end up identical, text invisible. --pt-ink directly sidesteps
-   that self-reference entirely. */
-.pt-cheatsheet-link--active {
-  background-color: var(--pt-ink);
-  color: var(--pt-bg);
-}
-
-.pt-cheatsheet-link--active:hover,
-.pt-cheatsheet-link--active:focus-visible {
-  text-decoration: none;
+/* "Cheatsheet" header button (mkdocs-cheatsheet plugin, which also hides
+   the logo it replaces). Matches the Essentials/Advanced toggle: an ink
+   outline at rest, filled ink with cream text when on the homepage. */
+/* `:root, [data-md-color-scheme]`, not `:root` alone: Material sets the
+   scheme on <body>, so --pt-ink/--pt-bg only take their dark values there
+   (see CLAUDE.md "Custom color palette on Material"). */
+:root,
+[data-md-color-scheme] {
+  --md-cheatsheet-button-fg: var(--pt-ink);
+  --md-cheatsheet-button-bg: var(--pt-bg);
+  --md-cheatsheet-button-border: var(--pt-ink);
+  --md-cheatsheet-button-active-fg: var(--pt-bg);
+  --md-cheatsheet-button-active-bg: var(--pt-ink);
 }
 
 .md-tabs {
@@ -979,17 +907,17 @@ input:checked + .md-consent__settings {
 /* Library cards: same base background as the core cards, plus a 1px border in
    the corner-wedge colour (the section-container background). In dark mode a
    translucent black overlay also nudges them a shade darker. */
-.pt-category--wide .grid.cards > ul > li {
+.library-grid .md-cheatsheet__group .grid.cards > ul > li {
   border: 1px solid var(--pt-section-bg);
 }
 
-[data-md-color-scheme="slate"] .pt-category--wide .grid.cards > ul > li {
+[data-md-color-scheme="slate"] .library-grid .md-cheatsheet__group .grid.cards > ul > li {
   background-image: linear-gradient(rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.22));
 }
 
 /* ...and a filled diagonal corner ("dog-ear") in the old fill color at the
    top-right, sitting behind the built-in / third-party badge (z-index 2). */
-.pt-category--wide .grid.cards > ul > li::before {
+.library-grid .md-cheatsheet__group .grid.cards > ul > li::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1037,23 +965,10 @@ input:checked + .md-consent__settings {
   margin-bottom: 0.2em;
 }
 
-/* Comma-separate the keyword tags in each card row so the row reads as a list.
-   The gap between links comes from the existing whitespace, so no trailing
-   space in the content. The bold lead keyword is followed by a hardcoded ": "
-   in index.md instead (e.g. "integers: + - * / **"), so it's exempt. */
-.md-typeset .grid.cards > ul > li > p:nth-of-type(n+3) a:not(:last-child)::after {
-  content: ",";
-  color: var(--pt-text-muted);
-}
-
-.md-typeset .grid.cards > ul > li > p:nth-of-type(n+3) a:first-child:has(strong)::after {
-  content: none;
-}
-
 .md-typeset .grid.cards > ul > li > hr {
   margin: 0.4em 0;
 }
-.md-typeset h4.pt-homepage-heading {
+.md-typeset h4.md-cheatsheet__group-title {
   margin: 0.3rem 0 0.1rem;
 }
 
@@ -1322,79 +1237,66 @@ input:checked + .md-consent__settings {
   font-weight: 400;
 }
 
-/* The mkdocs-audience-toggle plugin hides a marked element directly
-   (see mkdocs.yml) — but a homepage card's data-fcm-hide="essentials" marker
-   sits on its first paragraph (the icon/title line attr_list attaches to,
-   not the <li> — python-markdown's attr_list can't target a list item that
-   has more than one paragraph), so the plugin only hides that one line,
-   leaving the rest of the card behind as an empty box. Hide the whole
-   card here instead, keyed off the same marker + the mode the plugin
-   itself sets on <html>. */
-html[data-fcm-mode="essentials"] .grid.cards > ul > li:has(> p[data-fcm-hide~="essentials"]) {
-  display: none;
+.library-grid > .md-cheatsheet__group {
+  grid-column: 1 / -1;
 }
 
-.pt-category-grid {
+.md-cheatsheet {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.6rem;
 }
 
 @media (min-width: 45em) {
-  .pt-category:not(.pt-category--wide) .grid.cards > ul {
+  .md-cheatsheet:not(.library-grid) .md-cheatsheet__group .grid.cards > ul {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 /* On a wide screen the whole homepage grid is 4 columns wide. The upper
    category boxes each span 2 (so still 2-per-row, 2 cards each = 4 across); the
-   library section boxes span their own card count (`pt-lib--N`), so the rows
-   pack to exactly 4 library cards — Utilities(5, alone — 5 doesn't divide
-   evenly into the 4-column grid, so it takes a full row on its own),
-   Data analysis(4), APIs(2)+Image editing(1)+Desktop UIs(1),
-   Testing(1)+Computer vision(1) trailing. Order matters here: grid
+   library section boxes span their own card count (the cheatsheet plugin's
+   `md-cheatsheet__group--cards-N`), so the rows
+   pack to exactly 4 library cards — Utilities(6, capped to a full row),
+   Data analysis(4), APIs(2)+Web(1)+Images(1), then
+   Computer vision+Desktop UIs+Games+Testing(1 each). Order matters here: grid
    auto-placement is sparse (no `dense`), so a box that doesn't fit the
    remaining space in its row leaves that space empty rather than letting a
-   later, smaller box backfill it — keep same-row groups adjacent in the
-   markdown, and put any leftover under-4 remainder last. The library grids
+   later, smaller box backfill it — keep same-row groups adjacent in
+   mkdocs.yml's nav (the cheatsheet follows nav order), and put any leftover under-4 remainder last. The library grids
    keep the default auto-fit/minmax, which lands on the right column count
    inside a box that's already sized to its contents. */
 @media (min-width: 60em) {
-  .pt-category-grid {
+  .md-cheatsheet {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  .pt-category-grid > h1 {
-    grid-column: 1 / -1;
-  }
-
-  .pt-category-grid > .pt-category:not(.pt-category--wide) {
+  .md-cheatsheet:not(.library-grid) > .md-cheatsheet__group {
     grid-column: span 2;
   }
 
-  /* compound selector so these beat `.pt-category--wide { grid-column: 1 / -1 }` */
-  .pt-category--wide.pt-lib--1 { grid-column: span 1; }
-  .pt-category--wide.pt-lib--2 { grid-column: span 2; }
-  .pt-category--wide.pt-lib--3 { grid-column: span 3; }
-  .pt-category--wide.pt-lib--4 { grid-column: span 4; }
-  .pt-category--wide.pt-lib--5 { grid-column: span 4; } /* caps at the grid's own width, same as 4 */
+  /* --cards-N is emitted by the cheatsheet plugin per group */
+  .library-grid > .md-cheatsheet__group--cards-1 { grid-column: span 1; }
+  .library-grid > .md-cheatsheet__group--cards-2 { grid-column: span 2; }
+  .library-grid > .md-cheatsheet__group--cards-3 { grid-column: span 3; }
+  .library-grid > [class*="md-cheatsheet__group--cards-"]:not(.md-cheatsheet__group--cards-1):not(.md-cheatsheet__group--cards-2):not(.md-cheatsheet__group--cards-3) { grid-column: span 4; } /* caps at the grid's own width */
 
-  /* pt-lib--N above is sized for the full card count; Essentials mode
+  /* --cards-N above is sized for the full card count; Essentials mode
      hides some, leaving boxes too wide. theme_toggle.js recomputes the
-     visible count into --pt-lib-span, overriding pt-lib--N here (same
+     visible count into --library-span, overriding --cards-N here (same
      specificity, later in source) while active. */
-  html[data-fcm-mode="essentials"] .pt-category--wide {
-    grid-column: span var(--pt-lib-span, 4);
+  html[data-fcm-mode="essentials"] .library-grid > .md-cheatsheet__group {
+    grid-column: span var(--library-span, 4);
   }
 }
 
 @media (max-width: 45em) {
-  .pt-category-grid {
+  .md-cheatsheet {
     grid-template-columns: 1fr;
   }
 }
 
-.pt-category {
+.md-cheatsheet__group {
   padding: 0.8rem;
   background-color: var(--pt-section-bg);
   border-radius: 0.3rem;
@@ -1406,7 +1308,7 @@ html[data-fcm-mode="essentials"] .grid.cards > ul > li:has(> p[data-fcm-hide~="e
   background-color: var(--pt-panel);
 }
 
-.pt-category > h4.pt-homepage-heading {
+.md-cheatsheet__group > h4.md-cheatsheet__group-title {
   margin-top: 0;
 }
 
@@ -1414,20 +1316,16 @@ html[data-fcm-mode="essentials"] .grid.cards > ul > li:has(> p[data-fcm-hide~="e
    full-contrast body ink: lightened toward white on the cream light scheme,
    dimmed toward black on the dark scheme (which otherwise inherits full
    --pt-ink from the rule below). */
-[data-md-color-scheme="default"] .md-typeset .pt-category > h4.pt-homepage-heading {
+[data-md-color-scheme="default"] .md-typeset .md-cheatsheet__group > h4.md-cheatsheet__group-title {
   color: color-mix(in srgb, var(--pt-ink) 80%, white);
 }
 
 /* "Add-On Libraries" heading — swap the default h1 margins (0 top / 2.5rem
    bottom) so the space sits above it instead, separating it from the core
    grid and pulling it tight to the first library row. */
-.md-typeset .pt-category-grid > h1 {
+.md-typeset h1.library-grid-heading {
   margin-top: 2.5rem;
-  margin-bottom: 0;
-}
-
-.pt-category--wide {
-  grid-column: 1 / -1;
+  margin-bottom: 0.6rem;
 }
 
 .md-typeset .grid.cards > ul > li:hover {
@@ -1435,7 +1333,7 @@ html[data-fcm-mode="essentials"] .grid.cards > ul > li:has(> p[data-fcm-hide~="e
   transform: translateY(-0.1rem);
 }
 
-.md-typeset .grid.cards > ul > li > p:first-child > .twemoji {
+.md-typeset .grid.cards > ul > li > p:first-child > .twemoji:not(.library-badge) {
   color: var(--pt-accent);
 }
 
@@ -1449,7 +1347,7 @@ html[data-fcm-mode="essentials"] .grid.cards > ul > li:has(> p[data-fcm-hide~="e
   border-radius: 0.1rem;
 }
 
-.md-typeset .grid.cards > ul > li > p:first-child > a:not(.pt-lib-badge)::after {
+.md-typeset .grid.cards > ul > li > p:first-child > a::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -1461,14 +1359,14 @@ html[data-fcm-mode="essentials"] .grid.cards > ul > li:has(> p[data-fcm-hide~="e
   z-index: 2;
 }
 
-.md-typeset .grid.cards > ul > li .pt-lib-badge {
+.md-typeset .grid.cards > ul > li .library-badge {
   position: absolute;
   top: 0.35rem;
   right: 0.35rem;
   z-index: 2;
 }
 
-.pt-lib-badge svg {
+.library-badge svg {
   width: 1.05rem;
   height: 1.05rem;
 }
@@ -1476,13 +1374,13 @@ html[data-fcm-mode="essentials"] .grid.cards > ul > li:has(> p[data-fcm-hide~="e
 /* Built-in/third-party corner badge: halfway between the card's own
    background color and the muted category-label color, in both light and
    dark mode. */
-[data-md-color-scheme="default"] .md-typeset .grid.cards a.pt-lib-badge--builtin,
-[data-md-color-scheme="default"] .md-typeset .grid.cards a.pt-lib-badge--third-party {
+[data-md-color-scheme="default"] .md-typeset .grid.cards .library-badge--builtin,
+[data-md-color-scheme="default"] .md-typeset .grid.cards .library-badge--third-party {
   color: color-mix(in srgb, var(--pt-panel), color-mix(in srgb, var(--pt-ink) 80%, white));
 }
 
-[data-md-color-scheme="slate"] .md-typeset .grid.cards a.pt-lib-badge--builtin,
-[data-md-color-scheme="slate"] .md-typeset .grid.cards a.pt-lib-badge--third-party {
+[data-md-color-scheme="slate"] .md-typeset .grid.cards .library-badge--builtin,
+[data-md-color-scheme="slate"] .md-typeset .grid.cards .library-badge--third-party {
   color: color-mix(in srgb, color-mix(in srgb, var(--pt-panel) 92%, var(--pt-ink)), color-mix(in srgb, var(--pt-ink) 80%, black));
 }
 
@@ -1490,52 +1388,52 @@ html[data-fcm-mode="essentials"] .grid.cards > ul > li:has(> p[data-fcm-hide~="e
    sub-keyword tags. Everything else — the `####` category headings, card icon,
    card title, description, and the bold lead keyword in each tag row — is the
    off-white --pt-ink. The light scheme keeps the original green title + tags. */
-[data-md-color-scheme="slate"] .md-typeset .pt-category .pt-homepage-heading {
+[data-md-color-scheme="slate"] .md-typeset .md-cheatsheet__group .md-cheatsheet__group-title {
   color: color-mix(in srgb, var(--pt-ink) 80%, black);
 }
 
-[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > .twemoji {
+[data-md-color-scheme="slate"] .md-typeset .md-cheatsheet__group .grid.cards > ul > li > p:first-child > .twemoji:not(.library-badge) {
   color: var(--pt-ink);
 }
 
 /* card description — a muted slate-teal blue, matched to the green tag color
    (#68A87F) in saturation/lightness so the two read as a pair. ~4.8:1 on the
    card, passes AA. */
-[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:nth-of-type(2) {
+[data-md-color-scheme="slate"] .md-typeset .md-cheatsheet__group .grid.cards > ul > li > p:nth-of-type(2) {
   color: var(--pt-desc-blue);
 }
 
-[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > a:not(.pt-lib-badge),
-[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > a strong {
+[data-md-color-scheme="slate"] .md-typeset .md-cheatsheet__group .grid.cards > ul > li > p:first-child > a,
+[data-md-color-scheme="slate"] .md-typeset .md-cheatsheet__group .grid.cards > ul > li > p:first-child > a strong {
   color: var(--pt-ink);
 }
 
 /* keyword tag rows: the bold lead keyword (links to a ## section) stays white… */
-[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:not(:first-child) a,
-[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:not(:first-child) a strong,
-[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:not(:first-child) a strong > code {
+[data-md-color-scheme="slate"] .md-typeset .md-cheatsheet__group .grid.cards > ul > li > p:not(:first-child) a,
+[data-md-color-scheme="slate"] .md-typeset .md-cheatsheet__group .grid.cards > ul > li > p:not(:first-child) a strong,
+[data-md-color-scheme="slate"] .md-typeset .md-cheatsheet__group .grid.cards > ul > li > p:not(:first-child) a strong > code {
   color: var(--pt-ink);
 }
 
 /* …the smaller non-bold sub-keywords (### anchors) are green */
-[data-md-color-scheme="slate"] .md-typeset .pt-category .grid.cards > ul > li > p:not(:first-child) a > code {
+[data-md-color-scheme="slate"] .md-typeset .md-cheatsheet__group .grid.cards > ul > li > p:not(:first-child) a > code {
   color: var(--pt-accent);
 }
 
 /* Light mode: black card titles and bold keyword leads (e.g. "integers"), a
    deep teal-blue for the descriptions (pairs with the green sub-tags). */
-[data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > a:not(.pt-lib-badge),
-[data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:first-child > a strong,
-[data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:not(:first-child) a strong,
-[data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:not(:first-child) a strong > code {
+[data-md-color-scheme="default"] .md-typeset .md-cheatsheet__group .grid.cards > ul > li > p:first-child > a,
+[data-md-color-scheme="default"] .md-typeset .md-cheatsheet__group .grid.cards > ul > li > p:first-child > a strong,
+[data-md-color-scheme="default"] .md-typeset .md-cheatsheet__group .grid.cards > ul > li > p:not(:first-child) a strong,
+[data-md-color-scheme="default"] .md-typeset .md-cheatsheet__group .grid.cards > ul > li > p:not(:first-child) a strong > code {
   color: #000;
 }
 
-[data-md-color-scheme="default"] .md-typeset .pt-category-grid > h1 {
+[data-md-color-scheme="default"] .md-typeset h1.library-grid-heading {
   color: var(--pt-ink);
 }
 
-[data-md-color-scheme="default"] .md-typeset .pt-category .grid.cards > ul > li > p:nth-of-type(2) {
+[data-md-color-scheme="default"] .md-typeset .md-cheatsheet__group .grid.cards > ul > li > p:nth-of-type(2) {
   color: var(--pt-desc-blue);
 }
 

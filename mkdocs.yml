@@ -19,6 +19,12 @@ plugins:
   # marking convention. "Advanced" is listed first and marked default: true
   # so it keeps showing everything on first visit, matching this site's
   # prior behavior.
+  # Homepage and libraries/index.md card grids, built from {cs} heading
+  # flags on each page — see STRUCTURE.md's "Cheatsheet flags" section.
+  - cheatsheet:
+      button: true
+      sort: alphabetical
+      group_heading_level: 4
   - audience_toggle:
       aria_label: Content level
       # theme_toggle.js creates #pt-theme-toggle before this plugin's script runs.
@@ -72,32 +78,32 @@ nav:
   - Libraries:
       - All: libraries/index.md
       - Utilities:
-          - collections: libraries/collections.md
-          - datetime: libraries/datetime.md
-          - math: libraries/math.md
-          - random: libraries/random.md
-          - re: libraries/re.md
-          - time: libraries/time.md
+          - collections: libraries/utilities/collections.md
+          - datetime: libraries/utilities/datetime.md
+          - math: libraries/utilities/math.md
+          - random: libraries/utilities/random.md
+          - re: libraries/utilities/re.md
+          - time: libraries/utilities/time.md
       - Data analysis:
-          - csv: libraries/csv.md
-          - matplotlib: libraries/matplotlib.md
-          - NumPy: libraries/numpy.md
-          - pandas: libraries/pandas.md
+          - csv: libraries/data_analysis/csv.md
+          - matplotlib: libraries/data_analysis/matplotlib.md
+          - NumPy: libraries/data_analysis/numpy.md
+          - pandas: libraries/data_analysis/pandas.md
       - APIs:
-          - json: libraries/json.md
-          - requests: libraries/requests.md
-      - Web scraping:
-          - BeautifulSoup: libraries/beautifulsoup.md
-      - Image editing:
-          - Pillow: libraries/pillow.md
+          - json: libraries/apis/json.md
+          - requests: libraries/apis/requests.md
+      - Web:
+          - BeautifulSoup: libraries/web/beautifulsoup.md
+      - Images:
+          - Pillow: libraries/images/pillow.md
       - Computer vision:
-          - OpenCV: libraries/opencv.md
+          - OpenCV: libraries/computer_vision/opencv.md
       - Desktop UIs:
-          - Tkinter: libraries/tkinter.md
+          - Tkinter: libraries/desktop_uis/tkinter.md
       - Games:
-          - turtle: libraries/turtle.md
+          - turtle: libraries/games/turtle.md
       - Testing:
-          - pytest: libraries/pytest.md
+          - pytest: libraries/testing/pytest.md
 
 theme:
   name: material
@@ -190,7 +196,6 @@ extra_javascript:
   - javascripts/copyright_year.js
   - javascripts/external_links.js
   - javascripts/homepage_header_title.js
-  - javascripts/cheatsheet_button.js
   - javascripts/theme_toggle.js
   - javascripts/a11y_patches.js
   - https://unpkg.com/mermaid@11/dist/mermaid.min.js

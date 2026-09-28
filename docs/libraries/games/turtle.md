@@ -1,10 +1,13 @@
 ---
+cheatsheet_title: turtle
+cheatsheet_description: Build small movement-based games with a pen cursor.
+cheatsheet_title_suffix: :material-language-python:{ .library-badge .library-badge--builtin title="Built-in — included with Python" }
 description: >-
   Building small movement-based games in Python with the turtle module: window setup,
   motion, drawing shapes, the animation loop, and collision detection.
 ---
 
-# :material-turtle:{ .lg .middle } Turtle library
+# :material-turtle:{ .lg .middle } turtle library
 
 <div class="pfg-section" markdown="block">
 
@@ -14,9 +17,9 @@ description: >-
 
 <div class="pfg-section" markdown="block">
 
-## Concepts
+## Concepts { cs }
 
-**turtle** draws with a single virtual pen — called a turtle — that sits on a window with a **position** (x,y coordinate) and a **heading** (the direction it's currently facing). `forward()` moves it in that direction, `left()`/`right()` change the heading, and if the pen is down, moving it traces a line behind it. 
+**turtle** draws with a single virtual pen — called a turtle — that sits on a window with a **position** (x,y coordinate) and a **heading** (the direction it's currently facing). `forward()` moves it in that direction, `left()`/`right()` change the heading, and if the pen is down, moving it traces a line behind it.
 
 The window also reacts to keyboard and mouse input, which makes turtle a natural fit for small, no-install games. A game needs a real window and display to run in, so the examples below aren't runnable in the browser — copy them into a local `.py` file to see them in action.
 
@@ -26,7 +29,7 @@ The origins of this library predate ordinary people owning computers: it comes f
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 `turtle` ships with the standard library — nothing to install.
 
@@ -34,17 +37,17 @@ The origins of this library predate ordinary people owning computers: it comes f
 from turtle import *
 ```
 
-`*` imports everything at once; if you want to explicitly specify of what you're using, import the precise function names instead (`from turtle import forward, left, done`). 
+`*` imports everything at once; if you want to explicitly specify of what you're using, import the precise function names instead (`from turtle import forward, left, done`).
 
 </div>
 
 <div class="pfg-section" markdown="block">
 
-## The screen
+## The screen { cs="Screen" }
 
 Everything gets drawn inside one window — the screen.
 
-### Screen setup
+### Screen setup { cs="Setup" }
 
 Start by creating a window..
 
@@ -53,7 +56,7 @@ setup(500, 500)   # width, height
 title('My Game')  # optional
 ```
 
-### Background
+### Background { cs }
 
 A solid color or a full image, set once on the window itself — not something that needs redrawing every frame.
 
@@ -72,16 +75,16 @@ update()
 ```
 
 ??? tip "The Tkinter Canvas underneath"
-    turtle's window is a [Tkinter](tkinter.md) `Canvas` widget underneath — `getcanvas()` returns it directly, for mixing in real Tkinter widgets or features once turtle's own tools stop being enough.
+    turtle's window is a [Tkinter](../desktop_uis/tkinter.md) `Canvas` widget underneath — `getcanvas()` returns it directly, for mixing in real Tkinter widgets or features once turtle's own tools stop being enough.
 
-### Clear screen
+### Clear screen { cs="Clear" }
 
-`clear()` erases drawings, leaving everything else — position, shape, color, event bindings — untouched, which is why it's the one used every frame. 
+`clear()` erases drawings, leaving everything else — position, shape, color, event bindings — untouched, which is why it's the one used every frame.
 
 `clearscreen()` is a full reset instead: drawings gone, every turtle removed, background and bindings back to their defaults, tracer back on. More like starting the whole script over than clearing one frame — useful for a "play again" restart, not for the frame loop itself.
 
 
-### Colors
+### Colors { cs }
 
 Anywhere a color is expected — `color()`, `bgcolor()`, `dot()`'s color argument — turtle accepts three formats, all borrowed from Tk rather than defined by Python itself.
 
@@ -94,7 +97,7 @@ Anywhere a color is expected — `color()`, `bgcolor()`, `dot()`'s color argumen
 There's no small fixed list of named colors — turtle draws from the same [X11 color names](https://en.wikipedia.org/wiki/X11_color_names) Tk uses, a few hundred names in all. `colormode(255)` switches RGB tuples to the more familiar `0`–`255` range instead of `0.0`–`1.0`.
 
 
-### Closing the window
+### Closing the window { cs="Close" }
 
 `done()` (covered under The game loop) keeps the window open until it's closed by hand. `exitonclick()` is a common alternative for a finished game: keep the window open, then close it on the next click instead of waiting on the window's own close button. `bye()` closes it immediately, from code, without waiting for a click at all.
 
@@ -107,15 +110,15 @@ exitonclick()   # instead of done() — click anywhere to quit
 
 <div class="pfg-section" markdown="block">
 
-## The turtle cursor
+## The turtle cursor { cs="turtle cursor" }
 
 The turtle is the only thing directly controllable at any moment. Other moveable parts are plain data (Positions and motion) instead of as turtles of their own. (The class-based `Turtle()` interface can create more than one, each independently controllable, but that's a different, more advanced style than the one covered here.)
 
 Everything about the turtle itself otherwise falls into four groups: what it looks like, what it draws with (if anything), what shapes it traces, and where it is.
 
-### Shape
+### Shape { cs="Appearance" }
 
-#### Show or hide
+#### Show or hide { cs="Hide, Show" }
 
 The turtle — the small controllable arrow shown by default — is separate from anything it draws. Hiding it doesn't erase existing lines or shapes, and drawing continues normally either way; only the cursor itself disappears.
 
@@ -125,7 +128,7 @@ showturtle()     # st() — show it again
 isvisible()      # True or False
 ```
 
-#### Shape, color, size
+#### Shape, color, size { cs="Color, Shape, Size" }
 
 `shape(shape_name)` switches between every built-in shapes.
 
@@ -148,7 +151,7 @@ shapesize(2)                    # scale it up 2x
 color('darkgreen', 'green')     # outline, fill
 ```
 
-#### Custom images
+#### Custom images { cs }
 
 `register_shape()` installs an image file or a custom polygon as a shape, usable anywhere `shape()` is — a way to swap the cursor for a small custom picture. A limitation is that the custom image won't rotate. The built in shapes above turn to face the turtle's heading as it moves. An image shape always faces the same direction.
 
@@ -156,7 +159,7 @@ color('darkgreen', 'green')     # outline, fill
 register_shape('snake.gif')
 ```
 
-#### In a game { data-card-link="skip" }
+#### In a game
 
 Many games hide the turtle and draws its own shapes instead — the right call once there's a trail, or several independent pieces, that no single turtle could represent alone. A game with just one clearly visible player, though, doesn't need any of that: give the turtle a shape and a color, then move it directly with `goto()`.
 
@@ -182,11 +185,11 @@ def on_hit(x, y):
 onclick(on_hit)
 ```
 
-### Trace movement
+### Trace movement { cs="Tracer" }
 
-#### With tracer { data-card-link="skip" }
+#### With tracer
 
-The Tracer is whether or not you can see the animation of the turtle moving. 
+The Tracer is whether or not you can see the animation of the turtle moving.
 
 By default, turtle animates its own movement — `forward()`, `goto()`, etc. are drawn bit by bit, animated as if it is moving across the screen. This is called the `tracer` and by default it is True.
 
@@ -204,14 +207,14 @@ A related but separate setting — `speed(n)` controls how fast each individual 
     `tracer()` also accepts two numbers, `tracer(n, delay)` — show only every `n`-th update, with `delay` milliseconds between them, instead of turning animation off completely. Useful for speeding up something slow and complex without losing the animation altogether.
 
 ??? tip "no_animation() block"
-    A context manager wrapping the same idea as `tracer(False)`/`tracer(True)` — animation is off for whatever runs inside the block, then back on (and shown) once it exits. The same `with` pattern as [opening a file](../resources/files.md#with), applied to animation instead of a file handle.
+    A context manager wrapping the same idea as `tracer(False)`/`tracer(True)` — animation is off for whatever runs inside the block, then back on (and shown) once it exits. The same `with` pattern as [opening a file](../../resources/files.md#with), applied to animation instead of a file handle.
 
     ```python-ref
     with no_animation():
         circle(50)   # drawn instantly, all at once
     ```
 
-#### Without tracer { data-card-link="skip" }
+#### Without tracer
 
 ```python-ref
 setup(420, 420, 370, 0)
@@ -226,13 +229,13 @@ clear()
 update()
 ```
 
-### Ink
+### Ink { cs }
 
 The "pen" is really the ink behind it:
 
 - **Down** means the tip is touching the paper, so ink comes out as the turtle moves.
 
-- **Up** means it's lifted, so moving it leaves no line behind. 
+- **Up** means it's lifted, so moving it leaves no line behind.
 
 | Function | What it does |
 |---|---|
@@ -244,7 +247,7 @@ The "pen" is really the ink behind it:
 | `fillcolor(fill_color)` | Set fill color. |
 
 ```python-ref
-color('black', 'yellow')  # set outline and fill at once 
+color('black', 'yellow')  # set outline and fill at once
 down()
 pensize(3)
 forward(50)      # draws a 3px-thick line
@@ -253,7 +256,7 @@ isdown()         # False
 goto(0, 0)       # moves back without drawing
 ```
 
-### Drawing shapes
+### Drawing shapes { cs }
 
 Shapes are drawn by moving the pen with `up()`/`down()` (pen up means move without drawing a line), `goto()`, `forward()`, and `left()`, then filling the outline with `begin_fill()`/`end_fill()`.
 
@@ -286,7 +289,7 @@ def square(point, size, fill_color):
     end_fill()
 ```
 
-#### Dot
+#### Dot { cs }
 
 A filled circle, built into turtle directly — no custom function needed. `dot(diameter, color)` draws it centered on wherever the pen currently is.
 
@@ -296,7 +299,7 @@ goto(0, 0)
 dot(20, 'green')
 ```
 
-#### Circle
+#### Circle { cs }
 
 `circle(radius)` traces an actual curved path instead of stamping an instant dot — the center ends up `radius` units to the turtle's left, and the pen itself ends up back on the circle once it's done.
 
@@ -318,7 +321,7 @@ end_fill()
 circle(50, steps=6)   # a hexagon
 ```
 
-#### Rectangle
+#### Rectangle { cs }
 
 Same idea as `square()`, with independent width and height, drawn from a corner instead of the center — the shape a paddle or panel-style element would use.
 
@@ -339,7 +342,7 @@ def rectangle(point, width, height, fill_color):
     end_fill()
 ```
 
-#### Stamping
+#### Stamping { cs }
 
 When the built-in `shape()` already looks right, `stamp()` leaves a copy of it at the pen's current position — a shortcut over writing a custom drawing function like `square()` or `rectangle()`. It returns an id, so a specific stamp can be erased later with `clearstamp(stamp_id)`.
 
@@ -349,7 +352,7 @@ goto(food)
 stamp_id = stamp()
 ```
 
-#### Text
+#### Text { cs }
 
 `write(text)` draws a string at the pen's current position — the way a score or a message gets shown, since none of the shapes above are built for it.
 
@@ -361,7 +364,7 @@ write('Score: 3', align='center', font=('Arial', 16, 'normal'))
 
 `align` positions the text relative to that point (`'left'`, `'center'`, or `'right'`) instead of always starting from it. Like everything else on screen, a score needs to be redrawn as part of the frame — `clear()` erases it too, so `write()` has to run again every time the score changes.
 
-### Positions and motion
+### Positions and motion { cs="Motion, Positions" }
 
 A position is two numbers, x and y. turtle represents one with **`Vec2D`**, a tuple that also supports vector arithmetic — unlike a plain tuple, adding two `Vec2D`s adds their coordinates instead of concatenating them.
 
@@ -383,7 +386,7 @@ x, y = ball            # unpack like any other tuple — 3, 5
     ```
 
 ??? tip "Reassigning from inside a function"
-    Reassigning a global variable's name from inside a function needs `global`, covered on [Functions](../organization/functions.md#local-vs-global-variables) — a game typically has at least one small function whose only job is reassigning a position or direction this way. *Mutating* something in place instead (`trail.append(...)`, `paddles[1] = paddles[1] + Vec2D(0, 20)`, both from "Many positions at once" below) doesn't need `global`, since the name itself is never reassigned — only reassignment does.
+    Reassigning a global variable's name from inside a function needs `global`, covered on [Functions](../../organization/functions.md#local-vs-global-variables) — a game typically has at least one small function whose only job is reassigning a position or direction this way. *Mutating* something in place instead (`trail.append(...)`, `paddles[1] = paddles[1] + Vec2D(0, 20)`, both from "Many positions at once" below) doesn't need `global`, since the name itself is never reassigned — only reassignment does.
 
     ```python-ref
     aim = Vec2D(0, -10)
@@ -393,7 +396,7 @@ x, y = ball            # unpack like any other tuple — 3, 5
         aim = Vec2D(x, y)
     ```
 
-#### The turtle's own position  { data-card-link="skip" }
+#### The turtle's own position
 
 The turtle itself always knows where it is — `pos()` returns its current location as a `Vec2D`, the same type used everywhere else on this page, so a separate variable isn't strictly needed if the pen itself is what's moving.
 
@@ -409,9 +412,9 @@ setheading(towards(ball))
 forward(5)
 ```
 
-#### Many positions at once  { data-card-link="skip" }
+#### Many positions at once
 
-A game's state is rarely just one lone position — a trail that grows over time, or several independent entities tracked at once. Both build on the same list/dict operations covered on [Collections](../types/collections.md).
+A game's state is rarely just one lone position — a trail that grows over time, or several independent entities tracked at once. Both build on the same list/dict operations covered on [Collections](../../types/collections.md).
 
 ```python-ref
 trail = [Vec2D(10, 0)]
@@ -428,7 +431,7 @@ paddles[1] = paddles[1] + Vec2D(0, 20)   # move just one of them
 
 <div class="pfg-section" markdown="block">
 
-## The game loop
+## The game loop { cs="Game loop" }
 
 `ontimer(function, ms)` calls a function once, after a delay. Having that function schedule *itself* again as its last line turns a single call into a repeating loop — the heartbeat of any turtle game: move, redraw, schedule the next frame.
 
@@ -449,7 +452,7 @@ done()   # keeps the window open, listening for the scheduled calls
 ```
 
 ??? tip "Spawning and removing things over time"
-    A loop can also grow or shrink a list of its own entities as it runs — occasionally adding a new one, and dropping ones that have drifted off-screen or otherwise stopped mattering, using the same list operations as Positions and motion's "Many positions at once". `randrange()` is from the [random](random.md) module, not turtle.
+    A loop can also grow or shrink a list of its own entities as it runs — occasionally adding a new one, and dropping ones that have drifted off-screen or otherwise stopped mattering, using the same list operations as Positions and motion's "Many positions at once". `randrange()` is from the [random](../utilities/random.md) module, not turtle.
 
     ```python-ref
     from random import randrange
@@ -461,7 +464,7 @@ done()   # keeps the window open, listening for the scheduled calls
         entities.pop(0)
     ```
 
-### done()
+### done() { cs }
 
 A Python script normally runs top to bottom and exits once it reaches the last line. `done()` is always that last line — but instead of letting the script exit, it **blocks**: it hands control to the window and just sits there, waiting.
 
@@ -475,11 +478,11 @@ While it waits, it watches for the scheduled calls and input registered earlier 
 
 <div class="pfg-section" markdown="block">
 
-## Input
+## Input { cs }
 
 Every kind of input turtle supports works the same way: register a function once, and it gets called automatically whenever the matching event happens — nothing actually listens for anything until `done()` starts the event loop at the end of the script, so registration itself can happen in any order.
 
-### Keyboard
+### Keyboard { cs }
 
 `listen()` puts the window in a state where it's paying attention to keyboard events; `onkey(function, key)` then binds one key to a function, called with no arguments every time that key is pressed.
 
@@ -501,7 +504,7 @@ onkey(lambda: change(-10, 0), 'Left')
 ??? tip "Press vs release"
     `onkey()` is really an alias for `onkeypress()` — a key firing the moment it's pressed down. `onkeyrelease(function, key)` is the counterpart, firing when the key comes back up instead.
 
-### Mouse
+### Mouse { cs }
 
 `onscreenclick(function)` calls a function every time the window is clicked, passing the click's x and y coordinates as arguments.
 
@@ -520,7 +523,7 @@ onscreenclick(tap)
 ??? tip "Dragging and releasing"
     `ondrag(function)` calls a function repeatedly, passed the pointer's x/y, while the mouse moves with the button held down — for something dragged around rather than tapped. `onrelease(function)` is the counterpart to `onscreenclick()`, firing when a click ends instead of when it starts.
 
-### Dialog prompts
+### Dialog prompts { cs }
 
 `textinput(title, prompt)` and `numinput(title, prompt)` pop up a small dialog box asking for a string or a number, returning what the player typed (or `None` if they cancelled). It's a separate native window, centered over the game window rather than drawn on the canvas.
 
@@ -535,7 +538,7 @@ lives = numinput('Lives', 'How many lives?', default=3, minval=1, maxval=5)
 
 <div class="pfg-section" markdown="block">
 
-## Detecting collisions
+## Detecting collisions { cs="inside" }
 
 Many games reduce to the same question: is this position touching that one?
 
@@ -546,7 +549,7 @@ def inside(point):
     return -200 < x < 200 and -200 < y < 200
 ```
 
-### Distance
+### Distance { cs }
 
 `abs()` on a `Vec2D` returns its length — subtracting two positions first gives the distance between them, without writing out a square root by hand.
 
@@ -555,7 +558,7 @@ paddle = Vec2D(-200, 0)
 close_enough = abs(ball - paddle) < 15
 ```
 
-### Overlap
+### Overlap { cs }
 
 Checking whether a point falls within a range — a paddle's height, say — is a plain comparison, no vector math needed.
 
@@ -568,7 +571,7 @@ high = paddle_y + 50
 touching = low <= ball_y <= high
 ```
 
-### Membership
+### Membership { cs }
 
 A position can also collide with itself — checking whether it already appears somewhere in a list of positions, the same `in` used for any other membership check.
 
@@ -581,7 +584,7 @@ crashed = head in trail
 
 <div class="pfg-section" markdown="block">
 
-## Common patterns
+## Common patterns { cs }
 
 Every block above is a small, general-purpose piece. Combined, a few recurring shapes cover most simple games — each sketched below as pseudocode, the shape to fill in with real building blocks from the sections above.
 
@@ -703,7 +706,7 @@ Mixing and matching these — a controlled object *and* a growing trail, say, or
 
 <div class="pfg-section" markdown="block">
 
-## More advanced games { data-card-link="skip" }
+## More advanced games
 
 turtle's window and shapes are enough for something like snake, flappy, or pong, but not for much more — no sprites, no sound, no real physics. For anything more advanced, [pygame](https://www.pygame.org/docs/) and [arcade](https://api.arcade.academy/) are the two most common next steps; both have their own official documentation, linked above.
 

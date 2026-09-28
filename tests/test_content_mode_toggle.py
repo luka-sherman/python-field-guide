@@ -106,23 +106,18 @@ def test_pfg_section_wrapper_is_hidden_with_its_heading(page, site_url):
     assert result["wrapperDisplay"] == "none", "the wrapper is still rendering as an empty card"
 
 
-def test_whole_homepage_card_hides_with_its_first_paragraph(page, site_url):
-    """Regression: attr_list can only attach data-fcm-hide to a card's first paragraph
-    (the icon/title line), not the surrounding <li> — python-markdown's attr_list
-    can't target a list item with more than one paragraph. extra.css hides the
-    whole card with a :has() rule keyed off that same marker plus the plugin's own
-    html[data-fcm-mode] — see the "mkdocs-audience-toggle plugin hides..."
-    comment in extra.css."""
+def test_whole_homepage_card_hides(page, site_url):
+    """A page with `cheatsheet_attrs: {data-fcm-hide: essentials}` in its front matter
+    gets the marker on its cheatsheet card's <li>, which the audience toggle hides."""
     page.goto(f"{site_url}/?mode=essentials")
 
     card_display = page.evaluate(
         """() => {
-            const marked = document.querySelector('.grid.cards > ul > li > p[data-fcm-hide~="essentials"]');
-            const card = marked ? marked.closest('li') : null;
+            const card = document.querySelector('.md-cheatsheet__card[data-fcm-hide~="essentials"]');
             return card ? getComputedStyle(card).display : null;
         }"""
     )
-    assert card_display == "none", "a card marked via its first paragraph should fully hide"
+    assert card_display == "none", "a card marked via cheatsheet_attrs should fully hide"
 
 
 def test_link_to_hidden_section_recovers_to_advanced(page, site_url):

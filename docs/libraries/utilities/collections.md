@@ -1,4 +1,9 @@
 ---
+cheatsheet_title: collections
+cheatsheet_description: 'Specialized containers: counting items, grouping with defaults, named tuples, fast queues.'
+cheatsheet_title_suffix: :material-language-python:{ .library-badge .library-badge--builtin title="Built-in — included with Python" }
+cheatsheet_attrs:
+  data-fcm-hide: essentials
 description: >-
   Specialized container types in Python's collections module: Counter, defaultdict,
   namedtuple, deque, OrderedDict, and ChainMap, with runnable examples.
@@ -13,10 +18,10 @@ description: >-
 !!! note "Not the same as the Collections page"
     This page covers the **`collections` module** — extra container types imported with
     `from collections import ...`. For the built-in `list`, `dict`, `tuple`, and `set` types
-    themselves, see [Collections](../types/collections.md).
+    themselves, see [Collections](../../types/collections.md).
 
 The **`collections`** module adds specialized containers with added functionality on top of the
-built-in [`str`](../types/basics.md#strings) [`list`](../types/collections.md#lists) [`dict`](../types/collections.md#dictionaries) [`tuple`](../types/collections.md#tuples) and [`set`](../types/collections.md#sets).
+built-in [`str`](../../types/basics.md#strings) [`list`](../../types/collections.md#lists) [`dict`](../../types/collections.md#dictionaries) [`tuple`](../../types/collections.md#tuples) and [`set`](../../types/collections.md#sets).
 
 <div class="pt-jump-table" markdown="block">
 
@@ -38,7 +43,7 @@ built-in [`str`](../types/basics.md#strings) [`list`](../types/collections.md#li
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 `collections` ships with Python's standard library — nothing to install. Each class is
 imported individually by name, rather than through a `collections.` prefix — so the import
@@ -48,7 +53,7 @@ line differs per class, shown under its own "Import" heading below.
 
 <div class="pfg-section" markdown="block">
 
-## Counter
+## Counter { cs }
 
 `Counter` takes any iterable — a list, string, tuple, dict (its keys), set, or range — of
 hashable items (strings, numbers, booleans, other tuples) and returns a dict-like object
@@ -60,15 +65,15 @@ counts = Counter(species)
 print(counts)  # Counter({'ball': 3, 'burmese': 2, 'boa': 1})
 ```
 
-### Import { data-card-link="skip" }
+### Import
 
 ```python-ref
 from collections import Counter
 ```
 
-### Counter operations { data-card-link="skip" }
+### Counter operations
 
-#### Count
+#### Count { cs="counts[item], most_common, total" }
 
 - **`counts[item]`** looks up an item's count. Missing items return `0` instead of raising
   `KeyError`, unlike indexing a plain dict.
@@ -92,7 +97,7 @@ from collections import Counter
     counts.total()  # 6
     ```
 
-#### Inspect
+#### Inspect { cs="elements" }
 
 - **`elements()`** does the reverse of counting — expands a `Counter` back out into an
   iterator that repeats each item by its count.
@@ -101,7 +106,7 @@ from collections import Counter
     list(counts.elements())  # ['ball', 'ball', 'ball', 'burmese', 'burmese', 'boa']
     ```
 
-#### Update
+#### Update { cs="subtract, update" }
 
 - **`update()`** adds more items to an existing `Counter`, incrementing counts instead of
   replacing them — the counting equivalent of a list's `.extend()`. Passing another `Counter`
@@ -118,7 +123,7 @@ from collections import Counter
     counts.subtract({"ball": 1, "cobra": 1})  # ball: 3, cobra: -1
     ```
 
-#### Combine
+#### Combine { cs="+ - & |" }
 
 - **`+` / `-` / `&` / `|`** combine two `Counter` objects item by item, returning a new one:
   add counts, subtract counts (dropping anything that would go negative), take the minimum of
@@ -196,7 +201,7 @@ from collections import Counter
 
 <div class="pfg-section" markdown="block">
 
-## defaultdict
+## defaultdict { cs="defaultdict, default_factory" }
 
 A plain `dict` raises `KeyError` when indexing a missing key. `defaultdict` instead takes
 a **`default_factory`** — a type like `list`/`int`/`set`, or any other zero-argument callable
@@ -219,13 +224,13 @@ print(by_venomous)
 # defaultdict(<class 'list'>, {False: ['ball'], True: ['cobra'], 'unknown': ['burmese']})
 ```
 
-### Import { data-card-link="skip" }
+### Import
 
 ```python-ref
 from collections import defaultdict
 ```
 
-### Reading vs. writing
+### Reading vs. writing { cs="get" }
 
 - **`snake.get("venomous", "unknown")`** only *reads* — it falls back to `"unknown"` for the
   burmese python's missing key instead of raising `KeyError`, the way `snake["venomous"]`
@@ -317,7 +322,7 @@ from collections import defaultdict
 
 <div class="pfg-section" markdown="block">
 
-## namedtuple
+## namedtuple { cs }
 
 Builds a tuple subclass whose fields can be accessed by name (`snake.species`) as well as
 by position (`snake[0]`) — a lightweight alternative to a full class when all it needs to
@@ -334,15 +339,15 @@ print(snake[0])          # "ball" — still works by position too
 
 Like a plain tuple, a `namedtuple` instance is immutable — there's no `snake.length_ft = 6`.
 
-### Import { data-card-link="skip" }
+### Import
 
 ```python-ref
 from collections import namedtuple
 ```
 
-### namedtuple operations { data-card-link="skip" }
+### namedtuple operations
 
-#### Create
+#### Create { cs="_make, defaults=" }
 
 - **`namedtuple(name, fields)`** — `fields` can be a list of strings, or one
   space/comma-separated string (`"species length_ft"`).
@@ -368,7 +373,7 @@ from collections import namedtuple
     Snake._make(row)  # Snake(species='burmese', length_ft=12, venomous=False)
     ```
 
-#### Convert
+#### Convert { cs="_asdict, _replace" }
 
 - **`_asdict()`** converts an instance to a regular dict.
 
@@ -383,7 +388,7 @@ from collections import namedtuple
     snake._replace(length_ft=6)  # Snake(species='ball', length_ft=6, venomous=False)
     ```
 
-#### Inspect
+#### Inspect { cs="_field_defaults, _fields" }
 
 - **`_fields`** lists the field names; **`_field_defaults`** reports the defaults as a dict,
   the same information `defaults=` set, mapped back to field names.
@@ -457,7 +462,7 @@ from collections import namedtuple
 
 <div class="pfg-section" markdown="block">
 
-## deque
+## deque { cs }
 
 Pronounced "deck" — short for "double-ended queue." A `deque` works like a list, but adding or removing items
 from the front (`appendleft()`, `popleft()`) is fast, where doing the same on a plain list
@@ -473,15 +478,15 @@ queue.appendleft("blood")  # add to the left end
 print(queue)  # deque(['blood', 'ball', 'burmese', 'boa', 'cobra'])
 ```
 
-### Import { data-card-link="skip" }
+### Import
 
 ```python-ref
 from collections import deque
 ```
 
-### deque operations { data-card-link="skip" }
+### deque operations
 
-#### Add
+#### Add { cs="append, appendleft, extend, extendleft, insert" }
 
 - **`append()` / `appendleft()`** add one item to the right or left end.
 
@@ -504,7 +509,7 @@ from collections import deque
     queue.insert(1, "viper")
     ```
 
-#### Remove
+#### Remove { cs="clear, pop, popleft, remove" }
 
 - **`pop()` / `popleft()`** remove and return the item from the right or left end.
 
@@ -521,7 +526,7 @@ from collections import deque
     queue.clear()
     ```
 
-#### Inspect
+#### Inspect { cs="copy, count, index" }
 
 - **`count()` / `index()`** count occurrences of a value, or find its first position — same
   as on a list.
@@ -537,7 +542,7 @@ from collections import deque
     backup = queue.copy()
     ```
 
-#### Reorder
+#### Reorder { cs="maxlen=, reverse, rotate" }
 
 - **`rotate(n)`** shifts every item `n` places to the right (or left, with a negative `n`),
   wrapping the ones that fall off the end back around to the other side.
@@ -637,7 +642,7 @@ from collections import deque
 
 <div class="pfg-section" markdown="block">
 
-## OrderedDict
+## OrderedDict { cs }
 
 Until Python 3.7 (released in 2018), a plain `dict` didn't guarantee it would remember insertion order — `OrderedDict` existed specifically to add that guarantee. Now it's mostly seen in legacy code written before 3.7, and in code that specifically needs its reordering functionality.
 
@@ -645,15 +650,15 @@ Until Python 3.7 (released in 2018), a plain `dict` didn't guarantee it would re
 snake = OrderedDict([("species", "ball"), ("length_ft", 5), ("venomous", False)])
 ```
 
-### Import { data-card-link="skip" }
+### Import
 
 ```python-ref
 from collections import OrderedDict
 ```
 
-### OrderedDict operations { data-card-link="skip" }
+### OrderedDict operations
 
-#### Reorder
+#### Reorder { cs="move_to_end, popitem" }
 
 - **`move_to_end(key, last=True)`** relocates an existing key to the back (or, with
   `last=False`, to the front).
@@ -670,7 +675,7 @@ from collections import OrderedDict
     snake.popitem(last=False)  # ('species', 'ball')
     ```
 
-#### Compare
+#### Compare { cs="==" }
 
 - **`==`** checks order as well as contents — two plain dicts with the same items in a
   different order are still equal, but two `OrderedDict` objects aren't.
@@ -683,7 +688,7 @@ from collections import OrderedDict
 
 <div class="pfg-section" markdown="block">
 
-## ChainMap
+## ChainMap { cs }
 
 Searches several dicts as if they were one, without copying or merging their contents.
 Looking up a key checks each dict in order and returns the first match — useful for layering
@@ -703,15 +708,15 @@ print(snake["docile"])    # True — not in overrides, falls back to defaults
 Writing to a `ChainMap` (`snake["docile"] = False`) only ever changes the first dict in the
 chain — the rest are left untouched, read-only from the `ChainMap`'s point of view.
 
-### Import { data-card-link="skip" }
+### Import
 
 ```python-ref
 from collections import ChainMap
 ```
 
-### ChainMap operations { data-card-link="skip" }
+### ChainMap operations
 
-#### Extend
+#### Extend { cs="new_child" }
 
 - **`new_child(m)`** returns a new `ChainMap` with `m` (an empty dict by default) added to
   the front — useful for pushing a fresh, temporary layer of overrides on top without
@@ -722,7 +727,7 @@ from collections import ChainMap
     scoped["venomous"]  # None — the new front dict wins
     ```
 
-#### Inspect
+#### Inspect { cs="maps, parents" }
 
 - **`.maps`** is the underlying list of dicts, in search order, so it can be inspected or
   edited directly.
@@ -742,7 +747,7 @@ from collections import ChainMap
 
 <div class="pfg-section" markdown="block">
 
-## User\* wrapper classes
+## User\* wrapper classes { cs="User* wrapper, UserDict, UserList, UserString" }
 
 `UserDict`, `UserList`, and `UserString` wrap a plain `dict`, `list`, or `str` for
 subclassing[^subclassing]. Subclassing `dict`/`list`/`str` directly is possible, but several of their
@@ -760,7 +765,7 @@ snake["SPECIES"] = "ball"
 print(snake)  # {'species': 'ball'} — key was lowercased on the way in
 ```
 
-### Import { data-card-link="skip" }
+### Import
 
 ```python-ref
 from collections import UserDict, UserList, UserString

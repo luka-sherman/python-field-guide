@@ -1,4 +1,7 @@
 ---
+cheatsheet_title: matplotlib
+cheatsheet_description: 'Charts and plots: line, bar, and scatter, built directly from plain Python data.'
+cheatsheet_title_suffix: :material-download-outline:{ .library-badge .library-badge--third-party title="Third-party — install separately with pip" }
 description: >-
   Creating charts in Python with matplotlib: line plots, bar charts, scatter plots,
   subplots, and saving figures to a file.
@@ -12,13 +15,13 @@ description: >-
 
 matplotlib is an open-source project, funded by nonprofit [NumFOCUS](https://numfocus.org/).
 
-**matplotlib** (its plotting interface imported as `plt`) is Python's foundational library for creating charts — line plots, bar charts, scatter plots — directly from plain Python data. It's a third-party package, not part of the standard library, but it's a foundational Python plotting library that many other Python tools integrate with or build upon. Like [Pillow](pillow.md) and [OpenCV](opencv.md), matplotlib produces visual output — a chart shown in a window or saved to a file — which can't be shown inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file and run them with `python` to see the results.
+**matplotlib** (its plotting interface imported as `plt`) is Python's foundational library for creating charts — line plots, bar charts, scatter plots — directly from plain Python data. It's a third-party package, not part of the standard library, but it's a foundational Python plotting library that many other Python tools integrate with or build upon. Like [Pillow](../images/pillow.md) and [OpenCV](../computer_vision/opencv.md), matplotlib produces visual output — a chart shown in a window or saved to a file — which can't be shown inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file and run them with `python` to see the results.
 
 </div>
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 ```bash
 pip install matplotlib
@@ -52,7 +55,7 @@ For everyday charts, matplotlib offers the most control and the widest compatibi
 
 <div class="pfg-section" markdown="block">
 
-## Line plots
+## Line plots { cs="line plots" }
 
 `plt.plot(x, y)` draws a line connecting a series of x/y points — matplotlib's most basic and most common chart, given two equal-length sequences of numbers.
 
@@ -66,7 +69,7 @@ plt.plot(years, length_ft)
 plt.show()
 ```
 
-### Labels and title
+### Labels and title { cs="labels and title" }
 
 `plt.xlabel()`, `plt.ylabel()`, and `plt.title()` label a chart's axes and give it a heading — without them, a chart is just numbers with no explanation of what they mean.
 
@@ -78,7 +81,7 @@ plt.title("ball python growth")
 plt.show()
 ```
 
-### Multiple lines and a legend
+### Multiple lines and a legend { cs="multiple lines and a legend" }
 
 Calling `plt.plot()` more than once before `plt.show()` draws every line onto the same figure. Passing `label=` to each call, then `plt.legend()`, adds a key showing which line is which.
 
@@ -107,7 +110,7 @@ plt.show()
 
 <div class="pfg-section" markdown="block">
 
-## Bar charts
+## Bar charts { cs="bar charts" }
 
 `plt.bar(labels, values)` draws one bar per label — suited to comparing a value across categories, rather than showing change over a continuous range the way a line plot does.
 
@@ -126,7 +129,7 @@ plt.show()
 
 <div class="pfg-section" markdown="block">
 
-## Scatter plots
+## Scatter plots { cs="scatter plots" }
 
 `plt.scatter(x, y)` plots individual points instead of connecting them with a line — suited to showing the relationship between two measurements without implying an order between them.
 
@@ -146,7 +149,7 @@ plt.show()
 
 <div class="pfg-section" markdown="block">
 
-## Subplots
+## Subplots { cs="subplots" }
 
 `plt.subplots(rows, cols)` returns a `Figure` and a grid of `Axes` objects, for placing more than one chart side by side instead of calling `plt.show()` separately for each. Each `Axes` in the grid gets its own `.plot()`/`.bar()`/`.scatter()` and its own `.set_title()`, rather than the `plt.`-prefixed functions used above.
 
@@ -168,7 +171,7 @@ plt.show()
 
 <div class="pfg-section" markdown="block">
 
-## Saving a figure
+## Saving a figure { cs="saving a figure" }
 
 `plt.savefig(filename)` writes the current figure to a file instead of opening a window — the way to produce a chart image for a report, a webpage, or anywhere a live Python process won't be running to show it.
 

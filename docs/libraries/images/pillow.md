@@ -1,4 +1,7 @@
 ---
+cheatsheet_title: Pillow
+cheatsheet_description: Opening, editing, and saving images, built around one Image object.
+cheatsheet_title_suffix: :material-download-outline:{ .library-badge .library-badge--third-party title="Third-party — install separately with pip" }
 description: >-
   Opening, editing, and saving images in Python with Pillow: resizing, cropping, drawing,
   filters, and format conversion.
@@ -12,13 +15,13 @@ description: >-
 
 Pillow is an open-source project maintained by volunteer contributors.
 
-**Pillow** (imported as `PIL`) is a popular library for opening, editing, and saving image files — photos, screenshots, thumbnails, anything in a common format like JPEG or PNG. It's a third-party package, not part of the standard library, but it's the de facto standard for image work in Python. Like [Tkinter](tkinter.md), Pillow ultimately produces visual output — a saved or displayed image — which can't be shown inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file alongside an image and run them with `python` to see the results.
+**Pillow** (imported as `PIL`) is a popular library for opening, editing, and saving image files — photos, screenshots, thumbnails, anything in a common format like JPEG or PNG. It's a third-party package, not part of the standard library, but it's the de facto standard for image work in Python. Like [Tkinter](../desktop_uis/tkinter.md), Pillow ultimately produces visual output — a saved or displayed image — which can't be shown inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file alongside an image and run them with `python` to see the results.
 
 </div>
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 ```bash
 pip install pillow
@@ -34,7 +37,7 @@ from PIL import Image
 
 <div class="pfg-section" markdown="block">
 
-## Why Pillow?
+## Why Pillow? { cs="why Pillow?" }
 
 Pillow is the direct successor to PIL (the original Python Imaging Library, now unmaintained), and has become the standard way to work with images in Python — resizing thumbnails, converting formats, watermarking, or feeding images into a machine learning pipeline. It wraps all of this in one consistent `Image` object, so once you know how to open, transform, and save an image, the same handful of methods carry over to almost any task.
 
@@ -76,11 +79,11 @@ Beyond the base [`Image`](#the-image) object, Pillow's functionality is spread a
 
 <div class="pfg-section" markdown="block">
 
-## The Image
+## The Image { cs="Image" }
 
 The `Image` object is where every Pillow workflow starts and ends — opening a file, transforming it, and saving the result all happen through methods on this one class.
 
-### Opening and saving images
+### Opening and saving images { cs="opening and saving images" }
 
 Every Pillow workflow starts the same way: open a file into an `Image` object, do something to it, then save the result — Pillow infers the file format from the extension you save to, so converting formats is often just a matter of changing the file extension.
 
@@ -138,7 +141,7 @@ img.save("snake_copy.png")
     img.show()
     ```
 
-### Basic operations
+### Basic operations { cs="basic operations" }
 
 Pillow's core editing operations — resizing, cropping, rotating, flipping — are all methods on an `Image` that return a *new* `Image`, leaving the original untouched.
 
@@ -148,7 +151,7 @@ cropped = img.crop((0, 0, 200, 200))
 rotated = img.rotate(90)
 ```
 
-#### Resize
+#### Resize { cs="resize" }
 
 Scales the image to an exact new size. `.resize((width, height))` doesn't preserve the original aspect ratio for you, so stretching happens if the new dimensions don't match the original proportions. For a quick, ratio-preserving thumbnail instead, use `.thumbnail((max_width, max_height))`, which resizes in place rather than returning a new image.
 
@@ -165,7 +168,7 @@ thumbnail = img.resize((200, 150))
 print(thumbnail.size)
 ```
 
-#### Crop
+#### Crop { cs="crop" }
 
 Takes a bounding box and returns just that rectangular region. `.crop()` takes `(left, upper, right, lower)` pixel coordinates. `(0, 0)` is the top-left corner of the image, with `x` increasing rightward and `y` increasing downward.
 
@@ -182,7 +185,7 @@ cropped = img.crop((50, 50, 250, 200))
 print(cropped.size)
 ```
 
-#### Rotate and flip
+#### Rotate and flip { cs="rotate and flip" }
 
 `.rotate(degrees)` rotates counter-clockwise around the image's center. Pass `expand=True` to grow the canvas so corners aren't clipped off (without it, the image keeps its original size and rotated corners are cropped away). `.transpose()` handles flips and 90°-multiple rotations without any clipping concerns, using constants like `Image.FLIP_LEFT_RIGHT` or `Image.ROTATE_90`.
 
@@ -200,7 +203,7 @@ flipped = img.transpose(Image.FLIP_LEFT_RIGHT)
 print(rotated.size, flipped.size)
 ```
 
-### Image modes
+### Image modes { cs="image modes" }
 
 An image's **mode** determines how each pixel's color is stored — how many bands it has and what each one means. Converting between modes is a single method call, and it's often a required first step before an operation that only works on one mode (like grayscale-only filters). `.convert(mode)` returns a new image re-encoded into the given mode — `"L"` collapses color down to a single grayscale band; `"RGBA"` adds an alpha (transparency) band on top of red/green/blue, where `0` is fully transparent and `255` is fully opaque.
 
@@ -223,7 +226,7 @@ print(grayscale.mode, rgba.mode)
 
 <div class="pfg-section" markdown="block">
 
-## ImageOps module
+## ImageOps module { cs="ImageOps" }
 
 The `ImageOps` module collects common one-line transforms that would otherwise take several steps to write by hand — contrast fixes, mirroring, and color inversion among them.
 
@@ -234,7 +237,7 @@ fixed = ImageOps.autocontrast(img)
 mirrored = ImageOps.mirror(img)
 ```
 
-### Common ImageOps functions
+### Common ImageOps functions { cs="common ImageOps functions" }
 
 `.autocontrast()` stretches an image's darkest and lightest pixels out to pure black and white, which can fix a flat, washed-out photo without manually tuning `ImageEnhance.Contrast`. `.mirror()`/`.flip()` cover the same ground as `.transpose()` with more direct names. `.invert()` flips every pixel to its opposite color — it only works on `"RGB"` (or `"L"`) images, so convert first if the source has an alpha band.
 
@@ -258,7 +261,7 @@ fixed.save("fixed.jpg")
 
 <div class="pfg-section" markdown="block">
 
-## ImageDraw module
+## ImageDraw module { cs="ImageDraw" }
 
 An `Image` object is really just a grid of pixel values — it has no drawing tools of its own. `ImageDraw` is the first example of a **companion module**: a separate class that wraps an `Image` and adds one specific ability, here turning it into a canvas you can draw directly onto — shapes and lines, useful for annotating a photo or generating an image from scratch rather than editing an existing file. `ImageFont`, `ImageFilter`, `ImageEnhance`, `ImageOps`, and the modules further down this page all follow the same pattern: they act on an `Image` from the outside, rather than `Image` itself growing a method for everything.
 
@@ -270,7 +273,7 @@ draw.rectangle((10, 10, 100, 60), outline="green", width=3)
 draw.text((15, 20), "ball python", fill="green")
 ```
 
-### Shapes and lines
+### Shapes and lines { cs="shapes and lines" }
 
 `ImageDraw.Draw(img)` creates a drawing context bound to an image. Every call on it modifies `img` directly, in place. `.rectangle()`, `.ellipse()`, and `.line()` each take a bounding box or set of coordinates, plus `outline`/`fill` colors and an optional `width`.
 
@@ -326,7 +329,7 @@ img.save("shapes.png")
     ```
 
 ??? tip "Drawing with objects"
-    Once a drawing gets complicated, it's common to wrap each thing you're drawing in its own class — an object that stores its own position/size/color, and knows how to draw itself given a drawing context. Nothing here is Pillow-specific: it's the same pattern covered in [Classes](../organization/classes.md) — bundling data with the behavior that acts on it — just applied to a shape instead of a snake. A calling function loops over a list of these objects and calls `.draw()` on each, so building a complex image — dozens of randomly placed shapes, say, using the `random` module — is just a loop appending new `Shape` objects rather than dozens of manual `draw_context` calls.
+    Once a drawing gets complicated, it's common to wrap each thing you're drawing in its own class — an object that stores its own position/size/color, and knows how to draw itself given a drawing context. Nothing here is Pillow-specific: it's the same pattern covered in [Classes](../../organization/classes.md) — bundling data with the behavior that acts on it — just applied to a shape instead of a snake. A calling function loops over a list of these objects and calls `.draw()` on each, so building a complex image — dozens of randomly placed shapes, say, using the `random` module — is just a loop appending new `Shape` objects rather than dozens of manual `draw_context` calls.
 
     ```python-ref
     class Shape:
@@ -380,7 +383,7 @@ img.save("shapes.png")
 
 <div class="pfg-section" markdown="block">
 
-## ImageFont module
+## ImageFont module { cs="ImageFont" }
 
 `ImageDraw.text()` works with no extra setup, but falls back to a small built-in bitmap font. `ImageFont` loads an actual `.ttf` font file at a chosen size, for anything larger or more legible.
 
@@ -391,7 +394,7 @@ font = ImageFont.truetype("arial.ttf", 20)
 draw.text((10, 10), "burmese python", fill="black", font=font)
 ```
 
-### Loading a font
+### Loading a font { cs="loading a font" }
 
 Loads a `.ttf` (or `.otf`) font file at a specific point size. `ImageFont.truetype(path, size)` returns a font object to pass into `draw.text(..., font=font)`. The path can be a font file sitting next to your script, or a system font's full path — sizes aren't interchangeable between fonts, so reload at a new size rather than trying to scale a loaded font after the fact.
 
@@ -414,7 +417,7 @@ img.save("labeled.png")
 
 <div class="pfg-section" markdown="block">
 
-## ImageColor module
+## ImageColor module { cs="ImageColor" }
 
 Drawing methods accept a color as a plain name (`"green"`) or a hex string (`"#3f6b52"`), but sometimes you need that same color as an actual `(r, g, b)` tuple — to do math on it, blend it with another color, or store it in a data structure like the `Shape` class above. `ImageColor.getrgb()` converts either format into the tuple Pillow uses internally.
 
@@ -425,7 +428,7 @@ rgb = ImageColor.getrgb("green")        # (0, 128, 0)
 rgb2 = ImageColor.getrgb("#3f6b52")     # (63, 107, 82)
 ```
 
-### Converting color names
+### Converting color names { cs="converting color names" }
 
 Accepts most CSS-style color names and `#rrggbb`/`#rgb` hex strings, returning a plain `(r, g, b)` tuple. `.getrgb()` returns `(r, g, b, a)` if the input included transparency. Useful once a palette is defined as hex codes rather than named colors, or when a color needs to be manipulated as numbers rather than passed straight into a drawing method.
 
@@ -447,7 +450,7 @@ print(green_rgb, hex_rgb)
 
 <div class="pfg-section" markdown="block">
 
-## ImageFilter module
+## ImageFilter module { cs="ImageFilter" }
 
 Beyond geometric edits, `ImageFilter` can adjust an image's *look* — blurring, sharpening, or tracing its edges — by applying a ready-made pixel transformation, no convolution or kernel math required.
 
@@ -457,7 +460,7 @@ from PIL import ImageFilter
 blurred = img.filter(ImageFilter.BLUR)
 ```
 
-### Applying a filter
+### Applying a filter { cs="applying a filter" }
 
 Applies one of Pillow's built-in filter presets, each a ready-made pixel transformation. `.filter()` — `ImageFilter.CONTOUR` traces edges into a sketch-like outline, distinct from `FIND_EDGES`, which highlights edges while keeping the rest of the image dark.
 
@@ -484,7 +487,7 @@ outlined.save("outlined.jpg")
 
 <div class="pfg-section" markdown="block">
 
-## ImageEnhance module
+## ImageEnhance module { cs="ImageEnhance" }
 
 Where `ImageFilter` applies a fixed preset, `ImageEnhance` lets you dial an existing quality — brightness, contrast, color, sharpness — up or down by an exact amount.
 
@@ -494,7 +497,7 @@ from PIL import ImageEnhance
 brighter = ImageEnhance.Brightness(img).enhance(1.5)
 ```
 
-### Enhancing an image
+### Enhancing an image { cs="enhancing an image" }
 
 Each `ImageEnhance` class wraps an image and exposes `.enhance(factor)`. `Brightness`, `Contrast`, `Color`, `Sharpness` — `1.0` leaves the image unchanged, below `1.0` reduces the effect, and above `1.0` increases it. `Color` controls saturation specifically: pushed toward `0.0` the image slides to grayscale, pushed well above `1.0` colors become more vivid and saturated.
 
@@ -519,7 +522,7 @@ more_colorful.save("more_colorful.jpg")
 
 <div class="pfg-section" markdown="block">
 
-## ImageChops module
+## ImageChops module { cs="ImageChops" }
 
 Everything so far transforms a *single* image. `ImageChops` ("channel operations") instead combines two images of the same size, pixel by pixel — spotting what changed between two photos, or blending one image into another.
 
@@ -530,7 +533,7 @@ diff = ImageChops.difference(before, after)
 blended = ImageChops.multiply(img, mask)
 ```
 
-### Comparing and combining images
+### Comparing and combining images { cs="comparing and combining images" }
 
 `.difference(im1, im2)` subtracts one image from the other pixel by pixel. Identical areas come out solid black, and anything that changed shows up as a bright patch. Calling `.getbbox()` on the result gives the bounding box of everything that differs (or `None` if the two images are pixel-for-pixel identical), a quick way to check "did anything change?" without comparing every pixel yourself. `.multiply()`/`.screen()`/`.add()` combine two images with different blending math, similar to layer blend modes in photo-editing software.
 
@@ -554,7 +557,7 @@ diff.save("diff.jpg")
 
 <div class="pfg-section" markdown="block">
 
-## Format conversion
+## Format conversion { cs="convert" }
 
 Because `.save()` infers the output format from the file extension, converting between formats is usually just an open-then-save with a different name — with a couple of format-specific details worth knowing.
 
@@ -563,7 +566,7 @@ img = Image.open("snake.png")
 img.convert("RGB").save("snake.jpg")   # JPEG has no transparency, so drop RGBA first
 ```
 
-### Converting between formats
+### Converting between formats { cs="converting between formats" }
 
 JPEG doesn't support transparency, so saving an `"RGBA"` image straight to `.jpg` raises an error. Convert to `"RGB"` first, which drops the alpha band. PNG, by contrast, supports both `"RGB"` and `"RGBA"` natively, so no conversion is needed going the other direction.
 
@@ -583,9 +586,9 @@ img.convert("RGB").save("snake.jpg")
 
 <div class="pfg-section" markdown="block">
 
-## ImageSequence module
+## ImageSequence module { cs="ImageSequence" }
 
-An animated GIF is really a whole stack of images shown one after another. `Image.open()` only gives you the first frame by default — `ImageSequence` lets a [`for` loop](../flow/loops.md) step through every frame in order.
+An animated GIF is really a whole stack of images shown one after another. `Image.open()` only gives you the first frame by default — `ImageSequence` lets a [`for` loop](../../flow/loops.md) step through every frame in order.
 
 ```python-ref
 from PIL import Image, ImageSequence
@@ -595,7 +598,7 @@ for frame in ImageSequence.Iterator(gif):
     frame.save(f"frame_{frame.tell()}.png")
 ```
 
-### Looping over GIF frames
+### Looping over GIF frames { cs="looping over GIF frames" }
 
 Hands a `for` loop one frame at a time, in order, from an animated image. `ImageSequence.Iterator(img)` — each frame is a regular `Image` object, so every operation covered on this page (resize, filter, draw) works on it the same way. `.tell()` reports which frame number you're currently on, useful for numbering saved output files.
 
@@ -617,9 +620,9 @@ for frame in ImageSequence.Iterator(gif):
 
 <div class="pfg-section" markdown="block">
 
-## Putting it together
+## Putting it together { cs="putting it together" }
 
-Pillow doesn't need anything special to combine with the rest of Python — a function wrapping one transformation, called from an `if`/`elif` chosen by [user input](../flow/conditionals.md), looped until the user's done, is enough to build a small interactive tool out of the operations above.
+Pillow doesn't need anything special to combine with the rest of Python — a function wrapping one transformation, called from an `if`/`elif` chosen by [user input](../../flow/conditionals.md), looped until the user's done, is enough to build a small interactive tool out of the operations above.
 
 ```python-ref
 def apply_filter(img, choice):
@@ -633,9 +636,9 @@ def apply_filter(img, choice):
         return img
 ```
 
-### An interactive filter tool
+### An interactive filter tool { cs="an interactive filter tool" }
 
-Combines a function, an `if`/`elif` chain, and a `while` loop — nothing here is Pillow-specific. Each piece here is something covered elsewhere on this site — a [function](../organization/functions.md) wrapping one transformation, an [`if`/`elif` chain](../flow/conditionals.md) picking which one to run, and a [`while` loop](../flow/loops.md#while-loops) that keeps asking until the user's satisfied. Pillow itself only shows up inside `apply_filter`.
+Combines a function, an `if`/`elif` chain, and a `while` loop — nothing here is Pillow-specific. Each piece here is something covered elsewhere on this site — a [function](../../organization/functions.md) wrapping one transformation, an [`if`/`elif` chain](../../flow/conditionals.md) picking which one to run, and a [`while` loop](../../flow/loops.md#while-loops) that keeps asking until the user's satisfied. Pillow itself only shows up inside `apply_filter`.
 
 ```python-ref
 while True:

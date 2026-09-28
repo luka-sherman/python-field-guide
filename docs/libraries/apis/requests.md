@@ -1,4 +1,7 @@
 ---
+cheatsheet_title: requests
+cheatsheet_description: Fetching data over the internet, like asking a website or API for information.
+cheatsheet_title_suffix: :material-download-outline:{ .library-badge .library-badge--third-party title="Third-party — install separately with pip" }
 description: >-
   Making HTTP requests in Python with the requests library: fetching data, checking
   status codes, parsing JSON, and handling errors.
@@ -18,7 +21,7 @@ requests is an open-source project maintained by volunteer contributors.
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 ```bash
 pip install requests
@@ -54,17 +57,17 @@ For everyday use, `requests` offers the best balance of simplicity and capabilit
 
 <div class="pfg-section" markdown="block">
 
-## How a request works
+## How a request works { cs="how requests work" }
 
 Making a request from Python works the same way a browser does, minus the part where anything gets drawn on screen. Your program opens a connection to a server at a URL, sends a **request** — the URL itself, plus optional headers and query parameters — and waits. The server does whatever work that URL asks for, then sends back a **response**: a status code summarizing what happened, a few headers of its own, and usually a body of data. Nothing renders automatically the way a browser would — `.text`/`.json()` just hand that raw body to your code, as a plain string or a Python `dict`/`list`.
 
-Most APIs send that body back as [JSON](json.md) — data meant to be read by a program. A URL meant for people instead sends back HTML, the same raw markup [BeautifulSoup](beautifulsoup.md#html-and-web-pages) parses when scraping a page instead of calling an API.
+Most APIs send that body back as [JSON](json.md) — data meant to be read by a program. A URL meant for people instead sends back HTML, the same raw markup [BeautifulSoup](../web/beautifulsoup.md#html-and-web-pages) parses when scraping a page instead of calling an API.
 
 </div>
 
 <div class="pfg-section" markdown="block">
 
-## Making a request
+## Making a request { cs="get" }
 
 `requests.get(url)` sends a request and returns a `Response` object holding whatever came back.
 
@@ -76,7 +79,7 @@ print(response.status_code)   # 200
 print(response.text)          # '{"userId": 1, "id": 1, "title": "...", "body": "..."}'
 ```
 
-### Checking the status code
+### Checking the status code { cs="status_code" }
 
 `.status_code` tells you whether the request actually succeeded before you try to use the data. The most common codes: `200` (success), `201` (a `POST` created something new), `404` (that endpoint/resource doesn't exist), `401`/`403` (missing or invalid permission), `500` (the server itself failed). `.raise_for_status()` is a shortcut that raises an exception automatically for any failing code, instead of checking `.status_code` by hand every time.
 
@@ -96,9 +99,9 @@ response.raise_for_status()   # does nothing on 200, raises on a failing code
 print("request succeeded")
 ```
 
-### Parsing JSON
+### Parsing JSON { cs="json" }
 
-`.json()` converts a JSON response body directly into a Python `dict` or `list`. Most web APIs send their data back as JSON — text formatted so it maps directly onto Python's own `dict`/`list` structures, which is why `.json()` needs no extra parsing step. Once converted, the result works exactly like any other [dict](../types/collections.md#dictionaries) or [list](../types/collections.md#lists) you'd build by hand.
+`.json()` converts a JSON response body directly into a Python `dict` or `list`. Most web APIs send their data back as JSON — text formatted so it maps directly onto Python's own `dict`/`list` structures, which is why `.json()` needs no extra parsing step. Once converted, the result works exactly like any other [dict](../../types/collections.md#dictionaries) or [list](../../types/collections.md#lists) you'd build by hand.
 
 ```python-ref
 response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
@@ -117,7 +120,7 @@ print(post["title"])
 print(post["body"])
 ```
 
-### Query parameters
+### Query parameters { cs="params" }
 
 Pass a `params` dict instead of hand-building the URL's `?key=value` text yourself. `requests` builds the query string for you — including escaping special characters correctly — so `params={"postId": 1}` is both safer and easier to read than string-formatting the URL by hand.
 
@@ -140,7 +143,7 @@ comments = response.json()
 print(len(comments))
 ```
 
-### Custom headers
+### Custom headers { cs="headers" }
 
 Pass a `headers` dict to attach extra metadata to a request — an API key, a content type, or a `User-Agent` identifying what's making the request. `requests` sends a generic default `User-Agent` if none is given.
 
@@ -162,13 +165,13 @@ print(response.status_code)
 ```
 
 ??? warning "Some sites block the default User-Agent"
-    Plenty of real websites (as opposed to test APIs like this page's own examples) return a `403 Forbidden` for any request that doesn't look like it came from an actual browser, since `requests`' own default `User-Agent` string identifies it as a script. Setting `headers={"User-Agent": "Mozilla/5.0"}` (or a similar browser-like string) is often enough to get past this — worth remembering the moment a real page's request stops working right after [BeautifulSoup](beautifulsoup.md) worked fine on a test one.
+    Plenty of real websites (as opposed to test APIs like this page's own examples) return a `403 Forbidden` for any request that doesn't look like it came from an actual browser, since `requests`' own default `User-Agent` string identifies it as a script. Setting `headers={"User-Agent": "Mozilla/5.0"}` (or a similar browser-like string) is often enough to get past this — worth remembering the moment a real page's request stops working right after [BeautifulSoup](../web/beautifulsoup.md) worked fine on a test one.
 
 </div>
 
 <div class="pfg-section" markdown="block">
 
-## Sending data
+## Sending data { cs="post" }
 
 Not every request is asking for something back — `requests.post()` sends data *to* a URL instead, the same way submitting a form or creating a new resource through an API works. Pass a Python dict as `json=`, and `requests` handles converting it to a JSON string and setting the right header for you.
 
@@ -196,9 +199,9 @@ print(response.json())
 
 <div class="pfg-section" markdown="block">
 
-## Handling request errors
+## Handling request errors { cs="error handling" }
 
-A network call can fail in ways that have nothing to do with your code — the [Errors](../practices/errors.md#catch-with-tryexcept) page covers `try`/`except` in general; a couple of exceptions are specific to `requests`.
+A network call can fail in ways that have nothing to do with your code — the [Errors](../../practices/errors.md#catch-with-tryexcept) page covers `try`/`except` in general; a couple of exceptions are specific to `requests`.
 
 | Exception | Happens when |
 |-----------|---------------|

@@ -1,10 +1,11 @@
 ---
+cheatsheet_description: Read and write text files on your computer.
 description: >-
   Reading and writing files in Python: opening and closing files, and working with text
   and other formats, with runnable examples.
 ---
 
-# :material-file-document-outline:{ .lg .middle } File Read/Write
+# :material-file-document-outline:{ .lg .middle } File read/write
 
 <div class="pfg-section" markdown="block">
 
@@ -31,11 +32,11 @@ flowchart LR
 
 <div class="pfg-section" markdown="block">
 
-## Opening and closing files
+## Opening and closing files { cs="open" }
 
 `open()` returns a file object to read from or write to.
 
-### File paths
+### File paths { cs="paths" }
 
 `open("notes.txt", ...)` is a **relative path** — Python looks for `notes.txt` in the program's **working directory**, the folder it's currently running from, which isn't necessarily the folder the `.py` file itself lives in. Reaching a file somewhere else means either writing out the folders in between, or an **absolute path** — the full location starting from the filesystem's root, which works the same no matter what the working directory is.
 
@@ -68,7 +69,7 @@ On Windows, write the path with an `r` prefix (`r"C:\Users\luka\..."`) or double
 
 Every runnable example on this page opens a plain filename like `"notes.txt"` — that's a relative path into the sandbox's own working directory, the same reason it works without ever specifying a folder.
 
-### with
+### with { cs }
 
 `with` runs the indented block below it, then closes the file automatically once the block ends — whether it finishes normally or raises an error partway through. `open(...)` produces the file object; `as file` is what makes it available under that name inside the block.
 
@@ -97,7 +98,7 @@ file.close()          # easy to forget
     print("saved")
     ```
 
-### Modes options
+### Modes options { cs="modes" }
 
 The second argument to `open()` is the **mode** — what you intend to do with the file:
 
@@ -112,11 +113,11 @@ The second argument to `open()` is the **mode** — what you intend to do with t
 
 <div class="pfg-section" markdown="block">
 
-## Read
+## Read { cs="read()" }
 
-### Modes
+### Modes { cs="modes" }
 
-#### "r" read existing
+#### "r" read existing { cs="existing" }
 
 Say `notes.txt` already exists — written by an earlier run, or typed by hand in a text editor — and looks like this, one snake per line:
 
@@ -151,9 +152,9 @@ open("missing.txt", "r")     # FileNotFoundError: [Errno 2] No such file or dire
         print(e)
     ```
 
-### Functions
+### Functions { cs="functions" }
 
-#### Whole file
+#### Whole file { cs="read()" }
 
 `.read()` returns the whole thing as one string, newlines and all. It also takes an optional character count, returning just that many characters instead of the whole file.
 
@@ -186,7 +187,7 @@ with open("notes.txt", "r") as file:
         print(file.read(4))
     ```
 
-#### By line
+#### By line { cs="readline(), readlines()" }
 
 `.readlines()` returns a list, one string per line, each still ending in a trailing `\n`. Looping over the file object directly reads it the same way, one line at a time, without holding the whole list in memory at once. `.readline()` reads a single line and advances to the next — call it repeatedly to step through a file by hand, though looping does the same thing more naturally.
 
@@ -224,15 +225,15 @@ with open("notes.txt", "r") as file:
     | `.read()` / `.readlines()` | <span class="pt-bigo pt-bigo--ok">O(n)</span> | <span class="pt-bigo pt-bigo--ok">O(n)</span> |
     | Loop over the file, line by line | <span class="pt-bigo pt-bigo--ok">O(n)</span> | <span class="pt-bigo pt-bigo--good">O(1)</span> |
 
-    `.read()`/`.readlines()` holds the entire file's contents in memory at once (O(n) [space](../practices/style.md#time-and-space)). Looping over the file object or calling `.readline()` repeatedly needs only enough memory for the current line, O(1) space regardless of file size. 
-    
+    `.read()`/`.readlines()` holds the entire file's contents in memory at once (O(n) [space](../practices/style.md#time-and-space)). Looping over the file object or calling `.readline()` repeatedly needs only enough memory for the current line, O(1) space regardless of file size.
+
     For a small file it doesn't matter; for a file too large to comfortably fit in memory, it's the difference between the program running and it not.
 
     See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
 
 </div>
 
-#### Seek and tell { data-fcm-hide="essentials" }
+#### Seek and tell { data-fcm-hide="essentials" cs="seek(), tell()" }
 
 `.tell()` returns the current position in the file, as a character count from the start. `.seek(position)` moves back to a given position, letting you re-read part of a file without closing and reopening it.
 
@@ -264,11 +265,11 @@ with open("notes.txt", "r") as file:
 
 <div class="pfg-section" markdown="block">
 
-## Write
+## Write { cs="write()" }
 
-### Modes
+### Modes { cs="modes" }
 
-#### "w" overwrite
+#### "w" overwrite { cs="overwrite" }
 
 `"w"` erases whatever was already in the file before writing anything new — opening a file you meant to add to with `"w"` is a common way to accidentally lose data.
 
@@ -305,7 +306,7 @@ with open("notes.txt", "w") as file:
         print(file.read())
     ```
 
-#### "a" append
+#### "a" append { cs="append" }
 
 Use `"a"` instead to add to the end, keeping the existing contents in place — compare against `"w"` above.
 
@@ -343,7 +344,7 @@ with open("notes.txt", "r") as file:
         print(file.read())
     ```
 
-#### "x" create { data-fcm-hide="essentials" }
+#### "x" create { data-fcm-hide="essentials" cs="create" }
 
 `"x"` is for when overwriting an existing file would be a mistake — it creates the file, but raises `FileExistsError` instead of silently replacing something already there. Like `"w"`, it's write-only — reading from that same file object raises an error, so reading it back means reopening it in `"r"` mode afterward.
 
@@ -374,9 +375,9 @@ open("newfile.txt", "x")     # FileExistsError: [Errno 17] File exists: 'newfile
         print(e)
     ```
 
-### Functions
+### Functions { cs="functions" }
 
-#### Single string
+#### Single string { cs="write()" }
 
 `.write()` writes a string to the file — it doesn't add a newline for you, so add one yourself at the end of each line, usually by looping over a list. Whether that write starts the file fresh or adds onto what's already there depends on which mode you opened it with, `"w"` or `"a"`.
 
@@ -401,7 +402,7 @@ with open("notes.txt", "r") as file:
         print(file.read())
     ```
 
-#### Multiple strings
+#### Multiple strings { cs="writelines()" }
 
 `.writelines()` takes a list of strings and writes them all in one call instead of looping yourself — like `.write()`, it doesn't add newlines, so they need to already be in the strings.
 
@@ -429,17 +430,17 @@ with open("notes.txt", "w") as file:
 
 <div class="pfg-section" markdown="block">
 
-## Related libraries
+## Related libraries { cs="related libraries" }
 
 Everything above is plain text. For other file formats, these Libraries pages build on the same `open()` and file-mode basics covered here:
 
 | Library | Use for |
 |---|---|
-| :material-file-delimited-outline: [csv](../libraries/csv.md) | Reading and writing spreadsheets. |
-| :material-code-json: [json](../libraries/json.md) | Reading and writing JSON data: nested dicts and lists, saved to a file or a string. |
-| :material-image-outline: [Pillow](../libraries/pillow.md#opening-and-saving-images) | Opening, editing, and saving images, built around one Image object. |
-| :material-face-recognition: [OpenCV](../libraries/opencv.md#reading-displaying-and-saving-images) | Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection. |
-| :material-chart-line: [Matplotlib](../libraries/matplotlib.md#saving-a-figure) | Charts and plots: line, bar, and scatter, built directly from plain Python data. |
-| :material-application-outline: [tkinter](../libraries/tkinter.md#file-dialogs) | Creating desktop applications: text, buttons, dropdowns, forms, output, etc. |
+| :material-file-delimited-outline: [csv](../libraries/data_analysis/csv.md) | Reading and writing spreadsheets. |
+| :material-code-json: [json](../libraries/apis/json.md) | Reading and writing JSON data: nested dicts and lists, saved to a file or a string. |
+| :material-image-outline: [Pillow](../libraries/images/pillow.md#opening-and-saving-images) | Opening, editing, and saving images, built around one Image object. |
+| :material-face-recognition: [OpenCV](../libraries/computer_vision/opencv.md#reading-displaying-and-saving-images) | Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection. |
+| :material-chart-line: [Matplotlib](../libraries/data_analysis/matplotlib.md#saving-a-figure) | Charts and plots: line, bar, and scatter, built directly from plain Python data. |
+| :material-application-outline: [tkinter](../libraries/desktop_uis/tkinter.md#file-dialogs) | Creating desktop applications: text, buttons, dropdowns, forms, output, etc. |
 
 </div>

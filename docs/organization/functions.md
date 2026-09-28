@@ -1,4 +1,5 @@
 ---
+cheatsheet_description: Package a named block of code to run it at any time.
 description: >-
   Python functions explained with runnable examples: defining, calling, arguments,
   *args/**kwargs, scope, recursion, and decorators.
@@ -8,7 +9,7 @@ description: >-
 
 <div class="pfg-section" markdown="block">
 
-A **function** packages a block of code under a name, so it can be run again — with different inputs — instead of copying and pasting the same lines every time you need them. 
+A **function** packages a block of code under a name, so it can be run again — with different inputs — instead of copying and pasting the same lines every time you need them.
 
 Python already has some built in (`print()`, `len()`, `input()`), but `def` lets you write your own.
 
@@ -101,11 +102,11 @@ message = describe("ball")        # "a ball python" is the return value, so now 
 
 <div class="pfg-section" markdown="block">
 
-## Defining a function
+## Defining a function { cs="def" }
 
-A function is first defined. After it's defined, you can [call the function](#calling-a-function) whenever you need to run it. 
+A function is first defined. After it's defined, you can [call the function](#calling-a-function) whenever you need to run it.
 
-The function definition line contains **`def`**, a **function name** (follows the same [naming rules as variables](../start/foundations.md#naming-variables)), **parentheses** holding zero or more **parameters**, and a **colon**. 
+The function definition line contains **`def`**, a **function name** (follows the same [naming rules as variables](../start/foundations.md#naming-variables)), **parentheses** holding zero or more **parameters**, and a **colon**.
 
 Under it is an indented **body**: the block of code that runs when the function is [called](#calling-a-function).
 
@@ -123,7 +124,7 @@ def function_name(optional_parameter, optional_parameter):
     | Indent selected lines | ++tab++ |
     | Unindent selected lines | ++shift+tab++ |
 
-### Parameters
+### Parameters { cs="parameters" }
 
 A **parameter** is the placeholder name listed in a function's own definition — as opposed to an **argument**, the actual value a caller passes in for it.
 
@@ -139,12 +140,12 @@ describe("ball", 5)    # a 5 ft ball python
 describe(5, "ball")    # a ball ft 5 python — wrong order, but still runs
 ```
 
-#### Default values
+#### Default values { cs="defaults" }
 
 A parameter can fall back to a default value if the call doesn't specify one. Parameters with a default must come **after** all of the parameters without one.
 
 ```python-ref
-def describe(species, length_ft=5):              # default length_ft is 5, if not given then called. 
+def describe(species, length_ft=5):              # default length_ft is 5, if not given then called.
     return f"a {length_ft} ft {species} python"
 
 describe("burmese", 12)   # length_ft is 12
@@ -173,7 +174,7 @@ describe("ball")          # second parameter is not given, so length_ft is the d
         return log
     ```
 
-#### *args tuple
+#### *args tuple { cs="*args" }
 
 `*args` collects any number of positional arguments into a single [tuple](../types/collections.md#tuples), so a function can accept as many as the caller passes instead of a fixed list of parameters. `*args` is the conventional name, but any name after `*` works.
 
@@ -184,7 +185,7 @@ def total_length(*args):
 total_length(5, 12, 8)    # 25
 ```
 
-#### **kwargs dict
+#### **kwargs dict { cs="**kwargs" }
 
 `**kwargs` collects any number of keyword arguments into a single [dict](../types/collections.md#dictionaries), so a function can accept as many `name=value` pairs as the caller passes instead of a fixed list of parameters. `**kwargs` is the conventional name, but any name after `**` works.
 
@@ -195,7 +196,7 @@ def describe(**details):
 describe(species="ball", length_ft=5)
 ```
 
-#### Type hints { data-fcm-hide="essentials" }
+#### Type hints { data-fcm-hide="essentials" cs="type hints" }
 
 A type hint on a parameter like `species: str` annotates the type of value it's expected to receive. Python doesn't enforce it, but it can be helpful for you to keep track of it and a separate type checker (like `mypy`) can check for you.
 
@@ -204,14 +205,14 @@ def describe(species: str, length_ft: float):
     return f"a {length_ft} ft {species} python"
 ```
 
-#### Combining categories { data-fcm-hide="essentials" , data-card-link="skip" }
+#### Combining categories { data-fcm-hide="essentials" cs="combining argument types" }
 
-A single signature can mix kinds of parameters, but must be in this order: 
+A single signature can mix kinds of parameters, but must be in this order:
 
 1. positional parameters
 2. `*args`
 3. keyword-only parameters
-4. `**kwargs` 
+4. `**kwargs`
 
 `venomous` sits after `*lengths`, which makes it keyword-only automatically — anything named after `*args` can only be passed by name, even without a separate bare `*`.
 
@@ -223,7 +224,7 @@ describe("ball", 5, 6, venomous=True, habitat="captive")
 # species = "ball", lengths = (5, 6), venomous = True, details = {"habitat": "captive"}
 ```
 
-#### Positional-only { data-fcm-hide="essentials" }
+#### Positional-only { data-fcm-hide="essentials" cs="positional-only" }
 
 A `/` in the parameter list marks every parameter before it **positional-only** — it can only be passed by position, never by name. Most parameters don't need this restriction. It mainly shows up in library code, where locking a parameter to positional-only lets the author rename it later without breaking callers who passed it by keyword.
 
@@ -235,7 +236,7 @@ describe("ball", 5)                     # by position — works
 describe(species="ball", length_ft=5)   # TypeError — species is positional-only
 ```
 
-#### Keyword-only { data-fcm-hide="essentials" }
+#### Keyword-only { data-fcm-hide="essentials" cs="keyword-only" }
 
 A `*` in the parameter list marks every parameter after it **keyword-only** — it can only be passed by name, never by position. Keyword-only parameters suit options that would be unclear as a bare positional value — `venomous=True` reads clearly at the call site, `True` alone wouldn't.
 
@@ -247,7 +248,7 @@ describe("ball", venomous=True)    # by name — works
 describe("ball", True)             # TypeError — venomous is keyword-only
 ```
 
-### Return values
+### Return values { cs="return" }
 
 `return` sends a value back to whatever called the function, instead of just printing it. `return` also exits the function immediately, skipping any code written after it.
 
@@ -273,7 +274,7 @@ def find_species(name):
 result = find_species("cobra")    # None — the function fell through without a return
 ```
 
-#### Multiple values  { data-card-link="skip" } 
+#### Multiple values
 
 `return` followed by several values separated by commas [packs](../types/collections.md#packing-and-unpacking) them into a tuple as a single return value. The caller unpacks that tuple to use the values separately — see [multiple values](#multiple-values_1) under calling a function.
 
@@ -284,7 +285,7 @@ def describe(species, length_ft):
 species, length = describe("ball", 5)    # name = "ball", length = 5
 ```
 
-### Keep functions focused  { data-card-link="skip" }
+### Keep functions focused
 
 A function should do one thing. If you find yourself describing it with "and" — "loads the species *and* saves it *and* prints a summary" — it's probably three functions.
 
@@ -321,7 +322,7 @@ def describe(species):
 
     Both versions do the same thing — the second reads top to bottom without having to track which `if` branch you're inside.
 
-### pass placeholder
+### pass placeholder { cs="pass" }
 
 `pass` temporarily fills an empty function block so it doesn't raise a syntax error while you're not ready to write the real code yet.
 
@@ -331,7 +332,7 @@ def describe(species):
 ```
 
 
-### Docstrings
+### Docstrings { cs="docstrings" }
 
 A triple-quoted string as a function's first line documents what it does — most editors show it automatically when you use the function elsewhere. A **docstring** is the same triple-quoted-string trick covered on the [Foundations](../start/foundations.md#multi-line-comments-with) page, but placed as the very first line inside a function specifically to document it. Unlike a regular comment, Python actually stores a docstring (as the function's `__doc__` attribute) rather than discarding it — which is how editors are able to show it in a tooltip when you call the function elsewhere, without you needing to go find the definition.
 
@@ -364,7 +365,7 @@ def is_too_long(species, length_ft):
 
 <div class="pfg-section" markdown="block">
 
-## Calling a function
+## Calling a function { cs="calling a function" }
 
 `describe("ball")` is the call — the name, followed by parentheses, is what runs the body. `"ball"` fills in `species` for that one run. Same body, run twice — only the value in `species` changes between calls.
 
@@ -384,11 +385,11 @@ describe("burmese")    # a burmese python
     describe("burmese")
     ```
 
-### Arguments
+### Arguments { cs="arguments" }
 
 An **argument** is the actual value a caller passes in for a parameter — as opposed to a **parameter**, the placeholder name listed in a function's own definition.
 
-#### Required
+#### Required { cs="required" }
 
 By default, a call needs an argument for every parameter that doesn't have one already, supplied in the same order the parameters were listed — unless passed [by keyword](#by-keyword) instead. Leaving one out, or supplying too many, raises a `TypeError`.
 
@@ -400,7 +401,7 @@ describe("ball", 5)    # both required arguments supplied, by position
 describe("ball")       # TypeError — missing required argument: 'length_ft'
 ```
 
-#### By keyword
+#### By keyword { cs="keyword" }
 
 Passing `name=value` lets you specify arguments out of order, or skip earlier defaults. Arguments passed by position (like `describe("ball")`) must still come first; keyword arguments can follow in any order, and are matched by name instead of position. A function can also catch any number of these in one parameter — see the [`**kwargs` dict](#kwargs-dict) under defining a function.
 
@@ -411,7 +412,7 @@ def describe(species, length_ft=5, venomous=False):
 describe(species="ball", venomous=True)    # length_ft still uses its default
 ```
 
-#### Unpacking
+#### Unpacking { cs="unpacking" }
 
 `*` and `**` also work in a function call, where they do the reverse of `*args`/`**kwargs`: instead of gathering separate arguments into one tuple or dict, they spread an existing list or dict back out into separate arguments. `*` unpacks a list or tuple into positional arguments; `**` unpacks a dict into keyword arguments. This is the call-site mirror of the [`*args` tuple](#args-tuple) and [`**kwargs` dict](#kwargs-dict) under defining a function — those gather a variable number of arguments into a tuple or dict at definition time; unpacking spreads a list, tuple, or dict back into individual arguments at the call site.
 
@@ -423,7 +424,7 @@ details = {"species": "ball", "length_ft": 5}
 describe(**details)           # same as describe(species="ball", length_ft=5)
 ```
 
-### Saving the return value
+### Saving the return value { cs="return value" }
 
 Assign the call to a variable to keep the value `return` sent back, instead of it being discarded. `message = describe("ball")` runs `describe` with `species` set to `"ball"`, and `return` hands the built string back to the `=` that called it — `message` now holds `"a ball python"`. That's the difference from `print()`: `print()` shows a value and discards it; `return` hands the value back to be stored, passed along, or used in another expression.
 
@@ -434,7 +435,7 @@ def describe(species):
 message = describe("ball")    # "a ball python" — stored, not printed
 ```
 
-#### Multiple values { data-card-link="skip" }
+#### Multiple values
 
 A function that [returns multiple values packed into a tuple](#multiple-values) can have them unpacked straight into multiple variables in one line at the call site. `name, length = describe(...)` unpacks the returned tuple, matching each variable to the tuple's items by position — the same as [unpacking any other tuple](../types/collections.md#packing-and-unpacking). The number of variables on the left has to match the number of values returned.
 
@@ -449,7 +450,7 @@ name, length = describe("ball", 5)    # name = "ball", length = 5
 
 <div class="pfg-section" markdown="block">
 
-## Scope
+## Scope { cs="scope" }
 
 A variable created inside a function is **local** — it only exists while that function is running, and isn't visible outside it.
 
@@ -461,7 +462,7 @@ def set_species():
 set_species()
 ```
 
-### Local vs global variables
+### Local vs global variables { cs="local vs global" }
 
 A variable defined at the top level of a file is **global** — readable from inside any function. A function can *read* a global variable freely, but assigning to that name inside a function creates a brand-new local variable instead of changing the global one — the next section covers how to actually change a global from inside a function.
 
@@ -518,7 +519,7 @@ def show_species():
 
 <div class="pfg-section" markdown="block">
 
-## Recursion { data-fcm-hide="essentials" }
+## Recursion { data-fcm-hide="essentials" cs="recursion" }
 
 A function can call itself — this is called **recursion**, an alternative to a loop for problems that break down into smaller versions of themselves.
 
@@ -569,7 +570,7 @@ Every recursive function needs two parts:
     | Recursion, n levels deep | <span class="pt-bigo pt-bigo--ok">O(n)</span> calls | <span class="pt-bigo pt-bigo--ok">O(n)</span> stack |
 
     Every call a function makes — recursive or not — adds a frame to the call stack and holds that call's local variables until it returns. A recursive function keeps every call's frame alive until the base case is reached, so its space cost is O(n) for n levels of recursion. That's why the `RecursionError` exists — Python caps how deep the stack can grow before it runs out of room.
-    
+
     A loop reuses the same frame each pass, O(1) [space](../practices/style.md#time-and-space).
 
     See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
@@ -600,11 +601,11 @@ Every recursive function needs two parts:
 
 <div class="pfg-section" markdown="block">
 
-## Decorators { data-fcm-hide="essentials" }
+## Decorators { data-fcm-hide="essentials" cs="decorators" }
 
 **`@decorator`** lets you add behavior to a function without editing the function's own code — write the behavior once, then apply it to as many functions as you want. It's written as `@decorator_name`, placed directly above a `def`, and takes one function in, returning a function out[^callable].
 
-### Wrapping the call
+### Wrapping the call { cs="wrapping" }
 
 A decorator can run its own code around a function call by returning a different function instead of the original — a **wrapper** that does something, calls the original, then returns. This is the shape behind most decorators you'll actually use — logging, timing, or checking permissions before letting a call through.
 
@@ -625,7 +626,7 @@ def describe():        # here is your regular function you are decorating
 describe()  # every function call now prints "looking up a snake...", "a python", then "found it"
 ```
 
-### Returning the original function
+### Returning the original function { cs="original function" }
 
 Not every decorator needs a wrapper — the only actual requirement is returning *some* function. `catalog` below doesn't define a new one at all, it just hands back `func` itself, unchanged, so its surrounding prints only run once, the moment `describe` is defined — never again on any later call to `describe()`.
 
@@ -651,7 +652,7 @@ def count():
 print(count())    # 5 — return values pass through untouched too
 ```
 
-### Accepting arguments
+### Accepting arguments { cs="arguments" }
 
 `describe` above takes no arguments, so `wrapper` didn't need to accept any either. Most functions do take arguments — `describe` normally takes a `species`, for instance — and `wrapper` has to accept whatever the decorated function needs.
 
@@ -677,7 +678,7 @@ def total_length(*lengths):
 print(total_length(5, 12, 8))    # prints "called with (5, 12, 8)", then 25 — same decorator, different signature
 ```
 
-### Advanced uses
+### Advanced uses { cs="identity, stacking" }
 
 ??? tip "Decorators with arguments"
     A decorator that needs its own settings takes those arguments one level out — a function that *returns* a decorator, instead of being one directly. This is how a decorator like Flask's `@app.route("/users")` gets its own argument (the URL path), separate from whatever function it ends up decorating.
@@ -784,7 +785,7 @@ print(total_length(5, 12, 8))    # prints "called with (5, 12, 8)", then 25 — 
 
 <div class="pfg-section" markdown="block">
 
-## Generators { data-fcm-hide="essentials" }
+## Generators { data-fcm-hide="essentials" cs="generators" }
 
 A **generator** is a function that pauses and resumes instead of running start to finish and returning once. Calling it doesn't run the body — it returns a **generator object** that produces values one at a time, only as they're asked for.
 
@@ -798,7 +799,7 @@ for species in species_generator():
     print(species)
 ```
 
-### Generator vs. a regular function  { data-card-link="skip" }
+### Generator vs. a regular function
 
 A regular function does all its work up front and returns one complete result; a generator pauses after each `yield` and resumes on request.
 
@@ -828,7 +829,7 @@ len(gen)        # TypeError
 | That result supports | Indexing, `len()`, looping more than once | Stepping forward once with `next()` or a `for` loop |
 | Choose it when | The caller needs the whole result — to index into it, check its length, or reuse it more than once | Values are only ever read once, start to finish, or the full sequence is too large — or too open-ended — to hold in memory all at once |
 
-### yield vs return
+### yield vs return { cs="yield" }
 
 `return` exits a function and hands back one value, all at once. `yield` hands back one value but pauses the function in place, keeping its local variables intact — the next call resumes right after that `yield` instead of starting over.
 
@@ -845,7 +846,7 @@ next(gen)    # "burmese"
 next(gen)    # StopIteration — no values left
 ```
 
-### Memory efficiency
+### Memory efficiency { cs="memory" }
 
 A generator produces values on demand instead of building the whole result up front, so it can represent a sequence too large to fit in memory — or one with no fixed end at all.
 
@@ -863,7 +864,7 @@ next(counter)    # 1
 next(counter)    # 2
 ```
 
-### Generator expressions
+### Generator expressions { cs="generator expressions" }
 
 Parentheses instead of brackets turn a [list comprehension](../types/collections.md#list-comprehension) into a generator expression — same filtering and transforming syntax, but values are produced lazily instead of built into a list all at once.
 

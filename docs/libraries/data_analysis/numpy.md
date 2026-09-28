@@ -1,4 +1,9 @@
 ---
+cheatsheet_title: NumPy
+cheatsheet_description: Fast numeric arrays, with math applied to a whole array at once instead of item by item.
+cheatsheet_title_suffix: :material-download-outline:{ .library-badge .library-badge--third-party title="Third-party — install separately with pip" }
+cheatsheet_attrs:
+  data-fcm-hide: essentials
 description: >-
   Fast numeric arrays in Python with NumPy: creating arrays, vectorized math, aggregation,
   and boolean-mask filtering, with runnable examples.
@@ -18,7 +23,7 @@ NumPy is an open-source project, with fiscal sponsorship from the nonprofit [Num
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 ```bash
 pip install numpy
@@ -39,7 +44,7 @@ import numpy as np
 
 <div class="pfg-section" markdown="block">
 
-## Creating arrays
+## Creating arrays { cs="ndarray" }
 
 `np.array()` builds an `ndarray` from an existing list — every value gets converted to the same type.
 
@@ -51,7 +56,7 @@ print(lengths_ft)
 print(lengths_ft.dtype)
 ```
 
-### Building arrays without a list
+### Building arrays without a list { cs="arange" }
 
 `np.zeros(n)` builds an array of `n` zeros as a starting point to fill in later. `np.arange(stop)` counts up from `0` to (but not including) `stop`, just like the built-in `range()` — with an optional start and step, exactly like `range()` too.
 
@@ -82,7 +87,7 @@ np.arange(0, 10, 2)    # array([0, 2, 4, 6, 8])
 
 <div class="pfg-section" markdown="block">
 
-## Array operations
+## Array operations { cs="array operations" }
 
 A math operation on an array applies to every element at once — no loop required, and considerably faster than looping over a plain list.
 
@@ -101,13 +106,13 @@ print(lengths_m)
     | Python `for` loop | <span class="pt-bigo pt-bigo--ok">O(n)</span> | — |
     | Vectorized | <span class="pt-bigo pt-bigo--ok">O(n)</span> (same class, smaller constant) | — |
 
-    A Python `for` loop over a list and a vectorized NumPy operation both touch every element once — O(n) either way, the same [Big O](../practices/style.md#big-o-notation) class. 
-    
+    A Python `for` loop over a list and a vectorized NumPy operation both touch every element once — O(n) either way, the same [Big O](../../practices/style.md#big-o-notation) class.
+
     The speed difference is a constant factor, not the order of growth: each pass of a Python loop pays the interpreter's per-iteration overhead, while a vectorized operation runs its loop once, in compiled C, underneath a single Python call. That overhead is small per element but adds up — the larger the array, the bigger the gap, even though neither approach's growth rate has changed.
 
-    See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
+    See [Efficiency](../../practices/style.md#efficiency) for why this distinction matters.
 
-### Aggregating an array
+### Aggregating an array { cs="mean" }
 
 Collapses an entire array down to a single summary number. `.mean()`, `.max()`, `.min()`, and `.sum()` — the same idea as Python's built-in `sum()` and `max()`, but computed directly on the array without converting it back to a list first.
 
@@ -118,7 +123,7 @@ lengths_ft.max()     # 12.0
 lengths_ft.sum()     # 30.5
 ```
 
-### Filtering with a boolean mask
+### Filtering with a boolean mask { cs="boolean mask" }
 
 Comparing an array to a number produces a same-size array of `True`/`False` values — a **boolean mask**. Indexing the array with that mask keeps only the elements where it's `True`. This is the standard way to filter a NumPy array, instead of writing an explicit loop with an `if` inside it.
 

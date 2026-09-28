@@ -1,4 +1,5 @@
 ---
+cheatsheet_description: Repeat a block of code multiple times.
 description: >-
   Python's for and while loops explained with runnable examples: iterating collections,
   break/continue, range(), enumerate(), and common patterns.
@@ -8,7 +9,7 @@ description: >-
 
 <div class="pfg-section" markdown="block">
 
-A **loop** repeats a block of code multiple times. 
+A **loop** repeats a block of code multiple times.
 
 <div class="pt-jump-table" markdown="block">
 
@@ -50,9 +51,9 @@ A **loop** repeats a block of code multiple times.
 
 <div class="pfg-section" markdown="block">
 
-## For loops
+## For loops { cs="for" }
 
-A `for` loop goes through an **iterable** (something that contains multiple values) one value at a time, assigning each value to `loop_variable` as it goes. The types of iterables are: 
+A `for` loop goes through an **iterable** (something that contains multiple values) one value at a time, assigning each value to `loop_variable` as it goes. The types of iterables are:
 
 | Iterable | Loop variable | Use it for |
 |---|---|---|
@@ -61,11 +62,11 @@ A `for` loop goes through an **iterable** (something that contains multiple valu
 
 See [common patterns](#common-patterns) for [accumulating](#accumulator) something new during a loop, or [counting](#counter), as you loop.
 
-You can use [control flow statements](#control-flow-statements) to [break](#break) a loop early or [continue](#continue) ahead to the next iteration as needed. 
+You can use [control flow statements](#control-flow-statements) to [break](#break) a loop early or [continue](#continue) ahead to the next iteration as needed.
 
-### Loop a certain number of times
+### Loop a certain number of times { cs="loop a set number of times" }
 
-#### iterable = range()
+#### iterable = range() { cs="range" }
 
 - `range()` generates a sequence of numbers to loop over.
 - it will run the block of code once for each number in the sequence
@@ -87,7 +88,7 @@ You can use [control flow statements](#control-flow-statements) to [break](#brea
 | 2 | `start`, `stop` | `step = 1`|
 | 3 | `start`, `stop`, `step` | - |
 
-**range(stop)** 
+**range(stop)**
 
 ```python
 for i in range(5):
@@ -223,7 +224,7 @@ Naming the variable in a `range()` loop comes down to one of three choices:
         print("hiss")
     ```
 
-### Loop through a collection
+### Loop through a collection { cs="loop through a collection" }
 
 #### iterable = collection
 
@@ -303,7 +304,7 @@ for snake in snakes:
     print(snake)
 ```
 
-#### Loop with index and value
+#### Loop with index and value { cs="enumerate, zip" }
 
 `enumerate()` hands you both the index and the value on every pass. It's the usual alternative to looping over `range(len(species))` when you need the index but still want direct access to each item.
 
@@ -314,7 +315,7 @@ for i, s in enumerate(species):
     print(i, s)
 ```
 
-#### Loop in reverse
+#### Loop in reverse { cs="reversed" }
 
 `reversed()` steps through a collection back to front, without needing to build a reversed copy first. Works on anything with a fixed order — list, tuple, string, `range()` — but not on a `set`, since it has no order to reverse.
 
@@ -325,7 +326,7 @@ for s in reversed(species):
     print(s)     # blood  ball  rock  burmese
 ```
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? warning "Modifying a list while looping over it"
     Adding to or removing from a list while a `for` loop is walking over it shifts every item after the change into a different position — the loop keeps advancing by index, so it silently skips over whatever slid into the spot it already passed.
@@ -382,7 +383,7 @@ for s in reversed(species):
 
 <div class="pfg-section" markdown="block">
 
-## While loops
+## While loops { cs="while" }
 
 A `while` loop repeats its body for as long as a condition stays `True`, checked again before every pass — the right tool when you don't know ahead of time how many passes you'll need, unlike a `for` loop's fixed number of items. That condition can be any boolean expression, watching for something to happen rather than counting toward it.
 
@@ -394,7 +395,7 @@ while not handled:
     handled = True
 ```
 
-### Using a flag
+### Using a flag { cs="flag" }
 
 A **flag** is a boolean variable, starting `True` or `False`, that gets flipped when something happens — used as the condition to end the loop based on an event rather than a pass count.
 
@@ -413,7 +414,7 @@ print(found)   # True
 print(i)       # 3 — stopped as soon as "ball" was found
 ```
 
-### Sentinel
+### Sentinel { cs="sentinel" }
 
 A **sentinel** is a specific stop-value you watch for, rather than a plain True/False flag — the loop keeps running until it sees that exact value. A common use is reading input until the user signals they're done.
 
@@ -426,7 +427,7 @@ while species != "quit":
         print(f"logged: {species}")
 ```
 
-### Counter and flag names
+### Counter and flag names { cs="counter and flag names" }
 
 A `while` loop doesn't create a loop variable automatically the way `for` does — whatever's driving the condition is a variable you declare and update yourself, so naming it clearly matters just as much.
 
@@ -474,7 +475,7 @@ while not handled:
     print(i)
     ```
 
-### Boolean expressions
+### Boolean expressions { cs="boolean expressions" }
 
 A boolean expression is needed for every `while` condition.
 
@@ -485,7 +486,7 @@ while [boolean expression]:
 
 A **boolean expression** is a boolean value (`True` or `False`) or anything that produces one, and is treated as the **condition** that must be `True` in order to run a block of code.
 
-A comparison looks different depending on the type of value being checked, as shown below. All of these comparisons result in a `True` or `False` boolean expression. 
+A comparison looks different depending on the type of value being checked, as shown below. All of these comparisons result in a `True` or `False` boolean expression.
 
 !!! example "Comparisons by type"
 
@@ -706,7 +707,7 @@ A comparison looks different depending on the type of value being checked, as sh
             print("snake in dict is over 2 ft")
         ```
 
-### Logical operators
+### Logical operators { cs="and, not, or" }
 
 Logical operators `not`, `and`, `or` let a single `while` condition combine boolean expressions to create more complex conditions.
 
@@ -733,11 +734,11 @@ A and B here are [boolean expressions](#boolean-expressions).
 
 <div class="pfg-section" markdown="block">
 
-## Common patterns
+## Common patterns { cs="common patterns" }
 
 A few variable patterns show up across both `for` and `while` loops, tracking something as the loop runs rather than controlling it directly.
 
-### Accumulator
+### Accumulator { cs="accumulator" }
 
 An **accumulator** builds up a result across passes — summing, concatenating, or collecting values — instead of just tracking whether or how many times the loop has run. Initialize it before the loop, then update it inside the body each pass.
 
@@ -769,7 +770,7 @@ print(total)   # 25.0
     print(results)   # ["BURMESE", "ROCK", "BALL", "BLOOD"]
     ```
 
-### Counter
+### Counter { cs="counter" }
 
 A **counter** tracks how many times a loop has run, or how many items met some condition — counting up or down, instead of accumulating a result. It follows the same three steps as an accumulator: initialize it before the loop, check or use it, and update it inside the body.
 
@@ -789,7 +790,7 @@ while attempts > 0:
 print("out of attempts")
 ```
 
-### Nested loops
+### Nested loops { cs="nested loops" }
 
 A loop can contain another loop — any combination of `for` and `while` works, not just two of the same kind. Useful when each item in the outer collection has its own inner collection to go through, like a list of lists. The inner loop runs all the way through for every single pass of the outer one.
 
@@ -804,7 +805,7 @@ for species, tags in species_tags.items():
         print(species, tag)
 ```
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? run "Run a common patterns example"
     All the examples above, combined into one script:
@@ -859,7 +860,7 @@ for species, tags in species_tags.items():
 
 <div class="pfg-section" markdown="block">
 
-## Control flow statements
+## Control flow statements { cs="control flow" }
 
 A `for` loop and a `while` loop can both be redirected mid-run — cut short, skipped ahead by one pass, or wrapped up with a bit of code that only runs if nothing interrupted them. These keywords work identically in either loop type.
 
@@ -872,7 +873,7 @@ for s in species:
     print(s)
 ```
 
-### Break
+### Break { cs="break" }
 
 Exits the loop immediately, skipping everything left in it. Nothing after it runs, and anything left in the sequence (or any remaining passes of the condition) is skipped entirely.
 
@@ -890,7 +891,7 @@ while count < 5:
     count += 1                   # 0  1  2
 ```
 
-### Continue
+### Continue { cs="continue" }
 
 Skips just the current pass, then keeps looping. The rest of the loop body doesn't run for that item, but the loop itself keeps going from the next item or the next check of the condition.
 
@@ -908,7 +909,7 @@ while count < 5:
     print(count)                 # 1  2  4  5
 ```
 
-### Else
+### Else { cs="else" }
 
 Runs once the loop finishes on its own — skipped entirely if `break` cut it short. Both `for` and `while` can end with an `else` block.
 
@@ -926,7 +927,7 @@ else:
     print("done")                # 0  1  2  done
 ```
 
-### Going further { data-card-link="skip" }
+### Going further { cs="pass" }
 
 ??? tip "pass placeholder"
     Temporarily fill an empty loop body when you're not ready to write the inside code yet. Python doesn't allow an empty block after a colon. `pass` does nothing, but acts as a placeholder until you're ready to add code so that the empty block won't cause a syntax error in the meantime. Covered in more detail on the [Conditionals](conditionals.md#if-elif-else) page.

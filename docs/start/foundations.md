@@ -1,4 +1,5 @@
 ---
+cheatsheet_description: Storing, displaying, and inputting values.
 description: >-
   The basics every Python program starts with: variables, print(), input(), and comments,
   with runnable examples.
@@ -8,29 +9,29 @@ description: >-
 
 <div class="pfg-section" markdown="block">
 
-## Tips for getting started
+## Tips for getting started { cs="tips for getting started" }
 
-- **[Setup](workspace.md) your workspace first** so you can run Python on your computer and edit Python files. 
-- **Work through the pages in order.** 
+- **[Setup](workspace.md) your workspace first** so you can run Python on your computer and edit Python files.
+- **Work through the pages in order.**
 - **Type the examples yourself**, and actually click **Run** on the runnable blocks and edit them — change a value, rerun, see what changes. That's where a concept actually sticks, not from reading it.
 - **Errors are a normal, constant part of writing code, not a sign you did something wrong.** Once you hit your first one, the [Errors](../practices/errors.md) page contains [strategies for resolving them](../practices/errors.md#debugging-strategies).
     - [Read it out loud](../practices/errors.md#read-it-out-loud)
     - [Print debugging](../practices/errors.md#print-debugging)
     - [Isolate the problem](../practices/errors.md#isolate-the-problem)
-- **Try building something small.** Once you've read through [Conditionals](../flow/conditionals.md) and [Loops](../flow/loops.md) you already have enough to write a program. 
+- **Try building something small.** Once you've read through [Conditionals](../flow/conditionals.md) and [Loops](../flow/loops.md) you already have enough to write a program.
 - The homepage has more on [using AI to help you learn](../index.md).
 
 </div>
 
 <div class="pfg-section" markdown="block">
 
-## Print function
+## Print function { cs="print" }
 
-### What do you see when a program runs? { data-card-link="skip" }
+### What do you see when a program runs?
 
 When a Python program is running, it won't show you anything on its own — it runs silently.
 
-That's a problem for you as the developer — without some way to look inside, you can't follow along with what it's actually doing as it runs. 
+That's a problem for you as the developer — without some way to look inside, you can't follow along with what it's actually doing as it runs.
 
 <div class="pfg-diagram-frame" markdown="block">
 
@@ -74,7 +75,7 @@ flowchart LR
 
 Code editors have an **output** window at the bottom that shows the print statements as the program runs.
 
-### Structure of a print() statement { data-card-link="skip" }
+### Structure of a print() statement
 
 `print` is a [function](../organization/functions.md) — a named, reusable piece of code that does something when you "call" it by name. These building blocks are all you need to use `print()`:
 
@@ -97,7 +98,7 @@ print(4.5)                    # when printing a number, you do not need quotes
 
 Most sections on this site end with a collapsed block like the one below — open it, click **Run**, and try editing the code and running it again.
 
-### Escape sequences
+### Escape sequences { cs="escape sequences" }
 
 `\n` and `\t` are **escape sequences** — `\n` inserts a line break, `\t` a tab — so a single `print()` call can space out multi-line or columned output.
 
@@ -122,7 +123,7 @@ print("survey results")
 print("=" * 40)
 ```
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? run "Run a print() example"
     All the examples above, combined into one script:
@@ -150,9 +151,9 @@ print("=" * 40)
 
 <div class="pfg-section" markdown="block">
 
-## Variables
+## Variables { cs="variables" }
 
-### How do variables work? { data-card-link="skip" }
+### How do variables work?
 
 A variable stores a value under a name so you can refer to that value again later instead of retyping it.
 
@@ -175,11 +176,11 @@ flowchart TB
 
 Now you can reference the variable `species` and it will be equal to the value `burmese`.
 
-Saving a new variable (we call this "assigning a variable") follows this format: 
+Saving a new variable (we call this "assigning a variable") follows this format:
 
 `[variable name]` **`=`** `[value]`
 
-### Naming variables
+### Naming variables { cs="naming" }
 
 `snake_case` (lowercase words separated by underscores) is the standard format for variable names.
 
@@ -190,9 +191,9 @@ species_2 = "burmese python"    # valid
 
 **Variable naming rules:**
 
-1. **Only contains letters, underscores, and numbers** 
+1. **Only contains letters, underscores, and numbers**
 
-    Standard formatting is to use `snake_case` (all lowercase, separated with underscores). 
+    Standard formatting is to use `snake_case` (all lowercase, separated with underscores).
 
 2. **Can't start with a number**
 
@@ -200,7 +201,7 @@ species_2 = "burmese python"    # valid
 
     Standard convention is that variables are always lower case. `Species` and `species` would be two different variables.
 
-4. **Don't use a reserved keyword** 
+4. **Don't use a reserved keyword**
 
     There are a handful of "keywords" that are reserved by Python to do specific things, so they can't be used elsewhere in your code. Run this code to get a list of all reserved keywords:
 
@@ -208,15 +209,15 @@ species_2 = "burmese python"    # valid
     help("keywords")
     ```
 
-5. **Don't use a library's name** 
+5. **Don't use a library's name**
 
     Naming a file `random.py` or `math.py` in a project makes `import random` elsewhere in that same project import your file instead of Python's actual `random` library, which is a confusing bug to track down. Run this code to get a list of all reserved library names:
-    
+
     ```python
     help("modules")
     ```
 
-### Reassigning a variable
+### Reassigning a variable { cs="reassigning" }
 
 You can update the value of an existing variable by setting it equal to something else.
 
@@ -263,7 +264,7 @@ species = "burmese python"    # replaces the old value entirely
     print(a, b)
     ```
 
-### Printing variables { data-card-link="skip" }
+### Printing variables { cs="printing" }
 
 **To print a single variable:**
 
@@ -300,7 +301,7 @@ Commas are usually the easier choice for a quick print. Pass `sep="..."` to chan
 
 Once you're comfortable with the basics here, the [Collections](../types/collections.md#list-operations) page covers printing the contents of a list or dict.
 
-### Building a string manually { data-card-link="skip" }
+### Building a string manually
 
 Come back to this once you've read the [Types](../types/basics.md) page.
 
@@ -330,7 +331,7 @@ For building a full sentence out of text and variables, an [f-string](../types/b
     print(species, length_ft, sep=", ")
     ```
 
-### Variables and types { data-card-link="skip" }
+### Variables and types { cs="types" }
 
 Come back to this once you've read the [Types](../types/basics.md) page.
 
@@ -347,7 +348,7 @@ Other languages fix a variable to one type permanently at creation; Python doesn
 
 <div class="pfg-section" markdown="block">
 
-## Expressions and statements
+## Expressions and statements { cs="expressions and statements" }
 
 Every line of Python code is either an **expression** or a **statement**. An expression is anything that evaluates to a value — `2 + 3`, `species`, `species == "burmese"`. A statement is a complete instruction — an assignment, a `print()` call, an `if` statement's condition (covered on the [Conditionals](../flow/conditionals.md#if-elif-else) page) — and it's usually built out of one or more expressions.
 
@@ -387,7 +388,7 @@ The distinction is about what's allowed where: an expression can go anywhere Pyt
 
 <div class="pfg-section" markdown="block">
 
-## Input function
+## Input function { cs="input" }
 
 `input()` allows the program to get typed input from the user
 
@@ -402,7 +403,7 @@ print(first_name)
 
 The text inside the parentheses — `"What's your first name? "` — is the **prompt**: a message shown before the program waits, so the person knows what to type.
 
-### Structure of an input() statement { data-card-link="skip" }
+### Structure of an input() statement
 
 `input` is a **function**, same as `print` — these are the same building blocks, just with a variable assignment at the beginning to save what the user inputs:
 
@@ -420,16 +421,16 @@ class eq,i,o,c,q1,q2 punct
 
 **Prompt format:**
 
-Input prompts often have a `?` or `:` at the end. 
+Input prompts often have a `?` or `:` at the end.
 
 ```python-ref
 first_name = input("What's your first name? ")  # can use a ?
 last_name = input("Enter your last name: ")     # or can use a :
 ```
 
-They generally have an extra space before the last `"` — otherwise when the user starts typing their typing will be right up against the prompt with no gap, so it is harder to read. 
+They generally have an extra space before the last `"` — otherwise when the user starts typing their typing will be right up against the prompt with no gap, so it is harder to read.
 
-### Saving what the user types { data-card-link="skip" }
+### Saving what the user types
 
 `input()` has to be assigned to a variable, or whatever was typed is thrown away — there's no other way to get back to it once the line finishes running.
 
@@ -441,7 +442,7 @@ name = input("What's your name? ")     # saved to the variable name
 print("Hello,", name)                  # now a usable variable
 ```
 
-### Converting input to a number { data-card-link="skip" }
+### Converting input to a number
 
 Come back to this once you've read the [Types](../types/basics.md) page.
 
@@ -461,11 +462,11 @@ print(age + 1)                            # 9 — works fine
 
 <div class="pfg-section" markdown="block">
 
-## Comments
+## Comments { cs="comments" }
 
-### Single-line comments with \# { data-card-link="skip" }
+### Single-line comments with \# { cs="#, FIXME, TODO" }
 
-A `#` marks the rest of a line as a comment — so Python ignores it. There are multiple reasons for this: 
+A `#` marks the rest of a line as a comment — so Python ignores it. There are multiple reasons for this:
 
 1. **Annotate the code for yourself, explaining *why* or *how* it works.**
 
@@ -476,13 +477,13 @@ A `#` marks the rest of a line as a comment — so Python ignores it. There are 
     print(species, length_ft)
     ```
 
-    A comment that just restates the code in English (`# set length_ft to 4.5`) adds noise, not information — the code already says that. What's worth writing down is the reasoning the code itself can't show. 
+    A comment that just restates the code in English (`# set length_ft to 4.5`) adds noise, not information — the code already says that. What's worth writing down is the reasoning the code itself can't show.
 
     This also works in reverse: if you don't fully understand a piece of code yet — maybe you copied it from somewhere, or it's still new to you — leaving yourself a comment explaining it is genuinely useful.
 
 2. **Temporarily disable code**
 
-    Adding a `#` in front of a line stops it from running, without deleting it. Select multiple lines to comment out a whole block at once. 
+    Adding a `#` in front of a line stops it from running, without deleting it. Select multiple lines to comment out a whole block at once.
 
     ```python-ref
     species = "ball python"
@@ -513,7 +514,7 @@ A `#` marks the rest of a line as a comment — so Python ignores it. There are 
     length_ft = 4.5
     ```
 
-    `TODO` is a word programmers agree to write in a comment to mean "come back to this." 
+    `TODO` is a word programmers agree to write in a comment to mean "come back to this."
 
     `FIXME` is a common variant for flagging something that's actively broken, rather than just unfinished.
 
@@ -523,7 +524,7 @@ A `#` marks the rest of a line as a comment — so Python ignores it. There are 
     - **VS Code** needs an extension for this — [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree) is the most popular one, and adds a sidebar tree view of every tagged comment in your workspace.
     - **Thonny and IDLE** have no built-in equivalent — `TODO` still works as a plain comment, just without the aggregated list.
 
-### Multi-line comments with """ { data-card-link="skip" }
+### Multi-line comments with """ { cs=""""" }
 
 A triple-quoted string on its own line acts like a comment spanning several lines.
 

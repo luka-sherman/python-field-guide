@@ -1,4 +1,7 @@
 ---
+cheatsheet_title: time
+cheatsheet_description: Reading the system clock, pausing execution, and measuring elapsed time.
+cheatsheet_title_suffix: :material-language-python:{ .library-badge .library-badge--builtin title="Built-in — included with Python" }
 description: >-
   Reading the system clock, pausing execution, and measuring elapsed time in Python with the
   time module.
@@ -23,7 +26,7 @@ The **`time`** module reads the system clock, pauses a program for a set number 
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 `time` ships with Python's standard library — nothing to install. The whole module is used through the `time.` prefix, so a plain import is all you need.
 
@@ -43,7 +46,7 @@ import time
 
 <div class="pfg-section" markdown="block">
 
-## Reading the clock
+## Reading the clock { cs="time" }
 
 `time()` returns the number of seconds since the epoch[^epoch] — a single float that always increases, useful for a timestamp or for logging when an observation happened.
 
@@ -59,7 +62,7 @@ print(time.time())
 
 <div class="pfg-section" markdown="block">
 
-## Pausing execution
+## Pausing execution { cs="sleep" }
 
 `sleep()` pauses the program for the given number of seconds before continuing to the next line. Useful for spacing out repeated `print()` calls, or waiting between requests to an external service.
 
@@ -90,7 +93,7 @@ print("still there.")
 
 <div class="pfg-section" markdown="block">
 
-## Measuring elapsed time
+## Measuring elapsed time { cs="perf_counter" }
 
 `perf_counter()` reads a high-resolution timer meant for measuring durations, not for reading the wall-clock date — call it before and after a block of code, then subtract the two readings to get the elapsed time in seconds.
 
@@ -124,7 +127,7 @@ print(elapsed)
 
 <div class="pfg-section" markdown="block">
 
-## Formatting the current time
+## Formatting the current time { cs="localtime, strftime" }
 
 `localtime()` returns a `struct_time` — the current date and time broken into named fields (`tm_year`, `tm_hour`, `tm_min`, and so on). `strftime()` turns one into a custom-formatted string, using the same format codes as [`datetime`'s `strftime`](datetime.md#formatting-with-strftime): `%H` the zero-padded hour, `%M` the zero-padded minute.
 

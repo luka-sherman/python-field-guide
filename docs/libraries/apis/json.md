@@ -1,4 +1,7 @@
 ---
+cheatsheet_title: json
+cheatsheet_description: 'Reading and writing JSON data: nested dicts and lists, saved to a file or a string.'
+cheatsheet_title_suffix: :material-language-python:{ .library-badge .library-badge--builtin title="Built-in — included with Python" }
 description: >-
   Reading and writing JSON data in Python with the json module: json.load, json.dump, and
   working with nested data, with runnable examples.
@@ -16,7 +19,7 @@ The **`json`** module reads and writes JSON ("JavaScript Object Notation") data 
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 `json` ships with Python's standard library — nothing to install. The whole module is used through the `json.` prefix, so a plain import is all you need.
 
@@ -35,7 +38,7 @@ import json
 
 <div class="pfg-section" markdown="block">
 
-## Writing JSON files
+## Writing JSON files { cs="dump" }
 
 `json.dump()` writes a Python object straight to an open file — a `dict` becomes a JSON object, a `list` becomes a JSON array, automatically.
 
@@ -79,7 +82,7 @@ print("wrote snake.json")
 
 <div class="pfg-section" markdown="block">
 
-## Reading JSON files
+## Reading JSON files { cs="load" }
 
 `json.load()` reads a file and reconstructs the original Python object — a JSON object comes back as a `dict`, a JSON array comes back as a `list`, with numbers and booleans already converted to `int`/`float`/`bool` instead of strings.
 
@@ -93,9 +96,9 @@ print(data["species"])
 print(data["length_ft"])
 ```
 
-### Nested data
+### Nested data { cs="nested data" }
 
-Unlike a [CSV file](csv.md), which is strictly flat rows and columns, JSON can nest a list or another object inside a value — so one record can hold something like a snake's full sighting history, not just single values per column.
+Unlike a [CSV file](../data_analysis/csv.md), which is strictly flat rows and columns, JSON can nest a list or another object inside a value — so one record can hold something like a snake's full sighting history, not just single values per column.
 
 ```python-ref
 snake = {
@@ -149,7 +152,7 @@ print(data["sightings"][0])    # "2024-03-15"
 
 <div class="pfg-section" markdown="block">
 
-## Working with strings instead of files
+## Working with strings instead of files { cs="loads" }
 
 `json.dumps()`/`json.loads()` do the same conversion as `dump()`/`load()`, but to and from a string in memory rather than a file — the pair to reach for when the JSON is coming from somewhere other than disk, like an API response. The [`requests`](requests.md) library's own `.json()` method — covered on that page — is really just calling `json.loads()` on the response text for you.
 

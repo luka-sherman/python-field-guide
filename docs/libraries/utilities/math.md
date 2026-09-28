@@ -1,4 +1,7 @@
 ---
+cheatsheet_title: math
+cheatsheet_description: Rounding, roots, constants, and logarithms.
+cheatsheet_title_suffix: :material-language-python:{ .library-badge .library-badge--builtin title="Built-in — included with Python" }
 description: >-
   Rounding, roots, constants, and logarithms in Python with the math module, with runnable
   examples.
@@ -16,7 +19,7 @@ The **`math`** module extends Python's built-in arithmetic with functions it doe
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 `math` ships with Python's standard library — nothing to install. The whole module is used through the `math.` prefix, so a plain import is all you need.
 
@@ -38,7 +41,7 @@ import math
 
 <div class="pfg-section" markdown="block">
 
-## Rounding
+## Rounding { cs="floor, ceil" }
 
 `floor()` and `ceil()` round down and up to the nearest integer. Unlike the built-in `round()`, they never round to the nearest value — `floor()` always goes down, `ceil()` always goes up.
 
@@ -53,7 +56,7 @@ print(math.floor(avg))
 print(math.ceil(avg))
 ```
 
-### trunc
+### trunc { cs }
 
 Chops off the decimal part instead of rounding toward a direction — the same as `floor()` for a positive number, but different for a negative one, where it rounds toward zero instead of down.
 
@@ -85,7 +88,7 @@ math.trunc(-6.75)    # -6 — floor(-6.75) would be -7
 
 <div class="pfg-section" markdown="block">
 
-## Roots and powers
+## Roots and powers { cs="sqrt" }
 
 `sqrt()` finds a square root — useful anywhere the Pythagorean theorem shows up, like the diagonal brace of a square enclosure.
 
@@ -98,7 +101,7 @@ diagonal = math.sqrt(side_ft ** 2 + side_ft ** 2)
 print(diagonal)
 ```
 
-### pow
+### pow { cs="pow, isqrt" }
 
 Raises a number to a power, same idea as the `**` operator — but `math.pow()` always returns a `float`, even when the inputs are whole numbers, while `**` keeps an integer result an `int`.
 
@@ -133,7 +136,7 @@ math.pow(side_ft, 2) # 16.0 — always a float
 
 <div class="pfg-section" markdown="block">
 
-## Constants
+## Constants { cs="pi, inf, nan" }
 
 `math.pi` is the constant π, accurate to the precision of a `float` — no need to type out `3.14159...` by hand.
 
@@ -185,7 +188,7 @@ print(circumference)
 
 <div class="pfg-section" markdown="block">
 
-## Logarithms
+## Logarithms { cs="log2, log10, exp" }
 
 `log2()` is the inverse of doubling — how many times a starting value has to double to reach a target. A breeding program tracking how many generations it takes to go from 2 snakes to 64 is a direct fit.
 
@@ -227,7 +230,7 @@ math.exp(1)          # 2.718281828459045 — the same as math.e
 
 <div class="pfg-section" markdown="block">
 
-## Comparing floats
+## Comparing floats { cs="isclose" }
 
 Floating-point math loses tiny amounts of precision, so two values that should be mathematically equal often aren't exactly equal in code. `math.isclose()` checks whether two numbers are close enough to count as equal instead of comparing them bit for bit.
 

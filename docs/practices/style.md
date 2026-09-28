@@ -1,4 +1,5 @@
 ---
+cheatsheet_description: Readable Python code, and polished UI.
 description: >-
   A Python style and code-quality checklist covering naming, formatting, docstrings,
   linters, and common beginner mistakes.
@@ -11,7 +12,7 @@ description: >-
 Code that works isn't automatically code that's easy to read and maintain.
 
 - **Consistent:** following the same conventions reads the same, no matter who wrote it
-- **Faster to learn:** a new file feels familiar, uses the same patterns 
+- **Faster to learn:** a new file feels familiar, uses the same patterns
 - **Easier to debug:** you know where to look when something breaks
 - **Effective collaboration:** when your code is **reviewed** so it can be **merged** in with everyone else's changes, consistent style means it's clearer what you actually changed, instead of needing to compare conflicting formatting choices
 
@@ -19,13 +20,13 @@ Code that works isn't automatically code that's easy to read and maintain.
 
 <div class="pfg-section" markdown="block">
 
-## PEP 8 style guide
+## PEP 8 style guide { cs="PEP 8" }
 
 [**PEP 8** is Python's official style guide](https://peps.python.org/pep-0008/) — a document written by Python's own core developers covering formatting, naming, and organizing code. "PEP" stands for Python Enhancement Proposal.
 
 Python runs styled and unstyled code identically, so following PEP 8 doesn't make a script more *correct* — it makes it more *predictable* to read. Anyone who's used Python before recognizes the shape of PEP 8-styled code, so sticking to it means less friction reading someone else's code, and less friction when someone else reads yours.
 
-### File order { data-fcm-hide="essentials" }
+### File order { data-fcm-hide="essentials" cs="order" }
 
 A Python file conventionally follows the same layout, top to bottom — a linter won't flag this on its own the way it does most of PEP 8, since it's a convention about where things go rather than a formatting rule.[^order-pep8]
 
@@ -67,7 +68,7 @@ if __name__ == "__main__":
     print(is_unusually_long(ball.length_ft))
 ```
 
-### Naming
+### Naming { cs="naming" }
 
 A variable name should say what it holds — `length_ft` over `l`, `species_list` over `data`. `snake_case` and the other naming rules are covered on the [Foundations](../start/foundations.md#naming-variables) page; this is about picking a *meaningful* name within those rules, not just a valid one.
 
@@ -78,7 +79,7 @@ length_ft = 4.5        # clear at a glance
 
 A short name is fine when its scope is short too — `for s in species:` is common, since `s` only exists for the one line inside the loop.
 
-### Constants { data-fcm-hide="essentials" }
+### Constants { data-fcm-hide="essentials" cs="constants" }
 
 A **constant** is a variable whose value isn't meant to change while the program runs — written in `ALL_CAPS` by convention, so it's easy to tell apart from a regular variable at a glance. Defining one instead of repeating a raw number (a "magic number") gives that number a name explaining what it means.
 
@@ -93,7 +94,7 @@ if length_ft > MAX_TYPICAL_LENGTH_FT:
 
 Constants are usually defined near the top of a file, so they're easy to find and adjust later — see [File Order](#file-order) above.
 
-### Quote style { data-fcm-hide="essentials" }
+### Quote style { data-fcm-hide="essentials" cs="quote style" }
 
 Python treats `'single'` and `"double"` quotes identically for strings — PEP 8 doesn't prefer one over the other, just pick one as your default and stick with it throughout a file, rather than mixing both without reason. (This site uses double quotes.) The one except&zwnj;ion: switch to the other quote character for a string that itself contains a quote, rather than escaping it with a backslash.
 
@@ -102,7 +103,7 @@ print("it's a ball python")    # no backslash needed
 print('it\'s a ball python')   # works, but harder to read
 ```
 
-### Docstrings
+### Docstrings { cs="docstrings" }
 
 A triple-quoted string as the first line of a function or a file documents what it does — the underlying trick is the same [multi-line comment](../start/foundations.md#multi-line-comments-with) covered on Foundations, just placed specifically as the first line.
 
@@ -147,7 +148,7 @@ species = "ball python"
 length_ft = 4.5
 ```
 
-### Indentation { data-fcm-hide="essentials" }
+### Indentation { data-fcm-hide="essentials" cs="indentation" }
 
 Python uses indentation, not braces, to mark a block — PEP 8's rule is 4 spaces per level, never tabs (mixing the two causes real errors, not just style complaints).
 
@@ -159,7 +160,7 @@ def describe(species):
     return f"a {species} python"    # 4 spaces — PEP 8
 ```
 
-### Blank lines
+### Blank lines { cs="blank lines" }
 
 Two blank lines separate top-level function and class definitions; one blank line separates methods inside a class.
 
@@ -178,7 +179,7 @@ def save_entry(entry):    # two blank lines — PEP 8
     ...
 ```
 
-### Whitespace
+### Whitespace { cs="whitespace" }
 
 Put a single space around most operators (`=`, `==`, `+`, `>`), but drop it around `=` when it's a keyword argument rather than an assignment.
 
@@ -193,7 +194,7 @@ def describe(species, length_ft=4.5):      # PEP 8
     ...
 ```
 
-### Comments { data-fcm-hide="essentials" }
+### Comments { data-fcm-hide="essentials" cs="comments" }
 
 An inline comment needs at least two spaces before the `#` and one space after it; a block comment on its own line follows the same one-space-after rule.
 
@@ -209,13 +210,13 @@ length_ft = 4.5  # too short       # PEP 8 — two spaces before, one after
 
 <div class="pfg-section" markdown="block">
 
-## Linters and formatters
+## Linters and formatters { cs="Linters\, formatters" }
 
-A **linter** is a tool that scans your code and flags issues like [PEP 8](#pep-8-style-guide), Python's official style guide, and [Pythonic](#pythonic-patterns) idioms automatically. It reads your file, checks it against its rule set, and prints a report: one line per violation, giving the file, line number, a rule code, and a short message. 
+A **linter** is a tool that scans your code and flags issues like [PEP 8](#pep-8-style-guide), Python's official style guide, and [Pythonic](#pythonic-patterns) idioms automatically. It reads your file, checks it against its rule set, and prints a report: one line per violation, giving the file, line number, a rule code, and a short message.
 
-It can't catch a bug that only shows up when the code actually runs, since it never runs it. 
+It can't catch a bug that only shows up when the code actually runs, since it never runs it.
 
-A **formatter** tool (either separate, or a combined linter+formatter), actually rewrites your file on its own fixing the errors. However, it can be helpful to manually fix the issues on your own, so you learn to write them correctly for next time.  
+A **formatter** tool (either separate, or a combined linter+formatter), actually rewrites your file on its own fixing the errors. However, it can be helpful to manually fix the issues on your own, so you learn to write them correctly for next time.
 
 **Comparing different tools**
 
@@ -238,16 +239,16 @@ A **formatter** tool (either separate, or a combined linter+formatter), actually
 
 <div class="pfg-section" markdown="block">
 
-## Pythonic patterns
+## Pythonic patterns { cs }
 
-**Pythonic** code uses Python's own built-in features and standard patterns, instead of verbose work arounds. 
+**Pythonic** code uses Python's own built-in features and standard patterns, instead of verbose work arounds.
 
 There's no single tool that reliably flags all "unpythonic" code the way PEP 8 has a document to check against. The real habit is asking *"does Python already have a built-in way to do this?"* before writing a manual loop, counter, or flag — an instinct built over time to recognize the built-in pattern.
 
 Other programming languages have different features and patterns, so if code is translated from another language into Python it might not be written very clearly. Pythonic code tends to be less buggy.
 A few of these a beginner tends to write out longhand before learning the built-in shortcut, roughly most to least common:
 
-### Mutable default arguments
+### Mutable default arguments { cs="mutable defaults" }
 
 A default argument's value is created once, when the function is defined — not fresh on every call. A mutable default like a list or dict is quietly reused and built up across every call that doesn't pass its own, instead of starting empty each time.
 
@@ -262,7 +263,7 @@ def add_sighting(species, log=None):   # Pythonic — a fresh list every call
     return log
 ```
 
-### Truthy checks instead of len(x) > 0 { #truthy-checks data-fcm-hide="essentials" }
+### Truthy checks instead of len(x) > 0 { #truthy-checks data-fcm-hide="essentials" cs="truthy checks" }
 
 Test a collection directly — a non-empty list is already truthy.
 
@@ -274,7 +275,7 @@ if species:              # Pythonic — a non-empty list is already truthy
     print("found some")
 ```
 
-### enumerate() instead of range(len(...)) { #enumerate-instead-of-range data-fcm-hide="essentials" }
+### enumerate() instead of range(len(...)) { #enumerate-instead-of-range data-fcm-hide="essentials" cs="enumerate()" }
 
 Loop with both the index and the item at once, instead of indexing into the list by hand.
 
@@ -286,7 +287,7 @@ for i, s in enumerate(species):      # Pythonic — enumerate() hands back both
     print(i, s)
 ```
 
-### is None instead of == None { #is-none-instead-of-none }
+### is None instead of == None { #is-none-instead-of-none cs="is None" }
 
 Checking against `None` is a check of identity, not equality, so `is` is the correct tool — `==` usually happens to work too, but a class can override what `==` means, which makes this a real correctness risk and not just a style nit.
 
@@ -303,13 +304,13 @@ if length_ft is None:                # Pythonic — `is` is the correct tool for
 
 <div class="pfg-section" markdown="block">
 
-## Efficiency { data-fcm-hide="essentials" }
+## Efficiency { data-fcm-hide="essentials" cs }
 
-Correct code produces the right output. 
+Correct code produces the right output.
 
 Efficient code does it **without spending more resources than the problem needs**, which becomes a significant issue once your number of variables or calculations start increasing to the thousands and beyond.
 
-### Time and space { data-card-link="skip" }
+### Time and space { cs="time, space" }
 
 These are two **computational resources** to weigh while designing a program — not the only ones that exist, but the two that show up most in everyday Python code.
 
@@ -320,7 +321,7 @@ These are two **computational resources** to weigh while designing a program —
 | **Starts becoming an issue at scale because...** | A test list of 10 behaves nothing like a real dataset of 100,000, if the operation grows quadratically instead of linearly. | Holding several full copies of a 100,000-record dataset can exceed available memory. |
 | **Risk if ignored** | Slows down or stops responding — and can cost $, since servers bill for processing time used. | Runs out of memory and crashes — and can cost $, since servers bill for memory used. |
 
-#### Big O notation 
+#### Big O notation { cs="big O" }
 
 Representing **O**rder of growth, the standard way to describe *how time and space grow*:
 
@@ -335,7 +336,7 @@ Representing **O**rder of growth, the standard way to describe *how time and spa
 - **Amortized cost** — a single call is occasionally expensive (list `append()` resizing its underlying storage, say), but averaged across every call it makes over time, the cost still comes out cheap.
 
 
-### Common optimizations { data-card-link="skip" }
+### Common optimizations { cs="common optimizations" }
 
 | While using | Instead of | **do this** | Because of |
 |---|---|---|---|
@@ -350,8 +351,8 @@ Representing **O**rder of growth, the standard way to describe *how time and spa
 | [Lists](../types/collections.md#lists) | `insert(0, x)` / `pop(0)`<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `append()` / `pop()` (or `deque` for the front)<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Amortized |
 | [By line](../resources/files.md#by-line) | `.read()` / `.readlines()` on a large file<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> space | A loop, line by line<br /><span class="pt-bigo pt-bigo--good">O(1)</span> space | Big O |
 | [Recursion](../organization/functions.md#recursion) | Deep recursion<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> space | A loop<br /><span class="pt-bigo pt-bigo--good">O(1)</span> space | Big O |
-| [Array operations](../libraries/numpy.md#array-operations) | A Python loop over an array<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | A vectorized NumPy operation, smaller constant<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Constant factor |
-| [Searching for a pattern](../libraries/re.md#searching-for-a-pattern) | Recompiling a regex pattern every pass<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `re.compile()` once, reused<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Redundant work |
+| [Array operations](../libraries/data_analysis/numpy.md#array-operations) | A Python loop over an array<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | A vectorized NumPy operation, smaller constant<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | Constant factor |
+| [Searching for a pattern](../libraries/utilities/re.md#searching-for-a-pattern) | Recompiling a regex pattern every pass<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> | `re.compile()` once, reused<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Redundant work |
 | [try/except](errors.md#catch-with-tryexcept) | Checking first, when failure is rare<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | `try`/`except`, cheaper when it succeeds<br /><span class="pt-bigo pt-bigo--good">O(1)</span> | Constant factor |
 | [Instance attributes](../organization/classes.md#instance-attributes) | Many plain instances<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> memory | `__slots__`, smaller constant<br /><span class="pt-bigo pt-bigo--ok">O(n)</span> memory | Constant factor |
 
@@ -359,11 +360,11 @@ Representing **O**rder of growth, the standard way to describe *how time and spa
 
 <div class="pfg-section" markdown="block">
 
-## Polished UX
+## Polished UX { cs }
 
 **UX** (user experience) is how a program interacts with the person running it and engages with them — including what it asks, how it reacts to their answer, and how it recovers when they get something wrong.
 
-### Input validation
+### Input validation { cs="input validation" }
 
 An `input()` is only as reliable as what it assumes the user will type. Validating means re-asking on a bad or missing answer, instead of letting the program crash or continue on with garbage input.
 
@@ -415,7 +416,7 @@ species = input("Enter a species: ")
 print(f"\nScanning... {species} detected.")
 ```
 
-### Menus
+### Menus { cs="menus" }
 
 Let the user pick from a short list of options with `input()` and [`match`/`case`](../flow/conditionals.md#match-case) — a clear list of options to choose from, instead of leaving them to guess what to type.
 
@@ -523,9 +524,9 @@ while True:
 
 See [Boxes](#boxes) below to wrap the same three options in a decorative border instead of a plain list.
 
-### Randomize messages
+### Randomize messages { cs="randomize" }
 
-[`random.choice()`](../libraries/random.md) picks one item from a list at random, so it prints different messages every run.
+[`random.choice()`](../libraries/utilities/random.md) picks one item from a list at random, so it prints different messages every run.
 
 ```python
 import random
@@ -562,11 +563,11 @@ else:
 
 <div class="pfg-section" markdown="block">
 
-## Polished UI
+## Polished UI { cs }
 
-**UI** (user interface) is how a program presents itself to the person running it. Just like an app or website, the terminal is an interface that can be designed within its limitations to create a more engaging and intuitive user experience.  
+**UI** (user interface) is how a program presents itself to the person running it. Just like an app or website, the terminal is an interface that can be designed within its limitations to create a more engaging and intuitive user experience.
 
-### Escape sequences
+### Escape sequences { cs="escape sequences" }
 
 An **escape sequence** is a backslash followed by a letter, standing in for a character that couldn't otherwise appear in the string — used instead of typing the literal character (an actual tab, an actual line break) directly into the source.
 
@@ -575,7 +576,7 @@ An **escape sequence** is a backslash followed by a letter, standing in for a ch
 | `\n` | a new line |
 | `\t` | a tab, as in lining up columns of output |
 | `\"`, `\'` | a literal quote character |
-| `\\` | a literal backslash | 
+| `\\` | a literal backslash |
 | `\r` | returns the cursor to the start of the line, as in a [progress bar](#progress-bars)|
 
 ```python
@@ -585,7 +586,7 @@ length_ft = 4.5
 print(f"Species:\t{species}\nLength ft:\t{length_ft}")
 ```
 
-### Multi-line strings
+### Multi-line strings { cs="multi-line strings" }
 
 Here are three ways to print the same four-line string:
 
@@ -615,7 +616,7 @@ Here are three ways to print the same four-line string:
 
 For anything longer than a line or two, the triple-quoted string is easiest to read and change later — it holds the whole layout in one block, instead of assembling it across several separate `print()` calls.
 
-### Formatting variables
+### Formatting variables { cs="formatting variables" }
 
 F-strings and format specs assemble a formatted string directly, instead of building it up by hand with `+` and manual padding. An [f-string](../types/basics.md#building-strings) — a variable's name dropped directly inside `{}` — is what turns the dashboard's bare `snake` dict into a filled-in box. A [format spec](../types/basics.md#building-strings) inside that same `{}` controls how the value looks, built from these pieces in order:
 
@@ -644,13 +645,13 @@ print(f"""
 """)
 ```
 
-### Unicode symbols
+### Unicode symbols { cs="unicode symbols" }
 
 Box-drawing characters, arrows, and checkmarks give output visual structure that plain ASCII can't — swapped in wherever a border, pointer, or status icon would otherwise just be a `-`, `>`, or `x`.
 
 #### Original ASCII
 
-**ASCII** was the original 128 character encoding for computers, standardized in the 1960s — covering English letters, digits, and punctuation on a standard keyboard. Early console styling was built around using these characters to make **ascii text and art**. 
+**ASCII** was the original 128 character encoding for computers, standardized in the 1960s — covering English letters, digits, and punctuation on a standard keyboard. Early console styling was built around using these characters to make **ascii text and art**.
 
 Building a [raw string](../types/basics.md#building-strings) with an `r` prefix (`r"""..."""`) makes this possible to print - so that Python doesn't mistake the backslashes `\` for meaningful escape characters.
 
@@ -658,9 +659,9 @@ There are online tools to [convert text to ascii fonts](https://patorjk.com/soft
 
 ```python
 print(r"""
- ____  _  _  ____  _   _  _____  _  _ 
+ ____  _  _  ____  _   _  _____  _  _
 (  _ \( \/ )(_  _)( )_( )(  _  )( \( )
- )___/ \  /   )(   ) _ (  )(_)(  )  ( 
+ )___/ \  /   )(   ) _ (  )(_)(  )  (
 (__)   (__)  (__) (_) (_)(_____)(_)\_)
 """)
 ```
@@ -693,35 +694,35 @@ Copy and paste these Unicode characters into your print statements, or [Browse t
 
      `→` `➔` `➜` `←` `↑` `↓`
 
-    `▶` `◀` `➤` `»` `›` `❯` `❮` `❱` `❰` 
-    
-    `↳` `↲` `↰` `↱` `↵` `↴` `↪` `↩` 
-    
+    `▶` `◀` `➤` `»` `›` `❯` `❮` `❱` `❰`
+
+    `↳` `↲` `↰` `↱` `↵` `↴` `↪` `↩`
+
     `⮕` `⬅` `⬆` `⬇`
 
 === "Checks and crosses"
 
-    `✓` `✔` `☑` `✅` 
-    
-    `✖` `✗` `✘` `☒` `𐄂` `❌` `❎` 
+    `✓` `✔` `☑` `✅`
+
+    `✖` `✗` `✘` `☒` `𐄂` `❌` `❎`
 
 === "Bullets"
 
-    `•` `∙` `◉` `○` `◌` `◎` `●` `◦` `。` `☉` `⦾` `⦿`  
-    
+    `•` `∙` `◉` `○` `◌` `◎` `●` `◦` `。` `☉` `⦾` `⦿`
+
     `◆` `◇` `◈` `♦` `⋄` `✦` `✧`
-    
+
     `☸` `✱` `✲` `✳`
-    
-    `■` `□` `☐` `▪` 
-    
+
+    `■` `□` `☐` `▪`
+
     `🔵` `🟢` `🟠` `🔴` `⚫` `🟤` `🟣` `⛔`
 
 === "Special"
 
     `☺` `★` `☆` `©` `®` `™` `❤` `♡` `♥`
 
-### Dividers
+### Dividers { cs="dividers" }
 
 A row of repeated characters separates sections of output.
 
@@ -730,7 +731,7 @@ print("survey results")
 print("=" * 40)
 ```
 
-### Boxes
+### Boxes { cs="boxes" }
 
 Combine the [box-drawing unicode symbols](#unicode-symbols) to emphasize output, these were designed for early programs.
 
@@ -749,10 +750,10 @@ print("""
 ╚═══════════════════════╝
 
 ❱ _
-""")  
+""")
 ```
 
-### Progress bars
+### Progress bars { cs="progress bars" }
 
 A pause with no output looks like the program has frozen — printing something that visibly changes during the wait shows it's still working, instead of leaving the screen silent. `time.sleep()` from the [time library](../resources/modules.md#import) pauses a program for a set number of seconds. Called in a loop between `print()` calls with [`end=""`](../types/basics.md#combine) to keep the cursor on the same line, it fakes a "loading" delay.
 
@@ -813,11 +814,11 @@ print("done!")
 ```
 
 ```bash
-⠏ 
+⠏
 ```
 The above character changes in place, so you see an animation cycling through the steps.
 
-### Color styling
+### Color styling { cs="background, bold, color, highlighting, underline" }
 
 Terminal text that has **color**, **bold**, **underlines**, and a **background color** can be styled by printing escape sequences around the string you would like to style, instead of leaving it plain — an ANSI code before it, and a reset code after so the styling doesn't leak into whatever prints next.
 
@@ -837,7 +838,7 @@ class a,b,d noborder
 
 </div>
 
-`\033` is the ESC character, `[` opens the code, then the code(s), and `m` closes it. 
+`\033` is the ESC character, `[` opens the code, then the code(s), and `m` closes it.
 
 #### Styling codes
 
@@ -885,7 +886,7 @@ class a,b,d noborder
     print("\033[91mThis is bright red\033[0m")
     ```
 
-- Multiple codes separated with `;` : 
+- Multiple codes separated with `;` :
 
     *Combine codes inside the same escape sequence. Can't have two of the same category - e.g. no two text colors or two background colors.*
 
@@ -894,7 +895,7 @@ class a,b,d noborder
     print("\033[1;32mThis is green text that is bold\033[0m")
     ```
 
-- Across multiple lines: 
+- Across multiple lines:
 
     *The styling stays active across multiple `print()` calls, until the reset code occurs.*
 

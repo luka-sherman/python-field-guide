@@ -1,4 +1,7 @@
 ---
+cheatsheet_title: datetime
+cheatsheet_description: Calculating and formatting dates and times.
+cheatsheet_title_suffix: :material-language-python:{ .library-badge .library-badge--builtin title="Built-in — included with Python" }
 description: >-
   Working with dates and times in Python using the datetime module: creating dates, date
   arithmetic, and formatting with strftime/strptime.
@@ -23,7 +26,7 @@ The **`datetime`** module is Python's standard library for working with dates an
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 `datetime` ships with Python's standard library — nothing to install. Each class below is imported individually by name, rather than through a `datetime.` prefix.
 
@@ -42,7 +45,7 @@ from datetime import date, datetime, timedelta
 
 <div class="pfg-section" markdown="block">
 
-## Creating dates and times
+## Creating dates and times { cs="date" }
 
 `date.today()` and `datetime.now()` read the current date (and time) directly from the system clock, so the value changes every time the code runs.
 
@@ -56,7 +59,7 @@ print(today)
 print(now)
 ```
 
-### Creating a specific date
+### Creating a specific date { cs="creating a specific date" }
 
 Pass the year, month, and day as plain integers to build a specific `date`. Useful for logging when a past observation actually happened, instead of reading today's date off the system clock.
 
@@ -64,7 +67,7 @@ Pass the year, month, and day as plain integers to build a specific `date`. Usef
 observed = date(2026, 7, 23)    # 2026-07-23
 ```
 
-### Formatting with strftime
+### Formatting with strftime { cs="strftime" }
 
 Turns a `date` or `datetime` into a custom-formatted string. `strftime` ("string format time") — `%B` is the full month name, `%d` the zero-padded day, `%Y` the four-digit year. It's the standard way to control exactly how a date is displayed.
 
@@ -102,7 +105,7 @@ observed.strftime("%B %d, %Y")    # "July 23, 2026"
 
 <div class="pfg-section" markdown="block">
 
-## Date arithmetic
+## Date arithmetic { cs="timedelta" }
 
 A `timedelta` represents a span of time, and adding one to a `date` or `datetime` shifts it forward (or backward, with a negative value) — the standard way to compute "a week from now" or "30 days ago."
 
@@ -115,7 +118,7 @@ next_checkup = observed + timedelta(days=14)
 print(next_checkup)
 ```
 
-### Difference between two dates
+### Difference between two dates { cs="difference between two dates" }
 
 Subtracting one `date` from another gives back a `timedelta`. Its `.days` attribute is the number of days between them — handy for measuring how long something has been tracked.
 
@@ -125,7 +128,7 @@ last_seen = date(2026, 8, 6)
 last_seen - first_seen    # timedelta(days=14)
 ```
 
-### Parsing a string with strptime
+### Parsing a string with strptime { cs="strptime" }
 
 The reverse of `strftime` — reads a date out of a string. `strptime` ("string parse time") takes the same format codes describing how that string is laid out. This is how a date typed by a user, or read from a CSV file, gets turned back into a real `datetime` you can do arithmetic on.
 

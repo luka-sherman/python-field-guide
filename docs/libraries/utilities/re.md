@@ -1,4 +1,8 @@
 ---
+cheatsheet_title: re
+cheatsheet_description: 'Regular expressions: searching, extracting, and replacing text by pattern.'
+cheatsheet_icon: material-text-search
+cheatsheet_title_suffix: :material-language-python:{ .library-badge .library-badge--builtin title="Built-in — included with Python" }
 description: >-
   Regular expressions in Python with the re module: searching, extracting groups, replacing,
   and splitting text, with runnable examples.
@@ -16,7 +20,7 @@ The **`re`** module works with regular expressions — patterns that describe te
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 `re` ships with Python's standard library — nothing to install. The whole module is used through the `re.` prefix, so a plain import is all you need. Patterns are written as **raw strings** (`r"..."`), so a backslash like `\d` is passed straight to `re` instead of Python trying to interpret it as a string escape sequence first.
 
@@ -45,7 +49,7 @@ import re
 
 <div class="pfg-section" markdown="block">
 
-## Searching for a pattern
+## Searching for a pattern { cs="search, compile" }
 
 `re.search()` scans the text and returns a `Match` object for the first hit, or `None` if the pattern never occurs. `.group()` reads the actual matched text back out of it.
 
@@ -74,7 +78,7 @@ print(match.group())
 
     Calling `re.search()` (or `.findall()`, `.sub()`, etc.) with a raw pattern string repeats the same compilation work internally on every call, even when the pattern never changes — across a loop of n calls, that's n compilations of the same pattern. Compiling it once with `re.compile()` above the loop and calling `.search()` on the result instead does that work exactly once, however many times the loop runs.
 
-    See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
+    See [Efficiency](../../practices/style.md#efficiency) for why this distinction matters.
 
 ??? run "Run a searching example"
     All the examples above, combined into one script:
@@ -99,7 +103,7 @@ print(match.group())
 
 <div class="pfg-section" markdown="block">
 
-## Finding all matches
+## Finding all matches { cs="findall" }
 
 `re.findall()` returns every match in the text as a list, instead of stopping at the first one.
 
@@ -111,7 +115,7 @@ notes = "ball: 4ft, burmese: 12ft, boa: 8ft"
 print(re.findall(r"\d+ft", notes))
 ```
 
-### Groups
+### Groups { cs="groups, named groups" }
 
 Parentheses in a pattern mark a **capturing group** — a piece of the match to pull out on its own. With groups in the pattern, `findall()` returns a list of tuples, one tuple of group values per match, instead of a list of whole matches.
 
@@ -156,7 +160,7 @@ re.findall(r"(\w+): (\d+)ft", notes)    # [("ball", "4"), ("burmese", "12"), ("b
 
 <div class="pfg-section" markdown="block">
 
-## Replacing text
+## Replacing text { cs="sub" }
 
 `re.sub()` replaces every match with a new string. `\1` in the replacement refers back to the first capturing group in the pattern, so part of each match can be kept while the rest changes.
 
@@ -183,7 +187,7 @@ print(re.sub(r"(\d+)ft", r"\1 feet", notes))
 
 <div class="pfg-section" markdown="block">
 
-## Splitting on a pattern
+## Splitting on a pattern { cs="split" }
 
 `re.split()` breaks text apart wherever the pattern matches, similar to `str.split()` but able to split on more than one exact separator at once.
 
