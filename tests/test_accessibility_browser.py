@@ -20,7 +20,7 @@ from conftest import format_violations, run_axe
 # FAQ tabs), a content page with a wide comparison table, a page built from numbered
 # walkthroughs and tabbed OS instructions, one dense with admonitions, and a library page
 # full of images.
-PAGES = ["/", "/types/basics/", "/start/workspace/", "/types/collections/", "/libraries/pillow/"]
+PAGES = ["/", "/types/basics/", "/start/workspace/", "/types/collections/", "/libraries/images/pillow/"]
 
 # The pages whose palette does the most work — card grid, wide truth tables — re-checked
 # with the dark scheme active. (Material lists `slate` first, so dark is already the

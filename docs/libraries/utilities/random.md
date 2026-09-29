@@ -1,4 +1,7 @@
 ---
+cheatsheet_title: random
+cheatsheet_description: Random numbers, random picks, shuffled order.
+cheatsheet_title_suffix: :material-language-python:{ .library-badge .library-badge--builtin title="Built-in — included with Python" }
 description: Generating random numbers and making random selections in Python with the random module, with runnable examples.
 ---
 
@@ -14,7 +17,7 @@ The **`random`** module generates pseudo-random numbers and makes random selecti
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 `random` ships with Python's standard library — nothing to install. The whole module is used through the `random.` prefix, so a plain import is all you need.
 
@@ -34,7 +37,7 @@ import random
 
 <div class="pfg-section" markdown="block">
 
-## Random numbers
+## Random numbers { cs="randint" }
 
 `random()` and `randint()` are the two basic building blocks — a random fraction, or a random whole number within a range.
 
@@ -73,7 +76,7 @@ print(random.randint(1, 6))
 
 <div class="pfg-section" markdown="block">
 
-## Random selections
+## Random selections { cs="choice" }
 
 `choice()` picks one item at random from an existing sequence — no need to generate a number and index into the list by hand.
 
@@ -85,7 +88,7 @@ species = ["ball", "burmese", "boa", "blood"]
 print(random.choice(species))
 ```
 
-### Shuffling a list
+### Shuffling a list { cs="shuffle" }
 
 Reorders a list randomly, in place. `shuffle()` returns `None`, so the point is the side effect on `species` itself, not a return value to assign.
 
@@ -95,7 +98,7 @@ random.shuffle(species)
 species    # e.g. ["boa", "ball", "blood", "burmese"] — order is randomized
 ```
 
-### Sampling without replacement
+### Sampling without replacement { cs="sample" }
 
 Picks several items at once, all guaranteed distinct. Unlike calling `choice()` in a loop, which could return the same item twice. The original list is left unchanged; `sample()` returns a new list.
 

@@ -1,12 +1,13 @@
 ---
+cheatsheet_description: Splitting code across files, and using someone else's code.
 description: How Python modules and imports work, including writing and importing your own, with runnable examples.
 ---
 
-# :material-import:{ .lg .middle } Modules & Imports
+# :material-import:{ .lg .middle } Modules & imports
 
 <div class="pfg-section" markdown="block">
 
-## Modules vs packages vs libraries
+## Modules vs packages vs libraries { cs="module\, package\, library" }
 
 A **module** is a Python file. Any `.py` file can be imported and used by another one. As a project grows, splitting related functions and classes into their own files, then importing between them, keeps any one file from becoming unmanageable.
 
@@ -30,15 +31,15 @@ flowchart LR
 
 </div>
 
-**Library** is the informal umbrella term for either: a single module or a whole package — that's organized to be reused across projects. The [Libraries page](../libraries/index.md) highlights a few common published libraries. 
+**Library** is the informal umbrella term for either: a single module or a whole package — that's organized to be reused across projects. The [Libraries page](../libraries/index.md) highlights a few common published libraries.
 
 </div>
 
 <div class="pfg-section" markdown="block">
 
-## Importing modules
+## Importing modules { cs="import" }
 
-### import
+### import { cs }
 
 `import` makes a module's code available under its own name, so you call things through it with a `.` — `random.randint(...)`, not just `randint(...)`.
 
@@ -48,7 +49,7 @@ import random
 print(random.randint(1, 10))
 ```
 
-### as
+### as { cs }
 
 `as` gives the imported module a different name to call it by — handy for a long name you'd rather type shorter, or one that collides with something else in the file.
 
@@ -58,11 +59,11 @@ import random as rnd
 print(rnd.randint(1, 10))
 ```
 
-### from
+### from { cs }
 
-**Specify a named piece that can be used directly:** Naming the exact names you need is considered best practice, as it purposefully only imports the pieces you are using. 
+**Specify a named piece that can be used directly:** Naming the exact names you need is considered best practice, as it purposefully only imports the pieces you are using.
 
-#### Packages
+#### Packages { cs="packages" }
 
 `from` package `import` module
 
@@ -119,7 +120,7 @@ from snake_helpers import describe     # describe is a function inside snake_hel
 print(describe("ball"))
 ```
 
-#### Nested paths
+#### Nested paths { cs="nested paths" }
 
 `from` package.module `import` function/class/variable
 
@@ -161,7 +162,7 @@ print(join("snakes", "ball_python.txt"))
     randint(1, 10)    # works, but where did randint come from?
     ```
 
-### order of multiple imports
+### order of multiple imports { cs="import order" }
 
 Imports conventionally go near the top of the file, grouped in order: Python's own standard library first, then third-party packages, then your own local files — with a blank line between each group.
 
@@ -177,7 +178,7 @@ import snake_data                # your own file
 
 <div class="pfg-section" markdown="block">
 
-## Creating your own module
+## Creating your own module { cs="your own module" }
 
 Your own `.py` files import the same way — use the filename, without `.py`, as the module name.
 
@@ -198,7 +199,7 @@ print(snake_helpers.describe("ball"))
 
 Avoid naming your own file after a library you use — your file named `random.py` shadows Python's own `random` module for anything else in that project. See the [file naming rules](../start/workspace.md#step-2-write-and-run-a-python-file) for more.
 
-### The main guard
+### The main guard { cs="main guard" }
 
 `if __name__ == "__main__":` controls what runs only when a file is run directly — not when it's imported into another file.
 
@@ -210,7 +211,7 @@ if __name__ == "__main__":
     print(describe("ball"))
 ```
 
-Wrapping your "do the actual work" code in this check means another file can `import` yours — to reuse a function, say — without that main code running too. 
+Wrapping your "do the actual work" code in this check means another file can `import` yours — to reuse a function, say — without that main code running too.
 
 </div>
 

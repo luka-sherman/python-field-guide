@@ -1,4 +1,7 @@
 ---
+cheatsheet_title: BeautifulSoup
+cheatsheet_description: 'Parsing HTML: finding tags, reading attributes and text, and turning a page into structured data.'
+cheatsheet_title_suffix: :material-download-outline:{ .library-badge .library-badge--third-party title="Third-party — install separately with pip" }
 description: >-
   Parsing HTML in Python with BeautifulSoup: finding tags, reading attributes and text, and
   turning a page into structured data for web scraping.
@@ -18,7 +21,7 @@ BeautifulSoup is an open-source project maintained by volunteer contributors.
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 ```bash
 pip install beautifulsoup4
@@ -34,7 +37,7 @@ from bs4 import BeautifulSoup
 
 <div class="pfg-section" markdown="block">
 
-## HTML and web pages
+## HTML and web pages { cs }
 
 A web page's content is just text — a file written in **HTML** (HyperText Markup Language), where tags mark what each piece of text is: a heading, a paragraph, a link, an image. Tags nest inside each other to build up a whole page's structure, the same way a list can hold another list. A browser doesn't show you this markup directly — it reads the HTML and *renders* it, turning `<h1>Ball python</h1>` into large, bold text on screen instead of displaying the angle brackets themselves.
 
@@ -47,7 +50,7 @@ A web page's content is just text — a file written in **HTML** (HyperText Mark
 </html>
 ```
 
-A website doesn't send a picture of its page — it sends this raw HTML text, the same way [requests](requests.md) fetches a JSON API's response. Every browser's "View Page Source" (or a right-click "Inspect") shows exactly this text for any page you're looking at, which is worth trying on a real site before scraping one — it's the same markup a scraper reads.
+A website doesn't send a picture of its page — it sends this raw HTML text, the same way [requests](../apis/requests.md) fetches a JSON API's response. Every browser's "View Page Source" (or a right-click "Inspect") shows exactly this text for any page you're looking at, which is worth trying on a real site before scraping one — it's the same markup a scraper reads.
 
 Web scraping is just skipping the rendering step. `requests.get(url).text` returns this same raw HTML a browser would've turned into a page, as a plain Python string. BeautifulSoup is what makes that string usable — a `BeautifulSoup` object rebuilds the tag structure a browser's rendering engine reads, so a program can search it by tag and attribute exactly as it appears in the markup, without drawing anything on screen.
 
@@ -55,9 +58,9 @@ Web scraping is just skipping the rendering step. `requests.get(url).text` retur
 
 <div class="pfg-section" markdown="block">
 
-## Overview { data-card-link="skip" }
+## Overview
 
-It only works with HTML that's already in hand — a file, a plain string, or the `.text` of a [requests](requests.md) response — it has no ability to fetch a page itself, which is why the two are almost always used together: `requests` gets the page, BeautifulSoup makes sense of it. Parsing needs no network access, so unlike `requests`, most examples on this page run directly in this site's browser sandbox; the last one, which fetches a real page, does not.
+It only works with HTML that's already in hand — a file, a plain string, or the `.text` of a [requests](../apis/requests.md) response — it has no ability to fetch a page itself, which is why the two are almost always used together: `requests` gets the page, BeautifulSoup makes sense of it. Parsing needs no network access, so unlike `requests`, most examples on this page run directly in this site's browser sandbox; the last one, which fetches a real page, does not.
 
 | Concept | What it is |
 |---------|------------|
@@ -79,7 +82,7 @@ For a single page already in hand, BeautifulSoup offers the best balance of simp
 
 <div class="pfg-section" markdown="block">
 
-## Parsing HTML
+## Parsing HTML { cs }
 
 `BeautifulSoup(html, "html.parser")` reads a string of HTML and returns a navigable object with the same tree structure as the page itself — call `.find()` on it, or walk straight to a tag as if it were an attribute, to reach any piece of it.
 
@@ -109,7 +112,7 @@ soup = BeautifulSoup(html, "html.parser")
 print(soup.h2.text)
 ```
 
-### Finding tags
+### Finding tags { cs }
 
 `.find()` returns the first matching tag; `.find_all()` returns every match, as a list. Both take a tag name, and narrow further with `class_=` (a trailing underscore, since `class` alone is a reserved word in Python) or `attrs={...}` for any other attribute.
 
@@ -183,7 +186,7 @@ print(soup.find("div", attrs={"data-length-ft": "20"}).h2.text)
         print("not found")
     ```
 
-### Reading text and attributes
+### Reading text and attributes { cs }
 
 `.text` (or `.get_text()`) returns everything inside a tag as one string, including any nested tags' text. An attribute reads like a dict item — `tag["href"]` — or safely with `.get("href")`, which returns `None` instead of raising `KeyError` when the attribute isn't there. `.attrs` gives every attribute on a tag as a plain dict.
 
@@ -217,9 +220,9 @@ print(tag.attrs)
 
 <div class="pfg-section" markdown="block">
 
-## Extracting structured data
+## Extracting structured data { cs }
 
-A page is rarely useful one tag at a time — the real value of `find_all()` is looping over its results to build a plain Python list, the same list-of-dicts shape as [Collections](../types/collections.md#dictionaries)' own snake catalog, ready to filter, sort, or save to a [CSV](csv.md) or [JSON](json.md) file.
+A page is rarely useful one tag at a time — the real value of `find_all()` is looping over its results to build a plain Python list, the same list-of-dicts shape as [Collections](../../types/collections.md#dictionaries)' own snake catalog, ready to filter, sort, or save to a [CSV](../data_analysis/csv.md) or [JSON](../apis/json.md) file.
 
 ```python-ref
 snakes = []
@@ -267,13 +270,13 @@ for snake in snakes:
 
 <div class="pfg-section" markdown="block">
 
-## Putting it together
+## Putting it together { cs }
 
-BeautifulSoup only parses HTML that's already in hand — pairing it with [requests](requests.md) is what turns this into an actual web scraper. A handful of small functions cover most everyday tasks; write each one once, then reuse it on any page.
+BeautifulSoup only parses HTML that's already in hand — pairing it with [requests](../apis/requests.md) is what turns this into an actual web scraper. A handful of small functions cover most everyday tasks; write each one once, then reuse it on any page.
 
-### Common tasks
+### Common tasks { cs }
 
-Each function below wraps a single `find`/`find_all` call in a [function](../organization/functions.md), returning a plain [list](../types/collections.md#lists) built with a [list comprehension](../types/collections.md#list-comprehension) — store the result in a variable and use it like any other value.
+Each function below wraps a single `find`/`find_all` call in a [function](../../organization/functions.md), returning a plain [list](../../types/collections.md#lists) built with a [list comprehension](../../types/collections.md#list-comprehension) — store the result in a variable and use it like any other value.
 
 ```python-ref
 get_title(soup)            # "Ball python"
@@ -320,7 +323,7 @@ print(get_all_headings(soup))
 print(get_all_paragraphs(soup))
 ```
 
-### Scraping a real page
+### Scraping a real page { cs }
 
 The same functions work unchanged on a real page — only the URL, and which tags you care about, change. `requests.get(url).text` fetches the page; `BeautifulSoup` parses it exactly as above. This makes a real network call, which this site's sandbox can't do — copy it into a local `.py` file, swap in any page's URL, and see what comes back.
 

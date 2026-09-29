@@ -1,4 +1,5 @@
 ---
+cheatsheet_description: Bundle related values and functions to a reusable blueprint for similar objects.
 description: >-
   Python classes and object-oriented programming explained with runnable examples:
   attributes, methods, property/staticmethod/classmethod, and inheritance.
@@ -22,7 +23,7 @@ A **class** bundles related data together with the behavior (methods) that acts 
 
 <div class="pfg-section" markdown="block">
 
-## Defining a class
+## Defining a class { cs="class" }
 
 A class is a blueprint for creating objects — it defines what attributes and methods every object built from it will have. An object is one specific instance built from that blueprint, with its own copy of the attributes.
 
@@ -57,7 +58,7 @@ What `ball = Snake("ball", 5)` does:
 
 `burmese = Snake("burmese", 16)` builds a separate object the same way — `burmese.species` and `ball.species` don't share data, same as two function calls (previous page) don't share local variables.
 
-### The `__init__()` method
+### The `__init__()` method { cs="__init__()" }
 
 Runs automatically every time a new object is created — step 1 above. It's where an object's starting attributes get set up. Python calls this a **constructor**. You never call `__init__()` directly — `Snake("ball", 5)` is what triggers Python to call it.
 
@@ -90,7 +91,7 @@ ball = Snake("ball", 5)    # __init__ runs automatically, setting ball.species a
             self.tags = tags if tags is not None else []    # a new list every time
     ```
 
-### The self parameter
+### The self parameter { cs="self" }
 
 Refers to the specific object a method was called on. One `Snake` class, but many `Snake` objects (`ball`, `burmese`, ...) sharing its method code — `self` is how a method written once still knows which object to act on.
 
@@ -107,7 +108,7 @@ ball.describe()      # self is ball    → "a 5 ft ball python"
 burmese.describe()   # self is burmese → "a 16 ft burmese python"
 ```
 
-### Object methods
+### Object methods { cs="methods" }
 
 A method is a function defined inside a class — parameters, `return`, and defaults all work the same as on the [Functions](functions.md) page. The one addition is `self`, which lets it read or change that specific object's own attributes.
 
@@ -115,7 +116,7 @@ A method is a function defined inside a class — parameters, `return`, and defa
 ball.describe()    # "a 5 ft ball python"
 ```
 
-### Instance attributes
+### Instance attributes { cs="instance attributes" }
 
 An instance attribute is set with `self.x = value`, usually inside `__init__`. This is the default way a class stores data — each object gets its own independent copy, separate from every other object's.
 
@@ -159,7 +160,7 @@ For a value every object should share instead of holding its own copy, see [clas
 
 </div>
 
-### Class attributes
+### Class attributes { cs="class attributes" }
 
 A class attribute is set directly in the class body, outside `__init__` — shared by every object built from that class, unlike an [instance attribute](#instance-attributes), which is a separate copy per object. Assigning to `object.attribute` always creates (or updates) an instance attribute, even if a class attribute of the same name exists — it doesn't change the shared value, just shadows it for that one object.
 
@@ -189,7 +190,7 @@ print(burmese.kingdom)       # "Animalia" — unaffected
 | Changing it on one object | Only that object sees the change | Reassigning through the class changes it for every object that hasn't shadowed it |
 | Use it for | Data that's different for each object — `species`, `length_ft` | A value every object of the class shares — a constant, a shared default, a running count |
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? tip "The `__str__()` method"
     Controls what `print()` shows for an object, instead of its memory address. By default, `print()`-ing an object just shows its memory address, which isn't very useful.
@@ -320,7 +321,7 @@ print(burmese.kingdom)       # "Animalia" — unaffected
 
 <div class="pfg-section" markdown="block">
 
-## Method decorators { data-fcm-hide="essentials" }
+## Method decorators { data-fcm-hide="essentials" cs="method decorators" }
 
 Python provides 3 built-in [decorators](functions.md#decorators) for methods that change how the method is called and add functionality:
 
@@ -348,9 +349,9 @@ Snake.is_valid_length(5)                 # True — called on the class, no obje
 Snake.from_cm("ball", 152.4).length_ft   # 5.0 — builds a new object instead of modifying one
 ```
 
-### @property
+### @property { cs }
 
-Call it like a plain attribute, no parentheses. Turns a method into a value computed fresh every time it's read, instead of stored and going stale — `length_cm` below always reflects the current `length_ft`, even if it changes later. 
+Call it like a plain attribute, no parentheses. Turns a method into a value computed fresh every time it's read, instead of stored and going stale — `length_cm` below always reflects the current `length_ft`, even if it changes later.
 
 Use it for a value that's cheap to derive from existing attributes and should look like a plain attribute to the rest of the code; skip it if the computation is expensive to redo on every access, or needs its own arguments beyond `self`.
 
@@ -376,15 +377,15 @@ Use it for a value that's cheap to derive from existing attributes and should lo
     ball.length_ft            # 10.0
     ```
 
-### @staticmethod
+### @staticmethod { cs }
 
-Call it without needing an object at all, directly on the class. Removes the automatic `self`, so the method can't read or change any object's data — it's really just a plain function, grouped under the class because it's conceptually related. 
+Call it without needing an object at all, directly on the class. Removes the automatic `self`, so the method can't read or change any object's data — it's really just a plain function, grouped under the class because it's conceptually related.
 
 Use it for logic tied to the class's purpose but not to any one object's state, like a validation check; if it needs `self`, it should be a regular method instead.
 
-### @classmethod
+### @classmethod { cs }
 
-Call it as an alternative way to build an object. Receives the class itself (conventionally named `cls`) instead of an object, so it can construct and return a new instance. 
+Call it as an alternative way to build an object. Receives the class itself (conventionally named `cls`) instead of an object, so it can construct and return a new instance.
 
 Use it when there's more than one sensible way to build an object — `Snake.from_cm(...)` alongside the usual `Snake(...)` — as a second, clearly-named constructor; skip it if there's only one way to build the object, since `__init__()` would be complete.
 
@@ -392,7 +393,7 @@ Use it when there's more than one sensible way to build an object — `Snake.fro
 
 <div class="pfg-section" markdown="block">
 
-## Inheritance
+## Inheritance { cs="inheritance" }
 
 A child class reuses — and can extend or override — everything defined in a parent class, instead of rewriting it from scratch. The parent is also called the **base class**; the child is the **derived class**.
 
@@ -413,7 +414,7 @@ boa = Boa("boa constrictor", 10)
 print(boa.describe())
 ```
 
-### Overriding `__init__()`
+### Overriding `__init__()` { cs="__init__()" }
 
 Adding `__init__()` to a child class replaces the parent's version entirely. Call `Parent.__init__(self, ...)` explicitly inside it if you still want the parent's setup to run too.
 
@@ -424,7 +425,7 @@ class Boa(Snake):
         self.region = region
 ```
 
-### Using super()
+### Using super() { cs="super()" }
 
 Calls the parent's version of a method without naming the parent class directly. The usual, cleaner way to do what the previous example did by hand.
 
@@ -432,7 +433,7 @@ Calls the parent's version of a method without naming the parent class directly.
 super().__init__(species, length_ft)    # same as Snake.__init__(self, species, length_ft), without naming the parent
 ```
 
-### Adding attributes and methods
+### Adding attributes and methods { cs="adding attributes and methods" }
 
 A child class isn't limited to what its parent has. It can define brand-new attributes and methods of its own, on top of everything it inherits.
 
@@ -441,7 +442,7 @@ boa.region       # "south america" — new attribute, parent Snake has no such t
 boa.habitat()    # new method, only Boa has it
 ```
 
-### Overriding methods
+### Overriding methods { cs="overriding" }
 
 Defining a method in the child class with the exact same name as one in the parent replaces the parent's version for that child. This is the foundation of polymorphism, covered next.
 
@@ -450,7 +451,7 @@ snake.describe()    # "a 5 ft ball python"        — Snake's own version
 boa.describe()      # "a heavy-bodied constrictor" — Boa's version replaces it
 ```
 
-### Multiple inheritance { data-fcm-hide="essentials" }
+### Multiple inheritance { data-fcm-hide="essentials" cs="multiple inheritance" }
 
 A class can list more than one parent, comma-separated — it inherits the combined attributes and methods of all of them. When two parents define the same method, Python searches left to right through the parents listed and uses the first match — this search order is called the **MRO** (method resolution order).
 
@@ -472,7 +473,7 @@ print(cobra.warning())    # "handle with extreme caution" — Venomous is listed
 
 `Cobra.__mro__` shows the actual search order Python used, in case more than two parents makes it unclear.
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? run "Run an inheritance example"
     All the examples above, combined into one script:
@@ -569,7 +570,7 @@ print(cobra.warning())    # "handle with extreme caution" — Venomous is listed
 
 <div class="pfg-section" markdown="block">
 
-## Polymorphism { data-fcm-hide="essentials" }
+## Polymorphism { data-fcm-hide="essentials" cs="polymorphism" }
 
 **Polymorphism** ("many forms") means the same method or function name behaves differently depending on which object it's called on — so you can call `.describe()` on any snake-like object without needing to know exactly which one it is.
 
@@ -579,7 +580,7 @@ print(len(["ball", "burmese", "boa"]))
 print(len({"species": "ball", "length_ft": 5}))
 ```
 
-### Duplicate method names
+### Duplicate method names { cs="duplicate method names" }
 
 Classes don't need to be related by inheritance to share a method name. As long as each one defines its own `.move()`, calling it works the same way no matter which object it's called on.
 
@@ -588,7 +589,7 @@ ball.move()     # "slither"
 gecko.move()    # "climb"
 ```
 
-### Polymorphism via inheritance
+### Polymorphism via inheritance { cs="inheritance" }
 
 Looping over a mix of parent and child objects and calling the same method name runs each object's own version automatically. This is the more common case — a child class overrides a parent's method, as in the previous section.
 
@@ -598,7 +599,7 @@ for s in (snake, boa): print(s.describe())
 # a heavy-bodied constrictor
 ```
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? run "Run a polymorphism example"
     All the examples above, combined into one script:
@@ -649,11 +650,11 @@ for s in (snake, boa): print(s.describe())
 
 <div class="pfg-section" markdown="block">
 
-## Encapsulation { data-fcm-hide="essentials" }
+## Encapsulation { data-fcm-hide="essentials" cs="encapsulation" }
 
 **Encapsulation** restricts direct access to an object's data, so it can only be read or changed through the class's own methods. Python doesn't enforce this the way some other languages do — it's a naming convention the caller is trusted to respect, not a hard restriction.
 
-### Single underscore
+### Single underscore { cs="single underscore" }
 
 A leading underscore (`_species`) signals "internal — not part of the class's public interface." Python doesn't actually stop outside code from reading or changing it; it's a convention, not a lock.
 
@@ -666,7 +667,7 @@ ball = Snake("ball", 5)
 ball._species    # "ball" — still accessible, just a signal not to
 ```
 
-### Double underscore
+### Double underscore { cs="double underscore" }
 
 A leading double underscore (`__species`) triggers **name mangling** — Python renames the attribute internally to `_ClassName__species`, making it awkward (though still not impossible) to reach from outside the class.
 
@@ -680,7 +681,7 @@ ball.__species          # AttributeError — not found under this name
 ball._Snake__species    # "ball" — the actual mangled name
 ```
 
-### Controlled access with @property
+### Controlled access with @property { cs="@property" }
 
 Pair an underscore-prefixed attribute with [`@property`](#property) to actually enforce something — like validation — instead of only signaling intent.
 
@@ -707,7 +708,7 @@ ball.length_ft = -1    # ValueError — blocked by the setter
 
 <div class="pfg-section" markdown="block">
 
-## Operator overloading { data-fcm-hide="essentials" }
+## Operator overloading { data-fcm-hide="essentials" cs="operator overloading" }
 
 Defining a dunder method lets a built-in operator (`==`, `<`, `+`, ...) work on your own objects — the same mechanism as [`__str__()`](#defining-a-class) and [`__repr__()`](#defining-a-class), just for operators instead of printing.
 
@@ -716,7 +717,7 @@ ball = Snake("ball", 5)
 ball == Snake("ball", 5)    # False — without __eq__, Python compares by identity, not by data
 ```
 
-### Comparing with `__eq__` and `__lt__`
+### Comparing with `__eq__` and `__lt__` { cs="__eq__ and __lt__" }
 
 `__eq__` defines what `==` does; `__lt__` defines what `<` does. Without them, `==` falls back to comparing identity (is this the exact same object?) rather than the data inside.
 
@@ -739,7 +740,7 @@ print(ball == Snake("ball", 5))    # True — same length_ft
 print(ball < burmese)              # True — 5 < 16
 ```
 
-### Arithmetic with `__add__`
+### Arithmetic with `__add__` { cs="__add__" }
 
 `__add__` defines what `+` does between two objects — whatever combining them should mean for this class.
 
@@ -762,7 +763,7 @@ print(ball + burmese)    # 21 — combined length
 
 <div class="pfg-section" markdown="block">
 
-## Dataclasses { data-fcm-hide="essentials" }
+## Dataclasses { data-fcm-hide="essentials" cs="dataclasses" }
 
 `@dataclass` generates `__init__()` and `__repr__()` automatically from a list of typed attributes, instead of writing them by hand.
 
@@ -796,7 +797,7 @@ Use it for a class that's mostly just holding data, with little or no custom beh
 
 <div class="pfg-section" markdown="block">
 
-## Abstract base classes { data-fcm-hide="essentials" }
+## Abstract base classes { data-fcm-hide="essentials" cs="abstract base classes" }
 
 An **abstract base class** defines methods that every subclass must implement, using `abc.ABC` and `@abstractmethod`. Trying to create an object from a class that hasn't implemented all of them raises a `TypeError` immediately, instead of failing later when the missing method actually gets called.
 

@@ -182,6 +182,29 @@ plugins:
 
 Material has no built-in way to tailor a page to different readers. The plugin hides a marked heading together with its whole section and its table of contents entry. It switches to the nearest mode that shows the content when a link points to something hidden. It also collapses to icons or moves to its own row on narrow screens. It includes its own Playwright and axe-core tests. See the [plugin's README](https://github.com/luka-sherman/mkdocs-audience-toggle) for all options. This site's setup is under `audience_toggle` in `mkdocs.yml`, with color overrides in `extra.css`'s `#fcm-toggle` rule.
 
+### [mkdocs-cheatsheet](https://pypi.org/project/mkdocs-cheatsheet/)
+
+Builds the homepage's quick-reference grid from headings flagged across the site. Each page becomes a card: its title, a description, and a bold line per flagged `##` heading followed by links to the flagged headings under it. The grid on this homepage used to be written by hand, with every link typed out; renaming a heading silently broke its link. Now each heading carries its own flag, so the grid is rebuilt from the pages on every build.
+
+```bash
+pip install mkdocs-cheatsheet
+```
+
+```yaml
+plugins:
+  - cheatsheet:
+      button: true
+```
+
+```markdown
+<!-- cheatsheet -->
+
+## Lists { cs="lists, item" }
+#### Add item { cs="append, extend, insert" }
+```
+
+A section with its own cheatsheet page, like Libraries here, shows up on the homepage as title-and-description cards only. The optional header button replaces the logo with a "Cheatsheet" link home. It includes its own Playwright and axe-core tests. See the [plugin's README](https://github.com/luka-sherman/mkdocs-cheatsheet) for all options. This site's setup is under `cheatsheet` in `mkdocs.yml`, with the flag rules in STRUCTURE.md's "Cheatsheet flags" section.
+
 ## Theme
 
 ### Custom CSS
@@ -207,11 +230,11 @@ I found myself writing so much content for this, and needing to jump between dif
   end with a period, numbered walkthroughs start at `0.`, short (1–2 word) subheadings because
   `toc.integrate` mirrors them verbatim into the sidebar.
 - **Where information goes** — the decision rules for heading level vs. admonition vs. glossary
-  entry vs. footnote, with a table of which `??? type` to use for what, plus how the homepage
-  keyword deep-links in `index.md` have to cover every heading.
+  entry vs. footnote, with a table of which `??? type` to use for what, plus how headings are flagged
+  for the homepage cheatsheet.
 
 The mechanically-checkable subset of these rules (heading case, list-start number, admonition
-types, `python-ref` comment format, homepage link coverage, clean `mkdocs build`) is enforced
+types, `python-ref` comment format, clean `mkdocs build`) is enforced
 by `tests/test_structure.py`; the rest need editorial judgment.
 
 ## Running locally

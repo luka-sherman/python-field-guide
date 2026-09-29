@@ -1,4 +1,7 @@
 ---
+cheatsheet_title: Tkinter
+cheatsheet_description: 'Creating desktop applications: text, buttons, dropdowns, forms, output, etc.'
+cheatsheet_title_suffix: :material-language-python:{ .library-badge .library-badge--builtin title="Built-in — included with Python" }
 description: >-
   Building desktop GUI applications in Python with Tkinter: widgets, layout managers,
   event handling, and styling with ttk.
@@ -16,7 +19,7 @@ description: >-
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 Tkinter ships with the standard library — no extra install is needed on your own machine. `tk` is the near-universal alias for the base module; the themed `ttk` widgets (used throughout this page) are imported separately.
 
@@ -37,7 +40,7 @@ from tkinter import ttk
 
 <div class="pfg-section" markdown="block">
 
-## Creating a window
+## Creating a window { cs="Tk" }
 
 Every Tkinter app starts the same way: create a root window, add widgets to it, then hand control over to the event loop with `mainloop()` — nothing appears on screen until that final call.
 
@@ -55,7 +58,7 @@ root.mainloop()
 
 <div class="pfg-section" markdown="block">
 
-## Widgets
+## Widgets { cs="Button" }
 
 A widget is any single element on screen — a button, a text field, a list. Most widgets exist in two versions: a classic one straight from the original `tkinter` module, and a themed one from `tkinter.ttk`, rendered to match the operating system's native look rather than Tkinter's classic (and dated) default style. **Prefer the `ttk` version of a widget whenever one exists** — the examples throughout the rest of this page do.
 
@@ -100,7 +103,7 @@ button.pack()
 entry.pack()
 ```
 
-### Label
+### Label { cs }
 
 Displays static text (or an image) — no input, no clicks. Mainly used for headings, descriptions, or showing output from other widgets.
 
@@ -119,7 +122,7 @@ label.pack()
 root.mainloop()
 ```
 
-### Button
+### Button { cs }
 
 Runs a function — passed in as `command` — every time it's clicked. The function itself is defined separately; the button just calls it, with no arguments.
 
@@ -144,7 +147,7 @@ button.pack()
 root.mainloop()
 ```
 
-### Entry
+### Entry { cs }
 
 A single-line text input box. Call `.get()` on it at any point (usually inside a button's callback) to read whatever the user has typed so far.
 
@@ -196,7 +199,7 @@ root.mainloop()
 
 <div class="pfg-section" markdown="block">
 
-## Layout managers
+## Layout managers { cs="pack" }
 
 A widget doesn't appear on screen until you tell Tkinter where to put it, using one of three geometry managers. Mixing more than one inside the *same* parent widget causes layout bugs, so pick one per container.
 
@@ -206,7 +209,7 @@ A widget doesn't appear on screen until you tell Tkinter where to put it, using 
 | `grid` | `widget.grid(row=0, column=0)` | Lining widgets up in rows and columns, like a form — the most common choice for anything beyond a trivial layout. |
 | `place` | `widget.place(x=10, y=10)` | Pinning a widget to an exact pixel position — rarely needed, and doesn't resize gracefully with the window. |
 
-### pack
+### pack { cs }
 
 Adds a widget to one edge of its parent, and stacks the next widget next to it. `top` by default, or `left`/`right`/`bottom`. It's the simplest manager, but gives you the least control over precise alignment.
 
@@ -225,7 +228,7 @@ ttk.Entry(root).pack(side="left")
 root.mainloop()
 ```
 
-### grid
+### grid { cs }
 
 Places a widget at a given `row`/`column` inside its parent. The standard choice for form-like layouts, since every widget can be aligned independently of the order it was created in.
 
@@ -269,7 +272,7 @@ root.mainloop()
 
 <div class="pfg-section" markdown="block">
 
-## Configuring widgets
+## Configuring widgets { cs="configure" }
 
 Every widget has a set of options that control its appearance and behavior — `text`, `width`, `state`, and dozens more depending on the widget type. Set them when you create the widget, or change them afterward with `.configure()` (or the equivalent bracket/dictionary syntax) and read them back with `.cget()`.
 
@@ -279,7 +282,7 @@ label.configure(text="burmese python")   # change it later
 label["text"]                            # read it back — "burmese python"
 ```
 
-### Reading and changing options
+### Reading and changing options { cs="reading and changing options" }
 
 `.configure(option=value)` changes one or more options after a widget already exists. Handy for updating a `Label` in response to a button click, or disabling an `Entry` while something else is running. `.cget("option")` (or the shorthand `widget["option"]`) reads a single option's current value back out.
 
@@ -310,7 +313,7 @@ root.mainloop()
 
 <div class="pfg-section" markdown="block">
 
-## Handling events
+## Handling events { cs="command" }
 
 A GUI sits idle until the user does something — Tkinter reacts to that input through callbacks: functions you write once, and hand to Tkinter to call automatically when the right event happens. Every one of those callbacks runs on the same event loop that keeps the window responsive, so a callback that blocks for a while (a long computation, `time.sleep()`, a network request) freezes the entire interface until it returns — use `root.after()` to schedule work in small chunks instead of blocking outright.
 
@@ -321,7 +324,7 @@ def on_click():
 ttk.Button(root, text="Go", command=on_click).pack()
 ```
 
-### Command callbacks
+### Command callbacks { cs="command callbacks" }
 
 Most interactive widgets accept a `command` argument that runs whenever the widget is activated. `Button`, `Checkbutton`, `Radiobutton` — pass a function reference (no parentheses, since Tkinter calls it for you).
 
@@ -346,7 +349,7 @@ ttk.Button(root, text="Show Info", command=show_info).pack()
 root.mainloop()
 ```
 
-### Binding events
+### Binding events { cs="binding events" }
 
 `.bind()` attaches a callback to a named event on any widget. `command` only covers a widget's one "main" action — for anything else (a key press, mouse movement, clicking a label), use `.bind()` instead. The callback receives an `event` object describing what happened.
 
@@ -400,7 +403,7 @@ root.mainloop()
 
 <div class="pfg-section" markdown="block">
 
-## Styling with ttk
+## Styling with ttk { cs="Style" }
 
 Classic Tkinter widgets render with Tk's original 1990s look, which stands out from every other app on a modern OS — this is exactly the gap `ttk` closes by delegating drawing to the OS's native theme engine. A `ttk.Style` object lets you customize colors and fonts on top of that native look without losing it.
 
@@ -410,7 +413,7 @@ style.configure("TButton", font=("Helvetica", 12))
 ttk.Button(root, text="Identify", style="TButton").pack()
 ```
 
-### Customizing a style
+### Customizing a style { cs="customizing a style" }
 
 Every `ttk` widget draws itself according to a named style (`TButton`, `TLabel`, and so on by default). `style.configure()` changes a style's look; `style.theme_use()` switches the whole underlying theme. Defining a new style name (like `"Accent.TButton"` above) lets one specific widget stand out without changing every button in the app.
 
@@ -437,7 +440,7 @@ root.mainloop()
 
 <div class="pfg-section" markdown="block">
 
-## Dialogs
+## Dialogs { cs="messagebox" }
 
 Tkinter includes a set of ready-made pop-up windows for common tasks — asking a yes/no question, showing an alert, or picking a file — instead of building a `Toplevel` window by hand every time.
 
@@ -448,7 +451,7 @@ messagebox.showinfo("Field Guide", "Species saved.")
 filedialog.askopenfilename()
 ```
 
-### Message boxes
+### Message boxes { cs="message boxes" }
 
 Covers simple alerts and confirmations. `showinfo`/`showwarning`/`showerror` display a message with an OK button, while `askyesno`/`askokcancel` return `True` or `False` based on the user's choice.
 
@@ -475,7 +478,7 @@ ttk.Button(root, text="Delete", command=delete).pack()
 root.mainloop()
 ```
 
-### File dialogs
+### File dialogs { cs="file dialogs" }
 
 Opens the OS's native file picker. `askopenfilename()` returns the path the user chose to open; `asksaveasfilename()` returns a path to save to, prompting for a filename if it doesn't already exist.
 
@@ -502,7 +505,7 @@ root.mainloop()
 
 <div class="pfg-section" markdown="block">
 
-## Introspecting widgets
+## Introspecting widgets { cs="winfo_width" }
 
 Every widget can report details about itself — its size, position, class, or place in the widget hierarchy — through a family of `winfo_*` methods. Useful for debugging a layout, or for writing code that adapts to a widget's actual on-screen size rather than a hardcoded guess.
 
@@ -512,7 +515,7 @@ label.winfo_class()     # "TLabel"
 label.winfo_children()  # direct child widgets, if any
 ```
 
-### winfo methods
+### winfo methods { cs }
 
 `winfo_width()`/`winfo_height()` return a widget's current on-screen size in pixels. Note that right after creation this can still be `1`, before the geometry manager has actually placed it (call `root.update()` first if you need an accurate reading immediately). `winfo_class()` returns the underlying Tk widget class name, and `winfo_children()` lists every widget placed directly inside it — handy for looping over a container's contents without keeping a separate list yourself.
 
@@ -542,11 +545,11 @@ root.mainloop()
 
 <div class="pfg-section" markdown="block">
 
-## Putting it together
+## Putting it together { cs="putting it together" }
 
 A handful of widgets from the table above — `Label`, `Entry`, `Checkbutton`, `Combobox`, `Button` — cover most of what a simple data-entry form needs. This example combines them into one small app: type a species name, toggle whether it's venomous, pick a habitat from a dropdown, then click Submit to display the result.
 
-### A simple form
+### A simple form { cs="a simple form" }
 
 Each widget stores its value differently, so the `Submit` callback reads each one its own way. `Entry` is read with `.get()` directly, `Checkbutton` is backed by a `BooleanVar` (`is_venomous`) read separately from the widget itself, and `Combobox` is also read with `.get()`. The `Submit` button's callback pulls all three together and updates a `Label` to show the result — the same `command=` pattern covered earlier, just wired to several widgets instead of one. Building the widgets is split into its own `build_form()` function, called once from `main()`, rather than left as loose top-level code.
 

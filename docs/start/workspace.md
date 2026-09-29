@@ -1,16 +1,17 @@
 ---
+cheatsheet_description: Write Python on your computer.
 description: >-
   How to install Python, pick a code editor, and run your first .py file — a step-by-step
   setup guide.
 ---
 
-# :material-monitor:{ .lg .middle } Workspace Setup
+# :material-monitor:{ .lg .middle } Workspace setup
 
 <div class="pfg-section" markdown="block">
 
-## Step 0: Install Python
+## Step 0: Install Python { cs="install, download, version" }
 
-0. Open your Terminal application *(Terminal on Mac/Linux, Command Prompt or PowerShell on Windows)* 
+0. Open your Terminal application *(Terminal on Mac/Linux, Command Prompt or PowerShell on Windows)*
 
 1. Type this command and press ++return++ to "run" it:
 
@@ -19,9 +20,9 @@ description: >-
     ```
 
     ??? success "If it shows `Python 3.x.x`, Python is installed!"
-        If you ever decide to run your files from the Terminal later you'll use the command `python`. 
+        If you ever decide to run your files from the Terminal later you'll use the command `python`.
 
-        Skip to Step 1: Pick a code editor. 
+        Skip to Step 1: Pick a code editor.
 
     ??? info "If you see `Python 2.x.x`"
         Python 2 is installed. Python 2 reached end of life in 2020 and is no longer maintained.
@@ -39,13 +40,13 @@ description: >-
         === "macOS"
 
             [python.org/downloads](https://python.org/downloads)
-        
+
         === "Windows"
 
             [python.org/downloads](https://python.org/downloads)
 
             Check **"Add python.exe to PATH"** on the first install screen — if you skip this, the terminal won't recognize `python`
-        
+
         === "Linux"
 
             Usually already installed. If `python3 --version` failed, install via your package manager (e.g. `sudo apt install python3`)
@@ -54,7 +55,7 @@ description: >-
 
 <div class="pfg-section" markdown="block">
 
-## Step 1: Pick an application to write code in
+## Step 1: Pick an application to write code in { cs="code editors, IDLE, Pycharm, Thonny, VS Code" }
 
 A **code editor** or an **IDE** ("Integrated Development Environment") is a text editor designed specifically for writing code — it's like Microsoft Word for programming.
 
@@ -74,15 +75,15 @@ Download one of the **free** code editors below. You can always switch later.
 | **PyCharm Community** | <ul><li>Complete Python IDE</li><li>Everything built-in out of the box</li><li>Many panels/menus can feel overwhelming at first</li></ul> | Professionals | JetBrains | [Windows](https://www.jetbrains.com/pycharm/download/) / [macOS](https://www.jetbrains.com/pycharm/download/) / [Linux](https://www.jetbrains.com/pycharm/download/) |
 
 ??? info "What does "open-source" mean?"
-    The source code that it is built from is publicly available for anyone to see, modify, and improve. 
-    
+    The source code that it is built from is publicly available for anyone to see, modify, and improve.
+
     *Thonny* is maintained by volunteers in the open-source community. *VS Code* and *PyCharm* are made by companies but also have open-source elements.
 
 </div>
 
 <div class="pfg-section" markdown="block">
 
-## Step 2: Write and run a Python file
+## Step 2: Write and run a Python file { cs="how to write and run .py file, file naming" }
 
 Now that you have Python installed and a code editor picked, you're ready to write actual Python code.
 
@@ -92,8 +93,8 @@ Now that you have Python installed and a code editor picked, you're ready to wri
 ```python-ref
 print("Hello, World!")
 ```
-3. Click the **Run button** (usually a green play icon or arrow) — most editors save your file automatically when you click Run, so there's no separate save step. 
-4. Find the output window in the application where it says `Hello, World!`, it should pop up on its own. 
+3. Click the **Run button** (usually a green play icon or arrow) — most editors save your file automatically when you click Run, so there's no separate save step.
+4. Find the output window in the application where it says `Hello, World!`, it should pop up on its own.
 
 That's it! You've written and run your first Python program. From here, you can modify the code, run it again, and [work through the rest of this guide](foundations.md#tips-for-getting-started) to keep building your Python programming skills.
 
@@ -107,38 +108,38 @@ That's it! You've written and run your first Python program. From here, you can 
     my script.py     # invalid — no spaces
     ```
 
-    1. **Ends in .py** 
-    
+    1. **Ends in .py**
+
         This is what tells your application to treat the file as Python code — the Run button, syntax highlighting, and imports all depend on the extension being there.
-    
-    2. **Only letters, underscores, and numbers** — but it can't start with a number. 
-    
+
+    2. **Only letters, underscores, and numbers** — but it can't start with a number.
+
         Standard formatting is to use `snake_case` (all lowercase, separated with underscores). Python is case-sensitive (Species.py and species.py would be two different files).
-    
-    3. **No hyphens** 
-    
+
+    3. **No hyphens**
+
         Even though `my-script.py` will run fine on its own, if you need to later `import my-script` it will be invalid syntax because Python reads the hyphen as subtraction.
-    
-    4. **No spaces** 
-    
+
+    4. **No spaces**
+
         They will break imports and makes running the file from the terminal require extra quoting.
-    
-    5. **Don't use a reserved keyword** 
-    
+
+    5. **Don't use a reserved keyword**
+
         There are a handful of "keywords" that are reserved by Python to do specific things, so they can't be used elsewhere in your code. Run this code to get a list of all reserved keywords:
 
         ```python
         help("keywords")
         ```
-    
-    6. **Don't use a library's name** 
-    
+
+    6. **Don't use a library's name**
+
         Naming a file `random.py` or `math.py` in a project makes `import random` elsewhere in that same project import your file instead of Python's actual `random` library, which is a confusing bug to track down. Run this code to get a list of all reserved library names:
-        
+
         ```python
         help("modules")
         ```
-        
+
 ??? tip "Reading error messages"
 
     When you see red error text, the [Errors](../practices/errors.md#reading-a-traceback) page covers how to read it.
@@ -147,15 +148,15 @@ That's it! You've written and run your first Python program. From here, you can 
 
 <div class="pfg-section" markdown="block">
 
-## Using the terminal { data-fcm-hide="essentials" }
+## Using the terminal { data-fcm-hide="essentials" cs="Terminal, cd, ls, pwd, shortcuts" }
 
-The terminal is a text-based way to navigate your computer's files and run programs. 
+The terminal is a text-based way to navigate your computer's files and run programs.
 
 It's good for running Python files that are already finished — either your own, or someone else's — without needing to open them in an editor. It's also handy for quickly re-running the same command over and over while testing.
 
-0. Open the terminal 
+0. Open the terminal
 
-    You can either use a dedicated terminal application (Terminal on Mac/Linux, Command Prompt or PowerShell on Windows), or if your code editor application has a terminal window you can use that. 
+    You can either use a dedicated terminal application (Terminal on Mac/Linux, Command Prompt or PowerShell on Windows), or if your code editor application has a terminal window you can use that.
 
 1. Navigate to the folder ("location") your Python file is saved in using these commands:
 
@@ -167,7 +168,7 @@ It's good for running Python files that are already finished — either your own
     ```
 
     Here's an example:
-    
+
     ```bash
     $ pwd
     /Users/luka
@@ -192,47 +193,47 @@ It's good for running Python files that are already finished — either your own
     python3 script.py
     ```
 
-3. To stop a running program: ++ctrl+c++ 
+3. To stop a running program: ++ctrl+c++
 
-4. You can now run a Python file again, or a different command.      
+4. You can now run a Python file again, or a different command.
 
 !!! warning "Be careful what you send in the terminal"
     The terminal has no undo, and no confirmation prompt for most commands — it does exactly what you type, even if that means deleting or overwriting something permanently. Never paste a command you don't fully understand, especially from a random webpage or AI.
-    
+
     Use **extreme caution** with `rm`, `sudo`, or a file path you didn't type yourself.
 
 ??? tip "Terminal shortcuts"
 
-    1. **Auto-complete file/folder names:** 
-    
-        Start typing a file or folder name and press ++tab++ — the terminal will autoc-omplete it for you. For example, if you type `cd Doc` then press Tab, it becomes `cd Documents/`. 
-        
+    1. **Auto-complete file/folder names:**
+
+        Start typing a file or folder name and press ++tab++ — the terminal will autoc-omplete it for you. For example, if you type `cd Doc` then press Tab, it becomes `cd Documents/`.
+
         If there are multiple matches, press ++tab++ again to cycle through them, or type more letters so that there is only one option it could be and then ++tab++ again.
 
-    2. **Auto-fill previous commands:** 
-    
-        ++up++ shows your last command, and press it again to go further back. 
-        
-        ++down++ then moves forward through the history. 
-        
+    2. **Auto-fill previous commands:**
+
+        ++up++ shows your last command, and press it again to go further back.
+
+        ++down++ then moves forward through the history.
+
         You can this press return to send that command without needing to type it out. This saves typing when you want to send the same command(s) multiple times.
 
     3. **Give the full path in one command:**
 
-        `~/` aka "tilde" = your home folder. 
-        
+        `~/` aka "tilde" = your home folder.
+
         Specify the complete path with `cd ~/Documents/my_folder/my_project`.
 
         You can also run the file with one command: `python path/to/script.py`.
-    
+
     4. **Stop a running Python file:**
 
-        ++ctrl+c++ 
+        ++ctrl+c++
 </div>
 
 <div class="pfg-section" markdown="block">
 
-## Virtual environments { data-fcm-hide="essentials" }
+## Virtual environments { data-fcm-hide="essentials" cs="virtual environments, activate, pip, requirements.txt, venv" }
 
 Sometimes you'll want to install [external libraries](../libraries/index.md) for your project. A **virtual environment** keeps each project's installed libraries in their own separate folder instead of installing them onto your computer.
 
@@ -245,7 +246,7 @@ Sometimes you'll want to install [external libraries](../libraries/index.md) for
 
 **To setup and run a virtual environment:**
 
-0. [Open the terminal](#using-the-terminal) and navigate to your project folder 
+0. [Open the terminal](#using-the-terminal) and navigate to your project folder
 
 1. Create a `venv` folder holding a private copy of Python and its libraries. This only needs to happen the first time you run your project.
 
@@ -253,7 +254,7 @@ Sometimes you'll want to install [external libraries](../libraries/index.md) for
     python -m venv venv  # or use python3, depending on what you saw in Step 0 above
     ```
 
-2. Activate it, you need to do this every time you open a new terminal window: 
+2. Activate it, you need to do this every time you open a new terminal window:
 
     === "macOS/Linux"
 

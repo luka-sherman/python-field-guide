@@ -9,20 +9,20 @@
   // it's now the mkdocs-audience-toggle plugin (see mkdocs.yml and
   // CLAUDE.md's "Planned extraction" section) and no longer touches this
   // code. This file keeps only the one bit that plugin can't own:
-  // recomputing --pt-lib-span (the add-on-library boxes' grid span) once
+  // recomputing --library-span (the add-on-library boxes' grid span) once
   // the plugin hides some of their cards — see updateLibrarySpans below.
 
-  // pt-lib--N sizes each library box for its full card count; hiding cards
+  // The cheatsheet plugin's --cards-N class sizes each library box for its full card count; hiding cards
   // in Essentials mode leaves boxes too wide. Recompute the visible count
-  // into --pt-lib-span so extra.css can override pt-lib--N while active.
+  // into --library-span so extra.css can override --cards-N while active.
   function updateLibrarySpans() {
-    document.querySelectorAll(".pt-category--wide").forEach(function (box) {
+    document.querySelectorAll(".library-grid > .md-cheatsheet__group").forEach(function (box) {
       const cards = box.querySelectorAll(".grid.cards > ul > li");
       let visible = 0;
       cards.forEach(function (li) {
         if (getComputedStyle(li).display !== "none") visible++;
       });
-      if (visible > 0) box.style.setProperty("--pt-lib-span", Math.min(visible, 4));
+      if (visible > 0) box.style.setProperty("--library-span", Math.min(visible, 4));
     });
   }
 
@@ -32,8 +32,8 @@
   // correctly ordered regardless of which script's DOMContentLoaded/
   // document$ subscriber happens to run first.
   function setUpLibrarySpanRecompute() {
-    if (window.__ptLibSpanObserverBound) return;
-    window.__ptLibSpanObserverBound = true;
+    if (window.__librarySpanObserverBound) return;
+    window.__librarySpanObserverBound = true;
     new MutationObserver(updateLibrarySpans).observe(document.documentElement, {
       attributeFilter: ["data-fcm-mode"],
     });

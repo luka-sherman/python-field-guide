@@ -230,7 +230,7 @@ def test_python_ref_teaser_lines_have_output_comments(path):
 
 
 # ============================================================================
-# mkdocs build has no WARNINGs (STRUCTURE.md "Link maintenance" / "Homepage keyword deep-links")
+# mkdocs build has no WARNINGs (STRUCTURE.md "Link maintenance")
 # ============================================================================
 
 
@@ -242,84 +242,4 @@ def test_mkdocs_build_has_no_warnings(built_site):
     assert not warning_lines, (
         "mkdocs build printed warnings — STRUCTURE.md treats these as a checklist, not just "
         "informational output:\n" + "\n".join(warning_lines)
-    )
-
-
-# ============================================================================
-# index.md's keyword deep-links cover every ##/### heading (STRUCTURE.md "Homepage
-# keyword deep-links")
-# ============================================================================
-
-# A heading opts out of this check from the source markdown itself, via attr_list (already
-# enabled — see mkdocs.yml — and already used elsewhere for exactly this kind of per-element
-# metadata, e.g. `{ .pt-homepage-heading }`):
-#
-#   ## Heading text { data-card-link="skip" }
-#       — this heading is narrative/descriptive, not a reusable keyword (STRUCTURE.md's own
-#         examples: "What do you see when a program runs?"). No index.md entry required.
-#
-#   ## Heading text                              (no attribute — the default)
-#       — index.md must link to this heading's anchor. Text is never checked — renaming an
-#         entry, or the heading, is a manual concern, not this test's.
-#
-# attr_list attributes land directly on the rendered heading tag, so this reads straight off
-# the built HTML alongside id/text — no separate markdown-source parsing needed.
-PAGES_SKIPPED_FOR_COVERAGE = {"index.md", "404.md", "about.md", "privacy.md", "thanks.md", "libraries/index.md"}
-
-LINK_RE = re.compile(r"\]\(([\w./-]+\.md)(#[\w-]+)?\)")
-BUILT_HEADING_RE = re.compile(r'<h([23])\s+([^>]*)>(.*?)</h\1>', re.S)
-ATTR_VALUE_RE = re.compile(r'(\w[\w-]*)="([^"]*)"')
-TAG_RE = re.compile(r"<[^>]+>")
-
-
-def _index_links(index_md_rel: str):
-    """page.md -> set of anchors linked from the given index page."""
-    index_text = (DOCS_DIR / index_md_rel).read_text()
-    linked: dict[str, set[str]] = {}
-    for page, anchor in LINK_RE.findall(index_text):
-        if anchor:
-            linked.setdefault(page, set()).add(anchor[1:])
-    return linked
-
-
-def _html_path_for(built_site, md_rel: str):
-    site_dir = built_site["site_dir"]
-    if md_rel == "index.md":
-        return site_dir / "index.html"
-    return site_dir / md_rel[: -len(".md")] / "index.html"
-
-
-@pytest.mark.parametrize("path", ALL_DOC_FILES, ids=DOC_IDS)
-def test_homepage_keyword_links_cover_all_headings(built_site, path):
-    md_rel = rel(path)
-    if md_rel in PAGES_SKIPPED_FOR_COVERAGE:
-        pytest.skip("not a content page covered by the homepage card grid")
-
-    html_file = _html_path_for(built_site, md_rel)
-    assert html_file.exists(), f"no build output for {md_rel} at {html_file}"
-
-    if md_rel.startswith("libraries/"):
-        index_md_rel = "libraries/index.md"
-        lookup_key = md_rel[len("libraries/") :]
-    else:
-        index_md_rel = "index.md"
-        lookup_key = md_rel
-
-    linked = _index_links(index_md_rel).get(lookup_key, set())
-    failures = []
-    for level, attrs_raw, text in BUILT_HEADING_RE.findall(html_file.read_text()):
-        attrs = dict(ATTR_VALUE_RE.findall(attrs_raw))
-        anchor_id = attrs.get("id")
-        if not anchor_id or attrs.get("data-card-link") == "skip":
-            continue
-        if anchor_id not in linked:
-            clean_text = TAG_RE.sub("", text).strip()
-            failures.append(
-                f"{md_rel}#{anchor_id} (h{level} {clean_text!r}) has no {index_md_rel} keyword link"
-            )
-    assert not failures, (
-        f"Every ##/### heading needs its own {index_md_rel} keyword deep-link (STRUCTURE.md "
-        "'Homepage keyword deep-links: Coverage'). Add the link, or mark the heading "
-        '`{ data-card-link="skip" }` if it\'s intentionally not a reusable keyword:\n'
-        + "\n".join(failures)
     )

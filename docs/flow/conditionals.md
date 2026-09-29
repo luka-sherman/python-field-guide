@@ -1,4 +1,5 @@
 ---
+cheatsheet_description: Decision points that run code only if a condition is met.
 description: >-
   Python conditionals explained with runnable examples: if/elif/else, match/case, and
   boolean logic for branching program flow.
@@ -8,9 +9,9 @@ description: >-
 
 <div class="pfg-section" markdown="block">
 
-A **conditional** lets a program make decisions by running a **block** of code only when a [condition](#boolean-expressions) is `True`. 
+A **conditional** lets a program make decisions by running a **block** of code only when a [condition](#boolean-expressions) is `True`.
 
-The condition ends with a colon `:`, and the block is the lines indented underneath it, treated as a single unit. 
+The condition ends with a colon `:`, and the block is the lines indented underneath it, treated as a single unit.
 
 **There are two types of conditional statements:**
 
@@ -27,13 +28,13 @@ The condition ends with a colon `:`, and the block is the lines indented underne
 
 <div class="pfg-section" markdown="block">
 
-## If / elif / else
+## If / elif / else { cs="if\, elif\, else" }
 
-A chain of `if`, `elif`, and `else`: 
+A chain of `if`, `elif`, and `else`:
 
 1. Checks a series of [conditions](#boolean-expressions) in order
 2. Runs the indented block under the first one that's `True`
-3. Then exits the whole chain without checking any conditions below it. 
+3. Then exits the whole chain without checking any conditions below it.
 
 **if:**
 
@@ -52,13 +53,13 @@ Optional, and always comes last if present. It has no condition of its own — i
 ```python-ref
 length = 12
 
-if length > 10:                    # always starts with the if 
+if length > 10:                    # always starts with the if
     print("that's a big snake")
 elif length > 7:                   # then any number (or none) of elifs
     print("that's a medium snake")
 elif length > 4:
     print("that's a small snake")
-else:                              # lastly comes one optional else 
+else:                              # lastly comes one optional else
     print("that's a tiny snake")
 ```
 
@@ -93,7 +94,7 @@ else:                              # lastly comes one optional else
 
     <p class="pfg-diagram-caption">FIG: the if/elif/else decision path</p>
 
-### Boolean expressions
+### Boolean expressions { cs="boolean expressions" }
 
 A boolean expression is needed for every `if`/`elif`.
 
@@ -106,7 +107,7 @@ elif [boolean expression]:
 
 A **boolean expression** is a boolean value (`True` or `False`) or anything that produces one, and is treated as the **condition** that must be `True` in order to run a block of code.
 
-A comparison looks different depending on the type of value being checked, as shown below. All of these comparisons result in a `True` or `False` boolean expression. 
+A comparison looks different depending on the type of value being checked, as shown below. All of these comparisons result in a `True` or `False` boolean expression.
 
 !!! example "Comparisons by type"
 
@@ -327,7 +328,7 @@ A comparison looks different depending on the type of value being checked, as sh
             print("snake in dict is over 2 ft")
         ```
 
-### Logical operators
+### Logical operators { cs="and\, or\, not" }
 
 Logical operators `not`, `and`, `or` let a single `if` combine boolean expressions to create more complex conditions.
 
@@ -350,7 +351,7 @@ A and B here are [boolean expressions](#boolean-expressions).
 
 **Order of operations:** When several logical operators appear together, Python evaluates `not` first, then `and`, then `or`. Even when parentheses aren't required, they often make the condition much easier to read.
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? tip "Nested if"
     Checks a second condition only after the first is `True`. An `if` can contain another `if`, checked only once the outer condition is already `True` — each level of nesting adds another decision. If both conditions are simple, combining them with [`and`](#logical-operators) is usually clearer than nesting.
@@ -556,7 +557,7 @@ A and B here are [boolean expressions](#boolean-expressions).
 
 <div class="pfg-section" markdown="block">
 
-## Match / case
+## Match / case { cs="match\, case" }
 
 A `match` statement compares one value against several `case` options and runs the code for the first matching `case`.
 
@@ -621,7 +622,7 @@ match species:
             print("not a hatchling")
     ```
 
-### Match multiple values with |
+### Match multiple values with | { cs="match with |" }
 
 Lets one `case` match several possible values using `|`, so you don't need a separate `case` for each one.
 
@@ -633,7 +634,7 @@ match species:
         print("other")
 ```
 
-### Default value _
+### Default value _ { cs="_ wildcard" }
 
 Runs a block of code if no `case` matched — either discarding the value with `_`, or capturing it into a variable.
 
@@ -653,7 +654,7 @@ match species:
 
 If you want the code to still run a block of code even if no specific `case` matched, there are two ways to add a default value at the end that will match anything. A default value goes last — without one, a value matching no cases would not run any block of code. **Option 1** (`_`) throws the matched value away; **Option 2** (giving it a variable name, like `n`) saves it so the block can use it.
 
-### case + if
+### case + if { cs }
 
 Only run the block of code if there's a `case` match *and* the `if` condition is also `True`. Adding `if [condition]` after a pattern turns it into a guard — the branch only runs if the pattern matches *and* the condition is `True`. If the guard is `False`, Python moves on to the next `case` even though the pattern itself matched.
 
@@ -666,7 +667,7 @@ match length:
         print("small")
 ```
 
-### Unpacking a tuple
+### Unpacking a tuple { cs="unpacking" }
 
 A `case` can pull a tuple apart into named pieces *while also* checking its shape or specific values.
 
@@ -685,7 +686,7 @@ match snake:
 
 A `match` can pick a different `case` depending on the tuple's length or the value in a specific position, while *still* unpacking the rest into names — all in one step, as shown above. Compare with regular assignment (`length, species = snake`), which always unpacks the same way, would crash on a 1- or 3-item tuple, and can't pick a different case based on species.
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? run "Run a match/case example"
     All the examples above, combined into one script:
@@ -768,11 +769,11 @@ A `match` can pick a different `case` depending on the tuple's length or the val
 
 <div class="pfg-section" markdown="block">
 
-## Control flow statements
+## Control flow statements { cs="control flow" }
 
 `break` and `continue` are loop-control keywords, not conditional ones, but they almost always appear inside a conditional — checking a condition, then stopping the loop early (`break`) or skipping straight to the next pass (`continue`). They work the same way whether checked with `if`/`elif` or `match`/`case`, since neither creates its own loop scope — both just pass straight through to whatever loop contains them. Covered fully, with more examples, on the [Loops](loops.md#control-flow-statements) page.
 
-### Break
+### Break { cs="break" }
 
 Exits the loop immediately, skipping everything left in it. Nothing after it runs, and anything left in the sequence (or any remaining passes of the condition) is skipped entirely.
 
@@ -797,7 +798,7 @@ for s in species:
             print(s)
 ```
 
-### Continue
+### Continue { cs="continue" }
 
 Skips just the current pass, then keeps looping. The rest of the loop body doesn't run for that item, but the loop itself keeps going from the next item or the next check of the condition.
 
@@ -822,7 +823,7 @@ for s in species:
             print(s)
 ```
 
-### Going further { data-card-link="skip" }
+### Going further { cs="pass" }
 
 ??? tip "pass placeholder"
     Temporarily fill an empty block when you're not ready to write the inside code yet. Python doesn't allow an empty block after a colon. `pass` does nothing, but acts as a placeholder until you're ready to add code so that the empty block won't cause a syntax error in the meantime — works the same way after `if`/`elif`/`else` and `case` alike.

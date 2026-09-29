@@ -1,4 +1,9 @@
 ---
+cheatsheet_title: OpenCV
+cheatsheet_description: 'Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection.'
+cheatsheet_title_suffix: :material-download-outline:{ .library-badge .library-badge--third-party title="Third-party — install separately with pip" }
+cheatsheet_attrs:
+  data-fcm-hide: essentials
 description: >-
   Computer vision in Python with OpenCV: reading and displaying images, color spaces,
   edge detection, contours, and face detection.
@@ -12,13 +17,13 @@ description: >-
 
 OpenCV is stewarded by nonprofit [OpenCV.org](https://opencv.org/).
 
-**OpenCV** (imported as `cv2`) is a popular library for computer vision — real-time image and video analysis, rather than the straightforward photo editing [Pillow](pillow.md) is built for. It's a third-party package, originally written in C++ with a thin Python wrapper over it, which shows up in a couple of its API choices: images load as plain NumPy arrays instead of a dedicated `Image` class, and in **BGR** (blue-green-red) channel order rather than the RGB most other tools expect. Like Pillow and [Tkinter](tkinter.md), OpenCV produces visual, often interactive output — a window showing an image or a live camera feed — that can't run inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file alongside an image and run them with `python` to see the results.
+**OpenCV** (imported as `cv2`) is a popular library for computer vision — real-time image and video analysis, rather than the straightforward photo editing [Pillow](../images/pillow.md) is built for. It's a third-party package, originally written in C++ with a thin Python wrapper over it, which shows up in a couple of its API choices: images load as plain NumPy arrays instead of a dedicated `Image` class, and in **BGR** (blue-green-red) channel order rather than the RGB most other tools expect. Like Pillow and [Tkinter](../desktop_uis/tkinter.md), OpenCV produces visual, often interactive output — a window showing an image or a live camera feed — that can't run inside this site's browser sandbox, so the examples below aren't runnable here. Copy them into a local `.py` file alongside an image and run them with `python` to see the results.
 
 </div>
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 ```bash
 pip install opencv-python
@@ -41,7 +46,7 @@ import cv2
 | Cascade classifier | A pre-trained model, shipped with OpenCV, that scans an image for a specific object — most commonly a face. |
 | Frame | One still image out of a video, read and processed one at a time in a loop. |
 
-For a broader comparison of OpenCV against Pillow and other Python image libraries, see the table on the [Pillow page](pillow.md#why-pillow).
+For a broader comparison of OpenCV against Pillow and other Python image libraries, see the table on the [Pillow page](../images/pillow.md#why-pillow).
 
 | Section | Used for |
 |---------|----------|
@@ -59,7 +64,7 @@ For a broader comparison of OpenCV against Pillow and other Python image librari
 
 <div class="pfg-section" markdown="block">
 
-## Reading, displaying, and saving images
+## Reading, displaying, and saving images { cs="reading\, displaying\, saving images" }
 
 Every OpenCV workflow starts the same way: load a file into an array, do something to it, then optionally write the result back out.
 
@@ -76,7 +81,7 @@ cv2.destroyAllWindows()
 cv2.imwrite("snake_copy.png", img)
 ```
 
-### Reading a file
+### Reading a file { cs="imread" }
 
 `cv2.imread(path)` loads immediately into a full NumPy array — unlike Pillow's `Image.open()`, there's no lazy header-only read; the whole pixel grid is decoded right away. `.shape` reports `(height, width, channels)`, the opposite order of Pillow's `.size`, which gives `(width, height)`. If the path is wrong, `imread()` doesn't raise an error — it silently returns `None`, so check for that before doing anything else with the result.
 
@@ -98,7 +103,7 @@ else:
     print(img.shape)
 ```
 
-### Displaying a window
+### Displaying a window { cs="displaying a window" }
 
 `cv2.imshow(title, img)` opens a window showing the image, but it closes immediately unless paired with `cv2.waitKey(0)`, which pauses the program until a key is pressed. `cv2.destroyAllWindows()` then closes every OpenCV window still open. All three need a real display attached — they're for local development, not headless scripts.
 
@@ -117,7 +122,7 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
 
-### Saving a file
+### Saving a file { cs="saving a file" }
 
 `cv2.imwrite(path, img)` writes the array back to disk, inferring the format from the file extension the same way Pillow's `.save()` does. It returns `True`/`False` instead of raising an exception on failure, so check the return value if the write matters.
 
@@ -138,7 +143,7 @@ print(saved)
 
 <div class="pfg-section" markdown="block">
 
-## Color spaces
+## Color spaces { cs="color spaces" }
 
 OpenCV loads color images in **BGR** order rather than RGB — a holdover from its early camera-driver roots — so handing a BGR array to a tool that expects RGB (like `matplotlib`) shows swapped colors unless it's converted first. `cv2.cvtColor()` handles every conversion between color spaces.
 
@@ -148,7 +153,7 @@ rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 ```
 
-### Converting color spaces
+### Converting color spaces { cs="cvtColor" }
 
 `cv2.cvtColor(img, code)` — the `code` names which conversion to run, always written `COLOR_<FROM>2<TO>`. `COLOR_BGR2GRAY` collapses color down to a single grayscale channel, `COLOR_BGR2RGB` just reorders channels for tools that expect RGB, and `COLOR_BGR2HSV` switches to hue/saturation/value, which turns "everything that's green" into a range check on one channel instead of three.
 
@@ -182,7 +187,7 @@ cv2.imwrite("snake_gray.png", gray)
 
 <div class="pfg-section" markdown="block">
 
-## Basic operations
+## Basic operations { cs="basic operations" }
 
 In Python, OpenCV images are represented as NumPy `ndarray`s — `Mat` is the name of OpenCV's corresponding matrix/image type in its C++ API — so some "operations" are plain NumPy indexing rather than an OpenCV-specific method, cropping in particular.
 
@@ -192,7 +197,7 @@ cropped = img[50:250, 0:200]
 rotated = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
 ```
 
-### Resize
+### Resize { cs="resize" }
 
 `cv2.resize(img, (width, height))` stretches the image to an exact new size — the same tradeoff as Pillow's `.resize()`, it doesn't preserve the original aspect ratio unless the new dimensions are computed to match it.
 
@@ -209,7 +214,7 @@ resized = cv2.resize(img, (200, 150))
 print(resized.shape)
 ```
 
-### Cropping
+### Cropping { cs="cropping" }
 
 Since an OpenCV image in Python is a NumPy array, cropping is a plain slice: `img[y1:y2, x1:x2]` — rows (height) first, then columns (width), the reverse of the `(x, y)` order most drawing functions use. There's no dedicated `.crop()` method to reach for.
 
@@ -226,7 +231,7 @@ cropped = img[50:250, 0:200]
 print(cropped.shape)
 ```
 
-### Rotating
+### Rotating { cs="rotating" }
 
 `cv2.rotate(img, code)` handles clean 90°-multiple rotations with a fixed set of codes (`ROTATE_90_CLOCKWISE`, `ROTATE_180`, `ROTATE_90_COUNTERCLOCKWISE`). For an arbitrary angle, build a rotation matrix with `cv2.getRotationMatrix2D()` and apply it with `cv2.warpAffine()`.
 
@@ -254,7 +259,7 @@ cv2.imwrite("rotated.jpg", rotated_45)
 
 <div class="pfg-section" markdown="block">
 
-## Drawing shapes and text
+## Drawing shapes and text { cs="drawing" }
 
 Drawing functions modify a `Mat` directly, in place — there's no separate drawing-context object like Pillow's `ImageDraw.Draw()`.
 
@@ -263,7 +268,7 @@ cv2.rectangle(img, (10, 10), (100, 60), (0, 128, 0), 3)
 cv2.putText(img, "handler", (15, 90), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 128, 0), 2)
 ```
 
-### Shapes and lines
+### Shapes and lines { cs="shapes and lines" }
 
 `cv2.rectangle()`, `cv2.circle()`, and `cv2.line()` each take two corner/center points, a **BGR** color tuple, and a thickness in pixels — pass `-1` as the thickness to fill the shape solid instead of outlining it.
 
@@ -283,7 +288,7 @@ cv2.circle(canvas, (150, 40), 25, (0, 200, 255), -1)
 cv2.imwrite("shapes.png", canvas)
 ```
 
-### Text
+### Text { cs="text" }
 
 `cv2.putText()` needs a font (one of the built-in `cv2.FONT_HERSHEY_*` constants — there's no custom font loading the way Pillow's `ImageFont` offers), a size scale rather than a point size, and a position given as the text's **bottom-left** corner rather than its top-left.
 
@@ -304,7 +309,7 @@ cv2.imwrite("labeled.png", canvas)
 
 <div class="pfg-section" markdown="block">
 
-## Thresholding and edge detection
+## Thresholding and edge detection { cs="thresholding\, edge detection" }
 
 Both operations reduce an image down to just the information that matters for a specific analysis task, throwing away "how bright" or "how gradual" in favor of a hard yes/no per pixel.
 
@@ -314,7 +319,7 @@ _, thresholded = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
 edges = cv2.Canny(gray, 100, 200)
 ```
 
-### Threshold
+### Threshold { cs="threshold" }
 
 `cv2.threshold(img, cutoff, max_value, method)` turns a grayscale image into pure black-and-white: every pixel above `cutoff` becomes `max_value` (usually `255`, white), everything else becomes `0` (black). It returns a tuple — the cutoff value actually used, and the resulting image — which is why the example throws the first value away with `_`.
 
@@ -332,7 +337,7 @@ _, thresholded = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
 cv2.imwrite("thresholded.png", thresholded)
 ```
 
-### Edge detection
+### Edge detection { cs="Canny" }
 
 `cv2.Canny(img, low, high)` traces outlines wherever brightness changes sharply, and works best on a grayscale image. `low` and `high` set two brightness-change thresholds — a change above `high` is always kept as an edge, a change below `low` is always discarded, and anything in between is kept only if it connects to a pixel already counted as an edge.
 
@@ -353,7 +358,7 @@ cv2.imwrite("edges.png", edges)
 
 <div class="pfg-section" markdown="block">
 
-## Blurring
+## Blurring { cs="blurring" }
 
 Smoothing an image slightly, before edge detection or thresholding, often removes small specks of noise that would otherwise show up as false edges or scattered dark pixels.
 
@@ -361,7 +366,7 @@ Smoothing an image slightly, before edge detection or thresholding, often remove
 blurred = cv2.GaussianBlur(img, (5, 5), 0)
 ```
 
-### Gaussian blur
+### Gaussian blur { cs="gaussian blur" }
 
 `cv2.GaussianBlur(img, kernel_size, sigma)` averages each pixel with its neighbors, weighted so nearby pixels count more than far ones. Both numbers in `kernel_size` (width, height) must be odd, and a larger kernel blurs more heavily. `sigma` — the spread of that weighting — can usually be left at `0` to let OpenCV calculate it automatically from the kernel size.
 
@@ -383,7 +388,7 @@ cv2.imwrite("blurred.jpg", blurred)
 
 <div class="pfg-section" markdown="block">
 
-## Contours
+## Contours { cs="contours" }
 
 A **contour** is a curve joining the continuous points along a shape's boundary — useful for counting objects in an image, measuring their size, or outlining just the shapes rather than the whole image.
 
@@ -392,7 +397,7 @@ contours, _ = cv2.findContours(thresholded, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_
 cv2.drawContours(img, contours, -1, (0, 128, 0), 2)
 ```
 
-### Finding and drawing contours
+### Finding and drawing contours { cs="finding and drawing contours" }
 
 `cv2.findContours()` needs a black-and-white image (usually the output of `cv2.threshold()` or `cv2.Canny()`) and returns a list of contours, each a list of boundary points. `cv2.drawContours(img, contours, index, color, thickness)` draws them back onto an image — pass `-1` as the index to draw every contour found rather than just one.
 
@@ -417,7 +422,7 @@ cv2.imwrite("contours.png", img)
 
 <div class="pfg-section" markdown="block">
 
-## Face detection with cascade classifiers
+## Face detection with cascade classifiers { cs="CascadeClassifier" }
 
 A **cascade classifier** is a pre-trained model, shipped with OpenCV itself, that scans an image at many positions and scales looking for a specific object — most commonly, faces.
 
@@ -426,7 +431,7 @@ face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_fronta
 faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)
 ```
 
-### Detecting and labeling faces
+### Detecting and labeling faces { cs="detecting and labeling faces" }
 
 `cv2.data.haarcascades` points to OpenCV's own folder of pre-trained `.xml` cascade files, so no separate download is needed for common detectors like frontal faces. `.detectMultiScale()` returns a list of `(x, y, width, height)` boxes, one per match — looping over them lets you draw a box (and a label) around each one found.
 
@@ -457,7 +462,7 @@ cv2.imwrite("detected.jpg", img)
 
 <div class="pfg-section" markdown="block">
 
-## Working with video
+## Working with video { cs="VideoCapture" }
 
 A video is really just a sequence of frames, read and processed one at a time — everything covered above (color conversion, drawing, detection) applies to a single video frame exactly the same way it applies to a still image.
 
@@ -474,7 +479,7 @@ capture.release()
 cv2.destroyAllWindows()
 ```
 
-### Reading frames
+### Reading frames { cs="reading frames" }
 
 `cv2.VideoCapture(source)` opens a webcam (an integer index, `0` for the default camera) or a video file (a path string). `.read()` returns `(success, frame)` each time it's called — `success` becomes `False` once a video file runs out of frames, which is what ends the loop naturally. `cv2.waitKey(1)` keeps the display window responsive and doubles as a keypress check (here, `q` to quit) without blocking the way `waitKey(0)` does. `.release()` frees the camera/file so other programs can use it again.
 

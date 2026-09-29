@@ -1,4 +1,7 @@
 ---
+cheatsheet_title: csv
+cheatsheet_description: Reading and writing spreadsheets.
+cheatsheet_title_suffix: :material-language-python:{ .library-badge .library-badge--builtin title="Built-in — included with Python" }
 description: >-
   Reading and writing CSV files in Python with the csv module: csv.writer, csv.reader,
   and DictReader, with runnable examples.
@@ -16,7 +19,7 @@ The **`csv`** module reads and writes CSV ("comma-separated values") files — a
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 `csv` ships with Python's standard library — nothing to install. The whole module is used through the `csv.` prefix, so a plain import is all you need.
 
@@ -35,7 +38,7 @@ import csv
 
 <div class="pfg-section" markdown="block">
 
-## Writing CSV files
+## Writing CSV files { cs="writer" }
 
 `csv.writer` wraps an open file and turns each list you pass to `.writerow()` into one comma-separated line.
 
@@ -87,7 +90,7 @@ print("wrote snakes.csv")
 
 <div class="pfg-section" markdown="block">
 
-## Reading CSV files
+## Reading CSV files { cs="reader" }
 
 `csv.reader` gives back each row as a plain list of strings — including the header row, which is usually skipped over explicitly.
 
@@ -107,7 +110,7 @@ with open("snakes.csv", newline="") as file:
         print(row)
 ```
 
-### Reading rows as dictionaries
+### Reading rows as dictionaries { cs="DictReader" }
 
 Uses the first row as column names automatically, so each row comes back as a `dict`. You can look up values by column name instead of by position. Every value is still read as a plain string — convert it (e.g. with `float()`) if you need to do math on it.
 

@@ -1,14 +1,15 @@
 ---
+cheatsheet_description: Multiple related values grouped into one container.
 description: >-
   Python's collection types explained with runnable examples: lists, dictionaries, tuples,
   and sets, plus how to loop through, filter, and combine them.
 ---
 
-# :material-basket-outline:{ .lg .middle } Collection Data Types
+# :material-basket-outline:{ .lg .middle } Collection data types { cs="isinstance, type" }
 
 <div class="pfg-section" markdown="block">
 
-A **collection** is a single object that groups multiple values (like [basic types](basics.md)) together and so they can be stored in one variable together and worked with as a unit. 
+A **collection** is a single object that groups multiple values (like [basic types](basics.md)) together and so they can be stored in one variable together and worked with as a unit.
 
 <div class="pt-jump-table" markdown="block">
 
@@ -24,7 +25,7 @@ A **collection** is a single object that groups multiple values (like [basic typ
 ??? tip "Check what type a variable is"
 
     `type()` shows the data type
-    
+
     `isinstance()` checks whether a value is that type.
 
     ```python-ref
@@ -40,13 +41,13 @@ A **collection** is a single object that groups multiple values (like [basic typ
 
 <div class="pfg-section" markdown="block">
 
-## Lists
+## Lists { cs="lists, item" }
 
-### Create a list 
+### Create a list { cs="create, index" }
 
-- A list stores multiple items, in order, inside a single variable. The items can be any type. 
+- A list stores multiple items, in order, inside a single variable. The items can be any type.
 
-- The **index** is the numbered position of an item. The index of the first item is 0[^zero-index], next is 1, and so on. 
+- The **index** is the numbered position of an item. The index of the first item is 0[^zero-index], next is 1, and so on.
 
 <div class="pfg-diagram-frame" markdown="block">
 
@@ -73,17 +74,17 @@ class diagram panel
 
 </div>
 
-- The **negative index** tells you how far from the end it is. It starts counting down from the end instead, starting at `-1` for the last item, -2 for the second-to-last, and so on. 
+- The **negative index** tells you how far from the end it is. It starts counting down from the end instead, starting at `-1` for the last item, -2 for the second-to-last, and so on.
 
 - Each item can be referenced by its positive or negative index.
 
-### Access and update items
+### Access and update items { cs="slice, step" }
 
-- **Index with `list[index]`** to return the item at that index (position number) of the list. 
+- **Index with `list[index]`** to return the item at that index (position number) of the list.
 
     To **update** the item at that index, set it equal to something else **`list[index] = new_item`**. This works because a list is **mutable** — updating an item changes it in place instead of building a new one, the same way [an object's attributes](../organization/classes.md#defining-a-class) can be changed after it's created.
 
-    *Run the below example, and change the indexes to see how they work:* 
+    *Run the below example, and change the indexes to see how they work:*
 
     ```python
     species = ["burmese", "rock", "ball", "blood"]
@@ -91,12 +92,12 @@ class diagram panel
     print(species[0])      # "burmese"
     print(species[1])      # "rock"
     print(species[-1])     # "blood"
-    
+
     species[1] = "carpet"  # update item at index 1
     print(species)         # ["burmese", "carpet", "ball", "blood"]
     ```
 
-- **Access a range of multiple items at once:** 
+- **Access a range of multiple items at once:**
 
     - **Slice with `list[start:end]`** to return a new list containing items from the `start` index up to (but not including) the `end` index.
 
@@ -104,7 +105,7 @@ class diagram panel
         species[1:3]  # ["rock", "ball"], starts at index 1, stops at (doesn't include) index 3
         ```
 
-    - **Step with `list[start:end:step]`** to return a new list that can skip items instead of taking every one — `start`/`end` are optional so if you leave them off the step is applied to the whole list. A step of `-1` walks backward, which is the standard trick for reversing a list. You can also add a start and end range just like a slice. 
+    - **Step with `list[start:end:step]`** to return a new list that can skip items instead of taking every one — `start`/`end` are optional so if you leave them off the step is applied to the whole list. A step of `-1` walks backward, which is the standard trick for reversing a list. You can also add a start and end range just like a slice.
 
         ```python-ref
         species[::2]   # ["burmese", "ball"]  — every 2nd item
@@ -112,7 +113,7 @@ class diagram panel
         ```
 
     ??? tip "Assigning to a range"
-        Setting a slice or step `=` equal to a list will replaces that whole range at once with the new list. 
+        Setting a slice or step `=` equal to a list will replaces that whole range at once with the new list.
 
         A plain **slice** accepts a replacement of *any* length — it doesn't need to match the range being replaced.
 
@@ -126,23 +127,23 @@ class diagram panel
         species[::2] = ["carpet", "anaconda"]  # ["carpet", "rock", "anaconda", "blood"]
         ```
 
-### [Loop](../flow/loops.md#loop-through-a-collection) through a list
+### [Loop](../flow/loops.md#loop-through-a-collection) through a list { cs="loop" }
 
-- Lists make it simple to loop directly over the items. The loop runs once for every item in the list, and on each pass the new loop variable, *(i.e. `specie`)* is set to the next item in the list. 
+- Lists make it simple to loop directly over the items. The loop runs once for every item in the list, and on each pass the new loop variable, *(i.e. `specie`)* is set to the next item in the list.
 
     ```python
-    for specie in species: 
+    for specie in species:
         print(specie)  # specie is "burmese", then "rock", then "ball", then "blood" — one item per pass
     ```
 
 - If you also want the index of the item alongside the item itself, `enumerate()` hands back both together.
 
     ```python
-    for index, specie in enumerate(species): 
+    for index, specie in enumerate(species):
         print(index, specie)  # 0 "burmese", then 1 "rock", then 2 "ball", then 3 "blood"
     ```
 
-### Boolean expressions
+### Boolean expressions { cs="boolean expressions, in" }
 
 - **`in`, `not in`** checks whether a value exists or is missing in the list.
 
@@ -152,7 +153,7 @@ class diagram panel
     "anaconda" not in species  # True
     ```
 
-- **`==`, `!=`** checks whether a specific item is equal or not equal to something. 
+- **`==`, `!=`** checks whether a specific item is equal or not equal to something.
 
     ```python-ref
     species[0] == "burmese"  # True
@@ -180,8 +181,8 @@ class diagram panel
 
 - **`is list empty`** truthiness (boolean value of the whole list)
 
-    - Truthy: a list with contents 
-    
+    - Truthy: a list with contents
+
     - Falsy: an empty list `[]`
 
     ```python-ref
@@ -192,9 +193,9 @@ class diagram panel
         species.pop()
     ```
 
-### List operations { data-card-link="skip" }
+### List operations
 
-#### Inspect
+#### Inspect { cs="count, len" }
 
 - **`len()`** returns how many items are in a list.
 
@@ -214,7 +215,7 @@ class diagram panel
     species.count("ball")  # 1
     ```
 
-#### Add item
+#### Add item { cs="append, extend, insert" }
 
 - **`append()`** adds one item to the end of the list.
 
@@ -234,9 +235,9 @@ class diagram panel
     species.extend(["carpet", "central african rock"])  # ["burmese", "rock", "ball", "blood", "carpet", "central african rock"]
     ```
 
-#### Remove item
+#### Remove item { cs="clear, del, pop, remove" }
 
-- **`remove()`** deletes the first item that matches a given value. If there are duplicate items, it only removes the first one. 
+- **`remove()`** deletes the first item that matches a given value. If there are duplicate items, it only removes the first one.
 
     ```python-ref
     species.remove("rock")  # ["burmese", "ball", "blood"]
@@ -262,7 +263,7 @@ class diagram panel
     species.clear()  # []
     ```
 
-#### Sort
+#### Sort { cs="reverse, sort, sorted" }
 
 - **`sort()`** sorts the list in place, alphabetically (or ascending, for numbers) by default. Pass `reverse=True` to sort in the opposite order, or a `key` function to control what each item is sorted by.
 
@@ -284,7 +285,7 @@ class diagram panel
     species.reverse()  # ["blood", "ball", "rock", "burmese"]
     ```
 
-#### Arithmetic
+#### Arithmetic { cs="max, min, sum" }
 
 - **`min()`** finds the smallest item.
 
@@ -304,7 +305,7 @@ class diagram panel
     sum(length_ft)  # 25
     ```
 
-#### Create
+#### Create { cs="+, copy, list" }
 
 - **`list()`** builds the same list from any iterable, if you'd rather not use literal brackets.
 
@@ -325,7 +326,7 @@ class diagram panel
     backup = species.copy()  # backup is a separate, independent list
     ```
 
-#### List comprehension
+#### List comprehension { cs="comprehension" }
 
 - **`[expr for item in iterable]`** builds a new list from an existing iterable in a single line. The expression part can transform each item, not just filter it.
 
@@ -337,7 +338,7 @@ class diagram panel
 
     Swapping the brackets for parentheses turns this into a [generator expression](../organization/functions.md#generator-expressions) instead — same syntax, but it produces items one at a time rather than building the whole list up front. Use a list comprehension when the result needs indexing, `len()`, or looping over more than once; use a generator expression when it's only read once, or the full result would be too large to hold in memory as a list.
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? warning "In-place list methods return None"
     `append()`, `insert()`, `extend()`, `sort()`, `reverse()`, and `remove()` all change the list directly and return `None` — not the changed list. Reassigning the variable to one of their results replaces the list itself with `None`, and the next call on it raises `AttributeError: 'NoneType' object has no attribute '...'`.
@@ -439,12 +440,12 @@ class diagram panel
 ??? tip "Extending lists with `collections.deque`"
     A list can already add or remove items from the end cheaply, but doing the same at the
     *front* — `species.insert(0, item)` or `species.pop(0)` — means Python has to shift every
-    other item over. The [`collections`](../libraries/collections.md) library's
-    [`deque`](../libraries/collections.md#deque) adds fast `appendleft()`/`popleft()` methods for
+    other item over. The [`collections`](../libraries/utilities/collections.md) library's
+    [`deque`](../libraries/utilities/collections.md#deque) adds fast `appendleft()`/`popleft()` methods for
     exactly that case. Switch to it when items are being added or removed from both ends
     often, like a queue of items processed in the order they arrive — not for a list that's
     mostly read or only changed at the end, where a plain list is simpler and already fast.
-    See the [collections library page](../libraries/collections.md) for the rest of `deque`'s
+    See the [collections library page](../libraries/utilities/collections.md) for the rest of `deque`'s
     methods (`rotate()`, `maxlen=`, and more) and for the other list-adjacent tools it adds.
 
 <div data-fcm-hide="essentials" markdown="block">
@@ -465,8 +466,8 @@ class diagram panel
     | `sort()` | <span class="pt-bigo pt-bigo--ok">O(n log n)</span> | <span class="pt-bigo pt-bigo--good">O(1)</span> |
     | `sorted()` | <span class="pt-bigo pt-bigo--ok">O(n log n)</span> | <span class="pt-bigo pt-bigo--ok">O(n)</span> |
 
-    `sort()` rearranges the list **in place**, while `sorted()` builds and returns an entirely new one, so both copies sit in memory at once until the original is no longer needed. 
-    
+    `sort()` rearranges the list **in place**, while `sorted()` builds and returns an entirely new one, so both copies sit in memory at once until the original is no longer needed.
+
     Reach for `sort()` when the original order doesn't need to survive; `sorted()` when it does.
 
     See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
@@ -477,9 +478,9 @@ class diagram panel
 
 <div class="pfg-section" markdown="block">
 
-## Dictionaries
+## Dictionaries { cs="dictionaries, key, value" }
 
-### Create a dictionary { data-card-link="skip" }
+### Create a dictionary
 
 - A dictionary stores data as **key-value pairs**, inside a single variable. Values are looked up by key, not by a numbered position like a list's index — a dict does remember the order keys were added in, but that order isn't how you access anything.
 
@@ -487,8 +488,8 @@ class diagram panel
 
 ```python-ref
 snake = {
-    "species": "ball", 
-    "length_ft": 5, 
+    "species": "ball",
+    "length_ft": 5,
     "venomous": False
     }
 ```
@@ -515,7 +516,7 @@ flowchart LR
 
 </div>
 
-- Each **key** points to exactly one value. 
+- Each **key** points to exactly one value.
 
     - **A key's type** can be a string, int, float, or tuple
 
@@ -523,7 +524,7 @@ flowchart LR
 
 - A **value** can be any type.
 
-### Access a value
+### Access a value { cs="access a value" }
 
 - **`dict[key]`** accesses a value by key, in square brackets. This raises `KeyError` if the key is missing — use it when a missing key means something's wrong and should surface as an error.
 
@@ -552,30 +553,30 @@ flowchart LR
 
 </div>
 
-### Loop through a dictionary
+### Loop through a dictionary { cs="items, loop, values" }
 
 - Looping **directly** over a dictionary gives you its keys, one at a time — the loop runs once for every key in the dictionary, and on each pass the loop variable, *(i.e. `key`)* is set to the next key.
 
     ```python-ref
-    for key in snake: 
+    for key in snake:
         print(key)  # species  length_ft  venomous
     ```
 
 - Loop over **`.values()`** to get just the values instead.
 
     ```python-ref
-    for value in snake.values(): 
+    for value in snake.values():
         print(value)              # ball  5  False
     ```
 
 - Loop over **`.items()`** to get both the key and the value together.
 
     ```python-ref
-    for key, value in snake.items(): 
+    for key, value in snake.items():
         print(key, value)             # species ball  length_ft 5  venomous False
     ```
 
-### Boolean expressions
+### Boolean expressions { cs="boolean expressions" }
 
 - **`in`** checks whether a key exists at all.
 
@@ -621,9 +622,9 @@ flowchart LR
         snake.popitem()
     ```
 
-### Dictionary operations
+### Dictionary operations { cs="get" }
 
-#### Inspect
+#### Inspect { cs="len" }
 
 - **`len()`** returns how many key-value pairs are in a dictionary.
 
@@ -631,7 +632,7 @@ flowchart LR
     len(snake)  # 3
     ```
 
-#### Update
+#### Update { cs="update" }
 
 - **`dict[key] = value`** sets a key's value — changes it if the key already exists, adds it if not.
 
@@ -646,7 +647,7 @@ flowchart LR
     snake.update({"venomous": False, "docile": True})  # {'species': 'ball', 'length_ft': 5, 'venomous': False, 'docile': True}
     ```
 
-#### Remove
+#### Remove { cs="clear, del, pop, popitem" }
 
 - **`pop()`** removes a key and returns its value.
 
@@ -672,7 +673,7 @@ flowchart LR
     snake.clear()  # {}
     ```
 
-#### Create
+#### Create { cs="copy, dict" }
 
 - **`dict()`** builds the same dictionary using keyword arguments, if you'd rather not use literal braces.
 
@@ -688,15 +689,15 @@ flowchart LR
     ```
 
 ??? note "Nested dictionaries"
-    A dictionary's values can be other dictionaries. Useful for grouping related records under one variable, like a whole collection of snakes keyed by species. 
-    
+    A dictionary's values can be other dictionaries. Useful for grouping related records under one variable, like a whole collection of snakes keyed by species.
+
     Chain operations one after the other to reach a value nested inside an inner dictionary.
 
     ```python-ref
     snakes = {
-        "ball": snake, 
+        "ball": snake,
         "burmese": {
-            "length_ft": 16, 
+            "length_ft": 16,
             "venomous": False
             }
         }
@@ -717,7 +718,7 @@ flowchart LR
 
 </div>
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? run "Practice with dictionaries"
     Each box below is fully editable — write your answer, then click Run.
@@ -798,31 +799,31 @@ flowchart LR
 ??? tip "Extending dicts with `collections`"
     A plain dict can tally counts or group items, but both take extra setup code: checking
     whether a key exists before incrementing it, or before appending to a list under it. The
-    [`collections`](../libraries/collections.md) library adds several dicts that handle cases
+    [`collections`](../libraries/utilities/collections.md) library adds several dicts that handle cases
     like these automatically.
 
-    - [`Counter`](../libraries/collections.md#counter) counts items in a sequence directly —
+    - [`Counter`](../libraries/utilities/collections.md#counter) counts items in a sequence directly —
       reach for it as soon as a dict's job is "how many times does each item show up."
-    - [`defaultdict`](../libraries/collections.md#defaultdict) supplies an empty value (a list,
+    - [`defaultdict`](../libraries/utilities/collections.md#defaultdict) supplies an empty value (a list,
       a set, `0`) the first time a new key is used, so grouping items under keys that aren't
       known ahead of time doesn't need an `if key not in dict` check before every write.
-    - [`OrderedDict`](../libraries/collections.md#ordereddict) is worth reaching for only when
+    - [`OrderedDict`](../libraries/utilities/collections.md#ordereddict) is worth reaching for only when
       order itself needs to be compared or reordered — a plain dict already remembers
       insertion order, but its `==` ignores that order, and it has no `move_to_end()`.
-    - [`ChainMap`](../libraries/collections.md#chainmap) layers several dicts together — like a
+    - [`ChainMap`](../libraries/utilities/collections.md#chainmap) layers several dicts together — like a
       set of overrides checked before a set of defaults — without copying or merging them
       into a new dict.
 
-    See the [collections library page](../libraries/collections.md) for the full method list on
+    See the [collections library page](../libraries/utilities/collections.md) for the full method list on
     each of these.
 
 </div>
 
 <div class="pfg-section" markdown="block">
 
-## Tuples { data-fcm-hide="essentials" }
+## Tuples { data-fcm-hide="essentials" cs="tuples, immutable, index" }
 
-A tuple stores multiple items, in order, written in parentheses. They are **immutable** so the items can't be changed once its created. 
+A tuple stores multiple items, in order, written in parentheses. They are **immutable** so the items can't be changed once its created.
 
 <div class="pfg-diagram-frame" markdown="block">
 
@@ -849,11 +850,11 @@ block-beta
 
 </div>
 
-The **index** of the first item is 0[^zero-index], next is 1, and so on. 
+The **index** of the first item is 0[^zero-index], next is 1, and so on.
 
 The **negative index** starts counting down from the end instead, starting at `-1` for the last item, -2 for the second-to-last, and so on. Each item can be referenced by its positive or negative index.
 
-### Access items
+### Access items { cs="access items" }
 
 - Index with `tuple[index]`.
 
@@ -868,23 +869,23 @@ The **negative index** starts counting down from the end instead, starting at `-
     species[1:3]  # ("rock", "ball")
     ```
 
-### Loop through a tuple
+### Loop through a tuple { cs="loop" }
 
 - The [loop](../flow/loops.md#loop-through-a-collection) runs once for every item in the tuple, and on each pass the loop variable, *(i.e. `specie`)* is set to the next item in the tuple.
 
     ```python-ref
-    for specie in species: 
+    for specie in species:
         print(specie)       # burmese  rock  ball  blood
     ```
 
 - If you also want the index alongside the item, `enumerate()` hands back both together — works the same as on a list, since tuples support indexing too.
 
     ```python-ref
-    for index, specie in enumerate(species): 
+    for index, specie in enumerate(species):
         print(index, specie)  # 0 "burmese", then 1 "rock", then 2 "ball", then 3 "blood"
     ```
 
-### Boolean expressions
+### Boolean expressions { cs="boolean expressions" }
 
 - **`in`** checks whether a value exists in the tuple.
 
@@ -928,7 +929,7 @@ The **negative index** starts counting down from the end instead, starting at `-
     ```
 
 
-### Packing and unpacking
+### Packing and unpacking { cs="packing, unpacking" }
 
 - **Packing:** writing several values separated by commas, with or without the surrounding parentheses, implicitly builds a tuple.
 
@@ -965,9 +966,9 @@ The **negative index** starts counting down from the end instead, starting at `-
     a, b = b, a    # swaps directly — no temporary variable needed — a="boa"  b="ball python"
     ```
 
-### Tuple operations { data-card-link="skip" }
+### Tuple operations
 
-#### Inspect
+#### Inspect { cs="count, index, len" }
 
 - **`len()`** returns how many items are in a tuple.
 
@@ -987,7 +988,7 @@ The **negative index** starts counting down from the end instead, starting at `-
     species.index("ball")  # 2
     ```
 
-#### Arithmetic
+#### Arithmetic { cs="max, min, sum" }
 
 - **`min()`** finds the smallest item.
 
@@ -1018,7 +1019,7 @@ The **negative index** starts counting down from the end instead, starting at `-
     species = tuple(species_list)  # convert back to tuple and reassign
     ```
 
-#### Create
+#### Create { cs="tuple" }
 
 - **`tuple()`** builds the same tuple from any iterable, if you'd rather not use literal parentheses.
 
@@ -1026,7 +1027,7 @@ The **negative index** starts counting down from the end instead, starting at `-
     tuple(["burmese", "rock", "ball", "blood"])  # ("burmese", "rock", "ball", "blood")
     ```
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? run "Practice with tuples"
     Each box below is fully editable — write your answer, then click Run.
@@ -1080,20 +1081,20 @@ The **negative index** starts counting down from the end instead, starting at `-
 ??? tip "Extending tuples with `collections.namedtuple`"
     A plain tuple's items can only be accessed by position — `snake[1]` doesn't say what
     that value actually means without checking back how the tuple was built. The
-    [`collections`](../libraries/collections.md) library's
-    [`namedtuple`](../libraries/collections.md#namedtuple) builds a tuple type with named fields,
+    [`collections`](../libraries/utilities/collections.md) library's
+    [`namedtuple`](../libraries/utilities/collections.md#namedtuple) builds a tuple type with named fields,
     so the same value reads as `snake.length_ft`. Switch to it once a tuple's positions start
     needing a mental lookup table to remember, or once several tuples share the same shape
     throughout a program — a single `namedtuple` definition documents that shape once instead
     of repeating a comment at every literal.
-    See the [collections library page](../libraries/collections.md) for `namedtuple`'s other
+    See the [collections library page](../libraries/utilities/collections.md) for `namedtuple`'s other
     methods (`_asdict()`, `_replace()`, default field values) and the rest of the module.
 
 </div>
 
 <div class="pfg-section" markdown="block">
 
-## Sets { data-fcm-hide="essentials" }
+## Sets { data-fcm-hide="essentials" cs="sets" }
 
 A set stores multiple items, in no particular order, inside a single variable — written with curly braces.
 
@@ -1122,16 +1123,16 @@ block-beta
 
 </div>
 
-### Loop through a set
+### Loop through a set { cs="loop" }
 
 The [loop](../flow/loops.md#loop-through-a-collection) runs once for every item in the set, in no guaranteed order, and on each pass the loop variable, *(i.e. `specie`)* is set to the next item.
 
 ```python-ref
-for specie in species: 
+for specie in species:
     print(specie)       # burmese  rock  ball  blood — order not guaranteed
 ```
 
-### Boolean expressions
+### Boolean expressions { cs="boolean expressions" }
 
 - **`in`** checks whether a value exists — and does it far faster than a list or tuple, no matter how large the set gets, since Python looks it up directly instead of scanning item by item.
 
@@ -1179,9 +1180,9 @@ for specie in species:
         species.pop()
     ```
 
-### Set operations { data-card-link="skip" }
+### Set operations
 
-#### Inspect
+#### Inspect { cs="len" }
 
 - **`len()`** returns how many items are in a set.
 
@@ -1189,7 +1190,7 @@ for specie in species:
     len(species)  # 4
     ```
 
-#### Arithmetic
+#### Arithmetic { cs="max, min, sum" }
 
 - **`min()`** finds the smallest item.
 
@@ -1210,7 +1211,7 @@ for specie in species:
     sum(length_ft)  # 25
     ```
 
-#### Update
+#### Update { cs="add, update" }
 
 - **`add()`** adds a single item. Adding a value that's already present changes nothing.
 
@@ -1225,7 +1226,7 @@ for specie in species:
     species.update(["carpet", "boa"])  # adds "boa"; "carpet" was already there
     ```
 
-#### Remove
+#### Remove { cs="clear, discard, pop, remove" }
 
 - **`remove()`** deletes an item, raising an error if it isn't there.
 
@@ -1251,7 +1252,7 @@ for specie in species:
     species.clear()  # set()
     ```
 
-#### Combine
+#### Combine { cs="| & - ^" }
 
 Sets support the same operations as sets in math class — useful for comparing two groups directly instead of writing your own loop to do it.
 
@@ -1284,7 +1285,7 @@ pet_friendly = {"ball", "burmese", "corn snake"}
     constrictors ^ pet_friendly  # {"boa", "corn snake"}
     ```
 
-#### Compare
+#### Compare { cs="isdisjoint, issubset, issuperset" }
 
 These check a relationship between two sets and hand back a `bool`, rather than building a new set the way [Combine](#combine) does.
 
@@ -1306,7 +1307,7 @@ These check a relationship between two sets and hand back a `bool`, rather than 
     constrictors.isdisjoint({"cobra", "viper"})  # True
     ```
 
-#### Create
+#### Create { cs="copy, set" }
 
 - **`set()`** builds the same set from any iterable, if you'd rather not use literal braces.
 
@@ -1343,7 +1344,7 @@ These check a relationship between two sets and hand back a `bool`, rather than 
 
 </div>
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? run "Practice with sets"
     Each box below is fully editable — write your answer, then click Run.

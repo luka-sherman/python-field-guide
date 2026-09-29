@@ -1,14 +1,15 @@
 ---
+cheatsheet_description: Kinds of values, and what you can do with them.
 description: >-
   Python's basic data types explained with runnable examples: integers, floats,
   strings, booleans, and None, plus the operations each one supports.
 ---
 
-# :material-shape-outline:{ .lg .middle } Basic data types
+# :material-shape-outline:{ .lg .middle } Basic data types { cs="isinstance, type" }
 
 <div class="pfg-section" markdown="block">
 
-Every value in Python has a **type**, which determines what operations it supports and how it behaves. 
+Every value in Python has a **type**, which determines what operations it supports and how it behaves.
 
 A basic data type holds a single value, as opposed to a [collection](collections.md) data type, which groups multiple values together. The basic types covered here — `int`, `float`, `str`, `bool`, and `None` — are immutable.
 
@@ -27,7 +28,7 @@ A basic data type holds a single value, as opposed to a [collection](collections
 ??? tip "Check what type a variable is"
 
     `type()` shows the data type
-    
+
     `isinstance()` checks whether a value is that type.
 
     ```python-ref
@@ -43,7 +44,7 @@ A basic data type holds a single value, as opposed to a [collection](collections
 
 <div class="pfg-section" markdown="block">
 
-## Integers
+## Integers { cs="integers" }
 
 An integer a.k.a. "`int`" is a whole number — positive, negative, or zero — with no decimal point.
 
@@ -51,9 +52,9 @@ An integer a.k.a. "`int`" is a whole number — positive, negative, or zero — 
 length = 5
 ```
 
-### Integer operations { data-card-link="skip" }
+### Integer operations
 
-#### Arithmetic
+#### Arithmetic { cs="+ - * / **" }
 
 If both sides are `int` the result will be `int`, except for division.
 
@@ -77,9 +78,9 @@ If both sides are `int` the result will be `int`, except for division.
     length ** 2  # 25   (length squared)
     ```
 
-#### Floor division & modulo
+#### Floor division & modulo { cs="// % divmod" }
 
-- **`//` floor division** divides two numbers and keeps only the whole-number part, dropping anything after the decimal — like asking "how many whole groups of 2 fit into 7?" 
+- **`//` floor division** divides two numbers and keeps only the whole-number part, dropping anything after the decimal — like asking "how many whole groups of 2 fit into 7?"
 
     ```python-ref
     7 // 2  # 3 (7 split into groups of 2 makes 3 full groups)
@@ -97,17 +98,17 @@ If both sides are `int` the result will be `int`, except for division.
     divmod(7, 2) # (3, 1) — same as (7 // 2, 7 % 2)
     ```
 
-#### Apply arithmetic to a variable
+#### Apply arithmetic to a variable { cs="+= -= *= /= //= %= **=" }
 
 - **Combine** any of these arithmetic operations with `=` for an augmented assignment — it does that calculation on the variable, and updates the value of the variable, doing two things with one operation. Examples:  **`+=`  `-=`  `*=`  `/=`  `//=`  `%=`  `**=`**.
 
     ```python-ref
     length = length + 1  # this way works, it's just longer
-    
-    length += 1          # same thing, written more concisely 
+
+    length += 1          # same thing, written more concisely
     ```
 
-#### Absolute value
+#### Absolute value { cs="abs" }
 
 - **`abs()`** returns a number with its sign dropped — negative becomes positive, positive stays unchanged.
 
@@ -117,7 +118,7 @@ If both sides are `int` the result will be `int`, except for division.
     abs(-4.5)  # 4.5
     ```
 
-#### Convert
+#### Convert { cs="int" }
 
 - **`int()`** converts a string of digits, or truncates a float toward zero. It cuts off the decimal — it does not round.
 
@@ -127,7 +128,7 @@ If both sides are `int` the result will be `int`, except for division.
     int(True)  # 1
     ```
 
-### Boolean expressions
+### Boolean expressions { cs="boolean expressions" }
 
 - **`==` `!=` `>` `<` `>=` `<=`** compare two numbers — see [comparisons by type](#booleans) for the full rundown.
 
@@ -152,10 +153,10 @@ while length:              # loops until length reaches 0
     length -= 1
 ```
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? run "Practice with integers"
-    
+
     ```python
     length = 5
 
@@ -191,7 +192,7 @@ while length:              # loops until length reaches 0
 
 <div class="pfg-section" markdown="block">
 
-## Floats
+## Floats { cs="floats" }
 
 A float is a number with a decimal point — for anything that isn't a whole number.
 
@@ -199,9 +200,9 @@ A float is a number with a decimal point — for anything that isn't a whole num
 weight = 4.5
 ```
 
-### Float operations { data-card-link="skip" }
+### Float operations
 
-#### Arithmetic
+#### Arithmetic { cs="+ - * / **" }
 
 If either side of arithmetic is `float` the result will be `float`, except for division.
 
@@ -226,9 +227,9 @@ If either side of arithmetic is `float` the result will be `float`, except for d
     ```
 
 
-#### Floor division & modulo
+#### Floor division & modulo { cs="// % divmod" }
 
-- **floor division `//`** divides two numbers and keeps only the whole-number part, dropping anything after the decimal — like asking "how many whole groups of 2 fit into 7?" 
+- **floor division `//`** divides two numbers and keeps only the whole-number part, dropping anything after the decimal — like asking "how many whole groups of 2 fit into 7?"
 
     ```python-ref
     7.0 // 2  # 3.0 (7.0 split into groups of 2 makes 3 full groups)
@@ -246,17 +247,17 @@ If either side of arithmetic is `float` the result will be `float`, except for d
     divmod(7.0, 2.0)  # (3.0, 1.0) — same as (7.0 // 2.0, 7.0 % 2.0)
     ```
 
-#### Apply arithmetic to a variable
+#### Apply arithmetic to a variable { cs="+= -= *= /= //= %= **=" }
 
 - **Combine** any of these arithmetic operations with `=` for an augmented assignment — it does that calculation on the variable, and updates the value of the variable, doing two things with one operation. Examples:  **`+=`  `-=`  `*=`  `/=`  `//=`  `%=`  `**=`**.
 
     ```python-ref
     length = length + 1  # this way works, it's just longer
-    
-    length += 1          # same thing, written more concisely 
+
+    length += 1          # same thing, written more concisely
     ```
 
-#### Adjust
+#### Adjust { cs="abs, round" }
 
 - **`abs()`** works the same way it does on an `int` — drops the sign, negative becomes positive.
 
@@ -271,7 +272,7 @@ If either side of arithmetic is `float` the result will be `float`, except for d
     round(4.567, 2)  # 4.57
     ```
 
-#### Convert
+#### Convert { cs="float" }
 
 - **`float()`** converts an integer or a numeric string into a float.
 
@@ -280,7 +281,7 @@ If either side of arithmetic is `float` the result will be `float`, except for d
     float("4.5")  # 4.5
     ```
 
-### Boolean expressions
+### Boolean expressions { cs="boolean expressions" }
 
 - **`==` `!=` `>` `<` `>=` `<=`** compare two numbers — see [comparisons by type](#booleans) for the full rundown.
 
@@ -302,7 +303,7 @@ if weight:                 # runs — weight isn't 0.0
     print("has a weight")
 ```
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? warning "Floating-point precision"
     Tiny rounding errors creep in, since most decimal fractions can't be stored exactly in binary.
@@ -348,7 +349,7 @@ if weight:                 # runs — weight isn't 0.0
 
 <div class="pfg-section" markdown="block">
 
-## Strings
+## Strings { cs="strings" }
 
 A string stores text — a sequence of characters — inside a single variable.[^str-collection]
 
@@ -364,9 +365,9 @@ Strings have three defining traits:
 name = "burmese python"
 ```
 
-### String operations { data-card-link="skip" }
+### String operations
 
-#### Access characters
+#### Access characters { cs="index, slice, step" }
 
 Strings use the same index and slice syntax as lists. `0` is the first character, negative indexes count from the end, and `start:end` slices out a substring.
 
@@ -390,7 +391,7 @@ Strings use the same index and slice syntax as lists. `0` is the first character
     name[::-1]  # "nohtyp esemrub"  — reversed
     ```
 
-#### Inspect
+#### Inspect { cs="len" }
 
 - **`len()`** returns how many characters are in a string.
 
@@ -398,7 +399,7 @@ Strings use the same index and slice syntax as lists. `0` is the first character
     len(name)  # 15
     ```
 
-#### Combine
+#### Combine { cs="+ * += *=, combine, join" }
 
 - **`+` joins** strings end to end, building a real string you can store — but every piece must already be text, so joining a string with a number raises a `TypeError` unless you convert the number with `str()` first.
 
@@ -440,8 +441,8 @@ Strings use the same index and slice syntax as lists. `0` is the first character
     | `+=` in a loop, n times | <span class="pt-bigo pt-bigo--bad">O(n²)</span> total | <span class="pt-bigo pt-bigo--ok">O(n)</span> |
     | `.join()` | <span class="pt-bigo pt-bigo--ok">O(n)</span> | <span class="pt-bigo pt-bigo--ok">O(n)</span> |
 
-    A string is immutable, so `name += "python"` doesn't grow the existing string — it builds an entirely new one and throws the old one away. Doing that once is nothing, but doing it on every pass of a loop means each pass copies everything accumulated so far, making the total cost O(n²) for n pieces. 
-    
+    A string is immutable, so `name += "python"` doesn't grow the existing string — it builds an entirely new one and throws the old one away. Doing that once is nothing, but doing it on every pass of a loop means each pass copies everything accumulated so far, making the total cost O(n²) for n pieces.
+
     `.join()` on a list of the same pieces builds the result once, at O(n) — collect the pieces in a list through the loop, then join them after.
 
     See [Efficiency](../practices/style.md#efficiency) for why this distinction matters.
@@ -456,9 +457,9 @@ Strings use the same index and slice syntax as lists. `0` is the first character
     print("b")                 # "ab" — same line, since end="" skipped the newline
     ```
 
-#### Building strings
+#### Building strings { cs="f-string, format, format spec" }
 
-- An **f-string** lets you embed variables directly inside `{}` and is a good choice once a string has multiple variables in it. Put a variable's name inside the `{}` and the variable's value will be inserted inside. 
+- An **f-string** lets you embed variables directly inside `{}` and is a good choice once a string has multiple variables in it. Put a variable's name inside the `{}` and the variable's value will be inserted inside.
 
     ```python-ref
     species = "ball"
@@ -515,7 +516,7 @@ Strings use the same index and slice syntax as lists. `0` is the first character
     print(rf"C:\{species}")    # raw and an f-string together
     ```
 
-#### Modify
+#### Modify { cs="capitalize, lower, replace, strip, title, upper" }
 
 Since strings are immutable, these all return a **new** string rather than changing the original.
 
@@ -540,7 +541,7 @@ Since strings are immutable, these all return a **new** string rather than chang
     name.replace("burmese", "ball")  # "ball python"
     ```
 
-#### Search
+#### Search { cs="count, find, in" }
 
 - **`in`** checks whether one string contains another.
 
@@ -560,7 +561,7 @@ Since strings are immutable, these all return a **new** string rather than chang
     name.count("p")  # 1
     ```
 
-#### Validate
+#### Validate { cs="endswith, isalpha, isdigit, startswith" }
 
 - **`.startswith()`, `.endswith()`** check the beginning or end of a string specifically — faster to read than slicing and comparing manually.
 
@@ -579,7 +580,7 @@ Since strings are immutable, these all return a **new** string rather than chang
     species.isalpha()                 # True — every character is a letter
     ```
 
-#### Convert
+#### Convert { cs="split, str" }
 
 - **`str()`** converts almost any value into its text representation. Handy any time you need to combine a number with text, since `+` can't join a string and a number directly.
 
@@ -595,7 +596,7 @@ Since strings are immutable, these all return a **new** string rather than chang
     name.split()  # ["burmese", "python"]
     ```
 
-### Boolean expressions
+### Boolean expressions { cs="boolean expressions" }
 
 - **`==` `!=`** check whether two strings are equal.
 
@@ -627,7 +628,7 @@ if name:                 # runs — name isn't empty
     print("has a name")
 ```
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? run "Practice with strings"
 
@@ -734,7 +735,7 @@ if name:                 # runs — name isn't empty
 
 <div class="pfg-section" markdown="block">
 
-## Booleans
+## Booleans { cs="booleans" }
 
 A boolean (`bool`) holds one of exactly two values, **`True`** or **`False`** — often used to represent yes/no, on/off, or the result of a comparison. They are used in [if statements](../flow/conditionals.md#if-elif-else) and [while loops](../flow/loops.md#while-loops).
 
@@ -742,11 +743,11 @@ A boolean (`bool`) holds one of exactly two values, **`True`** or **`False`** �
 venomous = False
 ```
 
-### Boolean expressions
+### Boolean expressions { cs="== != > < >= <=, in, is" }
 
 - A **boolean expression** is a boolean value (`True` or `False`) or anything that produces one, and is treated as the **condition** that must be `True` in order to run a block of code.
 
-- A comparison looks different depending on the type of value being checked, as shown below. All of these comparisons result in a `True` or `False` boolean expression. 
+- A comparison looks different depending on the type of value being checked, as shown below. All of these comparisons result in a `True` or `False` boolean expression.
 
     !!! example "Comparisons by type"
 
@@ -1037,7 +1038,7 @@ venomous = False
             constrictors.isdisjoint({"cobra", "viper"})  # True
             ```
 
-### Logical operators
+### Logical operators { cs="and, not, or" }
 
 `not`, `and`, `or` combine booleans (or boolean expressions) to create more complex meanings.
 
@@ -1067,7 +1068,7 @@ venomous = False
     length > 10 or venomous  # True or False → True
     ```
 
-- **Order of operations:** When several logical operators appear together, Python evaluates them in the below order. Keeping this in mind, you can use parentheses to help construct your expressions. 
+- **Order of operations:** When several logical operators appear together, Python evaluates them in the below order. Keeping this in mind, you can use parentheses to help construct your expressions.
 
     1. `not`
 
@@ -1075,7 +1076,7 @@ venomous = False
 
     3. `or`
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? note "Bool is a subclass of int"
     `True` behaves like `1` and `False` behaves like `0` in arithmetic — and since a `bool` is a valid index too, it can pick directly between two items in a tuple instead of writing an `if`/`else`.
@@ -1121,7 +1122,7 @@ venomous = False
 
 <div class="pfg-section" markdown="block">
 
-## None
+## None { cs }
 
 `None` represents the absence of a value — Python's way of saying "nothing here," distinct from `0`, `False`, or an empty string.
 
@@ -1129,7 +1130,7 @@ venomous = False
 venomous = None
 ```
 
-### Check for None
+### Check for None { cs="is, is not" }
 
 - **`is`, `is not`** compare against `None` — always use these, not `==`/`!=`. `is` checks that it's the *exact same object*, which is what you want for a singleton value like `None`.
 
@@ -1138,7 +1139,7 @@ venomous = None
     venomous is not None  # False
     ```
 
-### Boolean expressions
+### Boolean expressions { cs="boolean expressions" }
 
 `None` is always falsy — there's no "sometimes truthy" case, since it's the one value that only ever means "nothing here."
 
@@ -1155,7 +1156,7 @@ venomous = None
         print("nothing found")
     ```
 
-### Going further { data-card-link="skip" }
+### Going further
 
 ??? warning "is vs =="
     `is` checks whether two variables point to the *exact same object* in memory, not whether their values are equal — that's what makes it correct for `None` (there's ever only one), but wrong for almost everything else. Small integers and short strings happen to work with `is` too, because Python reuses those specific objects internally, which makes the mistake easy to miss until it silently breaks on a larger number or a value built some other way.

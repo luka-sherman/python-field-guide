@@ -1,4 +1,9 @@
 ---
+cheatsheet_title: pandas
+cheatsheet_description: 'Tabular data: rows and columns, like a spreadsheet, built on top of NumPy.'
+cheatsheet_title_suffix: :material-download-outline:{ .library-badge .library-badge--third-party title="Third-party — install separately with pip" }
+cheatsheet_attrs:
+  data-fcm-hide: essentials
 description: >-
   Tabular data in Python with pandas: building a DataFrame, sorting rows, and summarizing
   columns, with runnable examples.
@@ -18,7 +23,7 @@ pandas is an open-source project, funded by nonprofit [NumFOCUS](https://numfocu
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 ```bash
 pip install pandas
@@ -39,7 +44,7 @@ import pandas as pd
 
 <div class="pfg-section" markdown="block">
 
-## Building a DataFrame
+## Building a DataFrame { cs="DataFrame" }
 
 A `DataFrame` is most often built from a list of dicts — one dict per row, with matching keys becoming the column names.
 
@@ -91,7 +96,7 @@ print(snakes)
 
 <div class="pfg-section" markdown="block">
 
-## Working with a DataFrame
+## Working with a DataFrame { cs="working with a DataFrame" }
 
 A single column pulled out of a `DataFrame` (with `df["column"]`) is a `Series` — comparing it to a value produces a boolean mask, exactly like a NumPy array, for filtering rows.
 
@@ -108,7 +113,7 @@ big_snakes = snakes[snakes["length_ft"] > 5]
 print(big_snakes)
 ```
 
-### Sorting rows
+### Sorting rows { cs="sort_values" }
 
 Returns the `DataFrame` reordered by a column. `.sort_values("column")` sorts ascending by default, or descending with `ascending=False`. Like most pandas operations, it returns a new `DataFrame` rather than reordering the original in place.
 
@@ -116,7 +121,7 @@ Returns the `DataFrame` reordered by a column. `.sort_values("column")` sorts as
 snakes.sort_values("length_ft", ascending=False)    # rows reordered longest-first
 ```
 
-### Summarizing a column
+### Summarizing a column { cs="mean" }
 
 Calling `.mean()`, `.max()`, or similar directly on a column summarizes it down to a single number. The same way it would on a NumPy array — a `Series` supports the same aggregation methods.
 

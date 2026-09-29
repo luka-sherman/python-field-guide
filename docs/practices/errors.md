@@ -1,4 +1,5 @@
 ---
+cheatsheet_description: Resolve bugs, read and utilize exceptions.
 description: >-
   How to read Python error messages and tracebacks, handle them with try/except, and debug
   with print statements or a debugger.
@@ -8,9 +9,9 @@ description: >-
 
 <div class="pfg-section" markdown="block">
 
-**"Errors"** occur when a line of code is impossible to run, so the program stops and displays a message with information on what went wrong and where. 
+**"Errors"** occur when a line of code is impossible to run, so the program stops and displays a message with information on what went wrong and where.
 
-**"Bugs"** are the general term for errors or *any mistake* in your code, like logic errors. 
+**"Bugs"** are the general term for errors or *any mistake* in your code, like logic errors.
 
 **"Exceptions"** are Python's formal term for the type of error that was raised, like `KeyError` or `ValueError`.
 
@@ -26,13 +27,13 @@ They are part of programming, and happen constantly. Based on the kind of error,
 
 </div>
 
-## Kinds of errors:
+## Kinds of errors: { cs="kinds, bugs, exceptions" }
 
 </div>
 
 <div class="pfg-section" markdown="block">
 
-### Syntax errors { .pt-fake-h2 }
+### Syntax errors { .pt-fake-h2 cs="syntax errors" }
 
 The code doesn't follow Python's grammar rules, so it can't read or run the file. These errors must be fixed directly. These are often incorrect punctuation, spacing, or typos.
 
@@ -58,9 +59,9 @@ The code doesn't follow Python's grammar rules, so it can't read or run the file
 
 <div class="pfg-section" markdown="block">
 
-### Runtime errors { .pt-fake-h2 }
+### Runtime errors { .pt-fake-h2 cs="runtime errors" }
 
-A **runtime error** crashes when a line of code is impossible to execute. It is grammatically correct so is able to read the file and start running, until it encounters something it can't do so it stops and gives you a specific error name. 
+A **runtime error** crashes when a line of code is impossible to execute. It is grammatically correct so is able to read the file and start running, until it encounters something it can't do so it stops and gives you a specific error name.
 
 Think about what programming concepts the failing line is using (data type, loop, conditional, etc), and revisit that page on this site to confirm you're applying it correctly.
 
@@ -96,7 +97,7 @@ Think about what programming concepts the failing line is using (data type, loop
 
 <div class="pfg-section" markdown="block">
 
-### Logic errors { .pt-fake-h2 }
+### Logic errors { .pt-fake-h2 cs="logic errors" }
 
 A logic error is a bug Python doesn't notice, it finishes running but gives you an **unexpected result** because the reasoning itself was **inaccurate**.
 
@@ -112,11 +113,11 @@ Think about what programming concepts you are using (data types, loops, conditio
 
 </div>
 
-## Fixing errors:
+## Fixing errors: { cs="fixing" }
 
 <div class="pfg-section" markdown="block">
 
-### Reading a syntax error message { .pt-fake-h2 }
+### Reading a syntax error message { .pt-fake-h2 cs="syntax error message" }
 
 Red text instead of your expected output? Here's how to read it.
 
@@ -140,7 +141,7 @@ That pointer isn't always exactly where the mistake is — an unclosed bracket o
 
 <div class="pfg-section" markdown="block">
 
-### Reading a traceback { .pt-fake-h2 }
+### Reading a traceback { .pt-fake-h2 cs="tracebacks" }
 
 A runtime error follows the same bottom-up pattern — but since the program actually started running, Python can show a full **traceback**: don't be intimidated by the wall of text.
 
@@ -166,20 +167,20 @@ IndexError: list index out of range
 
 <div class="pfg-section" markdown="block">
 
-### Debugging strategies { .pt-fake-h2 }
+### Debugging strategies { .pt-fake-h2 cs="debugging strategies" }
 
 These general techniques help close the gap between what you think the code does and what it's actually doing.
 
-#### Read it out loud { .pt-fake-h3 }
+#### Read it out loud { .pt-fake-h3 cs="rubber duck debugging" }
 
-Read your code line by line, out loud, saying in plain English what each line does and why. This is often called **rubber duck debugging**: putting each line into words forces you to state assumptions you'd otherwise skim past while reading silently. 
+Read your code line by line, out loud, saying in plain English what each line does and why. This is often called **rubber duck debugging**: putting each line into words forces you to state assumptions you'd otherwise skim past while reading silently.
 
 ```python-ref
-if length < 1 and length > 20:               # "If length is under 1 and length is over 20..." 
+if length < 1 and length > 20:               # "If length is under 1 and length is over 20..."
     print("that length doesn't look right")  # "impossible condition, should use `or` instead of `and`!"
 ```
 
-#### Print debugging { .pt-fake-h3 }
+#### Print debugging { .pt-fake-h3 cs="print debugging" }
 
 ```python-ref
 print(type(length), length)   # confirm what a value actually is, not what you assumed it was
@@ -187,11 +188,11 @@ print(type(length), length)   # confirm what a value actually is, not what you a
 
 Sprinkle `print()` calls between the lines you suspect, showing a variable's value (and [`type()`](../types/basics.md), if you're not sure) at that exact point in the run. This narrows down *where* your assumption about the code stopped matching reality — especially useful when nothing crashes and you're just staring at a wrong final answer, so there's no traceback pointing anywhere. Delete the `print()` calls once you've found the problem.
 
-#### Isolate the problem { .pt-fake-h3 }
+#### Isolate the problem { .pt-fake-h3 cs="isolate problems" }
 
 Comment out or delete sections of code until you find the smallest version that still shows the problem. Especially useful for syntax errors you can't obviously spot, since the pointer Python gives you isn't always exactly where the mistake is.
 
-#### Flag as TODO/FIXME { .pt-fake-h3 }
+#### Flag as TODO/FIXME { .pt-fake-h3 cs="TODO / FIXME" }
 
 ```python-ref
 # TODO: handle the case where length_ft is negative
@@ -227,9 +228,9 @@ Not every problem gets fixed the moment you spot it — sometimes you're mid-deb
 
 <div class="pfg-section" markdown="block">
 
-### Debugger tool { .pt-fake-h2 }
+### Debugger tool { .pt-fake-h2 cs="debugger tool" }
 
-A **debugger** is a tool built into most code editors that lets you pause a running program and look around, instead of only seeing what it printed after the fact. Pause your code mid-run to inspect what's happening and inspect variables — instead of only reading `print()` outputs at the end. 
+A **debugger** is a tool built into most code editors that lets you pause a running program and look around, instead of only seeing what it printed after the fact. Pause your code mid-run to inspect what's happening and inspect variables — instead of only reading `print()` outputs at the end.
 
 0. **Set breakpoints.** A **breakpoint** marks a specific line where you want the program to pause while debugging, so you can inspect it. You can set as many as you want — set these *before* you start running. Click in the margin next to a line number to set one; click the same spot again to remove it — the red dot toggles off.
 1. **Run in debug mode.** Look for a **"Debug"** button instead of the regular Run button. Your program will run normally until it hits the *first* breakpoint, then pauses there.
@@ -287,7 +288,7 @@ A **debugger** is a tool built into most code editors that lets you pause a runn
 
 <div class="pfg-section" markdown="block">
 
-### Detect errors with testing { .pt-fake-h2 }
+### Detect errors with testing { .pt-fake-h2 cs="testing" }
 
 A **test** is a small script that checks your code's behavior automatically, so the mistake gets caught the moment it's introduced.
 
@@ -300,7 +301,7 @@ def test_missing_species_returns_none():
     assert get_length("reticulated python", lengths) is None
 ```
 
-[pytest](../libraries/pytest.md) is the standard tool for this in Python — a function starting with `test_` is one check, and inside it `assert` states what should be true. Running the file reports exactly which checks passed and which failed, the same way `python` reports which line of your code raised an error.
+[pytest](../libraries/testing/pytest.md) is the standard tool for this in Python — a function starting with `test_` is one check, and inside it `assert` states what should be true. Running the file reports exactly which checks passed and which failed, the same way `python` reports which line of your code raised an error.
 
 Tests are especially good at catching [logic errors](#logic-errors) — where the only way to notice something's wrong is comparing the actual output against what you expected. A test does that comparison automatically, instead of relying on you to notice by eye.
 
@@ -308,11 +309,11 @@ They're also useful for [runtime errors](#runtime-errors) — a test can exercis
 
 </div>
 
-## Handling errors:
+## Handling errors: { cs="handling" }
 
 <div class="pfg-section" markdown="block">
 
-### Catch with try/except { .pt-fake-h2 }
+### Catch with try/except { .pt-fake-h2 cs="try/except" }
 
 `try`/`except` lets your program handle [runtime errors](#runtime-errors) and then continue without crashing.
 
@@ -355,7 +356,7 @@ except ValueError:                            # separate for different handling
     print("length on record isn't a number")
 ```
 
-#### finally  { .pt-fake-h3 }
+#### finally { .pt-fake-h3 cs="else, finally" }
 
 `finally` is an optional block that always runs after `try`/`except`, whether or not an exception happened — used for cleanup that has to happen either way, like closing a file.
 
@@ -413,7 +414,7 @@ finally:
 
 <div class="pfg-section" markdown="block">
 
-### Raise an exception { .pt-fake-h2 }
+### Raise an exception { .pt-fake-h2 cs="raise" }
 
 **`Raise` triggers an exception yourself,** instead of waiting for one to happen naturally — useful for stopping bad input or state before it causes a more confusing error later.
 
@@ -437,12 +438,12 @@ except ValueError as e:
 
 <div class="pfg-section" markdown="block">
 
-### Assert a condition { .pt-fake-h2 }
+### Assert a condition { .pt-fake-h2 cs="assert" }
 
 **`assert` raises an `AssertionError` if a condition is False** — the same idea as `raise`, but meant for checking your own assumptions while you're still writing and testing the code, not for validating things that need to be checked every time the program is run. Catching a wrong assumption immediately, with a traceback pointing at it, is easier to debug than discovering it later as a [logic error](#logic-errors).
 
 ```python-ref
-assert [boolean expression]             # raises AssertionError if condition is False 
+assert [boolean expression]             # raises AssertionError if condition is False
 assert [boolean expression], [message]  # can add an optional message
 ```
 

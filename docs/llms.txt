@@ -22,17 +22,17 @@ Code blocks throughout the site run live in the browser via Pyodide, so examples
 ## Libraries
 
 - [Libraries overview](https://pythonfieldguide.com/libraries/): Built-in and third-party libraries covered on this site.
-- [csv](https://pythonfieldguide.com/libraries/csv/): csv.writer, csv.reader, and DictReader.
-- [datetime](https://pythonfieldguide.com/libraries/datetime/): Creating dates, date arithmetic, and formatting.
-- [json](https://pythonfieldguide.com/libraries/json/): json.load, json.dump, and nested data.
-- [random](https://pythonfieldguide.com/libraries/random/): Random numbers and random selections.
-- [Tkinter](https://pythonfieldguide.com/libraries/tkinter/): Widgets, layout managers, event handling, and ttk styling.
-- [matplotlib](https://pythonfieldguide.com/libraries/matplotlib/): Line plots, bar charts, scatter plots, subplots, and saving figures.
-- [NumPy](https://pythonfieldguide.com/libraries/numpy/): Arrays, vectorized math, aggregation, and boolean-mask filtering.
-- [OpenCV](https://pythonfieldguide.com/libraries/opencv/): Reading images, color spaces, edge detection, contours, face detection.
-- [pandas](https://pythonfieldguide.com/libraries/pandas/): Building a DataFrame, sorting rows, and summarizing columns.
-- [Pillow](https://pythonfieldguide.com/libraries/pillow/): Resizing, cropping, drawing, filters, and format conversion.
-- [requests](https://pythonfieldguide.com/libraries/requests/): Fetching data, checking status codes, parsing JSON, and handling errors.
+- [csv](https://pythonfieldguide.com/libraries/data_analysis/csv/): csv.writer, csv.reader, and DictReader.
+- [datetime](https://pythonfieldguide.com/libraries/utilities/datetime/): Creating dates, date arithmetic, and formatting.
+- [json](https://pythonfieldguide.com/libraries/apis/json/): json.load, json.dump, and nested data.
+- [random](https://pythonfieldguide.com/libraries/utilities/random/): Random numbers and random selections.
+- [Tkinter](https://pythonfieldguide.com/libraries/desktop_uis/tkinter/): Widgets, layout managers, event handling, and ttk styling.
+- [matplotlib](https://pythonfieldguide.com/libraries/data_analysis/matplotlib/): Line plots, bar charts, scatter plots, subplots, and saving figures.
+- [NumPy](https://pythonfieldguide.com/libraries/data_analysis/numpy/): Arrays, vectorized math, aggregation, and boolean-mask filtering.
+- [OpenCV](https://pythonfieldguide.com/libraries/computer_vision/opencv/): Reading images, color spaces, edge detection, contours, face detection.
+- [pandas](https://pythonfieldguide.com/libraries/data_analysis/pandas/): Building a DataFrame, sorting rows, and summarizing columns.
+- [Pillow](https://pythonfieldguide.com/libraries/images/pillow/): Resizing, cropping, drawing, filters, and format conversion.
+- [requests](https://pythonfieldguide.com/libraries/apis/requests/): Fetching data, checking status codes, parsing JSON, and handling errors.
 
 ## Optional
 

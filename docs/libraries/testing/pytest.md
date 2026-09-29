@@ -1,4 +1,7 @@
 ---
+cheatsheet_title: pytest
+cheatsheet_description: 'Writing and running tests: assertions, fixtures, and parametrizing.'
+cheatsheet_title_suffix: :material-download-outline:{ .library-badge .library-badge--third-party title="Third-party — install separately with pip" }
 description: >-
   Writing and running tests in Python with pytest: assertions, fixtures, parametrizing,
   and testing for exceptions, with runnable examples.
@@ -18,7 +21,7 @@ pytest is an open-source project maintained by volunteer contributors.
 
 <div class="pfg-section" markdown="block">
 
-## Setup { data-card-link="skip" }
+## Setup
 
 ```bash
 pip install pytest
@@ -42,7 +45,7 @@ import pytest
 
 <div class="pfg-section" markdown="block">
 
-## Writing and running a test
+## Writing and running a test { cs="writing and running a test" }
 
 A pytest test is an ordinary function, named `test_...`, that makes one or more `assert` statements about the code it's checking. No import, base class, or naming beyond the `test_` prefix is required.
 
@@ -52,7 +55,7 @@ def test_species_count():
     assert len(species) == 3
 ```
 
-### From the command line
+### From the command line { cs="from the command line" }
 
 Normally you run `pytest` (or `python -m pytest`) from a terminal in the project directory, and it discovers every `test_*.py` file on its own — no need to name each one. This page's sandbox has no terminal, so the examples below call `pytest.main()` directly instead, which does the same discovery-and-run programmatically.
 
@@ -82,7 +85,7 @@ pytest.main(["-v", "test_snakes.py"])
 
 <div class="pfg-section" markdown="block">
 
-## Reading a failure
+## Reading a failure { cs="reading a failure" }
 
 When an `assert` fails, pytest rewrites it behind the scenes to show the actual values it compared, not just that the statement was false — so a failure report reads like a diff, not a generic error.
 
@@ -113,7 +116,7 @@ def test_species_count():
 
 <div class="pfg-section" markdown="block">
 
-## Fixtures
+## Fixtures { cs="fixtures" }
 
 A **fixture** is a function decorated with `@pytest.fixture` that builds some setup data once; any test function that names it as a parameter receives its return value automatically, without calling it directly.
 
@@ -149,7 +152,7 @@ def test_snake_not_venomous(snake):
 
 <div class="pfg-section" markdown="block">
 
-## Parametrizing tests
+## Parametrizing tests { cs="parametrizing tests" }
 
 `@pytest.mark.parametrize` runs the same test function once per row of arguments, instead of copy-pasting a near-identical test for every case.
 
@@ -187,9 +190,9 @@ def test_length_is_positive(species, length_ft):
 
 <div class="pfg-section" markdown="block">
 
-## Testing for exceptions
+## Testing for exceptions { cs="testing for exceptions" }
 
-`pytest.raises()` is a context manager that asserts the code inside its `with` block raises a specific exception — a way to test the [`try`/`except`](../practices/errors.md#catch-with-tryexcept) paths in your own code, not just the successful ones.
+`pytest.raises()` is a context manager that asserts the code inside its `with` block raises a specific exception — a way to test the [`try`/`except`](../../practices/errors.md#catch-with-tryexcept) paths in your own code, not just the successful ones.
 
 ```python-ref
 def test_invalid_length_raises():
