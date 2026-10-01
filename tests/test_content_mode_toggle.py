@@ -15,35 +15,35 @@ Browser tier — same setup as test_accessibility_browser.py (`playwright instal
 
 def test_advanced_content_visible_by_default(page, site_url):
     page.goto(site_url)
-    mode = page.evaluate("() => document.documentElement.getAttribute('data-fcm-mode')")
+    mode = page.evaluate("() => document.documentElement.getAttribute('data-audience-mode')")
     assert mode == "advanced", "Advanced should be the default mode"
 
     # A row-level marker: the "sets" keyword-link row under Collections.
     hidden = page.evaluate(
         """() => {
-            const row = document.querySelector('p[data-fcm-hide~="essentials"]');
+            const row = document.querySelector('p[data-audience-hide~="essentials"]');
             return row ? getComputedStyle(row).display === 'none' : null;
         }"""
     )
-    assert hidden is False, "a data-fcm-hide=\"essentials\" row should be visible in Advanced"
+    assert hidden is False, "a data-audience-hide=\"essentials\" row should be visible in Advanced"
 
 
 def test_mode_query_param_hides_marked_row(page, site_url):
     page.goto(f"{site_url}/?mode=essentials")
-    mode = page.evaluate("() => document.documentElement.getAttribute('data-fcm-mode')")
+    mode = page.evaluate("() => document.documentElement.getAttribute('data-audience-mode')")
     assert mode == "essentials", "?mode=essentials should activate Essentials mode"
 
     hidden = page.evaluate(
         """() => {
-            const row = document.querySelector('p[data-fcm-hide~="essentials"]');
+            const row = document.querySelector('p[data-audience-hide~="essentials"]');
             return row ? getComputedStyle(row).display === 'none' : null;
         }"""
     )
-    assert hidden is True, "a data-fcm-hide=\"essentials\" row should be hidden once in Essentials mode"
+    assert hidden is True, "a data-audience-hide=\"essentials\" row should be hidden once in Essentials mode"
 
 
 def test_essentials_state_carries_to_content_page_heading_and_toc(page, site_url):
-    """functions.md's own '## Decorators { data-fcm-hide="essentials" }' heading (and its
+    """functions.md's own '## Decorators { data-audience-hide="essentials" }' heading (and its
     integrated-TOC entry) should hide too — carried over from the homepage's marker via
     localStorage, with no need to visit the homepage first in this same test."""
     page.goto(f"{site_url}/organization/functions/?mode=essentials")
@@ -107,13 +107,13 @@ def test_pfg_section_wrapper_is_hidden_with_its_heading(page, site_url):
 
 
 def test_whole_homepage_card_hides(page, site_url):
-    """A page with `cheatsheet_attrs: {data-fcm-hide: essentials}` in its front matter
+    """A page with `cheatsheet_attrs: {data-audience-hide: essentials}` in its front matter
     gets the marker on its cheatsheet card's <li>, which the audience toggle hides."""
     page.goto(f"{site_url}/?mode=essentials")
 
     card_display = page.evaluate(
         """() => {
-            const card = document.querySelector('.md-cheatsheet__card[data-fcm-hide~="essentials"]');
+            const card = document.querySelector('.md-cheatsheet__card[data-audience-hide~="essentials"]');
             return card ? getComputedStyle(card).display : null;
         }"""
     )
@@ -122,7 +122,7 @@ def test_whole_homepage_card_hides(page, site_url):
 
 def test_link_to_hidden_section_recovers_to_advanced(page, site_url):
     """collections.md's own cheat-sheet table (near the top) links to #tuples even
-    while the "Tuples" heading itself is hidden by data-fcm-hide="essentials" — clicking
+    while the "Tuples" heading itself is hidden by data-audience-hide="essentials" — clicking
     that visible link should flip the toggle back to Advanced and reveal the
     section, rather than landing on a hidden target and doing nothing."""
     page.goto(f"{site_url}/types/collections/?mode=essentials")
@@ -146,9 +146,9 @@ def test_link_to_hidden_section_recovers_to_advanced(page, site_url):
     after = page.evaluate(
         """() => ({
             tuplesDisplay: getComputedStyle(document.getElementById('tuples')).display,
-            mode: document.documentElement.getAttribute('data-fcm-mode'),
-            toggleActive: document.getElementById('fcm-toggle')?.dataset.active,
-            stored: localStorage.getItem('fcm-mode'),
+            mode: document.documentElement.getAttribute('data-audience-mode'),
+            toggleActive: document.getElementById('audience-toggle')?.dataset.active,
+            stored: localStorage.getItem('audience-mode'),
         })"""
     )
     assert after["tuplesDisplay"] != "none", "clicking the link should reveal the Tuples section"
@@ -172,6 +172,6 @@ def test_link_recovery_ignores_toc_links_to_visible_sections(page, site_url):
     lists_link.first.click()
 
     still_essentials = page.evaluate(
-        "() => document.documentElement.getAttribute('data-fcm-mode')"
+        "() => document.documentElement.getAttribute('data-audience-mode')"
     )
     assert still_essentials == "essentials", "a link to an already-visible section should not flip the mode"

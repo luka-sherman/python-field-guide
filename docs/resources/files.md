@@ -217,7 +217,7 @@ with open("notes.txt", "r") as file:
             print(line.strip())
     ```
 
-<div data-fcm-hide="essentials" markdown="block">
+<div data-audience-hide="essentials" markdown="block">
 
 ??? efficiency "For efficiency, loop over a file instead of reading it all at once"
     | | Time | Space |
@@ -233,7 +233,7 @@ with open("notes.txt", "r") as file:
 
 </div>
 
-#### Seek and tell { data-fcm-hide="essentials" cs="seek(), tell()" }
+#### Seek and tell { data-audience-hide="essentials" cs="seek(), tell()" }
 
 `.tell()` returns the current position in the file, as a character count from the start. `.seek(position)` moves back to a given position, letting you re-read part of a file without closing and reopening it.
 
@@ -344,7 +344,7 @@ with open("notes.txt", "r") as file:
         print(file.read())
     ```
 
-#### "x" create { data-fcm-hide="essentials" cs="create" }
+#### "x" create { data-audience-hide="essentials" cs="create" }
 
 `"x"` is for when overwriting an existing file would be a mistake — it creates the file, but raises `FileExistsError` instead of silently replacing something already there. Like `"w"`, it's write-only — reading from that same file object raises an error, so reading it back means reopening it in `"r"` mode afterward.
 

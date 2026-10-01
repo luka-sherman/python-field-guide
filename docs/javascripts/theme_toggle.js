@@ -26,7 +26,7 @@
     });
   }
 
-  // The plugin hides content (and sets html[data-fcm-mode]) synchronously
+  // The plugin hides content (and sets html[data-audience-mode]) synchronously
   // from its own script; a MutationObserver callback always fires as a
   // separate microtask after that synchronous work finishes, so this stays
   // correctly ordered regardless of which script's DOMContentLoaded/
@@ -35,7 +35,7 @@
     if (window.__librarySpanObserverBound) return;
     window.__librarySpanObserverBound = true;
     new MutationObserver(updateLibrarySpans).observe(document.documentElement, {
-      attributeFilter: ["data-fcm-mode"],
+      attributeFilter: ["data-audience-mode"],
     });
     updateLibrarySpans();
   }

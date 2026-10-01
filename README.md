@@ -117,7 +117,7 @@ A diagram renderer, which draws flowcharts and diagrams from a plain-text descri
 
 ### Essentials / Advanced toggle
 
-A two-option switch, provided by the [mkdocs-audience-toggle](#mkdocs-audience-toggle) plugin (configured under `plugins:` in `mkdocs.yml`), that lets a reader hide everything beyond a first-pass beginner curriculum. Content is opted into hiding by marking it `data-fcm-hide="essentials"`:
+A two-option switch, provided by the [mkdocs-audience-toggle](#mkdocs-audience-toggle) plugin (configured under `plugins:` in `mkdocs.yml`), that lets a reader hide everything beyond a first-pass beginner curriculum. Content is opted into hiding by marking it `data-audience-hide="essentials"`:
 
 - On a `##`/`###` heading inside a content page (e.g. functions.md's `## Decorators`), it hides that heading plus every sibling up to the next heading of the same or higher level, and removes the matching entry from the `toc.integrate` sidebar — so there's no dead nav link to something that's hidden.
 - On a homepage card-grid row, it hides just that row. A whole homepage card hides too, once its first paragraph (the only one attr_list can attach the marker to) carries the marker — extra.css has a small `:has()` rule that extends that into hiding the entire `<li>`, since the plugin itself only hides the exact element marked.
@@ -177,10 +177,10 @@ plugins:
 ```
 
 ```markdown
-## Decorators {: data-fcm-hide="essentials" }
+## Decorators {: data-audience-hide="essentials" }
 ```
 
-Material has no built-in way to tailor a page to different readers. The plugin hides a marked heading together with its whole section and its table of contents entry. It switches to the nearest mode that shows the content when a link points to something hidden. It also collapses to icons or moves to its own row on narrow screens. It includes its own Playwright and axe-core tests. See the [plugin's README](https://github.com/luka-sherman/mkdocs-audience-toggle) for all options. This site's setup is under `audience_toggle` in `mkdocs.yml`, with color overrides in `extra.css`'s `#fcm-toggle` rule.
+Material has no built-in way to tailor a page to different readers. The plugin hides a marked heading together with its whole section and its table of contents entry. It switches to the nearest mode that shows the content when a link points to something hidden. It also collapses to icons or moves to its own row on narrow screens. It includes its own Playwright and axe-core tests. See the [plugin's README](https://github.com/luka-sherman/mkdocs-audience-toggle) for all options. This site's setup is under `audience_toggle` in `mkdocs.yml`, with color overrides in `extra.css`'s `#audience-toggle` rule.
 
 ### [mkdocs-cheatsheet](https://pypi.org/project/mkdocs-cheatsheet/)
 
@@ -327,3 +327,23 @@ The domain is set up via the [docs/CNAME](docs/CNAME) file, which MkDocs copies 
 ## License
 
 The content and code in this repo are not licensed for reuse — see [LICENSE](LICENSE).
+
+## AI usage
+
+I used [Claude Code](https://claude.com/claude-code) for:
+
+- Restructuring and rewriting existing content
+- Scaffolding first drafts of library pages based off the site's existing [structure](STRUCTURE.md)
+- Implementing new features (e.g. the [Essentials/Advanced toggle](#essentials--advanced-toggle))
+- Propagating a content or naming change everywhere it's referenced (headings, anchors, homepage keyword links)
+- Diagnosing and fixing test failures (structure, accessibility) instead of just rerunning them
+- Verifying a change with `mkdocs build` and `pytest` before calling it done
+
+How I managed it:
+
+- Scoped to low-judgment, high-volume work — architecture and correctness stayed manual
+- Rewrote drafts in my own words rather than publishing them as-is, so I kept my own mental model of the content I'm teaching from
+- Checked output against [STRUCTURE.md](STRUCTURE.md)
+- Increased [test coverage](#testing) and [continuous integration](#continuous-integration) to protect its integrity
+- Scoped prompts to one task at a time to keep context down
+- After one prompt "fixed" content in bulk on its own, I switched to: report gaps, don't auto-fix content on your behalf

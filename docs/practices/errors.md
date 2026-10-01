@@ -381,7 +381,7 @@ finally:
         print(f"found it: {length} ft")   # runs only if try succeeded
     ```
 
-<div data-fcm-hide="essentials" markdown="block">
+<div data-audience-hide="essentials" markdown="block">
 
 ??? efficiency "For efficiency, use try/except when success is the common case"
     | | Time | Space |

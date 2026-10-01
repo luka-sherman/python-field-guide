@@ -169,16 +169,16 @@ shows library pages as title-and-description cards only, and their links appear 
 - **Card text.** Each page's front matter sets `cheatsheet_description` (falling back to
   `description`), plus `cheatsheet_title`, `cheatsheet_icon` or `cheatsheet_title_suffix` (the
   built-in/third-party badge on library cards) where the defaults don't fit.
-- **Essentials mode.** A flagged heading that carries `data-fcm-hide="essentials"` passes it to
+- **Essentials mode.** A flagged heading that carries `data-audience-hide="essentials"` passes it to
   its cheatsheet line or link, so the audience toggle hides both together. A whole card is
-  hidden with `cheatsheet_attrs: {data-fcm-hide: essentials}` in front matter.
+  hidden with `cheatsheet_attrs: {data-audience-hide: essentials}` in front matter.
 - **Verify with a real build.** A renamed heading moves its flag with it, so the cheatsheet can't
   go stale, but `mkdocs build` still prints a `WARNING` for any broken link elsewhere.
 - **Marking content "advanced" for the Essentials/Advanced toggle** — the header's segmented
   control is provided by the `mkdocs-audience-toggle` plugin (configured under `plugins:` in
-  `mkdocs.yml`) and hides content marked `data-fcm-hide="essentials"`. On a content page, append
-  `{ data-fcm-hide="essentials" }` to the heading line (e.g. `functions.md`'s
-  `## Decorators { data-fcm-hide="essentials" }`). This hides that heading, everything up to the
+  `mkdocs.yml`) and hides content marked `data-audience-hide="essentials"`. On a content page, append
+  `{ data-audience-hide="essentials" }` to the heading line (e.g. `functions.md`'s
+  `## Decorators { data-audience-hide="essentials" }`). This hides that heading, everything up to the
   next heading of the same or higher level, and its sidebar entry. The cheatsheet picks the
   marker up from the heading, so there's no second place to tag.
   Which spots to mark, and what counts as advanced/niche vs. core, is a per-editor judgment call
@@ -211,7 +211,7 @@ Pick the existing type that matches the branch, don't invent new ones without a 
 | `??? info` | Defining a term/concept adjacent to the page but not the topic itself. |
 | `??? failure` | The negative counterpart to a `success` branch — "this didn't work, here's what to do about it" (e.g. workspace.md's "download Python here" branch when `python --version` doesn't show 3.x.x). |
 | `??? ai` | Opinion/meta content specifically about learning with or around AI (e.g. index.md's FAQ tabs on whether/how to use AI while learning) — not used for teaching content about Python itself. |
-| `??? efficiency` | A runtime/space aside naming the cost behind a choice already shown in prose (e.g. list vs. set membership, `sort()` vs. `sorted()`) — usually a Big O difference, occasionally a constant-factor one (`.get()` vs. two hash lookups, vectorized NumPy vs. a Python loop) where it's still worth flagging but doesn't change the O(...) class. Wrap it in `<div data-fcm-hide="essentials" markdown="block">` on a page that participates in the Essentials/Advanced toggle (skip it on a page that doesn't, like the library reference pages), and close with a link to [style.md's "Efficiency"](docs/practices/style.md#efficiency) section. Formalizes a tradeoff the surrounding prose already states in plain language; doesn't introduce the tradeoff for the first time. |
+| `??? efficiency` | A runtime/space aside naming the cost behind a choice already shown in prose (e.g. list vs. set membership, `sort()` vs. `sorted()`) — usually a Big O difference, occasionally a constant-factor one (`.get()` vs. two hash lookups, vectorized NumPy vs. a Python loop) where it's still worth flagging but doesn't change the O(...) class. Wrap it in `<div data-audience-hide="essentials" markdown="block">` on a page that participates in the Essentials/Advanced toggle (skip it on a page that doesn't, like the library reference pages), and close with a link to [style.md's "Efficiency"](docs/practices/style.md#efficiency) section. Formalizes a tradeoff the surrounding prose already states in plain language; doesn't introduce the tradeoff for the first time. |
 | `!!! example` | An always-open side-by-side comparison the reader is meant to see without a click, not a branch — e.g. "how to loop each type," showing every collection type's loop pattern in one visible table. |
 
 Default to collapsed (`???`), not always-open (`!!!`) — an always-open admonition competes with

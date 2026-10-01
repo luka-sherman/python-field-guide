@@ -433,7 +433,7 @@ Strings use the same index and slice syntax as lists. `0` is the first character
     "-".join(["burmese", "python"])  # "burmese-python"
     ```
 
-<div data-fcm-hide="essentials" markdown="block">
+<div data-audience-hide="essentials" markdown="block">
 
 ??? efficiency "For efficiency, use .join() instead of += in a loop"
     | | Time | Space |

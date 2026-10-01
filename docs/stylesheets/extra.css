@@ -587,7 +587,7 @@ input:checked + .md-consent__settings {
   mask-image: var(--md-admonition-icon--python);
 }
 
-/* ---- Custom "efficiency" admonition for runtime/space asides (data-fcm-hide="essentials" only) ---- */
+/* ---- Custom "efficiency" admonition for runtime/space asides (data-audience-hide="essentials" only) ---- */
 
 :root {
   --md-admonition-icon--efficiency: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11,15H6L13,1V9H18L11,23V15Z"/></svg>');
@@ -978,8 +978,8 @@ input:checked + .md-consent__settings {
 
    The Essentials/Advanced content toggle used to share this same
    .pt-simplify-* markup/CSS (two named options, one active at a time). It's
-   now the mkdocs-audience-toggle plugin's own #fcm-toggle, styled
-   below via that plugin's --fcm-* variables instead — see "Content mode
+   now the mkdocs-audience-toggle plugin's own #audience-toggle, styled
+   below via that plugin's --audience-* variables instead — see "Content mode
    toggle" further down. */
 .pt-simplify-toggle {
   position: relative;
@@ -1097,30 +1097,27 @@ input:checked + .md-consent__settings {
    mkdocs-audience-toggle plugin configured in mkdocs.yml — see
    CLAUDE.md's "Planned extraction" section. The plugin's own CSS
    (audience_toggle.css) provides the track/highlight/option/icon
-   layout and mobile label-collapse; this site only overrides its --fcm-*
+   layout and mobile label-collapse; this site only overrides its --audience-*
    styling hooks to match the .pt-simplify-toggle look above, plus the
    header spacing the plugin doesn't set for itself. */
-#fcm-toggle {
+#audience-toggle {
   margin: 0.4rem 0.2rem;
-  --fcm-track-bg: var(--pt-bg);
-  --fcm-active-fg: var(--pt-bg);
+  --audience-track-bg: var(--pt-bg);
+  --audience-active-fg: var(--pt-bg);
 }
 
-/* The plugin's own confirmation toast (shown on switching content mode) —
-   matched to .pt-toast's look above (the light/dark toggle's own toast)
-   instead of the plugin's plain default, so both read as the same site
-   chrome element. */
-#fcm-toast {
+/* Matched to .pt-toast's look below, via the plugin's own dedicated
+   --audience-toast-bg/--audience-toast-fg hooks (mkdocs-audience-toggle >=0.1.1). */
+#audience-toast {
+  --audience-toast-bg: var(--pt-ink);
+  --audience-toast-fg: var(--pt-bg);
   border-radius: 1.6rem;
-  background-color: var(--md-default-bg-color);
-  color: var(--md-default-fg-color--light);
-  font-weight: 400;
   line-height: 1.4;
   box-shadow: var(--md-shadow-z2);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-#fcm-toast.fcm-toast--visible {
+#audience-toast.audience-toast--visible {
   transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
@@ -1177,10 +1174,9 @@ input:checked + .md-consent__settings {
    by showToast() (the header's own height varies: ~48px on mobile, taller
    on desktop/tablet with the tab bar, and Material can also hide/reveal it
    on scroll), only the offset-from-header gap lives here. Centered
-   horizontally on both desktop and mobile. Shape/colors match Material's
-   own "back to top" pill (`.md-top`) — same rounded-pill radius, shadow,
-   bg/fg pairing, font size, and padding — so it reads as a native site
-   chrome element rather than a one-off custom popup. */
+   horizontally on both desktop and mobile. Shape matches Material's own
+   "back to top" pill (`.md-top`); bg/fg use --pt-ink/--pt-bg swapped, so
+   the toast is inverted from the page instead of matching it. */
 .pt-toast {
   position: fixed;
   z-index: 1000;
@@ -1189,8 +1185,8 @@ input:checked + .md-consent__settings {
   max-width: min(90vw, 22rem);
   padding: 0.4rem 0.8rem;
   border-radius: 1.6rem;
-  background-color: var(--md-default-bg-color);
-  color: var(--md-default-fg-color--light);
+  background-color: var(--pt-ink);
+  color: var(--pt-bg);
   font-size: 0.7rem;
   line-height: 1.4;
   text-align: center;
@@ -1285,7 +1281,7 @@ input:checked + .md-consent__settings {
      hides some, leaving boxes too wide. theme_toggle.js recomputes the
      visible count into --library-span, overriding --cards-N here (same
      specificity, later in source) while active. */
-  html[data-fcm-mode="essentials"] .library-grid > .md-cheatsheet__group {
+  html[data-audience-mode="essentials"] .library-grid > .md-cheatsheet__group {
     grid-column: span var(--library-span, 4);
   }
 }

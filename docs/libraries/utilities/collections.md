@@ -3,7 +3,7 @@ cheatsheet_title: collections
 cheatsheet_description: 'Specialized containers: counting items, grouping with defaults, named tuples, fast queues.'
 cheatsheet_title_suffix: :material-language-python:{ .library-badge .library-badge--builtin title="Built-in — included with Python" }
 cheatsheet_attrs:
-  data-fcm-hide: essentials
+  data-audience-hide: essentials
 description: >-
   Specialized container types in Python's collections module: Counter, defaultdict,
   namedtuple, deque, OrderedDict, and ChainMap, with runnable examples.
