@@ -1,0 +1,182 @@
+(function () {
+  const PYODIDE_CDN = "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js";
+  const CODEJAR_CDN = "https://cdn.jsdelivr.net/npm/codejar@4.3.0/dist/codejar.js";
+
+  let pyodideReadyPromise = null;
+
+  function loadPyodideRuntime() {
+    if (pyodideReadyPromise) return pyodideReadyPromise;
+    pyodideReadyPromise = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = PYODIDE_CDN;
+      script.onload = async () => {
+        try {
+          resolve(await loadPyodide());
+        } catch (err) {
+          reject(err);
+        }
+      };
+      script.onerror = () => reject(new Error("Failed to load the Pyodide runtime."));
+      document.head.appendChild(script);
+    });
+    return pyodideReadyPromise;
+  }
+
+  // highlight.js 11 marks an element data-highlighted="yes" and refuses to
+  // re-highlight it. Clear that flag before every pass so edits stay colored.
+  function highlightWithExistingTheme(editor) {
+    delete editor.dataset.highlighted;
+    window.hljs.highlightElement(editor);
+  }
+
+  function makeEditable(codeBlock) {
+    codeBlock.classList.add("pyodide-editor");
+    codeBlock.setAttribute("role", "textbox");
+    codeBlock.setAttribute("aria-multiline", "true");
+    codeBlock.setAttribute("aria-label", "Editable Python code");
+    // Reachable by Tab even before CodeJar's CDN module resolves (or if it
+    // fails to): without this the element advertises role="textbox" but a
+    // keyboard user can't focus it. CodeJar's own contenteditable keeps it
+    // focusable once loaded; an explicit tabindex="0" is harmless alongside.
+    codeBlock.tabIndex = 0;
+    import(CODEJAR_CDN).then(({ CodeJar }) => {
+      CodeJar(codeBlock, highlightWithExistingTheme, {
+        tab: "    ",
+        indentOn: /[({\[:]$/,
+      });
+    });
+  }
+
+  function buildRunner(codeBlock) {
+    const pre = codeBlock.parentElement;
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "pyodide-runner";
+
+    const toolbar = document.createElement("div");
+    toolbar.className = "pyodide-runner__toolbar";
+
+    const runButton = document.createElement("button");
+    runButton.type = "button";
+    runButton.className = "pyodide-runner__run-btn";
+
+    const runIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    runIcon.setAttribute("class", "pyodide-runner__run-icon");
+    runIcon.setAttribute("viewBox", "0 0 24 24");
+    runIcon.setAttribute("aria-hidden", "true");
+    const runIconPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    runIconPath.setAttribute("d", "M8,5.14V19.14L19,12.14L8,5.14Z");
+    runIcon.appendChild(runIconPath);
+
+    const runLabel = document.createElement("span");
+    runLabel.className = "pyodide-runner__run-btn-label";
+    runLabel.textContent = "Run";
+
+    runButton.appendChild(runIcon);
+    runButton.appendChild(runLabel);
+    toolbar.appendChild(runButton);
+
+    const output = document.createElement("pre");
+    output.className = "pyodide-runner__output";
+    output.hidden = true;
+    // Announce results to assistive tech when they land. role="status" carries
+    // an implicit aria-live="polite"; both are set for older AT that only honors
+    // one. Note: toggling `hidden` right before writing text can still cost the
+    // very first announcement on some screen reader / browser pairs — acceptable
+    // for now, revisit if it proves a problem in real use.
+    output.setAttribute("role", "status");
+    output.setAttribute("aria-live", "polite");
+    output.setAttribute("aria-atomic", "true");
+
+    pre.insertAdjacentElement("beforebegin", wrapper);
+    wrapper.appendChild(pre);
+    wrapper.appendChild(toolbar);
+    wrapper.appendChild(output);
+
+    if (window.hljs) {
+      highlightWithExistingTheme(codeBlock);
+    }
+
+    makeEditable(codeBlock);
+
+    runButton.addEventListener("click", async () => {
+      const originalLabel = runLabel.textContent;
+      runButton.disabled = true;
+      runLabel.textContent = "Loading…";
+      output.hidden = false;
+      output.textContent = "";
+      output.classList.remove("pyodide-runner__output--error");
+
+      try {
+        const pyodide = await loadPyodideRuntime();
+
+        // Pure-stdlib code runs as-is, but third-party packages (numpy,
+        // pandas, pytest, ...) ship as separate Pyodide wheels that must be
+        // fetched before the `import` inside the snippet will succeed. Keyed
+        // by the name Python code actually imports, which isn't always the
+        // Pyodide package name (bs4's package is "beautifulsoup4").
+        const source = codeBlock.textContent;
+        const PYODIDE_PACKAGE_NAMES = {
+          numpy: "numpy",
+          pandas: "pandas",
+          pytest: "pytest",
+          bs4: "beautifulsoup4",
+        };
+        const neededPackages = Object.keys(PYODIDE_PACKAGE_NAMES)
+          .filter((mod) =>
+            new RegExp(`\\bimport\\s+${mod}\\b|\\bfrom\\s+${mod}\\b`).test(source)
+          )
+          .map((mod) => PYODIDE_PACKAGE_NAMES[mod]);
+        if (neededPackages.length) {
+          runLabel.textContent = "Loading packages…";
+          await pyodide.loadPackage(neededPackages);
+        }
+
+        runLabel.textContent = "Running…";
+
+        let buffer = "";
+        pyodide.setStdout({ batched: (s) => { buffer += s + "\n"; } });
+        pyodide.setStderr({ batched: (s) => { buffer += s + "\n"; } });
+
+        await pyodide.runPythonAsync(source);
+        output.textContent = buffer || "(no output)";
+      } catch (err) {
+        output.classList.add("pyodide-runner__output--error");
+        output.textContent = String(err);
+      } finally {
+        runButton.disabled = false;
+        runLabel.textContent = originalLabel;
+      }
+    });
+  }
+
+  // Reference-only blocks (` ```python-ref `): syntax-highlighted like real
+  // Python, but no Run button — for cheat-sheet-style annotated snippets
+  // where the `# result` comment is the point, not execution.
+  function buildReference(codeBlock) {
+    const pre = codeBlock.parentElement;
+    const wrapper = document.createElement("div");
+    wrapper.className = "pyodide-reference";
+    pre.insertAdjacentElement("beforebegin", wrapper);
+    wrapper.appendChild(pre);
+
+    if (window.hljs) {
+      const result = window.hljs.highlight(codeBlock.textContent, { language: "python" });
+      codeBlock.innerHTML = result.value;
+    }
+  }
+
+  function initPage() {
+    document.querySelectorAll("pre > code.language-python").forEach(buildRunner);
+    document.querySelectorAll("pre > code.language-python-ref").forEach(buildReference);
+  }
+
+  // Material's navigation.instant swaps page content via JS without a full
+  // reload, so DOMContentLoaded only ever fires once. document$ is Material's
+  // own observable that emits on every page change, instant or not.
+  if (window.document$) {
+    window.document$.subscribe(initPage);
+  } else {
+    document.addEventListener("DOMContentLoaded", initPage);
+  }
+})();

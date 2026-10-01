@@ -1,0 +1,139 @@
+/* mkdocs-audience-toggle
+
+   Custom properties (set on #audience-toggle or a parent such as :root):
+     --audience-accent       border and highlight color (default: currentColor)
+     --audience-track-bg     toggle background (default: transparent)
+     --audience-active-fg    text color of the active option (default: Canvas)
+     --audience-radius       corner radius of the toggle and highlight
+     --audience-height       toggle height
+     --audience-font-size    label font size
+     --audience-icon-size    icon size
+     --audience-toast-bg     toast background (default: CanvasText)
+     --audience-toast-fg     toast text color (default: Canvas)
+
+   Toast vars are separate from --audience-accent/--audience-active-fg so theming the
+   toggle doesn't also recolor the toast. Their CanvasText/Canvas defaults
+   auto-invert the toast against the page's `color-scheme` property. */
+
+.audience-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: var(--audience-height, 1.2rem);
+  border: 0.05rem solid var(--audience-accent, currentColor);
+  border-radius: var(--audience-radius, 1rem);
+  overflow: hidden;
+  background-color: var(--audience-track-bg, transparent);
+}
+
+/* left and width are set by the script to match the active option. */
+.audience-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: var(--audience-radius, 1rem);
+  background-color: var(--audience-accent, currentColor);
+  transition: left 0.2s ease, width 0.2s ease;
+}
+
+.audience-option {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 0 0.5rem;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: var(--audience-font-size, 0.6rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.audience-option[aria-pressed="true"] {
+  color: var(--audience-active-fg, Canvas);
+}
+
+/* The icon is a mask over currentColor so it matches the label color. */
+.audience-option--icon::before {
+  content: "";
+  display: inline-block;
+  width: var(--audience-icon-size, 0.7rem);
+  height: var(--audience-icon-size, 0.7rem);
+  margin-right: 0.3rem;
+  flex: none;
+  background-color: currentColor;
+  -webkit-mask-image: var(--audience-icon);
+  mask-image: var(--audience-icon);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+@media (max-width: 45em) {
+  .audience-toggle[data-collapse-labels] .audience-option--icon::before {
+    margin-right: 0;
+  }
+
+  .audience-toggle[data-collapse-labels] .audience-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+}
+
+/* Material header on narrow screens: if the toggle doesn't fit next to the
+   title, the script adds .audience-toggle--own-row, which moves it after the other
+   header buttons so it gets a row to itself. */
+@media (max-width: 45em) {
+  .md-header__inner:has(> #audience-toggle) {
+    flex-wrap: wrap;
+    row-gap: 0.2rem;
+  }
+
+  .md-header__inner > #audience-toggle.audience-toggle--own-row {
+    order: 1;
+    margin: 0.1rem auto 0.2rem;
+  }
+}
+
+.audience-toast {
+  position: fixed;
+  left: 50%;
+  z-index: 10;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.4rem;
+  background-color: var(--audience-toast-bg, CanvasText);
+  color: var(--audience-toast-fg, Canvas);
+  font-size: 0.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -0.3rem);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.audience-toast--visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .audience-highlight,
+  .audience-toast {
+    transition: none;
+  }
+}

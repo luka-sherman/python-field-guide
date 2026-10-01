@@ -1,0 +1,140 @@
+/* mkdocs-light-dark-toggle
+
+   Custom properties (set on #light-dark-toggle or a parent such as :root):
+     --light-dark-accent      border and highlight color (default: currentColor)
+     --light-dark-track-bg    toggle background (default: transparent)
+     --light-dark-active-fg   icon color of the active option (default: Canvas)
+     --light-dark-radius      corner radius of the toggle and highlight
+     --light-dark-height      toggle height
+     --light-dark-icon-size   icon size
+     --light-dark-icon-light  mask-image for the light-mode icon (default: a sun)
+     --light-dark-icon-dark   mask-image for the dark-mode icon (default: a moon)
+     --light-dark-toast-bg    toast background (default: CanvasText)
+     --light-dark-toast-fg    toast text color (default: Canvas)
+
+   Sensible sun/moon defaults mean this works with zero configuration, unlike an
+   N-way toggle (e.g. mkdocs-audience-toggle) where mode icons have no universal
+   meaning and must always be supplied. */
+
+.light-dark-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: var(--light-dark-height, 1.2rem);
+  border: 0.05rem solid var(--light-dark-accent, currentColor);
+  border-radius: var(--light-dark-radius, 1rem);
+  overflow: hidden;
+  background-color: var(--light-dark-track-bg, transparent);
+}
+
+/* left and width are set by the script to match the active option. */
+.light-dark-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  border-radius: var(--light-dark-radius, 1rem);
+  background-color: var(--light-dark-accent, currentColor);
+  transition: transform 0.2s ease;
+}
+
+.light-dark-toggle[data-active="light"] .light-dark-highlight {
+  transform: translateX(100%);
+}
+
+.light-dark-option {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 0 0.35rem;
+  border: none;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Active option's icon sits on the highlight fill, so it flips to a
+   contrasting color; inactive stays plain currentColor. */
+.light-dark-toggle[data-active="light"] .light-dark-option[data-scheme="default"],
+.light-dark-toggle[data-active="dark"] .light-dark-option[data-scheme="slate"] {
+  color: var(--light-dark-active-fg, Canvas);
+}
+
+.light-dark-option::before {
+  content: "";
+  display: block;
+  width: var(--light-dark-icon-size, 0.7rem);
+  height: var(--light-dark-icon-size, 0.7rem);
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.light-dark-option[data-scheme="default"]::before {
+  -webkit-mask-image: var(
+    --light-dark-icon-light,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z'/%3E%3C/svg%3E")
+  );
+  mask-image: var(
+    --light-dark-icon-light,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z'/%3E%3C/svg%3E")
+  );
+}
+
+.light-dark-option[data-scheme="slate"]::before {
+  -webkit-mask-image: var(
+    --light-dark-icon-dark,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E")
+  );
+  mask-image: var(
+    --light-dark-icon-dark,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E")
+  );
+}
+
+/* Material's own [hidden] rules (.md-header__option, .md-option:checked +
+   label) beat the plain [hidden] { display: none } UA rule on specificity,
+   so the palette form we hide via JS (paletteForm.hidden = true) can stay
+   silently visible without this. Scoped to the palette form specifically,
+   not a sweeping [hidden] override, so this package can't interfere with
+   `hidden` elements from other plugins or the page's own content. */
+[data-md-component="palette"][hidden] {
+  display: none !important;
+}
+
+.light-dark-toast {
+  position: fixed;
+  left: 50%;
+  z-index: 10;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.4rem;
+  background-color: var(--light-dark-toast-bg, CanvasText);
+  color: var(--light-dark-toast-fg, Canvas);
+  font-size: 0.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -0.3rem);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.light-dark-toast--visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .light-dark-highlight,
+  .light-dark-toast {
+    transition: none;
+  }
+}
