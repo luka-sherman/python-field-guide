@@ -2,8 +2,10 @@
 
 axe flags *markup* problems on a static snapshot. These tests use the keyboard the way a
 mouse-free user would: the skip link works, this repo's own interactive controls show a
-visible focus indicator, nothing hijacks tab order with a positive tabindex, and the palette
-toggle is reachable.
+visible focus indicator, and nothing hijacks tab order with a positive tabindex. The light/dark
+and Essentials/Advanced toggles are plugins now (mkdocs-light-dark-toggle,
+mkdocs-audience-toggle) — their own keyboard reachability is covered by each plugin's own test
+suite, not repeated here.
 
 Browser tier — same setup as test_accessibility_browser.py (`playwright install chromium`).
 """
@@ -56,36 +58,6 @@ def test_no_positive_tabindex(page, site_url, path):
         f"{len(positive)} element(s) use a positive tabindex on {path} "
         f"({positive}) — this overrides natural DOM tab order"
     )
-
-
-def test_palette_toggle_is_keyboard_reachable(page, site_url):
-    """The dark/light toggle must be operable without a mouse. docs/javascripts/
-    theme_toggle.js replaces Material's native radios+labels with its own
-    `.pt-theme-option` buttons (a two-segment sun/moon control, matching the
-    Essentials/Advanced content-mode toggle) and hides the native form — so this checks the
-    *replacement* buttons are real, labeled, visible controls and that Tab reaches
-    one, rather than the native radios (which are now deliberately hidden)."""
-    page.goto(site_url)
-    buttons = page.evaluate(
-        """() => [...document.querySelectorAll('.pt-theme-option')].map((b) => ({
-            hidden: b.hasAttribute('hidden'),
-            display: getComputedStyle(b).display,
-            label: b.getAttribute('aria-label') || '',
-        }))"""
-    )
-    assert len(buttons) >= 2, "expected at least two theme option buttons (light + dark)"
-    assert all(not b["hidden"] and b["display"] != "none" for b in buttons), (
-        "a theme option button is hidden from keyboard/AT users entirely"
-    )
-    assert all(b["label"] for b in buttons), "a theme option button has no accessible name"
-
-    for _ in range(25):
-        page.keyboard.press("Tab")
-        if page.evaluate(
-            "() => document.activeElement?.classList.contains('pt-theme-option')"
-        ):
-            return
-    raise AssertionError("Tab never reached the theme toggle within 25 stops")
 
 
 # Interactive things this repo styles itself (as opposed to Material's header/search/palette

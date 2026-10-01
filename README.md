@@ -205,6 +205,21 @@ plugins:
 
 A section with its own cheatsheet page, like Libraries here, shows up on the homepage as title-and-description cards only. The optional header button replaces the logo with a "Cheatsheet" link home. It includes its own Playwright and axe-core tests. See the [plugin's README](https://github.com/luka-sherman/mkdocs-cheatsheet) for all options. This site's setup is under `cheatsheet` in `mkdocs.yml`, with the flag rules in STRUCTURE.md's "Cheatsheet flags" section.
 
+### [mkdocs-light-dark-toggle](https://pypi.org/project/mkdocs-light-dark-toggle/)
+
+An always-visible two-button light/dark switch, replacing Material's native single-knob palette toggle (whose knob is the only clickable spot, and whose current scheme is the only thing you can see). It started as this site's own light/dark JavaScript, and I rewrote it as a published plugin.
+
+```bash
+pip install mkdocs-light-dark-toggle
+```
+
+```yaml
+plugins:
+  - light_dark_toggle
+```
+
+Needs zero configuration to work: it ships with built-in sun/moon icons, unlike `mkdocs-audience-toggle` above where mode icons have no universal meaning and must always be supplied. The native palette radios stay in the DOM, hidden — their own JavaScript still applies and persists the scheme via `localStorage`, the plugin only drives them. It includes its own Playwright and axe-core tests. See the [plugin's README](https://github.com/luka-sherman/mkdocs-light-dark-toggle) for all options. This site's setup is under `light_dark_toggle` in `mkdocs.yml`, with color overrides in `extra.css`'s `#light-dark-toggle` rule.
+
 ## Theme
 
 ### Custom CSS

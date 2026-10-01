@@ -972,141 +972,47 @@ input:checked + .md-consent__settings {
   margin: 0.3rem 0 0.1rem;
 }
 
-/* Light/dark toggle track (docs/javascripts/theme_toggle.js) — both
-   options always visible, sliding highlight behind the active one, next
-   to the palette toggle. Shows on every page.
-
-   The Essentials/Advanced content toggle used to share this same
-   .pt-simplify-* markup/CSS (two named options, one active at a time). It's
-   now the mkdocs-audience-toggle plugin's own #audience-toggle, styled
-   below via that plugin's --audience-* variables instead — see "Content mode
-   toggle" further down. */
-.pt-simplify-toggle {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  height: 1.2rem;
+/* Light/dark toggle, from the mkdocs-light-dark-toggle plugin configured
+   in mkdocs.yml — see CLAUDE.md's "Planned extraction" section. The
+   plugin's own CSS (light_dark_toggle.css) provides the track/highlight/
+   option/icon layout and built-in sun/moon icons; this site only
+   overrides its --light-dark-* styling hooks to match this site's look,
+   plus the header spacing the plugin doesn't set for itself. */
+#light-dark-toggle {
   margin: 0.4rem 0.2rem;
-  /* currentColor, not a fixed accent — border/highlight/text below track
-     the theme's own ink/bg shades. */
-  border: 0.05rem solid currentColor;
-  border-radius: 1rem;
-  overflow: hidden;
-  /* The site's own background, not transparent — otherwise the inactive
-     option just shows whatever's behind the header (the translucent
-     --md-primary-fg-color, plus the header's own scale/shimmer pattern on
-     top), so the track read inconsistently depending on scroll position
-     and theme. A flat --pt-bg fill keeps the inactive side legible and
-     matches the highlight pill's own solid currentColor fill instead of
-     looking like a hole cut into the header. */
-  background-color: var(--pt-bg);
+  --light-dark-track-bg: var(--pt-bg);
+  --light-dark-active-fg: var(--pt-bg);
 }
 
-.pt-simplify-highlight {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  /* Square outer edge gets clipped to the track's own rounding via
-     overflow: hidden above; only the inner (middle) edge needs rounding. */
-  border-radius: 0 1rem 1rem 0;
-  background-color: currentColor;
-  transition: transform 0.2s ease;
+/* Matched to #light-dark-toast's look below, via the plugin's own
+   dedicated --light-dark-toast-bg/--light-dark-toast-fg hooks. */
+#light-dark-toast {
+  --light-dark-toast-bg: var(--pt-ink);
+  --light-dark-toast-fg: var(--pt-bg);
+  border-radius: 1.6rem;
+  line-height: 1.4;
+  box-shadow: var(--md-shadow-z2);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.pt-simplify-toggle[data-active="light"] .pt-simplify-highlight {
-  border-radius: 1rem 0 0 1rem;
-  transform: translateX(100%);
-}
-
-.pt-simplify-option {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  padding: 0 0.5rem;
-  border: none;
-  background: none;
-  color: currentColor;
-  font-family: inherit;
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-/* Active option's text sits on the currentColor highlight, so it flips
-   to the bg color for contrast; inactive stays plain currentColor. */
-.pt-simplify-toggle[data-active="light"] .pt-simplify-option[data-scheme="default"],
-.pt-simplify-toggle[data-active="dark"] .pt-simplify-option[data-scheme="slate"] {
-  color: var(--pt-bg);
-}
-
-/* Reusable sun/moon icon sizing, shared between .pt-theme-option's own
-   ::before (see below) and the toast's real .pt-mode-icon element
-   (docs/javascripts/theme_toggle.js's showToast) — same mask-image
-   technique, so both read as the exact same icon. Sized smaller (0.7rem)
-   than the toast's own override (1.2rem, matching Material's "back to
-   top" icon) since this one sits inside the 1.2rem-tall toggle track
-   itself. */
-.pt-mode-icon {
-  content: "";
-  display: inline-block;
-  width: 0.7rem;
-  height: 0.7rem;
-  flex: none;
-  background-color: currentColor;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-position: center;
-  mask-position: center;
-}
-
-/* Toast-only override: matches the size of Material's own "back to top"
-   icon (`.md-icon svg`, 1.2rem), per the shared rule's comment above. */
-.pt-mode-icon {
-  width: 1.2rem;
-  height: 1.2rem;
-}
-
-/* Several of Material's own rules (.md-header__option, .md-option:checked
-   + label) beat the plain [hidden] { display: none } UA rule on
-   specificity, so an element we hide via JS (.hidden = true) can silently
-   stay visible — hit this before (the palette form, hidden here via
-   theme_toggle.js). One global override instead of chasing each element
-   type.
-   Excludes Material's own [data-md-component="sidebar"] (the mobile nav
-   drawer, reused as .md-sidebar--primary): Material toggles its `hidden`
-   attribute itself and reveals it via its own more-specific (but
-   non-!important) CSS when the drawer checkbox is checked — our
-   !important here silently beat that and left the hamburger menu
-   permanently empty on mobile, with no console error. Same class of bug
-   as the .md-sidebar--primary gotcha in CLAUDE.md's Navigation section,
-   different cause. */
-[hidden]:not([data-md-component="sidebar"]) {
-  display: none !important;
+#light-dark-toast.light-dark-toast--visible {
+  transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
 /* Content mode toggle (Essentials/Advanced), from the
    mkdocs-audience-toggle plugin configured in mkdocs.yml — see
    CLAUDE.md's "Planned extraction" section. The plugin's own CSS
    (audience_toggle.css) provides the track/highlight/option/icon
-   layout and mobile label-collapse; this site only overrides its --audience-*
-   styling hooks to match the .pt-simplify-toggle look above, plus the
-   header spacing the plugin doesn't set for itself. */
+   layout and mobile label-collapse; this site only overrides its
+   --audience-* styling hooks to match the light/dark toggle's look
+   above, plus the header spacing the plugin doesn't set for itself. */
 #audience-toggle {
   margin: 0.4rem 0.2rem;
   --audience-track-bg: var(--pt-bg);
   --audience-active-fg: var(--pt-bg);
 }
 
-/* Matched to .pt-toast's look below, via the plugin's own dedicated
+/* Matched to #light-dark-toast's look above, via the plugin's own dedicated
    --audience-toast-bg/--audience-toast-fg hooks (mkdocs-audience-toggle >=0.1.1). */
 #audience-toast {
   --audience-toast-bg: var(--pt-ink);
@@ -1119,118 +1025,6 @@ input:checked + .md-consent__settings {
 
 #audience-toast.audience-toast--visible {
   transition: opacity 0.15s ease, transform 0.15s ease;
-}
-
-/* Light/dark toggle — shares .pt-simplify-toggle/-highlight/-option, but
-   each option is a fixed choice (sun = light, moon = dark) rather than
-   one element showing whichever mode is current. Native Material markup
-   is hidden but stays in the DOM (its own JS still applies the scheme). */
-.pt-theme-option {
-  padding: 0 0.35rem;
-}
-
-.pt-theme-option::before {
-  content: "";
-  display: block;
-  width: 0.7rem;
-  height: 0.7rem;
-  background-color: currentColor;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-position: center;
-  mask-position: center;
-}
-
-.pt-theme-option[data-scheme="default"]::before {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z'/%3E%3C/svg%3E");
-}
-
-.pt-theme-option[data-scheme="slate"]::before {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
-}
-
-/* Same sun/moon icons, reusable on a real element (not a pseudo-element) —
-   used by the toast (docs/javascripts/theme_toggle.js's showToast)
-   for the light/dark toggle's own "Lights on"/"Lights off" message,
-   keeping it visually consistent with .pt-theme-option's icon. */
-.pt-mode-icon[data-scheme="default"] {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z'/%3E%3C/svg%3E");
-}
-
-.pt-mode-icon[data-scheme="slate"] {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath d='M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z'/%3E%3C/svg%3E");
-}
-
-/* Disappearing confirmation toast for the light/dark toggle
-   (docs/javascripts/theme_toggle.js's showToast). Sits just below the header — right where the toggle that triggered it
-   lives — rather than at the bottom of the screen, so it's immediately
-   next to the control the reader just clicked. `top` itself is set inline
-   by showToast() (the header's own height varies: ~48px on mobile, taller
-   on desktop/tablet with the tab bar, and Material can also hide/reveal it
-   on scroll), only the offset-from-header gap lives here. Centered
-   horizontally on both desktop and mobile. Shape matches Material's own
-   "back to top" pill (`.md-top`); bg/fg use --pt-ink/--pt-bg swapped, so
-   the toast is inverted from the page instead of matching it. */
-.pt-toast {
-  position: fixed;
-  z-index: 1000;
-  left: 50%;
-  transform: translate(-50%, 0);
-  max-width: min(90vw, 22rem);
-  padding: 0.4rem 0.8rem;
-  border-radius: 1.6rem;
-  background-color: var(--pt-ink);
-  color: var(--pt-bg);
-  font-size: 0.7rem;
-  line-height: 1.4;
-  text-align: center;
-  box-shadow: var(--md-shadow-z2);
-  opacity: 0;
-  /* none while hidden, so an invisible toast (opacity alone doesn't take
-     it out of hit-testing) doesn't block clicks on whatever's under where
-     it will appear; .pt-toast--visible switches it back to auto so a
-     click on the visible toast is absorbed instead of passing through to
-     the page content behind it. */
-  pointer-events: none;
-  /* Fade only — no slide/transform. The fade-out itself is slow and
-     gentle; showToast() in theme_toggle.js keeps the fully-visible
-     hold time short instead, so the toast still clears the screen quickly
-     overall. */
-  transition: opacity 0.7s ease;
-}
-
-.pt-toast--visible {
-  opacity: 1;
-  pointer-events: auto;
-  /* Fading in can be quick; only the fade-out (the base .pt-toast rule
-     above, used once this class is removed again) is slow. */
-  transition: opacity 0.15s ease;
-}
-
-.pt-toast__title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
-  font-weight: 700;
-}
-
-/* Only add space below the title when there's actually a body line under
-   it — the light/dark toast's own title is self-explanatory and always
-   passes no body (see showToast() in theme_toggle.js), so this only
-   matters if a future caller adds one. */
-.pt-toast__title:not(:last-child) {
-  margin-bottom: 0.2rem;
-}
-
-.pt-toast__body {
-  font-weight: 400;
 }
 
 .library-grid > .md-cheatsheet__group {
@@ -1278,7 +1072,7 @@ input:checked + .md-consent__settings {
   .library-grid > [class*="md-cheatsheet__group--cards-"]:not(.md-cheatsheet__group--cards-1):not(.md-cheatsheet__group--cards-2):not(.md-cheatsheet__group--cards-3) { grid-column: span 4; } /* caps at the grid's own width */
 
   /* --cards-N above is sized for the full card count; Essentials mode
-     hides some, leaving boxes too wide. theme_toggle.js recomputes the
+     hides some, leaving boxes too wide. library_spans.js recomputes the
      visible count into --library-span, overriding --cards-N here (same
      specificity, later in source) while active. */
   html[data-audience-mode="essentials"] .library-grid > .md-cheatsheet__group {

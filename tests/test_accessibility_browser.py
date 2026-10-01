@@ -37,10 +37,10 @@ TABLET_VIEWPORT = {"width": 800, "height": 1024}
 def _select_scheme(page, scheme):
     """Flip Material's palette to `scheme` ('default' = light, 'slate' = dark).
 
-    docs/javascripts/theme_toggle.js replaces the visible light/dark control with its
+    The mkdocs-light-dark-toggle plugin replaces the visible light/dark control with its
     own buttons and hides Material's native radio entirely, so Playwright can't click it
     as a normal user control. Clicking it directly still fires the same input change that
-    Material's own JS (and our buttons) rely on to apply and persist the scheme.
+    Material's own JS (and the plugin's buttons) rely on to apply and persist the scheme.
     """
     page.evaluate(
         "(s) => document.querySelector(`input[data-md-color-scheme=\"${s}\"]`).click()",

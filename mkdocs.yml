@@ -13,22 +13,33 @@ plugins:
   # here or the site silently loses its search feature.
   - search
   - nested-tabs
-  # Essentials/Advanced content toggle — see extra.css's "Essentials/Advanced
-  # toggle" section for the --audience-* variable overrides that give it this
-  # site's look, and STRUCTURE.md / CLAUDE.md for the data-audience-hide="essentials"
-  # marking convention. "Advanced" is listed first and marked default: true
-  # so it keeps showing everything on first visit, matching this site's
-  # prior behavior.
   # Homepage and libraries/index.md card grids, built from {cs} heading
   # flags on each page — see STRUCTURE.md's "Cheatsheet flags" section.
   - cheatsheet:
       button: true
       sort: alphabetical
       group_heading_level: 4
+  # Always-visible light/dark switch, replacing Material's native single-knob
+  # palette toggle — see extra.css's "Light/dark toggle" section for the
+  # --light-dark-* variable overrides that give it this site's look. Listed
+  # before audience_toggle below: it creates #light-dark-toggle, which that
+  # plugin's insert_selector then anchors to — on_config order follows this
+  # plugins: list order, so its script tag (and #light-dark-toggle) must
+  # exist before audience_toggle's own script looks for it.
+  - light_dark_toggle:
+      light:
+        announcement: Lights on
+      dark:
+        announcement: Lights off
+  # Essentials/Advanced content toggle — see extra.css's "Essentials/Advanced
+  # toggle" section for the --audience-* variable overrides that give it this
+  # site's look, and STRUCTURE.md / CLAUDE.md for the data-audience-hide="essentials"
+  # marking convention. "Advanced" is listed first and marked default: true
+  # so it keeps showing everything on first visit, matching this site's
+  # prior behavior.
   - audience_toggle:
       aria_label: Content level
-      # theme_toggle.js creates #pt-theme-toggle before this plugin's script runs.
-      insert_selector: "#pt-theme-toggle"
+      insert_selector: "#light-dark-toggle"
       collapse_labels: true
       query_param: mode
       wrapper_class:
@@ -194,7 +205,7 @@ extra_javascript:
   - javascripts/copyright_year.js
   - javascripts/external_links.js
   - javascripts/homepage_header_title.js
-  - javascripts/theme_toggle.js
+  - javascripts/library_spans.js
   - javascripts/a11y_patches.js
   - https://unpkg.com/mermaid@11/dist/mermaid.min.js
   - javascripts/mermaid_config.js
