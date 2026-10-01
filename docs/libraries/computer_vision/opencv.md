@@ -3,7 +3,7 @@ cheatsheet_title: OpenCV
 cheatsheet_description: 'Real-time image and video analysis, built directly on NumPy arrays: color spaces, edge detection, face detection.'
 cheatsheet_title_suffix: :material-download-outline:{ .library-badge .library-badge--third-party title="Third-party — install separately with pip" }
 cheatsheet_attrs:
-  data-fcm-hide: essentials
+  data-audience-hide: essentials
 description: >-
   Computer vision in Python with OpenCV: reading and displaying images, color spaces,
   edge detection, contours, and face detection.

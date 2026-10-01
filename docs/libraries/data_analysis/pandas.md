@@ -3,7 +3,7 @@ cheatsheet_title: pandas
 cheatsheet_description: 'Tabular data: rows and columns, like a spreadsheet, built on top of NumPy.'
 cheatsheet_title_suffix: :material-download-outline:{ .library-badge .library-badge--third-party title="Third-party — install separately with pip" }
 cheatsheet_attrs:
-  data-fcm-hide: essentials
+  data-audience-hide: essentials
 description: >-
   Tabular data in Python with pandas: building a DataFrame, sorting rows, and summarizing
   columns, with runnable examples.

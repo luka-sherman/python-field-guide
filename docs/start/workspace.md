@@ -148,7 +148,7 @@ That's it! You've written and run your first Python program. From here, you can 
 
 <div class="pfg-section" markdown="block">
 
-## Using the terminal { data-fcm-hide="essentials" cs="Terminal, cd, ls, pwd, shortcuts" }
+## Using the terminal { data-audience-hide="essentials" cs="Terminal, cd, ls, pwd, shortcuts" }
 
 The terminal is a text-based way to navigate your computer's files and run programs.
 
@@ -233,7 +233,7 @@ It's good for running Python files that are already finished — either your own
 
 <div class="pfg-section" markdown="block">
 
-## Virtual environments { data-fcm-hide="essentials" cs="virtual environments, activate, pip, requirements.txt, venv" }
+## Virtual environments { data-audience-hide="essentials" cs="virtual environments, activate, pip, requirements.txt, venv" }
 
 Sometimes you'll want to install [external libraries](../libraries/index.md) for your project. A **virtual environment** keeps each project's installed libraries in their own separate folder instead of installing them onto your computer.
 

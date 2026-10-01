@@ -3,7 +3,7 @@ cheatsheet_title: NumPy
 cheatsheet_description: Fast numeric arrays, with math applied to a whole array at once instead of item by item.
 cheatsheet_title_suffix: :material-download-outline:{ .library-badge .library-badge--third-party title="Third-party — install separately with pip" }
 cheatsheet_attrs:
-  data-fcm-hide: essentials
+  data-audience-hide: essentials
 description: >-
   Fast numeric arrays in Python with NumPy: creating arrays, vectorized math, aggregation,
   and boolean-mask filtering, with runnable examples.

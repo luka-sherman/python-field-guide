@@ -26,7 +26,7 @@ Code that works isn't automatically code that's easy to read and maintain.
 
 Python runs styled and unstyled code identically, so following PEP 8 doesn't make a script more *correct* — it makes it more *predictable* to read. Anyone who's used Python before recognizes the shape of PEP 8-styled code, so sticking to it means less friction reading someone else's code, and less friction when someone else reads yours.
 
-### File order { data-fcm-hide="essentials" cs="order" }
+### File order { data-audience-hide="essentials" cs="order" }
 
 A Python file conventionally follows the same layout, top to bottom — a linter won't flag this on its own the way it does most of PEP 8, since it's a convention about where things go rather than a formatting rule.[^order-pep8]
 
@@ -79,7 +79,7 @@ length_ft = 4.5        # clear at a glance
 
 A short name is fine when its scope is short too — `for s in species:` is common, since `s` only exists for the one line inside the loop.
 
-### Constants { data-fcm-hide="essentials" cs="constants" }
+### Constants { data-audience-hide="essentials" cs="constants" }
 
 A **constant** is a variable whose value isn't meant to change while the program runs — written in `ALL_CAPS` by convention, so it's easy to tell apart from a regular variable at a glance. Defining one instead of repeating a raw number (a "magic number") gives that number a name explaining what it means.
 
@@ -94,7 +94,7 @@ if length_ft > MAX_TYPICAL_LENGTH_FT:
 
 Constants are usually defined near the top of a file, so they're easy to find and adjust later — see [File Order](#file-order) above.
 
-### Quote style { data-fcm-hide="essentials" cs="quote style" }
+### Quote style { data-audience-hide="essentials" cs="quote style" }
 
 Python treats `'single'` and `"double"` quotes identically for strings — PEP 8 doesn't prefer one over the other, just pick one as your default and stick with it throughout a file, rather than mixing both without reason. (This site uses double quotes.) The one except&zwnj;ion: switch to the other quote character for a string that itself contains a quote, rather than escaping it with a backslash.
 
@@ -148,7 +148,7 @@ species = "ball python"
 length_ft = 4.5
 ```
 
-### Indentation { data-fcm-hide="essentials" cs="indentation" }
+### Indentation { data-audience-hide="essentials" cs="indentation" }
 
 Python uses indentation, not braces, to mark a block — PEP 8's rule is 4 spaces per level, never tabs (mixing the two causes real errors, not just style complaints).
 
@@ -194,7 +194,7 @@ def describe(species, length_ft=4.5):      # PEP 8
     ...
 ```
 
-### Comments { data-fcm-hide="essentials" cs="comments" }
+### Comments { data-audience-hide="essentials" cs="comments" }
 
 An inline comment needs at least two spaces before the `#` and one space after it; a block comment on its own line follows the same one-space-after rule.
 
@@ -263,7 +263,7 @@ def add_sighting(species, log=None):   # Pythonic — a fresh list every call
     return log
 ```
 
-### Truthy checks instead of len(x) > 0 { #truthy-checks data-fcm-hide="essentials" cs="truthy checks" }
+### Truthy checks instead of len(x) > 0 { #truthy-checks data-audience-hide="essentials" cs="truthy checks" }
 
 Test a collection directly — a non-empty list is already truthy.
 
@@ -275,7 +275,7 @@ if species:              # Pythonic — a non-empty list is already truthy
     print("found some")
 ```
 
-### enumerate() instead of range(len(...)) { #enumerate-instead-of-range data-fcm-hide="essentials" cs="enumerate()" }
+### enumerate() instead of range(len(...)) { #enumerate-instead-of-range data-audience-hide="essentials" cs="enumerate()" }
 
 Loop with both the index and the item at once, instead of indexing into the list by hand.
 
@@ -304,7 +304,7 @@ if length_ft is None:                # Pythonic — `is` is the correct tool for
 
 <div class="pfg-section" markdown="block">
 
-## Efficiency { data-fcm-hide="essentials" cs }
+## Efficiency { data-audience-hide="essentials" cs }
 
 Correct code produces the right output.
 
